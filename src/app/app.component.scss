@@ -1,0 +1,42 @@
+// Colors
+$white : "#ffffff";
+
+
+
+.content-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+  }
+
+.active-link{
+    border-left-style: solid;
+    border-left-color: #A3A0FB;
+    opacity: 1;
+    border-left-width: 5px;
+}
+.bg-nav-item{
+    // background-color: #43425D;
+    height: 150px;
+    padding-top: 55px;
+    color: white;
+    background: transparent radial-gradient(closest-side at 17% 59%, #3C3B54 0%, #43425D99 100%) 0% 0% no-repeat padding-box;
+}
+.side-nav-item{
+    background-color: #43425D;
+    padding-left: 10px;
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    padding-top:8px;
+    vertical-align: middle;
+    margin-top:3px;
+    margin-bottom: 3px;
+    color:white;
+    border-radius: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+    
+}
+

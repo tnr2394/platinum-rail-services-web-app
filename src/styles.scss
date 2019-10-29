@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+$bg-th : #F5F6FA;
+$color-th:  #A3A6B4;
+$header-color: #43425D; 
+
+
+.font-sans{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+.font-roboto{
+    font-family: 'Roboto', sans-serif;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1 { font-family: 'Source Sans Pro';}
+.card{
+    padding: 15px;
+    box-shadow: 0px 2px 6px #0000002A;
+
+}
+.bold{
+    font-weight: bold;
+}
+
+.badge{
+    width: 60px;
+    padding:5px;
+    border-radius: 15px;
+}
+
+$white : white;

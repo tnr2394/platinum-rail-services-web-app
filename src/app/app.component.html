@@ -1,12 +1,21 @@
-<!-- Start your project here-->
-<div style="height: 100vh">
-  <div class="flex-center flex-column">
-    <h1 class="animated fadeIn mb-4">Material Design for Bootstrap (Angular)</h1>
+<app-top-nav></app-top-nav>
+<mat-sidenav-container 
+    class="content-container" (backdropClick)="close('backdrop')" >
+  <mat-sidenav #sidemenu style="width: 260px; background-image: url('assets/bg-sidebar.png'); background-size: cover; " (keydown.escape)="close('escape')" disableClose>
+    <h3 class="bg-nav-item"><i class="fa fa-user fa-fw"></i>Admin</h3>
+    <a class="side-nav-item" routerLink="/dashboard" routerLinkActive="active-link" mat-button ><i class="fas fa-chalkboard"></i> Dashboard</a>
+    <a class="side-nav-item" routerLink="/jobs" routerLinkActive="active-link" mat-button ><i class="fas fa-chalkboard"></i> Job</a>
+    <a class="side-nav-item" routerLink="/instructors" routerLinkActive="active-link" mat-button ><i class="fas fa-chalkboard"></i> Instructor</a>
+    <a class="side-nav-item" routerLink="/courses" routerLinkActive="active-link" mat-button ><i class="fas fa-chalkboard"></i> Course</a>
+  </mat-sidenav>
 
-    <h5 class="animated fadeIn mb-3">Thank you for using our product. We're glad you're with us.</h5>
-    <h6 class="animated fadeIn mb-3">Start browsing <a href="https://mdbootstrap.com/angular">documentation</a>.</h6>
+  <mat-sidenav-content style="background-color:#FAFAF7">
+    <div class="container" style="padding-top:25px ;">
+      <router-outlet></router-outlet>
+    <!-- Routed components go here -->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-    <p class="animated fadeIn text-muted">MDB Team</p>
-  </div>
-</div>
-<!-- /Start your project here-->
+
+
