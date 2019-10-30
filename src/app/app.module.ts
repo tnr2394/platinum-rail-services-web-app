@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing.module';
-import {MatDialogModule , MatSidenavModule, MatButtonModule,MatCheckboxModule,MatPaginatorModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule} from '@angular/material';
+import {MatSelectModule, MatDialogModule , MatSidenavModule, MatButtonModule,MatCheckboxModule,MatPaginatorModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -42,7 +42,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MDBBootstrapModule.forRoot(),
     MatListModule,
     MatPaginatorModule,
-    MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,
+    MatSelectModule,MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,
     MatSidenavModule,
     AppRoutingModule,
     FormsModule, 

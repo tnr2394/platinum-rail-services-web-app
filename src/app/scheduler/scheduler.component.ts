@@ -45,7 +45,7 @@ export class SchedulerComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   
   view: CalendarView = CalendarView.Month;
-
+  jobs = [{client:"SKUK",value:1},{client:"Shipley",value:2},{client:"FOC",value:3},{client:"Shipley",value:4}];
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
@@ -167,57 +167,11 @@ export class SchedulerComponent implements OnInit {
     }
   }
 
-  // EVENT TIME FUNCTION. NOT USEFUL
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map(iEvent => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
 
 // Model Opener
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-
-  // ADD EVENT CODE. NOT USEFUL
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        }
-      }
-    ];
-  }
-
-  // DELETE EVENT CODE. NOT USEFUL
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
   }
 
   closeOpenMonthViewDay() {
