@@ -35,6 +35,7 @@
                             <th></th>
                         </tr>
                     </thead>
+                    
                     <tbody *ngIf="dataSource">
                         <tr *ngFor="let course of dataSource ; index as i">
                             <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
