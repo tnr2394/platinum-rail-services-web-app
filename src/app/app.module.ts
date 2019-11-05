@@ -36,7 +36,8 @@ import { SearchPipePipe } from "./search-pipe.pipe";
     CoursesComponent,
     JobsComponent,
     InstructorsComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    SearchPipePipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,6 @@ import { SearchPipePipe } from "./search-pipe.pipe";
     FlatpickrModule.forRoot(),
     MatDialogModule,
     NgbModule,
-    SearchPipePipe
   ],
   providers: [SideNavServiceService],
   bootstrap: [AppComponent]

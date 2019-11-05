@@ -12,6 +12,7 @@ import { MatPaginator, PageEvent } from '@angular/material';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  searchText: string;
   courses: any;
   bgColors: string[];
   lastColor;
