@@ -26,7 +26,8 @@ import {MatListModule} from '@angular/material/list';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { SearchPipePipe } from "./search-pipe.pipe";
+import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
+import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchPipePipe } from "./search-pipe.pipe";
     JobsComponent,
     InstructorsComponent,
     SchedulerComponent,
-    SearchPipePipe
+    AddCourseModalComponent,
+    EditCourseModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { SearchPipePipe } from "./search-pipe.pipe";
     MatDialogModule,
     NgbModule,
   ],
+  entryComponents:[AddCourseModalComponent, EditCourseModalComponent],
   providers: [SideNavServiceService],
   bootstrap: [AppComponent]
 })

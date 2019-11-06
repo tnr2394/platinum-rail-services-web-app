@@ -1,11 +1,50 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '~@angular/material/theming';
+
+
+// @include mat-core();
+// $custom-theme-primary: mat-palette($mat-blue, 900);
+// $custom-theme-accent:mat-palette($mat-pink, A200, A100, A400);
+// $custom-theme-warn: mat-palette($mat-red);
+// $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+// @include angular-material-theme($custom-theme);
+
+
+
+$my-theme-primary: mat-palette($mat-blue, 500);
+$my-theme-accent: mat-palette($mat-green);
+$my-theme-warn: mat-palette($mat-deep-orange, A200);
+
+$my-theme-typography: mat-typography-config(
+  $font-family: 'Source Sans Pro, times new roman',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500),
+  
+);
+
+@include mat-base-typography($my-theme-typography);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$my-theme: mat-light-theme(
+    $my-theme-primary,
+    $my-theme-accent,
+    $my-theme-warn,
+    );
+
+@include angular-material-theme($my-theme);
 
 $bg-th : #F5F6FA;
 $color-th:  #A3A6B4;
 $header-color: #43425D; 
-
+$light: #555;
+.mat-dialog-title{
+    color: #3B86FF;
+}
 
 .font-sans{
     font-family: 'Source Sans Pro', sans-serif;
@@ -34,3 +73,8 @@ h1 { font-family: 'Source Sans Pro';}
 }
 
 $white : white;
+.light-underline{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #ccc;
+}

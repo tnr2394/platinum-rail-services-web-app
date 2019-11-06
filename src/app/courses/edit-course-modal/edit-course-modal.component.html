@@ -1,0 +1,17 @@
+<h1 mat-dialog-title class="text-primary light-underline">
+    <i class="fas fa-edit fa-fw"></i> 
+    Edit Course 
+</h1>
+<div mat-dialog-content>
+        <mat-form-field class="example-full-width col-6">
+                <input matInput placeholder="Course Title" [(ngModel)]='data.title' cdkFocusInitial>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6">
+                <input matInput placeholder="Course Duration" [(ngModel)]='data.duration'>
+        </mat-form-field>
+        
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="primary" [mat-dialog-close]="data" ><i class="fas fa-save fa-fw"></i> Save</button>
+    <button mat-flat-button color="primary" (click)="onNoClick()"><i class="fas fa-close fa-fw"></i>Cancel</button>
+  </div>
