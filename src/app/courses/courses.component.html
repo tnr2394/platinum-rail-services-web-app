@@ -13,7 +13,7 @@
             <div class="card-title">
                 <div class="row">
                     <mat-form-field class="example-full-width col-6">
-                            <input matInput placeholder="Search"/>
+                            <input matInput placeholder="Search" [(ngModel)]='searchText'>
                             <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
                     <mat-paginator class="col-6" [length]="courses.length"
@@ -35,8 +35,9 @@
                             <th></th>
                         </tr>
                     </thead>
+
                     <tbody *ngIf="dataSource">
-                        <tr *ngFor="let course of dataSource ; index as i">
+                        <tr *ngFor="let course of dataSource | searchPipe: {title: searchText}; index as i">
                             <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
                             <td>{{course.title}}</td>
                             <td><span class="badge {{getRandomColorClass(i)}}">{{course.duration}}</span></td>

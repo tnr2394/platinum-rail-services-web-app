@@ -26,6 +26,8 @@ import {MatListModule} from '@angular/material/list';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { SearchPipePipe } from "./search-pipe.pipe";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CoursesComponent,
     JobsComponent,
     InstructorsComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    SearchPipePipe
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     }),
     FlatpickrModule.forRoot(),
     MatDialogModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [SideNavServiceService],
   bootstrap: [AppComponent]
