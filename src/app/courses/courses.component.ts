@@ -34,6 +34,7 @@ export class CoursesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     
   }
+  
   ngAfterViewInit() {
     this.paginator.page.subscribe(
       (event) => {
