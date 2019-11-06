@@ -59,10 +59,10 @@ export class CoursesComponent implements OnInit {
       if(searchText === ""){
         this.dataSource = this.courses;
         this.dataSource.paginator = this.paginator;
-      this.handlePage({pageIndex:0, pageSize:this.pageSize});
+        this.handlePage({pageIndex:0, pageSize:this.pageSize});
           return;
       }
-      this.dataSource = this._filter.filter(searchText,this.courses,['title']);
+      this.dataSource = this._filter.filter(searchText,this.courses,['title','duration']);
       this.dataSource.paginator = this.paginator;
       // this.iterator();
     }  
