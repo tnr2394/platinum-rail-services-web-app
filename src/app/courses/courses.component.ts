@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {CourseService} from '../course.service';
+import {CourseService} from '../services/course.service';
 
 import { Observable } from 'rxjs';
 import { Course } from '../interfaces/course';

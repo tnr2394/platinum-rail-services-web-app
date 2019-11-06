@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { SideNavServiceService } from './side-nav-service.service';
+import { SideNavServiceService } from './services/side-nav-service.service';
 import { $ } from 'protractor';
 
 @Component({

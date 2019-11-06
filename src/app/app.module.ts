@@ -23,7 +23,7 @@ import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import {MatListModule} from '@angular/material/list';
-import { SideNavServiceService } from './side-nav-service.service';
+import { SideNavServiceService } from './services/side-nav-service.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({

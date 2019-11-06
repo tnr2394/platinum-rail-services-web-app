@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SideNavServiceService } from '../side-nav-service.service';
+import { SideNavServiceService } from '../services/side-nav-service.service';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Course } from './interfaces/course';
+import { Course } from '../interfaces/course';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ constructor(private http: HttpClient) { }
         ];
         observer.next(obj);
 
-      },3000)
+      },100)
     });
 
   }
