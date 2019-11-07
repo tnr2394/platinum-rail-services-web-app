@@ -34,11 +34,18 @@ addCourse(data:any): Observable<any> {
   return  new Observable<any>((observer)=>{
     console.log("Observable");
     var that = this;
-    setTimeout(function(){
-      that.courses.push(data);
-      console.log("Course added: ",data,that.courses);
-      observer.next(that.courses);
-    });
+    this.http.post("http://localhost:3000/courses",data).subscribe((res:any)=>{
+      console.log("ADDED Course : ",res);
+      observer.next(res.data);
+      observer.complete();
+    })
+
+
+    // setTimeout(function(){
+    //   that.courses.push(data);
+    //   console.log("Course added: ",data,that.courses);
+    //   observer.next(that.courses);
+    // });
   });
 
 }
@@ -47,31 +54,55 @@ editCourse(data:any): Observable<any> {
 
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    var that = this;
-    setTimeout(function(){
-      for(var i = 0; i < that.courses.length;i++){
-        if(that.courses[i]._id == data._id){
-          that.courses[i] = data;
-        }
-      }
-      console.log("Course Edited: ",data,that.courses);
-      observer.next(that.courses);
-    });
+
+    this.http.put("http://localhost:3000/courses",data).subscribe((res:any)=>{
+      console.log("Edited Course : ",res);
+      observer.next(res.data);
+      observer.complete();
+    })
+
+
+
+    // var that = this;
+    // setTimeout(function(){
+    //   for(var i = 0; i < that.courses.length;i++){
+    //     if(that.courses[i]._id == data._id){
+    //       that.courses[i] = data;
+    //     }
+    //   }
+    //   console.log("Course Edited: ",data,that.courses);
+    //   observer.next(that.courses);
+    // });
   });
 
 }
 
+  deleteCourse(id){
+    return new Observable((observer)=>{
+      this.http.delete("http://localhost:3000/courses?_id="+id).subscribe((res:any)=>{
+        observer.next(res.data);
+        observer.complete();
+      })
+      
+    })
+  }
   
   getCourses(): Observable<any>{
     console.log("Getting courses");
     var that = this;
     return  new Observable<any>((observer)=>{
       console.log("Observable");
-      setTimeout(function(){
-        console.log("Returning ",that.courses);
-        observer.next(that.courses);
+      this.http.get("http://localhost:3000/courses").subscribe((res:any)=>{
+        console.log("Get Courses : ",res);
+        observer.next(res.data);
         observer.complete();
-      },100)
+      })
+  
+      // setTimeout(function(){
+      //   console.log("Returning ",that.courses);
+      //   observer.next(that.courses);
+      //   observer.complete();
+      // },100)
     });
 
   }

@@ -6,6 +6,7 @@ var logger = require('morgan');
 var properties = require('./config/properties');
 var db = require('./config/database');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 db();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -23,6 +24,7 @@ app.use(bodyParserURLEncoded);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

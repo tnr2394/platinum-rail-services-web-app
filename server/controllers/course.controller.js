@@ -4,10 +4,9 @@ var courseController = {};
 
 courseController.getCourses = function(req, res, next) {
     console.log("GET COURSES");
-    courseModel.find({},(data,err)=>{
-        console.log("RETRIVED DATA = ",data);
-        return res.send({msg:'respond with a resource', data});
-
+    courseModel.find({},(err,courses)=>{
+        console.log("RETRIVED DATA = ",courses);
+        return res.send({data:{courses}});
     });
 }
 
@@ -20,7 +19,7 @@ courseController.addCourse = function(req, res, next) {
     });
     newCourse.save((err,course)=>{
         console.log("Course",course);
-        return res.send({course});
+        return res.send({data:{course}});
     })
 }
 
@@ -33,7 +32,7 @@ courseController.updateCourse = function(req, res, next) {
     };
     courseModel.findOneAndUpdate({_id: req.body._id},{$set: updatedCourse},{new: true},(err,course)=>{
         console.log("Updated Course",course);
-        return res.send({course});
+        return res.send({data:{course}});
     })
 }
 
@@ -44,7 +43,7 @@ courseController.deleteCourse = function(req,res,next){
     console.log("Course to be deleted : ",courseId);
     courseModel.deleteOne({_id: courseId},(err,deleted)=>{
         console.log("Deleted ",deleted);
-        res.send({courseId});
+        res.send({data:{courseId}});
     })
 }
 

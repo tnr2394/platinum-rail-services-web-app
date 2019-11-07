@@ -70,25 +70,30 @@ export class CoursesComponent implements OnInit {
     // MODALS
     addCourseModal(){
       var addedCourse = this.openDialog(AddCourseModalComponent).subscribe((course)=>{
+        
         if(course == undefined) return;
-        console.log("Subscribe Listend Course added = ",course);
-        this._courseService.addCourse(course).subscribe(courses=>{
-          this.courses = courses;
-        });
+        console.log("Course added in controller = ",course);
+        this.dataSource.push(course);
+        this.courses = this.dataSource;
+        // this.dataSource = this.courses;
+        this.dataSource.paginator = this.paginator;
+        this.handlePage({pageIndex:0, pageSize:this.pageSize});
+
+        // this._courseService.addCourse(course).subscribe(courses=>{
+        //   this.courses = courses;
+        // });
         
       });
     }
     
     
-    editCourseModal(data){
+    editCourseModal(index, data){
       this.openDialog(EditCourseModalComponent,data).subscribe((course)=>{
+        console.log("DIALOG CLOSED",course)
         if(course == undefined) return;
-        if(data.title !== course.title || data.duration !== course.duration){
-          this._courseService.editCourse(course).subscribe(courses=>{
-            this.courses = courses;
-            this.handlePage({pageIndex:0, pageSize:5});
-          });
-        }
+          // this.dataSource[index] = data;
+          console.log("UPDATED COURSE ",data);
+          this.handlePage({pageIndex:0, pageSize:this.pageSize});
       });
     }
     
@@ -113,7 +118,7 @@ export class CoursesComponent implements OnInit {
     getCourses(){
       var that = this;
       this._courseService.getCourses().subscribe((data)=>{
-        this.courses = data;
+        this.courses = data.courses;
         console.log("Data Received : ",this.courses);
         // Linking with paginator
         this.handlePage({pageIndex:0, pageSize:5});
