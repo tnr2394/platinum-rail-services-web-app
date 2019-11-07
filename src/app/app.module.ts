@@ -28,6 +28,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
+import { AddJobModalComponent } from './jobs/add-job-modal/add-job-modal.component';
+import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { EditCourseModalComponent } from './courses/edit-course-modal/edit-cours
     SchedulerComponent,
     AddCourseModalComponent,
     EditCourseModalComponent,
+    AddJobModalComponent,
+    EditJobModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { EditCourseModalComponent } from './courses/edit-course-modal/edit-cours
     MatDialogModule,
     NgbModule,
   ],
-  entryComponents:[AddCourseModalComponent, EditCourseModalComponent],
+  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent],
   providers: [SideNavServiceService],
   bootstrap: [AppComponent]
 })
