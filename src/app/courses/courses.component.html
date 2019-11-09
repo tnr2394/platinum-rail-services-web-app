@@ -47,11 +47,11 @@
                     </thead>
 
                     <tbody *ngIf="dataSource">
-                        <tr *ngFor="let course of dataSource ; index as i">
+                        <tr *ngFor="let course of dataSource  ; index as i">
                             <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
                             <td>{{course.title}}</td>
                             <td><span class="badge {{getRandomColorClass(i)}}">{{course.duration}}</span></td>
-                            <td><a class="text-success bold" (click)="editCourseModal(course)"><i class="fa fa-edit"></i></a></td>
+                            <td><a class="text-success bold" (click)="editCourseModal(i, course)"><i class="fa fa-edit"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
