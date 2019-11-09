@@ -1,31 +1,49 @@
-.display{
-    display: flex;
-    width: 100%;
-    max-height: 31vh;
-    justify-content: center;
+.size{
+    max-width: 60vh;
+    max-height: 60vh;
+    border-radius: 5px;
 }
-.check{
-    width: 50%;
-    padding: 10px;
-}
-.checkBox{
-    max-width: 29%;
-    display: inline-block;
-}
-.jobDates{
-    max-width: 50%;
-    padding: 10px;
+.maxHeight{
+    max-height: 33vh !important;
 }
 .date_display{
-    max-height: 80%;
+    max-height: 36%;
     overflow: auto;
-    display: inline-grid;
 }
 .datesColor{
     color: #2196f3;
     font-weight: 400;
 }
-.test {
+.faiconColor {
     color: #2196f3;
     font-size: x-large;
+}
+.submitButton{
+    justify-content: center !important;
+    display: flex !important;
+    width: 100%;
+}
+.row{
+    justify-content: space-around;
+}
+.top-margin{
+    margin-top: 3%;
+}
+.pull-right{
+    max-height: 35px;
+}
+mat-form-field{
+    min-width: 30%;
+}
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.test{
+ padding-left: 15%;
+    padding-right: 0%;
+}
+label{
+    margin: 5%;
 }

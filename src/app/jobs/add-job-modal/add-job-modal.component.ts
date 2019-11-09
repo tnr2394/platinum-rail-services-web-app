@@ -12,7 +12,7 @@ export class AddJobModalComponent implements OnInit {
   courseDates = [];
   startingDate;
   tempDates = [];
-  temp;
+  jobDates: FormArray;
 
   frequencyDays = [
     { day: 'Sunday' },
@@ -31,9 +31,15 @@ export class AddJobModalComponent implements OnInit {
       location: new FormControl(''),
       course: new FormControl(''),
       date: new FormControl(''),
-      frequency: new FormArray([])
+      frequency: new FormArray([]),
+      jobDates: new FormArray([this.jobArray()]),
     });
     this.addCheckboxes();
+   }
+   jobArray(): FormGroup{
+     return this.formBuilder.group({
+       singleJobDate:['']
+     });
    }
 
   private addCheckboxes() {
@@ -60,7 +66,8 @@ export class AddJobModalComponent implements OnInit {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
         tempDate = nextDay;
-        this.courseDates.push(tempDate);
+        console.log('NEXT DATE', nextDay)
+        this.courseDates.push(nextDay);
       }
     }
 
@@ -81,6 +88,14 @@ export class AddJobModalComponent implements OnInit {
       console.log("THE ARRAY IS", this.courseDates)
     }
   }
+  }
+
+  datesForJobChange($event,index){
+    console.log('Index of courdeDates is',index)
+    let jobdatevalues = this.addJobForm.get('jobDates') as FormArray;
+    console.log(jobdatevalues.value)
+     
+    
   }
   ngOnInit() {
   }

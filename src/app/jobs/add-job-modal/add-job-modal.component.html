@@ -3,24 +3,23 @@
 
 <div mat-dialog-content class="size">
     <form [formGroup]='addJobForm'>
-        <mat-list class='addJobModal'>
-            <mat-list-item>
+        <div class='row top-margin'>
             <mat-form-field >
                 <mat-select formControlName="client" placeholder="Client">    
                     <mat-option>A</mat-option>
                     <mat-option>B</mat-option>
                 </mat-select>    
             </mat-form-field>
-
+            
             <mat-form-field>
                 <mat-select formControlName="location" placeholder="Location">
                     <mat-option>A</mat-option>
                     <mat-option>B</mat-option>
                 </mat-select>
             </mat-form-field>
-            </mat-list-item>
-
-            <mat-list-item>
+        </div>
+        
+        <div class='row'>
             <mat-form-field >
                 <mat-select formControlName="instructor" placeholder="Choose Instructor">
                     <mat-option>A</mat-option>
@@ -34,49 +33,73 @@
                     <mat-option>B</mat-option>
                 </mat-select>
             </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-flat-button color="primary"><i class="fa fa-user-plus"></i>  Add Instructor</button>
+        </div>
+
+        <div class='row'>
+                <button mat-flat-button color="primary" class="pull-right"><i class="fa fa-user-plus"></i>Add Instructor</button>
 
                 <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Starting date"  (dateChange)='searchDays($event)'>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-            </mat-list-item>
-        </mat-list>
+        </div>
 
-        <div class='display'>
-            <div class="check">
+            <div class='row maxHeight'>
+            <div class="col-12 col-lg-6 col-xl-6 col-md-6">
+                <div class='header'>
                 <p>Choose Frequency</p>
-                <div class="checkBox">
+                </div>
+                <!-- <div class='row'> -->
+                    <div class='col-9 col-md-8 col-lg-9 col-xl-7 test'>
                     <label formArrayName="frequency" *ngFor="let day of addJobForm.controls.frequency.controls; let i = index">
                         <input type="checkbox" [formControlName]="i" ngModal (ngModelChange)="onCheckChange($event,i)">
                         {{frequencyDays[i].day}}
                     </label>
-                </div>
+                    </div>
             </div>
-           <div class="jobDates">
-               <div class='jobtitle'>
-            <i class="fa fa-calendar test"></i> <span class='datesColor'> Dates for the job</span>
-               </div>
-               <div class="date_display">
-                <mat-form-field *ngFor='let oneDate of courseDates'>
-                    <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Starting date"
-                        (dateChange)='searchDays($event)'>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <!-- <p *ngFor='let oneDate of courseDates'>{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}</p> -->
-               </div>
-           </div>
-        </div>
+            <div class="col-12 col-lg-6 col-xl-6 col-md-6">
+                    <div class='jobtitle'>
+                        <i class="fa fa-calendar faiconColor"></i> <span class='datesColor'> Dates for the job</span>
+                    </div>
+                    <mat-grid-list cols="10">
+                        <mat-grid-tile  >
+                            <u>Sr.No</u>
+                        </mat-grid-tile>
+                        <mat-grid-tile  colspan='9'>
+                            <u>Dates</u>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <div class="date_display col-md-12 col-lg-12 col-xl-10 ">
+                        <div formArrayName="jobDates" *ngFor="let date of addJobForm.get('jobDates').controls ; let i = index;">
+                            <div [formGroupName]="i">
 
-        
+                                <mat-form-field *ngFor='let oneDate of courseDates; let j = index;'>
+                                    <input matInput [matDatepicker]="picker" formControlName="singleJobDate"
+                                        placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
+                                        (dateChange)='datesForJobChange($event,j)'
+                                        value='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    
+                                </mat-form-field>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
     </form>
 
 </div>
-<!-- <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-</div> -->
+<div mat-dialog-actions>
+    <div class='submitButton'>
+        <button mat-flat-button color="primary" class="pull-right" (click)="addJobModal()">
+            <i class="fas fa-plus fa-fw"></i>
+            Add Job
+        </button>
+    </div>
+</div>
 
