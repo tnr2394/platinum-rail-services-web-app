@@ -15,16 +15,16 @@ import { AppComponent } from './app.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing.module';
-import {MatSelectModule, MatDialogModule , MatSidenavModule, MatButtonModule,MatCheckboxModule,MatPaginatorModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { SideNavServiceService } from './services/side-nav-service.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
@@ -51,10 +51,10 @@ import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.comp
     MDBBootstrapModule.forRoot(),
     MatListModule,
     MatPaginatorModule,
-    MatSelectModule,MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,
+    MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule,
     MatSidenavModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CalendarModule.forRoot({
@@ -66,7 +66,7 @@ import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.comp
     NgbModule,
   ],
   entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent],
-  providers: [SideNavServiceService],
+  providers: [SideNavServiceService, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 
