@@ -22,8 +22,11 @@ th{
 .table td{
     margin-left: 15px;
     margin-right: 15px;
-    text-align: center;
+    text-align: left;
 }
 .page-title{
     padding: 10px;
+}
+.mat-table-cell{
+    height: 50px; vertical-align: middle;
 }

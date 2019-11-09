@@ -35,13 +35,13 @@ export class EditCourseModalComponent implements OnInit {
   delete(){
     console.warn("DELETING ",this.data._id);
     this.loading = true;    
-    this._courseService.deleteCourse(this.data).subscribe(courses=>{
+    this._courseService.deleteCourse(this.data._id).subscribe(courses=>{
       this.data = courses;
-      this.loading = true;
+      this.loading = false;
       this.dialogRef.close(courses);
     },err=>{
       alert("Error deleting course.")
-      this.loading = true;
+      this.loading = false;
       this.dialogRef.close();
     });
 

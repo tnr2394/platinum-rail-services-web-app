@@ -1,52 +1,77 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {CourseService} from '../services/course.service';
 import { Observable } from 'rxjs';
+
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { AddCourseModalComponent } from './add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './edit-course-modal/edit-course-modal.component';
 import {FilterService} from "../services/filter.service";
+import {Course} from '../interfaces/course';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
+
 export class CoursesComponent implements OnInit {
-  searchText: string;
   courses: any = [];
   bgColors: string[];
   lastColor;
-  currentPage: any;
-  dataSource: any;
   // MatPaginator Inputs
   length;
-  pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   // MatPaginator Output
-  pageEvent: PageEvent;
   
-  
-  @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
-  
-  constructor(public _courseService: CourseService,public dialog: MatDialog, public _filter: FilterService) {
+  displayedColumns: string[] = ['title','duration','actions'];
+  dataSource:  MatTableDataSource<any>;
+  paginator: MatPaginator;
+  sort: MatSort;
+  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  // @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+     }
+@ViewChild(MatPaginator, {static: true}) set matPaginator(mp: MatPaginator) {
+  this.paginator = mp;
+  this.setDataSourceAttributes();
+ }
+
+setDataSourceAttributes() {
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+  }
+
+  constructor(public _courseService: CourseService,public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ["badge-info","badge-success","badge-warning","badge-primary","badge-danger"]; 
     this.courses = [];
-    this.dataSource = this.courses;
-    this.dataSource.paginator = this.paginator;
-    
+    this.dataSource = new MatTableDataSource(this.courses);
   }
   
   ngAfterViewInit() {
-    this.paginator.page.subscribe(
-      (event) => {
-        console.log("Paginator",event)
-        this.handlePage(event);
-      });
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     }
+
+    applyFilter(filterValue: string) {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+    }
+
     getRandomColorClass(i){
       var rand = Math.floor(Math.random() * this.bgColors.length);
       rand = i % 5;
       this.lastColor = rand;
-      
       return this.bgColors[rand];
     }
     ngOnInit() {
@@ -55,45 +80,41 @@ export class CoursesComponent implements OnInit {
     
     
     // UTILITY
-    filter(searchText){
-      console.log("FILTER CALLED",searchText);
-      if(searchText === ""){
-        this.dataSource = this.courses;
-        this.dataSource.paginator = this.paginator;
-        this.handlePage({pageIndex:0, pageSize:this.pageSize});
-          return;
-      }
-      this.dataSource = this._filter.filter(searchText,this.courses,['title','duration']);
+
+    updateData(courses){
+      console.log("UPDATING DATA = ",courses)
+      this.dataSource = new MatTableDataSource(courses);
       this.dataSource.paginator = this.paginator;
-      // this.iterator();
-    }  
+      this.dataSource.sort = this.sort;
+      console.log("SETTING SORT TO = ",this.dataSource.sort)
+      console.log("SETTING paginator TO = ",this.dataSource.paginator)
+
+    }
+
+
+
     // MODALS
     addCourseModal(){
-      var addedCourse = this.openDialog(AddCourseModalComponent).subscribe((course)=>{
-        
-        if(course == undefined) return;
-        console.log("Course added in controller = ",course);
-        this.dataSource.push(course);
-        this.courses = this.dataSource;
-        // this.dataSource = this.courses;
-        this.dataSource.paginator = this.paginator;
-        this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      var addedCourse = this.openDialog(AddCourseModalComponent).subscribe((courses)=>{
+        if(courses == undefined) return;
+        console.log("Course added in controller = ",courses);
+        this.courses = courses;
+        this.openSnackBar("Course Added Successfully","Ok");
 
-        // this._courseService.addCourse(course).subscribe(courses=>{
-        //   this.courses = courses;
-        // });
-        
+        this.updateData(courses); 
       });
     }
     
     
     editCourseModal(index, data){
-      this.openDialog(EditCourseModalComponent,data).subscribe((course)=>{
-        console.log("DIALOG CLOSED",course)
-        if(course == undefined) return;
-          // this.dataSource[index] = data;
-          console.log("UPDATED COURSE ",data);
-          this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      this.openDialog(EditCourseModalComponent,data).subscribe((courses)=>{
+        console.log("DIALOG CLOSED",courses)
+        if(courses == undefined) return;
+        console.log("Course added in controller = ",courses);
+        this.courses = courses;
+        this.openSnackBar("Course Edited Successfully","Ok");
+
+        this.updateData(courses);
       });
     }
     
@@ -102,13 +123,17 @@ export class CoursesComponent implements OnInit {
     
     
     openDialog(someComponent,data = {}): Observable<any> {
-      console.log("OPENDIALOG","DATA = ",data)
+      console.log("OPENDIALOG","DATA = ",data);
       const dialogRef = this.dialog.open(someComponent, {data});
       return dialogRef.afterClosed();
     }
     
     
-    
+    openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action, {
+        duration: 2000,
+      });
+    }
     
     
     
@@ -117,37 +142,10 @@ export class CoursesComponent implements OnInit {
     
     getCourses(){
       var that = this;
-      this._courseService.getCourses().subscribe((data)=>{
-        this.courses = data.courses;
-        console.log("Data Received : ",this.courses);
-        // Linking with paginator
-        this.handlePage({pageIndex:0, pageSize:5});
-        
+      this._courseService.getCourses().subscribe((courses)=>{
+        this.courses = courses;
+        this.updateData(courses)
       });
     }
-    
-    
-    
-    
-    
-    // Paginator
-    public handlePage(e: any) {
-      this.currentPage = e.pageIndex;
-      this.pageSize = e.pageSize;
-      console.log("HANDLING PAGE EVENT ",{pageSize: this.pageSize,currentPage: this.currentPage})
-      this.iterator();
-    }
-    
-    private iterator() {
-      const end = (this.currentPage + 1) * this.pageSize;
-      const start = this.currentPage * this.pageSize;
-      const part = this.courses.slice(start, end);
-      this.dataSource = part;
-      this.dataSource.paginator = this.paginator;
-      if(this.dataSource.paginator == undefined) this.dataSource.paginator.pageIndex = 0;
-      console.log("Iterator = ",this.dataSource);
-      
-    }
-    // END PAGINATOR
-  }
+}
   

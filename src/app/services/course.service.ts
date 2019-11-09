@@ -35,8 +35,8 @@ addCourse(data:any): Observable<any> {
     console.log("Observable");
     var that = this;
     this.http.post("http://localhost:3000/courses",data).subscribe((res:any)=>{
-      console.log("ADDED Course : ",res);
-      observer.next(res.data);
+
+    observer.next(res.data.courses);
       observer.complete();
     })
 
@@ -51,28 +51,13 @@ addCourse(data:any): Observable<any> {
 }
 editCourse(data:any): Observable<any> {
   console.log("Edit courses",data);
-
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-
     this.http.put("http://localhost:3000/courses",data).subscribe((res:any)=>{
       console.log("Edited Course : ",res);
-      observer.next(res.data);
+      observer.next(res.data.courses);
       observer.complete();
     })
-
-
-
-    // var that = this;
-    // setTimeout(function(){
-    //   for(var i = 0; i < that.courses.length;i++){
-    //     if(that.courses[i]._id == data._id){
-    //       that.courses[i] = data;
-    //     }
-    //   }
-    //   console.log("Course Edited: ",data,that.courses);
-    //   observer.next(that.courses);
-    // });
   });
 
 }
@@ -80,7 +65,7 @@ editCourse(data:any): Observable<any> {
   deleteCourse(id){
     return new Observable((observer)=>{
       this.http.delete("http://localhost:3000/courses?_id="+id).subscribe((res:any)=>{
-        observer.next(res.data);
+        observer.next(res.data.courses);
         observer.complete();
       })
       
@@ -94,7 +79,7 @@ editCourse(data:any): Observable<any> {
       console.log("Observable");
       this.http.get("http://localhost:3000/courses").subscribe((res:any)=>{
         console.log("Get Courses : ",res);
-        observer.next(res.data);
+        observer.next(res.data.courses);
         observer.complete();
       })
   
