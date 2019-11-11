@@ -25,6 +25,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MatListModule } from '@angular/material/list';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MomentModule } from 'ngx-moment';
+
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
@@ -57,6 +59,7 @@ import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.comp
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MomentModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

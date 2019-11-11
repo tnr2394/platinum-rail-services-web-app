@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-job-modal',
@@ -11,8 +12,12 @@ export class AddJobModalComponent implements OnInit {
   addJobForm;
   courseDates = [];
   startingDate;
-  tempDates = [];
+  temp;
   jobDates: FormArray;
+  nextDay;
+  totalDays = [];
+  duration = 5;
+  soretdArray = [];
 
   frequencyDays = [
     { day: 'Sunday' },
@@ -51,31 +56,30 @@ export class AddJobModalComponent implements OnInit {
 
   searchDays($event){
     this.startingDate = $event.value;
-    console.log(this.startingDate)
+    this.temp = moment($event.value);
   }
 
   onCheckChange(event, dayOfTheWeek){
-    let tempDate: Date = this.startingDate;
-    console.log(event, dayOfTheWeek)
-    console.log("DATE IS", this.startingDate.getDay())
-
     if(event == true){
-      console.log('if event is true the startingDate is', tempDate)
-      for (var i = 0; i < 10; i++) {
+
+      this.totalDays.push(dayOfTheWeek)
+      console.log(this.totalDays)
+      let tempDate: Date = this.temp.toDate();
+      for (var i = 0; i < this.duration; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
-        // console.log("STARTING DATE BEFORE NEXT DAY", this.startingDate)
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
+        this.courseDates.push(tempDate)
         tempDate = nextDay;
-        console.log('NEXT DATE', nextDay)
-        this.courseDates.push(nextDay);
-      }
+        }
     }
 
     else {
-      console.log('EVENT IS FALSE')
-      console.log(event, dayOfTheWeek)
-      let tempDate: Date = this.startingDate;
-      console.log('if event is FALSE the tempDate is', this.startingDate)
+      for(var i = 0; i < this.totalDays.length; i++){
+        if(this.totalDays[i] == dayOfTheWeek)
+            this.totalDays.splice(i,1)
+      }
+      console.log("Total days", this.totalDays)
+      let tempDate: Date = this.temp.toDate();
       for (var i = 0; i < 10; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
@@ -88,14 +92,15 @@ export class AddJobModalComponent implements OnInit {
       console.log("THE ARRAY IS", this.courseDates)
     }
   }
+
+  this.soretdArray = this.courseDates.sort((a,b)=> b - a).reverse();
+  console.log("SORTED ARRAY IS", this.soretdArray)
   }
 
   datesForJobChange($event,index){
-    console.log('Index of courdeDates is',index)
+    console.log('Index of courdeDates is', index)
     let jobdatevalues = this.addJobForm.get('jobDates') as FormArray;
     console.log(jobdatevalues.value)
-     
-    
   }
   ngOnInit() {
   }

@@ -69,7 +69,7 @@
                     <div class='maxHeight'>
                         <div formArrayName="jobDates" *ngFor="let date of addJobForm.get('jobDates').controls ; let i = index;">
                             <div [formGroupName]="i">
-                                <div class='row maxHeight' *ngFor='let oneDate of courseDates; let j = index;'>
+                                <div class='row maxHeight' *ngFor='let oneDate of soretdArray | slice:0:duration; let j = index;'>
                                     <div class='col-3 center'>
                                     {{j + 1}}
                                     </div>
