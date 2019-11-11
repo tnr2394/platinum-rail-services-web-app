@@ -55,15 +55,15 @@ export class AddJobModalComponent implements OnInit {
   }
 
   onCheckChange(event, dayOfTheWeek){
-
+    let tempDate: Date = this.startingDate;
     console.log(event, dayOfTheWeek)
     console.log("DATE IS", this.startingDate.getDay())
 
     if(event == true){
-      let tempDate: Date = this.startingDate;
-      console.log('if event is true the startingDate is', this.startingDate)
+      console.log('if event is true the startingDate is', tempDate)
       for (var i = 0; i < 10; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
+        // console.log("STARTING DATE BEFORE NEXT DAY", this.startingDate)
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
         tempDate = nextDay;
         console.log('NEXT DATE', nextDay)

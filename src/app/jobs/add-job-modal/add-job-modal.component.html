@@ -45,46 +45,45 @@
                 </mat-form-field>
         </div>
 
-            <div class='row maxHeight'>
-            <div class="col-12 col-lg-6 col-xl-6 col-md-6">
-                <div class='header'>
-                <p>Choose Frequency</p>
-                </div>
-                <!-- <div class='row'> -->
-                    <div class='col-9 col-md-8 col-lg-9 col-xl-7 test'>
-                    <label formArrayName="frequency" *ngFor="let day of addJobForm.controls.frequency.controls; let i = index">
+            <div class='row'>
+                <div class='col-sm-12 col-md-4'>
+                    <div class='header'>
+                    <p>Choose Frequency</p>
+                    </div>
+                    <div class='col-sm-12 col-md-10 col-lg-8 col-xl-8 col-12'>
+                        
+                    <label formArrayName="frequency"  *ngFor="let day of addJobForm.controls.frequency.controls; let i = index">
                         <input type="checkbox" [formControlName]="i" ngModal (ngModelChange)="onCheckChange($event,i)">
                         {{frequencyDays[i].day}}
                     </label>
                     </div>
             </div>
-            <div class="col-12 col-lg-6 col-xl-6 col-md-6">
+                <div class='col-7'>
                     <div class='jobtitle'>
                         <i class="fa fa-calendar faiconColor"></i> <span class='datesColor'> Dates for the job</span>
                     </div>
-                    <mat-grid-list cols="10">
-                        <mat-grid-tile  >
-                            <u>Sr.No</u>
-                        </mat-grid-tile>
-                        <mat-grid-tile  colspan='9'>
-                            <u>Dates</u>
-                        </mat-grid-tile>
-                    </mat-grid-list>
-                    <div class="date_display col-md-12 col-lg-12 col-xl-10 ">
+                    <div class='row greyBackground'>
+                        <div class='col-3'>Sr.No.</div>
+                        <div class='col-9'>Date</div>
+                    </div>
+                    <div class='maxHeight'>
                         <div formArrayName="jobDates" *ngFor="let date of addJobForm.get('jobDates').controls ; let i = index;">
                             <div [formGroupName]="i">
-
-                                <mat-form-field *ngFor='let oneDate of courseDates; let j = index;'>
+                                <div class='row maxHeight' *ngFor='let oneDate of courseDates; let j = index;'>
+                                    <div class='col-3 center'>
+                                    {{j + 1}}
+                                    </div>
+                                    <div class='col-9'>
+                                <mat-form-field >
                                     <input matInput [matDatepicker]="picker" formControlName="singleJobDate"
                                         placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
                                         (dateChange)='datesForJobChange($event,j)'
                                         value='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'>
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                    
+                                    <mat-datepicker #picker></mat-datepicker>          
                                 </mat-form-field>
-                                
-                                
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>

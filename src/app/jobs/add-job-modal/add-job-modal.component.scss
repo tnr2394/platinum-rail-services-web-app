@@ -1,10 +1,11 @@
 .size{
-    max-width: 60vh;
-    max-height: 60vh;
+    max-width: 100vh;
+    max-height: 100vh;
     border-radius: 5px;
 }
 .maxHeight{
     max-height: 33vh !important;
+    overflow: auto;
 }
 .date_display{
     max-height: 36%;
@@ -16,7 +17,7 @@
 }
 .faiconColor {
     color: #2196f3;
-    font-size: x-large;
+    font-size: xx-large;
 }
 .submitButton{
     justify-content: center !important;
@@ -40,10 +41,15 @@ mat-form-field{
     width: 100%;
     justify-content: center;
 }
-.test{
- padding-left: 15%;
-    padding-right: 0%;
+.greyBackground{
+    background-color: #F5F6FA;
+    margin-top: 3%;
 }
+.center{
+    align-items: center;
+    display: flex;
+}
+
 label{
-    margin: 5%;
+    margin: 3%;
 }
