@@ -36,7 +36,7 @@ addCourse(data:any): Observable<any> {
     var that = this;
     this.http.post("http://localhost:3000/courses",data).subscribe((res:any)=>{
 
-    observer.next(res.data.courses);
+    observer.next(res.data.course);
       observer.complete();
     })
 
@@ -55,7 +55,7 @@ editCourse(data:any): Observable<any> {
     console.log("Observable");
     this.http.put("http://localhost:3000/courses",data).subscribe((res:any)=>{
       console.log("Edited Course : ",res);
-      observer.next(res.data.courses);
+      observer.next(res.data.course);
       observer.complete();
     })
   });
