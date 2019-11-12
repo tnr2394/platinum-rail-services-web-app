@@ -16,43 +16,56 @@ export class AddJobModalComponent implements OnInit {
   jobDates: FormArray;
   nextDay;
   totalDays = [];
-  duration = 5;
-  soretdArray = [];
+  duration = 10;
+  finalCourseDates = [];
+  instructor: FormArray;
 
   frequencyDays = [
-    { day: 'Sunday' },
-    { day: 'Monday'},
-    { day: 'Tuesday' },
-    { day: 'Wednesday' },
-    { day: 'Thursday' },
-    { day: 'Friday' },
-    { day: 'Saturday' }
+    { day: 'Sunday',selected: false },
+    { day: 'Monday',selected: false},
+    { day: 'Tuesday',selected: false },
+    { day: 'Wednesday',selected: false },
+    { day: 'Thursday',selected: false },
+    { day: 'Friday',selected: false },
+    { day: 'Saturday',selected: false }
   ];
 
   constructor(public formBuilder: FormBuilder) {
     this.addJobForm = this.formBuilder.group({
+      jobName: new FormControl(''),
+      jobColor: new FormControl(''),
       client : new FormControl(''),
-      instructor: new FormControl(''),
+      instructor: new FormArray([ this.createInstructor() ]),
       location: new FormControl(''),
       course: new FormControl(''),
       date: new FormControl(''),
-      frequency: new FormArray([]),
-      jobDates: new FormArray([this.jobArray()]),
+      frequency: new FormControl(''),
+      singleJobDate: new FormControl
     });
-    this.addCheckboxes();
+    // this.addCheckboxes();
    }
-   jobArray(): FormGroup{
-     return this.formBuilder.group({
-       singleJobDate:['']
-     });
-   }
-
-  private addCheckboxes() {
-    this.frequencyDays.forEach(() => {
-      const control = new FormControl();
-      (this.addJobForm.controls.frequency as FormArray).push(control);
-    });
+  
+  createInstructor(): FormGroup{
+    return this.formBuilder.group({
+      singleInstructor : new FormControl('')
+    })
   }
+
+  addInstructor(){
+    this.instructor = this.addJobForm.get('instructor') as FormArray;
+    this.instructor.push(this.createInstructor())
+  }
+  removeInstructor() {
+    // this.instructor.pop();
+    this.instructor.removeAt(this.instructor.length - 1);
+  }
+
+  // private addCheckboxes() {
+    // this.frequencyDays.forEach(() => {
+      // const control = new FormControl();
+      // (this.addJobForm.controls.frequency as FormArray).push(control);
+    // });
+  // }
 
   searchDays($event){
     this.startingDate = $event.value;
@@ -60,6 +73,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   onCheckChange(event, dayOfTheWeek){
+    console.log(event, dayOfTheWeek)
     if(event == true){
 
       this.totalDays.push(dayOfTheWeek)
@@ -67,6 +81,9 @@ export class AddJobModalComponent implements OnInit {
       let tempDate: Date = this.temp.toDate();
       for (var i = 0; i < this.duration; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
+          // if(days == 8){
+            // days = 1;
+          // }
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
         this.courseDates.push(tempDate)
         tempDate = nextDay;
@@ -75,32 +92,27 @@ export class AddJobModalComponent implements OnInit {
 
     else {
       for(var i = 0; i < this.totalDays.length; i++){
-        if(this.totalDays[i] == dayOfTheWeek)
-            this.totalDays.splice(i,1)
+        if(this.totalDays[i] == dayOfTheWeek){
+              this.totalDays.splice(i,1)
+            }
       }
       console.log("Total days", this.totalDays)
-      let tempDate: Date = this.temp.toDate();
-      for (var i = 0; i < 10; i++) {
-        let days = (7 - tempDate.getDay() + dayOfTheWeek)
-        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-        tempDate = nextDay;
         for(var j = 0; j < this.courseDates.length; j++){
-           if(this.courseDates[j].getDay() == tempDate.getDay()){
-            this.courseDates.splice(j,1)
+             if(this.courseDates[j].getDay() == dayOfTheWeek){
+              this.courseDates.splice(j,1)
+            }
           }
-      }
-      console.log("THE ARRAY IS", this.courseDates)
     }
+
+  this.finalCourseDates = this.courseDates.sort((a,b)=> b - a).reverse();
   }
 
-  this.soretdArray = this.courseDates.sort((a,b)=> b - a).reverse();
-  console.log("SORTED ARRAY IS", this.soretdArray)
+  clearAll(){
+    this.frequencyDays.forEach(item => item.selected = false);
   }
 
   datesForJobChange($event,index){
-    console.log('Index of courdeDates is', index)
-    let jobdatevalues = this.addJobForm.get('jobDates') as FormArray;
-    console.log(jobdatevalues.value)
+    this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
   ngOnInit() {
   }

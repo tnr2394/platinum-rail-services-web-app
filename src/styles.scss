@@ -81,6 +81,10 @@ $white : white;
 }
 
 
-mat-dialog-container{
-    	border-radius: 20px !important;
+.mat-dialog-container{
+        border-radius: 20px !important;
+        .mat-dialog-content{
+            max-height: 100vh !important;
+            overflow: visible;
+        }
 }
