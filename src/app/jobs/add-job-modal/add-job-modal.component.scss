@@ -1,0 +1,55 @@
+.size{
+    max-width: 100vh;
+    max-height: 100vh;
+    border-radius: 5px;
+}
+.maxHeight{
+    max-height: 33vh !important;
+    overflow: auto;
+}
+.date_display{
+    max-height: 36%;
+    overflow: auto;
+}
+.datesColor{
+    color: #2196f3;
+    font-weight: 400;
+}
+.faiconColor {
+    color: #2196f3;
+    font-size: xx-large;
+}
+.submitButton{
+    justify-content: center !important;
+    display: flex !important;
+    width: 100%;
+}
+.row{
+    justify-content: space-around;
+}
+.top-margin{
+    margin-top: 3%;
+}
+.pull-right{
+    max-height: 35px;
+}
+mat-form-field{
+    min-width: 30%;
+}
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.greyBackground{
+    background-color: #F5F6FA;
+    margin-top: 3%;
+}
+.center{
+    align-items: center;
+    display: flex;
+}
+
+label{
+    margin: 3%;
+}

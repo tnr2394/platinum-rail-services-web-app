@@ -70,7 +70,7 @@ export class JobsComponent implements OnInit {
     }  
     // MODALS
     addJobModal(){
-      var addedCourse = this.openDialog(AddJobModalComponent).subscribe((course)=>{
+      var addedCourse = this.openDialog(AddJobModalComponent,{width:'1000px'}).subscribe((course)=>{
         if(course == undefined) return;
         console.log("Subscribe Listend Course added = ",course);
         this._courseService.addCourse(course).subscribe(courses=>{
@@ -99,7 +99,7 @@ export class JobsComponent implements OnInit {
     
     openDialog(someComponent,data = {}): Observable<any> {
       console.log("OPENDIALOG","DATA = ",data)
-      const dialogRef = this.dialog.open(someComponent, {data});
+      const dialogRef = this.dialog.open(someComponent, data);
       return dialogRef.afterClosed();
     }
     
