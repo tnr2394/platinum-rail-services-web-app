@@ -37,6 +37,8 @@ import { AddCourseModalComponent } from './courses/add-course-modal/add-course-m
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
 import { AddJobModalComponent } from './jobs/add-job-modal/add-job-modal.component';
 import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.component';
+import { AddInstructorModalComponent } from './instructors/add-instructor-modal/add-instructor-modal.component';
+import { EditInstructorModalComponent } from './instructors/edit-instructor-modal/edit-instructor-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.comp
     EditCourseModalComponent,
     AddJobModalComponent,
     EditJobModalComponent,
+    AddInstructorModalComponent,
+    EditInstructorModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,7 @@ import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.comp
     ColorPickerModule,
 
   ],
-  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent],
+  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule],
   bootstrap: [AppComponent]
 })

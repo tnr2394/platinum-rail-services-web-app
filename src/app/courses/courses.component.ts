@@ -8,7 +8,6 @@ import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { AddCourseModalComponent } from './add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './edit-course-modal/edit-course-modal.component';
 import {FilterService} from "../services/filter.service";
-import {Course} from '../interfaces/course';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 

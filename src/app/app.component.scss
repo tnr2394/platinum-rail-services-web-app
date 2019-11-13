@@ -1,7 +1,11 @@
 // Colors
 $white : "#ffffff";
 
-
+#sidemenu{
+    width: 260px !important;  
+    background: #3E3E3E 0% 0% no-repeat padding-box;
+    background-size: cover; 
+}
 
 .content-container {
     position: absolute;
@@ -13,19 +17,18 @@ $white : "#ffffff";
 
 .active-link{
     border-left-style: solid;
-    border-left-color: #A3A0FB;
+    border-left-color: ghostwhite;
     opacity: 1;
     border-left-width: 5px;
 }
 .bg-nav-item{
-    // background-color: #43425D;
     height: 150px;
     padding-top: 55px;
     color: white;
-    background: transparent radial-gradient(closest-side at 17% 59%, #3C3B54 0%, #43425D99 100%) 0% 0% no-repeat padding-box;
+    background: #474747;
 }
 .side-nav-item{
-    background-color: #43425D;
+    background: #474747 0% 0% no-repeat padding-box;
     padding-left: 10px;
     width: 100%;
     text-align: left;
