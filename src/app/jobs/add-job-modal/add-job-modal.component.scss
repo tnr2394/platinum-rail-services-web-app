@@ -2,14 +2,14 @@
     max-height: 33vh !important;
     overflow: auto;
 }
-.max-height{
-    max-height: 22vh ;
-    overflow: auto;
-}
-.date_display{
-    max-height: 36%;
-    overflow: auto;
-}
+// .max-height{
+//     max-height: 22vh ;
+//     overflow: auto;
+// }
+// .date_display{
+//     max-height: 36%;
+//     overflow: auto;
+// }
 .datesColor{
     color: #2196f3;
     font-weight: 400;
@@ -17,10 +17,11 @@
 .faiconColor {
     color: #2196f3;
     font-size: xx-large;
+    padding: 10px;
 }
-.close-color{
-    color: #2196f3;
-}
+// .close-color{
+//     color: #2196f3;
+// }
 .submitButton{
     justify-content: center !important;
     display: flex !important;
@@ -32,17 +33,17 @@
 .top-margin{
     margin-top: 3%;
 }
-.pull-right{
-    max-height: 35px;
-}
+// .pull-right{
+//     max-height: 35px;
+// }
 mat-form-field{
     min-width: 30%;
 }
-.header{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
+// .header{
+//     display: flex;
+//     width: 100%;
+//     justify-content: center;
+// }
 .greyBackground{
     background-color: #F5F6FA;
     margin-top: 3%;
@@ -52,19 +53,30 @@ mat-form-field{
     display: flex;
 }
 
-label{
-    margin: 3%;
-}
+// label{
+//     margin: 3%;
+// }
 
-.display{
+// .display{
+//     display: flex !important;
+//     justify-content: center;
+// }
+// .buttonTransparent{
+//     background: transparent !important;
+//     border: transparent !important;
+// }
+// .displayCenter{
+//     text-align: center !important;
+//     min-width: 300px;
+// }
+
+.checkBox{
     display: flex !important;
-    justify-content: center;
+    flex-direction: column !important;
 }
-.buttonTransparent{
-    background: transparent !important;
-    border: transparent !important;
+.textCenter{
+    text-align: center;
 }
-.displayCenter{
-    text-align: center !important;
-    min-width: 300px;
+.buttonHeight{
+    max-height: 40px !important;
 }

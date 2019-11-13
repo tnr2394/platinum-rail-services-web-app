@@ -1,13 +1,25 @@
 var courseModel = require('../models/course.model');
+var Q = require('q');
 
 var courseController = {};
 
-courseController.getCourses = function(req, res, next) {
-    console.log("GET COURSES");
+async function allCourses(){
+    var deferred = Q.defer();
+
     courseModel.find({},(err,courses)=>{
-        console.log("RETRIVED DATA = ",courses);
-        return res.send({data:{courses}});
+        if(err) deferred.reject(err);
+        // console.log("RETRIVED DATA = ",courses);
+        deferred.resolve(courses);
     });
+    return deferred.promise;
+
+}
+courseController.getCourses = async  function(req, res, next) {
+    console.log("GET COURSES");
+    allCourses().then(courses=>{
+        console.log("SENDING RESPONSE COURSES = ",courses)
+        return res.send({data:{courses}});
+    })
 }
 
 courseController.addCourse = function(req, res, next) {
@@ -18,8 +30,9 @@ courseController.addCourse = function(req, res, next) {
         duration: req.body.duration
     });
     newCourse.save((err,course)=>{
-        console.log("Course",course);
+        console.log("SENDING RESPONSE COURSES = ",course)
         return res.send({data:{course}});
+    
     })
 }
 
@@ -31,8 +44,13 @@ courseController.updateCourse = function(req, res, next) {
         duration: req.body.duration
     };
     courseModel.findOneAndUpdate({_id: req.body._id},{$set: updatedCourse},{new: true},(err,course)=>{
-        console.log("Updated Course",course);
+        console.log("Updated Course",course,err);
+        if(err){
+            return res.status(500).send({err})
+        }
+
         return res.send({data:{course}});
+    
     })
 }
 
@@ -42,8 +60,11 @@ courseController.deleteCourse = function(req,res,next){
     let courseId = req.query._id;
     console.log("Course to be deleted : ",courseId);
     courseModel.deleteOne({_id: courseId},(err,deleted)=>{
+        if(err){
+            return res.status(500).send({err})
+        }
         console.log("Deleted ",deleted);
-        res.send({data:{courseId}});
+        return res.send({data:{}, msg:"Deleted Successfully"});
     })
 }
 

@@ -23,14 +23,11 @@ export class AddCourseModalComponent implements OnInit {
   doSubmit(){
     console.log("Submit ",this.data);
     // Do Submit
-    // this._course.editCourse()
-    console.log("ADDING COURSE",this.data);
     this.loading = true;    
     this._courseService.addCourse(this.data).subscribe(data=>{
-      this.data = data.courses;
-      console.log("ADDED res",data.course);
+      this.data = data;
       this.loading = false;
-      this.dialogRef.close(data.course);
+      this.dialogRef.close(data);
 
     },err=>{
       alert("Error editing course.")

@@ -5,10 +5,10 @@
 <form #editCourse (ngSubmit)="doSubmit($event)"  >
         <div mat-dialog-content>
                 <mat-form-field class="example-full-width col-6">
-                        <input required matInput name="course-title" placeholder="Course Title" [(ngModel)]='data.title' cdkFocusInitial>
+                        <input required matInput name="course-title" placeholder="Course Title" [(ngModel)]='courseData.title' cdkFocusInitial>
                 </mat-form-field>
                 <mat-form-field class="example-full-width col-6">
-                        <input type="number" matInput placeholder="Course Duration" name="course-duration" [(ngModel)]='data.duration'>
+                        <input type="number" matInput placeholder="Course Duration" name="course-duration" [(ngModel)]='courseData.duration'>
                 </mat-form-field>
                 
         </div>

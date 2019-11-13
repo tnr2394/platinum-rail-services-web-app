@@ -35,14 +35,15 @@ export class AddJobModalComponent implements OnInit {
       jobName: new FormControl(''),
       jobColor: new FormControl(''),
       client : new FormControl(''),
-      instructor: new FormArray([ this.createInstructor() ]),
+      instructor: new FormControl(''),
+      // instructor: new FormArray([ this.createInstructor() ]),
       location: new FormControl(''),
       course: new FormControl(''),
       date: new FormControl(''),
-      frequency: new FormControl(''),
+      frequency: new FormArray([]),
       singleJobDate: new FormControl
     });
-    // this.addCheckboxes();
+    this.addCheckboxes();
    }
   
   createInstructor(): FormGroup{
@@ -60,12 +61,12 @@ export class AddJobModalComponent implements OnInit {
     this.instructor.removeAt(this.instructor.length - 1);
   }
 
-  // private addCheckboxes() {
-    // this.frequencyDays.forEach(() => {
-      // const control = new FormControl();
-      // (this.addJobForm.controls.frequency as FormArray).push(control);
-    // });
-  // }
+  private addCheckboxes() {
+    this.frequencyDays.forEach(() => {
+      const control = new FormControl();
+      (this.addJobForm.controls.frequency as FormArray).push(control);
+    });
+  }
 
   searchDays($event){
     this.startingDate = $event.value;
@@ -75,7 +76,6 @@ export class AddJobModalComponent implements OnInit {
   onCheckChange(event, dayOfTheWeek){
     console.log(event, dayOfTheWeek)
     if(event == true){
-
       this.totalDays.push(dayOfTheWeek)
       console.log(this.totalDays)
       let tempDate: Date = this.temp.toDate();
