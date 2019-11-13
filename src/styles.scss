@@ -84,6 +84,11 @@ $white : white;
 mat-dialog-container{
     	border-radius: 20px !important;
 }
+.width{
+    .mat-form-field-infix{
+        min-width: 70%;
+    }
+}
 
 .float-right{
     float: right;

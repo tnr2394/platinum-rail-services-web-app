@@ -32,13 +32,20 @@
             </div>
 
             <div class='row'>
-                <mat-form-field >
-                    <mat-select formControlName="instructor" placeholder="Choose Instructor">
-                        <mat-option>A</mat-option>
-                        <mat-option>B</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
+                <!-- <div class='col center'> -->
+                    <div class='max-height'>
+                <div  formArrayName="instructor" *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
+                    <div [formGroupName]="i">
+                    <mat-form-field class='width'>
+                        <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
+                            <mat-option>A</mat-option>
+                            <mat-option>B</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button class='buttonTransparent' (click)='removeInstructor()'><i class="fa fa-times close-color"></i> </button>
+                    </div>
+                </div>
+                </div>
                 <mat-form-field>
                     <mat-select formControlName="course" placeholder="Choose Course">
                         <mat-option>A</mat-option>
@@ -48,7 +55,7 @@
             </div>
 
             <div class='row'>
-                <button mat-flat-button color="primary" class="pull-right buttonHeight"><i class="fa fa-user-plus"></i>Add Instructor</button>
+                <button mat-flat-button color="primary" class="pull-right buttonHeight" (click)='addInstructor()'><i class="fa fa-user-plus"></i>Add Instructor</button>
             
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Starting date"
