@@ -41,7 +41,7 @@ export class AddJobModalComponent implements OnInit {
       course: new FormControl(''),
       date: new FormControl(''),
       frequency: new FormArray([]),
-      singleJobDate: new FormControl
+      singleJobDate: new FormControl('')
     });
     this.addCheckboxes();
    }
@@ -57,7 +57,6 @@ export class AddJobModalComponent implements OnInit {
     this.instructor.push(this.createInstructor())
   }
   removeInstructor() {
-    // this.instructor.pop();
     this.instructor.removeAt(this.instructor.length - 1);
   }
 
@@ -81,9 +80,9 @@ export class AddJobModalComponent implements OnInit {
       let tempDate: Date = this.temp.toDate();
       for (var i = 0; i < this.duration; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
-          // if(days == 8){
-            // days = 1;
-          // }
+          if (days >= 8) {
+            days = (-1)*(7 - days);
+          }
         let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
         this.courseDates.push(tempDate)
         tempDate = nextDay;
@@ -97,13 +96,20 @@ export class AddJobModalComponent implements OnInit {
             }
       }
       console.log("Total days", this.totalDays)
+      let tempDate: Date = this.temp.toDate();
+      for (var i = 0; i < this.duration; i++) {
+        let days = (7 - tempDate.getDay() + dayOfTheWeek)
+        if (days >= 8) {
+          days = (-1) * (7 - days);
+        }
+        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
         for(var j = 0; j < this.courseDates.length; j++){
-             if(this.courseDates[j].getDay() == dayOfTheWeek){
+             if(this.courseDates[j].getDay() == nextDay.getDay()){
               this.courseDates.splice(j,1)
             }
           }
+        }
     }
-
   this.finalCourseDates = this.courseDates.sort((a,b)=> b - a).reverse();
   }
 
