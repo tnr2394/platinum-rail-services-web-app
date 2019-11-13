@@ -30,21 +30,7 @@ export class AddJobModalComponent implements OnInit {
     { day: 'Saturday',selected: false }
   ];
 
-  constructor(public formBuilder: FormBuilder) {
-    this.addJobForm = this.formBuilder.group({
-      jobName: new FormControl(''),
-      jobColor: new FormControl(''),
-      client : new FormControl(''),
-      // instructor: new FormControl(''),
-      instructor: new FormArray([ this.createInstructor() ]),
-      location: new FormControl(''),
-      course: new FormControl(''),
-      date: new FormControl(''),
-      frequency: new FormArray([]),
-      singleJobDate: new FormControl('')
-    });
-    this.addCheckboxes();
-   }
+  constructor(public formBuilder: FormBuilder) {}
   
   createInstructor(): FormGroup{
     return this.formBuilder.group({
@@ -121,6 +107,19 @@ export class AddJobModalComponent implements OnInit {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
   ngOnInit() {
+    this.addJobForm = this.formBuilder.group({
+      jobName: new FormControl(''),
+      jobColor: new FormControl(''),
+      client: new FormControl(''),
+      instructor: new FormArray([this.createInstructor()]),
+      location: new FormControl(''),
+      course: new FormControl(''),
+      date: new FormControl(''),
+      frequency: new FormArray([]),
+      singleJobDate: new FormControl('')
+    });
+    this.addCheckboxes();
+    this.finalCourseDates = [];
   }
 
 }
