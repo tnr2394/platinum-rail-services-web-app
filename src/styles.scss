@@ -82,7 +82,10 @@ $white : white;
 
 
 mat-dialog-container{
-    	border-radius: 20px !important;
+        border-radius: 20px !important;
+        .mat-dialog-content{
+            max-height: inherit;
+        }
 }
 .width{
     .mat-form-field-infix{
