@@ -5,37 +5,45 @@
     <div mat-dialog-content class="container">
         <div class='top-margin' mat-dialog-content>
             <div class='row'>
+                <div class='col center'>
                 <mat-form-field >
                     <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial>
                 </mat-form-field>
-            
+                </div>
+
+                <div class='col center'>
                 <mat-form-field >
                     <input formControlName='jobColor' [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
                         [cpAlphaChannel]="always" placeholder="Choose Color" />
                 </mat-form-field>
+                </div>
             </div>
 
             <div class='row'>
+                <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="client" placeholder="Client">
                         <mat-option value='A'>A</mat-option>
                         <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
+                </div>
 
+                <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="location" placeholder="Location">
                         <mat-option value='A'>A</mat-option>
                         <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
+                </div>
             </div>
 
             <div class='row'>
-                    <div class='max-height'>
-                <div  formArrayName="instructor" *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
+                    <div class='max-height col center'>
+                    <div  formArrayName="instructor" *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                     <div [formGroupName]="i">
-                    <mat-form-field class='width'>
+                    <mat-form-field>
                         <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
                             <mat-option value='A'>A</mat-option>
                             <mat-option value='B'>B</mat-option>
@@ -45,23 +53,28 @@
                     </div>
                 </div>
                 </div>
+                <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="course" placeholder="Choose Course">
                         <mat-option value='A'>A</mat-option>
                         <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
+                </div>
             </div>
 
             <div class='row'>
-                <button mat-flat-button color="primary" class="pull-right buttonHeight" (click)='addInstructor()'><i class="fa fa-user-plus"></i>Add Instructor</button>
-            
+                <div class='col center'>
+                    <button mat-flat-button color="primary" class="pull-right buttonHeight" (click)='addInstructor()'><i class="fa fa-user-plus"></i>Add Instructor</button>
+                </div>
+                <div class='col center'>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Starting date"
                         (dateChange)='searchDays($event)'>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+                </div>
             </div>
             <div class='row'>
                 <div class='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
@@ -94,7 +107,7 @@
                                     <div class='col-9'>
                                         <mat-form-field>
                                             <input matInput [matDatepicker]="picker" formControlName="singleJobDate"
-                                                placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
+                                                placeholder='{{oneDate.getMonth()+1}}/{{oneDate.getDate()}}/{{oneDate.getFullYear()}}'
                                                 (dateChange)='datesForJobChange($event,j)'>
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
