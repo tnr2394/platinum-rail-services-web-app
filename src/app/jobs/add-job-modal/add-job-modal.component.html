@@ -6,40 +6,39 @@
         <div class='top-margin' mat-dialog-content>
             <div class='row'>
                 <mat-form-field >
-                    <input matInput name="job-title" placeholder="Job Title" required cdkFocusInitial>
+                    <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial>
                 </mat-form-field>
             
                 <mat-form-field >
-                    <input [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
-                        [cpAlphaChannel]="always" [ngModelOptions]="{standalone: true}" placeholder="Choose Color" />
+                    <input formControlName='jobColor' [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
+                        [cpAlphaChannel]="always" placeholder="Choose Color" />
                 </mat-form-field>
             </div>
 
             <div class='row'>
                 <mat-form-field>
                     <mat-select formControlName="client" placeholder="Client">
-                        <mat-option>A</mat-option>
-                        <mat-option>B</mat-option>
+                        <mat-option value='A'>A</mat-option>
+                        <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-select formControlName="location" placeholder="Location">
-                        <mat-option>A</mat-option>
-                        <mat-option>B</mat-option>
+                        <mat-option value='A'>A</mat-option>
+                        <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
 
             <div class='row'>
-                <!-- <div class='col center'> -->
                     <div class='max-height'>
                 <div  formArrayName="instructor" *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                     <div [formGroupName]="i">
                     <mat-form-field class='width'>
                         <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                            <mat-option>A</mat-option>
-                            <mat-option>B</mat-option>
+                            <mat-option value='A'>A</mat-option>
+                            <mat-option value='B'>B</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button class='buttonTransparent' (click)='removeInstructor()'><i class="fa fa-times close-color"></i> </button>
@@ -48,8 +47,8 @@
                 </div>
                 <mat-form-field>
                     <mat-select formControlName="course" placeholder="Choose Course">
-                        <mat-option>A</mat-option>
-                        <mat-option>B</mat-option>
+                        <mat-option value='A'>A</mat-option>
+                        <mat-option value='B'>B</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -66,12 +65,12 @@
             </div>
             <div class='row'>
                 <div class='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
-                    <h6 class='textCenter'>Choose frequency</h6>
+                    <h6 class='textCenter headerColor'>Choose frequency</h6>
                     <div class='row'>
                         <div class='col-2'></div>
                         <div class='col-10 checkBox'>
                             <label formArrayName="frequency" *ngFor="let day of addJobForm.controls.frequency.controls; let i = index">
-                                <input type="checkbox" [formControlName]="i" [ngModel] (ngModelChange)="onCheckChange($event,i)">
+                                <input type="checkbox" [formControlName]="i"  [ngModel] (ngModelChange)="onCheckChange($event,i)">
                                 {{frequencyDays[i].day}}
                             </label>
                         </div>
@@ -84,8 +83,8 @@
                     <div class='row'>
                         <div class='col-8'>
                             <div class='row greyBackground'>
-                                <div class='col-3'>Sr.No.</div>
-                                <div class='col-9'>Date</div>
+                                <div class='col-3 headerColor'>Sr.No.</div>
+                                <div class='col-9 headerColor'>Date</div>
                             </div>
                             <div class='maxHeight'>
                                 <div *ngIf='finalCourseDates != ""'>
@@ -115,11 +114,11 @@
 </form>
 <div mat-dialog-actions>
     <div class='submitButton'>
-        <button mat-flat-button color="primary" class="pull-right" (click)="ngOnInit()">
+        <button mat-flat-button class="pull-right resetButton" (click)="ngOnInit()">
             <i class="fa fa-repeat"></i>
             Reset
         </button>
-        <button mat-flat-button color="primary" class="pull-right" (click)="addJobModal()">
+        <button mat-flat-button color="primary" class="pull-right" (click)="addJob()">
             <i class="fas fa-plus fa-fw"></i>
             Add Job
         </button>

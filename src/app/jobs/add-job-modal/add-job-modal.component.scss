@@ -2,14 +2,6 @@
     max-height: 33vh !important;
     overflow: auto;
 }
-// .max-height{
-//     max-height: 22vh ;
-//     overflow: auto;
-// }
-// .date_display{
-//     max-height: 36%;
-//     overflow: auto;
-// }
 .datesColor{
     color: #2196f3;
     font-weight: 400;
@@ -33,17 +25,10 @@
 .top-margin{
     margin-top: 3%;
 }
-// .pull-right{
-//     max-height: 35px;
-// }
+
 mat-form-field{
     min-width: 30%;
 }
-// .header{
-//     display: flex;
-//     width: 100%;
-//     justify-content: center;
-// }
 .greyBackground{
     background-color: #F5F6FA;
     margin-top: 3%;
@@ -59,24 +44,10 @@ mat-form-field{
     max-height: 20vh;
     overflow: auto;
 }
-
-// label{
-//     margin: 3%;
-// }
-
-// .display{
-//     display: flex !important;
-//     justify-content: center;
-// }
 .buttonTransparent{
     background: transparent !important;
     border: transparent !important;
 }
-// .displayCenter{
-//     text-align: center !important;
-//     min-width: 300px;
-// }
-
 .checkBox{
     display: flex !important;
     flex-direction: column !important;
@@ -91,4 +62,12 @@ mat-form-field{
     .mat-form-field{
         min-width: 65%;
     }
+}
+.resetButton{
+    background-color: #FF1D1D; 
+    color: white;
+}
+.headerColor{
+    color: #2196f3;
+    font-weight: 400;
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 import * as moment from 'moment';
 
 @Component({
@@ -30,7 +31,7 @@ export class AddJobModalComponent implements OnInit {
     { day: 'Saturday',selected: false }
   ];
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
   
   createInstructor(): FormGroup{
     return this.formBuilder.group({
@@ -106,9 +107,14 @@ export class AddJobModalComponent implements OnInit {
   datesForJobChange($event,index){
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
+
+  addJob(){
+    this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
+    this.dialogRef.close(this.addJobForm.value )
+  }
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
-      jobName: new FormControl(''),
+      title: new FormControl(''),
       jobColor: new FormControl(''),
       client: new FormControl(''),
       instructor: new FormArray([this.createInstructor()]),
@@ -116,10 +122,9 @@ export class AddJobModalComponent implements OnInit {
       course: new FormControl(''),
       date: new FormControl(''),
       frequency: new FormArray([]),
-      singleJobDate: new FormControl('')
+      singleJobDate: new FormControl([])
     });
     this.addCheckboxes();
     this.finalCourseDates = [];
   }
-
 }
