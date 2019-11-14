@@ -87,7 +87,6 @@
                                 <div class='col-9 headerColor'>Date</div>
                             </div>
                             <div class='maxHeight'>
-                                <div *ngIf='finalCourseDates != ""'>
                                 <div class='row' *ngFor='let oneDate of finalCourseDates | slice:0:duration; let j = index;'>
                                     <div class='col-3 center'>
                                         {{j + 1}}
@@ -96,13 +95,11 @@
                                         <mat-form-field>
                                             <input matInput [matDatepicker]="picker" formControlName="singleJobDate"
                                                 placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
-                                                (dateChange)='datesForJobChange($event,j)'
-                                                value='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'>
+                                                (dateChange)='datesForJobChange($event,j)'>
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>

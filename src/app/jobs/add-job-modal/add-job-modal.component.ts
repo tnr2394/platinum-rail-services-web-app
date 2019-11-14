@@ -117,9 +117,9 @@ export class AddJobModalComponent implements OnInit {
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),
       course: new FormControl(''),
-      date: new FormControl(''),
+      date: new FormControl(),
       frequency: new FormArray([]),
-      singleJobDate: new FormControl([])
+      singleJobDate: new FormControl()
     });
     this.addCheckboxes();
     this.finalCourseDates = [];
