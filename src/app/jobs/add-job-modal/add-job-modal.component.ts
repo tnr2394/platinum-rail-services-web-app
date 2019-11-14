@@ -22,13 +22,13 @@ export class AddJobModalComponent implements OnInit {
   instructor: FormArray;
 
   frequencyDays = [
-    { day: 'Sunday',selected: false },
-    { day: 'Monday',selected: false},
-    { day: 'Tuesday',selected: false },
-    { day: 'Wednesday',selected: false },
-    { day: 'Thursday',selected: false },
-    { day: 'Friday',selected: false },
-    { day: 'Saturday',selected: false }
+    { day: 'Sunday',disabled: true },
+    { day: 'Monday',disabled: true},
+    { day: 'Tuesday',disabled: true },
+    { day: 'Wednesday',disabled: true },
+    { day: 'Thursday',disabled: true },
+    { day: 'Friday',disabled: true },
+    { day: 'Saturday',disabled: true }
   ];
 
   constructor(public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
@@ -55,6 +55,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   searchDays($event){
+    this.frequencyDays.forEach(item => item.disabled = false);
     this.startingDate = $event.value;
     this.temp = moment($event.value);
   }
@@ -98,10 +99,6 @@ export class AddJobModalComponent implements OnInit {
         }
     }
   this.finalCourseDates = this.courseDates.sort((a,b)=> b - a).reverse();
-  }
-
-  clearAll(){
-    this.frequencyDays.forEach(item => item.selected = false);
   }
 
   datesForJobChange($event,index){

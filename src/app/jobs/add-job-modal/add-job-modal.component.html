@@ -70,7 +70,7 @@
                         <div class='col-2'></div>
                         <div class='col-10 checkBox'>
                             <label formArrayName="frequency" *ngFor="let day of addJobForm.controls.frequency.controls; let i = index">
-                                <input type="checkbox" [formControlName]="i"  [ngModel] (ngModelChange)="onCheckChange($event,i)">
+                                <input type="checkbox" [disabled]="frequencyDays[i].disabled" [ngModelOptions]="{standalone: true}"  [ngModel] (ngModelChange)="onCheckChange($event,i)">
                                 {{frequencyDays[i].day}}
                             </label>
                         </div>
