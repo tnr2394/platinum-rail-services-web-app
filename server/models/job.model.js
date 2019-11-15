@@ -28,7 +28,7 @@ var jobSchema = new Schema({
         type: Number 
     },
     singleJobDate: [{ 
-        type:Date 
+        type:String 
     }]
 })
 var jobModel = mongoose.model('job', jobSchema);
