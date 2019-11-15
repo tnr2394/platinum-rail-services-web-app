@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 import * as moment from 'moment';
 
 @Component({
@@ -21,16 +22,16 @@ export class AddJobModalComponent implements OnInit {
   instructor: FormArray;
 
   frequencyDays = [
-    { day: 'Sunday',selected: false },
-    { day: 'Monday',selected: false},
-    { day: 'Tuesday',selected: false },
-    { day: 'Wednesday',selected: false },
-    { day: 'Thursday',selected: false },
-    { day: 'Friday',selected: false },
-    { day: 'Saturday',selected: false }
+    { day: 'Sunday',disabled: true },
+    { day: 'Monday',disabled: true},
+    { day: 'Tuesday',disabled: true },
+    { day: 'Wednesday',disabled: true },
+    { day: 'Thursday',disabled: true },
+    { day: 'Friday',disabled: true },
+    { day: 'Saturday',disabled: true }
   ];
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
   
   createInstructor(): FormGroup{
     return this.formBuilder.group({
@@ -54,6 +55,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   searchDays($event){
+    this.frequencyDays.forEach(item => item.disabled = false);
     this.startingDate = $event.value;
     this.temp = moment($event.value);
   }
@@ -99,27 +101,27 @@ export class AddJobModalComponent implements OnInit {
   this.finalCourseDates = this.courseDates.sort((a,b)=> b - a).reverse();
   }
 
-  clearAll(){
-    this.frequencyDays.forEach(item => item.selected = false);
-  }
-
   datesForJobChange($event,index){
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
+
+  addJob(){
+    this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
+    this.dialogRef.close(this.addJobForm.value )
+  }
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
-      jobName: new FormControl(''),
+      title: new FormControl(''),
       jobColor: new FormControl(''),
       client: new FormControl(''),
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),
       course: new FormControl(''),
-      date: new FormControl(''),
+      date: new FormControl(),
       frequency: new FormArray([]),
-      singleJobDate: new FormControl('')
+      singleJobDate: new FormControl()
     });
     this.addCheckboxes();
     this.finalCourseDates = [];
   }
-
 }
