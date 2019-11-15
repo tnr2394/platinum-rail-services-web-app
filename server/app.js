@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var coursesRouter = require('./routes/courses');
 var instructorsRouter = require('./routes/instructors');
+var clientsRouter = require('./routes/clients');
 
 var app = express();
 //configure bodyparser
@@ -36,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
 app.use('/instructors', instructorsRouter);
+app.use('/clients', clientsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

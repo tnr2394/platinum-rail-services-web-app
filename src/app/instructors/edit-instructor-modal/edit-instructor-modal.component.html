@@ -17,11 +17,18 @@
             <input type="text" matInput placeholder="Confirm Password"  name="confirm-password" [(ngModel)]='instructorData.confirmPassword'>
         </mat-form-field>
         <mat-form-field>
-            <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining" [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled>
+            <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining" [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled required>
             <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
             <mat-datepicker #dateOfJoining disabled="false"></mat-datepicker>
         </mat-form-field>                
     </div>
+    <div class="row">
+            <!-- <div class="col-4"></div> -->
+            <div class="col-12 text-center" *ngIf="passwordMismatch">
+                    <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please re-enter.</span>
+            </div>
+        </div>
+
     <div  *ngIf="!loading">
         <button mat-flat-button color="primary" type="submit" ><i class="fas fa-save fa-fw"></i> Save</button>
         <button mat-flat-button type="button" color="warn" class="text-white pull-right"  (click)="delete()">

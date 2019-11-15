@@ -1,28 +1,34 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { InstructorService } from "../../services/instructor.service";
-export interface Instructor {
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { ClientService } from "../../services/client.service";
+export interface Client {
   _id: string;
   name: string;
-  dateOfJoining: Date;
   email: string;
-  password: string;
-  qualifications:[]
 };
 
 @Component({
-  selector: 'app-add-instructor-modal',
-  templateUrl: './add-instructor-modal.component.html',
-  styleUrls: ['./add-instructor-modal.component.scss']
+  selector: 'app-add-client-modal',
+  templateUrl: './add-client-modal.component.html',
+  styleUrls: ['./add-client-modal.component.scss']
 })
-export class AddInstructorModalComponent implements OnInit {
+export class AddClientModalComponent implements OnInit {
   loading: Boolean = false;
+  confirmPassword = new FormControl('');
   passwordMismatch: boolean;
+  
+
   ngOnInit() {
+    this.confirmPassword.setErrors({
+      nomatch: true
+    });
   }
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _instructorService: InstructorService) {
+  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _clientService: ClientService, private formBuilder: FormBuilder) {
     // NO DEFINITION
 }
+
 validate(data){
   console.log("Validating ",data);
   if(!data.name) return false;
@@ -36,6 +42,7 @@ validate(data){
   this.passwordMismatch = false;
   return true;
 }
+
 doSubmit(){
   console.log("Submit ",this.data);
   console.log("Validating = ",this.validate(this.data));
@@ -44,19 +51,22 @@ doSubmit(){
     return;
   }
 
+
   // Do Submit
   this.loading = true;    
-  this._instructorService.addInstructor(this.data).subscribe(data=>{
+  this._clientService.addClient(this.data).subscribe(data=>{
     this.data = data;
     this.loading = false;
+    console.log("Added Successfully",data);
     this.dialogRef.close(data);
 
   },err=>{
-    alert("Error editing course.")
+    alert("Error Adding Client.")
     this.loading = false;
-    this.dialogRef.close();
+    this.dialogRef.close(null);
 
   });
+
 }
 
 onNoClick(): void {
