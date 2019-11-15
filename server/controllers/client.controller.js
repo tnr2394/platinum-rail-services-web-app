@@ -12,7 +12,6 @@ async function allClients(){
         deferred.resolve(clients);
     });
     return deferred.promise;
-
 }
 clientController.getClients =  async  function(req, res, next) {
     let query = {};
@@ -67,7 +66,6 @@ clientController.updateClient = function(req, res, next) {
     
     })
 }
-
 
 clientController.deleteClient = function(req,res,next){
     console.log("Delete client");
