@@ -66,12 +66,16 @@ export class AddJobModalComponent implements OnInit {
   searchDays($event){
     this.frequencyDays.forEach(item => item.disabled = false);
     this.startingDate = $event.value;
+    // this.courseDates.push(this.startingDate)
     this.temp = moment($event.value);
   }
 
   onCheckChange(event, dayOfTheWeek){
     if(event == true){
-
+      if(this.startingDate.getDay() == dayOfTheWeek){
+        console.log(this.startingDate.getDay() ,'==', dayOfTheWeek)
+        this.courseDates.push(this.startingDate)
+      }
       this.totalDays.push(dayOfTheWeek)
 
       let tempDate: Date = this.temp.toDate();
