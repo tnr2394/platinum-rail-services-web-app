@@ -119,7 +119,7 @@
                                                 placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
                                                 (dateChange)='datesForJobChange($event,j)'>
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-datepicker #picker [startAt]='oneDate'></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                 </div>

@@ -29,6 +29,7 @@ export class AddJobModalComponent implements OnInit {
   finalCourseDates = [];
   instructor: FormArray;
   matcher = new MyErrorStateMatcher();
+  startAt = new Date(2000, 0, 2);
 
   frequencyDays = [
     { day: 'Sunday',disabled: true },
