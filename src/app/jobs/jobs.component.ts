@@ -70,7 +70,7 @@ export class JobsComponent implements OnInit {
     }  
     // MODALS
     addJobModal(){
-      var addedCourse = this.openDialog(AddJobModalComponent, { width: '1000px', height:'830px'}).subscribe((course)=>{
+      var addedCourse = this.openDialog(AddJobModalComponent, { width: '1000px', height:'967px'}).subscribe((course)=>{
         if(course == undefined) return;
         console.log("Subscribe Listend Course added = ",course);
         this._courseService.addCourse(course).subscribe(courses=>{

@@ -1,7 +1,15 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-add-job-modal',
@@ -20,6 +28,7 @@ export class AddJobModalComponent implements OnInit {
   duration = 10;
   finalCourseDates = [];
   instructor: FormArray;
+  matcher = new MyErrorStateMatcher();
 
   frequencyDays = [
     { day: 'Sunday',disabled: true },
@@ -111,8 +120,8 @@ export class AddJobModalComponent implements OnInit {
   }
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
-      title: new FormControl(''),
-      jobColor: new FormControl(''),
+      title: new FormControl('', Validators.required),
+      jobColor: new FormControl('', Validators.required),
       client: new FormControl(''),
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),

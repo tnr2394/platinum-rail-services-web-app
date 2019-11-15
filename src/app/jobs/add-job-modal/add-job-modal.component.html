@@ -7,14 +7,20 @@
             <div class='row'>
                 <div class='col center'>
                 <mat-form-field >
-                    <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial>
+                    <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addJobForm.controls['title'].hasError('required')">
+                        Please enter a job title
+                    </mat-error>
                 </mat-form-field>
                 </div>
 
                 <div class='col center'>
                 <mat-form-field >
-                    <input formControlName='jobColor' [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
-                        [cpAlphaChannel]="always" placeholder="Choose Color" />
+                    <input formControlName='jobColor' required [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
+                        [cpAlphaChannel]="always" placeholder="Choose Color" [errorStateMatcher]="matcher"/>
+                    <mat-error *ngIf="addJobForm.controls['jobColor'].hasError('required')">
+                        Please select a job color
+                    </mat-error>
                 </mat-form-field>
                 </div>
             </div>
@@ -40,7 +46,7 @@
             </div>
 
             <div class='row'>
-                    <div class='max-height col center'>
+                <div class='max-height col center'>
                     <div  formArrayName="instructor" *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                     <div [formGroupName]="i">
                     <mat-form-field>
