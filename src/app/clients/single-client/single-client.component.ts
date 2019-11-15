@@ -13,7 +13,10 @@ export class SingleClientComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params=>{
       console.log(params['id']);
-      this._clientService.getClient(params['id']).subscribe(data=> this.client = data);
+      this._clientService.getClient(params['id']).subscribe(data=>{ 
+        console.log("RECEIVED = ",data)
+        this.client = data;
+      });
     })    
   }
 
