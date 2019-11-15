@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -14,7 +14,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-add-job-modal',
   templateUrl: './add-job-modal.component.html',
-  styleUrls: ['./add-job-modal.component.scss']
+  styleUrls: ['./add-job-modal.component.scss'],
 })
 export class AddJobModalComponent implements OnInit {
 
@@ -70,10 +70,10 @@ export class AddJobModalComponent implements OnInit {
   }
 
   onCheckChange(event, dayOfTheWeek){
-    console.log(event, dayOfTheWeek)
     if(event == true){
+
       this.totalDays.push(dayOfTheWeek)
-      console.log(this.totalDays)
+
       let tempDate: Date = this.temp.toDate();
       for (var i = 0; i < this.duration; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
@@ -92,7 +92,6 @@ export class AddJobModalComponent implements OnInit {
               this.totalDays.splice(i,1)
             }
       }
-      console.log("Total days", this.totalDays)
       let tempDate: Date = this.temp.toDate();
       for (var i = 0; i < this.duration; i++) {
         let days = (7 - tempDate.getDay() + dayOfTheWeek)
@@ -115,8 +114,14 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
-    this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
-    this.dialogRef.close(this.addJobForm.value )
+    if(this.addJobForm.valid)
+    {
+      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
+      this.dialogRef.close(this.addJobForm.value )
+    }
+    else{
+      console.log("Invalid")
+    }
   }
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
@@ -126,7 +131,7 @@ export class AddJobModalComponent implements OnInit {
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),
       course: new FormControl(''),
-      date: new FormControl(),
+      date: new FormControl('', Validators.required),
       frequency: new FormArray([]),
       singleJobDate: new FormControl()
     });

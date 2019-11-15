@@ -16,7 +16,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing.module';
 
-import { MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule, MatTableModule, MatSortModule} from '@angular/material';
+import { MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE,MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -94,7 +94,9 @@ import { LocationTabComponent } from './commons/location-tab/location-tab.compon
 
   ],
   entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
-  providers: [SideNavServiceService, MatDatepickerModule],
+  providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+  ],
+
   bootstrap: [AppComponent]
 })
 
