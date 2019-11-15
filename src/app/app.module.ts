@@ -39,6 +39,11 @@ import { AddJobModalComponent } from './jobs/add-job-modal/add-job-modal.compone
 import { EditJobModalComponent } from './jobs/edit-job-modal/edit-job-modal.component';
 import { AddInstructorModalComponent } from './instructors/add-instructor-modal/add-instructor-modal.component';
 import { EditInstructorModalComponent } from './instructors/edit-instructor-modal/edit-instructor-modal.component';
+import { ClientsComponent } from './clients/clients.component';
+import { AddClientModalComponent } from './clients/add-client-modal/add-client-modal.component';
+import { EditClientModalComponent } from './clients/edit-client-modal/edit-client-modal.component';
+import { SingleClientComponent } from './clients/single-client/single-client.component';
+import { LocationTabComponent } from './commons/location-tab/location-tab.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,11 @@ import { EditInstructorModalComponent } from './instructors/edit-instructor-moda
     EditJobModalComponent,
     AddInstructorModalComponent,
     EditInstructorModalComponent,
+    ClientsComponent,
+    AddClientModalComponent,
+    EditClientModalComponent,
+    SingleClientComponent,
+    LocationTabComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +93,7 @@ import { EditInstructorModalComponent } from './instructors/edit-instructor-moda
     ColorPickerModule,
 
   ],
-  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent],
+  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,15 @@
+.location-bg{
+    height: 100px;
+    vertical-align: middle;
+    background-position: -10px 0px;
+    background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url('../../../assets/location-bg.jpg');
+    background-size: contain;
+    background-repeat:no-repeat;
+    cursor: pointer;
+    // border:solid;
+    // border-color: lightgreen;
+}
+
+.active-location-tab{
+    box-shadow: 0 0 3px 2px skyblue;
+}

@@ -18,6 +18,13 @@
         </mat-form-field>
         
   </div>
+  <div class="row">
+                <!-- <div class="col-4"></div> -->
+                <div class="col-12 text-center" *ngIf="passwordMismatch">
+                        <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please re-enter.</span>
+                </div>
+            </div>
+    
   <div mat-dialog-actions align="center" *ngIf="!loading"> 
     <button mat-flat-button color="primary" type="submit" >
         <i class="fas fa-save fa-fw"></i>

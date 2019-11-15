@@ -1,49 +1,34 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-// import { instructor } from 'src/app/interfaces/instructor';
-import {InstructorService} from '../../services/instructor.service'
-import { format } from 'url';
-
-export interface Instructor {
-  _id: string;
-  name: string;
-  dateOfJoining: Date;
-  email: string;
-  password: string;
-  qualifications:[]
-};
-
+import { Course } from 'src/app/interfaces/course';
+import {ClientService} from '../../services/client.service'
 
 @Component({
-  selector: 'app-edit-instructor-modal',
-  templateUrl: './edit-instructor-modal.component.html',
-  styleUrls: ['./edit-instructor-modal.component.scss']
+  selector: 'app-edit-client-modal',
+  templateUrl: './edit-client-modal.component.html',
+  styleUrls: ['./edit-client-modal.component.scss']
 })
-export class EditInstructorModalComponent implements OnInit {
+export class EditClientModalComponent implements OnInit {
   loading: Boolean = false;
-  instructorData;
+  clientData;
   passwordMismatch: boolean;
   ngOnInit() {
 
     console.log("DATA = ",this.data);
-    this.instructorData = JSON.parse(JSON.stringify(this.data));
-    // this.instructorData.dateOfJoining = this.formatDate(this.instructorData.dateOfJoining);
-    console.log("DATE = ",this.instructorData.dateOfJoining);
-    this.instructorData.confirmPassword = this.instructorData.password;
-
+    this.clientData = JSON.parse(JSON.stringify(this.data));
+    this.data.confirmPassword = this.data.password;
   }
-  constructor(public dialogRef: MatDialogRef<Instructor>, @Inject(MAT_DIALOG_DATA) public data: any, public _instructorService: InstructorService) {
+  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _clientService: ClientService) {
       // NO DEFINITION
   }
+
   validate(data){
     console.log("Validating ",data);
     if(!data.name) return false;
     if(!data.email) return false;
     if(!data.password) return false;
-    if(!data.dateOfJoining) return false;
     if(!data.confirmPassword) return false;
     if(data.password !== data.confirmPassword){ 
-      console.log("Password Mismatch")
       this.passwordMismatch = true;
       return false;
     }
@@ -51,13 +36,6 @@ export class EditInstructorModalComponent implements OnInit {
     return true;
   }
   
-  
-
-  formatDate(date){
-    var d = new Date(date);
-    return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
-  }
-
   doSubmit(){
     console.log("Submit ",this.data);
     console.log("Validating = ",this.validate(this.data));
@@ -67,17 +45,18 @@ export class EditInstructorModalComponent implements OnInit {
     }
   
     // Do Submit
-    this.loading = true;    
-    this._instructorService.editInstructor(this.instructorData).subscribe(instructors=>{
-      this.data = this.instructorData;
+    this.loading = true;
+    this._clientService.editClient(this.data).subscribe(client=>{
+      this.clientData = client;
+      console.log("CLIENTDATA = ",client);
       this.loading = false;
       this.closoeDialog({
         action: 'edit',
         result: 'success',
-        data: this.instructorData
+        data: this.clientData
       });
     },err=>{
-      alert("Error editing instructor.")
+      alert("Error editing Client.")
       this.loading = false;
       this.closoeDialog({
         action: 'edit',
@@ -90,16 +69,16 @@ export class EditInstructorModalComponent implements OnInit {
   delete(){
     console.warn("DELETING ",this.data._id);
     this.loading = true;    
-    this._instructorService.deleteInstructor(this.instructorData._id).subscribe(instructors=>{
-      this.data = instructors;
+    this._clientService.deleteClient(this.clientData._id).subscribe(clients=>{
+      // this.data = clients;
       this.loading = false;
       this.closoeDialog({
         action: 'delete',
         result: 'success',
-        data: this.instructorData
+        data: this.clientData
       });
     },err=>{
-      alert("Error deleting instructor.")
+      alert("Error deleting course.")
       this.loading = false;
       this.closoeDialog({
         action: 'delete',

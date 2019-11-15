@@ -20,6 +20,7 @@ $my-theme-primary: mat-palette($mat-blue, 500);
 $my-theme-basic: mat-palette($mat-red, 500);
 $my-theme-accent: mat-palette($mat-green);
 $my-theme-warn: mat-palette($mat-deep-orange, A200);
+$my-theme-danger: mat-palette($mat-red, 300);
 
 $my-theme-typography: mat-typography-config(
   $font-family: 'Source Sans Pro, times new roman',
