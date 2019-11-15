@@ -31,7 +31,7 @@ async function allJobs() {
         instructor: req.body.instructor,
         course: req.body.course,
         startingDate: req.body.startingDate,
-        frequency: req.body.frequency,
+        frequency: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     });
 
@@ -51,7 +51,7 @@ async function allJobs() {
         instructor: req.body.instructor,
         course: req.body.course,
         startingDate: req.body.startingDate,
-        frequency: req.body.frequency,
+        frequency: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     }
      jobModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedJob }, { new: true }, (err, job) => {

@@ -24,9 +24,9 @@ var jobSchema = new Schema({
     startingDate: { 
         type: Date 
     },
-    frequency: { 
-        type: Number 
-    },
+    frequency: [{ 
+        type: String 
+    }],
     singleJobDate: [{ 
         type:String 
     }]
