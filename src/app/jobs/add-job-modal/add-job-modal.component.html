@@ -29,8 +29,7 @@
                 <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="client" placeholder="Client">
-                        <mat-option value='A'>A</mat-option>
-                        <mat-option value='B'>B</mat-option>
+                        <mat-option *ngFor='let client of clients' value='{{client.name}}'>{{client.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
@@ -51,8 +50,7 @@
                     <div [formGroupName]="i">
                     <mat-form-field>
                         <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                            <mat-option value='A'>A</mat-option>
-                            <mat-option value='B'>B</mat-option>
+                            <mat-option *ngFor='let instructor of instructors' value='{{instructor.name}}'>{{instructor.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button class='buttonTransparent' (click)='removeInstructor()'><i class="fa fa-times close-color"></i> </button>
@@ -62,8 +60,7 @@
                 <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="course" placeholder="Choose Course">
-                        <mat-option value='A'>A</mat-option>
-                        <mat-option value='B'>B</mat-option>
+                        <mat-option *ngFor='let course of courses' value='{{course.title}},{{course.duration}}'>{{course.title}}, Duration: {{course.duration}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>

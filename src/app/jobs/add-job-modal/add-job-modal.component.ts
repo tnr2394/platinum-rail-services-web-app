@@ -4,6 +4,10 @@ import { MatDialogRef } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
 
+import { ClientService } from '../../services/client.service';
+import { CourseService } from '../../services/course.service';
+import { InstructorService } from '../../services/instructor.service';
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -18,6 +22,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddJobModalComponent implements OnInit {
 
+  clients;
+  courses;
+  instructors;
   addJobForm;
   courseDates = [];
   startingDate;
@@ -40,7 +47,8 @@ export class AddJobModalComponent implements OnInit {
     { id: '6', day: 'Saturday',disabled: true }
   ];
 
-  constructor(public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
+  constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService,
+              public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
 
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
@@ -57,6 +65,10 @@ export class AddJobModalComponent implements OnInit {
     });
     this.addCheckboxes();
     this.finalCourseDates = [];
+
+    this.getClients();
+    this.getCourses();
+    this.getInstructors();
   }
   
   createInstructor(): FormGroup{
@@ -135,6 +147,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
+    console.log(this.addJobForm.value)
     if(this.addJobForm.valid)
     {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
@@ -144,5 +157,29 @@ export class AddJobModalComponent implements OnInit {
     else{
       console.log("Invalid")
     }
+  }
+
+  /* GET clitents */
+  getClients() {
+    var that = this;
+    this._clientService.getClients().subscribe((clients) => {
+      this.clients = clients;
+    });
+  }
+
+  /* GET courses */
+  getCourses() {
+    var that = this;
+    this._courseService.getCourses().subscribe((courses) => {
+      this.courses = courses;
+    });
+  }
+  
+  /* GET instructors */
+  getInstructors() {
+    var that = this;
+    this._instructorService.getInstructors().subscribe((instructors) => {
+      this.instructors = instructors;
+    });
   }
 }
