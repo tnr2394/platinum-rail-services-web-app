@@ -14,18 +14,22 @@ async function allClients(){
     return deferred.promise;
 }
 clientController.getClients =  async  function(req, res, next) {
-    console.log("GET clients");
-    allClients().then(clients=>{
+    let query = {};
+    if(req.query._id){
+        query = req.query
+    }
+    console.log("GET clients query = ",query,"Params = ",req.query);
+    clientModel.find(query,(err,clients)=>{
         console.log("SENDING RESPONSE Clients =  ",clients)
         return res.send({data:{clients}});
     })
 }
 clientController.getClient =  async  function(req, res, next) {
-    console.log("GET client ",req.param.id);
-    allClients().then(clients=>{
-        console.log("SENDING RESPONSE Clients =  ",clients)
-        return res.send({data:{clients}});
-    })
+    console.log("GET client ",req.params.id);
+    // clientModel.findById(req.param.id,(err,client)=>{
+    //     console.log("GET CLIENT RES = ",client);
+    //     return res.send({data:{client}})
+    // })
 }
 
 clientController.addClient = function(req, res, next) {
