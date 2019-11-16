@@ -32,9 +32,8 @@ export class AddJobModalComponent implements OnInit {
   startingDate;
   temp;
   jobDates: FormArray;
-  nextDay;
   totalDays = [];
-  duration = 10;
+  duration;
   finalCourseDates = [];
   instructor: FormArray;
   matcher = new MyErrorStateMatcher();
@@ -157,7 +156,7 @@ export class AddJobModalComponent implements OnInit {
   addJob(){
     console.log(this.addJobForm.value)
     this.loading = true;    
-    if(this.addJobForm.valid)
+    // if(this.addJobForm.valid)
     {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
@@ -171,12 +170,11 @@ export class AddJobModalComponent implements OnInit {
           this.loading = false;
           this.dialogRef.close();
       })
-
       // this.dialogRef.close(this.addJobForm.value )
     }
-    else{
-      console.log("Invalid")
-    }
+    // else{
+    //   console.log("Invalid")
+    // }
   }
 
   /* GET clitents */

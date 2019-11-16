@@ -15,9 +15,9 @@ var jobSchema = new Schema({
     location: { 
         type: String 
     },
-    instructor: [{ 
-        singleInstructor: String
-    }],
+    instructor: { 
+        type: Array
+    },
     course: { 
         type:String 
     },

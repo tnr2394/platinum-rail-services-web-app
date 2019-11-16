@@ -36,9 +36,10 @@ async function allJobs() {
     });
     console.log('New Job', newJob)
     newJob.save((err, job)=>{
-        if (err) return res.status(500).send({ err })
-        console.log("SENDING RESPONSE Jobs =  ", job)
-        return res.send({ data: { job } });
+        console.log(err)
+        // if (err) return res.status(500).send({ err })
+        // console.log("SENDING RESPONSE Jobs =  ", job)
+        // return res.send({ data: { job } });
     });
  }
 

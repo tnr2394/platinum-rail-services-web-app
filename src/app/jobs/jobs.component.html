@@ -39,28 +39,36 @@
             <table class="table table-borderless" >
                     <thead>
                         <tr>
-                            <th>Sr. No.</th>
-                            <th>TITLE</th>
-                            <th>Duration (Days)</th>
-                            <th></th>
+                            <th>Sr.No.</th>
+                            <th>Client</th>
+                            <th>Location</th>
+                            <th>Instructor</th>
+                            <th>Course</th>
+                            <th>Learners</th>
+                            <th>Status</th>
+                            <th>View</th>
                         </tr>
                     </thead>
 
                     <tbody *ngIf="dataSource">
-                        <tr *ngFor="let course of dataSource ; index as i">
+                        <tr *ngFor="let job of dataSource ; index as i">
                             <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
-                            <td>{{course.title}}</td>
-                            <td><span class="badge {{getRandomColorClass(i)}}">{{course.duration}}</span></td>
-                            <td><a class="text-success bold" (click)="editJobModal(course)"><i class="fa fa-edit"></i></a></td>
+                            <td>{{job.client}}</td>
+                            <td>{{job.location}}</td>
+                            <td><span *ngFor='let singleInstructor of job.instructor'>{{singleInstructor.singleInstructor}}</span></td>
+                            <td>{{job.course}}</td>
+                            <td><button class='size'><i class="fa fa-users"></i></button></td>
+                            <td></td>
+                            <td><button class='size'><i class="fa fa-eye"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <h1 *ngIf="!(courses)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+            <h1 *ngIf="!(jobs)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
         </div>
         <!--/.Card content-->
     
-        <h1 class="text-center" *ngIf="courses.length < 1">
+        <h1 class="text-center" *ngIf="jobs.length < 1">
             <i class="fa fa-refresh fa-spin fa-fw"></i>
         </h1>
 
@@ -70,4 +78,3 @@
 </div>
 </div>
 </div>
-
