@@ -159,7 +159,7 @@ export class AddJobModalComponent implements OnInit {
     this.loading = true;    
     if(this.addJobForm.valid)
     {
-      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
+      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
 
       this._jobService.addJob(this.addJobForm.value).subscribe(data=>{

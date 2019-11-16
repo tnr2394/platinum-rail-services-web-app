@@ -31,8 +31,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
 
-
-import { MatChipsModule } from '@angular/material/chips';
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
 import { AddJobModalComponent } from './jobs/add-job-modal/add-job-modal.component';
@@ -74,7 +72,6 @@ import { LocationTabComponent } from './commons/location-tab/location-tab.compon
     MatPaginatorModule,
     MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule,
     MatSidenavModule, MatTooltipModule,
-    MatChipsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -94,7 +91,7 @@ import { LocationTabComponent } from './commons/location-tab/location-tab.compon
     ColorPickerModule,
 
   ],
-  entryComponents:[AddCourseModalComponent, EditCourseModalComponent,AddJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 

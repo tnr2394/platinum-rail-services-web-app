@@ -76,7 +76,6 @@ export class JobsComponent implements OnInit {
         this._courseService.addCourse(course).subscribe(courses=>{
           this.courses = courses;
         });
-        
       });
     }
     
