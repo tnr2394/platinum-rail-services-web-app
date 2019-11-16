@@ -1,12 +1,13 @@
-import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
 
 import { ClientService } from '../../services/client.service';
 import { CourseService } from '../../services/course.service';
 import { InstructorService } from '../../services/instructor.service';
+import { JobService } from '../../services/job.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,6 +26,7 @@ export class AddJobModalComponent implements OnInit {
   clients;
   courses;
   instructors;
+  jobs;
   addJobForm;
   courseDates = [];
   startingDate;
@@ -37,6 +39,8 @@ export class AddJobModalComponent implements OnInit {
   instructor: FormArray;
   matcher = new MyErrorStateMatcher();
 
+  loading: Boolean = false;
+
   frequencyDays = [
     { id: '0', day: 'Sunday',disabled: true },
     { id: '1', day: 'Monday',disabled: true},
@@ -47,7 +51,8 @@ export class AddJobModalComponent implements OnInit {
     { id: '6', day: 'Saturday',disabled: true }
   ];
 
-  constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService,
+  constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
 
   ngOnInit() {
@@ -148,11 +153,23 @@ export class AddJobModalComponent implements OnInit {
 
   addJob(){
     console.log(this.addJobForm.value)
+    this.loading = true;    
     if(this.addJobForm.valid)
     {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates);
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
-      this.dialogRef.close(this.addJobForm.value )
+
+      this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
+      },err=>{
+          alert("Error adding job.")
+          this.loading = false;
+          this.dialogRef.close();
+      })
+
+      // this.dialogRef.close(this.addJobForm.value )
     }
     else{
       console.log("Invalid")

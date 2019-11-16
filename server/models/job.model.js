@@ -16,20 +16,21 @@ var jobSchema = new Schema({
         type: String 
     },
     instructor: [{ 
-        type: String 
+        singleInstructor: String
     }],
     course: { 
         type:String 
     },
     startingDate: { 
-        type: Date 
+        type: String 
     },
     frequency: [{ 
         type: String 
     }],
     singleJobDate: [{ 
-        type:String 
+        type:String
     }]
 })
+
 var jobModel = mongoose.model('job', jobSchema);
 module.exports = jobModel;

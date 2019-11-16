@@ -25,16 +25,16 @@ async function allJobs() {
 
     var newJob = new jobModel({
         title: req.body.title,
-        color: req.body.color,
+        color: req.body.jobColor,
         client: req.body.client,
         location: req.body.location,
         instructor: req.body.instructor,
         course: req.body.course,
-        startingDate: req.body.startingDate,
+        startingDate: req.body.date,
         frequency: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     });
-
+    console.log('New Job', newJob)
     newJob.save((err, job)=>{
         if (err) return res.status(500).send({ err })
         console.log("SENDING RESPONSE Jobs =  ", job)
