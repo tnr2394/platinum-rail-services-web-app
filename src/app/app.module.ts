@@ -16,7 +16,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing.module';
 
-import { MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE,MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS} from '@angular/material';
+import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE,MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -32,7 +32,7 @@ import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 
-
+import { MatChipsModule } from '@angular/material/chips';
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
 import { AddJobModalComponent } from './jobs/add-job-modal/add-job-modal.component';
@@ -73,7 +73,8 @@ import { LocationTabComponent } from './commons/location-tab/location-tab.compon
     MatListModule,
     MatPaginatorModule,
     MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule,
-    MatSidenavModule,
+    MatSidenavModule, MatTooltipModule,
+    MatChipsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

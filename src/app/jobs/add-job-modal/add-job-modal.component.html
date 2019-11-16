@@ -59,8 +59,11 @@
                 </div>
                 <div class='col center'>
                 <mat-form-field>
-                    <mat-select formControlName="course" placeholder="Choose Course">
-                        <mat-option *ngFor='let course of courses' value='{{course.title}},{{course.duration}}'>{{course.title}}, Duration: {{course.duration}}</mat-option>
+                    <mat-select formControlName="course" placeholder="Choose Course" #selected>
+                        <mat-select-trigger>
+                            {{selected.value?.title}}
+                        </mat-select-trigger>
+                        <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}' [value]='course'><span class="badge position">{{course.duration}}</span>{{course.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>

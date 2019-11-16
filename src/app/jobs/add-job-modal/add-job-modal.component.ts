@@ -105,6 +105,9 @@ export class AddJobModalComponent implements OnInit {
   }
 
   onCheckChange(event, dayOfTheWeek, day){
+    this.duration = this.addJobForm.controls['course'].value.duration
+    console.log(this.addJobForm.controls['course'].value.duration)
+
     if(event == true){
       if(this.startingDate.getDay() == dayOfTheWeek){
         console.log(this.startingDate.getDay() ,'==', dayOfTheWeek)
