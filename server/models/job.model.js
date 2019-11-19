@@ -19,7 +19,7 @@ var jobSchema = new Schema({
         type: Array
     },
     course: { 
-        type:String 
+        type:Array 
     },
     startingDate: { 
         type: String 

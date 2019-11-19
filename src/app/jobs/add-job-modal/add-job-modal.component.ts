@@ -61,7 +61,7 @@ export class AddJobModalComponent implements OnInit {
       client: new FormControl(''),
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),
-      course: new FormControl(''),
+      course: new FormArray([this.course()]),
       date: new FormControl('', Validators.required),
       frequency: new FormArray([]),
       singleJobDate: new FormControl(),
@@ -80,6 +80,11 @@ export class AddJobModalComponent implements OnInit {
       singleInstructor : new FormControl('')
     })
   }
+  course(): FormGroup{
+    return this.formBuilder.group({
+      course: new FormControl('')
+    })
+  }
 
   addInstructor(){
     this.instructor = this.addJobForm.get('instructor') as FormArray;
@@ -89,9 +94,9 @@ export class AddJobModalComponent implements OnInit {
     this.instructor.removeAt(this.instructor.length - 1);
   }
 
-  private addCheckboxes() {
+  addCheckboxes() {
     this.frequencyDays.forEach(() => {
-      const control = new FormControl();
+        const control = new FormControl();
       (this.addJobForm.controls.frequency as FormArray).push(control);
     });
   }
@@ -104,8 +109,8 @@ export class AddJobModalComponent implements OnInit {
   }
 
   onCheckChange(event, dayOfTheWeek, day){
-    this.duration = this.addJobForm.controls['course'].value.duration
-    console.log(this.addJobForm.controls['course'].value.duration)
+    this.duration = this.addJobForm.get('course').controls[0].value.course.duration
+    console.log(this.addJobForm.get('course').controls[0].value.course.duration)
 
     if(event == true){
       if(this.startingDate.getDay() == dayOfTheWeek){
@@ -154,9 +159,9 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
-    console.log(this.addJobForm.value)
+    console.log(this.addJobForm.controls['course'].value)
     this.loading = true;    
-    // if(this.addJobForm.valid)
+    if(this.addJobForm.valid)
     {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
@@ -164,17 +169,17 @@ export class AddJobModalComponent implements OnInit {
       this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
         this.data = data;
         this.loading = false;
-        this.dialogRef.close(data);
+        this.dialogRef.close(this.addJobForm.value);
       },err=>{
           alert("Error adding job.")
           this.loading = false;
           this.dialogRef.close();
       })
-      // this.dialogRef.close(this.addJobForm.value )
+      this.dialogRef.close(this.addJobForm.value);
     }
-    // else{
-    //   console.log("Invalid")
-    // }
+    else{
+      console.log("Invalid")
+    }
   }
 
   /* GET clitents */

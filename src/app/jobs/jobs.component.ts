@@ -2,10 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {CourseService} from '../services/course.service';
 import { Observable } from 'rxjs';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { AddJobModalComponent } from './add-job-modal/add-job-modal.component';
 import { EditJobModalComponent } from './edit-job-modal/edit-job-modal.component';
-import {FilterService} from "../services/filter.service";
-import { JobService } from "../services/job.service";
+
+import { FilterService } from '../services/filter.service';
+import { JobService } from '../services/job.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-jobs',
@@ -19,33 +25,63 @@ export class JobsComponent implements OnInit {
   bgColors: string[];
   lastColor;
   currentPage: any;
-  dataSource: any;
+  dataSource: MatTableDataSource<any>;
+
   // MatPaginator Inputs
   length;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  sort: MatSort;
+  paginator: MatPaginator;
   // MatPaginator Output
   pageEvent: PageEvent;
+  displayedColumns: string[] = ['sr.no','client','location','instructor','course','learners','status','view']
   
-  
-  @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
-  
-  constructor(public _jobService: JobService, public _courseService: CourseService,public dialog: MatDialog, public _filter: FilterService) {
-    this.bgColors = ["badge-info","badge-success","badge-warning","badge-primary","badge-danger"]; 
-    // this.courses = [];
-    this.jobs = [];
-    this.dataSource = this.jobs;
+  // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
+
+  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+  @ViewChild(MatPaginator, { static: true }) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+  setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
-    
+    this.dataSource.sort = this.sort;
+  }
+  
+  constructor(public _jobService: JobService, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
+    this.bgColors = ['badge-info','badge-success','badge-warning','badge-primary','badge-danger']; 
+    this.jobs = [];
+    // this.dataSource = this.jobs;
+    this.dataSource = new MatTableDataSource<any>(this.jobs);
+    console.log("DATA SOURCE", this.dataSource)
+    // 
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;    
   }
   
   ngAfterViewInit() {
-    this.paginator.page.subscribe(
-      (event) => {
-        console.log("Paginator",event)
-        this.handlePage(event);
-      });
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    // this.paginator.page.subscribe(
+    //   (event) => {
+    //     console.log('Paginator', event)
+    //     // this.handlePage(event);
+    //   });
+  }
+   
+
+    applyFilter(filterValue: string) {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
     }
+
     getRandomColorClass(i){
       var rand = Math.floor(Math.random() * this.bgColors.length);
       rand = i % 5;
@@ -56,16 +92,51 @@ export class JobsComponent implements OnInit {
     ngOnInit() {
       // this.getCourses();
       this.getJobs();
+      // this.getStatus()
     }
     
+  getStatus(jobs){
+    console.log('in status', jobs)
+    let today = new Date();
+      if(jobs.length != undefined){
+        for(var i = 0; i < jobs.length ; i++){
+        let status;
+      for (var j = 0; j < jobs[i].singleJobDate.length; j++){
+        let lastDate = new Date(jobs[i].singleJobDate.slice(-1)[0])
+        let firstDate = new Date(jobs[i].singleJobDate[0])
+        if( lastDate < today){
+           status = 'Completed'
+        }
+        else if(firstDate < today && lastDate > today){
+           status = 'Active'
+        }
+        else{
+           status = 'New'
+        }
+      Object.assign(jobs[i], {status:status})
+    }
+      this.jobs = jobs;
+  }}
+  else{
+      Object.assign(jobs, { status: 'New' }) 
+  }}
     
     // UTILITY
+  updateData(jobs) {
+    console.log('UPDATING DATA = ', jobs)
+    this.dataSource = new MatTableDataSource(jobs);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    console.log('SETTING SORT TO = ', this.dataSource.sort)
+    console.log('SETTING paginator TO = ', this.dataSource.paginator)
+  }
+
     filter(searchText){
-      console.log("FILTER CALLED",searchText);
-      if(searchText === ""){
+      console.log('FILTER CALLED',searchText);
+      if(searchText === ''){
         this.dataSource = this.jobs;
         this.dataSource.paginator = this.paginator;
-        this.handlePage({pageIndex:0, pageSize:this.pageSize});
+        // this.handlePage({pageIndex:0, pageSize:this.pageSize});
           return;
       }
       this.dataSource = this._filter.filter(searchText,this.jobs,['title','client']);
@@ -76,14 +147,17 @@ export class JobsComponent implements OnInit {
     addJobModal(){
       var addedJob = this.openDialog(AddJobModalComponent, { width: '1000px', height:'967px'}).subscribe((job)=>{
         if(job == undefined) return;
-        console.log("Subscribe Listend Job added = ",job);
-        this._jobService.addJob(job).subscribe(jobs=>{
-          this.jobs = jobs;
-        });
+        console.log('Subscribe Listend Job added = ',job);
+          this.jobs.push(job);
+          this.updateData(this.jobs); 
+          this.getStatus(job);
+          this.openSnackBar("Job Added Successfully", "Ok");
+      }, err => {
+          return this.openSnackBar("Job could not be Added", "Ok");
       });
     }
     
-    
+
     // editJobModal(data){
     //   this.openDialog(EditJobModalComponent,data).subscribe((job)=>{
     //     if(job == undefined) return;
@@ -99,13 +173,20 @@ export class JobsComponent implements OnInit {
     
     
     
-    
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
+  }
+
     openDialog(someComponent,data = {}): Observable<any> {
-      console.log("OPENDIALOG","DATA = ",data)
+      console.log('OPENDIALOG','DATA = ',data)
       const dialogRef = this.dialog.open(someComponent, data);
       return dialogRef.afterClosed();
     }
-    
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
     
     
     
@@ -129,9 +210,11 @@ export class JobsComponent implements OnInit {
       var that = this;
       this._jobService.getJobs().subscribe((data)=>{
         this.jobs = data;
-        console.log("Jobs Received : ", this.jobs);
+        console.log('Jobs Received : ', this.jobs);
+        this.updateData(this.jobs);
+        this.getStatus(data);
         // Linking with paginator
-        this.handlePage({pageIndex:0, pageSize:5});
+        // this.handlePage({pageIndex:0, pageSize:5});
       })
     }
     
@@ -140,23 +223,23 @@ export class JobsComponent implements OnInit {
     
     
     // Paginator
-    public handlePage(e: any) {
-      this.currentPage = e.pageIndex;
-      this.pageSize = e.pageSize;
-      console.log("HANDLING PAGE EVENT ",{pageSize: this.pageSize,currentPage: this.currentPage})
-      this.iterator();
-    }
+    // public handlePage(e: any) {
+    //   this.currentPage = e.pageIndex;
+    //   this.pageSize = e.pageSize;
+    //   console.log('HANDLING PAGE EVENT ',{pageSize: this.pageSize,currentPage: this.currentPage})
+    //   this.iterator();
+    // }
     
-    private iterator() {
-      const end = (this.currentPage + 1) * this.pageSize;
-      const start = this.currentPage * this.pageSize;
-      const part = this.jobs.slice(start, end);
-      this.dataSource = part;
-      this.dataSource.paginator = this.paginator;
-      if(this.dataSource.paginator == undefined) this.dataSource.paginator.pageIndex = 0;
-      console.log("Iterator = ",this.dataSource);
+    // private iterator() {
+    //   const end = (this.currentPage + 1) * this.pageSize;
+    //   const start = this.currentPage * this.pageSize;
+    //   const part = this.jobs.slice(start, end);
+    //   this.dataSource = part;
+    //   this.dataSource.paginator = this.paginator;
+    //   if(this.dataSource.paginator == undefined) this.dataSource.paginator.pageIndex = 0;
+    //   console.log('Iterator = ',this.dataSource);
       
-    }
+    // }
     // END PAGINATOR
   }
   
