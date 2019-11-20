@@ -1,12 +1,12 @@
-<div class=" card location-bg " [ngClass]="{'editing-location': editing}" >
+<div class=" card location-bg " [ngClass]="{'editing-location': editing}"  >
     <div class="card-block " >
-        <div *ngIf="!editing">
+        <div *ngIf="!editing" [@inOutAnimation]>
             <div class=" text-right card-title h4">
                 <span  class="">{{location.title}}</span>
             </div>
             <a  class="pull-right "><i class="fas fa-edit text-success fa-fw" (click)="editLocation()"></i>&nbsp;&nbsp; <i class="fas fa-close text-danger"(click)="deleteLocation()" ></i></a>
         </div>
-        <div *ngIf="editing">
+        <div *ngIf="editing" [@inOutAnimation]>
             <form>
                 <mat-form-field class="col-12">
                     <input  matInput name="location" placeholder="Location" [(ngModel)]='location.title' required cdkFocusInitial>

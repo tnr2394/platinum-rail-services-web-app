@@ -93,13 +93,12 @@ location.updateLocation = function(object) {
     
 }
 
-file.deleteFile = function(object){
+location.deleteLocation = function(locationId){
     console.log("Delete file");
     var q = Q.defer();
     
-    let fileId = object._id;
-    console.log("file to be deleted : ",fileId);
-    locationModel.deleteOne({_id: fileId},(err,deleted)=>{
+    console.log("Location to be deleted : ",locationId);
+    locationModel.deleteOne({_id: locationId},(err,deleted)=>{
         if(err) q.reject(err);
         console.log("Deleted ",deleted);
         q.resolve(deleted);

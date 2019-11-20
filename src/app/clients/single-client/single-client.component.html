@@ -53,7 +53,7 @@
         <div class="row" *ngIf="client">
             <div *ngIf="client.locations.length == 0"><h4>No Locations</h4></div>
             <div class="col-4 " *ngFor="let location of client.locations">
-                <location-tab [isActive]="false" [(location)]="location" ></location-tab>
+                <location-tab   [@inOutAnimation] [isActive]="false" [(location)]="location" (onDeleted)="deletedLocation($event)"></location-tab>
             </div>
         </div>
         

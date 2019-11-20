@@ -54,23 +54,40 @@ export class ClientService {
   
   }
   
-    deleteClient(id){
-      return new Observable((observer)=>{
-        this.http.delete("http://localhost:3000/clients?_id="+id).subscribe((res:any)=>{
-          observer.next(res.data.clients);
-          // observer.complete();
-        },err=>{
-          console.log("ERROR ")
-          observer.error(err);
-        },
-        ()=>{
-          console.log("CALL COMPLETED ")
-          observer.complete();
-        });
-        
-      })
-    }
-    
+  deleteClient(id){
+    return new Observable((observer)=>{
+      this.http.delete("http://localhost:3000/clients?_id="+id).subscribe((res:any)=>{
+        observer.next(res.data.clients);
+        // observer.complete();
+      },err=>{
+        console.log("ERROR ")
+        observer.error(err);
+      },
+      ()=>{
+        console.log("CALL COMPLETED ")
+        observer.complete();
+      });
+      
+    })
+  }
+
+  deleteLocation(id){
+    return new Observable((observer)=>{
+      this.http.delete("http://localhost:3000/clients/location?_id="+id).subscribe((res:any)=>{
+        observer.next(res.data.clients);
+        // observer.complete();
+      },err=>{
+        console.log("ERROR ")
+        observer.error(err);
+      },
+      ()=>{
+        console.log("CALL COMPLETED ")
+        observer.complete();
+      });
+      
+    })
+  }
+
     getClients(): Observable<any>{
       console.log("Getting clients");
       var that = this;

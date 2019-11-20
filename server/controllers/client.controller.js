@@ -61,10 +61,7 @@ clientController.addLocation = function(req, res, next) {
         title: req.body.location.title,
         client: req.body.client
     }).then(newLocation=>{
-        console.log("After new location creted in Model, adding it to Client = ",newLocation);
-        console.log("Calling Client DOA for adding location in client");
         clientDOA.addLocationToClient(newLocation).then(upadtedClient=>{
-           console.log("Updated Client in addLocation() client-doa = ",upadtedClient);
             res.send({data:{location: newLocation}});
         },err=>{
             console.error(err);
@@ -72,7 +69,6 @@ clientController.addLocation = function(req, res, next) {
         });
     }),err=>{
         console.error(err);
-
         return res.status(500).send({err});
     };
 }
@@ -81,6 +77,18 @@ clientController.updateLocation = function(req,res,next){
     
     locationDOA.updateLocation(req.body).then(updatedLocation=>{
         return res.send({data:{location:updatedLocation}})
+    },err=>{
+        return res.status(500).send({err});
+    })
+}
+
+
+
+clientController.deleteLocation = function(req,res,next){
+    console.log("Delete Location",req.query);
+    
+    locationDOA.deleteLocation(req.query).then(deletedLocation=>{
+        return res.send({data:{location:deletedLocation}})
     },err=>{
         return res.status(500).send({err});
     })
