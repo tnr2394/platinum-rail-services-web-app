@@ -1,7 +1,13 @@
-<div class=" card location-bg " [ngClass]="{'active-location-tab': isActive}" (click)="select()">
+<div class=" card location-bg " [ngClass]="{'active-location-tab': isActive}" >
     <div class="card-block ">
         <div class="card-title text-right h4">
-            {{location}}
+            <span *ngIf="!editing">{{location.title}}</span>
+            <div *ngIf="editing">
+                <form>
+                    
+                </form>
+            </div>
         </div>
+            <a  class="pull-right "><i class="fas fa-edit text-success fa-fw"></i>&nbsp;&nbsp; <i class="fas fa-close text-danger"(click)="deleteLocation()" ></i></a>
     </div>
 </div>

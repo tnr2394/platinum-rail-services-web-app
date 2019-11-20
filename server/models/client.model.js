@@ -6,9 +6,11 @@ var clientSchema = new Schema({
         unique : false,
         required : true
     },
-    locations : [{
-        type: String,
-    }],
+    locations : [new Schema({
+        title: {
+            type: String
+        }
+    })],
     email:{
         type: String,
         required: true

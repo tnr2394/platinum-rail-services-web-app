@@ -5,6 +5,8 @@ var clientController = require('../controllers/client.controller');
 router.get('/', clientController.getClients);
 // ADD Client
 router.post('/', clientController.addClient);
+// ADD Client - Location
+router.post('/location', clientController.addLocation);
 // EDIT Client
 router.put('/', clientController.updateClient);
 // Delete Client

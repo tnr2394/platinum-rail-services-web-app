@@ -7,12 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LocationTabComponent implements OnInit {
   @Input('isActive') isActive: Boolean;
-  @Input('location') location: string;
+  @Input('location') location: any;
+  editing: boolean;
   constructor() { }
 
   ngOnInit() {
+    // this.location.title
+    console.log("Location TAB = ",this.location)  
   }
   select(){
     alert("Selected"+this.isActive);
+  }
+  editLocation(){
+    this.editing = true;
+    
+  }
+  deleteLocation(){
+    console.log("Delete ",this.location._id);
   }
 }

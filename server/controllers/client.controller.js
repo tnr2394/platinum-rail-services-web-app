@@ -20,7 +20,7 @@ clientController.getClients =  async  function(req, res, next) {
     }
     console.log("GET clients query = ",query,"Params = ",req.query);
     clientModel.find(query,(err,clients)=>{
-        console.log("SENDING RESPONSE Clients =  ",clients)
+        console.log("SENDING RESPONSE Clients =  ",clients);
         return res.send({data:{clients}});
     })
 }
@@ -47,6 +47,31 @@ clientController.addClient = function(req, res, next) {
     
     })
 }
+
+
+
+clientController.addLocation = function(req, res, next) {
+    console.log("Add Location",req.body);
+
+    var newLocation = {
+        title: req.body.location.title
+    };
+    console.log("Adding Location",newLocation);
+    clientModel.findOneAndUpdate({_id: req.body._id},{$addToSet: {
+        locations: newLocation
+    }},{new: true},(err,client)=>{
+        console.log("Updated client",client,err);
+        if(err){
+            return res.status(500).send({err})
+        }
+
+        return res.send({data:{client}});
+    
+    })
+}
+
+
+
 
 clientController.updateClient = function(req, res, next) {
     console.log("Update clients",req.body);

@@ -42,6 +42,7 @@ import { AddClientModalComponent } from './clients/add-client-modal/add-client-m
 import { EditClientModalComponent } from './clients/edit-client-modal/edit-client-modal.component';
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LocationTabComponent } from './commons/location-tab/location-tab.component';
+import { AddLocationComponent } from './clients/single-client/add-location/add-location.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { LocationTabComponent } from './commons/location-tab/location-tab.compon
     EditClientModalComponent,
     SingleClientComponent,
     LocationTabComponent,
+    AddLocationComponent,
   ],
   imports: [
     BrowserModule,

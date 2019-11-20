@@ -6,34 +6,66 @@
                     {{client.name}}
                 </h3>
             </div>
-            <div class="col-6">
+            <div class="col-6 text-right">
+                <button mat-flat-button color="primary" class=""  (click)="openLocationModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add Location
+                </button>
+                <div class="row">
+                    <div class="col-12 text-left" style="margin:20px" >
+                        <form *ngIf="addLocationPopup" (ngSubmit)="doAddNewLocation(data)">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="card-title h5 col-12 mat-dialog-title light-underline"><i class="fas fa-map-marker-alt"></i> Add Location</div>
+                                        <div class="col-12">
+                                            
+                                            <mat-form-field class="" style="display: block;">
+                                                <input  matInput name="location" placeholder="Location" [(ngModel)]='data.title' required cdkFocusInitial>
+                                                <mat-error >Location is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-6">
+                                            
+                                            <button *ngIf="loading" disabled mat-stroked-button  color="primary"><i class="fas fa-refresh fa-spin fa-fw"></i>Adding...</button>
+                                            <button *ngIf="!loading" mat-stroked-button  color="primary"><i class="fas fa-plus fa-fw"></i>Add</button>
+                                        </div>
+                                        <div class="col-6">
+                                            
+                                            <button mat-stroked-button  color="warn" (click)="closeLocationModal()"><i class="fas fa-close fa-fw"></i>Cancel </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>    
 <div class="row border-red-200">
     <div class="col-12 ">
-        <div class="row">
-            <div class="col-4 ">
-                <location-tab [isActive]="true" location="HP Kirkham" ></location-tab>
-            </div>
-            <div class="col-4">
-                <location-tab [isActive]="false" location="Shipley"></location-tab>
-            </div>
-            <div class="col-4">
-                <location-tab [isActive]="false" location="FOC"></location-tab>
-            </div>
-        </div>
-    </div>
-
-    <div style="padding:15px " class="col-12 col-md-12">
-        <div class="card">
-            <div class="card-block">
-                <div class="card-title">
-                    Learners
-                </div>
+        <div class="row" *ngIf="client">
+            <div *ngIf="client.locations.length == 0"><h4>No Locations</h4></div>
+            <div class="col-4 " *ngFor="let location of client.locations">
+                <location-tab [isActive]="false" [(location)]="location" ></location-tab>
             </div>
         </div>
         
+        <div style="padding:15px " class="col-12 col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-title">
+                        Learners
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
-</div>
+    
