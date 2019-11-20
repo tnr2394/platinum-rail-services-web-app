@@ -6,11 +6,10 @@ var clientSchema = new Schema({
         unique : false,
         required : true
     },
-    locations : [new Schema({
-        title: {
-            type: String
-        }
-    })],
+    locations : [{
+        type: Schema.Types.ObjectId,
+        ref: 'location'
+    }],
     email:{
         type: String,
         required: true

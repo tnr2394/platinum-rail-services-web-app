@@ -22,6 +22,7 @@ export class SingleClientComponent implements OnInit {
   }
   closeLocationModal(){
     this.addLocationPopup = false;
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -30,6 +31,7 @@ export class SingleClientComponent implements OnInit {
       this._clientService.getClient(params['id']).subscribe(data=>{ 
         console.log("RECEIVED = ",data)
         this.client = data.pop();
+        console.log("THIS CLIENT LOCATIONS ARRAY = ",this.client.locations);
       });
     })    
   }
@@ -38,14 +40,15 @@ export class SingleClientComponent implements OnInit {
   doAddNewLocation(data){
     console.log("ADD NEW LOCATION = ",data);
     var obj = {
-      _id: this.client._id,
+      client: this.client._id,
       location: data
     };
     console.log("Data to send = ",obj);
     this.loading = true;
     this._clientService.addLocation(obj).subscribe(res=>{
       console.log("Response = ",res)
-      this.client = res;
+      this.client.locations.push(res);
+      this.closeLocationModal();
     },err=>{
       console.error(err);
     },

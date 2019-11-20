@@ -106,8 +106,8 @@ export class ClientService {
         console.log("Observable");
         var that = this;
         this.http.post("http://localhost:3000/clients/location",data).subscribe((res:any)=>{
-    
-        observer.next(res.data.client);
+        console.log("Received Sending = ",res.data.location)
+        observer.next(res.data.location);
           // observer.complete();
         },err=>{
           console.log("ERROR ")
@@ -122,6 +122,28 @@ export class ClientService {
     
     }
   
+    updateLocation(data:any): Observable<any> {
+      console.log("Adding location",data);
+    
+      return  new Observable<any>((observer)=>{
+        console.log("Observable");
+        var that = this;
+        this.http.put("http://localhost:3000/clients/location",data).subscribe((res:any)=>{
+        console.log("Received Sending = ",res.data.location)
+        observer.next(res.data.location);
+          // observer.complete();
+        },err=>{
+          console.log("ERROR ")
+          observer.error(err);
+        },
+        ()=>{
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    
+      });
+    
+    }
   
   
   }

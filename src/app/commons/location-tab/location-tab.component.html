@@ -1,13 +1,25 @@
-<div class=" card location-bg " [ngClass]="{'active-location-tab': isActive}" >
-    <div class="card-block ">
-        <div class="card-title text-right h4">
-            <span *ngIf="!editing">{{location.title}}</span>
-            <div *ngIf="editing">
-                <form>
-                    
-                </form>
+<div class=" card location-bg " [ngClass]="{'editing-location': editing}" >
+    <div class="card-block " >
+        <div *ngIf="!editing">
+            <div class=" text-right card-title h4">
+                <span  class="">{{location.title}}</span>
             </div>
+            <a  class="pull-right "><i class="fas fa-edit text-success fa-fw" (click)="editLocation()"></i>&nbsp;&nbsp; <i class="fas fa-close text-danger"(click)="deleteLocation()" ></i></a>
         </div>
-            <a  class="pull-right "><i class="fas fa-edit text-success fa-fw"></i>&nbsp;&nbsp; <i class="fas fa-close text-danger"(click)="deleteLocation()" ></i></a>
+        <div *ngIf="editing">
+            <form>
+                <mat-form-field class="col-12">
+                    <input  matInput name="location" placeholder="Location" [(ngModel)]='location.title' required cdkFocusInitial>
+                    <mat-error >Location is required</mat-error>
+                </mat-form-field>
+                <div class="col-12">
+                    <button *ngIf="loading" disabled mat-stroked-button  color="primary">
+                        <i class="fas fa-refresh fa-spin fa-fw"></i>
+                    </button>
+                    <button *ngIf="!loading" mat-stroked-button (click)="updateLocation()"  color="primary"><i class="fas fa-edit fa-fw"></i> Save</button>
+                </div>
+            </form>
+            
+        </div>
     </div>
 </div>

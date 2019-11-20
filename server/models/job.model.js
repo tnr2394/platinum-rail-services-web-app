@@ -10,10 +10,12 @@ var jobSchema = new Schema({
         required: true 
     },
     client: { 
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'client'
     },
     location: { 
-        type: String 
+        type: Schema.Types.ObjectId,
+        ref: 'location' 
     },
     instructor: [{ 
         singleInstructor: String

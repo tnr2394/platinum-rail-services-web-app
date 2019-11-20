@@ -7,6 +7,8 @@ router.get('/', clientController.getClients);
 router.post('/', clientController.addClient);
 // ADD Client - Location
 router.post('/location', clientController.addLocation);
+// Edit Client - Location
+router.put('/location', clientController.updateLocation);
 // EDIT Client
 router.put('/', clientController.updateClient);
 // Delete Client
