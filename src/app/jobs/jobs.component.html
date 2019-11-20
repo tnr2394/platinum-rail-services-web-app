@@ -26,41 +26,85 @@
                             <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)' >
                             <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
-                    <mat-paginator class="col-6" [length]="courses.length"
+                    <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    <!-- <mat-paginator class="col-6" [length]="jobs.length"
                         [pageSize]="pageSize"
                         [pageSizeOptions]="pageSizeOptions"
                         (page)="pageEvent = $event">
-                    </mat-paginator>
+                    </mat-paginator> -->
                 </div>
     
             </div>
             <!--Text-->
-            <div *ngIf="(courses)">
-            <table class="table table-borderless" >
-                    <thead>
-                        <tr>
-                            <th>Sr. No.</th>
-                            <th>TITLE</th>
-                            <th>Duration (Days)</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+            <div >
+            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                <div>
 
-                    <tbody *ngIf="dataSource">
-                        <tr *ngFor="let course of dataSource ; index as i">
-                            <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
-                            <td>{{course.title}}</td>
-                            <td><span class="badge {{getRandomColorClass(i)}}">{{course.duration}}</span></td>
-                            <td><a class="text-success bold" (click)="editJobModal(course)"><i class="fa fa-edit"></i></a></td>
-                        </tr>
-                    </tbody>
+                        <!-- SR.No --> 
+                        <!-- Only Displays 1-5 for every page -->
+                        <ng-container matColumnDef="sr.no">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Sr.No. </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job; let i = index;"> {{i+1}} </td>
+                        </ng-container>
+
+                
+                        <!-- Client Column -->
+                        <ng-container matColumnDef="client">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Client </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.client}}</td>
+                        </ng-container>
+
+                        <!-- location -->
+                        <ng-container matColumnDef="location">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Location </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.location}} </td>
+                        </ng-container>
+                        <!-- instructor Column -->
+                        <ng-container matColumnDef="instructor" >
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Instructor </th>
+                            <td class="mat-table-cell" mat-cell  *matCellDef="let job"><span *ngFor='let oneInstructor of job.instructor'> {{oneInstructor.singleInstructor}}</span> </td>
+                        </ng-container>
+
+                        <!-- course Column -->
+                        <ng-container matColumnDef="course">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Course </th>
+                            <td class="mat-table-cell" mat- cell *matCellDef="let job"> <span *ngFor='let oneCourse of job.course'>{{oneCourse.course.title}}</span> </td>
+                        </ng-container>
+
+                        <!-- learners Column -->
+                        <ng-container matColumnDef="learners">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Learners </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><button class='size'><i class="fa fa-users"></i></button></td>
+                        </ng-container>
+
+                        <!-- Status Column -->
+                        <ng-container matColumnDef="status">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Status </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job">{{job.status}}</td>
+                        </ng-container>
+
+                        <!-- view Column -->
+                        <ng-container matColumnDef="view">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > View </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;"><button class='size' (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button></td>
+                        </ng-container>
+                        
+                        <thead>
+                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        </thead>
+                        <tbody>
+                            <tr mat-row *matRowDef="let job; columns: displayedColumns;"></tr>
+                        </tbody>
+                    
+                
+                </div>
                 </table>
             </div>
-            <h1 *ngIf="!(courses)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+            <h1 *ngIf="!(jobs)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
         </div>
         <!--/.Card content-->
     
-        <h1 class="text-center" *ngIf="courses.length < 1">
+        <h1 class="text-center" *ngIf="jobs.length < 1">
             <i class="fa fa-refresh fa-spin fa-fw"></i>
         </h1>
 
@@ -70,4 +114,3 @@
 </div>
 </div>
 </div>
-

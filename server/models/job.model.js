@@ -17,16 +17,16 @@ var jobSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'location' 
     },
-    instructor: [{ 
-        singleInstructor: String
-    }],
+    instructor: { 
+        type: Array
+    },
     course: { 
-        type:String 
+        type:Array 
     },
     startingDate: { 
         type: String 
     },
-    frequency: [{ 
+    totalDays: [{ 
         type: String 
     }],
     singleJobDate: [{ 

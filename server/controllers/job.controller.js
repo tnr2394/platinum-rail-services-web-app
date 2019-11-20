@@ -30,19 +30,21 @@ async function allJobs() {
         location: req.body.location,
         instructor: req.body.instructor,
         course: req.body.course,
-        startingDate: req.body.date,
-        frequency: req.body.totalDays,
+        startingDate: req.body.startingDate,
+        totalDays: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     });
     console.log('New Job', newJob)
     newJob.save((err, job)=>{
-        if (err) return res.status(500).send({ err })
-        console.log("SENDING RESPONSE Jobs =  ", job)
-        return res.send({ data: { job } });
+        console.log(err)
+        // if (err) return res.status(500).send({ err })
+        // console.log("SENDING RESPONSE Jobs =  ", job)
+        // return res.send({ data: { job } });
     });
  }
 
  jobController.updateJob = function(req, res){
+    console.log('BODY',req.body)
     var updatedJob = {
         title: req.body.title,
         color: req.body.color,
@@ -51,15 +53,15 @@ async function allJobs() {
         instructor: req.body.instructor,
         course: req.body.course,
         startingDate: req.body.startingDate,
-        frequency: req.body.totalDays,
+        totalDays: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     }
-     jobModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedJob }, { new: true }, (err, job) => {
+    console.log("UPDATEDJOB = ",updatedJob)
+     jobModel.findOneAndUpdate({ _id: req.body.id }, { $set: updatedJob }, (err, job) => {
          console.log("Updated job", job, err);
          if (err) {
              return res.status(500).send({ err })
          }
-
          return res.send({ data: { job } });
     });
  }
