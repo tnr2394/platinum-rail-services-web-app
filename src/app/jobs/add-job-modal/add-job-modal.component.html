@@ -79,11 +79,11 @@
                 </div>
                 <div class='col center'>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Starting date"
+                    <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
                         (dateChange)='searchDays($event)' [errorStateMatcher]="matcher">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="addJobForm.controls['date'].hasError('required')">
+                    <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
                         Please select a starting date
                     </mat-error>
                 </mat-form-field>

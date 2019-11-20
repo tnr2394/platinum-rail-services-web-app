@@ -31,13 +31,14 @@ export class JobService {
       });
    }
 
-   editJobs(data:any){
-     console.log("Edit jobs", data);
+   editJobs(data:any, id){
+     console.log("Edit jobs------", data, id);
+     Object.assign(data, {_id:id})
      return new Observable<any>((observer) => {
        console.log("Observable");
        this.http.put("http://localhost:3000/jobs", data).subscribe((res: any) => {
          console.log("Edited job : ", res);
-         observer.next(res.data.instructor);
+         observer.next(res.data.job);
          observer.complete();
        })
      });

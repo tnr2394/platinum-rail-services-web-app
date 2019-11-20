@@ -86,7 +86,7 @@
                         <!-- view Column -->
                         <ng-container matColumnDef="view">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > View </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><button class='size'><i class="fa fa-eye"></i></button></td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;"><button class='size' (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button></td>
                         </ng-container>
                         
                         <thead>

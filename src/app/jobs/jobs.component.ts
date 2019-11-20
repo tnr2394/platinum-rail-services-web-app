@@ -158,17 +158,33 @@ export class JobsComponent implements OnInit {
     }
     
 
-    // editJobModal(data){
-    //   this.openDialog(EditJobModalComponent,data).subscribe((job)=>{
-    //     if(job == undefined) return;
-    //     if(data.title !== job.title || data.duration !== course.duration){
-    //       this._courseService.editCourse(course).subscribe(courses=>{
-    //         this.courses = courses;
-    //         this.handlePage({pageIndex:0, pageSize:5});
-    //       });
-    //     }
-    //   });
-    // }
+  editJobModal(index, data) {
+    this.openDialog(EditJobModalComponent, data).subscribe((data) => {
+      console.log("DIALOG CLOSED", data)
+      // Handle Error
+      if (!data) return;
+      if (data.result == "err") return this.openSnackBar("Job could not be edited", "Ok");
+
+      // EDIT HANDLE
+      if (data.action == 'edit') {
+        console.log("HANDLING EDIT SUCCESS", data);
+        data = data;
+        var Index = this.jobs.findIndex(function (i) {
+          return i._id === data._id;
+        })
+        this.jobs[Index] = data.data;
+      }
+      // DELETE HANDLE
+      else if (data.action == 'delete') {
+        console.log("Deleted ", data);
+        this.jobs.splice(this.jobs.findIndex(function (i) {
+          return i._id === data.data._id;
+        }), 1);
+      }
+      this.updateData(this.jobs);
+      this.handleSnackBar({ msg: "Client Deleted Successfully", button: "Ok" });
+    });
+  }
     
     
     
@@ -179,7 +195,8 @@ export class JobsComponent implements OnInit {
 
     openDialog(someComponent,data = {}): Observable<any> {
       console.log('OPENDIALOG','DATA = ',data)
-      const dialogRef = this.dialog.open(someComponent, data);
+      const dialogRef = this.dialog.open(someComponent, { data, width: '1000px', height: '967px' });
+
       return dialogRef.afterClosed();
     }
   openSnackBar(message: string, action: string) {
