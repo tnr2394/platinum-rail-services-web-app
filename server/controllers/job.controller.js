@@ -10,6 +10,7 @@ async function allJobs() {
     .populate("client")
     .populate("location")
     .populate("course")
+    .populate("instructor")
     .exec((err, jobs) => {
         if (err) deferred.reject(err);
         deferred.resolve(jobs);
@@ -17,24 +18,16 @@ async function allJobs() {
     return deferred.promise;
 }
 
-//  jobController.getJobs = async function(req, res){
-//      console.log('GET jobs')
-//      allJobs().then(jobs => {
-//          res.send({ data: jobs})
-//          console.log('---JOBS---', jobs)
-//      } )
-//  }
-jobController.getJobs = function(req,res){
-    jobModel.find({}).populate('course').exec((err, detailedJob)=>{
-        if (err) {
-            console.log("ERROR IS",err)
-        }
-        console.log("Populated job", detailedJob)
-    })
-}
-
+ jobController.getJobs = async function(req, res){
+     console.log('GET jobs')
+     allJobs().then(jobs => {
+         res.send({ data: jobs})
+         console.log('---JOBS---', jobs)
+     } )
+ }
+ 
  jobController.addJob = function(req, res){
-     console.log('ADD jobs', req.body.instructor.toJSON);
+     console.log('ADD jobs', req.body);
 
     var newJob = new jobModel({
         title: req.body.title,
@@ -42,18 +35,18 @@ jobController.getJobs = function(req,res){
         client: req.body.client,
         location: req.body.location,
         instructor: req.body.instructor,
-        course: req.body.course[0].course._id,
+        course: req.body.course,
         startingDate: req.body.startingDate,
         totalDays: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     });
     console.log('New Job', newJob)
-    // newJob.save((err, job)=>{
-        // console.log(err)
-        // if (err) return res.status(500).send({ err })
-        // console.log("SENDING RESPONSE Jobs =  ", job)
-        // return res.send({ data: { job } });
-    // });
+    newJob.save((err, job)=>{
+        console.log(err)
+        if (err) return res.status(500).send({ err })
+        console.log("SENDING RESPONSE Jobs =  ", job)
+        return res.send({ data: { job } });
+    });
  }
 
  jobController.updateJob = function(req, res){

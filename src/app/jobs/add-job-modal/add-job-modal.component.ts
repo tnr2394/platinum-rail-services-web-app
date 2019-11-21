@@ -79,7 +79,7 @@ export class AddJobModalComponent implements OnInit {
       startingDate: new FormControl('', Validators.required),
       frequency: new FormArray([]),
       singleJobDate: new FormControl(),
-      totalDays: new FormControl()
+      // totalDays: new FormControl()
     });
     this.addCheckboxes();
     this.finalCourseDates = [];
@@ -173,39 +173,58 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
-    console.log("IN ADD JOB",this.addJobForm.value)
-    var newJob = {
-      title: this.addJobForm.controls['title'].value,
-      jobColor: this.addJobForm.controls['jobColor'].value,
-      client: this.selectedClient._id,
-      location: this.addJobForm.controls['location']._id,
-      instructor: this.addJobForm.controls['instructor']._id,
-      course: this.selectedCourse._id,
 
-    };
-
-    console.log("NewJob=",newJob);
+    console.log("Form value = ",this.addJobForm.value);
+    console.log("This.selectedCourse", this.selectedCourse)
 
     // this.addJobForm.controls['course'].patchValue(this.addJobForm.controls['course'].value[0].course);
-    console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
+    // console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
     this.loading = true;    
     if(this.addJobForm.valid)
     {
-      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
-      this.addJobForm.controls['totalDays'].setValue(this.totalDays);
+      let InstructorsForDataBase = [];
+      let instructorsForJobsPage = [];
+      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0, this.duration))
+
+      this.addJobForm.controls['instructor'].value.forEach((item) => {
+        InstructorsForDataBase.push(item.singleInstructor._id)
+        instructorsForJobsPage.push(item.singleInstructor)
+      })
+
+      var newJobforDataBase = {
+        title: this.addJobForm.controls['title'].value,
+        jobColor: this.addJobForm.controls['jobColor'].value,
+        client: this.selectedClient._id,
+        location: this.addJobForm.controls['location'].value._id,
+        instructor: InstructorsForDataBase,
+        course: this.selectedCourse._id,
+        startingDate: this.addJobForm.controls['startingDate'].value,
+        totalDays: this.totalDays,
+        singleJobDate: this.addJobForm.controls['singleJobDate'].value
+      };
+
+      var newJobforJobsPage = {
+        client: this.selectedClient,
+        location: this.addJobForm.controls['location'].value,
+        // instructor: this.addJobForm.controls['instructor'].value,
+        instructor: instructorsForJobsPage,
+        course: this.selectedCourse,
+      }
+
+      console.log('newJobforJobsPage', newJobforJobsPage)
       
-      // this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
-      //   this.data = data;
-      //   this.loading = false;
-      //   this.dialogRef.close(this.addJobForm.value);
-      // },err=>{
-      //     alert("Error adding job.")
-      //     this.loading = false;
-      //     this.dialogRef.close();
-      // })
-      // this.dialogRef.close(this.addJobForm.value);
+      this._jobService.addJob(newJobforDataBase).subscribe(data=>{
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(newJobforJobsPage);
+      },err=>{
+          alert("Error adding job.")
+          this.loading = false;
+          this.dialogRef.close();
+      })
+      this.dialogRef.close(newJobforJobsPage);
     }
-    else{
+    else {
       console.log("Invalid")
     }
   }

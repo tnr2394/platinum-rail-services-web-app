@@ -36,7 +36,7 @@
                 <div class='col center'>
                     <mat-form-field *ngIf="selectedClient">
                         <mat-select formControlName="location" placeholder="Location">
-                            <mat-option *ngFor="let location of selectedClient.locations" value="{{location.title}}">{{location.title}}</mat-option>
+                            <mat-option *ngFor="let location of selectedClient.locations" [value]="location">{{location.title}}</mat-option>
                             <!-- <mat-option value='B'>B</mat-option> -->
                         </mat-select>
                     </mat-form-field>
@@ -49,7 +49,7 @@
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                                    <mat-option *ngFor='let instructor of instructors' value='{{instructor}}'>{{instructor.name}}</mat-option>
+                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor'>{{instructor.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <button class='buttonTransparent' (click)='removeInstructor()'><i class="fa fa-times close-color"></i> </button>
