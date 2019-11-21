@@ -51,24 +51,24 @@
                         <!-- Client Column -->
                         <ng-container matColumnDef="client">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > Client </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.client}}</td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.client.name}}</td>
                         </ng-container>
 
                         <!-- location -->
                         <ng-container matColumnDef="location">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > Location </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.location}} </td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.location.title}} </td>
                         </ng-container>
                         <!-- instructor Column -->
                         <ng-container matColumnDef="instructor" >
                             <th class="text-center" mat-header-cell *matHeaderCellDef > Instructor </th>
-                            <td class="mat-table-cell" mat-cell  *matCellDef="let job"><span *ngFor='let oneInstructor of job.instructor'> {{oneInstructor.singleInstructor}}</span> </td>
+                            <td class="mat-table-cell" mat-cell  *matCellDef="let job"><span *ngFor='let oneInstructor of job.instructor'> {{oneInstructor.name}}</span> </td>
                         </ng-container>
 
                         <!-- course Column -->
                         <ng-container matColumnDef="course">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > Course </th>
-                            <td class="mat-table-cell" mat- cell *matCellDef="let job"> <span *ngFor='let oneCourse of job.course'>{{oneCourse.course.title}}</span> </td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.course.title}}</td>
                         </ng-container>
 
                         <!-- learners Column -->

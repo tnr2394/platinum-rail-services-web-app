@@ -10,6 +10,7 @@ async function allJobs() {
     .populate("client")
     .populate("location")
     .populate("course")
+    .populate("instructor")
     .exec((err, jobs) => {
         if (err) deferred.reject(err);
         deferred.resolve(jobs);
@@ -24,9 +25,9 @@ async function allJobs() {
          console.log('---JOBS---', jobs)
      } )
  }
-
+ 
  jobController.addJob = function(req, res){
-     console.log('ADD jobs', req.body.course.value[0].course);
+     console.log('ADD jobs', req.body);
 
     var newJob = new jobModel({
         title: req.body.title,
@@ -42,9 +43,9 @@ async function allJobs() {
     console.log('New Job', newJob)
     newJob.save((err, job)=>{
         console.log(err)
-        // if (err) return res.status(500).send({ err })
-        // console.log("SENDING RESPONSE Jobs =  ", job)
-        // return res.send({ data: { job } });
+        if (err) return res.status(500).send({ err })
+        console.log("SENDING RESPONSE Jobs =  ", job)
+        return res.send({ data: { job } });
     });
  }
 
