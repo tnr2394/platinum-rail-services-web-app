@@ -39,6 +39,9 @@ export class AddJobModalComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   loading: Boolean = false;
+  selectedClient={
+    name: "Default"
+  };
 
   frequencyDays = [
     { id: '0', day: 'Sunday',disabled: true },
@@ -54,6 +57,11 @@ export class AddJobModalComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
 
+
+  clientChanged(data){
+    this.selectedClient = data.value;
+    console.log(this.selectedClient);
+  }              
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
       title: new FormControl('', Validators.required),

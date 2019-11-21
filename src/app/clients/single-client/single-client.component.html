@@ -50,10 +50,10 @@
 </div>    
 <div class="row border-red-200">
     <div class="col-12 ">
-        <div class="row" *ngIf="client">
+        <div class="row" *ngIf="client" [@listAnimation]>
             <div *ngIf="client.locations.length == 0"><h4>No Locations</h4></div>
-            <div class="col-4 " *ngFor="let location of client.locations">
-                <location-tab   [@inOutAnimation] [isActive]="false" [(location)]="location" (onDeleted)="deletedLocation($event)"></location-tab>
+            <div class="col-4 " *ngFor="let location of client.locations"  >
+                <location-tab class="locationtab"   [isActive]="false" [(location)]="location" (onDeleted)="deletedLocation($event)"></location-tab>
             </div>
         </div>
         
