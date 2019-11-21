@@ -61,10 +61,10 @@
                     <mat-form-field >
                         <!-- NEW COURSE SELECT -->
                         <mat-select formControlName="course" placeholder="Course" (selectionChange)="courseChanged($event)" #selected>
-                            <mat-option *ngFor="let course of courses" [value]='course'>
+                            <mat-option *ngFor="let course of courses" [value]='course' matTooltip='{{course.title}}'>
                                 <div class="row">
                                     <div class="col left">
-                                        {{course.title}} 
+                                        {{course.title | slice:0:25}} 
                                     </div>
                                     <div class="col text-right">
                                         <span class="badge badge-primary " style="vertical-align: middle;"> {{course.duration}} </span>

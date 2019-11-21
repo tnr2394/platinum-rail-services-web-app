@@ -17,9 +17,10 @@ var jobSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'location' 
     },
-    instructor: { 
-        type: Array
-    },
+    instructor: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'instructor'
+    }],
     course: { 
         type: Schema.Types.ObjectId,
         ref: 'course'

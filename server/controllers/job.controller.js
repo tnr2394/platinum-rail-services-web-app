@@ -6,7 +6,11 @@
 async function allJobs() {
     var deferred = Q.defer();
 
-    jobModel.find({}, (err, jobs) => {
+    jobModel.find({})
+    .populate("client")
+    .populate("location")
+    .populate("course")
+    .exec((err, jobs) => {
         if (err) deferred.reject(err);
         deferred.resolve(jobs);
     });

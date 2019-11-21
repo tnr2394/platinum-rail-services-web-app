@@ -40,7 +40,8 @@ export class AddJobModalComponent implements OnInit {
 
   loading: Boolean = false;
   selectedClient={
-    name: "Default"
+    name: "Default",
+    _id: ""
   };
 
   frequencyDays = [
@@ -173,6 +174,18 @@ export class AddJobModalComponent implements OnInit {
 
   addJob(){
     console.log("IN ADD JOB",this.addJobForm.value)
+    var newJob = {
+      title: this.addJobForm.controls['title'].value,
+      jobColor: this.addJobForm.controls['jobColor'].value,
+      client: this.selectedClient._id,
+      location: this.addJobForm.controls['location']._id,
+      instructor: this.addJobForm.controls['instructor']._id,
+      course: this.selectedCourse._id,
+
+    };
+
+    console.log("NewJob=",newJob);
+
     // this.addJobForm.controls['course'].patchValue(this.addJobForm.controls['course'].value[0].course);
     console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
     this.loading = true;    
@@ -181,17 +194,16 @@ export class AddJobModalComponent implements OnInit {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
       
-
-      this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
-        this.data = data;
-        this.loading = false;
-        this.dialogRef.close(this.addJobForm.value);
-      },err=>{
-          alert("Error adding job.")
-          this.loading = false;
-          this.dialogRef.close();
-      })
-      this.dialogRef.close(this.addJobForm.value);
+      // this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
+      //   this.data = data;
+      //   this.loading = false;
+      //   this.dialogRef.close(this.addJobForm.value);
+      // },err=>{
+      //     alert("Error adding job.")
+      //     this.loading = false;
+      //     this.dialogRef.close();
+      // })
+      // this.dialogRef.close(this.addJobForm.value);
     }
     else{
       console.log("Invalid")
