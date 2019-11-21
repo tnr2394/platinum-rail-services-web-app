@@ -17,11 +17,12 @@ async function allJobs() {
      console.log('GET jobs')
      allJobs().then(jobs => {
          res.send({ data: jobs})
+         console.log('---JOBS---', jobs)
      } )
  }
 
  jobController.addJob = function(req, res){
-    console.log('ADD jobs');
+     console.log('ADD jobs', req.body.course.value[0].course);
 
     var newJob = new jobModel({
         title: req.body.title,

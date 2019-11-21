@@ -29,7 +29,7 @@
                 <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="client" placeholder="Client">
-                        <mat-option *ngFor='let client of clients' value='{{client.name}}'>{{client.name}}</mat-option>
+                        <mat-option *ngFor='let client of clients' value='{{client._id}}'>{{client.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
@@ -37,8 +37,8 @@
                 <div class='col center'>
                 <mat-form-field>
                     <mat-select formControlName="location" placeholder="Location">
-                        <mat-option value='A'>A</mat-option>
-                        <mat-option value='B'>B</mat-option>
+                        <mat-option value=5dd628ad9dd90421da9ac041>A</mat-option>
+                        <mat-option value=5dd628ad9dd90421da9ac041>B</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
@@ -62,10 +62,10 @@
                     <div [formGroupName]="i">
                 <mat-form-field>
                     <mat-select formControlName="course" placeholder="Choose Course" #selected>
-                        <mat-select-trigger>
-                            {{selected.value?.title}}
-                        </mat-select-trigger>
-                        <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}' [value]='course'><span class="badge position">{{course.duration}}</span>{{course.title}}</mat-option>
+                        <!-- <mat-select-trigger> -->
+                            <!-- {{course.title}} -->
+                        <!-- </mat-select-trigger> -->
+                        <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}' value='{{course._id}}'><span class="badge position">{{course.duration}}</span>{{course.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
