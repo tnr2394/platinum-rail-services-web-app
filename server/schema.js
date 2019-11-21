@@ -28,6 +28,12 @@ learner:{
     email,
     password,
     jobId,
+    allotment:[{
+        assignment_id,
+        status,
+        file,
+        remark,
+    }],
     assignments:[{
         _id,
         title,

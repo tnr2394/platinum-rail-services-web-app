@@ -13,6 +13,12 @@ var learnerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'job'
     },
+    allotments: [{
+        assignment:{
+            type: Schema.Types.ObjectId,
+            
+        }
+    }],
     assignments:[new Schema({
         assignment: {
             type: Schema.Types.ObjectId,
@@ -22,14 +28,10 @@ var learnerSchema = new Schema({
             type: String
         },
         status,
-        submission: new Schema({
-            file: {
-                type: Schema.Types.ObjectId,
-                ref: 'file'
-            },
-            remark,
-            lastUpdated
-        })
+        submission:{
+            type: Schema.Types.ObjectId,
+            ref: 'submission'
+        }
     })]
 }, {
     timestamps: true
