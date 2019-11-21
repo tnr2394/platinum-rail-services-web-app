@@ -52,6 +52,7 @@ export class AddJobModalComponent implements OnInit {
     { id: '5', day: 'Friday',disabled: true },
     { id: '6', day: 'Saturday',disabled: true }
   ];
+  selectedCourse: any;
 
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -62,6 +63,10 @@ export class AddJobModalComponent implements OnInit {
     this.selectedClient = data.value;
     console.log(this.selectedClient);
   }              
+  courseChanged(data){
+    this.selectedCourse = data.value;
+    console.log(this.selectedCourse);
+  }
   ngOnInit() {
     this.addJobForm = this.formBuilder.group({
       title: new FormControl('', Validators.required),
@@ -119,7 +124,7 @@ export class AddJobModalComponent implements OnInit {
   onCheckChange(event, dayOfTheWeek, day){
     this.duration = this.addJobForm.get('course').controls[0].value.course.duration
     console.log(this.addJobForm.get('course').controls[0].value.course.duration)
-
+    this.duration = this.selectedCourse.duration;
     if(event == true){
       if(this.startingDate.getDay() == dayOfTheWeek){
         console.log(this.startingDate.getDay() ,'==', dayOfTheWeek)
