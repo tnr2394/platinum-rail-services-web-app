@@ -59,6 +59,7 @@
                 <div class='col center' formArrayName="course">
                     
                     <mat-form-field >
+                        <!-- NEW COURSE SELECT -->
                         <mat-select formControlName="course" placeholder="Course" (selectionChange)="courseChanged($event)" #selected>
                             <mat-option *ngFor="let course of courses" [value]='course'>
                                 <div class="row">
