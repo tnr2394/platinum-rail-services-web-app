@@ -9,18 +9,19 @@ import * as moment from 'moment';
 })
 export class JobDatesComponent implements OnInit {
   frequencyDays = [
-    { id: '0', day: 'Sunday' },
-    { id: '1', day: 'Monday' },
-    { id: '2', day: 'Tuesday' },
-    { id: '3', day: 'Wednesday' },
-    { id: '4', day: 'Thursday' },
-    { id: '5', day: 'Friday' },
-    { id: '6', day: 'Saturday' }
+    { id: '0', day: 'Sunday',checked: false },
+    { id: '1', day: 'Monday',checked: false },
+    { id: '2', day: 'Tuesday',checked: false },
+    { id: '3', day: 'Wednesday',checked: false },
+    { id: '4', day: 'Thursday',checked: false },
+    { id: '5', day: 'Friday',checked: false },
+    { id: '6', day: 'Saturday',checked: false }
   ];
 
   @Input('frequency') frequency: any;
   @Input('duration') duration: any;
   @Input('startingDate') startingDate: any;
+  @Input('singleJobDate') singleJobDate: any; // for edit event
   @Output() onDaySelection : EventEmitter<any> = new EventEmitter<any>();
 
 
@@ -36,23 +37,31 @@ export class JobDatesComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log("IN JOBDATE", this.frequency, this.duration, this.startingDate)
-    // this.dayOfTheWeek = this.frequency.dayOfTheWeek
-    // this.day = this.frequency.day
-    // this.event = this.frequency.checkEvent
+    console.log("IN JOBDATE", this.frequency, this.duration, this.startingDate, this.singleJobDate)
+
     this.dateForm = this.formBuilder.group({
       frequency: new FormArray([]),
-      
-      // frequency : new FormArray([]),
-      // duration : new FormControl(),
-      // startingDate : new FormControl(),
       singleJobDates : new FormControl()
     })
     this.addCheckboxes();
 
-    // this.generateDates()
+    if (this.frequency != undefined) {
+      this.frequency.forEach((item=>{
+        this.frequencyDays.forEach((arrayItem)=>{
+          if(arrayItem.day == item){
+            arrayItem.checked = true
+          }
+        })
+      }))
+      this.singleJobDate.forEach((date)=>{
+        let temp = new Date(date)
+        this.courseDates.push(temp)
+      })
+      this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
+    }
   }
 
+  
   addCheckboxes() {
     this.frequencyDays.forEach(() => {
       const control = new FormControl();
