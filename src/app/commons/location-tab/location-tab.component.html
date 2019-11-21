@@ -1,4 +1,4 @@
-<div class=" card location-bg " [ngClass]="{'editing-location': editing}"  >
+<div class=" card location-bg " [ngClass]="{'editing-location': editing}" [@bounce]="{ value: bounce}" >
     <div class="card-block " >
         <div *ngIf="!editing" [@inOutAnimation]>
             <div class=" text-right card-title h4">

@@ -45,6 +45,7 @@
     "material-colors": "^1.2.6",
     "material-community-components": "^5.0.1",
     "moment": "^2.24.0",
+    "ng-animate": "^0.3.4",
     "ngx-color-picker": "^8.2.0",
     "ngx-moment": "^3.5.0",
     "rxjs": "~6.5.2",

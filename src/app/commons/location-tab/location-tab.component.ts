@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {ClientService} from '../../services/client.service';
-import { trigger, transition, query, animateChild, state, style, animate } from '@angular/animations';
-
+import { trigger, transition, query, animateChild, state, style, animate, useAnimation } from '@angular/animations';
+import {bounce} from 'ng-animate';
 
 
 export const FLIP_TRANSITION = [ 
@@ -25,7 +25,10 @@ export const FLIP_TRANSITION = [
           ]
           )
         ]
-        )
+        ),
+        trigger('bounce', [transition('* => *', useAnimation(bounce))]),
+
+
       ];
       
       
