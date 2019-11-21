@@ -36,7 +36,7 @@
                 <div class='col center'>
                     <mat-form-field *ngIf="selectedClient">
                         <mat-select formControlName="location" placeholder="Location">
-                            <mat-option *ngFor="let location of selectedClient.locations">{{location.title}}</mat-option>
+                            <mat-option *ngFor="let location of selectedClient.locations" value="{{location.title}}">{{location.title}}</mat-option>
                             <!-- <mat-option value='B'>B</mat-option> -->
                         </mat-select>
                     </mat-form-field>
@@ -49,14 +49,16 @@
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                                    <mat-option *ngFor='let instructor of instructors' value='{{instructor.name}}'>{{instructor.name}}</mat-option>
+                                    <mat-option *ngFor='let instructor of instructors' value='{{instructor}}'>{{instructor.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <button class='buttonTransparent' (click)='removeInstructor()'><i class="fa fa-times close-color"></i> </button>
                         </div>
                     </div>
                 </div>
-                <div class='col center' formArrayName="course">
+                <!-- <div class='col center' formArrayName="course"> -->
+                 <div class='col center' formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
+                        <div [formGroupName]="i"> 
                     
                     <mat-form-field >
                         <!-- NEW COURSE SELECT -->
@@ -74,6 +76,7 @@
                             <!-- <mat-option value='B'>B</mat-option> -->
                         </mat-select>
                     </mat-form-field>
+                        </div>
                     
                     <!-- <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">

@@ -172,7 +172,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
-    console.log("IN ADD JOB",this.addJobForm.value)
+    console.log("IN ADD JOB",this.addJobForm.controls['instructor'].value[0].toJSON() )
     // this.addJobForm.controls['course'].patchValue(this.addJobForm.controls['course'].value[0].course);
     console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
     this.loading = true;    
