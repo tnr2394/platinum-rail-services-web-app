@@ -43,6 +43,7 @@ import { EditClientModalComponent } from './clients/edit-client-modal/edit-clien
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LocationTabComponent } from './commons/location-tab/location-tab.component';
 import { AddLocationComponent } from './clients/single-client/add-location/add-location.component';
+import { JobDatesComponent } from './jobs/job-dates/job-dates.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AddLocationComponent } from './clients/single-client/add-location/add-l
     SingleClientComponent,
     LocationTabComponent,
     AddLocationComponent,
+    JobDatesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,29 @@
+.headerColor{
+    color: #2196f3;
+    font-weight: 400;
+}
+.greyBackground{
+    background-color: #F5F6FA;
+    margin-top: 3%;
+}
+.datesColor{
+    color: #2196f3;
+    font-weight: 400;
+}
+.faiconColor {
+    color: #2196f3;
+    font-size: xx-large;
+    padding: 10px;
+}
+.maxHeight{
+    min-height: 33vh !important;
+    max-height: 33vh !important;
+    overflow: auto;
+}
+.checkBox{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.textCenter{
+    text-align: center;
+}

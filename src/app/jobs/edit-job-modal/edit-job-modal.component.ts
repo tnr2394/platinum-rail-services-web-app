@@ -46,6 +46,10 @@ export class EditJobModalComponent implements OnInit {
   instructorData;
 
   loading: Boolean = false;
+  selectedClient = {
+    name: "",
+    _id: ""
+  };
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -57,6 +61,11 @@ export class EditJobModalComponent implements OnInit {
     { id: '6', day: 'Saturday', checked: false }
   ];
 
+  clientChanged(data) {
+    this.selectedClient = data.value;
+    console.log(this.selectedClient);
+  }
+
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, @Inject(MAT_DIALOG_DATA) public DialogData: any,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
@@ -64,16 +73,20 @@ export class EditJobModalComponent implements OnInit {
   ngOnInit() {
     
     console.log('-----DATA-----', this.DialogData)
-    // console.log('Client', this.DialogData.client)
+    this.selectedClient = {
+      name : this.DialogData.client.name,
+      _id : this.DialogData.client._id
+    }
+    console.log('Client', this.selectedClient.name)
     let newDate = new Date(this.DialogData.startingDate)
     console.log("+++++++++++", newDate)
     this.color = this.DialogData.color;
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
-      client: new FormControl(this.DialogData.client),
+      client: new FormControl(this.DialogData.client.name),
       instructor: new FormArray([this.createInstructor(this.DialogData.instructor[0].singleInstructor)]),
-      location: new FormControl(this.DialogData.location),
+      location: new FormControl(this.DialogData.location.title),
       course: new FormArray([this.course(this.DialogData.course)]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
       frequency: new FormArray([]),

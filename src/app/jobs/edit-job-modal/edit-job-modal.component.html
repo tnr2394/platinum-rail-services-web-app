@@ -23,18 +23,17 @@
             <div class='row'>
                 <div class='col center'>
                     <mat-form-field>
-                        <mat-select formControlName="client" placeholder="Client">
-                            <mat-option *ngFor='let client of clients' value='{{client.name}}'>{{client.name}}
-                            </mat-option>
+                        <mat-select formControlName="client" placeholder="Client" (selectionChange)="clientChanged($event)">
+                            <mat-option *ngFor='let client of clients' [(value)]='client'>{{client.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-
+            
                 <div class='col center'>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="selectedClient">
                         <mat-select formControlName="location" placeholder="Location">
-                            <mat-option value='A'>A</mat-option>
-                            <mat-option value='B'>B</mat-option>
+                            <mat-option *ngFor="let location of selectedClient.locations" [value]="location">{{location.title}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
