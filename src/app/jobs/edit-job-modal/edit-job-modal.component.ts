@@ -64,7 +64,7 @@ export class EditJobModalComponent implements OnInit {
   ngOnInit() {
     
     // console.log('Starting Date', this.DialogData.date)
-    console.log('Course', this.DialogData.course)
+    console.log('Client', this.DialogData.client)
     let newDate = new Date(this.DialogData.startingDate)
     console.log("+++++++++++", newDate)
     this.color = this.DialogData.color;
@@ -104,7 +104,8 @@ export class EditJobModalComponent implements OnInit {
 
   course(data): FormGroup {
     return this.formBuilder.group({
-      course: new FormControl('course title 2')
+      course: new FormControl(this.DialogData.course[0].course.title)
+      // this.DialogData.course[0].course.title
     })
   }
 

@@ -172,12 +172,15 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addJob(){
-    console.log(this.addJobForm.controls['course'].value)
+    console.log("IN ADD JOB",this.addJobForm.value)
+    // this.addJobForm.controls['course'].patchValue(this.addJobForm.controls['course'].value[0].course);
+    console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
     this.loading = true;    
     if(this.addJobForm.valid)
     {
       this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0,this.duration));
       this.addJobForm.controls['totalDays'].setValue(this.totalDays);
+      
 
       this._jobService.addJob(this.addJobForm.value).subscribe(data=>{
         this.data = data;

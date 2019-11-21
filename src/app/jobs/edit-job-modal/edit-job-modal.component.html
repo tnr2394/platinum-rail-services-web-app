@@ -62,11 +62,11 @@
                             <mat-form-field>
                                 <mat-select formControlName="course" placeholder="Choose Course" #selected>
                                     <!-- <mat-select-trigger>  -->
-                                        <!-- {{selected.value?.title}} -->
+                                        <!-- {{selected.value}} -->
                                     <!-- </mat-select-trigger> -->
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
                                         value='{{course.title}}'><span
-                                            class="badge position">{{course.duration}}</span>{{course.title}}
+                                            class="badge position">{{course.duration}}</span> - {{course.title}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>

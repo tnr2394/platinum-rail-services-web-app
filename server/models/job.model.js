@@ -21,7 +21,8 @@ var jobSchema = new Schema({
         type: Array
     },
     course: { 
-        type:Array 
+        type: Schema.Types.ObjectId,
+        ref: 'course'
     },
     startingDate: { 
         type: String 
