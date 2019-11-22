@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var learnerSchema = new Schema({
+    name:{
+        type: String
+    },
     email:{
         type: String,
         required: true
@@ -11,7 +14,8 @@ var learnerSchema = new Schema({
     },
     job:{
         type: Schema.Types.ObjectId,
-        ref: 'job'
+        ref: 'job',
+        required: true
     },
     allotments: [{
         assignment:{
@@ -27,7 +31,9 @@ var learnerSchema = new Schema({
         title:{
             type: String
         },
-        status,
+        status:{
+            type: String
+        },
         submission:{
             type: Schema.Types.ObjectId,
             ref: 'submission'

@@ -23,20 +23,20 @@ $my-theme-warn: mat-palette($mat-deep-orange, A200);
 $my-theme-danger: mat-palette($mat-red, 300);
 
 $my-theme-typography: mat-typography-config(
-  $font-family: 'Source Sans Pro, times new roman',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 500),
-  
+$font-family: 'Source Sans Pro, times new roman',
+$headline: mat-typography-level(32px, 48px, 700),
+$body-1: mat-typography-level(16px, 24px, 500),
+
 );
 
 @include mat-base-typography($my-theme-typography);
 
 // create theme (use mat-dark-theme for themes with dark backgrounds)
 $my-theme: mat-light-theme(
-    $my-theme-primary,
-    $my-theme-accent,
-    $my-theme-warn,
-    );
+$my-theme-primary,
+$my-theme-accent,
+$my-theme-warn,
+);
 
 @include angular-material-theme($my-theme);
 
@@ -62,7 +62,7 @@ h1 { font-family: 'Source Sans Pro';}
 .card{
     padding: 15px;
     box-shadow: 0px 2px 6px #0000002A;
-
+    
 }
 .bold{
     font-weight: bold;
@@ -83,10 +83,10 @@ $white : white;
 
 
 mat-dialog-container{
-        border-radius: 20px !important;
-        .mat-dialog-content{
-            max-height: inherit;
-        }
+    border-radius: 20px !important;
+    .mat-dialog-content{
+        max-height: inherit;
+    }
 }
 .width{
     .mat-form-field-infix{
@@ -118,6 +118,9 @@ th{
     margin-left: 15px;
     margin-right: 15px;
     text-align: left;
+}
+.width-150{
+    width: 250px !important;
 }
 .page-title{
     padding: 10px;

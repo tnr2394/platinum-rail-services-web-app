@@ -66,4 +66,16 @@ export class JobService {
        })
      });
    }
+   getJobById(jobId):Observable<any>{
+    console.log("Getting jobs");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get("http://localhost:3000/jobs?_id="+jobId).subscribe((res: any) => {
+        console.log("Get Jobs... : ", res);
+        observer.next(res.data);
+        observer.complete();
+      })
+    });
+  }
 }

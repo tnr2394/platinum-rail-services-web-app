@@ -74,7 +74,7 @@
                         <!-- learners Column -->
                         <ng-container matColumnDef="learners">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > Learners </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><button class='size'><i class="fa fa-users"></i></button></td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><a routerLink="/learners/{{job._id}}" class='size'><i class="fa fa-users"></i></a></td>
                         </ng-container>
 
                         <!-- Status Column -->

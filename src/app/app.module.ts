@@ -43,6 +43,10 @@ import { EditClientModalComponent } from './clients/edit-client-modal/edit-clien
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LocationTabComponent } from './commons/location-tab/location-tab.component';
 import { AddLocationComponent } from './clients/single-client/add-location/add-location.component';
+import { LearnersComponent } from './learners/learners.component';
+import { AddLearnerModalComponent } from './learners/add-learner-modal/add-learner-modal.component';
+import { EditLearnerModalComponent } from './learners/edit-learner-modal/edit-learner-modal.component';
+import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { AddLocationComponent } from './clients/single-client/add-location/add-l
     SingleClientComponent,
     LocationTabComponent,
     AddLocationComponent,
+    LearnersComponent,
+    AddLearnerModalComponent,
+    EditLearnerModalComponent,
+    SingleLearnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +101,7 @@ import { AddLocationComponent } from './clients/single-client/add-location/add-l
     ColorPickerModule,
 
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 

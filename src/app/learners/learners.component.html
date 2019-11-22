@@ -1,0 +1,114 @@
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="page-title">
+                    Job: {{job.title}}
+                </h3>
+            </div>
+            <div class="col-6">
+                <button mat-flat-button color="primary" class="pull-right"  (click)="addLearnerModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add Learner
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" *ngIf="job">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-list>
+                                    <mat-list-item><i class="fas fa-fw fa-user-tie"></i> College : {{job.client.name}}</mat-list-item>
+                                    <mat-list-item><i class="fas fa-fw fa-building"></i> Location : {{job.location.title}}</mat-list-item>
+                                    <mat-list-item><i class="fas fa-fw fa-book"></i> Course : {{job.course.title}}</mat-list-item>
+
+                                </mat-list>
+                            </div>
+                            <div class="col-6 ">
+                                <mat-divider [vertical]="true"></mat-divider>
+                                <h5 class="">Instructors</h5>
+                                <mat-list class="" role="list" >
+                                    <mat-list-item *ngFor="let instructor of job.instructors" role="listitem">
+                                        {{instructor.name}}
+                                    </mat-list-item>
+                                </mat-list>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title h5">Learners</div>
+                        <div class="card-title">
+
+                            <div class="row">
+                                <mat-form-field class="example-full-width col-6">
+                                    <input matInput placeholder="Search"  (keyup)="applyFilter($event.target.value)" >
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                
+                            </div>
+                            
+                        </div>
+                        <!--Text-->
+                        <div >
+                            <h1>{{dataSource.length}}</h1>
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th class="text-center" style="" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
+                                    <td class="mat-table-cell"  mat-cell *matCellDef="let learner"> {{learner.name}} </td>
+                                </ng-container>
+                                <!-- Email Column -->
+                                <ng-container matColumnDef="email">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let learner; let i = index;"><span class="badge width-150 {{getRandomColorClass(i)}}"> {{learner.email}} </span></td>
+                                </ng-container>
+                                <!-- Action Column -->
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef > EDIT </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let learner; let i = index;">
+                                        <a class="text-success bold" (click)="editLearnerModal(i, learner)" >
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="text-primary bold" routerLink="/learner/{{learner._id}}" >
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <h1 *ngIf="!(learners)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                    </div>
+                    <!--/.Card content-->
+                    
+                    <h1 class="text-center" *ngIf="learners.length < 1">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </h1>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -3,14 +3,14 @@
 
  var jobController = {};
 
-async function allJobs() {
+async function allJobs(query) {
     var deferred = Q.defer();
 
-    jobModel.find({})
+    jobModel.find(query)
     .populate("client")
     .populate("location")
     .populate("course")
-    .populate("instructor")
+    .populate("instructors")
     .exec((err, jobs) => {
         if (err) deferred.reject(err);
         deferred.resolve(jobs);
@@ -19,8 +19,12 @@ async function allJobs() {
 }
 
  jobController.getJobs = async function(req, res){
-     console.log('GET jobs')
-     allJobs().then(jobs => {
+     var query = {};
+     if(req.query){
+         query = req.query;
+     }
+     console.log('GET jobs with query = ',query);
+     allJobs(query).then(jobs => {
          res.send({ data: jobs})
          console.log('---JOBS---', jobs)
      } )
@@ -34,7 +38,7 @@ async function allJobs() {
         color: req.body.jobColor,
         client: req.body.client,
         location: req.body.location,
-        instructor: req.body.instructor,
+        instructors: req.body.instructor,
         course: req.body.course,
         startingDate: req.body.startingDate,
         totalDays: req.body.totalDays,
@@ -56,7 +60,7 @@ async function allJobs() {
         color: req.body.color,
         client: req.body.client,
         location: req.body.location,
-        instructor: req.body.instructor,
+        instructors: req.body.instructor,
         course: req.body.course,
         startingDate: req.body.startingDate,
         totalDays: req.body.totalDays,
