@@ -72,9 +72,14 @@
                         </ng-container>
 
                         <!-- learners Column -->
-                        <ng-container matColumnDef="learners">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Learners </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><a routerLink="/learners/{{job._id}}" class='size'><i class="fa fa-users"></i></a></td>
+                        <ng-container matColumnDef="actions">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef > Actions </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job">
+                                <a mat-button class="text-success" routerLink="/learners/{{job._id}}" >
+                                    <i class="fa fa-users"></i>
+                                </a>
+                                <button mat-button class="text-primary"  (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button>
+                            </td>
                         </ng-container>
 
                         <!-- Status Column -->
@@ -86,7 +91,9 @@
                         <!-- view Column -->
                         <ng-container matColumnDef="view">
                             <th class="text-center" mat-header-cell *matHeaderCellDef > View </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;"><button class='size' (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button></td>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;">
+                            
+                            </td>
                         </ng-container>
                         
                         <thead>

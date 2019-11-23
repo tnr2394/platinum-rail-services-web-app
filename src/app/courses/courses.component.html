@@ -48,7 +48,14 @@
                                 </ng-container>
                                 <ng-container matColumnDef="actions">
                                     <th mat-header-cell *matHeaderCellDef > EDIT </th>
-                                    <td class="mat-table-cell" mat-cell *matCellDef="let course; let i = index;"><a class="text-success bold" (click)="editCourseModal(i, course)" ><i class="fa fa-edit"></i></a></td>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let course; let i = index;">
+                                        <a mat-button class="text-success" (click)="editCourseModal(i, course)" >
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a mat-button class="text-primary" routerLink="/materials/{{course._id}}" >
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </ng-container>
                                 <thead>
                                     <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>

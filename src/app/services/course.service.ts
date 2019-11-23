@@ -61,10 +61,21 @@ editCourse(data:any): Observable<any> {
         observer.next(res.data.courses);
         observer.complete();
       })
-  
     });
-
   }
+  getCourse(id): Observable<any>{
+    console.log("Getting courses");
+    var that = this;
+    return  new Observable<any>((observer)=>{
+      console.log("Observable");
+      this.http.get("http://localhost:3000/courses?_id="+id).subscribe((res:any)=>{
+        console.log("Get Courses : ",res);
+        observer.next(res.data.courses);
+        observer.complete();
+      })
+    });
+  }
+
 
 
 }

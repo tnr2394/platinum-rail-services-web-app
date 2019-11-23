@@ -10,7 +10,11 @@ var courseSchema = new Schema({
         type: Number,
         unique : false,
         required : true
-    }
+    },
+    materials:[{
+        type: Schema.Types.ObjectId,
+        ref: 'material'
+    }]
 }, {
     timestamps: true
 });

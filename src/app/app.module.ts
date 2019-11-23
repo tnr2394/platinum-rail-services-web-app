@@ -47,6 +47,10 @@ import { LearnersComponent } from './learners/learners.component';
 import { AddLearnerModalComponent } from './learners/add-learner-modal/add-learner-modal.component';
 import { EditLearnerModalComponent } from './learners/edit-learner-modal/edit-learner-modal.component';
 import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
+import { MaterialsComponent } from './courses/materials/materials.component';
+import { AddMaterialModalComponent } from './courses/materials/add-material-modal/add-material-modal.component';
+import { EditMaterialModalComponent } from './courses/materials/edit-material-modal/edit-material-modal.component';
+import { MaterialTileComponent } from './commons/material-tile/material-tile.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,10 @@ import { SingleLearnerComponent } from './learners/single-learner/single-learner
     AddLearnerModalComponent,
     EditLearnerModalComponent,
     SingleLearnerComponent,
+    MaterialsComponent,
+    AddMaterialModalComponent,
+    EditMaterialModalComponent,
+    MaterialTileComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +109,7 @@ import { SingleLearnerComponent } from './learners/single-learner/single-learner
     ColorPickerModule,
 
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent,AddMaterialModalComponent,EditMaterialModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 

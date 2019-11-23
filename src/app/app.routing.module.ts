@@ -9,6 +9,8 @@ import { ClientsComponent } from './clients/clients.component';
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LearnersComponent } from './learners/learners.component';
 import {SingleLearnerComponent} from './learners/single-learner/single-learner.component';
+import { MaterialsComponent } from './courses/materials/materials.component';
+
 
 const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent },
@@ -19,7 +21,8 @@ const routes: Routes = [
 	{ path: 'courses',      component: CoursesComponent },
 	{ path: 'scheduler',      component: SchedulerComponent },
 	{ path: 'learners/:jobid',      component: LearnersComponent },
-	{ path: 'learner/:id',      component: SingleLearnerComponent }
+	{ path: 'learner/:id',      component: SingleLearnerComponent },
+	{ path: 'materials/:courseId',      component: MaterialsComponent }
 	
     
 ];
