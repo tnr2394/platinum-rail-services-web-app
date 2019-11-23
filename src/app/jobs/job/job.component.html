@@ -1,0 +1,54 @@
+<div *ngIf="!job">
+    <h1 class="text-center">
+        Loading... <i class="fas fa-refresh fa-spin"></i>
+    </h1>
+</div>
+<div class="row" *ngIf="job">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="page-title">
+                    Job: {{job.title}}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" >
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-list>
+                                    <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> College : {{job.client.name}}</mat-list-item>
+                                    <mat-list-item><i class="fas text-warning fa-fw fa-map-marker"></i> Location : {{job.location.title}}</mat-list-item>
+                                    <mat-list-item><i class="fas text-success fa-fw fa-book"></i> Course : {{job.course.title}}</mat-list-item>
+                                    
+                                </mat-list>
+                            </div>
+                            <div class="col-6 ">
+                                <mat-divider [vertical]="true"></mat-divider>
+                                <h5 class="">
+                                    <img src="../../assets/instructor.png" style="float: left; height:50px;position:relative; top:-15px">
+                                    Instructors</h5>
+                                    <mat-list class="" role="list" >
+                                        <mat-list-item *ngFor="let instructor of job.instructors" role="listitem">
+                                            
+                                            <i class="fas text-primary fa-fw fa-user-tie"></i>
+                                            {{instructor.name}}
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <app-learners></app-learners>
+            <div *ngIf="job">
+                    passing into material =  {{job.course._id}}
+                <app-materials [data]="job.course._id"></app-materials>
+
+            </div>
+        </div>
+    </div>

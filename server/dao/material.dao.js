@@ -1,4 +1,5 @@
 var materialModel = require('../models/material.model');
+var courseDAO = require('./course.dao');
 var Q = require('q');
 
 var material = {};
@@ -49,10 +50,17 @@ material.deleteMaterial = function(materialId){
     var q = Q.defer();
     
     console.log("material to be deleted : ",materialId);
+    
     materialModel.deleteOne({_id: materialId},(err,deleted)=>{
         if(err) q.reject(err);
-        console.log("Deleted ",deleted);
-        q.resolve(deleted);
+        console.log("Deleted Material from collection ",deleted);        
+        courseDAO.deleteMaterial(deleted.course,deleted._id)
+        .then(updatedCourse=>{
+            console.log("Deleted ",deleted);
+            q.resolve(deleted);
+
+        })
+    
     });
     return q.promise;
 }

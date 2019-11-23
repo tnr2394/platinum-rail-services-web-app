@@ -51,6 +51,7 @@ import { MaterialsComponent } from './courses/materials/materials.component';
 import { AddMaterialModalComponent } from './courses/materials/add-material-modal/add-material-modal.component';
 import { EditMaterialModalComponent } from './courses/materials/edit-material-modal/edit-material-modal.component';
 import { MaterialTileComponent } from './commons/material-tile/material-tile.component';
+import { JobComponent } from './jobs/job/job.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { MaterialTileComponent } from './commons/material-tile/material-tile.com
     AddMaterialModalComponent,
     EditMaterialModalComponent,
     MaterialTileComponent,
+    JobComponent,
   ],
   imports: [
     BrowserModule,

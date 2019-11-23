@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { LearnerService } from '../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
@@ -33,6 +33,8 @@ export class LearnersComponent  implements OnInit {
     this.paginator = mp;
     this.setDataSourceAttributes();
   }
+  @Input('jo') isActive: Boolean;
+
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

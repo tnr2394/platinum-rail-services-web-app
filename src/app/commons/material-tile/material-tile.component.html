@@ -1,14 +1,23 @@
 <div class="card">
-<div class="row">
-    <div class="col-3">
-
-        <a  class="btn btn-primary text-white fab-item" >
+    <div class="row">
+        <div class="col-3">
+            
+            <a  class="btn btn-primary text-white fab-item" >
                 <i *ngIf="material.type=='Reading'"  class="fab fa-readme margin-auto"></i>
                 <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
-        </a>
+            </a>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12">
+                    {{material.title}} -- {{material.type}}
+                </div>
+                <div class="col-12">
+                    <a mat-button class="text-success">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-9">
-        {{material.title}} -- {{material.type}}
-    </div>
-</div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import {CourseService} from '../../services/course.service';
 import {MaterialService} from '../../services/material.service';
 import { ActivatedRoute } from '@angular/router';
@@ -21,17 +21,20 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./materials.component.scss']
 })
 export class MaterialsComponent implements OnInit {
+  // @Input('courseid') courseId: any;
+  @Input('data') data: any;
+
   materials: any = [];
   bgColors: string[];
   lastColor;
   length;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  
+  course;
   displayedColumns: string[] = ['title','duration','actions'];
   dataSource:  MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
-  course: any;
+  courseId;
   @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -40,6 +43,9 @@ export class MaterialsComponent implements OnInit {
     this.paginator = mp;
     this.setDataSourceAttributes();
   }
+
+
+
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -53,6 +59,7 @@ export class MaterialsComponent implements OnInit {
   }
   
   ngAfterViewInit() {
+    console.log("AfterViewInit this.courseId = ",this.courseId);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -73,8 +80,17 @@ export class MaterialsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params=>{
       console.log(params['id']);
+      this.courseId = params['id'];
       this.getMaterials(params['courseId']);
-    })    
+    });
+    this.courseId = this.data;    
+    console.log("Initialized Materials with course = ",this.courseId,{data:this.data});
+    if(this.courseId){
+      console.log("CourseId  ",this.courseId);
+      this.getMaterials(this.courseId);
+    }
+
+    
     
   }
   
@@ -159,6 +175,7 @@ export class MaterialsComponent implements OnInit {
   // API CALLS
   
   getMaterials(courseId){
+    console.log("getting materials in materials component for courseId = ",courseId)
     this._courseService.getCourse(courseId).subscribe((courses:any)=>{
       this.course = courses.pop();
       this.materials = this.course.materials;
