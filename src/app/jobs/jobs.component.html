@@ -43,50 +43,63 @@
                         <!-- SR.No --> 
                         <!-- Only Displays 1-5 for every page -->
                         <ng-container matColumnDef="sr.no">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Sr.No. </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job; let i = index;"> {{i+1}} </td>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Job Title </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job; let i = index;"> <i class="fas fa-dot-circle fa-fw" [ngStyle]="{color:job.color }"></i> {{job.title}} </td>
                         </ng-container>
 
                 
                         <!-- Client Column -->
                         <ng-container matColumnDef="client">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Client </th>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Client </th>
                             <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.client.name}}</td>
                         </ng-container>
 
                         <!-- location -->
                         <ng-container matColumnDef="location">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Location </th>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Location </th>
                             <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.location.title}} </td>
                         </ng-container>
                         <!-- instructor Column -->
                         <ng-container matColumnDef="instructor" >
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Instructor </th>
-                            <td class="mat-table-cell" mat-cell  *matCellDef="let job"><span *ngFor='let oneInstructor of job.instructor'> {{oneInstructor.name}}</span> </td>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Instructor </th>
+                            <td class="mat-table-cell" mat-cell  *matCellDef="let job">
+                                <mat-list align='center'>
+                                    <mat-list-item *ngFor='let oneInstructor of job.instructors'>
+                                        <i class="fas fa-user-tie fa-fw text-primary"></i><span > {{oneInstructor.name}}</span> 
+                                    </mat-list-item>
+                                </mat-list>
+                            </td>
                         </ng-container>
 
                         <!-- course Column -->
                         <ng-container matColumnDef="course">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Course </th>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Course </th>
                             <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.course.title}}</td>
                         </ng-container>
 
                         <!-- learners Column -->
-                        <ng-container matColumnDef="learners">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Learners </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"><button class='size'><i class="fa fa-users"></i></button></td>
+                        <ng-container matColumnDef="actions">
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Actions </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job">
+                                <a mat-button class="text-success" routerLink="{{job._id}}" >
+                                    <i class="fa fa-users"></i>
+                                </a>
+                                <button mat-button class="text-primary"  (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button>
+                            </td>
                         </ng-container>
 
                         <!-- Status Column -->
                         <ng-container matColumnDef="status">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > Status </th>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > Status </th>
                             <td class="mat-table-cell" mat-cell *matCellDef="let job">{{job.status}}</td>
                         </ng-container>
 
                         <!-- view Column -->
                         <ng-container matColumnDef="view">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef > View </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;"><button class='size' (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button></td>
+                            <th class="text-left" mat-header-cell *matHeaderCellDef > View </th>
+                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;">
+                            
+                            </td>
                         </ng-container>
                         
                         <thead>
@@ -100,7 +113,7 @@
                 </div>
                 </table>
             </div>
-            <h1 *ngIf="!(jobs)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+            <h1 *ngIf="!(jobs)" class="text-left"><i class="fa fa-cog fa-spin"></i></h1>
         </div>
         <!--/.Card content-->
     

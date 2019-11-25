@@ -45,7 +45,15 @@ import { SingleClientComponent } from './clients/single-client/single-client.com
 import { LocationTabComponent } from './commons/location-tab/location-tab.component';
 import { AddLocationComponent } from './clients/single-client/add-location/add-location.component';
 import { JobDatesComponent } from './jobs/job-dates/job-dates.component';
-
+import { AddLearnerModalComponent } from './learners/add-learner-modal/add-learner-modal.component';
+import { EditLearnerModalComponent } from './learners/edit-learner-modal/edit-learner-modal.component';
+import { AddMaterialModalComponent } from './courses/materials/add-material-modal/add-material-modal.component';
+import { EditMaterialModalComponent } from './courses/materials/edit-material-modal/edit-material-modal.component';
+import { LearnersComponent } from './learners/learners.component';
+import { JobComponent } from './jobs/job/job.component';
+import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
+import { MaterialsComponent } from './courses/materials/materials.component';
+import { MaterialTileComponent } from './commons/material-tile/material-tile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +76,18 @@ import { JobDatesComponent } from './jobs/job-dates/job-dates.component';
     LocationTabComponent,
     AddLocationComponent,
     JobDatesComponent,
+    LearnersComponent,
+    JobComponent,
+    SingleLearnerComponent,
+    MaterialsComponent,
+    AddLearnerModalComponent,
+    EditLearnerModalComponent,
+    SingleLearnerComponent,
+    MaterialsComponent,
+    MaterialTileComponent,
+    EditLearnerModalComponent,
+    AddMaterialModalComponent,
+    EditMaterialModalComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +116,7 @@ import { JobDatesComponent } from './jobs/job-dates/job-dates.component';
     ColorPickerModule,
 
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent,AddMaterialModalComponent,EditMaterialModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 

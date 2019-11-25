@@ -37,7 +37,7 @@ export class JobsComponent implements OnInit {
   paginator: MatPaginator;
   // MatPaginator Output
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['sr.no','client','location','instructor','course','learners','status','view']
+  displayedColumns: string[] = ['sr.no','client','instructor','status','course','actions']
   
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 

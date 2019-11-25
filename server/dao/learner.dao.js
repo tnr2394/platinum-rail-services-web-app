@@ -1,4 +1,4 @@
-var learner = require('../models/learner.model');
+var learnerModel = require('../models/learner.model');
 var Q = require('q');
 
 var learner = {};
@@ -6,7 +6,7 @@ learner.createLearner = function(obj){
     var q = Q.defer();
     var newLearner = new learnerModel(obj);
 
-    newlearner.save((err,newLocation)=>{
+    newLearner.save((err,newLocation)=>{
         if(err) return q.reject(err);
         console.log("newLocation Uploaded Successfully =  ",newLocation);
         return q.resolve(newLocation);
@@ -16,11 +16,14 @@ learner.createLearner = function(obj){
 
 learner.getLearnersByQuery = function(query){
     var q = Q.defer();
-    console.log("GET locations query = ",query,"Params = ",query);
-    learnerModel.find(query,(err,locations)=>{
+    console.log("GET learners query = ",query,"Params = ",query);
+    
+    learnerModel.find(query)
+    .populate('job')
+    .exec((err,learners)=>{
         if(err) q.reject(err)
-        q.resolve(locations)
-        console.log("SENDING RESPONSE locations =  ",locations);
+        q.resolve(learners)
+        console.log("SENDING RESPONSE learner =  ",learners);
     })
     return q.promise;
 }
@@ -31,10 +34,10 @@ learner.updateLearner = function(object) {
     var q = Q.defer();
     var updatedLearner = object;
     learnerModel.findByIdAndUpdate(object._id,updatedLearner,{new:true},(err,learner)=>{
-        if(err) q.reject(err);
+        if(err) return q.reject(err);
         else{
-            console.log("Learner Uploaded & Updated Successfully =  ",learner);
-            q.resolve(learner);
+            console.log("Learner Uploaded & Updated Successfully =  ",learner,q);
+            return q.resolve(learner);
         }
     });
     return q.promise;

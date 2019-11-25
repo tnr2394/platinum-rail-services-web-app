@@ -91,9 +91,9 @@ export class CoursesComponent implements OnInit {
     var addedCourse = this.openDialog(AddCourseModalComponent).subscribe((courses)=>{
       if(courses == undefined) return;
       console.log("Course added in controller = ",courses);
-      this.courses = courses;
+      this.courses.push(courses);
       this.openSnackBar("Course Added Successfully","Ok");
-      this.updateData(courses); 
+      this.updateData(this.courses); 
     },err=>{
       return this.openSnackBar("Course could not be Added","Ok");
     });

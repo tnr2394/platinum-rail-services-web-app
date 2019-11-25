@@ -3,20 +3,26 @@ var Q = require('q');
 
 var courseController = {};
 
-async function allCourses(){
+async function allCourses(query){
     var deferred = Q.defer();
 
-    courseModel.find({},(err,courses)=>{
+    courseModel.find(query)
+    .populate("materials")
+    .exec((err,courses)=>{
         if(err) deferred.reject(err);
-        // console.log("RETRIVED DATA = ",courses);
+        console.log("RETRIVED DATA = ",courses);
         deferred.resolve(courses);
     });
     return deferred.promise;
 
 }
 courseController.getCourses = async  function(req, res, next) {
-    console.log("GET COURSES");
-    allCourses().then(courses=>{
+    var query = {};
+    if(req.query){
+        query = req.query;
+    }
+    console.log("GET COURSES query = ",query);
+    allCourses(query).then(courses=>{
         console.log("SENDING RESPONSE COURSES = ",courses)
         return res.send({data:{courses}});
     })

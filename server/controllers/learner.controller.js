@@ -19,17 +19,20 @@ async function allLearners(){
 
 learnerController.getLearners =  async  function(req, res, next) {
     let query = {};
-    if(req.query._id){
+    if(req.query){
         query = req.query
     }
     console.log("GET learners query = ",query,"Params = ",req.query);
-    learnerModel.find(query)
-    .populate('job')
-    .exec((err,learners)=>{
-        console.log("SENDING RESPONSE Learners =  ",learners);
+    learnerDOA.getLearnersByQuery(query)
+    .then(learners=>{
+        console.log("Returing learners - "+learners.length);
         return res.send({data:{learners}});
+    },err=>{
+        console.error(err);
+        return res.status(500).send({err});
     })
 }
+
 learnerController.getLearner =  async  function(req, res, next) {
     console.log("GET client ",req.params.id);
     learnerModel.findById(req.param.id,(err,learner)=>{
@@ -38,37 +41,43 @@ learnerController.getLearner =  async  function(req, res, next) {
     })
 }
 
-learnerController.addLearner = function(req, res, next) {
+learnerController.addLearner = async function(req, res, next) {
     console.log("ADD learner",req.body);
     
     var newLearner = {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        job: req.body.job
     };
     learnerDOA.createLearner(newLearner).then(newLearner=>{
         console.log("Created Learner",newLearner);
-        return res.send({data:{learner}})
+        return res.send({data:{learner: newLearner}})
     },err=>{
         return res.status(500).send({err});
     });
 }
 
 
-learnerController.updateLearner = function(req, res, next) {
-    console.log("Update Learner DOA in Learner-Controller",req.body);
+learnerController.updateLearner = async function(req, res, next) {
     
     var updatedLearner = {
+        _id: req.body._id,
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
     };
-    learnerDOA.updateLearner(updatedLearner)
-    .then(learner=>{
-        console.log("Updated learner",learner,err);
+    console.log("Update Learner DOA in Learner-Controller",req.body);
+     
+    learnerDOA.updateLearner(updatedLearner).then(learner=>{
+        console.log("Updated learner in controller",learner);
         return res.send({data:{learner}});
     },err=>{
+        console.error(err); 
         return res.status(500).send({err})
+    })
+    .catch(err=>{
+        console.error(err);
     })
 }
 
