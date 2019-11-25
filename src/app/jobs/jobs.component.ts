@@ -12,6 +12,8 @@ import { FilterService } from '../services/filter.service';
 import { JobService } from '../services/job.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { FormsModule, NgForm } from '@angular/forms'
+
 
 @Component({
   selector: 'app-jobs',

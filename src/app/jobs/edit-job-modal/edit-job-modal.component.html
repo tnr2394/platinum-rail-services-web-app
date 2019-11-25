@@ -22,16 +22,18 @@
 
             <div class='row'>
                 <div class='col center'>
+                    
+
                     <mat-form-field>
-                        <mat-select formControlName="client" placeholder="Client" (selectionChange)="clientChanged($event)">
-                            <mat-option *ngFor='let client of clients' [(value)]='client'>{{client.name}}</mat-option>
+                        <mat-select placeholder="Client" (selectionChange)="clientChanged($event)" [(value)]="selectedClient">
+                            <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
             
                 <div class='col center'>
                     <mat-form-field *ngIf="selectedClient">
-                        <mat-select formControlName="location" placeholder="Location">
+                        <mat-select placeholder="Location" [(value)]='selectedLocation' (selectionChange)="locationChanged($event)">
                             <mat-option *ngFor="let location of selectedClient.locations" [value]="location">{{location.title}}
                             </mat-option>
                         </mat-select>
@@ -41,12 +43,12 @@
 
             <div class='row'>
                 <div class='max-height col center'>
-                    <div formArrayName="instructor"
+                    <div [formArrayName]="instructor"
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor.name'>
+                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
                                         {{instructor.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>

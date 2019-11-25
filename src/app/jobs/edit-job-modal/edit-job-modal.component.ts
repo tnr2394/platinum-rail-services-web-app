@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
@@ -47,10 +47,25 @@ export class EditJobModalComponent implements OnInit {
   singleJobDate = [];
 
   loading: Boolean = false;
-  selectedClient = {
-    name: "",
-    _id: ""
-  };
+  selectedClient;
+  selectedLocation;
+  // selectedClient = {
+    // name: "",
+    // _id: ""
+  // };
+
+  x = [];
+
+  profiles = [
+    { id: 'dev', name: 'Developer' },
+    { id: 'man', name: 'Manager' },
+    { id: 'dir', name: 'Director' }
+  ];
+  y = [];
+  selectedProfile;
+  // selectedProfile = this.profiles[1]; 
+  // selectedProfile = this.y;
+  
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -65,6 +80,12 @@ export class EditJobModalComponent implements OnInit {
   clientChanged(data) {
     this.selectedClient = data.value;
     console.log(this.selectedClient);
+    this.addJobForm.controls['client'].setValue(data.value)
+    console.log(this.addJobForm.value)
+  }
+  locationChanged(data){
+    console.log("Location",data.value)
+    this.addJobForm.controls['location'].setValue(data.value)
   }
 
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
@@ -72,8 +93,8 @@ export class EditJobModalComponent implements OnInit {
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
 
   ngOnInit() {
-    
-    console.log('-----DATA-----', this.DialogData)
+
+    console.log('-----DATA-----', this.DialogData.instructor)
     this.DialogData.totalDays.forEach((day)=>{
       this.totalDays.push(day)
     })
@@ -81,26 +102,27 @@ export class EditJobModalComponent implements OnInit {
       this.singleJobDate.push(date)
     })
 
-    this.selectedClient = {
-      name : this.DialogData.client.name,
-      _id : this.DialogData.client._id
-    }
-    console.log('Client', this.selectedClient.name)
     let newDate = new Date(this.DialogData.startingDate)
     console.log("+++++++++++", newDate)
     this.color = this.DialogData.color;
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
-      client: new FormControl(this.DialogData.client.name),
+      client: new FormControl(),
       instructor: new FormArray([this.createInstructor(this.DialogData.instructor[0].singleInstructor)]),
-      location: new FormControl(this.DialogData.location.title),
+      location: new FormControl(),
       course: new FormArray([this.course()]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
       frequency: new FormArray([]),
       singleJobDate: new FormControl(),
       totalDays: new FormControl()
     });
+    for (var i = 1; i < this.DialogData.instructor.length; i++) {
+      console.log("LOOK AT ME!!!")
+      this.instructorData = this.DialogData.instructor[i].singleInstructor
+      this.addInstructor(this.instructorData)
+      console.log(this.instructorData);
+    }
     this.addCheckboxes();
     this.startingDate = new Date(this.DialogData.startingDate)
 
@@ -110,12 +132,7 @@ export class EditJobModalComponent implements OnInit {
     this.getChecked();
     this.getDates();
 
-    for (var i = 1; i < this.DialogData.instructor.length; i++) {
-      console.log("LOOK AT ME!!!")
-      this.instructorData = this.DialogData.instructor[i].singleInstructor
-      this.addInstructor(this.instructorData)
-      console.log(this.instructorData);
-    }
+    
   }
 
   createInstructor(data): FormGroup {
@@ -127,7 +144,6 @@ export class EditJobModalComponent implements OnInit {
   course(): FormGroup {
     return this.formBuilder.group({
       course: new FormControl(this.DialogData.course)
-      // this.DialogData.course[0].course.title
     })
   }
 
@@ -221,30 +237,40 @@ export class EditJobModalComponent implements OnInit {
 
   addJob() {
     // console.log(this.addJobForm.get('course').value)
-    let id = (this.DialogData._id)
-    console.log("VALUE",this.addJobForm.value)
-    this.loading = true;
-    // if (this.addJobForm.valid) {
-      // this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0, this.duration));
-    if (this.addJobForm.controls['totalDays'].value == null){
-      this.DialogData.totalDays.forEach((item)=>{
-        this.addJobForm.controls['totalDays'].setValue(item)    
-      })
-      this.addJobForm.controls['totalDays'].setValue(this.DialogData.totalDays)
+    if(this.addJobForm.controls['client'].value == null){
+      this.addJobForm.controls['client'].setValue(this.DialogData.client)
     }
-    
-    else { this.addJobForm.controls['totalDays'].setValue(this.totalDays)}
+    // console.log("Dialog locations", this.DialogData.location)
+    if (this.addJobForm.controls['location'].value == null) {
+      this.addJobForm.controls['location'].setValue(this.DialogData.location)
+    }
 
-      this._jobService.editJobs(this.addJobForm.value, id).subscribe(data => {
-        // this.data = data;
-        this.loading = false;
-        this.dialogRef.close(this.addJobForm.value);
-      }, err => {
-        alert("Error adding job.")
-        this.loading = false;
-        this.dialogRef.close();
-      })
-      this.dialogRef.close(this.addJobForm.value);
+    let id = (this.DialogData._id)
+
+    console.log("VALUE",this.addJobForm.value)
+    
+    // this.loading = true;
+    // // if (this.addJobForm.valid) {
+    //   // this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0, this.duration));
+    // if (this.addJobForm.controls['totalDays'].value == null){
+    //   this.DialogData.totalDays.forEach((item)=>{
+    //     this.addJobForm.controls['totalDays'].setValue(item)    
+    //   })
+    //   this.addJobForm.controls['totalDays'].setValue(this.DialogData.totalDays)
+    // }
+    
+    // else { this.addJobForm.controls['totalDays'].setValue(this.totalDays)}
+
+    //   this._jobService.editJobs(this.addJobForm.value, id).subscribe(data => {
+    //     // this.data = data;
+    //     this.loading = false;
+    //     this.dialogRef.close(this.addJobForm.value);
+    //   }, err => {
+    //     alert("Error adding job.")
+    //     this.loading = false;
+    //     this.dialogRef.close();
+    //   })
+    //   this.dialogRef.close(this.addJobForm.value);
     // }
     // else {
     //   console.log("Invalid")
@@ -256,6 +282,26 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._clientService.getClients().subscribe((clients) => {
       this.clients = clients;
+      console.log("Getting clients for edit model", this.clients)
+
+      this.clients.forEach((client) => {
+        let i = 0;
+        console.log("TEST")
+        if ( this.DialogData.client._id === client._id ){
+          console.log("Same at", i)
+          this.selectedClient = this.clients[i]
+
+          client.locations.forEach((location)=>{
+            let j = 0; 
+            if( this.DialogData.location._id === location._id){
+              console.log("index at same location is", j)
+              this.selectedLocation = this.clients[i].locations[j]
+            }
+            j += 1;
+          })
+        }
+        i += 1;
+      });
     });
   }
 
@@ -274,4 +320,5 @@ export class EditJobModalComponent implements OnInit {
       this.instructors = instructors;
     });
   }
+  
 }
