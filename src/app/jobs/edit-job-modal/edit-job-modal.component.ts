@@ -44,8 +44,13 @@ export class EditJobModalComponent implements OnInit {
   client;
   selected;
   instructorData;
+  singleJobDate = [];
 
   loading: Boolean = false;
+  selectedClient = {
+    name: "",
+    _id: ""
+  };
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -57,6 +62,11 @@ export class EditJobModalComponent implements OnInit {
     { id: '6', day: 'Saturday', checked: false }
   ];
 
+  clientChanged(data) {
+    this.selectedClient = data.value;
+    console.log(this.selectedClient);
+  }
+
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, @Inject(MAT_DIALOG_DATA) public DialogData: any,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
@@ -64,23 +74,35 @@ export class EditJobModalComponent implements OnInit {
   ngOnInit() {
     
     console.log('-----DATA-----', this.DialogData)
-    // console.log('Client', this.DialogData.client)
+    this.DialogData.totalDays.forEach((day)=>{
+      this.totalDays.push(day)
+    })
+    this.DialogData.singleJobDate.forEach((date)=>{
+      this.singleJobDate.push(date)
+    })
+
+    this.selectedClient = {
+      name : this.DialogData.client.name,
+      _id : this.DialogData.client._id
+    }
+    console.log('Client', this.selectedClient.name)
     let newDate = new Date(this.DialogData.startingDate)
     console.log("+++++++++++", newDate)
     this.color = this.DialogData.color;
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
-      client: new FormControl(this.DialogData.client),
+      client: new FormControl(this.DialogData.client.name),
       instructor: new FormArray([this.createInstructor(this.DialogData.instructor[0].singleInstructor)]),
-      location: new FormControl(this.DialogData.location),
-      course: new FormArray([this.course(this.DialogData.course)]),
+      location: new FormControl(this.DialogData.location.title),
+      course: new FormArray([this.course()]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
       frequency: new FormArray([]),
       singleJobDate: new FormControl(),
       totalDays: new FormControl()
     });
     this.addCheckboxes();
+    this.startingDate = new Date(this.DialogData.startingDate)
 
     this.getClients();
     this.getCourses();
@@ -102,9 +124,9 @@ export class EditJobModalComponent implements OnInit {
     })
   }
 
-  course(data): FormGroup {
+  course(): FormGroup {
     return this.formBuilder.group({
-      course: new FormControl()
+      course: new FormControl(this.DialogData.course)
       // this.DialogData.course[0].course.title
     })
   }
@@ -147,51 +169,51 @@ export class EditJobModalComponent implements OnInit {
     this.temp = moment($event.value);
   }
 
-  onCheckChange(event, dayOfTheWeek, day) {
-    this.duration = this.addJobForm.get('course').controls[0].value.course.duration
-    console.log(this.addJobForm.get('course').controls[0].value.course.duration)
+  // onCheckChange(event, dayOfTheWeek, day) {
+  //   this.duration = this.addJobForm.get('course').controls[0].value.course.duration
+  //   console.log(this.addJobForm.get('course').controls[0].value.course.duration)
 
-    if (event == true) {
-      if (this.startingDate.getDay() == dayOfTheWeek) {
-        console.log(this.startingDate.getDay(), '==', dayOfTheWeek)
-        this.courseDates.push(this.startingDate)
-      }
-      this.totalDays.push(day)
+  //   if (event == true) {
+  //     if (this.startingDate.getDay() == dayOfTheWeek) {
+  //       console.log(this.startingDate.getDay(), '==', dayOfTheWeek)
+  //       this.courseDates.push(this.startingDate)
+  //     }
+  //     this.totalDays.push(day)
 
-      let tempDate: Date = this.temp.toDate();
-      for (var i = 0; i < this.duration; i++) {
-        let days = (7 - tempDate.getDay() + dayOfTheWeek)
-        if (days >= 8) {
-          days = (-1) * (7 - days);
-        }
-        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-        this.courseDates.push(tempDate)
-        tempDate = nextDay;
-      }
-    }
+  //     let tempDate: Date = this.temp.toDate();
+  //     for (var i = 0; i < this.duration; i++) {
+  //       let days = (7 - tempDate.getDay() + dayOfTheWeek)
+  //       if (days >= 8) {
+  //         days = (-1) * (7 - days);
+  //       }
+  //       let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
+  //       this.courseDates.push(tempDate)
+  //       tempDate = nextDay;
+  //     }
+  //   }
 
-    else {
-      for (var i = 0; i < this.totalDays.length; i++) {
-        if (this.totalDays[i] == day) {
-          this.totalDays.splice(i, 1)
-        }
-      }
-      let tempDate: Date = this.temp.toDate();
-      for (var i = 0; i < this.duration; i++) {
-        let days = (7 - tempDate.getDay() + dayOfTheWeek)
-        if (days >= 8) {
-          days = (-1) * (7 - days);
-        }
-        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-        for (var j = 0; j < this.courseDates.length; j++) {
-          if (this.courseDates[j].getDay() == nextDay.getDay()) {
-            this.courseDates.splice(j, 1)
-          }
-        }
-      }
-    }
-    this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
-  }
+  //   else {
+  //     for (var i = 0; i < this.totalDays.length; i++) {
+  //       if (this.totalDays[i] == day) {
+  //         this.totalDays.splice(i, 1)
+  //       }
+  //     }
+  //     let tempDate: Date = this.temp.toDate();
+  //     for (var i = 0; i < this.duration; i++) {
+  //       let days = (7 - tempDate.getDay() + dayOfTheWeek)
+  //       if (days >= 8) {
+  //         days = (-1) * (7 - days);
+  //       }
+  //       let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
+  //       for (var j = 0; j < this.courseDates.length; j++) {
+  //         if (this.courseDates[j].getDay() == nextDay.getDay()) {
+  //           this.courseDates.splice(j, 1)
+  //         }
+  //       }
+  //     }
+  //   }
+  //   this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
+  // }
 
   datesForJobChange($event, index) {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value

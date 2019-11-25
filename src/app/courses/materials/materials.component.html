@@ -21,13 +21,12 @@
                         <div class="card-block">
                             <!--Title-->
                             <div class="card-title">
-                                Materials Length : {{materials.length}}
+                                Materials : {{materials.length}}
                                 
                             </div>
                             <!--Text-->
                             <div class="row">
                                 <div class="col-6">
-                                    <h1>{{materials.length}}</h1>
                                     <material-tile *ngFor="let material of materials" [material]="material"></material-tile>
                                 </div>
                                 

@@ -23,18 +23,17 @@
             <div class='row'>
                 <div class='col center'>
                     <mat-form-field>
-                        <mat-select formControlName="client" placeholder="Client">
-                            <mat-option *ngFor='let client of clients' value='{{client.name}}'>{{client.name}}
-                            </mat-option>
+                        <mat-select formControlName="client" placeholder="Client" (selectionChange)="clientChanged($event)">
+                            <mat-option *ngFor='let client of clients' [(value)]='client'>{{client.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-
+            
                 <div class='col center'>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="selectedClient">
                         <mat-select formControlName="location" placeholder="Location">
-                            <mat-option value='A'>A</mat-option>
-                            <mat-option value='B'>B</mat-option>
+                            <mat-option *ngFor="let location of selectedClient.locations" [value]="location">{{location.title}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -65,7 +64,7 @@
                                         <!-- {{selected.value}} -->
                                     <!-- </mat-select-trigger> -->
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
-                                        value='{{course.title}}'><span
+                                        [(value)]='course'><span
                                             class="badge position">{{course.duration}}</span> - {{course.title}}
                                     </mat-option>
                                 </mat-select>
@@ -84,16 +83,19 @@
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
                             (dateChange)='searchDays($event)' [errorStateMatcher]="matcher">
+                            <!-- (onDaySelection)='daySelection($event,startingDate)' -->
+                            
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
+                        <!-- <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
                             Please select a starting date
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
                 </div>
             </div>
-            <div class='row'>
-                <div class='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
+            <div class='row' style="display: block;">
+                <app-job-dates [duration]='20' [frequency]='totalDays' [singleJobDate]='singleJobDate' [startingDate]='startingDate' ></app-job-dates>
+                <!-- <div class='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
                     <h6 class='textCenter headerColor'>Choose frequency</h6>
                     <div class='row'>
                         <div class='col-2'></div>
@@ -136,8 +138,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
         </div>
     </div>

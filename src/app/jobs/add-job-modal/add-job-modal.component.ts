@@ -37,22 +37,13 @@ export class AddJobModalComponent implements OnInit {
   finalCourseDates = [];
   instructor: FormArray;
   matcher = new MyErrorStateMatcher();
+  singleJobDate = [];
 
   loading: Boolean = false;
   selectedClient={
     name: "Default",
     _id: ""
   };
-
-  frequencyDays = [
-    { id: '0', day: 'Sunday',disabled: true },
-    { id: '1', day: 'Monday',disabled: true},
-    { id: '2', day: 'Tuesday',disabled: true },
-    { id: '3', day: 'Wednesday',disabled: true },
-    { id: '4', day: 'Thursday',disabled: true },
-    { id: '5', day: 'Friday',disabled: true },
-    { id: '6', day: 'Saturday',disabled: true }
-  ];
   selectedCourse: any;
 
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
@@ -68,7 +59,18 @@ export class AddJobModalComponent implements OnInit {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
   }
+  daySelection(obj){
+    console.log("-----DAY SELECTION EVENT-----",obj)
+    obj.singleJobDates.forEach((item)=>{
+      this.singleJobDate.push(item)
+    })
+    obj.totalDays.forEach((item) => {
+      this.totalDays.push(item)
+    })
+  }
   ngOnInit() {
+    console.log("ON INIT", this.startingDate);
+    
     this.addJobForm = this.formBuilder.group({
       title: new FormControl('', Validators.required),
       jobColor: new FormControl('', Validators.required),
@@ -76,12 +78,8 @@ export class AddJobModalComponent implements OnInit {
       instructor: new FormArray([this.createInstructor()]),
       location: new FormControl(''),
       course: new FormArray([this.course()]),
-      startingDate: new FormControl('', Validators.required),
-      frequency: new FormArray([]),
-      singleJobDate: new FormControl(),
-      // totalDays: new FormControl()
+      startingDate: new FormControl('', Validators.required)
     });
-    this.addCheckboxes();
     this.finalCourseDates = [];
 
     this.getClients();
@@ -108,65 +106,12 @@ export class AddJobModalComponent implements OnInit {
     this.instructor.removeAt(this.instructor.length - 1);
   }
 
-  addCheckboxes() {
-    this.frequencyDays.forEach(() => {
-        const control = new FormControl();
-      (this.addJobForm.controls.frequency as FormArray).push(control);
-    });
-  }
-
   searchDays($event){
-    this.frequencyDays.forEach(item => item.disabled = false);
+    this.duration = this.selectedCourse.duration;
     this.startingDate = $event.value;
-    // this.courseDates.push(this.startingDate)
     this.temp = moment($event.value);
   }
 
-  onCheckChange(event, dayOfTheWeek, day){
-    this.duration = this.addJobForm.get('course').controls[0].value.course.duration
-    console.log(this.addJobForm.get('course').controls[0].value.course.duration)
-    this.duration = this.selectedCourse.duration;
-    if(event == true){
-      if(this.startingDate.getDay() == dayOfTheWeek){
-        console.log(this.startingDate.getDay() ,'==', dayOfTheWeek)
-        this.courseDates.push(this.startingDate)
-      }
-      this.totalDays.push(day)
-
-      let tempDate: Date = this.temp.toDate();
-      for (var i = 0; i < this.duration; i++) {
-        let days = (7 - tempDate.getDay() + dayOfTheWeek)
-          if (days >= 8) {
-            days = (-1)*(7 - days);
-          }
-        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-        this.courseDates.push(tempDate)
-        tempDate = nextDay;
-        }
-    }
-
-    else {
-      for(var i = 0; i < this.totalDays.length; i++){
-        if(this.totalDays[i] == day){
-              this.totalDays.splice(i,1)
-            }
-      }
-      let tempDate: Date = this.temp.toDate();
-      for (var i = 0; i < this.duration; i++) {
-        let days = (7 - tempDate.getDay() + dayOfTheWeek)
-        if (days >= 8) {
-          days = (-1) * (7 - days);
-        }
-        let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-        for(var j = 0; j < this.courseDates.length; j++){
-             if(this.courseDates[j].getDay() == nextDay.getDay()){
-              this.courseDates.splice(j,1)
-            }
-          }
-        }
-    }
-  this.finalCourseDates = this.courseDates.sort((a,b)=> b - a).reverse();
-  }
 
   datesForJobChange($event,index){
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
@@ -177,14 +122,11 @@ export class AddJobModalComponent implements OnInit {
     console.log("Form value = ",this.addJobForm.value);
     console.log("This.selectedCourse", this.selectedCourse)
 
-    // this.addJobForm.controls['course'].patchValue(this.addJobForm.controls['course'].value[0].course);
-    // console.log("COURSE VALUE",this.addJobForm.controls['course'].value[0].course)
     this.loading = true;    
     if(this.addJobForm.valid)
     {
       let InstructorsForDataBase = [];
       let instructorsForJobsPage = [];
-      this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0, this.duration))
 
       this.addJobForm.controls['instructor'].value.forEach((item) => {
         InstructorsForDataBase.push(item.singleInstructor._id)
@@ -200,13 +142,12 @@ export class AddJobModalComponent implements OnInit {
         course: this.selectedCourse._id,
         startingDate: this.addJobForm.controls['startingDate'].value,
         totalDays: this.totalDays,
-        singleJobDate: this.addJobForm.controls['singleJobDate'].value
+        singleJobDate: this.singleJobDate
       };
 
       var newJobforJobsPage = {
         client: this.selectedClient,
         location: this.addJobForm.controls['location'].value,
-        // instructor: this.addJobForm.controls['instructor'].value,
         instructor: instructorsForJobsPage,
         course: this.selectedCourse,
       }
