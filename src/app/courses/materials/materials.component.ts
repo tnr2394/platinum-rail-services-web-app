@@ -141,15 +141,19 @@ export class MaterialsComponent implements OnInit {
       // DELETE HANDLE
       else if(material.action == 'delete'){
         console.log("Deleted ",material);
-        this.materials.splice(this.materials.findIndex(function(i){
-          return i._id === data._id;
-        }), 1);
       }
       this.updateData(this.materials);
       this.handleSnackBar({msg:"material Edited Successfully",button:"Ok"});
     });
   }
   
+  deletedMaterial(event){
+    console.log("Material Deleted Event : ",event);
+    this.materials.splice(this.materials.findIndex(function(i){
+      return i._id === event._id;
+    }), 1);
+
+  }
   
   
   handleSnackBar(data){

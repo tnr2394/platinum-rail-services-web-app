@@ -51,17 +51,28 @@ material.deleteMaterial = function(materialId){
     
     console.log("material to be deleted : ",materialId);
     
-    materialModel.deleteOne({_id: materialId},(err,deleted)=>{
+    materialModel.findById(materialId,(err,material)=>{
         if(err) q.reject(err);
-        console.log("Deleted Material from collection ",deleted);        
-        courseDAO.deleteMaterial(deleted.course,deleted._id)
+        if(material == null) return q.reject({msg: "No material found"});
+        console.log("Material Found = ",material);
+        courseDAO.deleteMaterial(material.course,material._id)
         .then(updatedCourse=>{
-            console.log("Deleted ",deleted);
-            q.resolve(deleted);
+            console.log("Deleted from course. Now deleting from material collection",updatedCourse);
+            material.remove((err,deleted)=>{
+                if(err) q.reject(err);
 
+                console.log('Deleted material from material collection');
+                q.resolve({"deleted": material});
+            });
+
+            
+        },err=>{
+            console.error(err);
+        }).catch(err=>{
+            console.error(err);
         })
-    
-    });
+
+    })
     return q.promise;
 }
 

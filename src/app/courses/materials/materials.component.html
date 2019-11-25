@@ -27,7 +27,7 @@
                             <!--Text-->
                             <div class="row">
                                 <div class="col-6">
-                                    <material-tile *ngFor="let material of materials" [material]="material"></material-tile>
+                                    <material-tile *ngFor="let material of materials" [material]="material"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                 </div>
                                 
                             </div>

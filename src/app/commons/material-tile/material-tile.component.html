@@ -1,23 +1,45 @@
 <div class="card">
     <div class="row">
-        <div class="col-3">
-            
-            <a  class="btn btn-primary text-white fab-item" >
-                <i *ngIf="material.type=='Reading'"  class="fab fa-readme margin-auto"></i>
-                <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
-            </a>
-        </div>
-        <div class="col-9">
-            <div class="row">
-                <div class="col-12">
-                    {{material.title}} -- {{material.type}}
-                </div>
-                <div class="col-12">
-                    <a mat-button class="text-success">
-                        <i class="fas fa-edit"></i>
-                    </a>
+        <!-- NOT EDITING -->
+        <div *ngIf="!editing">
+            <div class="col-3">
+                
+                <a  class="btn btn-primary text-white fab-item" >
+                    <i *ngIf="material.type=='Reading'"  class="fab fa-readme margin-auto"></i>
+                    <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
+                </a>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-12">
+                        {{material.title}} -- {{material.type}}
+                    </div>
+                    <div class="col-12">
+                        <a mat-button class="text-success" (click)="editmaterial()">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- EDITING  -->
+        <div *ngIf="editing">
+            <form>
+                    <mat-form-field class="col-12">
+                            <input  matInput name="material-title" placeholder="Material Title" [(ngModel)]='material.title' required cdkFocusInitial>
+                            <mat-error >Material title is required</mat-error>
+                        </mat-form-field>
+                        <div class="col-12">
+                            <button *ngIf="loading" disabled mat-stroked-button  color="primary">
+                                <i class="fas fa-refresh fa-spin fa-fw"></i>
+                            </button>
+                            <a mat-button class="text-danger pull-right" (click)="deleteMaterial()">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            <button *ngIf="!loading" mat-stroked-button (click)="updateMaterial()"  color="primary"><i class="fas fa-edit fa-fw"></i> Save</button>
+                        </div>
+            </form>
+        </div>
+        
     </div>
 </div>
