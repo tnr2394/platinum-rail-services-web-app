@@ -1,15 +1,15 @@
 <div class="card">
-    <div class="row">
+    <div class="container">
         <!-- NOT EDITING -->
-        <div *ngIf="!editing">
-            <div class="col-3">
+        <div class="row" *ngIf="!editing">
+            <div class="col-3 text-center">
                 
                 <a  class="btn btn-primary text-white fab-item" >
                     <i *ngIf="material.type=='Reading'"  class="fab fa-readme margin-auto"></i>
                     <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
                 </a>
             </div>
-            <div class="col-9">
+            <div class="col-9 ">
                 <div class="row">
                     <div class="col-12">
                         {{material.title}} -- {{material.type}}
@@ -18,12 +18,15 @@
                         <a mat-button class="text-success" (click)="editmaterial()">
                             <i class="fas fa-edit"></i>
                         </a>
+                        <a mat-button class="text-warning" (click)="getMaterialFiles()">
+                            <i class="fas fa-copy"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- EDITING  -->
-        <div *ngIf="editing">
+        <div *ngIf="editing" class="row">
             <form>
                     <mat-form-field class="col-12">
                             <input  matInput name="material-title" placeholder="Material Title" [(ngModel)]='material.title' required cdkFocusInitial>

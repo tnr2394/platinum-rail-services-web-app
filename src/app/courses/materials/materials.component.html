@@ -27,9 +27,12 @@
                             <!--Text-->
                             <div class="row">
                                 <div class="col-6">
-                                    <material-tile *ngFor="let material of materials" [material]="material"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                    <material-tile *ngFor="let material of materials" [material]="material" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                 </div>
-                                
+                                <div class="col-6" *ngIf="files">
+                                    Files Length = {{files}}
+                                    <files  [files]="files"></files>
+                                </div>
                             </div>
                             <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                         </div>

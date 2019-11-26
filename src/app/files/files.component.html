@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-12 text-right">
+        <a mat-button class="text-primary" (click)="addFileModal()">
+            <i class="fas fa-plus"></i> Upload File
+        </a>
+    </div>
+    <div class="col-12">
+        <file-tile *ngFor="let file of files" [file]="file"></file-tile>
+    </div>
+</div>

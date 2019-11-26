@@ -30,14 +30,10 @@ file.addFile = function(object) {
     console.log("ADD File",object);
     var q = Q.defer();
     // UPLOAD FILE CODE HERE. 
-    // 1. UPLOAD FILE TO S3 Bucket
+    // 1. UPLOAD FILE TO S3 Buckets
     // 2. Add path to the newFile object
     // 3. Return New File object after uploading it to "files" collection
-    var newFile = new fileModel({
-        title: file.title,
-        path: "NEW PATH",
-        uploadedBy: object.uploadedBy
-    });
+    var newFile = new fileModel(object);
     newFile.save((err,file)=>{
         if(err) return q.reject(err);
         

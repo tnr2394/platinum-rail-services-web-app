@@ -34,6 +34,7 @@ export class MaterialsComponent implements OnInit {
   dataSource:  MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+  files;
   courseId;
   @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -155,6 +156,10 @@ export class MaterialsComponent implements OnInit {
 
   }
   
+  loadMaterialFiles(event){
+    console.log("Loading new files",{event})
+    this.files = event;
+  }
   
   handleSnackBar(data){
     this.openSnackBar(data.msg,data.button);

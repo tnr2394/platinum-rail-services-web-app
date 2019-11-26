@@ -15,6 +15,8 @@ export class MaterialTileComponent implements OnInit {
   editing: boolean;
   loading: boolean;
   backupmaterial: any;
+  
+
   constructor(private _materialService: MaterialService){
 
   }
@@ -24,8 +26,11 @@ export class MaterialTileComponent implements OnInit {
     console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
   }
-  select(){
-    alert("Selected"+this.isActive);
+  
+  getMaterialFiles(){
+    console.log("Getting Material Files by event",this.material.files);
+    this.getFiles.emit(this.material.files);
+
   }
   editmaterial(){
     console.log("Enabling Editing")
@@ -67,6 +72,7 @@ export class MaterialTileComponent implements OnInit {
     })
     
   }
+  
   
   
 

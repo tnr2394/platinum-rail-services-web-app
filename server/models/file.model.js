@@ -6,6 +6,10 @@ var fileSchema = new Schema({
         unique : false,
         required : true
     },
+    type:{
+        type: String,
+        required: true
+    },
     path : {
         type: path,
         required : false

@@ -76,4 +76,23 @@ material.deleteMaterial = function(materialId){
     return q.promise;
 }
 
+material.addFile = function(materialId){
+    var q = Q.defer();
+    materialModel.findByIdAndUpdate(materialId,{new:true},(err,updatedMaterial)=>{
+        if(err) return q.reject(err);
+        else{
+            console.log("material Updated with new file Successfully =  ",material,q);
+            return q.resolve(updatedMaterial);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
 module.exports = material;

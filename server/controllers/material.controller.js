@@ -1,5 +1,6 @@
 var materialDOA = require('../dao/material.dao');
 var courseDOA = require('../dao/course.dao');
+var fileDOA = require('../dao/file.dao');
 var Q = require('q');
 
 var materialController = {};
@@ -108,5 +109,38 @@ materialController.deleteMaterial = function(req,res,next){
         return res.status(500).send({err})
     })
 }
+
+
+
+materialController.addFile = (req,res,next)=>{
+    // Add File in File DAO.
+    // Add file id in Material DAO.
+
+    var newFile = {
+        title: req.body.title,
+        type: "material",// OR SUBMISSION OR DOCUMENT
+        path: "NEWPATH",
+        extension: "ppt",
+        uploadedBy: "ADMIN",
+        uploadedDate: new Date()
+    }
+
+    console.log("Adding new file");
+    fileDOA.addFile(newFile).then((addedFile)=>{
+        materialDOA.addFile(addedFile).then((updatedMaterial)=>{
+            console.log("material Updated",updatedMaterial);
+            res.send({data:{file: addedFile}});
+        })
+        .then(err=>{
+            console.error(err);
+        })
+    })
+    .then(err=>{
+        console.error(err);
+    })
+
+}
+
+
 
 module.exports = materialController;
