@@ -106,7 +106,7 @@
                 <div class='col center'>
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
-                        (dateChange)='searchDays($event)' [errorStateMatcher]="matcher">
+                        (dateChange)='searchDays($event); jobDates.EditDates($event.value, totalDays)' [errorStateMatcher]="matcher">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
@@ -115,8 +115,8 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class='row' *ngIf='startingDate != undefined' style='display: block;'>
-                <app-job-dates [(frequency)]='x' [startingDate]='startingDate' [duration]='duration' (onDaySelection)='daySelection($event)'></app-job-dates>
+            <div class='row'  style='display: block;'>
+                <app-job-dates [duration]='duration' (dateChange)='daySelection($event)' #jobDates></app-job-dates>
             </div> 
         </div>
     </div>

@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./job-dates.component.scss']
 })
 export class JobDatesComponent implements OnInit {
-  frequencyDays = [
+  public frequencyDays = [
     { id: '0', day: 'Sunday',checked: false },
     { id: '1', day: 'Monday',checked: false },
     { id: '2', day: 'Tuesday',checked: false },
@@ -22,12 +22,13 @@ export class JobDatesComponent implements OnInit {
   @Input('duration') duration: any;
   @Input('startingDate') startingDate: any;
   @Input('singleJobDate') singleJobDate: any; // for edit event
-  @Output() onDaySelection : EventEmitter<any> = new EventEmitter<any>();
+  @Output() dateChange : EventEmitter<any> = new EventEmitter<any>();
 
 
   dateForm;
   courseDates = [];
   temp = moment(this.startingDate)
+  tempArray = [];
   finalCourseDates;
   dayOfTheWeek;
   day;
@@ -37,7 +38,8 @@ export class JobDatesComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log("IN JOBDATE", this.frequency, this.duration, "STARTING DATE IS: ",this.startingDate, this.singleJobDate)
+    console.log("IN JOBDATE", "DAY OF THE WEEK", this.dayOfTheWeek ,this.frequency, this.duration, "STARTING DATE IS: ",this.startingDate, this.singleJobDate)
+    this.temp = moment(this.startingDate)
 
     this.dateForm = this.formBuilder.group({
       frequency: new FormArray([]),
@@ -70,13 +72,17 @@ export class JobDatesComponent implements OnInit {
   }
 
   // generateDates() {
-    generateDates(event, dayOfTheWeek, day) {
+    public generateDates(event, dayOfTheWeek, day) {
+      console.log("Event", event, "DayOf The week", dayOfTheWeek , "Day", day)
       if (event == true) {
+
         if (this.startingDate.getDay() == dayOfTheWeek) {
           console.log(this.startingDate.getDay(), '==', dayOfTheWeek)
           this.courseDates.push(this.startingDate)
+          console.log("IN second if")
         }
         this.totalDays.push(day)
+        console.log("this.totaldays", this.totalDays)
 
         let tempDate: Date = this.temp.toDate();
         for (var i = 0; i < this.duration; i++) {
@@ -91,6 +97,8 @@ export class JobDatesComponent implements OnInit {
       }
 
       else {
+        console.log("array of Finaldates", this.finalCourseDates)
+        console.log("array of course dates", this.courseDates)
         for (var i = 0; i < this.totalDays.length; i++) {
           if (this.totalDays[i] == day) {
             this.totalDays.splice(i, 1)
@@ -111,6 +119,23 @@ export class JobDatesComponent implements OnInit {
         }
       }
       this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
-      this.onDaySelection.emit({ singleJobDates: this.finalCourseDates, totalDays : this.totalDays})
+      this.dateChange.emit({ singleJobDates: this.finalCourseDates, totalDays : this.totalDays})
+    }
+
+    public EditDates(newDate,arrayOfDays){
+      console.log('newdate assigned and all other values cleared')
+      
+      this.startingDate = newDate;
+      this.temp = moment(this.startingDate)
+      
+      this.courseDates.length = 0;
+      this.finalCourseDates = [];
+      
+      console.log("array of Finaldates", this.finalCourseDates)
+      console.log("array of course dates", this.courseDates)
+      this.frequencyDays.forEach((arrayItem) => {
+          arrayItem.checked = false
+      })
+      console.log('newdate assigned and all other values cleared')
     }
 }

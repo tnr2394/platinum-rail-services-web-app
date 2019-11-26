@@ -8,6 +8,7 @@ import { ClientService } from '../../services/client.service';
 import { CourseService } from '../../services/course.service';
 import { InstructorService } from '../../services/instructor.service';
 import { JobService } from '../../services/job.service';
+import { JobDatesComponent } from '../job-dates/job-dates.component'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -50,6 +51,9 @@ export class EditJobModalComponent implements OnInit {
   selectedClient;
   selectedLocation;
   selectedCourse;
+  selectedInstructor = [];
+  jobDateComponent : JobDatesComponent;
+
   // selectedClient = {
     // name: "",
     // _id: ""
@@ -95,7 +99,7 @@ export class EditJobModalComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('-----DATA-----', this.DialogData.instructor)
+    console.log('-----DATA-----', this.DialogData)
     this.DialogData.totalDays.forEach((day)=>{
       this.totalDays.push(day)
     })
@@ -110,7 +114,7 @@ export class EditJobModalComponent implements OnInit {
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
       client: new FormControl(),
-      instructor: new FormArray([this.createInstructor(this.DialogData.instructor[0].singleInstructor)]),
+      instructor: new FormArray([this.createInstructor(this.selectedInstructor[0])]),
       location: new FormControl(),
       course: new FormArray([this.course()]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
@@ -118,12 +122,12 @@ export class EditJobModalComponent implements OnInit {
       singleJobDate: new FormControl(),
       totalDays: new FormControl()
     });
-    for (var i = 1; i < this.DialogData.instructor.length; i++) {
-      console.log("LOOK AT ME!!!")
-      this.instructorData = this.DialogData.instructor[i].singleInstructor
-      this.addInstructor(this.instructorData.name)
-      console.log("----------",this.instructorData.name);
-    }
+    // for (var i = 1; i < this.DialogData.instructor.length; i++) {
+    //   console.log("LOOK AT ME!!!")
+    //   // this.instructorData = this.DialogData.instructor[i].singleInstructor
+    //   this.addInstructor(this.instructorData.name)
+    //   console.log("----------",this.instructorData.name);
+    // }
     this.addCheckboxes();
     this.startingDate = new Date(this.DialogData.startingDate)
 
@@ -132,6 +136,9 @@ export class EditJobModalComponent implements OnInit {
     this.getInstructors();
     this.getChecked();
     this.getDates();
+
+    // console.log("selectedInstructor", this.selectedInstructor[0].name)
+    
 
     // this.selectedCourse = this.DialogData.course;
     
@@ -186,52 +193,6 @@ export class EditJobModalComponent implements OnInit {
     this.startingDate = $event.value;
     this.temp = moment($event.value);
   }
-
-  // onCheckChange(event, dayOfTheWeek, day) {
-  //   this.duration = this.addJobForm.get('course').controls[0].value.course.duration
-  //   console.log(this.addJobForm.get('course').controls[0].value.course.duration)
-
-  //   if (event == true) {
-  //     if (this.startingDate.getDay() == dayOfTheWeek) {
-  //       console.log(this.startingDate.getDay(), '==', dayOfTheWeek)
-  //       this.courseDates.push(this.startingDate)
-  //     }
-  //     this.totalDays.push(day)
-
-  //     let tempDate: Date = this.temp.toDate();
-  //     for (var i = 0; i < this.duration; i++) {
-  //       let days = (7 - tempDate.getDay() + dayOfTheWeek)
-  //       if (days >= 8) {
-  //         days = (-1) * (7 - days);
-  //       }
-  //       let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-  //       this.courseDates.push(tempDate)
-  //       tempDate = nextDay;
-  //     }
-  //   }
-
-  //   else {
-  //     for (var i = 0; i < this.totalDays.length; i++) {
-  //       if (this.totalDays[i] == day) {
-  //         this.totalDays.splice(i, 1)
-  //       }
-  //     }
-  //     let tempDate: Date = this.temp.toDate();
-  //     for (var i = 0; i < this.duration; i++) {
-  //       let days = (7 - tempDate.getDay() + dayOfTheWeek)
-  //       if (days >= 8) {
-  //         days = (-1) * (7 - days);
-  //       }
-  //       let nextDay = new Date(tempDate.setDate(tempDate.getDate() + days))
-  //       for (var j = 0; j < this.courseDates.length; j++) {
-  //         if (this.courseDates[j].getDay() == nextDay.getDay()) {
-  //           this.courseDates.splice(j, 1)
-  //         }
-  //       }
-  //     }
-  //   }
-  //   this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
-  // }
 
   datesForJobChange($event, index) {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
@@ -334,7 +295,17 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {
       this.instructors = instructors;
+
+      this.DialogData.instructor.forEach((id)=>{
+        this.instructors.forEach((item)=>{
+          if(item._id == id){
+            this.selectedInstructor.push(item)
+          }
+        })
+      })
+      this.selectedInstructor.forEach((item) => {
+        console.log("HAHAHAHAHA", item.name)
+      })
     });
   }
-  
 }
