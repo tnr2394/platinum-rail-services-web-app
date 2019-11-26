@@ -37,7 +37,7 @@ export class JobDatesComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log("IN JOBDATE", this.frequency, this.duration, this.startingDate, this.singleJobDate)
+    console.log("IN JOBDATE", this.frequency, this.duration, "STARTING DATE IS: ",this.startingDate, this.singleJobDate)
 
     this.dateForm = this.formBuilder.group({
       frequency: new FormArray([]),

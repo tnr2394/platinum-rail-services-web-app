@@ -43,13 +43,13 @@
 
             <div class='row'>
                 <div class='max-height col center'>
-                    <div [formArrayName]="instructor"
+                    <div formArrayName="instructor"
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
-                                        {{instructor.name}}</mat-option>
+                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor.name'>
+                                        {{instructor.name}}</mat-option> 
                                 </mat-select>
                             </mat-form-field>
                             <button class='buttonTransparent' (click)='removeInstructor()'><i
@@ -61,12 +61,11 @@
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-select formControlName="course" placeholder="Choose Course" #selected>
-                                    <!-- <mat-select-trigger>  -->
-                                        <!-- {{selected.value}} -->
-                                    <!-- </mat-select-trigger> -->
+                                <mat-select formControlName="course" placeholder="Choose Course" #selected [(value)]='selectedCourse'>
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
-                                        [(value)]='course'><span
+                                        [(value)]='course'>
+                                        <!-- {{selectedCourse.title}} -->
+                                        <span
                                             class="badge position">{{course.duration}}</span> - {{course.title}}
                                     </mat-option>
                                 </mat-select>
@@ -84,9 +83,9 @@
                 <div class='col center'>
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
-                            (dateChange)='searchDays($event)' [errorStateMatcher]="matcher">
+                             (change)='daySelection($event,startingDate)' [errorStateMatcher]="matcher">
                             <!-- (onDaySelection)='daySelection($event,startingDate)' -->
-                            
+                            <!-- (dateChange)='searchDays($event)' -->
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <!-- <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">

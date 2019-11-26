@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
 
@@ -49,6 +49,7 @@ export class EditJobModalComponent implements OnInit {
   loading: Boolean = false;
   selectedClient;
   selectedLocation;
+  selectedCourse;
   // selectedClient = {
     // name: "",
     // _id: ""
@@ -120,8 +121,8 @@ export class EditJobModalComponent implements OnInit {
     for (var i = 1; i < this.DialogData.instructor.length; i++) {
       console.log("LOOK AT ME!!!")
       this.instructorData = this.DialogData.instructor[i].singleInstructor
-      this.addInstructor(this.instructorData)
-      console.log(this.instructorData);
+      this.addInstructor(this.instructorData.name)
+      console.log("----------",this.instructorData.name);
     }
     this.addCheckboxes();
     this.startingDate = new Date(this.DialogData.startingDate)
@@ -132,6 +133,7 @@ export class EditJobModalComponent implements OnInit {
     this.getChecked();
     this.getDates();
 
+    // this.selectedCourse = this.DialogData.course;
     
   }
 
@@ -143,7 +145,7 @@ export class EditJobModalComponent implements OnInit {
 
   course(): FormGroup {
     return this.formBuilder.group({
-      course: new FormControl(this.DialogData.course)
+      course: new FormControl()
     })
   }
 
@@ -283,16 +285,16 @@ export class EditJobModalComponent implements OnInit {
     this._clientService.getClients().subscribe((clients) => {
       this.clients = clients;
       console.log("Getting clients for edit model", this.clients)
-
+      let i = 0;
       this.clients.forEach((client) => {
-        let i = 0;
         console.log("TEST")
         if ( this.DialogData.client._id === client._id ){
           console.log("Same at", i)
           this.selectedClient = this.clients[i]
 
+          let j = 0; 
           client.locations.forEach((location)=>{
-            let j = 0; 
+            
             if( this.DialogData.location._id === location._id){
               console.log("index at same location is", j)
               this.selectedLocation = this.clients[i].locations[j]
@@ -310,6 +312,20 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._courseService.getCourses().subscribe((courses) => {
       this.courses = courses;
+      console.log("COURSES", this.courses)
+      console.log("DIALOG DATA", this.DialogData.course)
+      let i = 0;
+      this.courses.forEach((course) =>{
+        if( course._id === this.DialogData.course._id){
+          this.selectedCourse = this.courses[i];
+          console.log(this.selectedCourse)
+        }
+        i += 1;
+      })
+      console.log(this.selectedCourse)
+      // this.addJobForm.setControl('course[0].course', (this.selectedCourse))
+      // this.addJobForm = new FormGroup({course : this.selectedCourse})
+      // console.log(this.addJobForm.get('course').controls.push(this.selectedCourse))
     });
   }
 
