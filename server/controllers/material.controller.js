@@ -80,7 +80,7 @@ materialController.updateMaterial = async function(req, res, next) {
     };
     console.log("Update material DOA in material-Controller",req.body);
      
-    materialDOA.updatematerial(updatedMaterial).then(material=>{
+    materialDOA.updateMaterial(updatedMaterial).then(material=>{
         console.log("Updated material in controller",material);
         courseDOA.addMaterial(req.body.course,material._id)
         .then(updatedCourse=>{
@@ -102,7 +102,6 @@ materialController.deleteMaterial = function(req,res,next){
     console.log("material to be deleted : ",materialId);
     materialDOA.deleteMaterial(materialId)
     .then(deleted=>{
-        // ALSO DELETE THIS ID FROM COURSES.MATERIALS[]
         console.log("Deleted ",deleted);
         return res.send({data:{}, msg:"Deleted Successfully"});
     },err=>{

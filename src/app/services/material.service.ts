@@ -58,6 +58,7 @@ editMaterial(data:any): Observable<any> {
 deleteMaterial(id){
   return new Observable((observer)=>{
     this.http.delete("http://localhost:3000/materials?_id="+id).subscribe((res:any)=>{
+    console.log("Deleted Material Response in service = ",res);
     observer.next(res.data.material);
     // observer.complete();
   },err=>{
