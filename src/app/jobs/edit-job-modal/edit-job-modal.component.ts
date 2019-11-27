@@ -37,9 +37,9 @@ export class EditJobModalComponent implements OnInit {
   duration;
   finalCourseDates = [];
   instructor: FormArray;
+  course: FormArray;
   matcher = new MyErrorStateMatcher();
-
-  // 
+ 
   title;
   color;
   client;
@@ -53,25 +53,7 @@ export class EditJobModalComponent implements OnInit {
   selectedCourse;
   selectedInstructor = [];
   jobDateComponent : JobDatesComponent;
-
-  // selectedClient = {
-    // name: "",
-    // _id: ""
-  // };
-
-  x = [];
-
-  profiles = [
-    { id: 'dev', name: 'Developer' },
-    { id: 'man', name: 'Manager' },
-    { id: 'dir', name: 'Director' }
-  ];
-  y = [];
-  selectedProfile;
-  // selectedProfile = this.profiles[1]; 
-  // selectedProfile = this.y;
   
-
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
     { id: '1', day: 'Monday', checked: false },
@@ -98,37 +80,30 @@ export class EditJobModalComponent implements OnInit {
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
 
   ngOnInit() {
-
-    console.log('-----DATA-----', this.DialogData)
     this.DialogData.totalDays.forEach((day)=>{
       this.totalDays.push(day)
-    })
+    })        
     this.DialogData.singleJobDate.forEach((date)=>{
       this.singleJobDate.push(date)
     })
 
-    let newDate = new Date(this.DialogData.startingDate)
-    console.log("+++++++++++", newDate)
     this.color = this.DialogData.color;
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
       client: new FormControl(),
-      instructor: new FormArray([this.createInstructor(this.selectedInstructor[0])]),
+      instructor: new FormArray([]),
       location: new FormControl(),
-      course: new FormArray([this.course()]),
+      course: new FormArray([]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
       frequency: new FormArray([]),
       singleJobDate: new FormControl(),
       totalDays: new FormControl()
     });
-    // for (var i = 1; i < this.DialogData.instructor.length; i++) {
-    //   console.log("LOOK AT ME!!!")
-    //   // this.instructorData = this.DialogData.instructor[i].singleInstructor
-    //   this.addInstructor(this.instructorData.name)
-    //   console.log("----------",this.instructorData.name);
-    // }
-    this.addCheckboxes();
+    this.selectedInstructor.forEach((item)=>{
+      console.log("LOOK AT ME!!!")
+      this.instructorData = item
+    })
     this.startingDate = new Date(this.DialogData.startingDate)
 
     this.getClients();
@@ -136,39 +111,30 @@ export class EditJobModalComponent implements OnInit {
     this.getInstructors();
     this.getChecked();
     this.getDates();
-
-    // console.log("selectedInstructor", this.selectedInstructor[0].name)
-    
-
-    // this.selectedCourse = this.DialogData.course;
-    
   }
-
   createInstructor(data): FormGroup {
     return this.formBuilder.group({
       singleInstructor: new FormControl(data)
     })
   }
 
-  course(): FormGroup {
+  createCourse(data): FormGroup {
+    console.log("IN COURSE CREATION", data)
     return this.formBuilder.group({
-      course: new FormControl()
+      course: new FormControl(data)
     })
   }
 
+  addCourse(x){
+    this.course = this.addJobForm.get('course') as FormArray;
+    this.course.push(this.createCourse(x))
+  }
   addInstructor(data) {
     this.instructor = this.addJobForm.get('instructor') as FormArray;
     this.instructor.push(this.createInstructor(data))
   }
   removeInstructor() {
     this.instructor.removeAt(this.instructor.length - 1);
-  }
-
-  addCheckboxes() {
-    this.frequencyDays.forEach(() => {
-      const control = new FormControl();
-      (this.addJobForm.controls.frequency as FormArray).push(control);
-    });
   }
   getChecked(){
     console.log("IN CHECKED");
@@ -209,6 +175,7 @@ export class EditJobModalComponent implements OnInit {
     }
 
     let id = (this.DialogData._id)
+    console.log("ALL INSTRUCTORS", this.selectedInstructor)
 
     console.log("VALUE",this.addJobForm.value)
     
@@ -279,14 +246,10 @@ export class EditJobModalComponent implements OnInit {
       this.courses.forEach((course) =>{
         if( course._id === this.DialogData.course._id){
           this.selectedCourse = this.courses[i];
-          console.log(this.selectedCourse)
+          this.addCourse(course)
         }
         i += 1;
       })
-      console.log(this.selectedCourse)
-      // this.addJobForm.setControl('course[0].course', (this.selectedCourse))
-      // this.addJobForm = new FormGroup({course : this.selectedCourse})
-      // console.log(this.addJobForm.get('course').controls.push(this.selectedCourse))
     });
   }
 
@@ -304,7 +267,7 @@ export class EditJobModalComponent implements OnInit {
         })
       })
       this.selectedInstructor.forEach((item) => {
-        console.log("HAHAHAHAHA", item.name)
+        this.addInstructor(item)
       })
     });
   }

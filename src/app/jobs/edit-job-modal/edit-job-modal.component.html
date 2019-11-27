@@ -46,24 +46,38 @@
                     <div formArrayName="instructor"
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
+                            <div *ngFor='let oneInstructorDetail of selectedInstructor'>
                             <mat-form-field>
-                                <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
+                                <mat-select formControlName="singleInstructor"  placeholder="Choose Instructor" [value]='oneInstructorDetail'>
                                     <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
                                         {{instructor.name}}</mat-option> 
                                 </mat-select>
                             </mat-form-field>
                             <button class='buttonTransparent' (click)='removeInstructor()'><i
                                     class="fa fa-times close-color"></i> </button>
+                            </div>
                         </div>
                     </div>
+                    <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'>
+                        {{oneInstructorDetail}}
+                    <mat-form-field >
+                        <mat-select placeholder="Choose Instructor" [(value)]='oneInstructorDetail' ngModel>
+                            <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                {{instructor.name}}</mat-option>
+                                {{instructor}}
+                        </mat-select>
+                    </mat-form-field>
+                    <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
+                    </div> -->
                 </div>
                 <div class='col center'>
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-select formControlName="course" placeholder="Choose Course" #selected [(value)]='selectedCourse'>
+                                <mat-select formControlName="course" placeholder="Choose Course">
+                                    {{selectedCourse}}
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
-                                        [(value)]='course'>
+                                        [value]='course'>
                                         <!-- {{selectedCourse.title}} -->
                                         <span
                                             class="badge position">{{course.duration}}</span> - {{course.title}}
@@ -98,15 +112,24 @@
         </div>
     </div>
 </form>
-<div mat-dialog-actions>
-    <div class='submitButton'>
-        <button mat-flat-button class="pull-right resetButton" (click)="ngOnInit()">
-            <i class="fa fa-repeat"></i>
-            Reset
-        </button>
-        <button mat-flat-button color="primary" class="pull-right" (click)="addJob()">
-            <i class="fas fa-plus fa-fw"></i>
-            Add Job
+<!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'> -->
+                        <!-- {{oneInstructorDetail}} -->
+                        <!-- (selectionChange)='instructorChange($event)' -->
+                    <!-- <mat-form-field >
+                        <mat-select placeholder="Choose Instructor"  [(value)]='oneInstructorDetail'>
+                            <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                {{instructor.name}}</mat-option>
+                                {{instructor}}
+                        </mat-select>
+                    </mat-form-field>
+                    <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
+</div> -->
+<div mat-dialog-actions class="center">
+    <div *ngIf="!loading">
+        <button mat-flat-button color="primary" (click)='addJob()'><i class="fas fa-save fa-fw"></i> Save</button>
+        <button mat-flat-button type="button" color="warn" class="text-white pull-right" (click)="delete()">
+            <i class="fas fa-trash fa-fw"></i>
+            Delete
         </button>
     </div>
 </div>
