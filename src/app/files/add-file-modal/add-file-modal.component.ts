@@ -1,0 +1,71 @@
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload';
+import { post } from 'selenium-webdriver/http';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MaterialService } from 'src/app/services/material.service';
+import {FileService} from 'src/app/services/file.service';
+@Component({
+  selector: 'app-add-file-modal',
+  templateUrl: './add-file-modal.component.html',
+  styleUrls: ['./add-file-modal.component.scss']
+})
+export class AddFileModalComponent  implements OnInit {
+  loading: Boolean = false;
+  uploadFile = new FormGroup({
+    name: new FormControl()
+  });
+  
+  ngOnInit(): void {
+    console.log("Upload files initialized",this.data);
+  }
+  constructor(public cd:ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService) {
+    // NO DEFINITION
+  }
+  onFileChange(event, field) {
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      // just checking if it is an image, ignore if you want
+      if (!file.type.startsWith('image')) {
+        this.uploadFile.get(field).setErrors({
+          required: true
+        });
+        this.cd.markForCheck();
+      } else {
+        // unlike most tutorials, i am using the actual Blob/file object instead of the data-url
+        this.uploadFile.patchValue({
+          [field]: file
+        });
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      }
+    }
+  }
+
+  
+  doSubmit(){
+    console.log("Submit ",this.data);
+
+    let formData = new FormData();
+    formData.set('name',this.uploadFile.controls['name'].value);
+    formData.set('materialId',this.data.materialId);
+    // Do Submit
+    this.loading = true;    
+    this._fileService.addFiles(formData).subscribe(data=>{
+      this.data = data;
+      this.loading = false;
+      this.dialogRef.close(data);
+      
+    },err=>{
+      alert("Error Uploading Files.")
+      this.loading = false;
+      this.dialogRef.close();
+      
+    });
+  }
+  
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}

@@ -7,6 +7,8 @@ var properties = require('./config/properties');
 var db = require('./config/database');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+const fileUpload = require('express-fileupload');
+
 db();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,11 +27,21 @@ var bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
+app.use(fileUpload());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
+app.use(cors({
+  credentials: false
+}));
+// Add headers
+app.use(function (req, res, next) {
+  console.log("Setting header for allowing origin")
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  next();
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

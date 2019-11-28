@@ -10,4 +10,13 @@ router.put('/', materialController.updateMaterial);
 // Delete Material
 router.delete('/', materialController.deleteMaterial);
 
+// FILE OPERATIONS
+/* GET Files listing. */
+router.get('/files', materialController.getFiles);
+// ADD Material
+router.post('/files', materialController.addFile);
+// Delete Material
+router.delete('/files', materialController.deleteFile);
+
+
 module.exports = router;

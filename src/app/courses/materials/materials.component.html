@@ -25,11 +25,13 @@
                                 
                             </div>
                             <!--Text-->
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-6">
-                                    <material-tile *ngFor="let material of materials" [material]="material"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                    <material-tile *ngFor="let material of materials" [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                 </div>
-                                
+                                <div class="col-6" *ngIf="selectedMaterial">
+                                    <material-files  [materialId]="selectedMaterial"></material-files>
+                                </div>
                             </div>
                             <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                         </div>

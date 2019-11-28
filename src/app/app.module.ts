@@ -4,6 +4,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 
 // Calendar
@@ -54,6 +56,10 @@ import { JobComponent } from './jobs/job/job.component';
 import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
 import { MaterialsComponent } from './courses/materials/materials.component';
 import { MaterialTileComponent } from './commons/material-tile/material-tile.component';
+import { FileTileComponent } from './commons/file-tile/file-tile.component';
+import { FilesComponent } from './files/files.component';
+import { AddFileModalComponent } from './files/add-file-modal/add-file-modal.component';
+import { EditFileModalComponent } from './files/edit-file-modal/edit-file-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +93,11 @@ import { MaterialTileComponent } from './commons/material-tile/material-tile.com
     MaterialTileComponent,
     EditLearnerModalComponent,
     AddMaterialModalComponent,
-    EditMaterialModalComponent
+    EditMaterialModalComponent,
+    FileTileComponent,
+    FilesComponent,
+    AddFileModalComponent,
+    EditFileModalComponent
   ],
   imports: [
     BrowserModule,
@@ -114,9 +124,9 @@ import { MaterialTileComponent } from './commons/material-tile/material-tile.com
     CdkTableModule,
     MatSnackBarModule,
     ColorPickerModule,
-
+    FileUploadModule
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent,AddMaterialModalComponent,EditMaterialModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent,AddMaterialModalComponent,EditMaterialModalComponent,AddFileModalComponent,EditFileModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 
