@@ -11,7 +11,7 @@ var fileSchema = new Schema({
         required: true
     },
     path : {
-        type: path,
+        type: String,
         required : false
     },
     uploadedBy:{

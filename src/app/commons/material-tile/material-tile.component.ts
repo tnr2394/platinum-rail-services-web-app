@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 })
 export class MaterialTileComponent implements OnInit {
   @Input('material') material: any;
+  @Input('isSelected') isSelected: Boolean;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   backupMaterial: any;
@@ -25,13 +26,16 @@ export class MaterialTileComponent implements OnInit {
     // this.DeleteMaterial.emit("Hello");
     console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
+    
   }
   
   getMaterialFiles(){
-    console.log("Getting Material Files by event",this.material.files);
-    this.getFiles.emit(this.material.files);
-
+    console.log("Getting Material ID from materialTile component");
+    this.getFiles.emit({
+      materialId: this.material._id,
+      });
   }
+
   editmaterial(){
     console.log("Enabling Editing")
     this.editing = true;

@@ -115,20 +115,28 @@ materialController.deleteMaterial = function(req,res,next){
 materialController.addFile = (req,res,next)=>{
     // Add File in File DAO.
     // Add file id in Material DAO.
+    console.log("ADD FILES REACHED");
+    console.log("FILES=",req.files);
+    console.log("body=",req.body);
+    // return res.send({body: req.body,files:req.files});
 
     var newFile = {
-        title: req.body.title,
+        title: req.body.name,
         type: "material",// OR SUBMISSION OR DOCUMENT
         path: "NEWPATH",
         extension: "ppt",
         uploadedBy: "ADMIN",
         uploadedDate: new Date()
     }
+    materialId = req.body.materialId;
+    if(!materialId) return res.status(500).send({msg:"Material ID not found"});
+    console.log("Adding new file to materialID = ",materialId);
 
-    console.log("Adding new file");
     fileDOA.addFile(newFile).then((addedFile)=>{
-        materialDOA.addFile(addedFile).then((updatedMaterial)=>{
+        console.log("File added in collection. now adding it to materials.");
+        materialDOA.addFile(materialId,addedFile._id).then((updatedMaterial)=>{
             console.log("material Updated",updatedMaterial);
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
             res.send({data:{file: addedFile}});
         })
         .then(err=>{
@@ -138,9 +146,27 @@ materialController.addFile = (req,res,next)=>{
     .then(err=>{
         console.error(err);
     })
-
 }
 
+materialController.getFiles = function(req,res,next){
+    let query = {};
+    if(req.query){
+        query = req.query
+    }
+    if(!query._id){
+        return res.status(500).send("NO MATERIAL ID FOUND");
+    }
+    console.log("GET Materials query = ",query,"Params = ",req.query);
+    materialDOA.getFiles(query)
+    .then(foundMaterial=>{
+        console.log("Returing material - "+foundMaterial.files.length);
+        return res.send({data:{files: foundMaterial.files}});
+    },err=>{
+        console.error(err);
+        return res.status(500).send({err});
+    })
 
+};
+materialController.deleteFile = function(req,res,next){};
 
 module.exports = materialController;

@@ -1,7 +1,18 @@
-var fileModel = require('../models/client.model');
-var Q = require('q');
-
 var file = {};
+
+
+var Q = require('q');
+var fileModel = require('../models/file.model');
+var aws = require('aws-sdk')
+var multer = require('multer')
+var multerS3 = require('multer-s3')
+var s3 = new aws.S3({ /* ... */ })
+var storage = multer.memoryStorage({
+    destination: function(req, file, callback) {
+        callback(null, '');
+    }
+});
+var multipleUpload = multer({ storage: storage }).array('file');
 
 
 file.getFiles =  async  function(query) {
@@ -27,13 +38,14 @@ file.getfile =  async  function(query) {
 
 
 file.addFile = function(object) {
-    console.log("ADD File",object);
+    console.log("ADD File in file DOA",object);
     var q = Q.defer();
     // UPLOAD FILE CODE HERE. 
     // 1. UPLOAD FILE TO S3 Buckets
     // 2. Add path to the newFile object
     // 3. Return New File object after uploading it to "files" collection
     var newFile = new fileModel(object);
+    console.log("NEW FILE TO BE ADDED IN MODEL =",newFile);
     newFile.save((err,file)=>{
         if(err) return q.reject(err);
         

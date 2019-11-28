@@ -1,27 +1,37 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AddFileModalComponent } from './add-file-modal/add-file-modal.component';
 import { EditFileModalComponent } from './edit-file-modal/edit-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import {FileService} from '../services/file.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'files',
+  selector: 'material-files',
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.scss']
 })
-export class FilesComponent implements OnInit {
-  @Input('files') files: any;
+export class FilesComponent implements OnInit, OnChanges {
+  files=[];
+  @Input('materialId') materialId: any;
+  
   materials: any;
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar,) { }
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar,public _fileService: FileService) { 
+  }
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    console.log("SOMETHING CHANGED!!",this.materialId);
+    this.getFiles();
 
+  }
+  
   ngOnInit() {
-    console.log("Initialized Files component by",this.files);
+    console.log("Initialized Files component by",this.files,{materialId: this.materialId});
+    this.getFiles();
   }
 
   
   // MODALS
   addFileModal(){
-    var addedCourse = this.openDialog(AddFileModalComponent ).subscribe((courses)=>{
+    var addedCourse = this.openDialog(AddFileModalComponent,{materialId: this.materialId} ).subscribe((courses)=>{
       if(courses == undefined) return;
       console.log("Course added in controller = ",courses);
       this.files.push(courses);
@@ -90,4 +100,15 @@ export class FilesComponent implements OnInit {
     });
   }
   
+
+  // API
+  getFiles(){
+    console.log("Getting files in files component for materialID = ",this.materialId);
+    this._fileService.getFilesByMaterial(this.materialId)
+    .subscribe(files=>{
+      console.log("Response from service",files);
+      this.files = files;
+      console.log("Files updated with - ",files);
+    })
+  }
 }

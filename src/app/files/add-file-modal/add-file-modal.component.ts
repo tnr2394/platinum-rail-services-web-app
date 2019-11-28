@@ -1,57 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-
-
+import { post } from 'selenium-webdriver/http';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MaterialService } from 'src/app/services/material.service';
+import {FileService} from 'src/app/services/file.service';
 @Component({
   selector: 'app-add-file-modal',
   templateUrl: './add-file-modal.component.html',
   styleUrls: ['./add-file-modal.component.scss']
 })
-export class AddFileModalComponent implements OnInit {
-  uploader:FileUploader;
-  hasBaseDropZoneOver:boolean;
-  hasAnotherDropZoneOver:boolean;
-  response:string;
-
-  
-  constructor (){
-  
-    this.hasBaseDropZoneOver = false;
-    this.hasAnotherDropZoneOver = false;
- 
-    this.response = '';
- 
-    this.uploader.response.subscribe( res => this.response = res );
-  }
-
+export class AddFileModalComponent  implements OnInit {
+  loading: Boolean = false;
+  uploadFile = new FormGroup({
+    name: new FormControl()
+  });
   
   ngOnInit(): void {
-    this.uploader = new FileUploader({
-      url: URL,
-      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      formatDataFunctionIsAsync: true,
-      formatDataFunction: async (item) => {
-        return new Promise( (resolve, reject) => {
-          resolve({
-            name: item._file.name,
-            length: item._file.size,
-            contentType: item._file.type,
-            date: new Date()
-          });
+    console.log("Upload files initialized",this.data);
+  }
+  constructor(public cd:ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService) {
+    // NO DEFINITION
+  }
+  onFileChange(event, field) {
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      // just checking if it is an image, ignore if you want
+      if (!file.type.startsWith('image')) {
+        this.uploadFile.get(field).setErrors({
+          required: true
         });
+        this.cd.markForCheck();
+      } else {
+        // unlike most tutorials, i am using the actual Blob/file object instead of the data-url
+        this.uploadFile.patchValue({
+          [field]: file
+        });
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
       }
-    });
- 
+    }
+  }
 
+  
+  doSubmit(){
+    console.log("Submit ",this.data);
+
+    let formData = new FormData();
+    formData.set('name',this.uploadFile.controls['name'].value);
+    formData.set('materialId',this.data.materialId);
+    // Do Submit
+    this.loading = true;    
+    this._fileService.addFiles(formData).subscribe(data=>{
+      this.data = data;
+      this.loading = false;
+      this.dialogRef.close(data);
+      
+    },err=>{
+      alert("Error Uploading Files.")
+      this.loading = false;
+      this.dialogRef.close();
+      
+    });
   }
   
- 
- 
-  public fileOverBase(e:any):void {
-    this.hasBaseDropZoneOver = e;
-  }
- 
-  public fileOverAnother(e:any):void {
-    this.hasAnotherDropZoneOver = e;
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

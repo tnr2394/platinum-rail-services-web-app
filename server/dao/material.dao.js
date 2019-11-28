@@ -76,18 +76,31 @@ material.deleteMaterial = function(materialId){
     return q.promise;
 }
 
-material.addFile = function(materialId){
+material.addFile = function(materialId,fileId){
+    console.log("Adding file to material DOA ",{materialId,fileId});
     var q = Q.defer();
-    materialModel.findByIdAndUpdate(materialId,{new:true},(err,updatedMaterial)=>{
+    materialModel.findByIdAndUpdate(materialId,{$addToSet:{files:fileId}},{new:true},(err,updatedMaterial)=>{
         if(err) return q.reject(err);
         else{
-            console.log("material Updated with new file Successfully =  ",material,q);
+            console.log("material Updated with new file Successfully =  ",updatedMaterial.files);
             return q.resolve(updatedMaterial);
         }
     });
+    return q.promise;
 }
 
-
+material.getFiles = function(materialId){
+    var q = Q.defer();
+    materialModel
+    .findOne({_id: materialId})
+    .populate("files")
+    .exec((err,material)=>{
+        if(err) return q.reject(err);
+        console.log("Material Files Found in DAO ",material.files);
+        return q.resolve(material);
+    })
+    return q.promise;
+}
 
 
 

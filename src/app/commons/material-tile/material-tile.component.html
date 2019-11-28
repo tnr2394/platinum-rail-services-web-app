@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [ngClass]="{'active-material' : isSelected}">
     <div class="container">
         <!-- NOT EDITING -->
         <div class="row" *ngIf="!editing">
