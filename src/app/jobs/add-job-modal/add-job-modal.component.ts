@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -49,6 +49,12 @@ export class AddJobModalComponent implements OnInit {
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log('startingDate changed')
+  //   //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+  //   //Add '${implements OnChanges}' to the class.
+    
+  // }
 
 
   clientChanged(data){

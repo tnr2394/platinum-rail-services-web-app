@@ -112,6 +112,7 @@ export class EditJobModalComponent implements OnInit {
     this.getInstructors();
     this.getChecked();
     this.getDates();
+    // console.log("duration",this.duration)
   }
   createInstructor(data): FormGroup {
     return this.formBuilder.group({
@@ -163,6 +164,11 @@ export class EditJobModalComponent implements OnInit {
 
   datesForJobChange($event, index) {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
+  }
+
+  courseChanged(event){
+    console.log('EVENT', event.value)
+    this.duration = event.value.duration
   }
 
   addJob() {
@@ -290,7 +296,6 @@ export class EditJobModalComponent implements OnInit {
 
           let j = 0; 
           client.locations.forEach((location)=>{
-            
             if( this.DialogData.location._id === location._id){
               console.log("index at same location is", j)
               this.selectedLocation = this.clients[i].locations[j]
@@ -314,6 +319,7 @@ export class EditJobModalComponent implements OnInit {
       this.courses.forEach((course) =>{
         if( course._id === this.DialogData.course._id){
           this.selectedCourse = this.courses[i];
+          this.duration = this.courses[i].duration;
           this.addCourse(course)
         }
         i += 1;

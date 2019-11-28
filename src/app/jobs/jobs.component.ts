@@ -21,6 +21,7 @@ import { FormsModule, NgForm } from '@angular/forms'
   styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
+  test = [];
   searchText: string;
   jobs;
   courses: any = [];
@@ -100,9 +101,10 @@ export class JobsComponent implements OnInit {
   getStatus(jobs){
     console.log('in status', jobs.length)
     // jobs.forEach((item)=>{
-    //   console.log("---ITEM")
+      // console.log("---ITEM")
     // })
     let today = new Date();
+    
       if(jobs.length != undefined){
         for(var i = 0; i < jobs.length ; i++){
         let status;
@@ -123,7 +125,31 @@ export class JobsComponent implements OnInit {
       this.jobs = jobs;
   }}
   else{
-      Object.assign(jobs, { status: 'New' }) 
+
+      // Object.assign(jobs, { status: 'New' }) 
+        for (var j = 0; j < jobs.singleJobDate.length; j++) {
+          console.log("in else for loop")
+          let lastDate = new Date(jobs.singleJobDate.slice(-1)[0])
+          let firstDate = new Date(jobs.singleJobDate[0])
+          if (lastDate < today) {
+            status = 'Completed'
+          }
+          else if (firstDate < today && lastDate > today) {
+            status = 'Active'
+          }
+          else {
+            status = 'New'
+          }
+        }
+        this.jobs.forEach((job)=>{
+          if(job._id == jobs.id){
+            Object.assign(job, { status: status })
+            console.log("JOB", job)
+          }
+        })
+          //
+        // this.jobs.push(jobs);
+      console.log("ONLY SINGLE JOB", jobs)
   }}
     
     // UTILITY
