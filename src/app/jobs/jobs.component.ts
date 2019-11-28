@@ -98,7 +98,10 @@ export class JobsComponent implements OnInit {
     }
     
   getStatus(jobs){
-    console.log('in status', jobs)
+    console.log('in status', jobs.length)
+    // jobs.forEach((item)=>{
+    //   console.log("---ITEM")
+    // })
     let today = new Date();
       if(jobs.length != undefined){
         for(var i = 0; i < jobs.length ; i++){
@@ -172,8 +175,10 @@ export class JobsComponent implements OnInit {
         console.log("HANDLING EDIT SUCCESS", data);
         data = data;
         var Index = this.jobs.findIndex(function (i) {
-          return i._id === data._id;
+          console.log("GETTING INDEX", data)
+          return i._id === data.data.id;
         })
+        this.getStatus(data.data)
         this.jobs[Index] = data.data;
       }
       // DELETE HANDLE
@@ -184,13 +189,10 @@ export class JobsComponent implements OnInit {
         }), 1);
       }
       this.updateData(this.jobs);
-      this.handleSnackBar({ msg: "Client Deleted Successfully", button: "Ok" });
+      this.handleSnackBar({ msg: "Changes made Successfully", button: "Ok" });
     });
   }
-    
-    
-    
-    
+
   handleSnackBar(data) {
     this.openSnackBar(data.msg, data.button);
   }
