@@ -6,150 +6,160 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
   providedIn: 'root'
 })
 export class FileService {
-  clients:any = [];
-  constructor(private http: HttpClient) { 
+  clients: any = [];
+  constructor(private http: HttpClient) {
     this.clients = [];
-    console.log("File Service initialized!!!!!!!",this.clients)
+    console.log("File Service initialized!!!!!!!", this.clients)
   }
-  
-  addFiles(data:any): Observable<any> {
-    console.log("Adding Files",data);
-  
-    return  new Observable<any>((observer)=>{
+
+  addFiles(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/materials/files",data).subscribe((res:any)=>{
-  
-      observer.next(res.data.file);
+      this.http.post("http://localhost:3000/materials/files", data).subscribe((res: any) => {
+
+        observer.next(res.data.file);
         // observer.complete();
-      },err=>{
+      }, err => {
         console.log("ERROR ")
         observer.error(err);
       },
-      ()=>{
-        console.log("CALL COMPLETED ")
-        observer.complete();
-      })
-  
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
     });
-  
+
   }
-  editClient(data:any): Observable<any> {
-    console.log("Edit clients",data);
-    return  new Observable<any>((observer)=>{
+
+
+  deleteFiles(id) {
+    return new Observable((observer) => {
+      this.http.delete("http://localhost:3000/materials/files?_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.file);
+        // observer.complete();
+      })
+    })
+  }
+
+  editClient(data: any): Observable<any> {
+    console.log("Edit clients", data);
+    return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.put("http://localhost:3000/clients",data).subscribe((res:any)=>{
-        console.log("Edited Course : ",res);
+      this.http.put("http://localhost:3000/clients", data).subscribe((res: any) => {
+        console.log("Edited Course : ", res);
         observer.next(res.data.client);
         // observer.complete();
-      },err=>{
+      }, err => {
         console.log("ERROR ")
         observer.error(err);
       },
-      ()=>{
-        console.log("CALL COMPLETED ")
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+
+  }
+
+  deleteClient(id) {
+    return new Observable((observer) => {
+      this.http.delete("http://localhost:3000/clients?_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.clients);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        });
+
+    })
+  }
+
+  deleteLocation(id) {
+    return new Observable((observer) => {
+      this.http.delete("http://localhost:3000/clients/location?_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.clients);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        });
+
+    })
+  }
+
+
+  getFilesByMaterial(id): Observable<any> {
+    console.log("Getting Files");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get("http://localhost:3000/materials/files?_id=" + id).subscribe((res: any) => {
+        console.log("Get Files Response : ", res);
+        observer.next(res.data.files);
         observer.complete();
       })
+
     });
-  
-  }
-  
-  deleteClient(id){
-    return new Observable((observer)=>{
-      this.http.delete("http://localhost:3000/clients?_id="+id).subscribe((res:any)=>{
-        observer.next(res.data.clients);
-        // observer.complete();
-      },err=>{
-        console.log("ERROR ")
-        observer.error(err);
-      },
-      ()=>{
-        console.log("CALL COMPLETED ")
-        observer.complete();
-      });
-      
-    })
   }
 
-  deleteLocation(id){
-    return new Observable((observer)=>{
-      this.http.delete("http://localhost:3000/clients/location?_id="+id).subscribe((res:any)=>{
-        observer.next(res.data.clients);
-        // observer.complete();
-      },err=>{
-        console.log("ERROR ")
-        observer.error(err);
-      },
-      ()=>{
-        console.log("CALL COMPLETED ")
-        observer.complete();
-      });
-      
-    })
-  }
 
-  
-    getFilesByMaterial(id): Observable<any>{
-      console.log("Getting Files");
+  addLocation(data: any): Observable<any> {
+    console.log("Adding location", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
       var that = this;
-      return  new Observable<any>((observer)=>{
-        console.log("Observable");
-        this.http.get("http://localhost:3000/materials/files?_id="+id).subscribe((res:any)=>{
-          console.log("Get Files Response : ",res);
-          observer.next(res.data.files);
-          observer.complete();
-        })
-    
-      });
-    }
-  
-  
-    addLocation(data:any): Observable<any> {
-      console.log("Adding location",data);
-    
-      return  new Observable<any>((observer)=>{
-        console.log("Observable");
-        var that = this;
-        this.http.post("http://localhost:3000/clients/location",data).subscribe((res:any)=>{
-        console.log("Received Sending = ",res.data.location)
+      this.http.post("http://localhost:3000/clients/location", data).subscribe((res: any) => {
+        console.log("Received Sending = ", res.data.location)
         observer.next(res.data.location);
-          // observer.complete();
-        },err=>{
-          console.log("ERROR ")
-          observer.error(err);
-        },
-        ()=>{
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
           console.log("CALL COMPLETED ")
           observer.complete();
         })
-    
-      });
-    
-    }
-  
-    updateLocation(data:any): Observable<any> {
-      console.log("Adding location",data);
-    
-      return  new Observable<any>((observer)=>{
-        console.log("Observable");
-        var that = this;
-        this.http.put("http://localhost:3000/clients/location",data).subscribe((res:any)=>{
-        console.log("Received Sending = ",res.data.location)
-        observer.next(res.data.location);
-          // observer.complete();
-        },err=>{
-          console.log("ERROR ")
-          observer.error(err);
-        },
-        ()=>{
-          console.log("CALL COMPLETED ")
-          observer.complete();
-        })
-    
-      });
-    
-    }
-  
-  
+
+    });
+
   }
-  
+
+  updateLocation(data: any): Observable<any> {
+    console.log("Adding location", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.put("http://localhost:3000/clients/location", data).subscribe((res: any) => {
+        console.log("Received Sending = ", res.data.location)
+        observer.next(res.data.location);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+
+  }
+
+
+}

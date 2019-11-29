@@ -1,15 +1,15 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Files </h1>
 <form (ngSubmit)='doSubmit()' [formGroup]="uploadFile">
-    <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
-            <input matInput name="name" placeholder="File Name"  formControlName="name" required cdkFocusInitial>
-            <!-- <mat-hint align="end">Not more then 60 characters long.</mat-hint> -->
-            <mat-error >Name is required</mat-error>
 
-        </mat-form-field>
-    </div>
-    <div mat-dialog-actions align="center" *ngIf="!loading"> 
-        <button mat-flat-button color="primary" type="submit" >
+    <button class="file_upload" type="button">
+        <span class="btn_lbl">Browse</span>
+        <span class="btn_colorlayer"></span>
+        <input type="file" formControlName="materialfile" name="fileupload" (change)="onFileChange($event)"
+            id="file_upload" />
+    </button>
+
+    <div mat-dialog-actions align="center" *ngIf="!loading">
+        <button mat-flat-button color="primary" type="submit">
             <i class="fas fa-save fa-fw"></i>
             Save
         </button>

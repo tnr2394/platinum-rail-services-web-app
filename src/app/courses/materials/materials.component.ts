@@ -154,7 +154,6 @@ export class MaterialsComponent implements OnInit {
     this.materials.splice(this.materials.findIndex(function(i){
       return i._id === event._id;
     }), 1);
-
   }
   
   loadMaterialFiles(event){

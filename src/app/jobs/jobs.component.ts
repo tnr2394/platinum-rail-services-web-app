@@ -144,7 +144,7 @@ export class JobsComponent implements OnInit {
       this.dataSource = this._filter.filter(searchText,this.jobs,['title','client']);
       this.dataSource.paginator = this.paginator;
       // this.iterator();
-    }  
+    } 
     // MODALS
     addJobModal(){
       var addedJob = this.openDialog(AddJobModalComponent, { width: '1000px', height:'967px'}).subscribe((job)=>{

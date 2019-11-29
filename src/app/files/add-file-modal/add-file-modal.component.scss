@@ -1,4 +1,65 @@
 .my-drop-zone { border: dotted 3px lightgray; }
     .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
     .another-file-over-class { border: dotted 3px green; }
+
+    // label.input-file-button {
+    //     background-color: #f84e5c;
+    //     color: white;
+    //     padding: 10px;
+    //     border-radius: 10px;
+    //     cursor: pointer;
+    //   }
+      
+    //   label.input-file-button span {
+    //     cursor: pointer;
+    //   }
+      
+    //   .input-file-button input[type="file"] {
+    //     display: none;
+    //   }
+
+    .file_upload {
+      position: relative;
+      padding: 7px;
+      min-width: 100px;
+      text-align: center;
+      color: #ee3333;
+      line-height: 25px;
+      background: #fff;
+      border: solid 2px #ee3333;
+      font-weight: 600;
+    }
+    
+    a.file_upload {
+      display: inline-block;
+    }
+    
+    .file_upload .btn_lbl {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    .file_upload .btn_colorlayer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .file_upload input[type="file"] {
+      position: absolute;
+      top: 3px;
+      left: -97px;
+      font-weight: 600;
+      margin-left: 100%;
+      color: #ee3333;
+      outline: none;
+    }
+      
+    
  

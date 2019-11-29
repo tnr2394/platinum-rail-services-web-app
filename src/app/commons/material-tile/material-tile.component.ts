@@ -39,7 +39,6 @@ export class MaterialTileComponent implements OnInit {
   editmaterial(){
     console.log("Enabling Editing")
     this.editing = true;
-    
   }
   updateMaterial(){
     this.loading = true;

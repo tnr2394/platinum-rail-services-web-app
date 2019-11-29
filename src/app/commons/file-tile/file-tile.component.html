@@ -1,5 +1,5 @@
-<div class="card" >
-    <div class="card-block " >
+<div class="card">
+    <div class="card-block ">
         <div class="row">
             <div class="col-3">
                 <i class="fas fa-powerpoint fa-2x"></i>
@@ -10,9 +10,16 @@
                         {{file.title}}
                     </div>
                     <div class="col-12">
-                        <a mat-button class="text-primary">
-                            <i class="fas fa-edit"></i>
+                        <a href="{{file.path}}" mat-button class="text-primary" download>
+                            <button mat-flat-button color="primary" type="submit"><i class="fa fa-download fa-fw"></i>
+                                Download</button>
                         </a>
+
+                        <button mat-flat-button type="button" color="warn" class="text-white pull-right"
+                            (click)="delete()">
+                            <i class="fas fa-trash fa-fw"></i>
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
