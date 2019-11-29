@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../../services/filter.service';
@@ -7,6 +7,7 @@ import { AddLearnerModalComponent } from '../../learners/add-learner-modal/add-l
 import { EditLearnerModalComponent } from '../../learners/edit-learner-modal/edit-learner-modal.component';
 import { Observable } from 'rxjs';
 import {JobService} from '../../services/job.service';
+import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component'
 
 @Component({
   selector: 'app-job',
@@ -16,6 +17,7 @@ import {JobService} from '../../services/job.service';
 export class JobComponent implements OnInit {
   job;
   learners: any = [];
+  materials = [];
   bgColors: string[];
   lastColor;
   length;
@@ -25,9 +27,10 @@ export class JobComponent implements OnInit {
   dataSource:  MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+  displayAllocate: Boolean = true;
   
   
-  constructor(public _learnerService: LearnerService,public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
+  constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info","badge-success","badge-warning","badge-primary","badge-danger"]; 
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
@@ -40,11 +43,38 @@ export class JobComponent implements OnInit {
       this.getJob(this.job);
     })    
   }
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    return dialogRef.afterClosed();
+  }
   
-  
-  
-  
-  
+  loadLearners(object){
+    console.log("OBJECT", object)
+    this.learners = object.learners;
+    console.log("Learners loaded by event = ",object.learners);
+  }
+  loadMaterials(object){
+    this.materials = object.materials;
+    console.log('OBJECT', object)
+  }
+
+  allocateLearners(){
+    this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners)=>{
+      console.log("allocatedLearners", allocatedLearners)
+      allocatedLearners.forEach((learner)=>{
+        this.materials.forEach((material)=>{
+          learner.allotments.push(material._id)
+        })
+      })
+      console.log("AFTER PUSH", allocatedLearners)
+      // let newLearner
+      this._learnerService.editLearner(allocatedLearners).subscribe(data=>{
+        console.log("DATA SENT")
+      })
+    })
+  }
+
   getJob(jobId){
     var that = this;
     console.log("Getting JOB for jobid = ",this.jobId);

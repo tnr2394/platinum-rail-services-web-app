@@ -38,7 +38,7 @@ async function allJobs(query) {
         color: req.body.jobColor,
         client: req.body.client,
         location: req.body.location,
-        instructors: req.body.instructor,
+        instructors: req.body.instructors,
         course: req.body.course,
         startingDate: req.body.startingDate,
         totalDays: req.body.totalDays,
@@ -54,10 +54,10 @@ async function allJobs(query) {
  }
 
  jobController.updateJob = function(req, res){
-    console.log('BODY',req.body)
+    console.log('BODY',req.body._id)
     var updatedJob = {
         title: req.body.title,
-        color: req.body.color,
+        color: req.body.jobColor,
         client: req.body.client,
         location: req.body.location,
         instructors: req.body.instructor,
@@ -67,7 +67,7 @@ async function allJobs(query) {
         singleJobDate: req.body.singleJobDate
     }
     console.log("UPDATEDJOB = ",updatedJob)
-     jobModel.findOneAndUpdate({ _id: req.body.id }, { $set: updatedJob }, (err, job) => {
+     jobModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedJob }, (err, job) => {
          console.log("Updated job", job, err);
          if (err) {
              return res.status(500).send({ err })

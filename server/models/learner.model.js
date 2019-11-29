@@ -21,24 +21,9 @@ var learnerSchema = new Schema({
         assignment:{
             type: Schema.Types.ObjectId,
             
-        }
+        },
     }],
-    assignments:[new Schema({
-        assignment: {
-            type: Schema.Types.ObjectId,
-            ref: 'assignment'
-        },
-        title:{
-            type: String
-        },
-        status:{
-            type: String
-        },
-        submission:{
-            type: Schema.Types.ObjectId,
-            ref: 'submission'
-        }
-    })]
+    
 }, {
     timestamps: true
 });

@@ -15,19 +15,33 @@
                 </div>
             </div>
             <div class="row">
+                
                 <div class="col-12 ">
                     <div class="card">
+                        <div class="row">
+                            <mat-form-field class="example-full-width col-6">
+                                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+                            <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>                  
+                        </div>
                         <!--Card content-->
                         <div class="card-block">
                             <!--Title-->
                             <div class="card-title">
                                 Materials : {{materials.length}}
-                                
                             </div>
                             <!--Text-->
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-6">
-                                    <material-tile *ngFor="let material of materials" [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                    <div *ngFor="let material of materials" class='materialsDiaplay'>
+                                    <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                    <div class="checkbox" *ngIf='displayAllocate == true'>
+                                        <!-- <input type="checkbox"> -->
+                                        <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                    </div>
+                                    </div>
+                                    <!-- </mat-card> -->
                                 </div>
                                 <div class="col-6" *ngIf="selectedMaterial">
                                     <material-files  [materialId]="selectedMaterial"></material-files>

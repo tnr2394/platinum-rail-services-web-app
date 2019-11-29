@@ -44,11 +44,14 @@
                 </div>
                 
             </div>
-            <app-learners></app-learners>
+            <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
             <div *ngIf="job">
                     passing into material =  {{job.course._id}}
-                <app-materials [data]="job.course._id"></app-materials>
-
+                <app-materials [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)"></app-materials>
+                <button mat-flat-button color="primary" class="pull-right" (click)="allocateLearners()" *ngIf='displayAllocate == true'>
+                    <i class="fa fa-user-o fa-fw"></i>
+                    Allocate to..
+                </button>
             </div>
         </div>
     </div>
