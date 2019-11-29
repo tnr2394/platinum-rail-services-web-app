@@ -38,7 +38,7 @@ export class JobDatesComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log("IN JOBDATE", "DAY OF THE WEEK", this.dayOfTheWeek ,this.frequency, this.duration, "STARTING DATE IS: ",this.startingDate, this.singleJobDate)
+    console.log("IN JOBDATE", "DAY OF THE WEEK", this.dayOfTheWeek ,this.frequency, "DURATION IS ==",this.duration, "STARTING DATE IS: ",this.startingDate, this.singleJobDate)
     this.temp = moment(this.startingDate)
 
     this.dateForm = this.formBuilder.group({
@@ -137,5 +137,13 @@ export class JobDatesComponent implements OnInit {
           arrayItem.checked = false
       })
       console.log('newdate assigned and all other values cleared')
+    }
+
+    public clearCheckBoxes(){
+      this.frequencyDays.forEach((arrayItem) => {
+        arrayItem.checked = false
+      })
+      this.courseDates.length = 0;
+      this.finalCourseDates = [];
     }
 }

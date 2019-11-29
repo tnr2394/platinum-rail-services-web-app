@@ -80,14 +80,16 @@ export class EditJobModalComponent implements OnInit {
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
 
   ngOnInit() {
+    console.log("The data recieved is", this.DialogData)
     this.DialogData.totalDays.forEach((day)=>{
       this.totalDays.push(day)
-    })        
+    })
     this.DialogData.singleJobDate.forEach((date)=>{
       this.singleJobDate.push(date)
     })
 
     this.color = this.DialogData.color;
+    console.log("Dialog Data color", this.DialogData.color)
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
@@ -96,7 +98,7 @@ export class EditJobModalComponent implements OnInit {
       location: new FormControl(),
       course: new FormArray([]),
       startingDate: new FormControl(new Date(this.DialogData.startingDate)),
-      frequency: new FormArray([]),
+      // frequency: new FormArray([]),
       singleJobDate: new FormControl(),
       totalDays: new FormControl()
     });
@@ -111,6 +113,7 @@ export class EditJobModalComponent implements OnInit {
     this.getInstructors();
     this.getChecked();
     this.getDates();
+    // console.log("duration",this.duration)
   }
   createInstructor(data): FormGroup {
     return this.formBuilder.group({
@@ -130,6 +133,7 @@ export class EditJobModalComponent implements OnInit {
     this.course.push(this.createCourse(x))
   }
   addInstructor(data) {
+    console.log("IN CREATING INSTRUCTOR", data)
     this.instructor = this.addJobForm.get('instructor') as FormArray;
     this.instructor.push(this.createInstructor(data))
   }
@@ -164,47 +168,122 @@ export class EditJobModalComponent implements OnInit {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
 
+  courseChanged(event){
+    console.log('EVENT', event.value)
+    this.duration = event.value.duration
+  }
+
   addJob() {
-    // console.log(this.addJobForm.get('course').value)
+    let InstructorsID = [];
+    let InstructorsName = [];
+
     if(this.addJobForm.controls['client'].value == null){
-      this.addJobForm.controls['client'].setValue(this.DialogData.client)
+      this.addJobForm.controls['client'].setValue(this.DialogData.client._id)
     }
     // console.log("Dialog locations", this.DialogData.location)
-    if (this.addJobForm.controls['location'].value == null) {
+    if (this.addJobForm.controls['client'].value != this.DialogData.client._id && this.addJobForm.controls['location'].value == null) {
+      this.addJobForm.invalid;
+      console.log('select Location')
+    }
+    if (this.addJobForm.controls['client'].value == this.DialogData.client._id && this.addJobForm.controls['location'].value == null){
       this.addJobForm.controls['location'].setValue(this.DialogData.location)
     }
+    if(this.addJobForm.controls['client'].value != null && this.addJobForm.controls['location'].value != null){
+      this.addJobForm.valid;
+    }
 
-    let id = (this.DialogData._id)
-    console.log("ALL INSTRUCTORS", this.selectedInstructor)
+    if (this.addJobForm.controls['startingDate'].value.getDate() == new Date(this.DialogData.startingDate).getDate() && 
+      this.addJobForm.controls['startingDate'].value.getDay() == new Date(this.DialogData.startingDate).getDay())
+      {
+      console.log('the job dates are empty && giving it the old values')
+      this.addJobForm.controls['singleJobDate'].setValue(this.DialogData.singleJobDate)
+      this.addJobForm.controls['totalDays'].setValue(this.DialogData.totalDays)
+      }
+    else{
+      console.log("Cannot set value as the starting date changed")
+      this.addJobForm.controls['totalDays'].setValue(this.totalDays)
+    }
 
-    console.log("VALUE",this.addJobForm.value)
-    
-    // this.loading = true;
-    // // if (this.addJobForm.valid) {
-    //   // this.addJobForm.controls['singleJobDate'].setValue(this.finalCourseDates.slice(0, this.duration));
-    // if (this.addJobForm.controls['totalDays'].value == null){
-    //   this.DialogData.totalDays.forEach((item)=>{
-    //     this.addJobForm.controls['totalDays'].setValue(item)    
-    //   })
-    //   this.addJobForm.controls['totalDays'].setValue(this.DialogData.totalDays)
-    // }
-    
-    // else { this.addJobForm.controls['totalDays'].setValue(this.totalDays)}
+    this.addJobForm.controls['instructor'].value.forEach((item) => {
+      InstructorsID.push(item.singleInstructor._id)
+      InstructorsName.push(item.singleInstructor)
+    })
 
-    //   this._jobService.editJobs(this.addJobForm.value, id).subscribe(data => {
-    //     // this.data = data;
-    //     this.loading = false;
-    //     this.dialogRef.close(this.addJobForm.value);
-    //   }, err => {
-    //     alert("Error adding job.")
-    //     this.loading = false;
-    //     this.dialogRef.close();
-    //   })
-    //   this.dialogRef.close(this.addJobForm.value);
-    // }
-    // else {
-    //   console.log("Invalid")
-    // }
+
+    let editedJob = {
+      title: this.addJobForm.controls['title'].value,
+      jobColor: this.addJobForm.controls['jobColor'].value,
+      client: this.selectedClient._id,
+      location: this.addJobForm.controls['location'].value._id,
+      instructor: InstructorsID,
+      course: this.selectedCourse._id,
+      startingDate: this.addJobForm.controls['startingDate'].value,
+      totalDays: this.totalDays,
+      singleJobDate: this.singleJobDate
+    }
+    let dataToDisplay = {
+      title: this.addJobForm.controls['title'].value,
+      color: this.addJobForm.controls['jobColor'].value,
+      client: this.selectedClient,
+      location: this.addJobForm.controls['location'].value,
+      instructor: InstructorsID,
+      instructors: InstructorsName,
+      course: this.selectedCourse,
+      startingDate: this.addJobForm.controls['startingDate'].value,
+      totalDays: this.totalDays,
+      singleJobDate: this.singleJobDate,
+      _id: this.DialogData._id
+    }
+
+    let id = this.DialogData._id
+      console.log("VALUE",editedJob)
+    this.loading = true;
+    if (this.addJobForm.valid) {
+      this._jobService.editJobs(editedJob, id).subscribe(data => {
+        this.data = dataToDisplay;
+        this.loading = false;
+        this.closoeDialog({
+          action: 'edit',
+          result: 'success',
+          data: dataToDisplay
+        });
+      }, err => {
+        alert("Error editing instructor.")
+        this.loading = false;
+        this.closoeDialog({
+          action: 'edit',
+          result: 'err',
+          data: err
+        });
+      });
+    }
+    else {
+      console.log("Invalid")
+    }
+  }
+
+  delete(){
+    let id = this.DialogData._id
+    this._jobService.deleteJobs(id).subscribe(data=>{
+      this.data = this.DialogData;
+      this.loading = false;
+      this.closoeDialog({
+        action: 'delete',
+        result: 'success',
+        data: this.DialogData
+      });
+    }, err => {
+      alert("Error deleting instructor.")
+      this.loading = false;
+      this.closoeDialog({
+        action: 'delete',
+        result: 'err',
+        data: err
+      });
+    });
+  }
+  closoeDialog(result) {
+    this.dialogRef.close(result);
   }
 
   /* GET clitents */
@@ -222,7 +301,6 @@ export class EditJobModalComponent implements OnInit {
 
           let j = 0; 
           client.locations.forEach((location)=>{
-            
             if( this.DialogData.location._id === location._id){
               console.log("index at same location is", j)
               this.selectedLocation = this.clients[i].locations[j]
@@ -246,6 +324,7 @@ export class EditJobModalComponent implements OnInit {
       this.courses.forEach((course) =>{
         if( course._id === this.DialogData.course._id){
           this.selectedCourse = this.courses[i];
+          this.duration = this.courses[i].duration;
           this.addCourse(course)
         }
         i += 1;
@@ -258,11 +337,14 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {
       this.instructors = instructors;
-
-      this.DialogData.instructor.forEach((id)=>{
+      console.log("This.DialogData = ", this.DialogData)
+      this.DialogData.instructors.forEach((id)=>{
+        console.log("----------THIS IS ID INSIDE GETINSTRUCTORS----------", id)
         this.instructors.forEach((item)=>{
-          if(item._id == id){
+          console.log("ITEM._ID", item._id, "== id", id)
+          if(item._id == id._id){
             this.selectedInstructor.push(item)
+            console.log("ITEM PUSHEN IN SELECTEDINSTRUCRTOR", this.selectedInstructor)
           }
         })
       })

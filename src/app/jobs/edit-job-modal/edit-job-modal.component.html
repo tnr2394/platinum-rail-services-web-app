@@ -74,7 +74,7 @@
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-select formControlName="course" placeholder="Choose Course">
+                                <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)='courseChanged($event); jobDates.clearCheckBoxes()'>
                                     {{selectedCourse}}
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
                                         [value]='course'>
@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div class='row' style="display: block;">
-                <app-job-dates [duration]='20' [frequency]='totalDays' [singleJobDate]='singleJobDate' [startingDate]='startingDate' #jobDates></app-job-dates>
+                <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate' [startingDate]='startingDate' #jobDates></app-job-dates>
             </div>
         </div>
     </div>

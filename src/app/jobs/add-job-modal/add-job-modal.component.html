@@ -123,7 +123,7 @@
 </form>
 <div mat-dialog-actions>
     <div class='submitButton'>
-        <button mat-flat-button class="pull-right resetButton" (click)="ngOnInit()">
+        <button mat-flat-button class="pull-right resetButton" (click)="ngOnInit();jobDates.clearCheckBoxes()">
             <i class="fa fa-repeat"></i>
             Reset
         </button>

@@ -5,8 +5,8 @@
             <div class='col-2'></div>
             <div class='col-10 checkBox'>
                 <label formArrayName="frequency" *ngFor="let day of dateForm.controls.frequency.controls; let i = index">
-                    <input type="checkbox" [checked]="frequencyDays[i].checked" [ngModelOptions]="{standalone: true}"
-                        [ngModel] (ngModelChange)="generateDates($event,i,frequencyDays[i].day)">
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]='frequencyDays[i].checked' (ngModelChange)="generateDates($event,i,frequencyDays[i].day)">
                     {{frequencyDays[i].day}}
                 </label>
             </div>
