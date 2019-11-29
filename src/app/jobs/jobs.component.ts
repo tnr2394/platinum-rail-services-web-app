@@ -111,6 +111,7 @@ export class JobsComponent implements OnInit {
       for (var j = 0; j < jobs[i].singleJobDate.length; j++){
         let lastDate = new Date(jobs[i].singleJobDate.slice(-1)[0])
         let firstDate = new Date(jobs[i].singleJobDate[0])
+
         if( lastDate < today){
            status = 'Completed'
         }
@@ -202,10 +203,15 @@ export class JobsComponent implements OnInit {
         data = data;
         var Index = this.jobs.findIndex(function (i) {
           console.log("GETTING INDEX", data)
-          return i._id === data.data.id;
+          return i._id === data.data._id;
         })
-        this.getStatus(data.data)
+        console.log("********************", "HELLO", this.jobs[Index]);
+        // this.getStatus(this.jobs[Index])
+        this.ngOnInit();
         this.jobs[Index] = data.data;
+        // this.getStatus(this.jobs[Index])
+        
+        console.log("check index", Index)
       }
       // DELETE HANDLE
       else if (data.action == 'delete') {
@@ -234,24 +240,6 @@ export class JobsComponent implements OnInit {
       duration: 2000,
     });
   }
-    
-    
-    
-    
-    
-    
-    // API CALLS
-    
-    // getCourses(){
-    //   var that = this;
-    //   this._courseService.getCourses().subscribe((data)=>{
-    //     this.courses = data;
-    //     console.log("Data Received : ",this.courses);
-    //     // Linking with paginator
-    //     // this.handlePage({pageIndex:0, pageSize:5});
-        
-    //   });
-    // }
 
     getJobs(){
       var that = this;
@@ -260,15 +248,8 @@ export class JobsComponent implements OnInit {
         console.log('Jobs Received : ', this.jobs);
         this.updateData(this.jobs);
         this.getStatus(data);
-        // Linking with paginator
-        // this.handlePage({pageIndex:0, pageSize:5});
       })
     }
-    
-    
-    
-    
-    
     // Paginator
     // public handlePage(e: any) {
     //   this.currentPage = e.pageIndex;

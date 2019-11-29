@@ -49,13 +49,6 @@ export class AddJobModalComponent implements OnInit {
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log('startingDate changed')
-  //   //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-  //   //Add '${implements OnChanges}' to the class.
-    
-  // }
-
 
   clientChanged(data){
     this.selectedClient = data.value;
@@ -105,7 +98,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addInstructor(){
-    this.instructor = this.addJobForm.get('instructor') as FormArray;
+    this.instructor = this.addJobForm.get('instructors') as FormArray;
     this.instructor.push(this.createInstructor())
   }
   removeInstructor() {
@@ -144,7 +137,7 @@ export class AddJobModalComponent implements OnInit {
         jobColor: this.addJobForm.controls['jobColor'].value,
         client: this.selectedClient._id,
         location: this.addJobForm.controls['location'].value._id,
-        instructor: InstructorsForDataBase,
+        instructors: InstructorsForDataBase,
         course: this.selectedCourse._id,
         startingDate: this.addJobForm.controls['startingDate'].value,
         totalDays: this.totalDays,
@@ -152,10 +145,15 @@ export class AddJobModalComponent implements OnInit {
       };
 
       var newJobforJobsPage = {
+        title: this.addJobForm.controls['title'].value,
         client: this.selectedClient,
         location: this.addJobForm.controls['location'].value,
-        instructor: instructorsForJobsPage,
+        instructors: instructorsForJobsPage,
         course: this.selectedCourse,
+        startingDate: this.addJobForm.controls['startingDate'].value,
+        singleJobDate: this.singleJobDate,
+        totalDays: this.totalDays,
+        color: this.addJobForm.controls['jobColor'].value,
       }
 
       console.log('newJobforJobsPage', newJobforJobsPage)

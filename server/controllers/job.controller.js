@@ -38,7 +38,7 @@ async function allJobs(query) {
         color: req.body.jobColor,
         client: req.body.client,
         location: req.body.location,
-        instructors: req.body.instructor,
+        instructors: req.body.instructors,
         course: req.body.course,
         startingDate: req.body.startingDate,
         totalDays: req.body.totalDays,

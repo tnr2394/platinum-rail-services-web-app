@@ -89,6 +89,7 @@ export class EditJobModalComponent implements OnInit {
     })
 
     this.color = this.DialogData.color;
+    console.log("Dialog Data color", this.DialogData.color)
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(this.DialogData.title),
       jobColor: new FormControl(''),
@@ -132,6 +133,7 @@ export class EditJobModalComponent implements OnInit {
     this.course.push(this.createCourse(x))
   }
   addInstructor(data) {
+    console.log("IN CREATING INSTRUCTOR", data)
     this.instructor = this.addJobForm.get('instructor') as FormArray;
     this.instructor.push(this.createInstructor(data))
   }
@@ -221,13 +223,16 @@ export class EditJobModalComponent implements OnInit {
     }
     let dataToDisplay = {
       title: this.addJobForm.controls['title'].value,
+      color: this.addJobForm.controls['jobColor'].value,
       client: this.selectedClient,
+      location: this.addJobForm.controls['location'].value,
+      instructor: InstructorsID,
       instructors: InstructorsName,
       course: this.selectedCourse,
       startingDate: this.addJobForm.controls['startingDate'].value,
       totalDays: this.totalDays,
       singleJobDate: this.singleJobDate,
-      id: this.DialogData._id
+      _id: this.DialogData._id
     }
 
     let id = this.DialogData._id
@@ -332,11 +337,14 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {
       this.instructors = instructors;
-
-      this.DialogData.instructor.forEach((id)=>{
+      console.log("This.DialogData = ", this.DialogData)
+      this.DialogData.instructors.forEach((id)=>{
+        console.log("----------THIS IS ID INSIDE GETINSTRUCTORS----------", id)
         this.instructors.forEach((item)=>{
-          if(item._id == id){
+          console.log("ITEM._ID", item._id, "== id", id)
+          if(item._id == id._id){
             this.selectedInstructor.push(item)
+            console.log("ITEM PUSHEN IN SELECTEDINSTRUCRTOR", this.selectedInstructor)
           }
         })
       })
