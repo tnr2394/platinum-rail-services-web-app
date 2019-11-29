@@ -62,6 +62,7 @@ import { AddFileModalComponent } from './files/add-file-modal/add-file-modal.com
 import { EditFileModalComponent } from './files/edit-file-modal/edit-file-modal.component';
 import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 import { MaterialComponent } from './courses/materials/material/material.component';
+import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal/allocate-learner-modal.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { MaterialComponent } from './courses/materials/material/material.compone
     EditFileModalComponent,
     LearnerSubmissionComponent,
     MaterialComponent,
+    AllocateLearnerModalComponent,
     
   ],
   imports: [
@@ -132,7 +134,7 @@ import { MaterialComponent } from './courses/materials/material/material.compone
     ColorPickerModule,
     FileUploadModule
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent,AddInstructorModalComponent,EditInstructorModalComponent,AddClientModalComponent,EditClientModalComponent,AddLearnerModalComponent,EditLearnerModalComponent,AddMaterialModalComponent,EditMaterialModalComponent,AddFileModalComponent,EditFileModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
 

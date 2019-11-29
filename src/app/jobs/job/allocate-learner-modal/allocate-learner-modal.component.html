@@ -1,0 +1,12 @@
+
+<ng-container >
+    <div *ngFor='let learner of learners'>
+        <mat-checkbox (change)='onSelectChange($event)' [value]='learner' >{{learner.name}}</mat-checkbox>
+    </div>
+    <button mat-flat-button color="primary" (click)='getLearners()'>
+        <i class="fa fa-floppy-o fa-fw"></i>
+    Save</button>
+</ng-container>
+    
+    
+    

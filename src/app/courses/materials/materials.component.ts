@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import {CourseService} from '../../services/course.service';
 import {MaterialService} from '../../services/material.service';
 import { ActivatedRoute } from '@angular/router';
@@ -23,6 +23,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class MaterialsComponent implements OnInit {
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
+  @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
 
   materials: any = [];
   bgColors: string[];
@@ -36,7 +37,10 @@ export class MaterialsComponent implements OnInit {
   sort: MatSort;
   files;
   selectedMaterial: any;
+  selectedMaterials = [];
   courseId;
+  displayAllocate : Boolean = true;
+  // getMaterialsFromComponent;
   @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -67,10 +71,15 @@ export class MaterialsComponent implements OnInit {
   }
   
   applyFilter(filterValue: string) {
+    // console.log("IN APPLY FILTER")
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    // console.log("this.dataSource.filter", this.dataSource.filter)
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+    console.log("THIS > MATERIALS IS", this.materials)
+    this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
+    this.dataSource.paginator = this.paginator;
   }
   
   getRandomColorClass(i){
@@ -91,16 +100,29 @@ export class MaterialsComponent implements OnInit {
       console.log("CourseId  ",this.courseId);
       this.getMaterials(this.courseId);
     }
-
-    
-    
   }
-  
+  onMaterialSelection(event){
+    if(event.checked == true){
+      this.selectedMaterials.push(event.source.value)
+    }
+    if(event.checked == false){
+      this.selectedMaterials.forEach((material) => {
+        console.log('MATERIAL', material)
+        if (material._id == event.source.value._id) {
+          this.selectedMaterials.splice(material, 1)
+        }
+      })
+    }
+    console.log("MATERIALS ARRAY IS", this.selectedMaterials)
+    this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
+    console.log("event emited")
+  }
   
   // UTILITY
   
   updateData(courses){
     console.log("UPDATING DATA = ",courses)
+    this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
     this.dataSource = new MatTableDataSource(courses);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -180,9 +202,6 @@ export class MaterialsComponent implements OnInit {
       duration: 2000,
     });
   }
-  
-  
-  
   
   // API CALLS
   
