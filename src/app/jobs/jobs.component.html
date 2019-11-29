@@ -81,10 +81,10 @@
                         <ng-container matColumnDef="actions">
                             <th class="text-left" mat-header-cell *matHeaderCellDef > Actions </th>
                             <td class="mat-table-cell" mat-cell *matCellDef="let job">
-                                <a mat-button class="text-success" routerLink="{{job._id}}" >
+                                <a mat-button class="text-success" title="Job Details" routerLink="{{job._id}}" >
                                     <i class="fa fa-users"></i>
                                 </a>
-                                <button mat-button class="text-primary"  (click)="editJobModal(i, job)"><i class="fa fa-eye"></i></button>
+                                <button mat-button class="text-primary" title="Edit Job"  (click)="editJobModal(i, job)"><i class="fa fa-edit"></i></button>
                             </td>
                         </ng-container>
 

@@ -44,7 +44,7 @@
                 </div>
                 
             </div>
-            <app-learners></app-learners>
+            <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
             <div *ngIf="job">
                     passing into material =  {{job.course._id}}
                 <app-materials [data]="job.course._id"></app-materials>

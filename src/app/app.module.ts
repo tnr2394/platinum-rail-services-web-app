@@ -60,6 +60,9 @@ import { FileTileComponent } from './commons/file-tile/file-tile.component';
 import { FilesComponent } from './files/files.component';
 import { AddFileModalComponent } from './files/add-file-modal/add-file-modal.component';
 import { EditFileModalComponent } from './files/edit-file-modal/edit-file-modal.component';
+import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
+import { MaterialComponent } from './courses/materials/material/material.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +100,10 @@ import { EditFileModalComponent } from './files/edit-file-modal/edit-file-modal.
     FileTileComponent,
     FilesComponent,
     AddFileModalComponent,
-    EditFileModalComponent
+    EditFileModalComponent,
+    LearnerSubmissionComponent,
+    MaterialComponent,
+    
   ],
   imports: [
     BrowserModule,

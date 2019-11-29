@@ -42,7 +42,10 @@ export class JobComponent implements OnInit {
   }
   
   
-  
+  loadLearners(object){
+    this.learners = object.learners;
+    console.log("Learners loaded by event = ",object.learners);
+  }
   
   
   getJob(jobId){

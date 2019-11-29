@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { LearnerService } from '../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
@@ -34,6 +34,7 @@ export class LearnersComponent  implements OnInit {
     this.setDataSourceAttributes();
   }
   @Input('jo') isActive: Boolean;
+  @Output() getLearnersFromComponent: EventEmitter<any> = new EventEmitter<any>();
 
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
@@ -50,7 +51,7 @@ export class LearnersComponent  implements OnInit {
   ngOnInit(){
     this.activatedRoute.params.subscribe(params=>{
       this.jobId = params['jobid'];
-      console.log("Calling getLearners with jobid = ",this.jobId);
+      console.log("Calling getLearnersFromComponent with jobid = ",this.jobId);
       this.getLearners(this.jobId);
       this.getJob(this.job);
     })    
@@ -80,6 +81,8 @@ export class LearnersComponent  implements OnInit {
   
   updateData(learners){
     console.log("UPDATING DATA = ",learners)
+    console.log("Emitting event getLearnersFromComponent with learners = ",learners);
+    this.getLearnersFromComponent.emit({learners})
     this.dataSource = new MatTableDataSource(learners);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -162,6 +165,7 @@ export class LearnersComponent  implements OnInit {
     console.log("Getting learners for jobid = ",jobId);
     this._learnerService.getLearnersByJobId(jobId).subscribe((learners)=>{
       this.learners = learners;
+      console.log("GOT LeARNERS");
       this.updateData(learners)
     });
   }
