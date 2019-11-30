@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -17,9 +17,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { AppComponent } from './app.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AppRoutingModule} from './app.routing.module';
+import { AppRoutingModule } from './app.routing.module';
 
-import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE,MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS} from '@angular/material';
+import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS } from '@angular/material';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -28,8 +28,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MatListModule } from '@angular/material/list';
 import { SideNavServiceService } from './services/side-nav-service.service';
-import {CdkTableModule} from '@angular/cdk/table';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -63,6 +63,8 @@ import { EditFileModalComponent } from './files/edit-file-modal/edit-file-modal.
 import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 import { MaterialComponent } from './courses/materials/material/material.component';
 import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal/allocate-learner-modal.component';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './intercaptor';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal
     LearnerSubmissionComponent,
     MaterialComponent,
     AllocateLearnerModalComponent,
-    
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -135,7 +138,11 @@ import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal
     FileUploadModule
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent],
-  providers: [SideNavServiceService, MatDatepickerModule, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+  providers: [SideNavServiceService, MatDatepickerModule, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
 
   bootstrap: [AppComponent],
@@ -144,5 +151,5 @@ import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal
 
 
 
-export class AppModule { 
+export class AppModule {
 }

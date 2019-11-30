@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var materialController = require('../controllers/material.controller');
+
+const jwtService = require('../services/jwt.service');
 /* GET Materials listing. */
 router.get('/', materialController.getMaterials);
 // ADD Material

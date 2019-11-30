@@ -8,6 +8,7 @@ var db = require('./config/database');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const fileUpload = require('express-fileupload');
+const expressSession = require("express-session");
 
 db();
 var indexRouter = require('./routes/index');
@@ -18,11 +19,12 @@ var clientsRouter = require('./routes/clients');
 var jobsRouter = require('./routes/job');
 var learnersRouter = require('./routes/learner');
 var materialsRouter = require('./routes/materials');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 //configure bodyparser
 var bodyParserJSON = bodyParser.json();
-var bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
+var bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
@@ -48,6 +50,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(expressSession({
+secret: "platinum",
+  resave: true,
+  cookie: {
+    sameSite: true,
+  },
+}));
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
@@ -56,15 +67,16 @@ app.use('/clients', clientsRouter);
 app.use('/jobs', jobsRouter);
 app.use('/learners', learnersRouter);
 app.use('/materials', materialsRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in develo   pment
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

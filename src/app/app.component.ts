@@ -9,11 +9,13 @@ import { $ } from 'protractor';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('sidemenu', {static: true}) sidemenu: MatSidenav;
+  @ViewChild('sidemenu', { static: true }) sidemenu: MatSidenav;
   reason = '';
 
-  constructor(private sidenavService: SideNavServiceService){
-    console.log("Child SideBar",this.sidemenu)
+  loggedInUser = localStorage.getItem("currentUser");
+
+  constructor(private sidenavService: SideNavServiceService) {
+    console.log("Child SideBar", this.sidemenu)
   }
   ngOnInit(): void {
     console.log("Set Side Nav")

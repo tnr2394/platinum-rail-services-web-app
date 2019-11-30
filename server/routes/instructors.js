@@ -10,4 +10,6 @@ router.put('/', instructorController.updateInstructor);
 // Delete Instructor
 router.delete('/', instructorController.deleteInstructor);
 
+router.post('/login', instructorController.loginInstructor);
+
 module.exports = router;

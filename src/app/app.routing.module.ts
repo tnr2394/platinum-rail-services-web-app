@@ -9,24 +9,27 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { ClientsComponent } from './clients/clients.component';
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LearnersComponent } from './learners/learners.component';
-import {SingleLearnerComponent} from './learners/single-learner/single-learner.component';
+import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
 import { MaterialsComponent } from './courses/materials/materials.component';
+import { LoginComponent } from './login/login.component';
+
 
 
 const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent },
-    { path: 'jobs',      component: JobsComponent },
-    { path: 'instructors',      component: InstructorsComponent },
-    { path: 'clients',      component: ClientsComponent },
-    { path: 'clients/:id',      component: SingleClientComponent },
-	{ path: 'courses',      component: CoursesComponent },
-	{ path: 'scheduler',      component: SchedulerComponent },
-	{ path: 'learners/:jobid',      component: LearnersComponent },
-	{ path: 'jobs/:jobid',      component: JobComponent },
-	{ path: 'learner/:id',      component: SingleLearnerComponent },
-	{ path: 'materials/:courseId',      component: MaterialsComponent }
-	
-    
+	{ path: 'jobs', component: JobsComponent },
+	{ path: 'instructors', component: InstructorsComponent },
+	{ path: 'clients', component: ClientsComponent },
+	{ path: 'clients/:id', component: SingleClientComponent },
+	{ path: 'courses', component: CoursesComponent },
+	{ path: 'scheduler', component: SchedulerComponent },
+	{ path: 'learners/:jobid', component: LearnersComponent },
+	{ path: 'jobs/:jobid', component: JobComponent },
+	{ path: 'learner/:id', component: SingleLearnerComponent },
+	{ path: 'materials/:courseId', component: MaterialsComponent },
+	{ path: 'login/:user', component: LoginComponent }
+
+
 ];
 
 @NgModule({

@@ -36,6 +36,9 @@ materialController.getMaterials = async function (req, res, next) {
 
 materialController.getMaterial = async function (req, res, next) {
     console.log("GET client ", req.params.id);
+
+    console.log('------------------req.session.user-----------------------------', req.session.user);
+
     materialModel.findById(req.param.id, (err, material) => {
         console.log("GET material RES = ", material);
         return res.send({ data: { material } })
@@ -134,6 +137,7 @@ materialController.addFile = (req, res, next) => {
         file: req.files,
         uploadedDate: new Date()
     }
+
     materialId = req.body.materialId;
     if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
     console.log("Adding new file to materialID = ", materialId);
@@ -161,6 +165,8 @@ materialController.getFiles = function (req, res, next) {
         return res.status(500).send("NO MATERIAL ID FOUND");
     }
     console.log("GET Materials query = ", query, "Params = ", req.query);
+    console.log('------------------req.session.user-----------------------------', JSON.stringify(req.session, null, 2));
+
     materialDOA.getFiles(query)
         .then(foundMaterial => {
             console.log("Returing material - " + foundMaterial.files.length);

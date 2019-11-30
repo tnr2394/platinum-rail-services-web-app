@@ -15,5 +15,7 @@ router.delete('/location', clientController.deleteLocation);
 router.put('/', clientController.updateClient);
 // Delete Client
 router.delete('/', clientController.deleteClient);
+// Login Client
+router.post('/login', clientController.loginClient)
 
 module.exports = router;

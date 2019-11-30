@@ -9,5 +9,7 @@ router.post('/', learnerController.addLearner);
 router.put('/', learnerController.updateLearner);
 // Delete Learner
 router.delete('/', learnerController.deleteLearner);
+// Login Learner
+router.post('/login', learnerController.loginLearner);
 
 module.exports = router;
