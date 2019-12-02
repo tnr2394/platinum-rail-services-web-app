@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class FileService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/materials/files", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "materials/files", data).subscribe((res: any) => {
 
         observer.next(res.data.file);
         // observer.complete();
@@ -38,7 +39,7 @@ export class FileService {
 
   deleteFiles(id) {
     return new Observable((observer) => {
-      this.http.delete("http://localhost:3000/materials/files?_id=" + id).subscribe((res: any) => {
+      this.http.delete(config.baseApiUrl + "materials/files?_id=" + id).subscribe((res: any) => {
         observer.next(res.data.file);
         // observer.complete();
       })
@@ -49,7 +50,7 @@ export class FileService {
     console.log("Edit clients", data);
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.put("http://localhost:3000/clients", data).subscribe((res: any) => {
+      this.http.put(config.baseApiUrl + "clients", data).subscribe((res: any) => {
         console.log("Edited Course : ", res);
         observer.next(res.data.client);
         // observer.complete();
@@ -67,7 +68,7 @@ export class FileService {
 
   deleteClient(id) {
     return new Observable((observer) => {
-      this.http.delete("http://localhost:3000/clients?_id=" + id).subscribe((res: any) => {
+      this.http.delete(config.baseApiUrl + "clients?_id=" + id).subscribe((res: any) => {
         observer.next(res.data.clients);
         // observer.complete();
       }, err => {
@@ -84,7 +85,7 @@ export class FileService {
 
   deleteLocation(id) {
     return new Observable((observer) => {
-      this.http.delete("http://localhost:3000/clients/location?_id=" + id).subscribe((res: any) => {
+      this.http.delete(config.baseApiUrl + "clients/location?_id=" + id).subscribe((res: any) => {
         observer.next(res.data.clients);
         // observer.complete();
       }, err => {
@@ -105,7 +106,7 @@ export class FileService {
     var that = this;
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get("http://localhost:3000/materials/files?_id=" + id).subscribe((res: any) => {
+      this.http.get(config.baseApiUrl + "materials/files?_id=" + id).subscribe((res: any) => {
         console.log("Get Files Response : ", res);
         observer.next(res.data.files);
         observer.complete();
@@ -121,7 +122,7 @@ export class FileService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/clients/location", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "clients/location", data).subscribe((res: any) => {
         console.log("Received Sending = ", res.data.location)
         observer.next(res.data.location);
         // observer.complete();
@@ -144,7 +145,7 @@ export class FileService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.put("http://localhost:3000/clients/location", data).subscribe((res: any) => {
+      this.http.put(config.baseApiUrl + "clients/location", data).subscribe((res: any) => {
         console.log("Received Sending = ", res.data.location)
         observer.next(res.data.location);
         // observer.complete();

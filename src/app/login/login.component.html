@@ -1,8 +1,8 @@
 <div class="card w-50 m-auto">
 
     <form (ngSubmit)='doSubmit()' [formGroup]="loginForm">
-        
-        <mat-form-field class="example-full-width w-100"> 
+
+        <mat-form-field class="example-full-width w-100">
             <input matInput name="client-email" placeholder="Email" formControlName="email" required>
             <mat-error>Email is required</mat-error>
         </mat-form-field>
@@ -10,11 +10,10 @@
             <input matInput name="password" placeholder="Password" type="password" formControlName="password" required>
             <mat-error>Password is required.</mat-error>
         </mat-form-field>
-        
-    <button mat-flat-button color="primary" type="submit">
-        <i class="fas fa-save fa-fw"></i>
-        Save
-    </button>
-    
-</form>
+
+        <button mat-flat-button color="primary" type="submit">
+            login
+        </button>
+
+    </form>
 </div>
