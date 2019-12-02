@@ -58,6 +58,8 @@ secret: "platinum",
   },
 }));
 
+require('dotenv').config();
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

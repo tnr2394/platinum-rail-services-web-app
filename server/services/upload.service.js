@@ -11,21 +11,23 @@ const aws = require('aws-sdk')
  */
 const s3UploadFile = (file, folder, options) => {
     return new Promise((resolve, reject) => {
-        console.log('Inside S3 File:', file);
+        console.log('Inside S3 File:', process.env.Bucket);
 
         var s3bucket = new aws.S3({
-            accessKeyId: 'AKIAXDGTPD32OKQEXFMV',
-            secretAccessKey: '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',
-            Bucket: 'tripion-testing',
+            accessKeyId: process.env.accessKeyId,
+            secretAccessKey: process.env.secretAccessKey,
+            Bucket: process.env.Bucket,
         });
 
         s3bucket.createBucket(function () {
 
             const params = {
-                Bucket: 'tripion-testing',
+                Bucket: process.env.Bucket,
                 Key: file.name,
                 Body: file.data,
             };
+
+            console.log('PARAM:', params);
 
             s3bucket.upload(params, function (err, uploadedResponse) {
                 console.log("Yash2");

@@ -27,8 +27,6 @@ export const FLIP_TRANSITION = [
         ]
         ),
         trigger('bounce', [transition('* => *', useAnimation(bounce))]),
-
-
       ];
       
       
@@ -38,6 +36,7 @@ export const FLIP_TRANSITION = [
         styleUrls: ['./location-tab.component.scss'],
         animations:[FLIP_TRANSITION]
       })
+      
       export class LocationTabComponent implements OnInit {
         @Input('isActive') isActive: Boolean;
         @Input('location') location: any;
@@ -78,8 +77,8 @@ export const FLIP_TRANSITION = [
           
         }
         deleteLocation(){
-          this.loading = true;
           this._clientService.deleteLocation(this.location._id).subscribe(updatedLocation=>{
+            this.loading = true;
             // this.location = updatedLocation;
             this.loading = false;
             this.editing = false;

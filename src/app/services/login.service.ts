@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class LoginService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/" + routename + "/login", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl +  "" + routename + "/login", data).subscribe((res: any) => {
         localStorage.setItem('currentUser', res.data);
         localStorage.setItem('userRole', res.userRole);
 

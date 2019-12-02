@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class JobService {
 
       return new Observable<any>((observer)=>{
         var that = this;
-        this.http.post("http://localhost:3000/jobs", data).subscribe((res:any)=>{
+        this.http.post(config.baseApiUrl +  "jobs", data).subscribe((res:any)=>{
         observer.next(res.data.job);
         },err=>{
           console.log("ERROR");
@@ -36,7 +37,7 @@ export class JobService {
      Object.assign(data, {_id:id})
      return new Observable<any>((observer) => {
        console.log("Observable");
-       this.http.put("http://localhost:3000/jobs", data).subscribe((res: any) => {
+       this.http.put(config.baseApiUrl +  "jobs", data).subscribe((res: any) => {
          console.log("Edited job : ", res);
          observer.next(res.data.job);
          observer.complete();
@@ -47,7 +48,7 @@ export class JobService {
 
    deleteJobs(id){
      return new Observable((observer) => {
-       this.http.delete("http://localhost:3000/jobs?_id=" + id).subscribe((res: any) => {
+       this.http.delete(config.baseApiUrl +  "jobs?_id=" + id).subscribe((res: any) => {
          observer.next(res.data.jobs);
          observer.complete();
        })
@@ -59,7 +60,7 @@ export class JobService {
      var that = this;
      return new Observable<any>((observer) => {
        console.log("Observable");
-       this.http.get("http://localhost:3000/jobs").subscribe((res: any) => {
+       this.http.get(config.baseApiUrl +  "jobs").subscribe((res: any) => {
          console.log("Get Jobs... : ", res);
          observer.next(res.data);
          observer.complete();
@@ -71,7 +72,7 @@ export class JobService {
     var that = this;
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get("http://localhost:3000/jobs?_id="+jobId).subscribe((res: any) => {
+      this.http.get(config.baseApiUrl +  "jobs?_id="+jobId).subscribe((res: any) => {
         console.log("Get Jobs... : ", res);
         observer.next(res.data);
         observer.complete();

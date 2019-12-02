@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class LearnerService {
     return  new Observable<any>((observer)=>{
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/learners",data).subscribe((res:any)=>{
+      this.http.post(config.baseApiUrl +  "learners",data).subscribe((res:any)=>{
       
       observer.next(res.data.learner);
       // observer.complete();
@@ -38,7 +39,7 @@ editLearner(data:any): Observable<any> {
   console.log("Edit learners",data);
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    this.http.put("http://localhost:3000/learners",data).subscribe((res:any)=>{
+    this.http.put(config.baseApiUrl +  "learners",data).subscribe((res:any)=>{
     console.log("Edited Learner : ",res);
     observer.next(res.data.learner);
     // observer.complete();
@@ -56,7 +57,7 @@ editLearner(data:any): Observable<any> {
 
 deleteLearner(id){
   return new Observable((observer)=>{
-    this.http.delete("http://localhost:3000/learners?_id="+id).subscribe((res:any)=>{
+    this.http.delete(config.baseApiUrl +  "learners?_id="+id).subscribe((res:any)=>{
     observer.next(res.data.learner);
     // observer.complete();
   },err=>{
@@ -76,7 +77,7 @@ getLearner(id): Observable<any>{
   var that = this;
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    this.http.get("http://localhost:3000/learners?_id="+id).subscribe((res:any)=>{
+    this.http.get(config.baseApiUrl +  "learners?_id="+id).subscribe((res:any)=>{
     console.log("Get learners : ",res);
     observer.next(res.data.learners);
     observer.complete();
@@ -90,7 +91,7 @@ getLearnersByJobId(jobId): Observable<any>{
   var that = this;
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    this.http.get("http://localhost:3000/learners?job="+jobId).subscribe((res:any)=>{
+    this.http.get(config.baseApiUrl +  "learners?job="+jobId).subscribe((res:any)=>{
     console.log("Get learners : ",res);
     observer.next(res.data.learners);
     observer.complete();

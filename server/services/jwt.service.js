@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 module.exports.validateJWT = async (req, res, next) => {
     const { authorization } = req.headers;
     new Promise(async (resolve, reject) => {
-        console.log('req.session.user In Jwt Service', req.session.currentUser);
         if (authorization && authorization !== "" && authorization == req.session.currentUser) {
             jwt.verify(authorization, 'platinum', (err, decoded) => {
                 if (err) {

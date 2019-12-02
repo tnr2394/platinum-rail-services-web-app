@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class InstructorService {
     return  new Observable<any>((observer)=>{
       console.log("Observable");
       var that = this;
-      this.http.post("http://localhost:3000/instructors",data).subscribe((res:any)=>{
+      this.http.post(config.baseApiUrl +  "instructors",data).subscribe((res:any)=>{
       
       observer.next(res.data.instructor);
       observer.complete();
@@ -31,7 +32,7 @@ editInstructor(data:any): Observable<any> {
   console.log("Edit Instructors",data);
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    this.http.put("http://localhost:3000/instructors",data).subscribe((res:any)=>{
+    this.http.put(config.baseApiUrl +  "instructors",data).subscribe((res:any)=>{
     console.log("Edited instructor : ",res);
     observer.next(res.data.instructor);
     observer.complete();
@@ -42,7 +43,7 @@ editInstructor(data:any): Observable<any> {
 
 deleteInstructor(id){
   return new Observable((observer)=>{
-    this.http.delete("http://localhost:3000/instructors?_id="+id).subscribe((res:any)=>{
+    this.http.delete(config.baseApiUrl +  "instructors?_id="+id).subscribe((res:any)=>{
     observer.next(res.data.instructors);
     observer.complete();
   })
@@ -55,7 +56,7 @@ getInstructors(): Observable<any>{
   var that = this;
   return  new Observable<any>((observer)=>{
     console.log("Observable");
-    this.http.get("http://localhost:3000/instructors").subscribe((res:any)=>{
+    this.http.get(config.baseApiUrl +  "instructors").subscribe((res:any)=>{
     console.log("Get Instructors : ",res);
     observer.next(res.data.instructors);
     observer.complete();

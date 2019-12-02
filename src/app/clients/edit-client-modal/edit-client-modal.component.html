@@ -2,7 +2,7 @@
     <i class="fas fa-edit fa-fw"></i> 
     Edit Course 
 </h1>
-<form #editCourse (ngSubmit)="doSubmit($event)"  >
+<form #editCourse (ngSubmit)="doSubmit()"  >
     <div mat-dialog-content>
         <mat-form-field class="example-full-width col-6">
             <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>

@@ -16,6 +16,9 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
+	{
+		path: '', pathMatch: "full", redirectTo: "login/admin"
+	},
 	{ path: 'dashboard', component: DashboardComponent },
 	{ path: 'jobs', component: JobsComponent },
 	{ path: 'instructors', component: InstructorsComponent },
@@ -28,7 +31,6 @@ const routes: Routes = [
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
 	{ path: 'login/:user', component: LoginComponent }
-
 
 ];
 
