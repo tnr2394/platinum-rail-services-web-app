@@ -32,7 +32,7 @@
                                 
                             </div>
                             <!--Text-->
-                            <div >
+                            <div *ngIf="dataSource">
                                 <h1>{{dataSource.length}}</h1>
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
                                     

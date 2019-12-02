@@ -28,6 +28,8 @@ export class AddFileModalComponent implements OnInit {
   }
   onFileChange(event, field) {
     if (event.target.files && event.target.files.length) {
+      console.log('field------------', field);
+
       const [file] = event.target.files;
       this.fileMaterial = event.target.files;
       // just checking if it is an image, ignore if you want
