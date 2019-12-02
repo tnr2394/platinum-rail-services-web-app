@@ -40,6 +40,7 @@ export class MaterialsComponent implements OnInit {
   selectedMaterials = [];
   courseId;
   displayAllocate : Boolean = true;
+  allMaterials:Observable<any>;
   // getMaterialsFromComponent;
   @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -61,6 +62,7 @@ export class MaterialsComponent implements OnInit {
   constructor(public _courseService: CourseService,public _materialService: MaterialService,public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar,private activatedRoute: ActivatedRoute) {
     this.bgColors = ["badge-info","badge-success","badge-warning","badge-primary","badge-danger"]; 
     this.materials = [];
+    // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
   }
   
@@ -68,6 +70,7 @@ export class MaterialsComponent implements OnInit {
     console.log("AfterViewInit this.courseId = ",this.courseId);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    // console.log("DATASOURCE", this.dataSource)
   }
   
   applyFilter(filterValue: string) {
@@ -77,8 +80,9 @@ export class MaterialsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    console.log("THIS > MATERIALS IS", this.materials)
-    this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
+    console.log("THIS.MATERIALS IS", this.materials)
+    // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
+    this.materials = this._filter.filter(filterValue, this.materials, ['title', 'type']);
     this.dataSource.paginator = this.paginator;
   }
   
@@ -100,6 +104,7 @@ export class MaterialsComponent implements OnInit {
       console.log("CourseId  ",this.courseId);
       this.getMaterials(this.courseId);
     }
+    // this.allMaterials = this.dataSource.connect();
   }
   onMaterialSelection(event){
     if(event.checked == true){
@@ -209,6 +214,11 @@ export class MaterialsComponent implements OnInit {
     this._courseService.getCourse(courseId).subscribe((courses:any)=>{
       this.course = courses.pop();
       this.materials = this.course.materials;
+      console.log("++++++++++", this.materials);
+      
+      this.materials = this.dataSource.connect();
+      console.log("==========", this.materials);
+      
       this.updateData(courses)
     });
   }

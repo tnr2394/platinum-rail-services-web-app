@@ -34,10 +34,9 @@
                             <!--Text-->
                             <div class="row">
                                 <div class="col-6">
-                                    <div *ngFor="let material of materials" class='materialsDiaplay'>
+                                    <div *ngFor="let material of materials " class='materialsDiaplay'>
                                     <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                     <div class="checkbox" *ngIf='displayAllocate == true'>
-                                        <!-- <input type="checkbox"> -->
                                         <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
                                     </div>
                                     </div>

@@ -19,10 +19,6 @@ export class AllocateLearnerModalComponent implements OnInit {
   ngOnInit() {
     console.log("This . dialogData", this.DialogData)
     this.learners = this.DialogData;
-
-    // this.learnersForm = this.formBuilder.group({
-    //   learners: new FormControl()
-    // })
   }
 
   onSelectChange(event){
