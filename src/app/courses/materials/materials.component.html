@@ -31,21 +31,44 @@
                             <div class="card-title">
                                 Materials : {{materials.length}}
                             </div>
+                            <table mat-table [dataSource]="materials" matSort class="table table-borderless">
+                                
+                                <ng-container matColumnDef="Materials">
+                                    <div *ngIf='material.type == "Reading"'>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Materials </th>
+                                        <td class="mat-table-cell" mat-cell *matCellDef="let material"> {{material.type}}</td>
+                                    </div>
+                                </ng-container>
+                                
+                                
+                                <ng-container matColumnDef="Assignments">
+                                    <div *ngIf='material.type == "Assignment"'>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Assignments </th>
+                                        <td class="mat-table-cell" mat-cell *matCellDef="let material"> {{material.type}} </td>
+                                    </div>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let material; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
                             <!--Text-->
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-6">
-                                    <div *ngFor="let material of materials " class='materialsDiaplay'>
+                                    <div *ngFor="let material of materials | searchFilter" class='materialsDiaplay'>
                                     <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                     <div class="checkbox" *ngIf='displayAllocate == true'>
                                         <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
                                     </div>
-                                    </div>
+                                    </div> -->
                                     <!-- </mat-card> -->
-                                </div>
+                                <!-- </div>
                                 <div class="col-6" *ngIf="selectedMaterial">
                                     <material-files  [materialId]="selectedMaterial"></material-files>
                                 </div>
-                            </div>
+                            </div> -->
                             <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                         </div>
                         <!--/.Card content-->
