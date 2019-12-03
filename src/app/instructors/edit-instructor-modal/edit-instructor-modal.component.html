@@ -2,7 +2,7 @@
     <i class="fas fa-edit fa-fw"></i> 
     Edit Instructor 
 </h1>
-<form #editInstructor (ngSubmit)="doSubmit($event)"  >
+<form #editInstructor (ngSubmit)="doSubmit()"  >
     <div mat-dialog-content>
         <mat-form-field class="example-full-width col-6">
             <input required matInput name="instructor-name" placeholder="Instructor Name" [(ngModel)]='instructorData.name' cdkFocusInitial>

@@ -40,27 +40,29 @@ export class AddJobModalComponent implements OnInit {
   singleJobDate = [];
 
   loading: Boolean = false;
-  selectedClient={
+  selectedClient = {
     name: "Default",
     _id: ""
   };
   selectedCourse: any;
-
+  color: any;
+  rgba: any;
+  always: any;
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) { }
 
-  clientChanged(data){
+  clientChanged(data) {
     this.selectedClient = data.value;
     console.log(this.selectedClient);
-  }              
-  courseChanged(data){
+  }
+  courseChanged(data) {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
   }
-  daySelection(obj){
-    console.log("-----DAY SELECTION EVENT-----",obj)
-    obj.singleJobDates.forEach((item)=>{
+  daySelection(obj) {
+    console.log("-----DAY SELECTION EVENT-----", obj)
+    obj.singleJobDates.forEach((item) => {
       this.singleJobDate.push(item)
     })
     obj.totalDays.forEach((item) => {
@@ -69,7 +71,7 @@ export class AddJobModalComponent implements OnInit {
   }
   ngOnInit() {
     console.log("ON INIT", this.startingDate);
-    
+
     this.addJobForm = this.formBuilder.group({
       title: new FormControl('', Validators.required),
       jobColor: new FormControl('', Validators.required),
@@ -85,19 +87,19 @@ export class AddJobModalComponent implements OnInit {
     this.getCourses();
     this.getInstructors();
   }
-  
-  createInstructor(): FormGroup{
+
+  createInstructor(): FormGroup {
     return this.formBuilder.group({
-      singleInstructor : new FormControl('')
+      singleInstructor: new FormControl('')
     })
   }
-  course(): FormGroup{
+  course(): FormGroup {
     return this.formBuilder.group({
       course: new FormControl('')
     })
   }
 
-  addInstructor(){
+  addInstructor() {
     this.instructor = this.addJobForm.get('instructors') as FormArray;
     this.instructor.push(this.createInstructor())
   }
@@ -105,25 +107,24 @@ export class AddJobModalComponent implements OnInit {
     this.instructor.removeAt(this.instructor.length - 1);
   }
 
-  searchDays($event){
+  searchDays($event) {
     this.duration = this.selectedCourse.duration;
     this.startingDate = $event.value;
     this.temp = moment($event.value);
   }
 
 
-  datesForJobChange($event,index){
+  datesForJobChange($event, index) {
     this.finalCourseDates[index] = this.addJobForm.controls.singleJobDate.value
   }
 
-  addJob(){
+  addJob() {
 
-    console.log("Form value = ",this.addJobForm.value);
+    console.log("Form value = ", this.addJobForm.value);
     console.log("This.selectedCourse", this.selectedCourse)
 
-    this.loading = true;    
-    if(this.addJobForm.valid)
-    {
+    this.loading = true;
+    if (this.addJobForm.valid) {
       let InstructorsForDataBase = [];
       let instructorsForJobsPage = [];
 
@@ -157,15 +158,15 @@ export class AddJobModalComponent implements OnInit {
       }
 
       console.log('newJobforJobsPage', newJobforJobsPage)
-      
-      this._jobService.addJob(newJobforDataBase).subscribe(data=>{
+
+      this._jobService.addJob(newJobforDataBase).subscribe(data => {
         this.data = data;
         this.loading = false;
         this.dialogRef.close(newJobforJobsPage);
-      },err=>{
-          alert("Error adding job.")
-          this.loading = false;
-          this.dialogRef.close();
+      }, err => {
+        alert("Error adding job.")
+        this.loading = false;
+        this.dialogRef.close();
       })
       this.dialogRef.close(newJobforJobsPage);
     }
@@ -189,7 +190,7 @@ export class AddJobModalComponent implements OnInit {
       this.courses = courses;
     });
   }
-  
+
   /* GET instructors */
   getInstructors() {
     var that = this;
