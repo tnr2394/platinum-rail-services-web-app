@@ -32,8 +32,21 @@ learner.getLearnersByQuery = function(query){
 learner.updateLearner = function(object) {
     console.log("Update Learner in location DAO",object);
     var q = Q.defer();
-    var updatedLearner = object;
-    learnerModel.findByIdAndUpdate(object._id,updatedLearner,{new:true},(err,learner)=>{
+    // var updatedLearner = object;
+    console.log('----------object', object);
+    // let idArray = []
+    // let allotments = []
+    // object.forEach((doc)=>{
+        // idArray.push(doc._id)
+        // console.log('ID', idArray)
+        // allotments.push(doc.allotments)
+        // console.log("ALLOTMENTS ARRAY", allotments);
+        
+    // })
+    console.log("id array", { _id: { $in: object.learner }})
+    // console.log("ALLOTMENTS", allotments);
+    // learnerModel.updateMany({ _id: { $in: idArray } }, { $addToSet: { 'allotments': allotments } }, { new: true , multi:true },(err,learner)=>{
+    learnerModel.updateMany({ _id: { $in: object.learners } }, { $addToSet: { 'allotments': object.materials} }, { new: true, multi: true }, (err, learner) => {
         if(err) return q.reject(err);
         else{
             console.log("Learner Uploaded & Updated Successfully =  ",learner,q);

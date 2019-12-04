@@ -62,24 +62,25 @@ learnerController.addLearner = async function (req, res, next) {
 
 
 learnerController.updateLearner = async function (req, res, next) {
-
-    var updatedLearner = {
-        _id: req.body._id,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    };
+    console.log('body', req.body[0]);
+    
+    // var updatedLearner = {
+    //     _id: req.body[0]._id,
+    //     name: req.body[0].name,
+    //     email: req.body[0].email,
+    //     password: req.body[0].password,
+    //     allotments: req.body[0].allotments
+    // };
     console.log("Update Learner DOA in Learner-Controller", req.body);
 
-    learnerDOA.updateLearner(updatedLearner).then(learner => {
+    learnerDOA.updateLearner(req.body).then(learner => {
         console.log("Updated learner in controller", learner);
         return res.send({ data: { learner } });
     }, err => {
         console.error(err);
         return res.status(500).send({ err })
-    })
-        .catch(err => {
-            console.error(err);
+    }).catch(err => {
+        console.error(err);
         })
 }
 
