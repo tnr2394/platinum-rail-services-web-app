@@ -1,8 +1,8 @@
 var learnerDOA = require('../dao/learner.dao');
 var clientDOA = require('../dao/client.dao');
-var Q = require('q');
 const jwt = require("jsonwebtoken");
-
+const mailService = require('../services/mail.service');
+var Q = require('q');
 
 var learnerController = {};
 
@@ -119,6 +119,5 @@ learnerController.loginLearner = function (req, res, next) {
         }
     });
 }
-
 
 module.exports = learnerController;

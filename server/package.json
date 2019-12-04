@@ -28,6 +28,7 @@
     "nodemailer": "^6.3.1",
     "nodemailer-ses-transport": "^1.5.1",
     "nodemon": "^1.19.4",
+    "pug": "^2.0.4",
     "q": "^1.5.1"
   }
 }

@@ -2,6 +2,8 @@
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const mailService = require('../services/mail.service');
+
 
 
 var instructorModel = require('../models/instructor.model');
@@ -39,6 +41,7 @@ instructorController.addInstructor = function (req, res, next) {
     });
     newInstructor.save((err, instructor) => {
         console.log("SENDING RESPONSE Instructors = ", instructor)
+        
         return res.send({ data: { instructor } });
     })
 }

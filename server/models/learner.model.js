@@ -20,10 +20,8 @@ var learnerSchema = new Schema({
     allotments: [{
         assignment:{
             type: Schema.Types.ObjectId,
-            
         },
     }],
-    
 }, {
     timestamps: true
 });

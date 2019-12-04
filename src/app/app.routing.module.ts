@@ -31,7 +31,6 @@ const routes: Routes = [
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
 	{ path: 'login/:user', component: LoginComponent }
-
 ];
 
 @NgModule({
