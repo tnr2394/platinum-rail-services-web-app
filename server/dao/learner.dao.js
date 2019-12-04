@@ -76,7 +76,7 @@ learner.updateAssignment = function (learnerId, assignment) {
 
 learner.sendMailToLearner = function (learnerId) {
 
-    console.log("newLearner Added Successfully =  ", newLearner);
+    // console.log("newLearner Added Successfully =  ", newLearner);
     var q = Q.defer();
     console.log("Learner to be send email:", learnerId);
 

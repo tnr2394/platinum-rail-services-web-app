@@ -41,7 +41,7 @@ instructorController.addInstructor = function (req, res, next) {
     });
     newInstructor.save((err, instructor) => {
         console.log("SENDING RESPONSE Instructors = ", instructor)
-        
+
         return res.send({ data: { instructor } });
     })
 }
@@ -90,7 +90,14 @@ instructorController.loginInstructor = function (req, res, next) {
             return res.status(500).send({ err })
         } else if (instructor) {
             if (password == instructor.password) {
+
+                console.log('instructor--------->>>>>>>.', instructor);
+
                 const payload = { instructor };
+
+                console.log('payload--------->>>>>>>.', payload);
+
+
                 var token = jwt.sign(payload, 'platinum');
                 req.session.currentUser = token;
                 return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });

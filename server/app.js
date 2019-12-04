@@ -23,6 +23,12 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 //configure bodyparser
+
+app.use(expressSession({
+  secret: "platinum",
+}));
+
+
 var bodyParserJSON = bodyParser.json();
 var bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -50,15 +56,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(expressSession({
-secret: "platinum",
-  resave: true,
-  cookie: {
-    sameSite: true,
-  },
-}));
+
 
 require('dotenv').config();
+
+
 
 
 app.use('/', indexRouter);
@@ -70,6 +72,8 @@ app.use('/jobs', jobsRouter);
 app.use('/learners', learnersRouter);
 app.use('/materials', materialsRouter);
 app.use('/admin', adminRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

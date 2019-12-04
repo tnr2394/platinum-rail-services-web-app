@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 module.exports.validateJWT = async (req, res, next) => {
     const { authorization } = req.headers;
     new Promise(async (resolve, reject) => {
-        if (authorization && authorization !== "" && authorization == req.session.currentUser) {
+        if (authorization && authorization !== "" && authorization) {
             jwt.verify(authorization, 'platinum', (err, decoded) => {
                 if (err) {
                     reject({ status: false, message: "Failed to authenticate token.", });

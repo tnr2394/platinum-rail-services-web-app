@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var jobController = require('../controllers/job.controller')
+const jwtService = require('../services/jwt.service');
+
 
 /* GET jobs listing */
 router.get('/', jobController.getJobs)

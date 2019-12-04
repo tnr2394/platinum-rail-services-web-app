@@ -3,6 +3,8 @@ const Q = require('q');
 
 const allotmentModel = require('../models/allotment.model');
 const mailService = require('../services/mail.service');
+const fileDAO = require('./file.dao');
+
 var allotment = {};
 
 allotment.createAllotment = function (obj) {
@@ -45,6 +47,22 @@ allotment.deleteAllotment = function (allotemntId) {
         if (err) q.reject(err);
         console.log("Deleted ", deleted);
         q.resolve(deleted);
+    });
+    return q.promise;
+}
+
+allotment.submissionOfAssignment = function (allotemntId, obj) {
+    console.log('Assignment Submission');
+    var q = Q.defer();
+    fileDAO.addFile(obj).then((response) => {
+        console.log('File added now update allotment file array')
+        allotment.findByIdAndUpdate({ _id: allotemntId }, { $push: { $files: response._id } }, { new: true }, (err, updatedAllotment) => {
+            if (err) q.reject(err);
+            console.log('Updated', updateAllotment);
+            q.resolve(updatedAllotment);
+        });
+    }).catch((error) => {
+        q.reject(error);
     });
     return q.promise;
 }

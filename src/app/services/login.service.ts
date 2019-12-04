@@ -25,13 +25,13 @@ export class LoginService {
         localStorage.setItem('userRole', res.userRole);
 
         if (res.userRole == 'admin') {
-          this.router.navigate(['platinum/dashboard']);
+          this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'instructor') {
-          this.router.navigate(['platinum/dashboard']);
+          this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'client') {
-          this.router.navigate(['platinum/dashboard']);
+          this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'learner ') {
-          this.router.navigate(['platinum/dashboard']);
+          this.router.navigate(['/dashboard']);
         }
 
         observer.next(res.data.client);

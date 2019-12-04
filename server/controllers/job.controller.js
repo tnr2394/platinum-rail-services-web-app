@@ -21,12 +21,28 @@ async function allJobs(query) {
 }
 
 jobController.getJobs = async function (req, res) {
+
+    console.log('Req.user', req.user);
+
+    console.log('current User', req.session.currentUser);
+
     var query = {};
     if (req.query) {
         query = req.query;
     }
+
     console.log('GET jobs with query = ', query);
-     
+
+    // const userRole = 'instructor';
+
+    // if (userRole == 'admin') {
+    //     query = {}
+    // } else if (userRole == 'instructor') {
+    //     query = { instructors: { $in: req.user.instructor._id } }
+    // } else if (userRole == 'client') {
+    //     query = { client: req.user.client._id }
+    // }
+
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
         console.log('---JOBS---', jobs)

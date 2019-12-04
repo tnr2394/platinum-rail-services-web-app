@@ -26,10 +26,9 @@ async function allLearners() {
     return deferred.promise;
 }
 
-
-
 learnerController.getLearners = async function (req, res, next) {
     let query = {};
+
     if (req.query) {
         query = req.query
     }
@@ -85,10 +84,9 @@ learnerController.updateLearner = async function (req, res, next) {
     }, err => {
         console.error(err);
         return res.status(500).send({ err })
+    }).catch(err => {
+        console.error(err);
     })
-        .catch(err => {
-            console.error(err);
-        })
 }
 
 learnerController.deleteLearner = function (req, res, next) {
@@ -133,22 +131,21 @@ learnerController.loginLearner = function (req, res, next) {
 learnerController.allotAssignments = function (req, res, next) {
     console.log('Allot Assignment');
 
-    // console.log('Allot Assignment', req.body);
+    console.log('Allot Assignment', req.body);
 
     async.eachSeries(req.body, (singleLearner, outerCallback) => {
         console.log('Single learner', singleLearner);
-
-        async.eachSeries(singleLearner.assignment, (singleAssignment, innerCallback) => {
+        async.eachSeries(singleLearner.assignments, (singleAssignment, innerCallback) => {
             console.log('singleAssignment', singleAssignment);
             const newAllotment = {
-                assignment: singleAssignment,
-                learner: singleLearner.learnerId,
+                assignment: singleAssignment._id,
+                learner: singleLearner.learner,
                 status: 'pending',
                 deadlineDate: Date.now(),
             }
             allotmentDOA.createAllotment(newAllotment).then((response) => {
                 console.log('Allotment Added now update learner');
-                learnerDOA.updateAssignment(singleLearner.learnerId, response._id).then((updatedLearner) => {
+                learnerDOA.updateAssignment(singleLearner.learner, response._id).then((updatedLearner) => {
                     console.log("updatedLearner", updatedLearner);
                     innerCallback();
                 }).catch((updateLearnerErr) => {
@@ -173,6 +170,22 @@ learnerController.allotAssignments = function (req, res, next) {
         }
     })
 
+}
+
+
+learnerController.assignmentSubmisssion = function (req, res, next) {
+    console.log('Assignment Submission');
+
+    const allotmentId = req.body.allotmentId;
+    const submittedFile = req.file;
+
+    allotmentDOA.submissionOfAssignment(allotmentId, submittedFile)
+        .then(updated => {
+            console.log("updated ", updated);
+            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
 }
 
 
