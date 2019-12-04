@@ -61,13 +61,13 @@ export class JobComponent implements OnInit {
 
   allocateLearners(){
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners)=>{
+      let learners = []
       console.log("allocatedLearners", allocatedLearners)
-      let updateObject = {
-        learners : allocatedLearners,
-        assignments : this.materials
-      };
-      console.log("AFTER PUSH", updateObject)
-      this._learnerService.editLearner(updateObject).subscribe(data=>{
+      allocatedLearners.forEach((learner)=>{
+          learners.push({ learner: learner._id, assignments: this.materials })
+      })
+      console.log("LEARNERS TO SEND", learners)
+      this._learnerService.editLearner(learners).subscribe(data=>{
         console.log("DATA SENT")
       })
     })
@@ -83,4 +83,3 @@ export class JobComponent implements OnInit {
     });
   }
 }
-
