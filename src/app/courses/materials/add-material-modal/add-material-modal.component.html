@@ -9,7 +9,12 @@
                     <mat-option value='Assignment'> Assignment</mat-option>
                     <mat-option value='Reading'> Reading Material</mat-option>
                 </mat-select>
-                <!-- <input matInput name="material-duration" placeholder="Material Duration" [(ngModel)]='data.type' required> -->
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
+                <input matInput name='unit' placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
+                <input matInput name='assignment' placeholder="Enter Assignment Number" type="number" required [(ngModel)]='data.assignmentNo'>
         </mat-form-field>
         
   </div>

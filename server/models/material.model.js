@@ -11,6 +11,12 @@ var materialSchema = new Schema({
     type:{
         type: String
     },
+    unitNo:{
+        type: Number
+    },
+    assignmentNo: {
+        type: Number
+    },
     course:{
         type: Schema.Types.ObjectId,
         ref: 'course'
