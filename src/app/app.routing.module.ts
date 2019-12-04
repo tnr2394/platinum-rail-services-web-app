@@ -12,6 +12,8 @@ import { LearnersComponent } from './learners/learners.component';
 import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
 import { MaterialsComponent } from './courses/materials/materials.component';
 import { LoginComponent } from './login/login.component';
+import { SubmissionComponent } from './submission/submission.component';
+import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
 
 
 
@@ -30,8 +32,9 @@ const routes: Routes = [
 	{ path: 'jobs/:jobid', component: JobComponent },
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
-	{ path: 'login/:user', component: LoginComponent }
-
+	{ path: 'login/:user', component: LoginComponent },
+	{ path: 'submission/:jobid', component: SubmissionComponent },
+	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent }
 ];
 
 @NgModule({

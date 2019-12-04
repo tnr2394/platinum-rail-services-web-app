@@ -65,6 +65,8 @@ import { MaterialComponent } from './courses/materials/material/material.compone
 import { AllocateLearnerModalComponent } from './jobs/job/allocate-learner-modal/allocate-learner-modal.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './intercaptor';
+import { SubmissionComponent } from './submission/submission.component';
+import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,8 @@ import { AuthInterceptor } from './intercaptor';
     MaterialComponent,
     AllocateLearnerModalComponent,
     LoginComponent,
+    SubmissionComponent,
+    InstructorSubmissionComponent,
 
   ],
   imports: [
