@@ -33,7 +33,7 @@ learner.updateLearner = function(object) {
     console.log("Update Learner in location DAO",object);
     var q = Q.defer();
     var updatedLearner = object;
-    learnerModel.findByIdAndUpdate(object._id,updatedLearner,{new:true},(err,learner)=>{
+    learnerModel.findByIdAndUpdate(object._id, updatedLearner, { new: true }, (err, learner) => {
         if(err) return q.reject(err);
         else{
             console.log("Learner Uploaded & Updated Successfully =  ",learner,q);

@@ -1,7 +1,8 @@
-<div class="card w-50 m-auto">
+<div class="card w-50 m-auto text-center">
 
+    <h1>PLATINUM</h1>
+    <h2>RAIL SERVICES</h2>
     <form (ngSubmit)='doSubmit()' [formGroup]="loginForm">
-
         <mat-form-field class="example-full-width w-100">
             <input matInput name="client-email" placeholder="Email" formControlName="email" required>
             <mat-error>Email is required</mat-error>
@@ -14,6 +15,5 @@
         <button mat-flat-button color="primary" type="submit">
             login
         </button>
-
     </form>
 </div>

@@ -62,14 +62,12 @@ export class JobComponent implements OnInit {
   allocateLearners(){
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners)=>{
       console.log("allocatedLearners", allocatedLearners)
-      allocatedLearners.forEach((learner)=>{
-        this.materials.forEach((material)=>{
-          learner.allotments.push(material._id)
-        })
-      })
-      console.log("AFTER PUSH", allocatedLearners)
-      // let newLearner
-      this._learnerService.editLearner(allocatedLearners).subscribe(data=>{
+      let updateObject = {
+        learners : allocatedLearners,
+        assignments : this.materials
+      };
+      console.log("AFTER PUSH", updateObject)
+      this._learnerService.editLearner(updateObject).subscribe(data=>{
         console.log("DATA SENT")
       })
     })
