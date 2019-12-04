@@ -16,8 +16,6 @@ async function allMaterials() {
     return deferred.promise;
 }
 
-
-
 materialController.getMaterials = async function (req, res, next) {
     let query = {};
     if (req.query) {

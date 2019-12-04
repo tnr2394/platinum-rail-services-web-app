@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var learnerSchema = new Schema({
-    name:{
+    name: {
         type: String
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
@@ -12,19 +12,18 @@ var learnerSchema = new Schema({
         type: String,
         required: true
     },
-    job:{
+    job: {
         type: Schema.Types.ObjectId,
         ref: 'job',
         required: true
     },
     allotments: [{
-        assignment:{
-            type: Schema.Types.ObjectId,
-        },
+        type: Schema.Types.ObjectId,
+        ref: 'allotment'
     }],
 }, {
-    timestamps: true
-});
+        timestamps: true
+    });
 var learnerModel = mongoose.model('learner', learnerSchema);
 module.exports = learnerModel;
 

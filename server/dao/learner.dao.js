@@ -61,25 +61,34 @@ learner.deleteLearner = function (learnerId) {
     return q.promise;
 }
 
+learner.updateAssignment = function (learnerId, assignment) {
+    console.log("Update Learner in location DAO", learnerId);
+    var q = Q.defer();
+    learnerModel.findByIdAndUpdate({ _id: learnerId }, { $push: { allotments: assignment } }, { new: true }, (err, learner) => {
+        if (err) return q.reject(err);
+        else {
+            console.log("Learner Uploaded & Updated Successfully =  ", learner, q);
+            return q.resolve(learner);
+        }
+    });
+    return q.promise;
+}
+
 learner.sendMailToLearner = function (learnerId) {
 
-    console.log('Learner Send Mail');
-
+    console.log("newLearner Added Successfully =  ", newLearner);
     var q = Q.defer();
-
     console.log("Learner to be send email:", learnerId);
 
     learnerModel.findOne({ _id: learnerId }).exec((err, learner) => {
         if (err) {
             q.reject(err);
         } else if (learner) {
-
             const defaultPasswordEmailoptions = {
                 to: learner.email,
                 subject: `You Added In Job`,
                 template: 'forgot-password'
             };
-
             mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
                 if (err) {
                     console.log('error:', error);
