@@ -12,4 +12,9 @@ router.delete('/', learnerController.deleteLearner);
 // Login Learner
 router.post('/login', learnerController.loginLearner);
 
+// Allot Assignments
+
+router.post('/allot', learnerController.allotAssignments);
+
+
 module.exports = router;

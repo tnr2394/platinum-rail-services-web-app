@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "async": "^3.1.0",
     "aws-sdk": "^2.580.0",
     "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
@@ -28,6 +29,7 @@
     "nodemailer": "^6.3.1",
     "nodemailer-ses-transport": "^1.5.1",
     "nodemon": "^1.19.4",
+    "pug": "^2.0.4",
     "q": "^1.5.1"
   }
 }

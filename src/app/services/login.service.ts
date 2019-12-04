@@ -20,14 +20,19 @@ export class LoginService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl +  "" + routename + "/login", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "" + routename + "/login", data).subscribe((res: any) => {
         localStorage.setItem('currentUser', res.data);
         localStorage.setItem('userRole', res.userRole);
 
         if (res.userRole == 'admin') {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['platinum/dashboard']);
+        } else if (res.userRole == 'instructor') {
+          this.router.navigate(['platinum/dashboard']);
+        } else if (res.userRole == 'client') {
+          this.router.navigate(['platinum/dashboard']);
+        } else if (res.userRole == 'learner ') {
+          this.router.navigate(['platinum/dashboard']);
         }
-
 
         observer.next(res.data.client);
         // observer.complete();

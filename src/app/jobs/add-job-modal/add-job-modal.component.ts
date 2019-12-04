@@ -60,6 +60,7 @@ export class AddJobModalComponent implements OnInit {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
   }
+  
   daySelection(obj) {
     console.log("-----DAY SELECTION EVENT-----", obj)
     obj.singleJobDates.forEach((item) => {
@@ -69,6 +70,7 @@ export class AddJobModalComponent implements OnInit {
       this.totalDays.push(item)
     })
   }
+
   ngOnInit() {
     console.log("ON INIT", this.startingDate);
 

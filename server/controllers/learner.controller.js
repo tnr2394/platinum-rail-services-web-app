@@ -1,7 +1,16 @@
-var learnerDOA = require('../dao/learner.dao');
-var clientDOA = require('../dao/client.dao');
-var Q = require('q');
 const jwt = require("jsonwebtoken");
+const mailService = require('../services/mail.service');
+
+
+const Q = require('q');
+const async = require("async");
+
+
+// Dao Variables
+
+const learnerDOA = require('../dao/learner.dao');
+const clientDOA = require('../dao/client.dao');
+const allotmentDOA = require('../dao/allotment.dao');
 
 
 var learnerController = {};
@@ -95,6 +104,7 @@ learnerController.deleteLearner = function (req, res, next) {
         })
 }
 
+
 learnerController.loginLearner = function (req, res, next) {
     console.log("Login Learner");
 
@@ -117,6 +127,52 @@ learnerController.loginLearner = function (req, res, next) {
             return res.status(400).json({ message: 'Login failed Invalid email' });
         }
     });
+}
+
+
+learnerController.allotAssignments = function (req, res, next) {
+    console.log('Allot Assignment');
+
+    // console.log('Allot Assignment', req.body);
+
+    async.eachSeries(req.body, (singleLearner, outerCallback) => {
+        console.log('Single learner', singleLearner);
+
+        async.eachSeries(singleLearner.assignment, (singleAssignment, innerCallback) => {
+            console.log('singleAssignment', singleAssignment);
+            const newAllotment = {
+                assignment: singleAssignment,
+                learner: singleLearner.learnerId,
+                status: 'pending',
+                deadlineDate: Date.now(),
+            }
+            allotmentDOA.createAllotment(newAllotment).then((response) => {
+                console.log('Allotment Added now update learner');
+                learnerDOA.updateAssignment(singleLearner.learnerId, response._id).then((updatedLearner) => {
+                    console.log("updatedLearner", updatedLearner);
+                    innerCallback();
+                }).catch((updateLearnerErr) => {
+                    return res.status(500).send({ err })
+                })
+            }).catch((error) => {
+                return res.status(500).send({ err })
+            })
+        }, (callbackError, callbackResponse) => {
+            if (callbackError) {
+                return res.status(500).send({ err })
+            } else {
+                outerCallback();
+            }
+        })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            return res.status(500).send({ err })
+        } else {
+            console.log("Final callback");
+            return res.send({ data: {}, msg: "Assignment Alloted Successfully" });
+        }
+    })
+
 }
 
 

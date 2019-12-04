@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
     this._loginService.login(this.loginForm.value, this.activeRouteName).subscribe(data => {
       console.log("Added Successfully", data);
     }, err => {
-      alert("Error Adding Learner.")
+      console.log('error while login');
+      alert("error while login.")
     });
   }
 
