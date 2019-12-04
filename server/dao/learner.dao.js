@@ -56,5 +56,4 @@ learner.deleteLearner = function(learnerId){
     });
     return q.promise;
 }
-
 module.exports = learner;
