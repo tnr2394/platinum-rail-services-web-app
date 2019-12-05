@@ -9,7 +9,9 @@ router.post('/', instructorController.addInstructor);
 router.put('/', instructorController.updateInstructor);
 // Delete Instructor
 router.delete('/', instructorController.deleteInstructor);
-
+// Login Instructor
 router.post('/login', instructorController.loginInstructor);
+// Forgot Password Instructor
+router.post('/forgot-password', instructorController.forgotPassword);
 
 module.exports = router;

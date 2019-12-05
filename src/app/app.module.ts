@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FileUploadModule } from 'ng2-file-upload';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 
 
@@ -139,14 +140,17 @@ import { InstructorSubmissionComponent } from './submission/instructor-submissio
     CdkTableModule,
     MatSnackBarModule,
     ColorPickerModule,
-    FileUploadModule
+    FileUploadModule,
+    RecaptchaV3Module
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent],
   providers: [SideNavServiceService, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  },
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcLOcYUAAAAAHo-l4hLSePmVP_U4vNj7VlUlU1A' },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
 
   bootstrap: [AppComponent],

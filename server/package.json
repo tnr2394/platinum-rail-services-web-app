@@ -30,6 +30,7 @@
     "nodemailer-ses-transport": "^1.5.1",
     "nodemon": "^1.19.4",
     "pug": "^2.0.4",
-    "q": "^1.5.1"
+    "q": "^1.5.1",
+    "request": "^2.88.0"
   }
 }

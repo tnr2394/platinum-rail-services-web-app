@@ -1,9 +1,13 @@
+// Npm Variables
+
 const jwt = require("jsonwebtoken");
-const mailService = require('../services/mail.service');
-
-
 const Q = require('q');
 const async = require("async");
+
+// Service Variables
+
+const mailService = require('../services/mail.service');
+const reCaptchaService = require('../services/reCaptcha.service');
 
 
 // Dao Variables
@@ -108,23 +112,28 @@ learnerController.loginLearner = function (req, res, next) {
 
     const email = req.body.email;
     const password = req.body.password;
+    const recaptchaToken = req.body.recaptchaToken;
 
-    learnerModel.findOne({ email: email }).exec((err, learner) => {
-        if (err) {
-            return res.status(500).send({ err })
-        } else if (learner) {
-            if (password == learner.password) {
-                const payload = { learner };
-                var token = jwt.sign(payload, 'platinum');
-                req.session.currentUser = token;
-                return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'learner' });
+    reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
+        learnerModel.findOne({ email: email }).exec((err, learner) => {
+            if (err) {
+                return res.status(500).send({ err })
+            } else if (learner) {
+                if (password == learner.password) {
+                    const payload = { learner };
+                    var token = jwt.sign(payload, 'platinum');
+                    req.session.currentUser = token;
+                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'learner' });
+                } else {
+                    return res.status(400).json({ message: 'Login failed Invalid password' });
+                }
             } else {
-                return res.status(400).json({ message: 'Login failed Invalid password' });
+                return res.status(400).json({ message: 'Login failed Invalid email' });
             }
-        } else {
-            return res.status(400).json({ message: 'Login failed Invalid email' });
-        }
-    });
+        });
+    }).catch((error) => {
+        return res.status(400).json({ message: 'Failed captcha verification' });
+    })
 }
 
 

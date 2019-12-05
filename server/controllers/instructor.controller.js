@@ -1,13 +1,17 @@
-//Npm Modules
+// Npm Modules
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Q = require('q');
+
+// Service Variables
+
 const mailService = require('../services/mail.service');
+const reCaptchaService = require('../services/reCaptcha.service');
 
-
+// Model Variables
 
 var instructorModel = require('../models/instructor.model');
-var Q = require('q');
 
 var instructorController = {};
 
@@ -85,30 +89,65 @@ instructorController.loginInstructor = function (req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
 
-    instructorModel.findOne({ email: email }).exec((err, instructor) => {
+    reCaptchaService.verifyRecaptcha().then((Response) => {
+        instructorModel.findOne({ email: email }).exec((err, instructor) => {
+            if (err) {
+                return res.status(500).send({ err })
+            } else if (instructor) {
+                if (password == instructor.password) {
+                    const payload = { instructor };
+                    var token = jwt.sign(payload, 'platinum');
+                    req.session.currentUser = token;
+                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });
+                } else {
+                    return res.status(400).json({ message: 'Login failed Invalid password' });
+                }
+            } else {
+                return res.status(400).json({ message: 'Login failed Invalid email' });
+            }
+        });
+    }).catch((error) => {
+        return res.status(400).json({ message: 'Failed captcha verification' });
+    })
+}
+
+
+instructorController.forgotPassword = function (req, res, next) {
+    console.log("Forgot Password Instructor");
+
+    const email = req.body.email;
+    const newPassword = Math.floor(100000 + Math.random() * 9000000000);
+
+    instructorModel.findOneAndUpdate({ email: email }, { $set: { password: newPassword } }, (err, instructor) => {
         if (err) {
             return res.status(500).send({ err })
         } else if (instructor) {
-            if (password == instructor.password) {
 
-                console.log('instructor--------->>>>>>>.', instructor);
+            const defaultPasswordEmailoptions = {
+                to: email,
+                subject: `here the link to reset your password`,
+                template: 'forgot-password'
+            };
 
-                const payload = { instructor };
-
-                console.log('payload--------->>>>>>>.', payload);
-
-
-                var token = jwt.sign(payload, 'platinum');
-                req.session.currentUser = token;
-                return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });
-            } else {
-                return res.status(400).json({ message: 'Login failed Invalid password' });
+            const instructorDetail = {
+                name: instructor.name,
+                newPassword: newPassword
             }
+
+            mailService.sendMail(defaultPasswordEmailoptions, instructorDetail, null, function (err, mailResult) {
+                if (err) {
+                    return res.status(500).send({ err })
+                } else {
+                    return res.status(200).json({ message: 'New Password Send To Email.' });
+                }
+            });
+
         } else {
-            return res.status(400).json({ message: 'Login failed Invalid email' });
+            return res.status(400).json({ message: 'Email Not Found' });
         }
     });
 }
+
 
 
 

@@ -3,23 +3,22 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { LoginService } from '../services/login.service';
-
-
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   activeRouteName: any;
-  constructor(public route: Router, public _loginService: LoginService, public router: ActivatedRoute) {
+  constructor(public route: Router, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     });
-
   }
 
   ngOnInit() {
@@ -39,13 +38,17 @@ export class LoginComponent implements OnInit {
       this.activeRouteName = param.user;
     });
 
-    this._loginService.login(this.loginForm.value, this.activeRouteName).subscribe(data => {
-      console.log("Added Successfully", data);
-    }, err => {
-      console.log('error while login');
-      alert("error while login.")
-    });
-  }
+    this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
+      console.log('')
+      console.log('Token:----------', token);
 
+      this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
+        console.log("Added Successfully", data);
+      }, err => {
+        console.log('error while login');
+        alert("error while login.")
+      });
+    })
+  }
 
 }
