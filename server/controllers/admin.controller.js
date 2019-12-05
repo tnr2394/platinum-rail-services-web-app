@@ -65,28 +65,42 @@ adminController.loginAdmin = function (req, res, next) {
     })
 }
 
-adminController.sendMail = function (req, res, next) {
-
-    console.log("Login Admin");
+adminController.forgotPassword = function (req, res, next) {
+    console.log("Forgot Password learner");
 
     const email = req.body.email;
+    const newPassword = Math.floor(100000 + Math.random() * 9000000000);
 
-    const defaultPasswordEmailoptions = {
-        to: email,
-        subject: `here the link to reset your password`,
-        template: 'forgot-password'
-    };
-
-    mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+    adminModel.findOneAndUpdate({ email: email }, { $set: { password: newPassword } }, (err, admin) => {
         if (err) {
-            console.log('error:', error);
             return res.status(500).send({ err })
+        } else if (admin) {
+
+            const defaultPasswordEmailoptions = {
+                to: email,
+                subject: `here the link to reset your password`,
+                template: 'forgot-password'
+            };
+
+            const adminDetail = {
+                name: admin.name,
+                newPassword: newPassword
+            }
+
+            mailService.sendMail(defaultPasswordEmailoptions, adminDetail, null, function (err, mailResult) {
+                if (err) {
+                    return res.status(500).send({ err })
+                } else {
+                    return res.status(200).json({ message: 'New Password Send To Email.' });
+                }
+            });
+
         } else {
-            console.log('Mail Result:', mailResult);
-            return res.status(200).json({ message: 'Mail Send Successfully', data: mailResult });
+            return res.status(400).json({ message: 'Email Not Found' });
         }
     });
 }
+
 
 
 module.exports = adminController;

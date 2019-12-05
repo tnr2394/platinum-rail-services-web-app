@@ -160,4 +160,42 @@ clientController.loginClient = function (req, res, next) {
     })
 }
 
+clientController.forgotPassword = function (req, res, next) {
+    console.log("Forgot Password Client");
+
+    const email = req.body.email;
+    const newPassword = Math.floor(100000 + Math.random() * 9000000000);
+
+    clientModel.findOneAndUpdate({ email: email }, { $set: { password: newPassword } }, (err, client) => {
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (client) {
+
+            const defaultPasswordEmailoptions = {
+                to: email,
+                subject: `here the link to reset your password`,
+                template: 'forgot-password'
+            };
+
+            const clientDetail = {
+                name: client.name,
+                newPassword: newPassword
+            }
+
+            mailService.sendMail(defaultPasswordEmailoptions, clientDetail, null, function (err, mailResult) {
+                if (err) {
+                    return res.status(500).send({ err })
+                } else {
+                    return res.status(200).json({ message: 'New Password Send To Email.' });
+                }
+            });
+
+        } else {
+            return res.status(400).json({ message: 'Email Not Found' });
+        }
+    });
+}
+
+
+
 module.exports = clientController;

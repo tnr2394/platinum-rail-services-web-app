@@ -16,6 +16,10 @@ const learnerDOA = require('../dao/learner.dao');
 const clientDOA = require('../dao/client.dao');
 const allotmentDOA = require('../dao/allotment.dao');
 
+const learnerModel = require('../models/learner.model')
+
+
+
 
 var learnerController = {};
 
@@ -204,6 +208,43 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
             return res.status(500).send({ err })
         })
 }
+
+learnerController.forgotPassword = function (req, res, next) {
+    console.log("Forgot Password learner");
+
+    const email = req.body.email;
+    const newPassword = Math.floor(100000 + Math.random() * 9000000000);
+
+    learnerModel.findOneAndUpdate({ email: email }, { $set: { password: newPassword } }, (err, learner) => {
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (learner) {
+
+            const defaultPasswordEmailoptions = {
+                to: email,
+                subject: `here the link to reset your password`,
+                template: 'forgot-password'
+            };
+
+            const learnerDetail = {
+                name: learner.name,
+                newPassword: newPassword
+            }
+
+            mailService.sendMail(defaultPasswordEmailoptions, learnerDetail, null, function (err, mailResult) {
+                if (err) {
+                    return res.status(500).send({ err })
+                } else {
+                    return res.status(200).json({ message: 'New Password Send To Email.' });
+                }
+            });
+
+        } else {
+            return res.status(400).json({ message: 'Email Not Found' });
+        }
+    });
+}
+
 
 
 module.exports = learnerController;

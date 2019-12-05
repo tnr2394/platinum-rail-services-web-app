@@ -68,6 +68,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './intercaptor';
 import { SubmissionComponent } from './submission/submission.component';
 import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { InstructorSubmissionComponent } from './submission/instructor-submissio
     LoginComponent,
     SubmissionComponent,
     InstructorSubmissionComponent,
+    ForgotpasswordComponent,
 
   ],
   imports: [

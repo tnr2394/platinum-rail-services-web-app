@@ -16,6 +16,8 @@ router.put('/', clientController.updateClient);
 // Delete Client
 router.delete('/', clientController.deleteClient);
 // Login Client
-router.post('/login', clientController.loginClient)
+router.post('/login', clientController.loginClient);
+// Forgot Password Client
+router.post('forgot-password', clientController.forgotPassword)
 
 module.exports = router;
