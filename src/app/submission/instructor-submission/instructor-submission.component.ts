@@ -11,6 +11,7 @@ export class InstructorSubmissionComponent implements OnInit {
   learner;
   material;
   assignment;
+  display : Boolean = false;
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.queryParams.subscribe(params => {
@@ -22,13 +23,13 @@ export class InstructorSubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log("Data recieved", this.learner,this.material)
+    console.log("Data recieved", this.learner,this.material)
     this.learner.allotments.forEach((item)=>{
       if(item.assignment == this.material._id){
         this.assignment = item;
-        // console.log("Match found", item)
+        console.log("Match Found")
+        this.display = true
       }
-      else console.log("Matech not found")
     })
   }
 
