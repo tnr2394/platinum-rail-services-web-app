@@ -16,12 +16,42 @@
                 </mat-form-field>
                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
+                <div class='row'>
+                <div class='col'>
+                <mat-form-field >
+                    <mat-select placeholder="Choose a course" (selectionChange)="courseChanged($event)">
+                        <mat-option *ngFor='let course of courses' [value]='course'>{{course.title}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </div>
+                <div class='col'>
+                <mat-form-field *ngIf='selectedCourse'>
+                    <mat-select placeholder='Choose job' (selectionChange)='jobChanged($event)'>
+                        <mat-option *ngFor='let job of jobs' [value]='job'>{{job.title}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </div>
+                <div class='col'>
+                <mat-form-field *ngIf='selectedCourse'>
+                    <mat-select placeholder="Choose assignment" (selectionChange)='materialChanged($event)'>
+                        <span *ngFor='let material of selectedCourse.materials'>
+                            <mat-option *ngIf='material.type == "Assignment"' [value]='material'>
+                            {{material.title}}
+                            </mat-option>
+                        </span>
+                    </mat-select>
+                </mat-form-field>
+                </div>
+                </div>
 
                 <div class='row'>
                     <div *ngIf="dataSource">
                         <h1>{{dataSource.length}}</h1>
+                        <div *ngIf='dataSource.data.length == "0"'>
+                            Choose Courses to display learners
+                        </div>
                         <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-                    
+                            
                             <!-- Name Column -->
                             <ng-container matColumnDef="Learner" class='col-4'>
                                 <th class="text-center" style="" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
@@ -36,7 +66,7 @@
                             <ng-container matColumnDef="View" class='col-4'>
                                 <th mat-header-cell *matHeaderCellDef> View </th>
                                 <td class="mat-table-cell" mat-cell *matCellDef="let learner; let i = index;">
-                                    <a mat-button class="text-primary bold" routerLink="/learner/{{learner._id}}">
+                                    <a mat-button class="text-primary bold" (click)='goToInstructorsSubmission(learner)'>
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
@@ -51,7 +81,4 @@
                     </div>
                 </div>
             </mat-card>
-            
-        <!-- </div> -->
-    <!-- </div> -->
 </div>

@@ -33,8 +33,8 @@ const routes: Routes = [
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
 	// { path: 'login/:user', component: LoginComponent },
-	{ path: 'submission/:jobid', component: SubmissionComponent },
-	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent }
+	{ path: 'submission', component: SubmissionComponent },
+	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
 	{ path: 'login/:user', component: LoginComponent }
 ];
 
