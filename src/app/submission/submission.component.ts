@@ -5,6 +5,9 @@ import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { FilterService } from "../services/filter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LearnerService } from '../services/learner.service';
+import { JobService } from '../services/job.service';
+import { CourseService } from '../services/course.service';
+import { Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-submission',
@@ -14,6 +17,11 @@ import { LearnerService } from '../services/learner.service';
 
 export class SubmissionComponent implements OnInit {
   learners;
+  jobs = [];
+  courses;
+  selectedJob;
+  selectedCourse;
+  selectedMaterial;
   displayedColumns: string[] = ['Learner', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
@@ -31,7 +39,7 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(public _learnerService:LearnerService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router,public _courseService: CourseService,public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
    }
   ngAfterViewInit() {
@@ -47,17 +55,59 @@ export class SubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLearners();
+    // this.getLearners(jobId);
+    this.getCourses();
     console.log("THIS>DATASOURCE", this.dataSource)
+  }
+  courseChanged(event){
+    this.selectedCourse = event.value;
+    console.log('this.selectedCourse', this.selectedCourse)
+    this.jobs = []
+    this.getJobs();
+  }
+  jobChanged(event){
+    console.log('job changed', event)
+    this.selectedJob = event.value._id;
+    this.getLearners(this.selectedJob);
+  }
+  materialChanged(event){
+    this.selectedMaterial = event.value
+  }
+  goToInstructorsSubmission(learner){
+    console.log("LEARNER",learner)
+    let NavigationExtras: NavigationExtras = {
+      state: {
+        learner: learner,
+        material: this.selectedMaterial  
+      }
+    };
+    this.router.navigateByUrl('/submission/learner/learner._id', NavigationExtras)
   }
 
   // API CALLS
-  getLearners(){
-    this._learnerService.getLearnersByJobId('5dd6b87d99722b218075d6a5').subscribe((data)=>{
+  getJobs() {
+    this._jobService.getJobs().subscribe((data) => {
+      data.forEach((job)=>{
+        if(job.course._id == this.selectedCourse._id){
+          this.jobs.push(job)
+        }
+      })
+      console.log("JOBS ARE", this.jobs)
+  });
+}
+  getLearners(jobId) {
+    this._learnerService.getLearnersByJobId(jobId).subscribe((data)=>{
       this.learners = data;
       this.dataSource = new MatTableDataSource(this.learners);
       console.log("-----LEARNERS ARE-----",this.learners)
+    });
+  }
+  
+  getCourses(){
+    this._courseService.getCourses().subscribe((course)=>{
+      console.log("COURSES ARE", course)
+      this.courses = course;
     })
   }
-
+  // routerLink = "/submission/learner/{{learner._id}}
 }

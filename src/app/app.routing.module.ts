@@ -32,7 +32,8 @@ const routes: Routes = [
 	{ path: 'jobs/:jobid', component: JobComponent },
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
-	{ path: 'submission/:jobid', component: SubmissionComponent },
+	// { path: 'login/:user', component: LoginComponent },
+	{ path: 'submission', component: SubmissionComponent },
 	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
 	{ path: 'login/:user', component: LoginComponent }
 ];

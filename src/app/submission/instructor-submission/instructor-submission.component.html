@@ -1,7 +1,19 @@
+<div *ngIf='display == true'>
+<div class='row'>
+    <div class='col-10'><h1>{{material.title}}</h1></div>
+    <div class='col-2'>
+        <mat-chip-list>
+        <i class='fa fa-clock'></i>
+        <mat-chip class='chipColor'>{{assignment.status}}</mat-chip>
+        </mat-chip-list>
+    </div>
+</div>
 <mat-card>
-    <h3>Submission by TEST USER</h3>
     <div class='row'>
-    <div class='col-6'>
+        <h4>Submission by {{learner.name}}</h4>
+    </div>
+    <div class='row'>
+    <div class='col-6 background'>
         <div class='row'> 
             <div class='col-9'>
             <mat-form-field class="example-full-width">
@@ -10,20 +22,33 @@
             </mat-form-field>
             </div>
             <div class='col-3'>
-                <button>
-                    <i class="fa fa-cloud-download fa-xxl"></i>
+                <button class='uploadBtn'>
+                    <i class="fa fa-cloud-upload fa-xxl"></i>
                 </button>
             </div>
         </div>
         
         <div class='row'>
-            <mat-card>
-                TEST!!!
-            </mat-card>
+            <!-- <mat-card> -->
+                <!-- <file-tile [file]='{{assignment.files}}'></file-tile> -->
+            <!-- </mat-card> -->
         </div>
     </div>
     <div class='col-6'>
-        yyy
+        <div class='row center'>
+        <button  mat-raised-button class='btnColorGreen'><i class='fa fa-check'></i> Mark Completed</button>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, a autem. Adipisci autem voluptate harum aspernatur? Molestias, asperiores quo? Delectus saepe magni aliquam dolore laudantium tempora temporibus iure velit libero. </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class='row center'>
+            <button mat-raised-button class='btnColorBlue'><i class='fa fa-bell'></i> Share and Notify</button>
+        </div>
     </div>
     </div>
 </mat-card>
+</div>
+
+<div *ngIf='display == false'>
+    {{learner.name}} Does not have any allocated {{material.title}} <i class="fa fa-frown-o"></i>
+</div>
+

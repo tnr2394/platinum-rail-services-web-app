@@ -20,7 +20,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing.module';
 
-import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS } from '@angular/material';
+import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS, MatChipsModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -121,7 +121,7 @@ import { InstructorSubmissionComponent } from './submission/instructor-submissio
     MDBBootstrapModule.forRoot(),
     MatListModule,
     MatPaginatorModule,
-    MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule,
+    MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule, MatChipsModule,
     MatSidenavModule, MatTooltipModule,
     AppRoutingModule,
     FormsModule,

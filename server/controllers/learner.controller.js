@@ -22,6 +22,14 @@ var learnerController = {};
 async function allLearners() {
     var deferred = Q.defer();
 
+    // learnerModel.find(query)
+    //     .populate("allotments")
+    //     .exec((err, learner) => {
+    //         if (err) deferred.reject(err);
+    //         deferred.resolve(learner);
+    //     });
+    // return deferred.promise;
+
     learnerModel.find({}, (err, clients) => {
         if (err) deferred.reject(err);
         // console.log("RETRIVED DATA = ",clients);

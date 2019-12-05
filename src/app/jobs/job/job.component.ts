@@ -7,7 +7,7 @@ import { AddLearnerModalComponent } from '../../learners/add-learner-modal/add-l
 import { EditLearnerModalComponent } from '../../learners/edit-learner-modal/edit-learner-modal.component';
 import { Observable } from 'rxjs';
 import { JobService } from '../../services/job.service';
-import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component'
+import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component';
 
 @Component({
   selector: 'app-job',
@@ -41,7 +41,7 @@ export class JobComponent implements OnInit {
       this.jobId = params['jobid'];
       console.log("Calling getLearners with jobid = ", this.jobId);
       this.getJob(this.job);
-    })
+    });
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
@@ -50,27 +50,27 @@ export class JobComponent implements OnInit {
   }
 
   loadLearners(object) {
-    console.log("OBJECT", object)
+    console.log("OBJECT", object);
     this.learners = object.learners;
     console.log("Learners loaded by event = ", object.learners);
   }
   loadMaterials(object) {
     this.materials = object.materials;
-    console.log('OBJECT', object)
+    console.log('OBJECT', object);
   }
 
   allocateLearners() {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
-      let learners = []
-      console.log("allocatedLearners", allocatedLearners)
+      let learners = [];
+      console.log("allocatedLearners", allocatedLearners);
       allocatedLearners.forEach((learner) => {
-        learners.push({ learner: learner._id, assignments: this.materials })
-      })
-      console.log("LEARNERS TO SEND", learners)
+        learners.push({ learner: learner._id, assignments: this.materials });
+      });
+      console.log("LEARNERS TO SEND", learners);
       this._learnerService.allocateLearner(learners).subscribe(data => {
-        console.log("DATA SENT")
-      })
-    })
+        console.log("DATA SENT");
+      });
+    });
   }
 
   getJob(jobId) {
