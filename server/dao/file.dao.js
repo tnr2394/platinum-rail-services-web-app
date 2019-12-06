@@ -56,6 +56,7 @@ file.addFile = function (object) {
                         title: object.title,
                         type: object.type,
                         path: uploadRes.Location,
+                        extension: object.extension,
                         uploadedBy: 'ADMIN'
                     }
                     var newFile = new fileModel(s3File);
