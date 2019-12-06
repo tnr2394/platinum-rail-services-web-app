@@ -2,24 +2,31 @@
     <div class="card-block ">
         <div class="row">
             <div class="col-1">
-                <i class="fas fa-file-pdf fa-2x"></i>
+                    <i class="fas fa-file-pdf"></i>
             </div>
-            <div class="col-4">
-                <p style="margin:0;">{{file.title}}</p>
-                <p style="font-size:10px;margin: 0">uploaded By:{{file.uploadedBy}}</p>
-            </div>
-            <div class="col-3">
-                <p style="font-size: 10px;">{{ file.createdAt | date: 'short' }}</p>
-            </div>
-            <div class="col-2">
-                <a href="{{file.path}}" mat-button class="text-primary" download>
-                    <i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="col-2">
-                <button mat-flat-button type="button" color="warn" class="text-white pull-right" (click)="delete()">
-                    <i class="fas fa-trash"></i>
-                </button>
+            <div class="col-11">
+                <div class="row">
+                    <!-- <div class="col-2"> -->
+                    <!-- </div> -->
+                    <div class="col-6">
+                        <b>{{file.title}}</b>
+                        <!-- <b>{{file}}</b> -->
+                        <p style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
+                    </div>
+                    <!-- <div class="col-12"> -->
+                        <div class='col-6'>
+
+                        <span style='font-size: medium;'> {{ file.createdAt | date: 'shortDate' }}</span>
+
+                        <a href="{{file.path}}" mat-button class="text-primary" download>
+                            <i class="fa fa-cloud-download" style="font-size: large; color: teal;"></i>
+                        </a>
+
+                        <button (click)="delete()" style='background-color: transparent; border: transparent;'>
+                            <i class="fas fa-trash" style='color: red;'></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

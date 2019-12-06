@@ -88,6 +88,19 @@ export class MaterialService {
     });
   }
 
+  getAllMaterials():Observable<any>{
+    console.log("Getting all the materials")
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "materials").subscribe((res: any) => {
+        console.log("Get materials : ", res);
+        observer.next(res.data);
+        observer.complete();
+      })
+    });
+  }
+
   getmaterialsByCourseId(jobId): Observable<any> {
     console.log("Getting materials");
     var that = this;

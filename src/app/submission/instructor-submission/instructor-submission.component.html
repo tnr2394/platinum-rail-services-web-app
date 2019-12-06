@@ -1,10 +1,10 @@
-<div *ngIf='display == true'>
+<div *ngIf='displayData.length != "0"'>
 <div class='row'>
-    <div class='col-10'><h1>{{material.title}}</h1></div>
+    <div class='col-10'><h1>{{title}}</h1></div>
     <div class='col-2'>
         <mat-chip-list>
         <i class='fa fa-clock'></i>
-        <mat-chip class='chipColor'>{{assignment.status}}</mat-chip>
+        <!-- <mat-chip class='chipColor'>{{assignment.status}}</mat-chip> -->
         </mat-chip-list>
     </div>
 </div>
@@ -29,9 +29,10 @@
         </div>
         
         <div class='row'>
-            <!-- <mat-card> -->
-                <!-- <file-tile [file]='{{assignment.files}}'></file-tile> -->
-            <!-- </mat-card> -->
+
+            <mat-card>
+                <file-tile *ngFor='let oneAssignment of displayData' ></file-tile>
+            </mat-card>
         </div>
     </div>
     <div class='col-6'>
@@ -46,9 +47,7 @@
     </div>
     </div>
 </mat-card>
-</div>
 
-<div *ngIf='display == false'>
+<div *ngIf='displayData.length == "0"'>
     {{learner.name}} Does not have any allocated {{material.title}} <i class="fa fa-frown-o"></i>
 </div>
-

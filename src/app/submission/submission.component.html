@@ -17,30 +17,52 @@
                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
                 <div class='row'>
-                <div class='col'>
+                <!-- <div class='col'>
                 <mat-form-field >
                     <mat-select placeholder="Choose a course" (selectionChange)="courseChanged($event)">
                         <mat-option *ngFor='let course of courses' [value]='course'>{{course.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                </div>
+                </div> -->
                 <div class='col'>
-                <mat-form-field *ngIf='selectedCourse'>
-                    <mat-select placeholder='Choose job' (selectionChange)='jobChanged($event)'>
+                <mat-form-field >
+                    <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>{{job.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
                 <div class='col'>
-                <mat-form-field *ngIf='selectedCourse'>
-                    <mat-select placeholder="Choose assignment" (selectionChange)='materialChanged($event)'>
-                        <span *ngFor='let material of selectedCourse.materials'>
-                            <mat-option *ngIf='material.type == "Assignment"' [value]='material'>
+                <mat-form-field>
+                    <mat-select placeholder="Assignment Title" (selectionChange)='materialChanged($event)'>
+                        <span *ngFor='let material of materials'>
+                            <mat-option [value]='material'>
                             {{material.title}}
                             </mat-option>
                         </span>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field> 
+                </div>
+                <div class='col'>
+                    <mat-form-field>
+                        <mat-select placeholder="Unit Number" (selectionChange)='unitNoChanged($event)'>
+                            <span *ngFor='let unit of unitNo'>
+                                <mat-option [value]='unit'>
+                                    {{unit}}
+                                </mat-option>
+                            </span>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class='col'>
+                    <mat-form-field>
+                        <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
+                            <span *ngFor='let assignment of assignmentNo'>
+                                <mat-option [value]='assignment'>
+                                    {{assignment}}
+                                </mat-option>
+                            </span>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 </div>
 
@@ -48,7 +70,7 @@
                     <div *ngIf="dataSource">
                         <h1>{{dataSource.length}}</h1>
                         <div *ngIf='dataSource.data.length == "0"'>
-                            Choose Courses to display learners
+                            Choose Jobs to display learners
                         </div>
                         <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
                             

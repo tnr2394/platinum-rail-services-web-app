@@ -9,5 +9,4 @@ router.post('/', adminController.addAdmin);
 router.post('/login', adminController.loginAdmin);
 
 
-
 module.exports = router;
