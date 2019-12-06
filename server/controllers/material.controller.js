@@ -167,8 +167,7 @@ materialController.getFiles = function (req, res, next) {
         return res.status(500).send("NO MATERIAL ID FOUND");
     }
     console.log("GET Materials query = ", query, "Params = ", req.query);
-    console.log('------------------req.session.user-----------------------------', JSON.stringify(req.session, null, 2));
-
+  
     materialDOA.getFiles(query)
         .then(foundMaterial => {
             console.log("Returing material - " + foundMaterial.files.length);
