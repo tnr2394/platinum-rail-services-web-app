@@ -16,5 +16,4 @@ router.post('/login', learnerController.loginLearner);
 
 router.post('/allot', learnerController.allotAssignments);
 
-
 module.exports = router;

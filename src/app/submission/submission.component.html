@@ -26,29 +26,51 @@
                 </div> -->
                 <div class='col'>
                 <mat-form-field >
-                    <mat-select placeholder='Choose job' (selectionChange)='jobChanged($event)'>
+                    <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>{{job.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>
-                <!-- <div class='col'>
-                <mat-form-field *ngIf='selectedJob'>
-                    <mat-select placeholder="Choose assignment" (selectionChange)='materialChanged($event)'>
-                        <span *ngFor='let material of selectedCourse.materials'>
-                            <mat-option *ngIf='material.type == "Assignment"' [value]='material'>
+                <div class='col'>
+                <mat-form-field>
+                    <mat-select placeholder="Assignment Title" (selectionChange)='materialChanged($event)'>
+                        <span *ngFor='let material of materials'>
+                            <mat-option [value]='material'>
                             {{material.title}}
                             </mat-option>
                         </span>
                     </mat-select>
-                </mat-form-field> -->
-                <!-- </div> -->
+                </mat-form-field> 
+                </div>
+                <div class='col'>
+                    <mat-form-field>
+                        <mat-select placeholder="Unit Number" (selectionChange)='unitNoChanged($event)'>
+                            <span *ngFor='let unit of unitNo'>
+                                <mat-option [value]='unit'>
+                                    {{unit}}
+                                </mat-option>
+                            </span>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class='col'>
+                    <mat-form-field>
+                        <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
+                            <span *ngFor='let assignment of assignmentNo'>
+                                <mat-option [value]='assignment'>
+                                    {{assignment}}
+                                </mat-option>
+                            </span>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
                 </div>
 
                 <div class='row'>
                     <div *ngIf="dataSource">
                         <h1>{{dataSource.length}}</h1>
                         <div *ngIf='dataSource.data.length == "0"'>
-                            Choose Courses to display learners
+                            Choose Jobs to display learners
                         </div>
                         <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
                             

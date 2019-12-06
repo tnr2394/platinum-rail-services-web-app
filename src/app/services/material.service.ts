@@ -93,9 +93,9 @@ export class MaterialService {
     var that = this;
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get(config.baseApiUrl + "materials?job=").subscribe((res: any) => {
+      this.http.get(config.baseApiUrl + "materials").subscribe((res: any) => {
         console.log("Get materials : ", res);
-        observer.next(res.data.materials);
+        observer.next(res.data);
         observer.complete();
       })
     });

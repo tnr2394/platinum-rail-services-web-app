@@ -23,6 +23,12 @@ export class SubmissionComponent implements OnInit {
   selectedJob;
   selectedCourse;
   selectedMaterial;
+  materials = [];
+  title = []
+  unitNo = []
+  assignmentNo = [];
+  selectedUnit;
+  selectedAssignment;
   displayedColumns: string[] = ['Learner', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
@@ -56,18 +62,9 @@ export class SubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getLearners(jobId);
-    // this.getCourses();
-    // console.log("THIS>DATASOURCE", this.dataSource)
-    // this.getJobs();
+    this.getJobs();
     this.getMaterials();
   }
-  // courseChanged(event){
-  //   this.selectedCourse = event.value;
-  //   console.log('this.selectedCourse', this.selectedCourse)
-  //   this.jobs = []
-  //   this.getJobs();
-  // }
   jobChanged(event){
     console.log('job changed', event)
     this.selectedJob = event.value._id;
@@ -76,12 +73,20 @@ export class SubmissionComponent implements OnInit {
   materialChanged(event){
     this.selectedMaterial = event.value
   }
+  unitNoChanged(event){
+    this.selectedUnit = event.value;
+  }
+  assignmentNoChanged(event){
+    this.selectedAssignment = event.value;
+  }
   goToInstructorsSubmission(learner){
     console.log("LEARNER",learner)
     let NavigationExtras: NavigationExtras = {
       state: {
         learner: learner,
-        material: this.selectedMaterial
+        title: this.selectedMaterial.title,
+        unitNo: this.unitNo,
+        assignmentNo: this.assignmentNo
       }
     };
     this.router.navigateByUrl('/submission/learner/learner._id', NavigationExtras)
@@ -104,14 +109,15 @@ export class SubmissionComponent implements OnInit {
 
   getMaterials(){
     this._materialService.getAllMaterials().subscribe((material)=>{
-      console.log("MATERIAL RECIEVED", material)
+      material.material.forEach((item)=>{
+        if(item.type =='Assignment'){
+          this.materials.push(item)
+          this.title.push(item.title)
+          this.unitNo.push(item.unitNo)
+          this.assignmentNo.push(item.assignmentNo)
+        }
+      })
+      console.log("MATERIAL RECIEVED", material.material)
     })
   }
-  
-  // getCourses(){
-  //   this._courseService.getCourses().subscribe((course)=>{
-  //     console.log("COURSES ARE", course)
-  //     this.courses = course;
-  //   })
-  // }
 }

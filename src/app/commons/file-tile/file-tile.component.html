@@ -1,30 +1,29 @@
 <div class="card">
     <div class="card-block ">
         <div class="row">
-            <div class="col-3">
+            <div class="col-1">
                     <i class="fas fa-file-pdf"></i>
             </div>
-            <div class="col-9">
+            <div class="col-11">
                 <div class="row">
-                    <div class="col-2">
+                    <!-- <div class="col-2"> -->
+                    <!-- </div> -->
+                    <div class="col-6">
+                        <b>{{file.title}}</b>
+                        <!-- <b>{{file}}</b> -->
+                        <p style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
                     </div>
-                    <div class="col-2">
-                        {{file.title}}
-                    </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12"> -->
+                        <div class='col-6'>
+
+                        <span style='font-size: medium;'> {{ file.createdAt | date: 'shortDate' }}</span>
+
                         <a href="{{file.path}}" mat-button class="text-primary" download>
-                            <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                            <i class="fa fa-cloud-download" style="font-size: large; color: teal;"></i>
                         </a>
 
-                        <p>uploaded By:{{file.uploadedBy}}</p>
-
-                        <p> {{ file.createdAt | date: 'shortDate' }}</p>
-
-
-
-                        <button mat-flat-button type="button" color="warn" class="text-white pull-right"
-                            (click)="delete()">
-                            <i class="fas fa-trash"></i>
+                        <button (click)="delete()" style='background-color: transparent; border: transparent;'>
+                            <i class="fas fa-trash" style='color: red;'></i>
                         </button>
                     </div>
                 </div>
