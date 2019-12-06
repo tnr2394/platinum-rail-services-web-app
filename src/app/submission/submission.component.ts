@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LearnerService } from '../services/learner.service';
 import { JobService } from '../services/job.service';
 import { CourseService } from '../services/course.service';
+import { MaterialService } from "../services/material.service";
 import { Router, NavigationExtras } from "@angular/router";
 
 @Component({
@@ -39,7 +40,7 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private router: Router,public _courseService: CourseService,public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router,public _materialService: MaterialService,public _courseService: CourseService,public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
    }
   ngAfterViewInit() {
@@ -56,15 +57,17 @@ export class SubmissionComponent implements OnInit {
 
   ngOnInit() {
     // this.getLearners(jobId);
-    this.getCourses();
-    console.log("THIS>DATASOURCE", this.dataSource)
+    // this.getCourses();
+    // console.log("THIS>DATASOURCE", this.dataSource)
+    // this.getJobs();
+    this.getMaterials();
   }
-  courseChanged(event){
-    this.selectedCourse = event.value;
-    console.log('this.selectedCourse', this.selectedCourse)
-    this.jobs = []
-    this.getJobs();
-  }
+  // courseChanged(event){
+  //   this.selectedCourse = event.value;
+  //   console.log('this.selectedCourse', this.selectedCourse)
+  //   this.jobs = []
+  //   this.getJobs();
+  // }
   jobChanged(event){
     console.log('job changed', event)
     this.selectedJob = event.value._id;
@@ -78,7 +81,7 @@ export class SubmissionComponent implements OnInit {
     let NavigationExtras: NavigationExtras = {
       state: {
         learner: learner,
-        material: this.selectedMaterial  
+        material: this.selectedMaterial
       }
     };
     this.router.navigateByUrl('/submission/learner/learner._id', NavigationExtras)
@@ -87,11 +90,7 @@ export class SubmissionComponent implements OnInit {
   // API CALLS
   getJobs() {
     this._jobService.getJobs().subscribe((data) => {
-      data.forEach((job)=>{
-        if(job.course._id == this.selectedCourse._id){
-          this.jobs.push(job)
-        }
-      })
+      this.jobs = data;
       console.log("JOBS ARE", this.jobs)
   });
 }
@@ -102,12 +101,17 @@ export class SubmissionComponent implements OnInit {
       console.log("-----LEARNERS ARE-----",this.learners)
     });
   }
-  
-  getCourses(){
-    this._courseService.getCourses().subscribe((course)=>{
-      console.log("COURSES ARE", course)
-      this.courses = course;
+
+  getMaterials(){
+    this._materialService.getAllMaterials().subscribe((material)=>{
+      console.log("MATERIAL RECIEVED", material)
     })
   }
-  // routerLink = "/submission/learner/{{learner._id}}
+  
+  // getCourses(){
+  //   this._courseService.getCourses().subscribe((course)=>{
+  //     console.log("COURSES ARE", course)
+  //     this.courses = course;
+  //   })
+  // }
 }
