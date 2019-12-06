@@ -16,5 +16,11 @@ router.post('/login', learnerController.loginLearner);
 
 router.post('/allot', learnerController.allotAssignments);
 
+// Submission Assignment
+
+router.post('/submission', learnerController.assignmentSubmisssion);
+
+
+
 
 module.exports = router;

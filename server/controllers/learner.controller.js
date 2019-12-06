@@ -198,9 +198,27 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
     console.log('Assignment Submission');
 
     const allotmentId = req.body.allotmentId;
-    const submittedFile = req.file;
 
-    allotmentDOA.submissionOfAssignment(allotmentId, submittedFile)
+    var re = /(?:\.([^.]+))?$/;
+    var ext = re.exec(req.files.file.name)[1];
+    var name = req.files.file.name.split('.').slice(0, -1).join('.')
+
+    // return res.send({body: req.body,files:req.files});
+
+    var newFile = {
+        title: name,
+        type: "material",// OR SUBMISSION OR DOCUMENT
+        path: "NEWPATH",
+        extension: ext,
+        uploadedBy: "ADMIN",
+        file: req.files,
+        uploadedDate: new Date()
+    }
+
+
+    console.log('Req.paramater', req.body, newFile);
+
+    allotmentDOA.submissionOfAssignment(allotmentId, newFile)
         .then(updated => {
             console.log("updated ", updated);
             return res.send({ data: {}, msg: "Assigment Submitted Successfully" });

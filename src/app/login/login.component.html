@@ -12,13 +12,25 @@
             <mat-error>Password is required.</mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary" type="submit">
+        <div class="row">
+            <div class="col-6">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+            <div class="col-6">
+                <a (click)="addClientModal()">
+                    Forgot Password
+                </a>
+            </div>
+        </div>
+
+        <button mat-flat-button class="btn btn-sm" style="width: 200px;
+    margin: 5px auto;" color="primary" type="submit">
             login
         </button>
+
     </form>
-    <div class="col-6">
-        <button mat-flat-button color="primary" class="pull-right" (click)="addClientModal()">
-            Forgot Password
-        </button>
-    </div>
+
+
 </div>

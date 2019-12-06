@@ -52,13 +52,13 @@ allotment.deleteAllotment = function (allotemntId) {
 }
 
 allotment.submissionOfAssignment = function (allotemntId, obj) {
-    console.log('Assignment Submission');
+    console.log('Assignment Submission', allotemntId, obj);
     var q = Q.defer();
     fileDAO.addFile(obj).then((response) => {
-        console.log('File added now update allotment file array')
-        allotment.findByIdAndUpdate({ _id: allotemntId }, { $push: { $files: response._id } }, { new: true }, (err, updatedAllotment) => {
+        console.log('File added now update allotment file array', response._id)
+        allotmentModel.updateOne({ _id: allotemntId }, { $addToSet: { files: response._id } }, { new: true }, (err, updatedAllotment) => {
             if (err) q.reject(err);
-            console.log('Updated', updateAllotment);
+            console.log('Updated', updatedAllotment);
             q.resolve(updatedAllotment);
         });
     }).catch((error) => {
