@@ -68,7 +68,7 @@ export class SingleLearnerComponent implements OnInit {
   learner;
   loading;
   data: any;
-  displayedColumns: string[] = ['unit', 'assignment', 'status'];
+  displayedColumns: string[] = ['unit', 'assignment', 'status', 'actions'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;

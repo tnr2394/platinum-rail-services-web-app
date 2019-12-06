@@ -215,8 +215,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         uploadedDate: new Date()
     }
 
-
-    console.log('Req.paramater', req.body, newFile);
+    console.log('new file object', newFile, allotmentId);
 
     allotmentDOA.submissionOfAssignment(allotmentId, newFile)
         .then(updated => {

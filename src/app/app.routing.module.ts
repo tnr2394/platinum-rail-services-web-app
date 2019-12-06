@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SubmissionComponent } from './submission/submission.component';
 import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
 	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
 	{ path: 'login/:user', component: LoginComponent },
 	{ path: 'forgotpassword/:user', component: ForgotpasswordComponent },
+	{ path: 'learner/allotment/:id', component: LearnerSubmissionComponent }
 ];
 
 @NgModule({

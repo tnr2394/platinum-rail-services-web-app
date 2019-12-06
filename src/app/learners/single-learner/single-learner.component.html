@@ -83,6 +83,19 @@
                                         </span></td>
                                 </ng-container>
 
+                                <!-- action Column -->
+
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef>View </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let assignment; let i = index;">
+                                        <a class="text-primary bold" routerLink="/learner/allotment/{{assignment._id}}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+
+
+
 
 
 

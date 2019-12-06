@@ -75,7 +75,7 @@ export class LearnerService {
     });
   }
 
-  getAllotedLearnerFiles(learnerId,assignmentId){
+  getAllotedLearnerFiles(learnerId, assignmentId) {
     return new Observable<any>((observer) => {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "learners/allot", learnerId + assignmentId).subscribe((res: any) => {
@@ -134,6 +134,28 @@ export class LearnerService {
         observer.next(res.data.learners);
         observer.complete();
       })
+
+    });
+  }
+
+  submitAssignment(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "learners/submission", data).subscribe((res: any) => {
+
+        observer.next(res.data.file);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
 
     });
   }
