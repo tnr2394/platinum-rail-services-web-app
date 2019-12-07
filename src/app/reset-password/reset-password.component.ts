@@ -4,31 +4,28 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { Observable } from 'rxjs';
 
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
-})
 
-export class LoginComponent implements OnInit {
+
+@Component({
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
+})
+export class ResetPasswordComponent implements OnInit {
   loginForm: FormGroup;
   activeRouteName: any;
   user: any;
   constructor(public route: Router, public dialog: MatDialog, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      oldPassword: new FormControl('', [Validators.required, Validators.email]),
+      newPassword: new FormControl('', Validators.required)
     });
   }
 
   ngOnInit() {
-    this.router.params.subscribe(param => {
-      this.activeRouteName = param.user;
-    });
   }
 
   validate(data) {
@@ -37,28 +34,6 @@ export class LoginComponent implements OnInit {
     if (!data.password) return false;
     return true;
   }
-
-  openDialog(someComponent, data = { user: this.activeRouteName }): Observable<any> {
-    console.log("OPENDIALOG", "DATA = ", data);
-    const dialogRef = this.dialog.open(someComponent, { data });
-    return dialogRef.afterClosed();
-  }
-
-
-  // MODALS
-  addClientModal() {
-    var addedClient = this.openDialog(ForgotpasswordComponent).subscribe((client) => {
-      console.log("Client added in controller = ", client);
-      if (client == undefined) return;
-      //   this.clients.push(client);
-      //   this.openSnackBar("Client Added Successfully", "Ok");
-      //   this.updateData(this.clients);
-      // }, err => {
-      // return this.openSnackBar("Client could not be Added", "Ok");
-    });
-  }
-
-
 
   doSubmit() {
 
@@ -70,7 +45,7 @@ export class LoginComponent implements OnInit {
       console.log('')
       console.log('Token:----------', token);
 
-      this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
+      this._loginService.resetPassword(this.loginForm.value, this.activeRouteName).subscribe(data => {
         console.log("Added Successfully", data);
       }, err => {
         console.log('error while login');
@@ -78,5 +53,7 @@ export class LoginComponent implements OnInit {
       });
     })
   }
+
+
 
 }

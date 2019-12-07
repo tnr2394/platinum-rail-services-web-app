@@ -37,6 +37,20 @@ allotment.updateAllotment = function (object) {
     return q.promise;
 }
 
+allotment.getAllotment = function (allotemntId) {
+    console.log("Get Allotemnts in allotemnt DAO", allotemntId);
+    var q = Q.defer();
+    allotmentModel.find({ _id: allotemntId })
+        .populate('assignment')
+        .populate('files')
+        .exec((err, allotemnt) => {
+            if (err) q.reject(err)
+            q.resolve(allotemnt)
+            console.log("SENDING RESPONSE allotment =  ", allotemnt);
+        })
+    return q.promise;
+}
+
 
 allotment.deleteAllotment = function (allotemntId) {
     console.log("Delete allotment");

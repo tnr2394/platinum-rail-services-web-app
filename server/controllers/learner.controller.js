@@ -118,6 +118,18 @@ learnerController.deleteLearner = function (req, res, next) {
         })
 }
 
+learnerController.getAllotment = function (req, res, next) {
+    console.log("learner allotment");
+    let allotmentId = req.query._id;
+    console.log("learner allotment: ", allotmentId);
+    allotmentDOA.getAllotment(allotmentId)
+        .then(allotment => {
+            console.log("allotment ", allotment);
+            return res.send({ data: { allotment }, msg: "allotment List fetch Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+}
 
 learnerController.loginLearner = function (req, res, next) {
     console.log("Login Learner");
@@ -203,8 +215,6 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
     var ext = re.exec(req.files.file.name)[1];
     var name = req.files.file.name.split('.').slice(0, -1).join('.')
 
-    // return res.send({body: req.body,files:req.files});
-
     var newFile = {
         title: name,
         type: "material",// OR SUBMISSION OR DOCUMENT
@@ -261,6 +271,32 @@ learnerController.forgotPassword = function (req, res, next) {
         }
     });
 }
+
+learnerController.resetPassword = function (req, res, next) {
+    console.log("Reset Password Instructor", req.body);
+
+    const learnerId = req.user._id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    learnerModel.findOne({ _id: learnerId }, (err, learner) => {
+        console.log("Updated learner", learner, err);
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (learner) {
+            if (learner.password == oldPassword) {
+                learner.password = newPassword;
+                learner.save();
+                return res.status(200).json({ message: 'Your password changed successfully' });
+            } else {
+                return res.status(500).send({ msg: 'password does not match' })
+            }
+        } else {
+            return res.status(500).send({ err })
+        }
+    });
+}
+
 
 
 

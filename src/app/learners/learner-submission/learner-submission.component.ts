@@ -3,6 +3,7 @@ import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LearnerService } from '../../services/learner.service';
 
 @Component({
   selector: 'app-learner-submission',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class LearnerSubmissionComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
 
   allotmentId: any;
 
@@ -20,6 +21,7 @@ export class LearnerSubmissionComponent implements OnInit {
       console.log(params['id']);
       this.allotmentId = params['id'];
     });
+    this.getAllotments(this.allotmentId)
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
@@ -35,6 +37,15 @@ export class LearnerSubmissionComponent implements OnInit {
     }, err => {
     });
   }
+
+  getAllotments(allotmentId) {
+    // console.log(this.learner);
+    this._learnerService.getAllotedLearnerFilesUsingAllotmentId(allotmentId).subscribe(data => {
+      console.log("RECEIVED = ", data)
+    });
+  }
+
+
 
 
 }

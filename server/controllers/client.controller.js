@@ -196,6 +196,32 @@ clientController.forgotPassword = function (req, res, next) {
     });
 }
 
+clientController.resetPassword = function (req, res, next) {
+    console.log("Reset Password Instructor", req.body);
+
+    const clientId = req.user._id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    clientModel.findOne({ _id: clientId }, (err, client) => {
+        console.log("Updated client", client, err);
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (client) {
+            if (client.password == oldPassword) {
+                client.password = newPassword;
+                client.save();
+                return res.status(200).json({ message: 'Your password changed successfully' });
+            } else {
+                return res.status(500).send({ msg: 'password does not match' })
+            }
+        } else {
+            return res.status(500).send({ err })
+        }
+    });
+}
+
+
 
 
 module.exports = clientController;

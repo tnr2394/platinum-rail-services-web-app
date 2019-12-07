@@ -75,6 +75,27 @@ export class LearnerService {
     });
   }
 
+
+  getAllotedLearnerFilesUsingAllotmentId(id) {
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "learners/allot?_id=" + id).subscribe((res: any) => {
+        console.log("----------Alloted Learner data---------- : ", res);
+        observer.next(res.data.learner);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
+
+
+
   getAllotedLearnerFiles(learnerId, assignmentId) {
     return new Observable<any>((observer) => {
       console.log("Observable");

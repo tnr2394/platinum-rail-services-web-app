@@ -52,12 +52,31 @@ export class LoginService {
 
   forgotPassword(data: any, routename): Observable<any> {
     console.log("forgotpassword", data);
-    console.log('Route name:', routename);
-
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl + "" + routename + "/forgot-password", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "" + data.user + "/forgot-password", data).subscribe((res: any) => {
+        observer.next(res.data);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+
+  }
+
+  resetPassword(data: any, routename): Observable<any> {
+    console.log("reset password", data, routename);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "" + routename + "/reset-password", data).subscribe((res: any) => {
         observer.next(res.data);
         // observer.complete();
       }, err => {

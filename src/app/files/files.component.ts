@@ -100,7 +100,6 @@ export class FilesComponent implements OnInit, OnChanges {
     });
   }
   
-
   // API
   getFiles(){
     console.log("Getting files in files component for materialID = ",this.materialId);
