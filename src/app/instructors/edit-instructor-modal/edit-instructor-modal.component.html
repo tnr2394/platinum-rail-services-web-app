@@ -1,0 +1,44 @@
+<h1 mat-dialog-title class="text-primary light-underline">
+    <i class="fas fa-edit fa-fw"></i> 
+    Edit Instructor 
+</h1>
+<form #editInstructor (ngSubmit)="doSubmit()"  >
+    <div mat-dialog-content>
+        <mat-form-field class="example-full-width col-6">
+            <input required matInput name="instructor-name" placeholder="Instructor Name" [(ngModel)]='instructorData.name' cdkFocusInitial>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6">
+            <input type="email" matInput placeholder="Instructor Email" name="instructor-email" [(ngModel)]='instructorData.email'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6">
+            <input type="text" matInput placeholder="Instructor Password" name="instructor-password" [(ngModel)]='instructorData.password'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-6">
+            <input type="text" matInput placeholder="Confirm Password"  name="confirm-password" [(ngModel)]='instructorData.confirmPassword'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining" [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled required>
+            <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfJoining disabled="false"></mat-datepicker>
+        </mat-form-field>                
+    </div>
+    <div class="row">
+            <!-- <div class="col-4"></div> -->
+            <div class="col-12 text-center" *ngIf="passwordMismatch">
+                    <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please re-enter.</span>
+            </div>
+        </div>
+
+    <div  *ngIf="!loading">
+        <button mat-flat-button color="primary" type="submit" ><i class="fas fa-save fa-fw"></i> Save</button>
+        <button mat-flat-button type="button" color="warn" class="text-white pull-right"  (click)="delete()">
+            <i class="fas fa-trash fa-fw"></i> 
+            Delete
+        </button>
+        
+    </div>
+    <div mat-dialog-actions *ngIf="loading" class="text-center">
+        Working... <i class="fas fa-refresh fa-spin"></i>
+    </div>
+    
+</form>

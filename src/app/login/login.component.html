@@ -1,0 +1,36 @@
+<div class="card w-50 m-auto text-center">
+
+    <h1>PLATINUM</h1>
+    <h2>RAIL SERVICES</h2>
+    <form (ngSubmit)='doSubmit()' [formGroup]="loginForm">
+        <mat-form-field class="example-full-width w-100">
+            <input matInput name="client-email" placeholder="Email" formControlName="email" required>
+            <mat-error>Email is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width w-100">
+            <input matInput name="password" placeholder="Password" type="password" formControlName="password" required>
+            <mat-error>Password is required.</mat-error>
+        </mat-form-field>
+
+        <div class="row">
+            <div class="col-6">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+            <div class="col-6">
+                <a (click)="addClientModal()">
+                    Forgot Password
+                </a>
+            </div>
+        </div>
+
+        <button mat-flat-button class="btn btn-sm" style="width: 200px;
+    margin: 5px auto;" color="primary" type="submit">
+            login
+        </button>
+
+    </form>
+
+
+</div>

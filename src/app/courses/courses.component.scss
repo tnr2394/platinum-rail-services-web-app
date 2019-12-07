@@ -1,25 +1,3 @@
 $bg-th : #F5F6FA;
 $color-th:  #A3A6B4;
 $header-color: #43425D; 
-
-h3{
-    font-family: 'Source Sans Pro';
-    color: $header-color;
-    font-weight: regular;
-}
-thead{
-    background-color: $bg-th;
-    color:$color-th;
-}
-th{
-    font-family: 'Source Sans Pro';
-    text-align: center;    
-}
-.table td{
-    margin-left: 15px;
-    margin-right: 15px;
-    text-align: center;
-}
-.page-title{
-    padding: 10px;
-}

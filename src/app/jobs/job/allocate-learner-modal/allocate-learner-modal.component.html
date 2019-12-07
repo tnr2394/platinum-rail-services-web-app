@@ -1,0 +1,25 @@
+
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Select Learners</h1>
+    <div mat-dialog-content>
+    <mat-form-field class='min-width'>
+        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <!-- <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+    <div >
+        <mat-grid-list cols="2" rowHeight='30px'>
+            <mat-grid-tile *ngFor='let learner of learners' class='learners'>
+                <mat-checkbox  (change)='onSelectChange($event)' [value]='learner' >{{learner.name}}</mat-checkbox>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    </div>
+    <div mat-dialog-actions align="center" *ngIf="!loading">
+    <button mat-flat-button color="primary" (click)='getLearners()'>
+        <i class="fa fa-floppy-o fa-fw"></i>
+    Save</button>
+    </div>
+<!-- </ng-container> -->
+    
+    
+    

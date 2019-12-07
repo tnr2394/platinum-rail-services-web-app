@@ -1,0 +1,82 @@
+.maxHeight{
+    min-height: 33vh !important;
+    max-height: 33vh !important;
+    overflow: auto;
+}
+.datesColor{
+    color: #2196f3;
+    font-weight: 400;
+}
+.faiconColor {
+    color: #2196f3;
+    font-size: xx-large;
+    padding: 10px;
+}
+.close-color{
+    color: #2196f3 !important;
+}
+.submitButton{
+    justify-content: center !important;
+    display: flex !important;
+    width: 100%;
+}
+.row{
+    justify-content: space-around;
+}
+.top-margin{
+    margin-top: 3%;
+}
+
+mat-form-field{
+    min-width: 65%;
+}
+.greyBackground{
+    background-color: #F5F6FA;
+    margin-top: 3%;
+}
+.center{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    // flex-direction: column;
+}
+.max-height{
+    display: flex;
+    flex-direction: column;
+    max-height: 20vh;
+    overflow: auto;
+}
+.buttonTransparent{
+    background: transparent !important;
+    border: transparent !important;
+}
+.checkBox{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.textCenter{
+    text-align: center;
+}
+.buttonHeight{
+    max-height: 40px !important;
+}
+.width{
+    .mat-form-field{
+        min-width: 65%;
+    }
+}
+.resetButton{
+    background-color: #FF1D1D; 
+    color: white;
+}
+.headerColor{
+    color: #2196f3;
+    font-weight: 400;
+}
+
+.position{
+    background-color: #2196f3;
+    color: white;
+    float: right;
+    margin-top: 12px;
+}

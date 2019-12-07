@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SideNavServiceService } from '../side-nav-service.service';
+import { SideNavServiceService } from '../services/side-nav-service.service';
 
 
 @Component({
@@ -9,10 +9,11 @@ import { SideNavServiceService } from '../side-nav-service.service';
 })
 export class TopNavComponent implements OnInit {
 
-  constructor(public sideNavService: SideNavServiceService) { 
+  loggedInUser = localStorage.getItem("currentUser");
+  constructor(public sideNavService: SideNavServiceService) {
 
   }
-  openMenu(){
+  openMenu() {
     this.sideNavService.open();
   }
 

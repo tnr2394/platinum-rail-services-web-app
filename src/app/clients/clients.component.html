@@ -1,0 +1,84 @@
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="page-title">
+                    Client
+                </h3>
+            </div>
+            <div class="col-6">
+                <button mat-flat-button color="primary" class="pull-right"  (click)="addClientModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add Client
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title">
+                            <div class="row">
+                                <mat-form-field class="example-full-width col-6">
+                                    <input matInput placeholder="Search"  (keyup)="applyFilter($event.target.value)" >
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                
+                            </div>
+                            
+                        </div>
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <h1>{{dataSource.length}}</h1>
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th class="text-center" style="" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
+                                    <td class="mat-table-cell"  mat-cell *matCellDef="let client"> {{client.name}} </td>
+                                </ng-container>
+                                <!-- Email Column -->
+                                <ng-container matColumnDef="email">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let client; let i = index;"><span class="badge width-150 {{getRandomColorClass(i)}}"> {{client.email}} </span></td>
+                                </ng-container>
+                                <!-- Action Column -->
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef > EDIT </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let client; let i = index;">
+                                        <a class="text-success bold" (click)="editClientModal(i, client)" >
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="text-primary bold" routerLink="{{client._id}}" >
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <h1 *ngIf="!(clients)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                    </div>
+                    <!--/.Card content-->
+                    
+                    <h1 class="text-center" *ngIf="clients.length < 1">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </h1>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

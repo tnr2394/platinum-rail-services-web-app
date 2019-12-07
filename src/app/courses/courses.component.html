@@ -1,63 +1,83 @@
 
 <div class="row">
     <div class="col-12">
-    <div class="row">
-        <h3 class="page-title">Course</h3>
-    </div>
-    <div class="row">
-    <div class="col-12 ">
-        <div class="card">
-            <!--Card content-->
-    <div class="card-block">
-            <!--Title-->
-            <div class="card-title">
-                <div class="row">
-                    <mat-form-field class="example-full-width col-6">
-                            <input matInput placeholder="Search"/>
-                            <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                    <mat-paginator class="col-6" [length]="courses.length"
-                        [pageSize]="pageSize"
-                        [pageSizeOptions]="pageSizeOptions"
-                        (page)="pageEvent = $event">
-                    </mat-paginator>
+        <div class="row">
+            <div class="col-6">
+                <h3 class="page-title">
+                    Course
+                </h3>
+            </div>
+            <div class="col-6">
+                <button mat-flat-button color="primary" class="pull-right"  (click)="addCourseModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add Course
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title">
+                            <div class="row">
+                                <mat-form-field class="example-full-width col-6">
+                                    <input matInput placeholder="Search"  (keyup)="applyFilter($event.target.value)" >
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                
+                            </div>
+                            
+                        </div>
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <h1>{{dataSource.length}}</h1>
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                
+                                <!-- Title Column -->
+                                <ng-container matColumnDef="title">
+                                    <th class="text-center" style="" mat-header-cell *matHeaderCellDef mat-sort-header="title"> TITLE </th>
+                                    <td class="mat-table-cell"  mat-cell *matCellDef="let course"> {{course.title}} </td>
+                                </ng-container>
+                                <!-- Duration Column -->
+                                <ng-container matColumnDef="duration">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> DURATION </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let course; let i = index;"><span class="badge {{getRandomColorClass(i)}}"> {{course.duration}} </span></td>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef > EDIT </th>
+                                    <td class="mat-table-cell" mat-cell *matCellDef="let course; let i = index;">
+                                        <a mat-button class="text-success" (click)="editCourseModal(i, course)" >
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a mat-button class="text-primary" routerLink="/materials/{{course._id}}" >
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let course; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <h1 *ngIf="!(courses)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                    </div>
+                    <!--/.Card content-->
+                    
+                    <h1 class="text-center" *ngIf="courses.length < 1">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </h1>
+                    
+                    
                 </div>
-    
             </div>
-            <!--Text-->
-            <div *ngIf="(courses)">
-            <table class="table table-borderless" >
-                    <thead>
-                        <tr>
-                            <th>Sr. No.</th>
-                            <th>TITLE</th>
-                            <th>Duration (Days)</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="dataSource">
-                        <tr *ngFor="let course of dataSource ; index as i">
-                            <td>{{i + 1 + (this.currentPage * this.pageSize)}}</td>
-                            <td>{{course.title}}</td>
-                            <td><span class="badge {{getRandomColorClass(i)}}">{{course.duration}}</span></td>
-                            <td><a class="text-success bold"><i class="fa fa-edit"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <h1 *ngIf="!(courses)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
-        </div>
-        <!--/.Card content-->
-    
-        <h1 class="text-center" *ngIf="courses.length < 1">
-            <i class="fa fa-refresh fa-spin fa-fw"></i>
-        </h1>
-
-
         </div>
     </div>
 </div>
-</div>
-</div>
-
 
