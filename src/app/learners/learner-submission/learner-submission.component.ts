@@ -15,6 +15,8 @@ export class LearnerSubmissionComponent implements OnInit {
   constructor(public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
 
   allotmentId: any;
+  assignment;
+  files;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -41,7 +43,10 @@ export class LearnerSubmissionComponent implements OnInit {
   getAllotments(allotmentId) {
     // console.log(this.learner);
     this._learnerService.getAllotedLearnerFilesUsingAllotmentId(allotmentId).subscribe(data => {
-      console.log("RECEIVED = ", data)
+      console.log("RECEIVED Allotment = ", data[0])
+      console.log("RECEIVED = ", data[0].files)
+      this.assignment = data[0];
+      this.files = data[0].files;
     });
   }
 

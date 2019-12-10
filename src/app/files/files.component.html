@@ -14,6 +14,7 @@
         </div>
     </div>
     <div class="col-12">
-        <file-tile *ngFor="let file of files" [file]="file"></file-tile>
+        <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file">
+        </file-tile>
     </div>
 </div>

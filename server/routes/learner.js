@@ -22,6 +22,8 @@ router.post('/allot', learnerController.allotAssignments);
 
 router.get('/allot', learnerController.getAllotment);
 
+router.put('/allot', learnerController.updateAllotment);
+
 // Submission Assignment
 
 router.post('/submission', learnerController.assignmentSubmisssion);

@@ -26,7 +26,14 @@ var app = express();
 
 app.use(expressSession({
   secret: "platinum",
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    sameSite: true,
+  },
 }));
+
+var sass;
 
 
 var bodyParserJSON = bodyParser.json();
@@ -60,9 +67,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('dotenv').config();
 
-
-
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
@@ -90,5 +94,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

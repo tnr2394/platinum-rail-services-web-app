@@ -33,6 +33,8 @@ jobController.getJobs = async function (req, res) {
 
     console.log('GET jobs with query = ', query);
 
+    // console.log('req.session.currentUser', sass.currentUser);
+
     // const userRole = 'instructor';
 
     // if (userRole == 'admin') {

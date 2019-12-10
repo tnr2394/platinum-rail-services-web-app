@@ -23,11 +23,10 @@ allotment.createAllotment = function (obj) {
     return q.promise;
 }
 
-allotment.updateAllotment = function (object) {
-    console.log("Update Allotemnt in allotemnt DAO", object);
+allotment.updateAllotment = function (allotemntId, updateAllotment) {
+    console.log("Update Allotemnt in allotemnt DAO", allotemntId, updateAllotment);
     var q = Q.defer();
-    var updatedAllotment = object;
-    allotmentModel.findByIdAndUpdate(object._id, updatedAllotment, { new: true }, (err, allotment) => {
+    allotmentModel.findByIdAndUpdate({ _id: allotemntId }, { $set: updateAllotment }, (err, allotment) => {
         if (err) return q.reject(err);
         else {
             console.log("Allotment Updated Successfully =  ", allotment, q);
@@ -69,17 +68,27 @@ allotment.submissionOfAssignment = function (allotemntId, obj) {
     console.log('Assignment Submission', allotemntId, obj);
     var q = Q.defer();
     fileDAO.addFile(obj).then((response) => {
-        console.log('File added now update allotment file array', response._id)
-        allotmentModel.updateOne({ _id: allotemntId }, { $addToSet: { files: response._id } }, { new: true }, (err, updatedAllotment) => {
-            if (err) q.reject(err);
-            console.log('Updated', updatedAllotment);
-            q.resolve(updatedAllotment);
-        });
+        console.log('File added now update allotment file array', response._id);
+
+        console.log('Change Assignment Status after Submission:');
+        allotmentModel.updateOne(
+            { _id: allotemntId },
+            {
+                $addToSet: { files: response._id },
+                $set: {
+                    status: "Submitted"
+                }
+            }, { new: true }, (err, updatedAllotment) => {
+                if (err) q.reject(err);
+                console.log('Updated', updatedAllotment);
+                q.resolve(updatedAllotment);
+            });
     }).catch((error) => {
         q.reject(error);
     });
     return q.promise;
 }
+
 
 module.exports = allotment;
 

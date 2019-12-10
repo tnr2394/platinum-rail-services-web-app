@@ -66,8 +66,9 @@ export class LoginComponent implements OnInit {
       this.activeRouteName = param.user;
     });
 
+    console.log(' this.activeRouteName----------->>>>>>>', this.activeRouteName);
+
     this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
-      console.log('')
       console.log('Token:----------', token);
 
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {

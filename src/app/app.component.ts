@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SideNavServiceService } from './services/side-nav-service.service';
+import { LoginService } from './services/login.service';
 import { Router } from '@angular/router';
 import { $ } from 'protractor';
 
@@ -13,10 +14,15 @@ export class AppComponent {
   @ViewChild('sidemenu', { static: true }) sidemenu: MatSidenav;
   reason = '';
 
-  loggedInUser = localStorage.getItem("currentUser");
+  loggedInUser;
 
-  constructor(private router: Router, private sidenavService: SideNavServiceService) {
+  constructor(private router: Router, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
+    this._loginService.userRole.subscribe(res => {
+      console.log('RES', res, this.loggedInUser);
+      this.loggedInUser = res;
+    })
+    this.loggedInUser = localStorage.getItem("currentUser");
   }
   ngOnInit(): void {
     console.log("Set Side Nav")

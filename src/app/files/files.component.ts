@@ -70,7 +70,6 @@ export class FilesComponent implements OnInit, OnChanges {
     this.files.splice(this.files.findIndex(function(i){
       return i._id === event._id;
     }), 1);
-
   }
   
   editCourseModal(index, data){
