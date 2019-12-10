@@ -3,13 +3,21 @@ import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { config } from '../config';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  @Output() userRole: EventEmitter<any> = new EventEmitter<any>();
+
+
   constructor(private http: HttpClient, private router: Router) { }
+
+
+
 
 
 
@@ -24,6 +32,8 @@ export class LoginService {
       this.http.post(config.baseApiUrl + "" + routename + "/login", data).subscribe((res: any) => {
         localStorage.setItem('currentUser', res.data);
         localStorage.setItem('userRole', res.userRole);
+
+        this.userRole.emit(res.data);
 
         if (res.userRole == 'admin') {
           this.router.navigate(['/dashboard']);

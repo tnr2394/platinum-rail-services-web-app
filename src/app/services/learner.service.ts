@@ -81,7 +81,7 @@ export class LearnerService {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "learners/allot?_id=" + id).subscribe((res: any) => {
         console.log("----------Alloted Learner data---------- : ", res);
-        observer.next(res.data.learner);
+        observer.next(res.data.allotment);
         // observer.complete();
       }, err => {
         console.log("ERROR ")

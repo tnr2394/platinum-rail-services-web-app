@@ -45,12 +45,11 @@ adminController.loginAdmin = function (req, res, next) {
                     const payload = { admin };
                     const token = jwt.sign(payload, 'platinum');
                     const data = { token: token, userRole: 'admin' }
-                    req.session.currentUser = data;
 
-                    var sess = req.session;
-                    sess.currentUser = data;
+                    // sass = req.session;
+                    // sass.currentUser = data;
 
-                    console.log('req.session.currentUser', req.session.currentUser);
+                    console.log('req.session.currentUser', sass.currentUser);
 
                     return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'admin' });
                 } else {

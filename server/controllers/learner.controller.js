@@ -297,6 +297,28 @@ learnerController.resetPassword = function (req, res, next) {
     });
 }
 
+learnerController.updateAllotment = function (req, res, next) {
+
+    console.log('Update Allotment By Instructor', req.body);
+
+    const updateAllotment = {};
+
+    if (req.body.status) updateAllotment['status'] = req.body.status;
+    if (req.body.remark) updateAllotment['remark'] = req.body.remark;
+
+    const allotmentId = req.body.allotmentId;
+
+
+    allotmentDOA.updateAllotment(allotmentId, updateAllotment)
+        .then(updated => {
+            console.log("updated ", updated);
+            return res.send({ data: {}, msg: "Assigment Updated Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+
+}
+
 
 
 
