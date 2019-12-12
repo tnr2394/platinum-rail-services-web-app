@@ -27,9 +27,10 @@ export class SubmissionComponent implements OnInit {
   title = []
   unitNo = []
   assignmentNo = [];
+  assignment;
   selectedUnit;
   selectedAssignment;
-  displayedColumns: string[] = ['Learner', 'Status', 'View'];
+  displayedColumns: string[] = ['Learner', 'Assignment', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
@@ -46,9 +47,9 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private router: Router,public _materialService: MaterialService,public _courseService: CourseService,public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
-   }
+  }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -65,22 +66,29 @@ export class SubmissionComponent implements OnInit {
     this.getJobs();
     this.getMaterials();
   }
-  jobChanged(event){
+  jobChanged(event) {
     console.log('job changed', event)
     this.selectedJob = event.value._id;
-    this.getLearners(this.selectedJob);
+    console.log('this.selectedJob', this.selectedJob);
+    // this.getLearners(this.selectedJob);
+    this.getAssignmentList(this.selectedJob);
   }
-  materialChanged(event){
+  materialChanged(event) {
     this.selectedMaterial = event.value
   }
-  unitNoChanged(event){
+  unitNoChanged(event) {
     this.selectedUnit = event.value;
   }
-  assignmentNoChanged(event){
+
+  assignmentNoChanged(event) {
     this.selectedAssignment = event.value;
+
+    console.log('this.selectedAssignment', this.selectedAssignment);
+    this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
   }
-  goToInstructorsSubmission(learner){
-    console.log("LEARNER",learner)
+
+  goToInstructorsSubmission(learner) {
+    console.log("LEARNER", learner)
     let NavigationExtras: NavigationExtras = {
       state: {
         learner: learner,
@@ -97,20 +105,35 @@ export class SubmissionComponent implements OnInit {
     this._jobService.getJobs().subscribe((data) => {
       this.jobs = data;
       console.log("JOBS ARE", this.jobs)
-  });
-}
+    });
+  }
   getLearners(jobId) {
-    this._learnerService.getLearnersByJobId(jobId).subscribe((data)=>{
+    this._learnerService.getLearnersByJobId(jobId).subscribe((data) => {
       this.learners = data;
       this.dataSource = new MatTableDataSource(this.learners);
-      console.log("-----LEARNERS ARE-----",this.learners)
+      console.log("-----LEARNERS ARE-----", this.learners)
     });
   }
 
-  getMaterials(){
-    this._materialService.getAllMaterials().subscribe((material)=>{
-      material.material.forEach((item)=>{
-        if(item.type =='Assignment'){
+  getAssignmentList(jobId) {
+    this._materialService.getMaterialUsingJobId(jobId).subscribe((data) => {
+      console.log('Data----->>>>>', data);
+      this.assignment = data.assignment;
+    });
+  }
+
+  getAllotmentListUsingAssignmentId(assignmentId) {
+    this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
+      this.learners = data;
+      this.dataSource = new MatTableDataSource(this.learners);
+      console.log("-----LEARNERS ARE-----", this.learners)
+    });
+  }
+
+  getMaterials() {
+    this._materialService.getAllMaterials().subscribe((material) => {
+      material.material.forEach((item) => {
+        if (item.type == 'Assignment') {
           this.materials.push(item)
           this.title.push(item.title)
           this.unitNo.push(item.unitNo)

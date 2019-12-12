@@ -45,10 +45,10 @@ file.getfile = async function (query) {
 
 file.addFile = function (object) {
     console.log("ADD File in file DOA", object);
-    // var q = Q.defer();
+    var q = Q.defer();
 
     return new Promise((resolve, reject) => {
-        s3UploadService.s3UploadFile(object.file.file, null, null)
+        s3UploadService.s3UploadFile(object.file, null, null)
             .then((uploadRes) => {
                 console.log('File Upload uploadRes:', uploadRes);
                 if (uploadRes) {
@@ -57,7 +57,7 @@ file.addFile = function (object) {
                         type: object.type,
                         path: uploadRes.Location,
                         extension: object.extension,
-                        uploadedBy: 'ADMIN'
+                        uploadedBy: object.uploadedBy,
                     }
                     var newFile = new fileModel(s3File);
                     console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
@@ -70,9 +70,7 @@ file.addFile = function (object) {
                     console.log("File Resposnse not comes");
                 }
 
-
                 // return q.promise;
-
             }).catch((error) => {
                 console.log('Error:', error);
                 return reject(error);

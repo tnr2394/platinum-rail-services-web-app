@@ -9,13 +9,15 @@ import { from } from 'rxjs';
 export class FileTileComponent implements OnInit {
 
 
+
+
   @Input('file') file: any;
   @Output() deletedFile: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   loading: boolean;
 
   constructor(public _fileService: FileService) {
-    
+
   }
 
 

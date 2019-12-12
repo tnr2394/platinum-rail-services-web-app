@@ -131,7 +131,7 @@ materialController.addFile = (req, res, next) => {
         path: "NEWPATH",
         extension: ext,
         uploadedBy: "ADMIN",
-        file: req.files,
+        file: req.files.file,
         uploadedDate: new Date()
     }
 

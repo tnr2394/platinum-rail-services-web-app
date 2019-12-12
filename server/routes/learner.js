@@ -26,9 +26,12 @@ router.put('/allot', learnerController.updateAllotment);
 
 // Submission Assignment
 
-router.post('/submission', learnerController.assignmentSubmisssion);
+router.post('/submission', jwtService.validateJWT, learnerController.assignmentSubmisssion);
 
 router.post('/reset-password', jwtService.validateJWT, learnerController.resetPassword);
+
+router.get('/allot-status', learnerController.allotmentUsingAssignmentId);
+
 
 
 

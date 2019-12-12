@@ -3,6 +3,7 @@
 const jwt = require("jsonwebtoken");
 const Q = require('q');
 const async = require("async");
+const _ = require('lodash');
 
 // Service Variables
 
@@ -144,8 +145,9 @@ learnerController.loginLearner = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (learner) {
                 if (password == learner.password) {
-                    const payload = { learner };
-                    var token = jwt.sign(payload, 'platinum');
+                    let newLearner = JSON.parse(JSON.stringify(learner));
+                    newLearner['userRole'] = 'learner';
+                    var token = jwt.sign(newLearner, 'platinum');
                     req.session.currentUser = token;
                     return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'learner' });
                 } else {
@@ -207,33 +209,52 @@ learnerController.allotAssignments = function (req, res, next) {
 
 
 learnerController.assignmentSubmisssion = function (req, res, next) {
-    console.log('Assignment Submission');
 
-    const allotmentId = req.body.allotmentId;
+    let files = [];
 
-    var re = /(?:\.([^.]+))?$/;
-    var ext = re.exec(req.files.file.name)[1];
-    var name = req.files.file.name.split('.').slice(0, -1).join('.')
-
-    var newFile = {
-        title: name,
-        type: "material",// OR SUBMISSION OR DOCUMENT
-        path: "NEWPATH",
-        extension: ext,
-        uploadedBy: "ADMIN",
-        file: req.files,
-        uploadedDate: new Date()
+    if (Array.isArray(req.files.file)) {
+        files = req.files.file
+    } else {
+        files[0] = req.files.file;
     }
 
-    console.log('new file object', newFile, allotmentId);
+    async.eachSeries(files, (singleFile, innerCallback) => {
+        console.log('singleFile', singleFile);
 
-    allotmentDOA.submissionOfAssignment(allotmentId, newFile)
-        .then(updated => {
-            console.log("updated ", updated);
-            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
-        }, err => {
+
+        const allotmentId = req.body.allotmentId;
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(singleFile.name)[1];
+        var name = singleFile.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "material",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: req.user.name,
+            file: singleFile,
+            uploadedDate: new Date()
+        }
+
+        console.log('new file object', newFile, allotmentId);
+
+        allotmentDOA.submissionOfAssignment(allotmentId, newFile)
+            .then(updated => {
+                console.log("updated ", updated);
+                innerCallback();
+            }, err => {
+                return res.status(500).send({ err })
+            })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
             return res.status(500).send({ err })
-        })
+        } else {
+            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
+        }
+    })
 }
 
 learnerController.forgotPassword = function (req, res, next) {
@@ -317,6 +338,19 @@ learnerController.updateAllotment = function (req, res, next) {
             return res.status(500).send({ err })
         })
 
+}
+
+learnerController.allotmentUsingAssignmentId = function (req, res, next) {
+    const assignmentId = req.query._id;
+    console.log('Allotment List Using assignmentId', assignmentId);
+
+    allotmentDOA.allotmentUsingAssignmentId(assignmentId)
+        .then(function (assignment) {
+            console.log("assignment ", assignment);
+            return res.send({ data: { assignment }, msg: "Assigment Updated Successfully" });
+        }).catch(function (error) {
+            return res.status(500).send({ err })
+        })
 }
 
 

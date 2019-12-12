@@ -56,6 +56,9 @@ export class AddFileModalComponent implements OnInit {
     if (this.data.allotmentId) {
       console.log('Inside If:');
 
+      console.log('this.fileMaterial', this.fileMaterial);
+
+
       let formData = new FormData();
       formData.set('allotmentId', this.data.allotmentId);
 
@@ -82,6 +85,7 @@ export class AddFileModalComponent implements OnInit {
 
       let formData = new FormData();
       formData.set('materialId', this.data.materialId);
+
 
       if (this.fileMaterial.length > 0) {
         for (let i = 0; i <= this.fileMaterial.length; i++) {

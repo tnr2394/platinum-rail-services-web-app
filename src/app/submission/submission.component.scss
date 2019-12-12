@@ -5,3 +5,69 @@ table {
 div{
   padding: inherit;
 }
+.learner{
+  i {
+    background-color:#3CC480;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+}
+  span{
+    margin-top: 11px;
+    margin-left: 5px;
+  } 
+
+  .Pending {
+    color: white;
+    background-color: #FF6565;
+    height: 35px;
+    width: 102px;
+    border-radius: 30px;
+    text-transform: capitalize;
+    text-align: center;
+    line-height: 33px;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.Re-submitted {
+  color: white;
+  background-color:#4D4F5C;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.Submitted {
+  color: white;
+  background-color:#3B86FF;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.Completed {
+  color: white;
+  background-color:#3CC480;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+}
+

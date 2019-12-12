@@ -5,7 +5,7 @@ const jwtService = require('../services/jwt.service');
 
 
 /* GET jobs listing */
-router.get('/', jobController.getJobs)
+router.get('/', jwtService.validateJWT, jobController.getJobs)
 
 /* ADD jobs */
 router.post('/', jobController.addJob)
@@ -15,5 +15,7 @@ router.put('/', jobController.updateJob)
 
 /* DELETE jobs */
 router.delete('/', jobController.deleteJob)
+
+router.get('/assignment', jobController.assignmentListUsingJobId);
 
 module.exports = router;

@@ -46,8 +46,8 @@ adminController.loginAdmin = function (req, res, next) {
                     const token = jwt.sign(payload, 'platinum');
                     const data = { token: token, userRole: 'admin' }
 
-                    // sass = req.session;
-                    // sass.currentUser = data;
+                    sass = req.session;
+                    sass.currentUser = data;
 
                     console.log('req.session.currentUser', sass.currentUser);
 

@@ -17,7 +17,6 @@ export class TopNavComponent implements OnInit {
       console.log('Top nav Component Init');
       this.loggedInUser = res;
     })
-
     this.loggedInUser = localStorage.getItem("currentUser");
 
   }

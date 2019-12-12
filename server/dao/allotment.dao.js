@@ -4,6 +4,8 @@ const Q = require('q');
 const allotmentModel = require('../models/allotment.model');
 const mailService = require('../services/mail.service');
 const fileDAO = require('./file.dao');
+const ObjectId = require('mongodb').ObjectId;
+
 
 var allotment = {};
 
@@ -42,6 +44,7 @@ allotment.getAllotment = function (allotemntId) {
     allotmentModel.find({ _id: allotemntId })
         .populate('assignment')
         .populate('files')
+        .populate('learner')
         .exec((err, allotemnt) => {
             if (err) q.reject(err)
             q.resolve(allotemnt)
@@ -69,8 +72,6 @@ allotment.submissionOfAssignment = function (allotemntId, obj) {
     var q = Q.defer();
     fileDAO.addFile(obj).then((response) => {
         console.log('File added now update allotment file array', response._id);
-
-        console.log('Change Assignment Status after Submission:');
         allotmentModel.updateOne(
             { _id: allotemntId },
             {
@@ -88,6 +89,76 @@ allotment.submissionOfAssignment = function (allotemntId, obj) {
     });
     return q.promise;
 }
+
+
+
+allotment.allotmentUsingAssignmentId = function (assignmentId) {
+    console.log('Assignment Submission', assignmentId);
+
+    return new Promise((resolve, reject) => {
+        allotmentModel.aggregate([
+            {
+                $match:
+                {
+                    'assignment': ObjectId(assignmentId)
+                },
+            },
+            {
+                $lookup: {
+                    from: 'materials',
+                    localField: 'assignment',
+                    foreignField: '_id',
+                    as: 'assignment',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$assignment',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'learners',
+                    localField: 'learner',
+                    foreignField: '_id',
+                    as: 'learner',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$learner',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    allotemntId: '$_id',
+                    learnerName: '$learner.name',
+                    assignmentTitle: '$assignment.title',
+                    assignmentUnit: '$assignment.unitNo',
+                    assignmentNo: '$assignment.assignmentNo',
+                    assignmentStatus: '$status',
+                }
+            }
+        ]).exec((error, res) => {
+            if (error) {
+                console.log('Error:', error);
+                reject(error);
+            } else {
+                console.log("11111", JSON.stringify(res, null, 4));
+                resolve(res);
+            }
+        });
+    })
+}
+
+
+
+
+
+
 
 
 module.exports = allotment;

@@ -122,8 +122,9 @@ instructorController.loginInstructor = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (instructor) {
                 if (password == instructor.password) {
-                    const payload = { instructor };
-                    var token = jwt.sign(payload, 'platinum');
+                    let newInstructor = JSON.parse(JSON.stringify(instructor));
+                    newInstructor['userRole'] = 'instructor';
+                    const token = jwt.sign(newInstructor, 'platinum');
                     req.session.currentUser = token;
                     return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });
                 } else {

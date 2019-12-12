@@ -112,9 +112,7 @@ clientController.updateClient = function (req, res, next) {
         if (err) {
             return res.status(500).send({ err })
         }
-
         return res.send({ data: { client } });
-
     })
 }
 
@@ -144,9 +142,13 @@ clientController.loginClient = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (client) {
                 if (password == client.password) {
-                    const payload = { client };
-                    var token = jwt.sign(payload, 'platinum');
+
+                    let newClient = JSON.parse(JSON.stringify(client));
+                    newClient['userRole'] = 'client';
+
+                    var token = jwt.sign(newClient, 'platinum');
                     req.session.currentUser = token;
+
                     return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'client' });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });

@@ -4,8 +4,8 @@
     <button class="file_upload" type="button">
         <span class="btn_lbl">Browse</span>
         <span class="btn_colorlayer"></span>
-        <input type="file" formControlName="materialfile" name="fileupload" (change)="onFileChange($event,'materialfile')"
-            id="file_upload" />
+        <input type="file" formControlName="materialfile" name="fileupload"
+            (change)="onFileChange($event,'materialfile')" id="file_upload" multiple/>
     </button>
 
     <div mat-dialog-actions align="center" *ngIf="!loading">

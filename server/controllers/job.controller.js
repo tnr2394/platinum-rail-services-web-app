@@ -2,6 +2,7 @@ var jobModel = require('../models/job.model');
 const mailService = require('../services/mail.service');
 const instructorModel = require('../models/instructor.model');
 var Q = require('q');
+const ObjectId = require('mongodb').ObjectId;
 
 var jobController = {};
 
@@ -22,28 +23,19 @@ async function allJobs(query) {
 
 jobController.getJobs = async function (req, res) {
 
-    console.log('Req.user', req.user);
-
-    console.log('current User', req.session.currentUser);
 
     var query = {};
     if (req.query) {
         query = req.query;
     }
 
-    console.log('GET jobs with query = ', query);
-
-    // console.log('req.session.currentUser', sass.currentUser);
-
-    // const userRole = 'instructor';
-
-    // if (userRole == 'admin') {
-    //     query = {}
-    // } else if (userRole == 'instructor') {
-    //     query = { instructors: { $in: req.user.instructor._id } }
-    // } else if (userRole == 'client') {
-    //     query = { client: req.user.client._id }
-    // }
+    if (req.user.userRole == 'admin') {
+        query = {}
+    } else if (req.user.userRole == 'instructor') {
+        query = { instructors: { $in: req.user._id } }
+    } else if (req.user.userRole == 'client') {
+        query = { client: req.user._id }
+    }
 
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
@@ -141,6 +133,97 @@ const getEmailOfInstructor = (instructorId) => {
         return q.resolve(instructor.email);
     });
     return q.promise;
+}
+
+
+jobController.assignmentListUsingJobId = function (req, res) {
+    let jobId = req.query._id;
+
+
+    console.log("Assignment List", jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 1,
+                assignment: {
+                    $filter: {
+                        input: "$assignment",
+                        as: "assignments",
+                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
+                    }
+                }
+            }
+        },
+
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            console.log('assignment', assignment[0]);
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
 }
 
 module.exports = jobController;
