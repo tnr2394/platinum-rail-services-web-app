@@ -91,10 +91,8 @@ allotment.submissionOfAssignment = function (allotemntId, obj) {
 }
 
 
-
 allotment.allotmentUsingAssignmentId = function (assignmentId) {
     console.log('Assignment Submission', assignmentId);
-
     return new Promise((resolve, reject) => {
         allotmentModel.aggregate([
             {

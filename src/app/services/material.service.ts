@@ -130,4 +130,19 @@ export class MaterialService {
   }
 
 
+  assignmentStatusWithLearner(jobId): Observable<any> {
+    console.log("Getting materials");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "jobs/assignment-status?_id=" + jobId).subscribe((res: any) => {
+        console.log("Get materials : ", res);
+        observer.next(res.data.assignment);
+        observer.complete();
+      })
+
+    });
+  }
+
+
 }

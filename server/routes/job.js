@@ -18,4 +18,6 @@ router.delete('/', jobController.deleteJob)
 
 router.get('/assignment', jobController.assignmentListUsingJobId);
 
+router.get('/assignment-status', jobController.assignmentStatusWithLearner);
+
 module.exports = router;

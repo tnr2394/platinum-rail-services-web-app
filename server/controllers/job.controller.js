@@ -1,8 +1,21 @@
-var jobModel = require('../models/job.model');
-const mailService = require('../services/mail.service');
-const instructorModel = require('../models/instructor.model');
+
+// Npm Variables
+
 var Q = require('q');
 const ObjectId = require('mongodb').ObjectId;
+
+// Service Variables
+
+const mailService = require('../services/mail.service');
+
+
+// Model Variables
+
+const jobModel = require('../models/job.model');
+const instructorModel = require('../models/instructor.model');
+const learnersModel = require('../models/learner.model');
+const allotmentModel = require('../models/allotment.model');
+
 
 var jobController = {};
 
@@ -214,7 +227,11 @@ jobController.assignmentListUsingJobId = function (req, res) {
                 }
             }
         },
-
+        {
+            $sort: {
+                'assignment.assignmentUnit': 1
+            }
+        }
     ]).exec((error, assignment) => {
         if (error) {
             console.log('Error:', error);
@@ -225,5 +242,159 @@ jobController.assignmentListUsingJobId = function (req, res) {
         }
     });
 }
+
+
+jobController.assignmentStatusWithLearner = function (req, res) {
+    let jobId = req.query._id;
+
+
+    console.log("Assignment List With Learner", jobId);
+
+    //     // jobModel.aggregate([
+    //     //     {
+    //     //         $match:
+    //     //         {
+    //     //             '_id': ObjectId(jobId)
+    //     //         },
+    //     //     },
+    //     //     {
+    //     //         $lookup: {
+    //     //             from: 'instructors',
+    //     //             localField: 'instructors',
+    //     //             foreignField: '_id',
+    //     //             as: 'instructors',
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$instructors',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $lookup: {
+    //     //             from: 'courses',
+    //     //             localField: 'course',
+    //     //             foreignField: '_id',
+    //     //             as: 'course',
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$course',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $lookup: {
+    //     //             from: 'learners',
+    //     //             localField: '_id',
+    //     //             foreignField: 'job',
+    //     //             as: 'learners',
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$learners',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$learners.allotments',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $lookup: {
+    //     //             from: 'allotments',
+    //     //             localField: 'learners.allotments',
+    //     //             foreignField: '_id',
+    //     //             as: 'allotments',
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$allotments',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $lookup: {
+    //     //             from: 'materials',
+    //     //             localField: 'allotments.assignment',
+    //     //             foreignField: '_id',
+    //     //             as: 'allotments.assignment',
+    //     //         }
+    //     //     },
+    //     //     {
+    //     //         $unwind: {
+    //     //             path: '$allotments.assignment',
+    //     //             preserveNullAndEmptyArrays: true
+    //     //         }
+    //     //     },
+    //     // {
+    //     //     $group: {
+    //     //         $unitNo:'$allotments.assignments.unitNo'
+    //     //     }
+    //     // }
+
+    learnersModel.aggregate([
+        {
+            $match:
+            {
+                'job': ObjectId(jobId)
+            },
+        },
+        {
+            $unwind: {
+                path: '$allotments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'allotments',
+                localField: 'allotments',
+                foreignField: '_id',
+                as: 'allotments',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                learnerName: '$name',
+                assignment: {
+                    assignmentId: '$allotments.assignment',
+                    assignmentStatus: '$allotments.status'
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                learnerName: {
+                    $first: '$learnerName',
+                },
+                assignments: {
+                    $push: '$assignment'
+                }
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
 
 module.exports = jobController;

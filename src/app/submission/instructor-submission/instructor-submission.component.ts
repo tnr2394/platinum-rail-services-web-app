@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LearnerService } from '../../services/learner.service'
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-instructor-submission',
@@ -19,6 +20,11 @@ export class InstructorSubmissionComponent implements OnInit {
   files;
   data: any;
   allotmentId;
+
+  remark = new FormGroup({
+    remark: new FormControl(),
+  });
+
 
   constructor(public _learnerService: LearnerService, public router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -40,6 +46,7 @@ export class InstructorSubmissionComponent implements OnInit {
     this.getAllotments(this.allotmentId)
 
   }
+
   // getAllotments() {
   //   // console.log(this.learner);
   //   this._learnerService.getLearner(this.learner._id).subscribe(data => {
@@ -83,15 +90,16 @@ export class InstructorSubmissionComponent implements OnInit {
     })
   }
 
-  doSubmit() {
-    console.log('Data', this.data);
-    var data = {
+  doSubmit(data) {
+    console.log('Data', data.value.remark);
+
+    var Resubmission = {
       allotmentId: this.allotmentId,
       status: 'Re-submitted',
-      remark: 'Demo Remark'
+      remark: data.value.remark
     }
-
-    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(data).subscribe(data => {
+    
+    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
       this.getAllotments(this.allotmentId)
     })
 

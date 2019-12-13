@@ -41,6 +41,7 @@
     "flatpickr": "^4.6.3",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
     "mat-color-picker": "^1.4.3",
     "material-colors": "^1.2.6",
     "material-community-components": "^5.0.1",

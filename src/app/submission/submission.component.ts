@@ -66,23 +66,23 @@ export class SubmissionComponent implements OnInit {
     this.getJobs();
     this.getMaterials();
   }
+
   jobChanged(event) {
-    console.log('job changed', event)
     this.selectedJob = event.value._id;
-    console.log('this.selectedJob', this.selectedJob);
     // this.getLearners(this.selectedJob);
     this.getAssignmentList(this.selectedJob);
   }
+
   materialChanged(event) {
     this.selectedMaterial = event.value
   }
+
   unitNoChanged(event) {
     this.selectedUnit = event.value;
   }
 
   assignmentNoChanged(event) {
     this.selectedAssignment = event.value;
-
     console.log('this.selectedAssignment', this.selectedAssignment);
     this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
   }
@@ -107,6 +107,7 @@ export class SubmissionComponent implements OnInit {
       console.log("JOBS ARE", this.jobs)
     });
   }
+
   getLearners(jobId) {
     this._learnerService.getLearnersByJobId(jobId).subscribe((data) => {
       this.learners = data;

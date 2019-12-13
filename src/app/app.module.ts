@@ -70,6 +70,8 @@ import { SubmissionComponent } from './submission/submission.component';
 import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
+import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     InstructorSubmissionComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
+    AssignmentStatusComponent,
+    LearnerAllotmentTileComponent,
 
   ],
   imports: [

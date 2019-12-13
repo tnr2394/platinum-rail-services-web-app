@@ -17,6 +17,7 @@ import { InstructorSubmissionComponent } from './submission/instructor-submissio
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
 
 
 const routes: Routes = [
@@ -34,13 +35,13 @@ const routes: Routes = [
 	{ path: 'jobs/:jobid', component: JobComponent },
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
-	// { path: 'login/:user', component: LoginComponent },
 	{ path: 'submission', component: SubmissionComponent },
 	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
 	{ path: 'login/:user', component: LoginComponent },
 	{ path: 'forgotpassword/:user', component: ForgotpasswordComponent },
 	{ path: 'learner/allotment/:id', component: LearnerSubmissionComponent },
 	{ path: 'resetpassword/:user', component: ResetPasswordComponent },
+	{ path: 'assignment/status/:jobid', component: AssignmentStatusComponent }
 ];
 
 @NgModule({

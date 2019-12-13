@@ -43,13 +43,15 @@
                         Completed</button>
                 </div>
                 <div class="col-12">
-                    <form (ngSubmit)='doSubmit()'>
+                    <form [formGroup]="remark">
                         <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Leave a remark"></textarea>
+                            <textarea rows="4" cols="100" matInput formControlName="remark"
+                                placeholder="Leave a remark"></textarea>
                         </mat-form-field>
                         <mat-divider></mat-divider>
                         <div class='row center'>
-                            <button mat-raised-button class='btnColorBlue'><i class='fa fa-bell'></i>Request
+                            <button mat-raised-button class='btnColorBlue' (click)="doSubmit(remark)"><i
+                                    class='fa fa-bell'></i>Request
                                 Resubmission</button>
                         </div>
                     </form>
