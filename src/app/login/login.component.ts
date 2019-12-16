@@ -23,6 +23,13 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     });
+
+    if (this._loginService.currentUserValue) {
+
+      console.log('Inside IF----------');
+      this.route.navigate(['/dashboard']);
+    }
+
   }
 
   ngOnInit() {
@@ -70,7 +77,6 @@ export class LoginComponent implements OnInit {
 
     this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
       console.log('Token:----------', token);
-
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully", data);
       }, err => {

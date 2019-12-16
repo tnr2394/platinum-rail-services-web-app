@@ -16,7 +16,6 @@ var allotmentSchema = new Schema({
     status: {
         type: String,
         default: 'Pending',
-        enum: ['Pending', 'Submitted', 'RequestedforResubmission', 'Resubmitted', 'Completed'],
     },
     files: [{
         type: Schema.Types.ObjectId,

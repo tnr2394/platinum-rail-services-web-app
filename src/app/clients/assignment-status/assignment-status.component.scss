@@ -12,3 +12,24 @@ i.fas.fa-square-full.fa-2x.Completed {
 i.fas.fa-square-full.fa-2x.Submitted {
     color:green;
 }
+.Completed{
+    width: 40px;
+    background-color: green;
+    height: 40px;
+}
+.Pending{
+    width: 40px;
+    background-color:red;
+    height: 40px;
+}
+
+.Submitted{
+    width: 40px;
+    background-color: green;
+    height: 40px;
+}
+
+.td-width{
+    height: 40px;
+    width: 40px;
+}

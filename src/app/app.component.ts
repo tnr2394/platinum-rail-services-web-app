@@ -15,6 +15,7 @@ export class AppComponent {
   reason = '';
 
   loggedInUser;
+  currentUser;
 
   constructor(private router: Router, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
@@ -22,7 +23,18 @@ export class AppComponent {
       console.log('RES', res, this.loggedInUser);
       this.loggedInUser = res;
     })
-    this.loggedInUser = localStorage.getItem("currentUser");
+
+    this._loginService.userProfile.subscribe(res => {
+      console.log('RES Profile--------------', res);
+      this.currentUser = res;
+    })
+
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    console.log('this.currentUser---------->>>>>>', this.currentUser);
+
+    
+    this.loggedInUser = localStorage.getItem("token");
   }
   ngOnInit(): void {
     console.log("Set Side Nav")

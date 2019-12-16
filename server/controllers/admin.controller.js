@@ -42,16 +42,19 @@ adminController.loginAdmin = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (admin) {
                 if (bcrypt.compareSync(password, admin.password)) {
-                    const payload = { admin };
-                    const token = jwt.sign(payload, 'platinum');
-                    const data = { token: token, userRole: 'admin' }
+
+
+                    let newAdmin = JSON.parse(JSON.stringify(admin));
+                    newAdmin['userRole'] = 'admin';
+                    var token = jwt.sign(newAdmin, 'platinum');
+                    req.session.currentUser = token;
 
                     sass = req.session;
-                    sass.currentUser = data;
+                    sass.currentUser = token;
 
                     console.log('req.session.currentUser', sass.currentUser);
 
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'admin' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'admin', profile: newAdmin });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }

@@ -134,6 +134,7 @@ allotment.allotmentUsingAssignmentId = function (assignmentId) {
                     _id: 0,
                     allotemntId: '$_id',
                     learnerName: '$learner.name',
+                    learnerId: '$learner._id',
                     assignmentTitle: '$assignment.title',
                     assignmentUnit: '$assignment.unitNo',
                     assignmentNo: '$assignment.assignmentNo',
@@ -145,18 +146,11 @@ allotment.allotmentUsingAssignmentId = function (assignmentId) {
                 console.log('Error:', error);
                 reject(error);
             } else {
-                console.log("11111", JSON.stringify(res, null, 4));
                 resolve(res);
             }
         });
     })
 }
-
-
-
-
-
-
 
 
 module.exports = allotment;

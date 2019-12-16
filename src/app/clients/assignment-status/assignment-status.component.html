@@ -1,4 +1,4 @@
-<div class="row" *ngIf="job">
+<!-- <div class="row" *ngIf="job">
     <div class="col-12">
         <div class="row">
             <div class="col-6">
@@ -43,36 +43,35 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
 
 <div class="row">
     <div class="col-12 ">
-        
-            <table border="1">
-                <tr>
-                    <th>assignment</th>
-                    <th *ngFor="let ass of assignment">
-                        <p>Unit-{{ass.assignmentUnit}}</p>
-                        <p>Ass-{{ass.assignmentNo}}</p>
-                    </th>
-                </tr>
-                <tr *ngFor="let learn of learner">
-                    <td>
-                        {{learn.learnerName}}
-                    </td>
-                    <td *ngFor="let assignment of learn.assignments">
-                        <!-- {{assignment.assignmentStatus}} -->
-                        <i class="fas fa-square-full fa-2x" [ngClass]="assignment.assignmentStatus"></i>
-                    </td>
-                </tr>
-            </table>
-        
+        <table border="1">
+            <tr>
+                <th>assignment</th>
+                <th *ngFor="let ass of assignment">
+                    <p>Unit-{{ass.assignmentUnit}}</p>
+                    <p>Ass-{{ass.assignmentNo}}</p>
+                </th>
+            </tr>
+            <tr *ngFor="let learn of learner">
+                <td>
+                    {{learn.learnerName}}
+                </td>
+                <td *ngFor="let assignment of learn.assignments" class="td-width">
+                    <div [ngClass]="assignment.assignmentStatus"></div>
+                    <!-- {{assignment.assignmentStatus}} -->
+                    <!-- <i class="fas fa-square-full fa-2x" [ngClass]="assignment.assignmentStatus"></i> -->
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
-
+<!-- 
 <div>
     <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
-</div>
+</div> -->

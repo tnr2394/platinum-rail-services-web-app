@@ -126,7 +126,7 @@ instructorController.loginInstructor = function (req, res, next) {
                     newInstructor['userRole'] = 'instructor';
                     const token = jwt.sign(newInstructor, 'platinum');
                     req.session.currentUser = token;
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'instructor', profile: newInstructor });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }

@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './jobs/job/job.component';
-import { InstructorsComponent } from './instructors/instructors.component';
+import { InstructorsComponent } from './instructors/instructors.component';	
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -18,14 +18,17 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
+import { AuthGuard } from './auth.guard';
+
+import { Role } from './_models/role';
 
 
 const routes: Routes = [
 	{
 		path: '', pathMatch: "full", redirectTo: "login/admin"
 	},
-	{ path: 'dashboard', component: DashboardComponent },
-	{ path: 'jobs', component: JobsComponent },
+	{ path: 'dashboard', component: DashboardComponent, },
+	{ path: 'jobs', component: JobsComponent, },
 	{ path: 'instructors', component: InstructorsComponent },
 	{ path: 'clients', component: ClientsComponent },
 	{ path: 'clients/:id', component: SingleClientComponent },

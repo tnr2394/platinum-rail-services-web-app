@@ -149,7 +149,7 @@ learnerController.loginLearner = function (req, res, next) {
                     newLearner['userRole'] = 'learner';
                     var token = jwt.sign(newLearner, 'platinum');
                     req.session.currentUser = token;
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'learner' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'learner', profile: newLearner });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }
@@ -175,7 +175,7 @@ learnerController.allotAssignments = function (req, res, next) {
             const newAllotment = {
                 assignment: singleAssignment._id,
                 learner: singleLearner.learner,
-                status: 'pending',
+                status: 'Pending',
                 deadlineDate: Date.now(),
             }
             allotmentDOA.createAllotment(newAllotment).then((response) => {
@@ -346,8 +346,7 @@ learnerController.allotmentUsingAssignmentId = function (req, res, next) {
 
     allotmentDOA.allotmentUsingAssignmentId(assignmentId)
         .then(function (assignment) {
-            console.log("assignment ", assignment);
-            return res.send({ data: { assignment }, msg: "Assigment Updated Successfully" });
+            return res.send({ data: { assignment }, msg: "Assigment fetched Successfully" });
         }).catch(function (error) {
             return res.status(500).send({ err })
         })

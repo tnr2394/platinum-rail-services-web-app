@@ -72,6 +72,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -158,7 +159,8 @@ import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile
     multi: true
   },
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcLOcYUAAAAAHo-l4hLSePmVP_U4vNj7VlUlU1A' },
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    AuthGuard,
   ],
 
   bootstrap: [AppComponent],

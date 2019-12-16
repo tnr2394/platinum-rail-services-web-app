@@ -143,7 +143,7 @@ materialController.addFile = (req, res, next) => {
         console.log("File added in collection. now adding it to materials.", addedFile);
         materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
             console.log("material Updated", updatedMaterial);
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+            // res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.83:4200');
             res.send({ data: { file: addedFile } });
         }).catch(err => {
             console.error(err);

@@ -149,7 +149,7 @@ clientController.loginClient = function (req, res, next) {
                     var token = jwt.sign(newClient, 'platinum');
                     req.session.currentUser = token;
 
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'client' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'client', profile: newClient });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, observable } from 'rxjs';
+import { Observable, observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { config } from '../config';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { map } from 'rxjs/operators';
+
+
+
 
 
 @Injectable({
@@ -12,10 +16,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class LoginService {
 
   @Output() userRole: EventEmitter<any> = new EventEmitter<any>();
+  @Output() userProfile: EventEmitter<any> = new EventEmitter<any>();
+  @Output() userToken: EventEmitter<any> = new EventEmitter<any>();
+
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('profile'));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
+  public get currentUserValue(): any {
+    return this.currentUserSubject.value;
+  }
 
 
 
@@ -30,10 +45,15 @@ export class LoginService {
       console.log("Observable");
       var that = this;
       this.http.post(config.baseApiUrl + "" + routename + "/login", data).subscribe((res: any) => {
-        localStorage.setItem('currentUser', res.data);
-        localStorage.setItem('userRole', res.userRole);
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('currentUser', JSON.stringify(res.profile));
 
-        this.userRole.emit(res.data);
+        this.currentUserSubject.next(res.profile);
+
+
+        this.userRole.emit(res.userRole)
+        this.userProfile.emit(res.profile);
+        this.userToken.emit(res.token);
 
         if (res.userRole == 'admin') {
           this.router.navigate(['/dashboard']);
@@ -45,8 +65,8 @@ export class LoginService {
           this.router.navigate(['/dashboard']);
         }
 
-        observer.next(res.data.client);
-        // observer.complete();
+        observer.next(res.data);
+        observer.complete();
       }, err => {
         console.log("ERROR ")
         observer.error(err);
@@ -55,7 +75,6 @@ export class LoginService {
           console.log("CALL COMPLETED ")
           observer.complete();
         })
-
     });
 
   }
@@ -71,14 +90,11 @@ export class LoginService {
       }, err => {
         console.log("ERROR ")
         observer.error(err);
-      },
-        () => {
-          console.log("CALL COMPLETED ")
-          observer.complete();
-        })
-
+      }, () => {
+        console.log("CALL COMPLETED ")
+        observer.complete();
+      })
     });
-
   }
 
   resetPassword(data: any, routename): Observable<any> {
