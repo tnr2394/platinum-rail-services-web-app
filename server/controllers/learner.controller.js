@@ -164,7 +164,6 @@ learnerController.loginLearner = function (req, res, next) {
 
 
 learnerController.allotAssignments = function (req, res, next) {
-    console.log('Allot Assignment');
 
     console.log('Allot Assignment', req.body);
 
@@ -178,6 +177,9 @@ learnerController.allotAssignments = function (req, res, next) {
                 status: 'Pending',
                 deadlineDate: Date.now(),
             }
+
+            // Create New Allotment With Single Learner
+
             allotmentDOA.createAllotment(newAllotment).then((response) => {
                 console.log('Allotment Added now update learner');
                 learnerDOA.updateAssignment(singleLearner.learner, response._id).then((updatedLearner) => {
@@ -190,10 +192,35 @@ learnerController.allotAssignments = function (req, res, next) {
                 return res.status(500).send({ err })
             })
         }, (callbackError, callbackResponse) => {
+
             if (callbackError) {
                 return res.status(500).send({ err })
             } else {
-                outerCallback();
+
+                // Send Mail To Learner For Alloted Assignment
+
+                var query = { _id: singleLearner.learner }
+                learnerDOA.getLearnersByQuery(query).then(learners => {
+
+                    console.log('learners.email', learners[0].email);
+
+                    const defaultPasswordEmailoptions = {
+                        to: learners[0].email,
+                        subject: `Assignments Alloted`,
+                        template: 'forgot-password'
+                    };
+
+                    mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+                        if (err) {
+                            return res.status(500).send({ err })
+                        } else {
+                            outerCallback();
+                        }
+                    });
+                }, err => {
+                    console.error(err);
+                    return res.status(500).send({ err });
+                })
             }
         })
     }, (callbackError, callbackResponse) => {

@@ -123,7 +123,7 @@ material.getFiles = function (materialId) {
         .populate("files")
         .exec((err, material) => {
             if (err) return q.reject(err);
-            console.log("Material Files Found in DAO ", material.files);
+            // console.log("Material Files Found in DAO ", material.files);
             return q.resolve(material);
         })
     return q.promise;
