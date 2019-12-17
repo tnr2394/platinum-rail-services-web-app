@@ -2,8 +2,9 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AddFileModalComponent } from './add-file-modal/add-file-modal.component';
 import { EditFileModalComponent } from './edit-file-modal/edit-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import {FileService} from '../services/file.service';
+import { FileService } from '../services/file.service';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'material-files',
@@ -11,45 +12,49 @@ import { Observable } from 'rxjs';
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit, OnChanges {
-  files=[];
+  files = [];
   @Input('materialId') materialId: any;
-  
+
   materials: any;
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar,public _fileService: FileService) { 
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log("SOMETHING CHANGED!!",this.materialId);
+    console.log("SOMETHING CHANGED!!", this.materialId);
     this.getFiles();
 
   }
-  
+
   ngOnInit() {
-    console.log("Initialized Files component by",this.files,{materialId: this.materialId});
+    console.log("Initialized Files component by", this.files, { materialId: this.materialId });
     this.getFiles();
   }
 
-  
+
   // MODALS
-  addFileModal(){
-    var addedCourse = this.openDialog(AddFileModalComponent,{materialId: this.materialId} ).subscribe((courses)=>{
-      if(courses == undefined) return;
-      console.log("Course added in controller = ",courses);
-      this.files.push(courses);
-      this.openSnackBar("Course Added Successfully","Ok");
-      this.updateData(this.files); 
-    },err=>{
-      return this.openSnackBar("Course could not be Added","Ok");
+  addFileModal() {
+    var addedCourse = this.openDialog(AddFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
+      if (courses == undefined) return;
+      console.log("Course added in controller = ", courses);
+
+      _.forEach(courses, (data) => {
+        this.files.push(data);
+      })
+
+      this.openSnackBar("Course Added Successfully", "Ok");
+      this.updateData(this.files);
+    }, err => {
+      return this.openSnackBar("Course could not be Added", "Ok");
     });
   }
   updateData(courses: any) {
-    throw new Error("Method not implemented.");
+    // throw new Error("Method not implemented.");
   }
   courses(courses: any) {
     throw new Error("Method not implemented.");
   }
 
-  handleSnackBar(data){
-    this.openSnackBar(data.msg,data.button);
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
   }
 
   openSnackBar(message: string, action: string) {
@@ -57,56 +62,56 @@ export class FilesComponent implements OnInit, OnChanges {
       duration: 2000,
     });
   }
-  
-  openDialog(someComponent,data = {}): Observable<any> {
-    console.log("OPENDIALOG","DATA = ",data);
-    const dialogRef = this.dialog.open(someComponent, {width:"1000px",data});
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { width: "1000px", data });
     return dialogRef.afterClosed();
   }
-  
-  
-  deletedFile(event){
-    console.log("File Deleted Event : ",event);
-    this.files.splice(this.files.findIndex(function(i){
+
+
+  deletedFile(event) {
+    console.log("File Deleted Event : ", event);
+    this.files.splice(this.files.findIndex(function (i) {
       return i._id === event._id;
     }), 1);
   }
-  
-  editCourseModal(index, data){
-    this.openDialog(EditFileModalComponent,data).subscribe((course)=>{
-      console.log("DIALOG CLOSED",course)
+
+  editCourseModal(index, data) {
+    this.openDialog(EditFileModalComponent, data).subscribe((course) => {
+      console.log("DIALOG CLOSED", course)
       // Handle Error
-      if(course.result == "err") return this.openSnackBar("Course could not be edited","Ok");
-      
+      if (course.result == "err") return this.openSnackBar("Course could not be edited", "Ok");
+
       // EDIT HANDLE
-      if(course.action == 'edit'){
-        console.log("HANDLING EDIT SUCCESS",course.data);
+      if (course.action == 'edit') {
+        console.log("HANDLING EDIT SUCCESS", course.data);
         data = course.data;
-        var Index = this.files.findIndex(function(i){
+        var Index = this.files.findIndex(function (i) {
           return i._id === data._id;
         })
         this.files[Index] = course.data;
       }
       // DELETE HANDLE
-      else if(course.action == 'delete'){
-        console.log("Deleted ",course);
-        this.files.splice(this.files.findIndex(function(i){
+      else if (course.action == 'delete') {
+        console.log("Deleted ", course);
+        this.files.splice(this.files.findIndex(function (i) {
           return i._id === data._id;
         }), 1);
       }
       this.updateData(this.files);
-      this.handleSnackBar({msg:"Course Edited Successfully",button:"Ok"});
+      this.handleSnackBar({ msg: "Course Edited Successfully", button: "Ok" });
     });
   }
-  
+
   // API
-  getFiles(){
-    console.log("Getting files in files component for materialID = ",this.materialId);
+  getFiles() {
+    console.log("Getting files in files component for materialID = ", this.materialId);
     this._fileService.getFilesByMaterial(this.materialId)
-    .subscribe(files=>{
-      console.log("Response from service",files);
-      this.files = files;
-      console.log("Files updated with - ",files);
-    })
+      .subscribe(files => {
+        console.log("Response from service", files);
+        this.files = files;
+        console.log("Files updated with - ", files);
+      })
   }
 }

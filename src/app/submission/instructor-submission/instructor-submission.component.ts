@@ -98,11 +98,18 @@ export class InstructorSubmissionComponent implements OnInit {
       status: 'Re-submitted',
       remark: data.value.remark
     }
-    
+
     this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
       this.getAllotments(this.allotmentId)
     })
 
+  }
+
+  deletedFile(event) {
+    console.log("File Deleted Event : ", event);
+    this.files.splice(this.files.findIndex(function (i) {
+      return i._id === event._id;
+    }), 1);
   }
 
   requestResubmission() {

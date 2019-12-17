@@ -2,6 +2,7 @@ var materialDOA = require('../dao/material.dao');
 var courseDOA = require('../dao/course.dao');
 var fileDOA = require('../dao/file.dao');
 var Q = require('q');
+const async = require("async");
 
 var materialController = {};
 
@@ -119,37 +120,57 @@ materialController.addFile = (req, res, next) => {
     console.log("FILES=", req.files);
     console.log("body=", req.body);
 
-    var re = /(?:\.([^.]+))?$/;
-    var ext = re.exec(req.files.file.name)[1];
-    var name = req.files.file.name.split('.').slice(0, -1).join('.')
+    let files = [];
 
-    // return res.send({body: req.body,files:req.files});
+    let filesArray = [];
 
-    var newFile = {
-        title: name,
-        type: "material",// OR SUBMISSION OR DOCUMENT
-        path: "NEWPATH",
-        extension: ext,
-        uploadedBy: "ADMIN",
-        file: req.files.file,
-        uploadedDate: new Date()
+    if (Array.isArray(req.files.file)) {
+        files = req.files.file
+    } else {
+        files[0] = req.files.file;
     }
 
-    materialId = req.body.materialId;
-    if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
-    console.log("Adding new file to materialID = ", materialId);
 
-    fileDOA.addFile(newFile).then((addedFile) => {
-        console.log("File added in collection. now adding it to materials.", addedFile);
-        materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
-            console.log("material Updated", updatedMaterial);
-            // res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.83:4200');
-            res.send({ data: { file: addedFile } });
-        }).catch(err => {
+
+    async.eachSeries(files, (singleFile, innerCallback) => {
+
+        materialId = req.body.materialId;
+        if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(singleFile.name)[1];
+        var name = singleFile.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "material",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: singleFile,
+            uploadedDate: new Date()
+        }
+
+
+        fileDOA.addFile(newFile).then((addedFile) => {
+            console.log("File added in collection. now adding it to materials.", addedFile);
+            materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
+                console.log("material Updated", updatedMaterial);
+                filesArray.push(addedFile);
+                innerCallback();
+            }).catch(err => {
+                console.error(err);
+            })
+        }).catch((err) => {
             console.error(err);
         })
-    }).catch((err) => {
-        console.error(err);
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: { file: filesArray }, msg: "Material Uploaded Successfully" });
+        }
     })
 }
 

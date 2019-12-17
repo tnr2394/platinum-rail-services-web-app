@@ -352,6 +352,26 @@ learnerController.allotmentUsingAssignmentId = function (req, res, next) {
         })
 }
 
+learnerController.removeFileFromAllotment = function (req, res, next) {
+    let query = {};
+    if (req.query) {
+        query = req.query
+    }
+    if (!query._id) {
+        return res.status(500).send("NO FILES ID FOUND");
+    }
+    console.log("removeFileFromAllotment = ", query, "Params = ", req.query);
+
+    allotmentDOA.removeFileFromAllotment(query)
+        .then(deleted => {
+            console.log("Deleted ", deleted);
+            return res.send({ data: {}, msg: "Deleted Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+};
+
+
 
 
 

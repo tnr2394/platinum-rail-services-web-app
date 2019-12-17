@@ -23,9 +23,21 @@ i.fas.fa-square-full.fa-2x.Submitted {
     height: 40px;
 }
 
+.Pending{
+    width: 40px;
+    background-color:red;
+    height: 40px;
+}
+
 .Submitted{
     width: 40px;
-    background-color: green;
+    background-color:#3B86FF;
+    height: 40px;
+}
+
+.Unassigned{
+    width: 40px;
+    background-color:yellow;
     height: 40px;
 }
 

@@ -34,14 +34,17 @@ export class LearnerSubmissionComponent implements OnInit {
 
   addFileModal() {
     var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId }).subscribe((courses) => {
-      if (courses == undefined) return;
       console.log("Course added in controller = ", courses);
+      this.getAllotments(this.allotmentId)
     }, err => {
     });
   }
 
+
+
+
   getAllotments(allotmentId) {
-    // console.log(this.learner);
+    console.log('Get Allotments Called', allotmentId);
     this._learnerService.getAllotedLearnerFilesUsingAllotmentId(allotmentId).subscribe(data => {
       console.log("RECEIVED Allotment = ", data[0])
       console.log("RECEIVED = ", data[0].files)
@@ -50,7 +53,12 @@ export class LearnerSubmissionComponent implements OnInit {
     });
   }
 
-
+  deletedFile(event) {
+    console.log("File Deleted Event : ", event);
+    this.files.splice(this.files.findIndex(function (i) {
+      return i._id === event._id;
+    }), 1);
+  }
 
 
 }

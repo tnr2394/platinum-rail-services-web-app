@@ -78,85 +78,20 @@ export class AssignmentStatusComponent implements OnInit {
     console.log("Learners loaded by event = ", object.learners);
   }
 
+  checkArray(assignmentArray, assignment) {
+    let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
+    if (index >= 0) {
+      return assignmentArray[index].assignmentStatus;
+    } else {
+      return 'Unassigned';
+    }
+  }
+
 
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
-
       this.learner = data;
       console.log('Learner List', this.learner);
-
-
-      // _.forEach(this.assignment, (singleAssignment: { [x: string]: boolean; bookMark: any; }) => {
-      //   console.log('Save----->>>', singleAssignment);
-      //   _.forEach(this.learner, (singleLearner: any) => {
-      //     console.log('single Learner------->>', singleLearner);
-      //     _.forEach(singleLearner.assignments, (singleLearnerAssignment: any) => {
-      //       console.log('singleLearner-->>>', singleLearner);
-      //       if (singleAssignment.assignmentId == singleLearnerAssignment.assignmentId) {
-      //         console.log('Inside IF-------->>>>>>>>>>>>');
-      //       } else {
-      //         console.log('Inside Else-------->>>>>>>>>>>>');
-      //         singleLearner.assignments.push({ assignmentId: singleAssignment.assignmentId, status: 'unassigned' });
-      //       }
-      //     })
-      //   })
-      // })
-
-
-
-
-      // console.log('Assignment List after for each', this.learner);
-
-
-      // _.forEach(this.learner, (singleLearner: any) => {
-      //   console.log('Learner--------->>>>', singleLearner);
-      //   _.forEach(singleLearner.assignments, (singleAssignment: any) => {
-      //     console.log('singleAssignment--------->>>>', singleAssignment);
-      //     _.forEach(this.assignment,(assignment)=>{
-      //       console.log("assign",assignment.assignmentId,singleAssignment.assignmentId);
-      //       if(assignment.assignmentId == singleAssignment.assignmentId){
-      //         console.log("in if");
-
-      //       }else{
-      //         console.log("in else");
-      //         singleLearner.assignments.push(assignment.assignmentId)
-      //       }
-      //     })
-
-
-      // let index = this.assignment.findIndex(record => record.assignmentId === singleAssignment.assignmentId);
-
-      // console.log(index); // 3
-
-
-      // if (index < 0) {
-      //   console.log('Push Status');
-      // } else {
-      //   console.log('Push Status else');0
-      // }
-
-
-
-      // _.findIndex(this.assignment, function (o) {
-      //   let index = o.assignmentId == singleAssignment.assignmentId;
-
-      //   console.log('Index------', index);
-
-      //   if (index) {
-      //   } else {
-      //     console.log('Inside Else-------------------------');
-      //   }
-      // });
-
-
-
-      // })
-      // })
-
-
-      // console.log("update learner ",this.learner)
-
-
     });
   }
 }

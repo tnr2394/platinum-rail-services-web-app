@@ -62,10 +62,10 @@
                 <td>
                     {{learn.learnerName}}
                 </td>
-                <td *ngFor="let assignment of learn.assignments" class="td-width">
-                    <div [ngClass]="assignment.assignmentStatus"></div>
-                    <!-- {{assignment.assignmentStatus}} -->
-                    <!-- <i class="fas fa-square-full fa-2x" [ngClass]="assignment.assignmentStatus"></i> -->
+                <td *ngFor="let ass of assignment" class="td-width">
+                    <div [ngClass]="checkArray(learn.assignments,ass.assignmentId)">
+                        <!-- {{checkArray(learn.assignments,ass.assignmentId)}} -->
+                    </div>
                 </td>
             </tr>
         </table>

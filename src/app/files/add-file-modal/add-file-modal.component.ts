@@ -71,6 +71,9 @@ export class AddFileModalComponent implements OnInit {
       // Do Submit
       this.loading = true;
       this._learnerService.submitAssignment(formData).subscribe(data => {
+
+
+        console.log('data------------------>>>>>>.', data);
         this.data = data;
         this.loading = false;
         this.dialogRef.close(data);

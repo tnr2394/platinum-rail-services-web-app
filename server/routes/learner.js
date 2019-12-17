@@ -33,6 +33,9 @@ router.post('/reset-password', jwtService.validateJWT, learnerController.resetPa
 router.get('/allot-status', learnerController.allotmentUsingAssignmentId);
 
 
+router.delete('/allot/files', learnerController.removeFileFromAllotment);
+
+
 
 
 
