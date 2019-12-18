@@ -155,7 +155,7 @@ export class InstructorsComponent implements OnInit {
 
 
   // API CALLS
-
+  
   getCourses() {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {

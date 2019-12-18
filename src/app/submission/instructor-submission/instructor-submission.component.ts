@@ -95,7 +95,7 @@ export class InstructorSubmissionComponent implements OnInit {
 
     var Resubmission = {
       allotmentId: this.allotmentId,
-      status: 'Re-submitted',
+      status: 'Requested for Resubmission',
       remark: data.value.remark
     }
 

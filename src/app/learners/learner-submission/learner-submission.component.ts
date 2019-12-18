@@ -17,6 +17,7 @@ export class LearnerSubmissionComponent implements OnInit {
   allotmentId: any;
   assignment;
   files;
+  statusToChange;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -33,7 +34,7 @@ export class LearnerSubmissionComponent implements OnInit {
   }
 
   addFileModal() {
-    var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId }).subscribe((courses) => {
+    var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId, status: this.statusToChange }).subscribe((courses) => {
       console.log("Course added in controller = ", courses);
       this.getAllotments(this.allotmentId)
     }, err => {
@@ -49,6 +50,15 @@ export class LearnerSubmissionComponent implements OnInit {
       console.log("RECEIVED Allotment = ", data[0])
       console.log("RECEIVED = ", data[0].files)
       this.assignment = data[0];
+
+      console.log('this.assignment----------', this.assignment);
+
+      if (this.assignment.status == 'Pending') {
+        this.statusToChange = 'Submitted'
+      } else {
+        this.statusToChange = 'Re-submitted'
+      }
+
       this.files = data[0].files;
     });
   }

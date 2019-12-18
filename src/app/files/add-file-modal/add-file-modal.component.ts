@@ -61,6 +61,9 @@ export class AddFileModalComponent implements OnInit {
 
       let formData = new FormData();
       formData.set('allotmentId', this.data.allotmentId);
+      formData.set('status', this.data.status);
+
+      console.log('this.data.status:', this.data.status);
 
       if (this.fileMaterial.length > 0) {
         for (let i = 0; i <= this.fileMaterial.length; i++) {

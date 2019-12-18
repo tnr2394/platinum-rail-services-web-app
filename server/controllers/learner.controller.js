@@ -237,6 +237,9 @@ learnerController.allotAssignments = function (req, res, next) {
 
 learnerController.assignmentSubmisssion = function (req, res, next) {
 
+
+    console.log('Req.body---------------', req.body);
+
     let files = [];
 
     if (Array.isArray(req.files.file)) {
@@ -250,6 +253,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
 
 
         const allotmentId = req.body.allotmentId;
+        const assignmentStatus = req.body.status;
 
         var re = /(?:\.([^.]+))?$/;
         var ext = re.exec(singleFile.name)[1];
@@ -267,7 +271,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
 
         console.log('new file object', newFile, allotmentId);
 
-        allotmentDOA.submissionOfAssignment(allotmentId, newFile)
+        allotmentDOA.submissionOfAssignment(allotmentId, assignmentStatus, newFile)
             .then(updated => {
                 console.log("updated ", updated);
                 innerCallback();

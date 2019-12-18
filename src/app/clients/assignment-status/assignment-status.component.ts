@@ -27,6 +27,8 @@ export class AssignmentStatusComponent implements OnInit {
   learner;
   job;
   jobId;
+  unit;
+  unitArray;
 
   constructor(private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
@@ -50,14 +52,9 @@ export class AssignmentStatusComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobId(jobId).subscribe((data) => {
-
+      this.unit = data[0];
+      this.unitArray = data;
       this.assignment = data.assignment;
-
-      console.log('Assignment List', this.assignment);
-
-      this.displayedColumns = this.assignment.map(assignment => assignment.assignmentNo);
-
-      console.log(' this.displayedColumns', this.displayedColumns);
     });
   }
 

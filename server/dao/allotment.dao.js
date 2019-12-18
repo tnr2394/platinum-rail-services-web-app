@@ -68,7 +68,7 @@ allotment.deleteAllotment = function (allotemntId) {
     return q.promise;
 }
 
-allotment.submissionOfAssignment = function (allotemntId, obj) {
+allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj) {
     console.log('Assignment Submission', allotemntId, obj);
     var q = Q.defer();
     fileDAO.addFile(obj).then((response) => {
@@ -78,7 +78,7 @@ allotment.submissionOfAssignment = function (allotemntId, obj) {
             {
                 $addToSet: { files: response._id },
                 $set: {
-                    status: "Submitted"
+                    status: assignmentStatus
                 }
             }, { new: true }, (err, updatedAllotment) => {
                 if (err) q.reject(err);

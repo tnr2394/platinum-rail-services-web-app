@@ -45,6 +45,8 @@ export class LoginService {
       console.log("Observable");
       var that = this;
       this.http.post(config.baseApiUrl + "" + routename + "/login", data).subscribe((res: any) => {
+
+
         localStorage.setItem('token', res.token);
         localStorage.setItem('currentUser', JSON.stringify(res.profile));
 
@@ -55,14 +57,21 @@ export class LoginService {
         this.userProfile.emit(res.profile);
         this.userToken.emit(res.token);
 
+
+
+        const learnerDashBoard = '/learner/' + res.profile._id;
+
+
+
+
         if (res.userRole == 'admin') {
           this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'instructor') {
           this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'client') {
           this.router.navigate(['/dashboard']);
-        } else if (res.userRole == 'learner ') {
-          this.router.navigate(['/dashboard']);
+        } else if (res.userRole == 'learner') {
+          this.router.navigate([learnerDashBoard]);
         }
 
         observer.next(res.data);
@@ -117,8 +126,6 @@ export class LoginService {
     });
 
   }
-
-
 
 
 }

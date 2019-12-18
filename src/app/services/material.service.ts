@@ -95,7 +95,7 @@ export class MaterialService {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "jobs/assignment?_id=" + id).subscribe((res: any) => {
         console.log("Get materials : ", res);
-        observer.next(res.data.assignment[0]);
+        observer.next(res.data.assignment);
         observer.complete();
       })
 

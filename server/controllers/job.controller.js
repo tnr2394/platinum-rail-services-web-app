@@ -209,7 +209,7 @@ jobController.assignmentListUsingJobId = function (req, res) {
         },
         {
             $group: {
-                _id: '$_id',
+                _id: '$assignment.assignmentUnit',
                 assignment: {
                     $push: '$assignment'
                 }
@@ -217,7 +217,8 @@ jobController.assignmentListUsingJobId = function (req, res) {
         },
         {
             $project: {
-                _id: 1,
+                _id: 0,
+                unitNo: '$_id',
                 assignment: {
                     $filter: {
                         input: "$assignment",
