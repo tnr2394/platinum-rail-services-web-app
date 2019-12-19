@@ -8,6 +8,6 @@ router.post('/', adminController.addAdmin);
 // Login Admin
 router.post('/login', adminController.loginAdmin);
 
-router.post('/mail', adminController.sendMail);
+// router.post('/mail', adminController.sendMail);
 
 module.exports = router;

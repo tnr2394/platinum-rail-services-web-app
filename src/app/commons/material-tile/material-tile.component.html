@@ -12,7 +12,19 @@
             <div class="col-9 ">
                 <div class="row">
                     <div class="col-12">
-                        {{material.title}} -- {{material.type}}
+                        {{material.title}}
+                        <div class="row">
+                                <div class="col-12 text-right">
+                                    <b>
+                                        <span class="text-success">Unit: </span> {{material.unitNo}}
+                                    </b>
+                                    <br/>
+                                    <b>
+                                            <span class="text-danger">Assignment No : </span> {{material.assignmentNo}}
+                                    </b>
+                                </div>
+                            </div>
+                      
                     </div>
                     <div class="col-12">
                         <a mat-button class="text-success" (click)="editmaterial()">

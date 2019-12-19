@@ -12,8 +12,11 @@
         class="fas fa-fw fa-users"></i> Client</a>
     <a class="side-nav-item" routerLink="/courses" routerLinkActive="active-link" mat-button><i
         class="fas fa-fw fa-chalkboard"></i> Course</a>
-    <a class="side-nav-item" routerLink="/scheduler" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-calendar-alt"></i> Scheduler</a>
+        <a class="side-nav-item" routerLink="/scheduler" routerLinkActive="active-link" mat-button><i
+          class="fas fa-fw fa-calendar-alt"></i> Scheduler</a>
+          <a class="side-nav-item" routerLink="/submission" routerLinkActive="active-link" mat-button><i
+            class="fas fa-fw fa-calendar-alt"></i> Submission</a>
+              
     <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button><i
         class="fa fa-sign-out"></i> Logout</a>
   </mat-sidenav>

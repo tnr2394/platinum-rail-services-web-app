@@ -36,7 +36,7 @@ adminController.loginAdmin = function (req, res, next) {
     const password = req.body.password;
     const recaptchaToken = req.body.recaptchaToken;
 
-    reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
+    // reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
         adminModel.findOne({ email: email }).exec((err, admin) => {
             if (err) {
                 return res.status(500).send({ err })
@@ -60,9 +60,9 @@ adminController.loginAdmin = function (req, res, next) {
                 return res.status(400).json({ message: 'Login failed Invalid email' });
             }
         });
-    }).catch((error) => {
-        return res.status(400).json({ message: 'Failed captcha verification' });
-    })
+    // }).catch((error) => {
+    //     return res.status(400).json({ message: 'Failed captcha verification' });
+    // })
 }
 
 adminController.forgotPassword = function (req, res, next) {
