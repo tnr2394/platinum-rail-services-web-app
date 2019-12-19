@@ -60,9 +60,9 @@ adminController.loginAdmin = function (req, res, next) {
                 return res.status(400).json({ message: 'Login failed Invalid email' });
             }
         });
-    }).catch((error) => {
-        return res.status(400).json({ message: 'Failed captcha verification' });
-    })
+    // }).catch((error) => {
+    //     return res.status(400).json({ message: 'Failed captcha verification' });
+    // })
 }
 
 adminController.forgotPassword = function (req, res, next) {

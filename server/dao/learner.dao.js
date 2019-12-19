@@ -105,7 +105,7 @@ learner.sendMailToLearner = function (learnerId) {
             };
             mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
                 if (err) {
-                    console.log('error:', error);
+                    console.log('error:', err);
                     q.reject(err);
                 } else {
                     q.resolve(mailResult);
