@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-block">
-                        <div class="row mt-4">
+                        <div class="row mt-4 mb-2">
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <!-- <mat-list>
                                     <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> College :
@@ -29,12 +29,12 @@
                                 </mat-list> -->
                                 <div class="learner_detail_box">
                                     <mat-list class="" role="list">
-                                        <mat-list-item *ngFor="let instructor of job.instructors" role="listitem" class="p-0">
+                                        <mat-list-item role="listitem" class="p-0">
 
                                             <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
                                             <div class="learner_title">
                                                  instructor
-                                                 <p> {{instructor.name}}</p>
+                                                 <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
                                             </div>
                                            
                                         </mat-list-item>
@@ -58,7 +58,7 @@
                                     <mat-list>
                                         <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
                                             <div class="learner_title">
-                                                 Location :
+                                                 Location 
                                                  <p> {{job.location.title}}</p>
                                             </div>
                                         </mat-list-item>
@@ -71,7 +71,7 @@
                                     <mat-list>
                                         <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
                                             <div class="learner_title">
-                                                Course :
+                                                Course 
                                                 <p> {{job.course.title}}</p>
                                             </div> 
                                         </mat-list-item>

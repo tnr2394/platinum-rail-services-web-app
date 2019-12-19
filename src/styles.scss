@@ -141,7 +141,14 @@ th{
     height: 50px; 
     vertical-align: middle !important;
 }
-
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+    padding: 0 !important;
+}
 .learner_detail_box {
     .mat-list-base {
         .mat-list-item {

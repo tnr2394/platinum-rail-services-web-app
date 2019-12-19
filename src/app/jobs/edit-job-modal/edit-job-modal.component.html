@@ -1,7 +1,7 @@
-<h1 mat-dialog-title><i class="fa fa-plus-circle"></i>Add Job</h1>
+<h1 mat-dialog-title><i class="fa fa-edit"></i> Edit Job</h1>
 <mat-divider></mat-divider>
 
-<form [formGroup]='addJobForm'>
+<form [formGroup]='addJobForm' class="add_job_form">
     <div mat-dialog-content class="container">
         <div class='top-margin' mat-dialog-content>
             <div class='row'>
@@ -22,8 +22,6 @@
 
             <div class='row'>
                 <div class='col center'>
-                    
-
                     <mat-form-field>
                         <mat-select placeholder="Client" (selectionChange)="clientChanged($event)" [(value)]="selectedClient">
                             <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
@@ -42,7 +40,7 @@
             </div>
 
             <div class='row'>
-                <div class='max-height col center'>
+                <div class='max-height col center instructor_select'>
                     <div formArrayName="instructor"
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
@@ -70,7 +68,7 @@
                     <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
                     </div> -->
                 </div>
-                <div class='col center'>
+                <div class='col center course_select'>
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
@@ -90,9 +88,9 @@
             </div>
 
             <div class='row'>
-                <div class='col center'>
-                    <button mat-flat-button color="primary" class="pull-right buttonHeight" (click)='addInstructor()'><i
-                            class="fa fa-user-plus"></i>Add Instructor</button>
+                <div class='col mb-4'>
+                    <button mat-flat-button color="primary" class="buttonHeight" (click)='addInstructor()'><i
+                            class="fa fa-user-plus"></i> Add Instructor</button>
                 </div>
                 <div class='col center'>
                     <mat-form-field>
@@ -124,7 +122,7 @@
                     </mat-form-field>
                     <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
 </div> -->
-<div mat-dialog-actions class="center">
+<div mat-dialog-actions class="center mt-3 mb-1">
     <div *ngIf="!loading">
         <button mat-flat-button color="primary" (click)='addJob()'><i class="fas fa-save fa-fw"></i> Save</button>
         <button mat-flat-button type="button" color="warn" class="text-white pull-right" (click)="delete()">

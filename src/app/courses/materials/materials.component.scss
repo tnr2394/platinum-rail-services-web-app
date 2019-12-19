@@ -32,4 +32,24 @@
 }
 .material_row{
     align-items: center !important;
+    h3{
+        @media (max-width:575px){
+            font-size: 20px;
+            padding: 0 !important;
+            span{
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+}
+@media (max-width:991px){
+    .material_tile_row{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width:575px){
+    .material_tile_row {
+        margin-left: 0px;
+    }
 }
