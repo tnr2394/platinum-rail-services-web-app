@@ -8,6 +8,8 @@ import { JobService } from "../../services/job.service";
 import { Router, NavigationExtras } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
+import { DatePipe } from '@angular/common';
+
 
 
 @Component({
@@ -30,7 +32,7 @@ export class AssignmentStatusComponent implements OnInit {
   unit;
   unitArray;
 
-  constructor(private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
+  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
   }
@@ -55,6 +57,8 @@ export class AssignmentStatusComponent implements OnInit {
       this.unit = data[0];
       this.unitArray = data;
       this.assignment = data.assignment;
+
+      console.log('unitArray---------', this.unitArray);
     });
   }
 
@@ -79,6 +83,17 @@ export class AssignmentStatusComponent implements OnInit {
     let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
     if (index >= 0) {
       return assignmentArray[index].assignmentStatus;
+    } else {
+      return 'Unassigned';
+    }
+  }
+
+  checkArrayWithDate(assignmentArray, assignment) {
+    let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
+    if (index >= 0) {
+      const statusAndDate = assignmentArray[index].assignmentStatus + ' on ' + this.datePipe.transform(assignmentArray[index].updatedAt, 'MMMM d, y');
+
+      return statusAndDate;
     } else {
       return 'Unassigned';
     }

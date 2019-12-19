@@ -57,12 +57,24 @@
                             <!--Text-->
                             <div class="row">
                                 <div class="col-6">
-                                    <div *ngFor="let material of materials " class='materialsDiaplay'>
-                                    <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-                                    <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                        <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                    <div class="row">
+                                        <div *ngFor="let material of materials " class='materialsDiaplay'>
+                                            <div class="col-11">
+                                                    <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                            </div>
+                                            <div class="col-1">
+                                                <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                    <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                                </div>
+                                            </div>
+                                            </div>
                                     </div>
-                                    </div> 
+                                    <!-- <div *ngFor="let material of materials " class='materialsDiaplay'>
+                                        <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                        <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                            <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                        </div>
+                                    </div>  -->
                                     <!-- </mat-card> -->
                                  </div>
                                 <div class="col-6" *ngIf="selectedMaterial">

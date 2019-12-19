@@ -67,7 +67,7 @@
             <table class="float-left" border="1">
                 <thead>
                     <tr>
-                        <th [attr.colspan]="unit.assignment.length">Unit {{unit.unitNo}}</th>
+                        <th [attr.colspan]="unit.assignment.length">Unit {{unit._id}}</th>
                     </tr>
                     <tr>
                         <th *ngFor="let assignment of unit.assignment">{{assignment.assignmentNo}}</th>
@@ -76,7 +76,8 @@
                 <tbody>
                     <tr *ngFor="let learn of learner">
                         <td *ngFor="let ass of unit.assignment" class="td-width">
-                            <div [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
+                            <div title="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
+                                [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                         </td>
                     </tr>
                 </tbody>

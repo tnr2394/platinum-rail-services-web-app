@@ -153,6 +153,118 @@ jobController.assignmentListUsingJobId = function (req, res) {
     let jobId = req.query._id;
 
 
+    console.log("Assignment List------------", jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                unitNo: '$_id',
+                assignment: {
+                    $filter: {
+                        input: "$assignment",
+                        as: "assignments",
+                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
+                    }
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$assignment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $group: {
+                _id: '$assignment.assignmentUnit',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $sort: {
+                'assignment.assignmentUnit': 1
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            console.log('assignment', assignment);
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
+
+
+
+jobController.assignmentListUsingJobIdWithoutGroup = function (req, res) {
+    let jobId = req.query._id;
+
+
     console.log("Assignment List", jobId);
 
     jobModel.aggregate([
@@ -209,7 +321,7 @@ jobController.assignmentListUsingJobId = function (req, res) {
         },
         {
             $group: {
-                _id: '$assignment.assignmentUnit',
+                _id: '$_id',
                 assignment: {
                     $push: '$assignment'
                 }
@@ -243,6 +355,8 @@ jobController.assignmentListUsingJobId = function (req, res) {
         }
     });
 }
+
+
 
 
 jobController.assignmentStatusWithLearner = function (req, res) {
@@ -282,7 +396,9 @@ jobController.assignmentStatusWithLearner = function (req, res) {
                 learnerName: '$name',
                 assignment: {
                     assignmentId: '$allotments.assignment',
-                    assignmentStatus: '$allotments.status'
+                    assignmentStatus: '$allotments.status',
+                    allotedAt: '$allotments.createdAt',
+                    updatedAt: '$allotments.updatedAt',
                 }
             }
         },

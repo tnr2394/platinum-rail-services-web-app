@@ -52,9 +52,10 @@
 
                                 <!-- Action Column -->
                                 <ng-container matColumnDef="actions">
-                                    <th mat-header-cell *matHeaderCellDef> EDIT </th>
-                                    <td class="mat-table-cell" mat-cell *matCellDef="let client; let i = index;">
-                                        <a class="text-success bold" (click)="editClientModal(i, client)">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef> EDIT </th>
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let client; let i = index;">
+                                        <a class="text-success bold mr-5" (click)="editClientModal(i, client)">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="text-primary bold" routerLink="{{client._id}}">
@@ -62,7 +63,7 @@
                                         </a>
                                     </td>
                                 </ng-container>
-                                
+
                                 <thead>
                                     <tr style="background:lightgray;" mat-header-row
                                         *matHeaderRowDef="displayedColumns"></tr>

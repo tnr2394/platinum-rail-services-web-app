@@ -117,9 +117,9 @@ export class SubmissionComponent implements OnInit {
   }
 
   getAssignmentList(jobId) {
-    this._materialService.getMaterialUsingJobId(jobId).subscribe((data) => {
+    this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
       console.log('Data----->>>>>', data);
-      this.assignment = data.assignment;
+      this.assignment = data[0].assignment;
     });
   }
 

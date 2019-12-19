@@ -42,8 +42,6 @@ adminController.loginAdmin = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (admin) {
                 if (bcrypt.compareSync(password, admin.password)) {
-
-
                     let newAdmin = JSON.parse(JSON.stringify(admin));
                     newAdmin['userRole'] = 'admin';
                     var token = jwt.sign(newAdmin, 'platinum');
