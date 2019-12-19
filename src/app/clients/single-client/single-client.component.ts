@@ -47,9 +47,6 @@ import { bounce } from 'ng-animate';
                     style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
                     style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
                   ]))
-                
-                
-                
               ])
             ])
           ])

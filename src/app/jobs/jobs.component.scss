@@ -4,5 +4,35 @@
     color: #3CC480;
     font-size: x-large;
 }
-.table td{
+tr.mat-header-row{
+    height: 45px;
+    background: #F5F6FA;
 }
+.mat-list-base{
+    .mat-list-item{
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+} 
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+    padding: 0;
+}
+
+table {
+    margin: 0;
+    width: 100%;
+    @media(max-width: 767px){
+        min-width: 725px;
+    }
+}
+.mat-paginator-outer-container {
+    @media(max-width:500px) {
+        .mat-paginator-container {
+            justify-content: center !important;
+        }
+    }
+}
+

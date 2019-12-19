@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var clientController = require('../controllers/client.controller');
+
+const jwtService = require('../services/jwt.service');
+
+
 /* GET Clients listing. */
 router.get('/', clientController.getClients);
 // ADD Client
@@ -19,5 +23,8 @@ router.delete('/', clientController.deleteClient);
 router.post('/login', clientController.loginClient);
 // Forgot Password Client
 router.post('forgot-password', clientController.forgotPassword)
+
+router.post('/reset-password', jwtService.validateJWT, clientController.resetPassword);
+
 
 module.exports = router;

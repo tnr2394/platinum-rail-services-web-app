@@ -81,7 +81,7 @@ material.deleteMaterial = function (materialId) {
 material.addFile = function (materialId, fileId) {
     console.log("Adding file to material DOA ", { materialId, fileId });
     var q = Q.defer();
-    materialModel.findOneAndUpdate(materialId, { $addToSet: { files: fileId } }, { new: true }, (err, updatedMaterial) => {
+    materialModel.findOneAndUpdate({ _id: materialId }, { $addToSet: { files: fileId } }, { new: true }, (err, updatedMaterial) => {
         if (err) return q.reject(err);
         else {
             console.log("material Updated with new file Successfully =  ", updatedMaterial.files);
@@ -123,7 +123,7 @@ material.getFiles = function (materialId) {
         .populate("files")
         .exec((err, material) => {
             if (err) return q.reject(err);
-            console.log("Material Files Found in DAO ", material.files);
+            // console.log("Material Files Found in DAO ", material.files);
             return q.resolve(material);
         })
     return q.promise;

@@ -1,0 +1,81 @@
+.logo_image img {
+    width: 100%;
+    height: auto;
+    max-width: 410px;
+}
+.login_form {
+    width: 50%;
+}
+.welcome_msg{
+    font-size: 18px;
+    color: #4D4F5C;
+    padding: 30px 0px;
+    margin-bottom: 0px;
+    // font-weight: 300;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+form{
+    padding: 0px 50px;
+}
+.mat-input-element {
+    font-size: 18px;
+    color: #43425D;
+}
+.remember_row{
+    label{
+        color: #43425D;
+    }
+    a{
+        color: #43425D !important;
+    }
+    @media screen and (max-width:575px){
+        label{
+            font-size: 13px;
+        }
+        a {
+            font-size: 13px;
+        }
+    }
+}
+.login_btn{
+    color: white;
+    background-color: #43425D;
+    padding: 12px 60px;
+}
+@media screen and (max-width:991px){
+    form {
+        padding: 0px 30px;
+    }
+    .login_btn {
+        padding: 8px 54px;
+    }
+    .login_form{
+        width: 100% !important;
+    }
+    .logo_image img {
+        max-width: 370px;
+    }
+}
+@media screen and (max-width:767px){
+    .logo_image img {
+        max-width: 315px;
+    }
+}
+@media screen and (max-width:575px){
+    .logo_image img {
+        max-width: 240px;
+    }
+    .welcome_msg {
+        font-size: 14px;
+        padding: 20px 0px;
+    }
+    .mat-input-element {
+        font-size: 15px;
+    }
+    .login_btn{
+        padding: 4px 45px;
+    }
+    form {
+        padding: 0px 10px;
+    }
+}

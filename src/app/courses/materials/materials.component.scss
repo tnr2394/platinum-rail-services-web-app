@@ -9,4 +9,27 @@
 .materialsDiaplay{
     display: flex;
     flex-direction: row-reverse;
+    width: 100% !important;
+
+    .col-1{
+        justify-content: center !important;
+        align-items: center !important;
+        display: flex !important;
+        height: 100% !important;
+    }
+
+}
+
+
+.page-title{
+    font-weight: 400;
+}
+.material_card{
+    .card-title{
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+.material_row{
+    align-items: center !important;
 }

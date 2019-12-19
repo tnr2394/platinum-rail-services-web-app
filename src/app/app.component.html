@@ -1,22 +1,36 @@
 <app-top-nav></app-top-nav>
 <mat-sidenav-container class="content-container" (backdropClick)="close('backdrop')">
   <mat-sidenav id="sidemenu" #sidemenu (keydown.escape)="close('escape')" disableClose>
-    <h3 class="bg-nav-item"><i class="fa fa-user fa-fw"></i>Admin</h3>
-    <a class="side-nav-item" routerLink="/dashboard" routerLinkActive="active-link" mat-button><i
+    <h4 class="bg-nav-item" *ngIf="currentUser"><i class="fa fa-user fa-fw"></i>{{currentUser.name}}</h4>
+
+
+    <a class="side-nav-item" *ngIf="currentUser" routerLink="/dashboard" routerLinkActive="active-link" mat-button><i
         class="fas fa-fw fa-chalkboard"></i> Dashboard</a>
-    <a class="side-nav-item" routerLink="/jobs" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-chalkboard"></i> Job</a>
-    <a class="side-nav-item" routerLink="/instructors" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-chalkboard"></i> Instructor</a>
-    <a class="side-nav-item" routerLink="/clients" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-users"></i> Client</a>
-    <a class="side-nav-item" routerLink="/courses" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-chalkboard"></i> Course</a>
-        <a class="side-nav-item" routerLink="/scheduler" routerLinkActive="active-link" mat-button><i
-          class="fas fa-fw fa-calendar-alt"></i> Scheduler</a>
-          <a class="side-nav-item" routerLink="/submission" routerLinkActive="active-link" mat-button><i
-            class="fas fa-fw fa-calendar-alt"></i> Submission</a>
-              
+
+    <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses"
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Course</a>
+
+    <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors"
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i>
+      Instructor</a>
+
+
+    <a class="side-nav-item"
+      *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')"
+      routerLink="/jobs" routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Job</a>
+
+
+    <a class="side-nav-item" *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')"
+      routerLink="/submission" routerLinkActive="active-link" mat-button><i class="fas fa-clipboard-check"></i>
+      Submission</a>
+
+    <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients"
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-users"></i> Client</a>
+
+    <a class="side-nav-item" *ngIf="currentUser && (currentUser.userRole=='instructor')" routerLink="/scheduler"
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-calendar-alt"></i>
+      Scheduler</a>
+
     <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button><i
         class="fa fa-sign-out"></i> Logout</a>
   </mat-sidenav>
@@ -24,7 +38,6 @@
   <mat-sidenav-content style="background-color:#FAFAF7">
     <div class="container" style="padding-top:25px ;">
       <router-outlet></router-outlet>
-      <!-- Routed components go here -->
     </div>
     <footer>
       <h1>&nbsp;</h1>

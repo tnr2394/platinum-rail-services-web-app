@@ -3,6 +3,7 @@
 const jwt = require("jsonwebtoken");
 const Q = require('q');
 const async = require("async");
+const _ = require('lodash');
 
 // Service Variables
 
@@ -118,6 +119,18 @@ learnerController.deleteLearner = function (req, res, next) {
         })
 }
 
+learnerController.getAllotment = function (req, res, next) {
+    console.log("learner allotment");
+    let allotmentId = req.query._id;
+    console.log("learner allotment: ", allotmentId);
+    allotmentDOA.getAllotment(allotmentId)
+        .then(allotment => {
+            console.log("allotment ", allotment);
+            return res.send({ data: { allotment }, msg: "allotment List fetch Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+}
 
 learnerController.loginLearner = function (req, res, next) {
     console.log("Login Learner");
@@ -132,10 +145,11 @@ learnerController.loginLearner = function (req, res, next) {
                 return res.status(500).send({ err })
             } else if (learner) {
                 if (password == learner.password) {
-                    const payload = { learner };
-                    var token = jwt.sign(payload, 'platinum');
+                    let newLearner = JSON.parse(JSON.stringify(learner));
+                    newLearner['userRole'] = 'learner';
+                    var token = jwt.sign(newLearner, 'platinum');
                     req.session.currentUser = token;
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'learner' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'learner', profile: newLearner });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }
@@ -150,7 +164,6 @@ learnerController.loginLearner = function (req, res, next) {
 
 
 learnerController.allotAssignments = function (req, res, next) {
-    console.log('Allot Assignment');
 
     console.log('Allot Assignment', req.body);
 
@@ -161,9 +174,12 @@ learnerController.allotAssignments = function (req, res, next) {
             const newAllotment = {
                 assignment: singleAssignment._id,
                 learner: singleLearner.learner,
-                status: 'pending',
+                status: 'Pending',
                 deadlineDate: Date.now(),
             }
+
+            // Create New Allotment With Single Learner
+
             allotmentDOA.createAllotment(newAllotment).then((response) => {
                 console.log('Allotment Added now update learner');
                 learnerDOA.updateAssignment(singleLearner.learner, response._id).then((updatedLearner) => {
@@ -176,10 +192,35 @@ learnerController.allotAssignments = function (req, res, next) {
                 return res.status(500).send({ err })
             })
         }, (callbackError, callbackResponse) => {
+
             if (callbackError) {
                 return res.status(500).send({ err })
             } else {
-                outerCallback();
+
+                // Send Mail To Learner For Alloted Assignment
+
+                var query = { _id: singleLearner.learner }
+                learnerDOA.getLearnersByQuery(query).then(learners => {
+
+                    console.log('learners.email', learners[0].email);
+
+                    const defaultPasswordEmailoptions = {
+                        to: learners[0].email,
+                        subject: `Assignments Alloted`,
+                        template: 'forgot-password'
+                    };
+
+                    mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+                        if (err) {
+                            return res.status(500).send({ err })
+                        } else {
+                            outerCallback();
+                        }
+                    });
+                }, err => {
+                    console.error(err);
+                    return res.status(500).send({ err });
+                })
             }
         })
     }, (callbackError, callbackResponse) => {
@@ -195,18 +236,56 @@ learnerController.allotAssignments = function (req, res, next) {
 
 
 learnerController.assignmentSubmisssion = function (req, res, next) {
-    console.log('Assignment Submission');
 
-    const allotmentId = req.body.allotmentId;
-    const submittedFile = req.file;
 
-    allotmentDOA.submissionOfAssignment(allotmentId, submittedFile)
-        .then(updated => {
-            console.log("updated ", updated);
-            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
-        }, err => {
+    console.log('Req.body---------------', req.body);
+
+    let files = [];
+
+    if (Array.isArray(req.files.file)) {
+        files = req.files.file
+    } else {
+        files[0] = req.files.file;
+    }
+
+    async.eachSeries(files, (singleFile, innerCallback) => {
+        console.log('singleFile', singleFile);
+
+
+        const allotmentId = req.body.allotmentId;
+        const assignmentStatus = req.body.status;
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(singleFile.name)[1];
+        var name = singleFile.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "material",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: req.user.name,
+            file: singleFile,
+            uploadedDate: new Date()
+        }
+
+        console.log('new file object', newFile, allotmentId);
+
+        allotmentDOA.submissionOfAssignment(allotmentId, assignmentStatus, newFile)
+            .then(updated => {
+                console.log("updated ", updated);
+                innerCallback();
+            }, err => {
+                return res.status(500).send({ err })
+            })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
             return res.status(500).send({ err })
-        })
+        } else {
+            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
+        }
+    })
 }
 
 learnerController.forgotPassword = function (req, res, next) {
@@ -244,6 +323,86 @@ learnerController.forgotPassword = function (req, res, next) {
         }
     });
 }
+
+learnerController.resetPassword = function (req, res, next) {
+    console.log("Reset Password Instructor", req.body);
+
+    const learnerId = req.user._id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    learnerModel.findOne({ _id: learnerId }, (err, learner) => {
+        console.log("Updated learner", learner, err);
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (learner) {
+            if (learner.password == oldPassword) {
+                learner.password = newPassword;
+                learner.save();
+                return res.status(200).json({ message: 'Your password changed successfully' });
+            } else {
+                return res.status(500).send({ msg: 'password does not match' })
+            }
+        } else {
+            return res.status(500).send({ err })
+        }
+    });
+}
+
+learnerController.updateAllotment = function (req, res, next) {
+
+    console.log('Update Allotment By Instructor', req.body);
+
+    const updateAllotment = {};
+
+    if (req.body.status) updateAllotment['status'] = req.body.status;
+    if (req.body.remark) updateAllotment['remark'] = req.body.remark;
+
+    const allotmentId = req.body.allotmentId;
+
+
+    allotmentDOA.updateAllotment(allotmentId, updateAllotment)
+        .then(updated => {
+            console.log("updated ", updated);
+            return res.send({ data: {}, msg: "Assigment Updated Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+
+}
+
+learnerController.allotmentUsingAssignmentId = function (req, res, next) {
+    const assignmentId = req.query._id;
+    console.log('Allotment List Using assignmentId', assignmentId);
+
+    allotmentDOA.allotmentUsingAssignmentId(assignmentId)
+        .then(function (assignment) {
+            return res.send({ data: { assignment }, msg: "Assigment fetched Successfully" });
+        }).catch(function (error) {
+            return res.status(500).send({ err })
+        })
+}
+
+learnerController.removeFileFromAllotment = function (req, res, next) {
+    let query = {};
+    if (req.query) {
+        query = req.query
+    }
+    if (!query._id) {
+        return res.status(500).send("NO FILES ID FOUND");
+    }
+    console.log("removeFileFromAllotment = ", query, "Params = ", req.query);
+
+    allotmentDOA.removeFileFromAllotment(query)
+        .then(deleted => {
+            console.log("Deleted ", deleted);
+            return res.send({ data: {}, msg: "Deleted Successfully" });
+        }, err => {
+            return res.status(500).send({ err })
+        })
+};
+
+
 
 
 

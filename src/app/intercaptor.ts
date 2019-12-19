@@ -14,8 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const accessToken = localStorage.getItem('currentUser');
-        console.log('Access Token', accessToken);
+        const accessToken = localStorage.getItem('token');
         if (accessToken) {
             const cloned = req.clone({
                 headers: req.headers.set("authorization", accessToken)
@@ -46,7 +45,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     catchError((error: HttpErrorResponse) => {
                         let errorMessage = error.error.message;
                         if (error.status === 401) {
-                            this.router.navigate(['/login']);
+                            this.router.navigate(['/login/admin']);
                         }
                         return throwError(error);
                     })

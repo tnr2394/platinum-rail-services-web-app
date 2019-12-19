@@ -8,7 +8,7 @@
             </h3>
         </div>
         <div class="col-6">
-            <button mat-flat-button color="primary" class="pull-right"  (click)="addJobModal()">
+            <button mat-flat-button color="primary" class="pull-right modal_open"  (click)="addJobModal()">
                 <i class="fas fa-plus fa-fw"></i>
                 Add Job
             </button>
@@ -21,12 +21,12 @@
     <div class="card-block">
             <!--Title-->
             <div class="card-title">
-                <div class="row">
-                    <mat-form-field class="example-full-width col-6">
+                <div class="row table_search">
+                    <mat-form-field class="example-full-width col-lg-6 col-md-6">
                             <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)' >
                             <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
-                    <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     <!-- <mat-paginator class="col-6" [length]="jobs.length"
                         [pageSize]="pageSize"
                         [pageSizeOptions]="pageSizeOptions"
@@ -36,36 +36,43 @@
     
             </div>
             <!--Text-->
-            <div >
+            <div class="table-responsive">
             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
                 <div>
 
                         <!-- SR.No --> 
                         <!-- Only Displays 1-5 for every page -->
                         <ng-container matColumnDef="sr.no">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Job Title </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job; let i = index;"> <i class="fas fa-dot-circle fa-fw" [ngStyle]="{color:job.color }"></i> {{job.title}} </td>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Job Title </th>
+                            <td class="mat-table-cell text-center" data-label="Job Title" mat-cell
+                                *matCellDef="let job; let i = index;"> <i
+                                    class="fas fa-dot-circle fa-fw" [ngStyle]="{color:job.color }"></i> {{job.title}}
+                            </td>
                         </ng-container>
 
                 
                         <!-- Client Column -->
                         <ng-container matColumnDef="client">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Client </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.client.name}}</td>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client </th>
+                            <td class="mat-table-cell text-center" data-label="Client" mat-cell
+                                *matCellDef="let job"> {{job.client.name}}
+                            </td>
                         </ng-container>
 
                         <!-- location -->
                         <ng-container matColumnDef="location">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Location </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.location.title}} </td>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Location </th>
+                            <td class="mat-table-cell text-center" data-label="Location" mat-cell *matCellDef="let job">
+                                {{job.location.title}} </td>
                         </ng-container>
                         <!-- instructor Column -->
                         <ng-container matColumnDef="instructor" >
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Instructor </th>
-                            <td class="mat-table-cell" mat-cell  *matCellDef="let job">
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Instructor </th>
+                            <td class="mat-table-cell text-center" data-label="Instructor" mat-cell
+                                *matCellDef="let job">
                                 <mat-list align='center'>
-                                    <mat-list-item *ngFor='let oneInstructor of job.instructors'>
-                                        <i class="fas fa-user-tie fa-fw text-primary"></i><span > {{oneInstructor.name}}</span> 
+                                    <mat-list-item class="text-center" *ngFor='let oneInstructor of job.instructors'>
+                                        <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span > {{oneInstructor.name}}</span> 
                                     </mat-list-item>
                                 </mat-list>
                             </td>
@@ -73,16 +80,19 @@
 
                         <!-- course Column -->
                         <ng-container matColumnDef="course">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Course </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job"> {{job.course.title}}</td>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Course </th>
+                            <td class="mat-table-cell text-center" data-label="Course" mat-cell
+                                *matCellDef="let job"> {{job.course.title}}
+                            </td>
                         </ng-container>
 
                         <!-- learners Column -->
                         <ng-container matColumnDef="actions">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Actions </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job">
-                                <a mat-button class="text-success" title="Job Details" routerLink="{{job._id}}" >
-                                    <i class="fa fa-users"></i>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Actions </th>
+                            <td class="mat-table-cell text-center" data-label="Actions" mat-cell *matCellDef="let job">
+                                <a mat-button class="text-primary" title="Job Details" routerLink="{{job._id}}" >
+                                    <!-- <i class="fa fa-users"></i> -->
+                                    <i class="fa fa-eye"></i>
                                 </a>
                                 <button mat-button class="text-primary" title="Edit Job"  (click)="editJobModal(i, job)"><i class="fa fa-edit"></i></button>
                             </td>
@@ -90,20 +100,22 @@
 
                         <!-- Status Column -->
                         <ng-container matColumnDef="status">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > Status </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job">{{job.status}}</td>
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Status </th>
+                            <td class="mat-table-cell text-center" data-label="Status" mat-cell *matCellDef="let job">
+                                {{job.status}}</td>
                         </ng-container>
 
                         <!-- view Column -->
                         <ng-container matColumnDef="view">
-                            <th class="text-left" mat-header-cell *matHeaderCellDef > View </th>
-                            <td class="mat-table-cell" mat-cell *matCellDef="let job;let i = index;">
+                            <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> View </th>
+                            <td class="mat-table-cell text-center" data-label="View" mat-cell
+                                *matCellDef="let job;let i = index;">
                             
                             </td>
                         </ng-container>
                         
-                        <thead>
-                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <thead class="table_header">
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         </thead>
                         <tbody>
                             <tr mat-row *matRowDef="let job; columns: displayedColumns;"></tr>

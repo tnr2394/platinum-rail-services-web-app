@@ -25,7 +25,20 @@ learner.getLearnersByQuery = function (query) {
 
     learnerModel.find(query)
         .populate('job')
-        .populate('allotments')
+        .populate({
+            path: 'allotments',
+            populate: {
+                path: 'assignment',
+                model: 'material'
+            },
+        })
+        .populate({
+            path: 'allotments',
+            populate: {
+                path: 'files',
+                model: 'file'
+            },
+        })
         .exec((err, learners) => {
             if (err) q.reject(err)
             q.resolve(learners)

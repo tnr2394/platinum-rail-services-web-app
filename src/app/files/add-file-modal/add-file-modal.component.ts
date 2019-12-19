@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MaterialService } from 'src/app/services/material.service';
 import { FileService } from 'src/app/services/file.service';
+import { LearnerService } from 'src/app/services/learner.service';
 
 @Component({
   selector: 'app-add-file-modal',
@@ -21,9 +22,8 @@ export class AddFileModalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Upload files initialized", this.data);
-
   }
-  constructor(public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService) {
+  constructor(public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
     // NO DEFINITION
   }
   onFileChange(event, field) {
@@ -53,28 +53,68 @@ export class AddFileModalComponent implements OnInit {
   doSubmit() {
     console.log("Submit ", this.data);
 
-    let formData = new FormData();
-    formData.set('materialId', this.data.materialId);
+    if (this.data.allotmentId) {
+      console.log('Inside If:');
 
-    if (this.fileMaterial.length > 0) {
-      for (let i = 0; i <= this.fileMaterial.length; i++) {
-        formData.append('file', this.fileMaterial[i]);
+      console.log('this.fileMaterial', this.fileMaterial);
+
+
+      let formData = new FormData();
+      formData.set('allotmentId', this.data.allotmentId);
+      formData.set('status', this.data.status);
+
+      console.log('this.data.status:', this.data.status);
+
+      if (this.fileMaterial.length > 0) {
+        for (let i = 0; i <= this.fileMaterial.length; i++) {
+          formData.append('file', this.fileMaterial[i]);
+        }
       }
+
+      // Do Submit
+      this.loading = true;
+      this._learnerService.submitAssignment(formData).subscribe(data => {
+
+
+        console.log('data------------------>>>>>>.', data);
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
+
+      }, err => {
+        alert("Error Uploading Files.")
+        this.loading = false;
+        this.dialogRef.close();
+
+      });
+    } else {
+
+      let formData = new FormData();
+      formData.set('materialId', this.data.materialId);
+
+
+      if (this.fileMaterial.length > 0) {
+        for (let i = 0; i <= this.fileMaterial.length; i++) {
+          formData.append('file', this.fileMaterial[i]);
+        }
+      }
+
+      // Do Submit
+      this.loading = true;
+      this._fileService.addFiles(formData).subscribe(data => {
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
+
+      }, err => {
+        alert("Error Uploading Files.")
+        this.loading = false;
+        this.dialogRef.close();
+
+      });
+
     }
 
-    // Do Submit
-    this.loading = true;
-    this._fileService.addFiles(formData).subscribe(data => {
-      this.data = data;
-      this.loading = false;
-      this.dialogRef.close(data);
-
-    }, err => {
-      alert("Error Uploading Files.")
-      this.loading = false;
-      this.dialogRef.close();
-
-    });
   }
 
   onNoClick(): void {

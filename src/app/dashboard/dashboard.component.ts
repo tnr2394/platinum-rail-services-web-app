@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { JobService } from '../services/job.service';
+import { InstructorService } from '../services/instructor.service';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _jobService: JobService, public _instructorService: InstructorService, public _courseService: CourseService) { }
+
+  jobs;
+  instructors;
+  courses;
 
   ngOnInit() {
+    this.getJobs();
+    this.getInstructors();
+    this.getCourses();
+  }
+
+  getJobs() {
+    var that = this;
+    this._jobService.getJobs().subscribe((data) => {
+      this.jobs = data;
+      console.log('Jobs Received : ', this.jobs);
+    })
+  }
+
+  getInstructors() {
+    var that = this;
+    this._instructorService.getInstructors().subscribe((instructors) => {
+      this.instructors = instructors;
+    });
+  }
+
+  getCourses() {
+    var that = this;
+    this._courseService.getCourses().subscribe((courses) => {
+      this.courses = courses;
+    });
   }
 
 }

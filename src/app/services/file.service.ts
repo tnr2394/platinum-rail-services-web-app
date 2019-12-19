@@ -21,6 +21,7 @@ export class FileService {
       var that = this;
       this.http.post(config.baseApiUrl + "materials/files", data).subscribe((res: any) => {
 
+        console.log('res.data.file In Service-------->>>>>>', res.data.file);
         observer.next(res.data.file);
         // observer.complete();
       }, err => {
@@ -45,6 +46,17 @@ export class FileService {
       })
     })
   }
+
+  deleteSubmissionFiles(id) {
+    return new Observable((observer) => {
+      this.http.delete(config.baseApiUrl + "learners/allot/files?_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.file);
+        // observer.complete();
+      })
+    })
+  }
+
+
 
   editClient(data: any): Observable<any> {
     console.log("Edit clients", data);
@@ -111,7 +123,6 @@ export class FileService {
         observer.next(res.data.files);
         observer.complete();
       })
-
     });
   }
 

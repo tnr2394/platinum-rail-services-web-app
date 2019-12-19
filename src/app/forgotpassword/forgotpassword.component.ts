@@ -16,6 +16,7 @@ export class ForgotpasswordComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log('Intialize Forgot password', this.data);
   }
 
   validate(data) {

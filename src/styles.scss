@@ -81,11 +81,23 @@ $white : white;
     border-bottom-color: #ccc;
 }
 
-
+.cdk-overlay-pane{
+    height: auto !important;
+    max-height: 100vh !important;
+    // overflow: auto !important;
+    padding: 45px 0px !important;
+}
 mat-dialog-container{
     border-radius: 20px !important;
+    height: auto !important;
+    box-shadow: none !important;
     .mat-dialog-content{
         max-height: inherit;
+    }
+}
+@media (max-width:575px){
+    .mat-dialog-container{
+        padding: 15px !important;
     }
 }
 .width{
@@ -128,4 +140,37 @@ th{
 .mat-table-cell{
     height: 50px; 
     vertical-align: middle !important;
+}
+
+.learner_detail_box {
+    .mat-list-base {
+        .mat-list-item {
+            .mat-list-item-content {
+                padding: 0 !important;
+            }
+        }
+
+        .mat-list-option {
+            .mat-list-item-content {
+                padding: 0 !important;
+            }
+        }
+    }
+}
+@media (max-width:767px){
+    .mat-paginator-container{
+        justify-content: space-between !important;
+        padding: 0 !important;
+    }
+    .mat-paginator-range-label{
+        margin: 0 !important;
+    }
+    .mat-paginator-page-size{
+        margin-right: 30px !important;
+    }
+}
+@media (max-width:575px){
+    .mat-form-field{
+        font-size: 14px !important;
+    }
 }

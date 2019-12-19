@@ -1,7 +1,21 @@
-var jobModel = require('../models/job.model');
-const mailService = require('../services/mail.service');
-const instructorModel = require('../models/instructor.model');
+
+// Npm Variables
+
 var Q = require('q');
+const ObjectId = require('mongodb').ObjectId;
+
+// Service Variables
+
+const mailService = require('../services/mail.service');
+
+
+// Model Variables
+
+const jobModel = require('../models/job.model');
+const instructorModel = require('../models/instructor.model');
+const learnersModel = require('../models/learner.model');
+const allotmentModel = require('../models/allotment.model');
+
 
 var jobController = {};
 
@@ -22,26 +36,19 @@ async function allJobs(query) {
 
 jobController.getJobs = async function (req, res) {
 
-    console.log('Req.user', req.user);
-
-    console.log('current User', req.session.currentUser);
 
     var query = {};
     if (req.query) {
         query = req.query;
     }
 
-    console.log('GET jobs with query = ', query);
-
-    // const userRole = 'instructor';
-
-    // if (userRole == 'admin') {
-    //     query = {}
-    // } else if (userRole == 'instructor') {
-    //     query = { instructors: { $in: req.user.instructor._id } }
-    // } else if (userRole == 'client') {
-    //     query = { client: req.user.client._id }
-    // }
+    if (req.user.userRole == 'admin') {
+        query = {}
+    } else if (req.user.userRole == 'instructor') {
+        query = { instructors: { $in: req.user._id } }
+    } else if (req.user.userRole == 'client') {
+        query = { client: req.user._id }
+    }
 
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
@@ -140,5 +147,281 @@ const getEmailOfInstructor = (instructorId) => {
     });
     return q.promise;
 }
+
+
+jobController.assignmentListUsingJobId = function (req, res) {
+    let jobId = req.query._id;
+
+
+    console.log("Assignment List------------", jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                unitNo: '$_id',
+                assignment: {
+                    $filter: {
+                        input: "$assignment",
+                        as: "assignments",
+                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
+                    }
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$assignment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $group: {
+                _id: '$assignment.assignmentUnit',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $sort: {
+                'assignment.assignmentUnit': 1
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            console.log('assignment', assignment);
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
+
+
+
+jobController.assignmentListUsingJobIdWithoutGroup = function (req, res) {
+    let jobId = req.query._id;
+
+
+    console.log("Assignment List", jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                unitNo: '$_id',
+                assignment: {
+                    $filter: {
+                        input: "$assignment",
+                        as: "assignments",
+                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
+                    }
+                }
+            }
+        },
+        {
+            $sort: {
+                'assignment.assignmentUnit': 1
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            console.log('assignment', assignment[0]);
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
+
+
+
+jobController.assignmentStatusWithLearner = function (req, res) {
+    let jobId = req.query._id;
+
+
+    console.log("Assignment List With Learner", jobId);
+    learnersModel.aggregate([
+        {
+            $match:
+            {
+                'job': ObjectId(jobId)
+            },
+        },
+        {
+            $unwind: {
+                path: '$allotments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'allotments',
+                localField: 'allotments',
+                foreignField: '_id',
+                as: 'allotments',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                learnerName: '$name',
+                assignment: {
+                    assignmentId: '$allotments.assignment',
+                    assignmentStatus: '$allotments.status',
+                    allotedAt: '$allotments.createdAt',
+                    updatedAt: '$allotments.updatedAt',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                learnerName: {
+                    $first: '$learnerName',
+                },
+                assignments: {
+                    $push: '$assignment'
+                }
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
 
 module.exports = jobController;

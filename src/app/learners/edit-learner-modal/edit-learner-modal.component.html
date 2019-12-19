@@ -1,20 +1,20 @@
-<h1 mat-dialog-title class="text-primary light-underline">
+<h1 mat-dialog-title class="text-primary light-underline pb-2">
     <i class="fas fa-edit fa-fw"></i>
     Edit Learner
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
             <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
                 cdkFocusInitial>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
             <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
             <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
             <input matInput name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword'
                 required>
         </mat-form-field>
@@ -26,8 +26,9 @@
                 re-enter.</span>
         </div>
     </div>
-    <div *ngIf="!loading">
-        <button mat-flat-button color="primary" type="submit"><i class="fas fa-save fa-fw"></i> Save</button>
+    <div *ngIf="!loading" class="d-inline-block w-100">
+        <button mat-flat-button color="primary" type="submit" class="text-white pull-left"><i
+                class="fas fa-save fa-fw"></i> Save</button>
         <button mat-flat-button type="button" color="warn" class="text-white pull-right" (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
             Delete

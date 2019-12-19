@@ -36,23 +36,23 @@ adminController.loginAdmin = function (req, res, next) {
     const password = req.body.password;
     const recaptchaToken = req.body.recaptchaToken;
 
-    // reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
-        adminModel.findOne({ email: email }).exec((err, admin) => {
+    reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
+        adminModel.findOne({ email: email }).exec((err, admin) => { 
             if (err) {
                 return res.status(500).send({ err })
             } else if (admin) {
                 if (bcrypt.compareSync(password, admin.password)) {
-                    const payload = { admin };
-                    const token = jwt.sign(payload, 'platinum');
-                    const data = { token: token, userRole: 'admin' }
-                    req.session.currentUser = data;
+                    let newAdmin = JSON.parse(JSON.stringify(admin));
+                    newAdmin['userRole'] = 'admin';
+                    var token = jwt.sign(newAdmin, 'platinum');
+                    req.session.currentUser = token;
 
-                    var sess = req.session;
-                    sess.currentUser = data;
+                    sass = req.session;
+                    sass.currentUser = token;
 
-                    console.log('req.session.currentUser', req.session.currentUser);
+                    console.log('req.session.currentUser', sass.currentUser);
 
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'admin' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'admin', profile: newAdmin });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }

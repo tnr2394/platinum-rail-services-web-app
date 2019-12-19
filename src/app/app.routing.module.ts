@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './jobs/job/job.component';
-import { InstructorsComponent } from './instructors/instructors.component';
+import { InstructorsComponent } from './instructors/instructors.component';	
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -15,14 +15,20 @@ import { LoginComponent } from './login/login.component';
 import { SubmissionComponent } from './submission/submission.component';
 import { InstructorSubmissionComponent } from './submission/instructor-submission/instructor-submission.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
+import { AuthGuard } from './auth.guard';
+
+import { Role } from './_models/role';
 
 
 const routes: Routes = [
 	{
 		path: '', pathMatch: "full", redirectTo: "login/admin"
 	},
-	{ path: 'dashboard', component: DashboardComponent },
-	{ path: 'jobs', component: JobsComponent },
+	{ path: 'dashboard', component: DashboardComponent, },
+	{ path: 'jobs', component: JobsComponent, },
 	{ path: 'instructors', component: InstructorsComponent },
 	{ path: 'clients', component: ClientsComponent },
 	{ path: 'clients/:id', component: SingleClientComponent },
@@ -32,11 +38,13 @@ const routes: Routes = [
 	{ path: 'jobs/:jobid', component: JobComponent },
 	{ path: 'learner/:id', component: SingleLearnerComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
-	// { path: 'login/:user', component: LoginComponent },
 	{ path: 'submission', component: SubmissionComponent },
 	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
 	{ path: 'login/:user', component: LoginComponent },
 	{ path: 'forgotpassword/:user', component: ForgotpasswordComponent },
+	{ path: 'learner/allotment/:id', component: LearnerSubmissionComponent },
+	{ path: 'resetpassword/:user', component: ResetPasswordComponent },
+	{ path: 'assignment/status/:jobid', component: AssignmentStatusComponent }
 ];
 
 @NgModule({

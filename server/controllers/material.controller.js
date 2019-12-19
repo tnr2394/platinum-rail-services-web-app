@@ -2,6 +2,7 @@ var materialDOA = require('../dao/material.dao');
 var courseDOA = require('../dao/course.dao');
 var fileDOA = require('../dao/file.dao');
 var Q = require('q');
+const async = require("async");
 
 var materialController = {};
 
@@ -34,9 +35,6 @@ materialController.getMaterials = async function (req, res, next) {
 
 materialController.getMaterial = async function (req, res, next) {
     console.log("GET client ", req.params.id);
-
-    console.log('------------------req.session.user-----------------------------', req.session.user);
-
     materialModel.findById(req.param.id, (err, material) => {
         console.log("GET material RES = ", material);
         return res.send({ data: { material } })
@@ -66,8 +64,6 @@ materialController.addMaterial = async function (req, res, next) {
                 console.error(err);
                 return res.status(500).send({ err });
             })
-
-
 
         // console.log("Created material",newmaterial);
     }, err => {
@@ -124,37 +120,57 @@ materialController.addFile = (req, res, next) => {
     console.log("FILES=", req.files);
     console.log("body=", req.body);
 
-    var re = /(?:\.([^.]+))?$/;
-    var ext = re.exec(req.files.file.name)[1];
-    var name = req.files.file.name.split('.').slice(0, -1).join('.')
-    
-    // return res.send({body: req.body,files:req.files});
+    let files = [];
 
-    var newFile = {
-        title: name,
-        type: "material",// OR SUBMISSION OR DOCUMENT
-        path: "NEWPATH",
-        extension: ext,
-        uploadedBy: "ADMIN",
-        file: req.files,
-        uploadedDate: new Date()
+    let filesArray = [];
+
+    if (Array.isArray(req.files.file)) {
+        files = req.files.file
+    } else {
+        files[0] = req.files.file;
     }
 
-    materialId = req.body.materialId;
-    if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
-    console.log("Adding new file to materialID = ", materialId);
 
-    fileDOA.addFile(newFile).then((addedFile) => {
-        console.log("File added in collection. now adding it to materials.", addedFile);
-        materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
-            console.log("material Updated", updatedMaterial);
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-            res.send({ data: { file: addedFile } });
-        }).catch(err => {
+
+    async.eachSeries(files, (singleFile, innerCallback) => {
+
+        materialId = req.body.materialId;
+        if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(singleFile.name)[1];
+        var name = singleFile.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "material",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: singleFile,
+            uploadedDate: new Date()
+        }
+
+
+        fileDOA.addFile(newFile).then((addedFile) => {
+            console.log("File added in collection. now adding it to materials.", addedFile);
+            materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
+                console.log("material Updated", updatedMaterial);
+                filesArray.push(addedFile);
+                innerCallback();
+            }).catch(err => {
+                console.error(err);
+            })
+        }).catch((err) => {
             console.error(err);
         })
-    }).catch((err) => {
-        console.error(err);
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: { file: filesArray }, msg: "Material Uploaded Successfully" });
+        }
     })
 }
 
@@ -167,7 +183,6 @@ materialController.getFiles = function (req, res, next) {
         return res.status(500).send("NO MATERIAL ID FOUND");
     }
     console.log("GET Materials query = ", query, "Params = ", req.query);
-    console.log('------------------req.session.user-----------------------------', JSON.stringify(req.session, null, 2));
 
     materialDOA.getFiles(query)
         .then(foundMaterial => {

@@ -1,37 +1,37 @@
-
 <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="page-title" *ngIf="course">
-                        Materials for : {{course.title}}
-                    </h3>
-                </div>
-                <div class="col-6">
-                    <button mat-flat-button color="primary" class="pull-right"  (click)="addMaterialModal()">
-                        <i class="fas fa-plus fa-fw"></i>
-                        Add Material
-                    </button>
-                </div>
+    <div class="col-12">
+        <div class="row material_row">
+            <div class="col-6">
+                <h3 class="page-title" *ngIf="course">
+                    Materials for :
+                    <span> {{course.title}}</span>
+                </h3>
             </div>
-            <div class="row">
-                
-                <div class="col-12 ">
-                    <div class="card">
-                        <div class="row">
-                            <mat-form-field class="example-full-width col-6">
-                                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                                <mat-icon matSuffix>search</mat-icon>
-                            </mat-form-field>
-                            <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>                  
+            <div class="col-6">
+                <button mat-flat-button color="primary" class="pull-right" (click)="addMaterialModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add Material
+                </button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-12 ">
+                <div class="card">
+                    <div class="row table_search">
+                        <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                            <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                    <!--Card content-->
+                    <div class="card-block material_card">
+                        <!--Title-->
+                        <div class="card-title my-3">
+                            Materials : {{materials.length}}
                         </div>
-                        <!--Card content-->
-                        <div class="card-block">
-                            <!--Title-->
-                            <div class="card-title">
-                                Materials : {{materials.length}}
-                            </div>
-                            <!-- <table mat-table [dataSource]="materials" matSort class="table table-borderless">
+                        <!-- <table mat-table [dataSource]="materials" matSort class="table table-borderless">
                                 
                                 <ng-container matColumnDef="Materials">
                                     <div *ngIf='material.type == "Reading"'>
@@ -54,34 +54,48 @@
                                     <tr mat-row *matRowDef="let material; columns: displayedColumns;"></tr>
                                 </tbody>
                             </table> -->
-                            <!--Text-->
-                            <div class="row">
-                                <div class="col-6">
+                        <!--Text-->
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
                                     <div *ngFor="let material of materials " class='materialsDiaplay'>
-                                    <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-                                    <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                        <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                        <div class="col-11">
+                                            <material-tile [material]="material"
+                                                [isSelected]="(material._id === selectedMaterial)"
+                                                (getFiles)="loadMaterialFiles($event)"
+                                                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'>
+                                                </mat-checkbox>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div> 
-                                    <!-- </mat-card> -->
-                                 </div>
-                                <div class="col-6" *ngIf="selectedMaterial">
-                                    <material-files  [materialId]="selectedMaterial"></material-files>
                                 </div>
-                            </div> 
-                            <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                                <!-- <div *ngFor="let material of materials " class='materialsDiaplay'>
+                                        <material-tile  [material]="material" [isSelected]="(material._id === selectedMaterial)" (getFiles)="loadMaterialFiles($event)"  (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                        <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                            <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'></mat-checkbox>
+                                        </div>
+                                    </div>  -->
+                                <!-- </mat-card> -->
+                            </div>
+                            <div class="col-6" *ngIf="selectedMaterial">
+                                <material-files [materialId]="selectedMaterial"></material-files>
+                            </div>
                         </div>
-                        <!-- /.Card content -->
-                        
-                        <h1 class="text-center" *ngIf="!materials">
-                            <i class="fa fa-refresh fa-spin fa-fw"></i>
-                        </h1>
-                        
-                        
+                        <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                     </div>
+                    <!-- /.Card content -->
+
+                    <h1 class="text-center" *ngIf="!materials">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </h1>
+
+
                 </div>
             </div>
         </div>
     </div>
-    
-    
+</div>

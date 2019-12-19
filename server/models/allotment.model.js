@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
+
 var allotmentSchema = new Schema({
     assignment: {
         type: Schema.Types.ObjectId,
@@ -13,8 +15,7 @@ var allotmentSchema = new Schema({
     },
     status: {
         type: String,
-        required: true,
-        default: 'pending'
+        default: 'Pending',
     },
     files: [{
         type: Schema.Types.ObjectId,

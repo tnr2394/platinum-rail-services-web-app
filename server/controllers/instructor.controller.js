@@ -69,6 +69,32 @@ instructorController.updateInstructor = function (req, res, next) {
     });
 }
 
+instructorController.resetPassword = function (req, res, next) {
+    console.log("Reset Password Instructor", req.body);
+
+    const instructorId = req.user.instructor._id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    instructorModel.findOne({ _id: instructorId }, (err, instructor) => {
+        console.log("Updated instructor", instructor, err);
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (instructor) {
+            if (instructor.password == oldPassword) {
+                instructor.password = newPassword;
+                instructor.save();
+                return res.status(200).json({ message: 'Your password changed successfully' });
+            } else {
+                return res.status(500).send({ msg: 'password does not match' })
+            }
+        } else {
+            return res.status(500).send({ err })
+        }
+    });
+}
+
+
 
 instructorController.deleteInstructor = function (req, res, next) {
     console.log("Delete Instructor");
@@ -88,17 +114,19 @@ instructorController.loginInstructor = function (req, res, next) {
 
     const email = req.body.email;
     const password = req.body.password;
+    const recaptchaToken = req.body.recaptchaToken;
 
-    reCaptchaService.verifyRecaptcha().then((Response) => {
+    reCaptchaService.verifyRecaptcha(recaptchaToken).then((Response) => {
         instructorModel.findOne({ email: email }).exec((err, instructor) => {
             if (err) {
                 return res.status(500).send({ err })
             } else if (instructor) {
                 if (password == instructor.password) {
-                    const payload = { instructor };
-                    var token = jwt.sign(payload, 'platinum');
+                    let newInstructor = JSON.parse(JSON.stringify(instructor));
+                    newInstructor['userRole'] = 'instructor';
+                    const token = jwt.sign(newInstructor, 'platinum');
                     req.session.currentUser = token;
-                    return res.status(200).json({ message: 'Login Successfully', data: token, userRole: 'instructor' });
+                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'instructor', profile: newInstructor });
                 } else {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }

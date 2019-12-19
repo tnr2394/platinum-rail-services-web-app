@@ -1,27 +1,31 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var fileSchema = new Schema({
-    title :{
+    title: {
         type: String,
-        unique : false,
-        required : true
+        unique: false,
+        required: true
     },
-    type:{
+    type: {
         type: String,
         required: true
     },
-    path : {
+    path: {
         type: String,
-        required : false
+        required: false
     },
-    uploadedBy:{
+    extension: {
+        type: String,
+        required: true
+    },
+    uploadedBy: {
         type: String
     },
-    uploadedDate:{
+    uploadedDate: {
         type: Date
     }
 }, {
-    timestamps: true
-});
+        timestamps: true
+    });
 var fileModel = mongoose.model('file', fileSchema);
 module.exports = fileModel;

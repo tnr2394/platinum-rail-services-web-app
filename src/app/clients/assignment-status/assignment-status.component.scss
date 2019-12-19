@@ -1,0 +1,56 @@
+
+i.fas.fa-square-full.fa-2x.Pending {
+    color:red;
+}
+
+
+i.fas.fa-square-full.fa-2x.Completed {
+    color:green;
+}
+
+
+i.fas.fa-square-full.fa-2x.Submitted {
+    color:green;
+}
+.Completed{
+    width: 40px;
+    background-color:#64FE00;
+    height: 40px;
+}
+.Pending{
+    width: 40px;
+    background-color:#d01414fa;
+    height: 40px;
+}
+.Requested{
+    width: 40px;
+    background-color:#ff9800c4;
+    height: 40px;
+}
+
+.Submitted{
+    width: 40px;
+    background-color:#3B86FF;
+    height: 40px;
+}
+
+.Re-submitted{
+    width: 40px;
+    background-color:#acc7ef;
+    height: 40px;
+}
+
+.Unassigned{
+    width: 40px;
+    background-color:#ffeb3b;
+    height: 40px;
+}
+
+.td-width{
+    height: 40px;
+    width: 40px;
+}
+
+.learner-name{
+    height: 40px;
+}

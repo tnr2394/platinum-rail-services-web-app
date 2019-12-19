@@ -73,7 +73,45 @@ export class LearnerService {
           observer.complete();
         })
     });
+  }
 
+
+  getAllotedLearnerFilesUsingAllotmentId(id) {
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "learners/allot?_id=" + id).subscribe((res: any) => {
+        console.log("----------Alloted Learner data---------- : ", res);
+        observer.next(res.data.allotment);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
+
+
+
+  getAllotedLearnerFiles(learnerId, assignmentId) {
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "learners/allot", learnerId + assignmentId).subscribe((res: any) => {
+        console.log("----------Alloted Learner data---------- : ", res);
+        observer.next(res.data.learner);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
   }
 
   deleteLearner(id) {
@@ -103,9 +141,9 @@ export class LearnerService {
         observer.next(res.data.learners);
         observer.complete();
       })
-
     });
   }
+
 
   getLearnersByJobId(jobId): Observable<any> {
     console.log("Getting learners");
@@ -117,6 +155,65 @@ export class LearnerService {
         observer.next(res.data.learners);
         observer.complete();
       })
+
+    });
+  }
+
+  getAllotmentListUsingAssignmentId(assignmentId): Observable<any> {
+    console.log("Getting learners");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "learners/allot-status?_id=" + assignmentId).subscribe((res: any) => {
+        console.log("Get learners : ", res);
+        observer.next(res.data.assignment);
+        observer.complete();
+      })
+
+    });
+  }
+
+
+  submitAssignment(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "learners/submission", data).subscribe((res: any) => {
+
+        observer.next(res.data.file);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+  }
+
+  updateAssignmentAllotmentUsingAllotmentId(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.put(config.baseApiUrl + "learners/allot", data).subscribe((res: any) => {
+
+        observer.next(res.data.file);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
 
     });
   }
