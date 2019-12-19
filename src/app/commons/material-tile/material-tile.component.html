@@ -2,19 +2,19 @@
     <div class="container">
         <!-- NOT EDITING -->
         <div class="row" *ngIf="!editing">
-            <div class="col-xl-2 text-center">
+            <div class="col-xl-2 col-sm-2 text-center">
 
                 <a class="btn btn-primary text-white fab-item">
                     <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i>
                     <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
                 </a>
             </div>
-            <div class="col-xl-10">
+            <div class="col-xl-10 col-sm-10 text-center">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 material_title">
                         {{material.title}} -- {{material.type}}
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 file_icon justify-content-center">
                         <a mat-button class="text-success" (click)="editmaterial()">
                             <i class="fas fa-edit"></i>
                         </a>

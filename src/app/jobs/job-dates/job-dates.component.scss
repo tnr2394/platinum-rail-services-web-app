@@ -1,33 +1,47 @@
-.headerColor{
+.date_form {
+    display: flex !important;
+    // @media (max-width:767px){
+    //      display: block !important;
+    // }
+}
+
+.headerColor {
     color: #2196f3;
     font-weight: 400;
 }
-.greyBackground{
+
+.greyBackground {
     background-color: #F5F6FA;
     margin-top: 3%;
 }
-.datesColor{
+
+.datesColor {
     color: #2196f3;
     font-weight: 400;
 }
+
 .faiconColor {
     color: #2196f3;
     font-size: xx-large;
     padding: 10px;
 }
-.maxHeight{
-    min-height: 33vh !important;
-    max-height: 33vh !important;
+
+.maxHeight {
+    min-height: 32vh !important;
+    max-height: 32vh !important;
     overflow: auto;
 }
-.checkBox{
+
+.checkBox {
     display: flex !important;
     flex-direction: column !important;
 }
-.textCenter{
+
+.textCenter {
     text-align: center;
 }
-.center{
+
+.center {
     display: flex;
     align-items: center;
 }

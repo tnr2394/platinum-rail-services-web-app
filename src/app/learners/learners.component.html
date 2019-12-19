@@ -35,13 +35,17 @@
                                     
                                     <!-- Name Column -->
                                     <ng-container matColumnDef="name">
-                                        <th class="" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
-                                        <td class="mat-table-cell"  mat-cell *matCellDef="let learner"> {{learner.name}} </td>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
+                                        <td class="mat-table-cell text-center"  mat-cell *matCellDef="let learner"> {{learner.name}} </td>
                                     </ng-container>
                                     <!-- Email Column -->
                                     <ng-container matColumnDef="email">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                                        <td class="mat-table-cell" mat-cell *matCellDef="let learner; let i = index;"><span class="badge width-150 {{getRandomColorClass(i)}}"> {{learner.email}} </span></td>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Email
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;"><span
+                                                class="badge width-150 {{getRandomColorClass(i)}}"> {{learner.email}}
+                                            </span></td>
                                     </ng-container>
                                     <!-- Action Column -->
                                     <ng-container matColumnDef="actions">

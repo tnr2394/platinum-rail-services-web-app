@@ -37,7 +37,7 @@ adminController.loginAdmin = function (req, res, next) {
     const recaptchaToken = req.body.recaptchaToken;
 
     reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
-        adminModel.findOne({ email: email }).exec((err, admin) => { 
+        adminModel.findOne({ email: email }).exec((err, admin) => {
             if (err) {
                 return res.status(500).send({ err })
             } else if (admin) {

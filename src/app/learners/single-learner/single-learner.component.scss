@@ -1,0 +1,26 @@
+.fa-envelope{
+    font-size: 22px;
+    margin-right: 5px;
+}
+.fa-file-alt{
+    font-size: 18px;
+    border-radius: 50%;
+    padding: 9px 11px;
+    color: white;
+    margin-right: 5px;
+}
+table {
+    margin: 0;
+    width: 100%;
+
+    @media(max-width: 767px) {
+        min-width: 725px;
+    }
+    
+}
+@media (max-width:575px){
+    h3.page-title 
+         {
+            font-size: 22px;
+        }
+    }
