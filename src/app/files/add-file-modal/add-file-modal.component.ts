@@ -3,7 +3,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { post } from 'selenium-webdriver/http';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { MaterialService } from 'src/app/services/material.service';
 import { FileService } from 'src/app/services/file.service';
 import { LearnerService } from 'src/app/services/learner.service';
@@ -23,7 +23,7 @@ export class AddFileModalComponent implements OnInit {
   ngOnInit(): void {
     console.log("Upload files initialized", this.data);
   }
-  constructor(public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
+  constructor(public _snackbar: MatSnackBar, public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
     // NO DEFINITION
   }
   onFileChange(event, field) {
@@ -48,6 +48,9 @@ export class AddFileModalComponent implements OnInit {
       }
     }
   }
+
+  
+
 
 
   doSubmit() {
@@ -74,9 +77,6 @@ export class AddFileModalComponent implements OnInit {
       // Do Submit
       this.loading = true;
       this._learnerService.submitAssignment(formData).subscribe(data => {
-
-
-        console.log('data------------------>>>>>>.', data);
         this.data = data;
         this.loading = false;
         this.dialogRef.close(data);

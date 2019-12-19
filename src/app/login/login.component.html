@@ -7,7 +7,7 @@
         <form (ngSubmit)='doSubmit()' [formGroup]="loginForm">
             <mat-form-field class="example-full-width w-100">
                 <input matInput name="client-email" placeholder="Username" formControlName="email" required>
-                <mat-error>Username is required</mat-error>
+                <mat-error>Useremail is required</mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width w-100">
                 <input matInput name="password" placeholder="Password" type="password" formControlName="password"
@@ -27,6 +27,13 @@
                     </a>
                 </div>
             </div>
+            <div class="col-md-12">
+
+                <p class="msg_error" style="text-align: center;">{{ errmsg }}</p>
+                <p class="msg_success" style="text-align: center;">{{ msg }}</p>
+
+            </div>
+
 
             <button mat-flat-button class="btn btn-sm login_btn" type="submit">
                 login

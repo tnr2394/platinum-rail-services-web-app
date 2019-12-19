@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LearnerService } from '../../services/learner.service'
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-instructor-submission',
@@ -26,7 +27,7 @@ export class InstructorSubmissionComponent implements OnInit {
   });
 
 
-  constructor(public _learnerService: LearnerService, public router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public _snackBar: MatSnackBar, public _learnerService: LearnerService, public router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.learner = this.router.getCurrentNavigation().extras.state.learner;
@@ -105,8 +106,15 @@ export class InstructorSubmissionComponent implements OnInit {
 
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   deletedFile(event) {
     console.log("File Deleted Event : ", event);
+    this.openSnackBar("File Deleted Successfully", "Ok");
     this.files.splice(this.files.findIndex(function (i) {
       return i._id === event._id;
     }), 1);

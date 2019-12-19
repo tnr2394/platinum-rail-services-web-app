@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {MaterialService} from '../../services/material.service';
+import { MaterialService } from '../../services/material.service';
 import { from } from 'rxjs';
 @Component({
   selector: 'material-tile',
@@ -16,67 +16,67 @@ export class MaterialTileComponent implements OnInit {
   editing: boolean;
   loading: boolean;
   backupmaterial: any;
-  
 
-  constructor(private _materialService: MaterialService){
+
+  constructor(private _materialService: MaterialService) {
 
   }
   ngOnInit() {
     // this.material.title
     // this.DeleteMaterial.emit("Hello");
-    console.log("material TAB = ",this.material);
+    // console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
-    
+
   }
-  
-  getMaterialFiles(){
+
+  getMaterialFiles() {
     console.log("Getting Material ID from materialTile component");
     this.getFiles.emit({
       materialId: this.material._id,
-      });
+    });
   }
 
-  editmaterial(){
+  editmaterial() {
     console.log("Enabling Editing")
     this.editing = true;
   }
-  updateMaterial(){
+  updateMaterial() {
     this.loading = true;
-    this._materialService.editMaterial(this.material).subscribe(updatedmaterial=>{
+    this._materialService.editMaterial(this.material).subscribe(updatedmaterial => {
       this.material = updatedmaterial;
       this.loading = false;
       this.editing = false;
-    },err=>{
+    }, err => {
       console.error(err);
       this.loading = false;
       alert("material couldn't be updated. Please try again later.")
       this.material = this.backupMaterial;
       this.editing = false;
-      
+
     })
-    
+
   }
-  deleteMaterial(){ 
+  deleteMaterial() {
     this.loading = true;
 
-    this._materialService.deleteMaterial(this.material._id).subscribe(updatedmaterial=>{
+    this._materialService.deleteMaterial(this.material._id).subscribe(updatedmaterial => {
       // this.material = updatedmaterial;
       this.loading = false;
       this.editing = false;
-      console.log("Deleted material. ID = ",this.material._id);
+      console.log("Deleted material. ID = ", this.material._id);
       this.DeleteMaterial.emit(this.material);
-    },err=>{
+    }, err => {
       console.error(err);
       this.loading = false;
       alert("material couldn't be updated. Please try again later.")
       this.material = this.backupMaterial;
       this.editing = false;
-      
+
     })
-    
+
   }
-  
-  
-  
+
+
+
 
 }

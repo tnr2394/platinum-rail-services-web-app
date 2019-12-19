@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { LoginService } from '../services/login.service'
@@ -13,7 +13,7 @@ import { LoginService } from '../services/login.service'
 export class ForgotpasswordComponent implements OnInit {
   loading: Boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _loginService: LoginService, private formBuilder: FormBuilder) { }
+  constructor(public _snackBar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     console.log('Intialize Forgot password', this.data);
@@ -23,6 +23,12 @@ export class ForgotpasswordComponent implements OnInit {
     console.log("Validating ", data);
     if (!data.email) return false;
     return true;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   doSubmit() {
@@ -36,12 +42,12 @@ export class ForgotpasswordComponent implements OnInit {
     // // Do Submit
     this.loading = true;
     this._loginService.forgotPassword(this.data, 'instructors').subscribe(data => {
-      this.data = data;
       console.log("Added Successfully", data);
+      this.openSnackBar("Password Updated Successfully", "Ok");
       this.loading = false;
-      this.dialogRef.close(data);
+      this.dialogRef.close();
     }, err => {
-      alert("Error Adding Client.")
+      this.openSnackBar("Something Went Wrong", "Ok");
       this.loading = false;
       this.dialogRef.close(null);
     });
