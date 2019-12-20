@@ -38,11 +38,6 @@
                 </div>
             </div>
             <div class='col-6'>
-                <div class='row center'>
-                    <button mat-raised-button class='btnColorGreen' (click)="markComplete()"><i class='fa fa-check'></i>
-                        Mark
-                        Completed</button>
-                </div>
                 <div class="col-12">
                     <form [formGroup]="remark">
                         <mat-form-field class="example-full-width">
@@ -51,9 +46,20 @@
                         </mat-form-field>
                         <mat-divider></mat-divider>
                         <div class='row center'>
-                            <button mat-raised-button class='btnColorBlue' (click)="doSubmit(remark)"><i
-                                    class='fa fa-bell'></i>Request
-                                Resubmission</button>
+                            <div class="col-md-6">
+                                <button mat-raised-button class='btnColorBlue'
+                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i
+                                        class='fa fa-bell'></i>Request
+                                    Resubmission</button>
+                            </div>
+                            <div class="col-md-6">
+
+                                <button mat-raised-button class='btnColorGreen'
+                                    (click)="doSubmit(remark,'Completed')"><i class='fa fa-check'></i>
+                                    Mark
+                                    Completed</button>
+
+                            </div>
                         </div>
                     </form>
                 </div>

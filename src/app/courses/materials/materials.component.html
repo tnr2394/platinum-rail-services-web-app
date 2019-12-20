@@ -7,10 +7,7 @@
                 <div class="card">
                     <div class="row material_row">
                         <div class="col-6">
-                    
-                              
-                            <h3  class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
-                                
+                            <h3  class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course"> 
                                 Materials for :
                                 <span matBadge="{{materials.length}}" matBadgeOverlap="false" matBadgeColor="warn" > {{course.title}}</span>
                             </h3>
@@ -63,11 +60,9 @@
                         <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                     </div>
                     <!-- /.Card content -->
-
                     <h1 class="text-center" *ngIf="!materials">
                         <i class="fa fa-refresh fa-spin fa-fw"></i>
                     </h1>
-
 
                 </div>
             </div>

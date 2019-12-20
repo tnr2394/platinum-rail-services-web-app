@@ -98,6 +98,7 @@ export class JobsComponent implements OnInit {
   ngOnInit() {
     // this.getCourses();
     this.getJobs();
+    this.currentUser = JSON.parse(localStorage.currentUser);
     // this.getStatus()
   }
 

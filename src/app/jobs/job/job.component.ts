@@ -28,6 +28,7 @@ export class JobComponent implements OnInit {
   paginator: MatPaginator;
   sort: MatSort;
   displayAllocate: Boolean = true;
+  currentUser;
 
 
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
@@ -42,6 +43,8 @@ export class JobComponent implements OnInit {
       console.log("Calling getLearners with jobid = ", this.jobId);
       this.getJob(this.job);
     });
+
+    this.currentUser = JSON.parse(localStorage.currentUser);
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
