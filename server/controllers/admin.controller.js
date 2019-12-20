@@ -45,9 +45,9 @@ adminController.loginAdmin = function (req, res, next) {
                     let newAdmin = JSON.parse(JSON.stringify(admin));
                     newAdmin['userRole'] = 'admin';
                     var token = jwt.sign(newAdmin, 'platinum');
-                    req.session.currentUser = token;
-
+                    
                     sass = req.session;
+                    req.session.currentUser = token;
                     sass.currentUser = token;
 
                     console.log('req.session.currentUser', sass.currentUser);

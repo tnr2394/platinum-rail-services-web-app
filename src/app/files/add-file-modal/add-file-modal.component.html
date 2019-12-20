@@ -1,12 +1,26 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Files </h1>
-<form (ngSubmit)='doSubmit()' [formGroup]="uploadFile">
+<form (ngSubmit)='doSubmit()' [formGroup]="uploadMaterial">
 
-    <button class="file_upload" type="button">
+    <!-- <button class="file_upload" type="button">
         <span class="btn_lbl">Browse</span>
         <span class="btn_colorlayer"></span>
         <input type="file" formControlName="materialfile" name="fileupload"
-            (change)="onFileChange($event,'materialfile')" id="file_upload" multiple/>
-    </button>
+            (change)="onFileChange($event,'materialfile')" id="file_upload" multiple />
+    </button> -->
+
+    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+        (onFileDropped)="uploadFile($event,'materialfile')">
+        <input hidden type="file" formControlName="materialfile" #fileInput (change)="uploadFile($event,'browse')"
+            multiple>
+    </div>
+
+    <div class="files-list" *ngFor="let file of files;let i= index">
+        <p> {{ file }} </p>
+        <button class="delete-file" (click)="deleteAttachment(i)">
+            <i _ngcontent-nga-c17="" class="fas fa-trash" style="color:#FF6565;"></i>
+        </button>
+    </div>
+
 
     <div mat-dialog-actions align="center" *ngIf="!loading">
         <button mat-flat-button color="primary" type="submit">

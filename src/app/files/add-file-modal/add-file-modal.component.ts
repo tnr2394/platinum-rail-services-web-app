@@ -1,4 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
+// import { Component, OnInit, ChangeDetectorRef, Inject, HostListener } from '@angular/core';
+
+import { Directive, Component, Output, OnInit, Inject, ChangeDetectorRef, Input, EventEmitter, HostBinding, HostListener } from '@angular/core';
+
+
 import { FileUploader } from 'ng2-file-upload';
 import { post } from 'selenium-webdriver/http';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -7,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { MaterialService } from 'src/app/services/material.service';
 import { FileService } from 'src/app/services/file.service';
 import { LearnerService } from 'src/app/services/learner.service';
+import { browser } from 'protractor';
+import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-add-file-modal',
@@ -16,7 +22,12 @@ import { LearnerService } from 'src/app/services/learner.service';
 export class AddFileModalComponent implements OnInit {
   loading: Boolean = false;
   fileMaterial: any = [];
-  uploadFile = new FormGroup({
+
+  dragAreaClass: string = 'hidden';
+  dragAreaContent: string = 'Choose a file or drag it here';
+
+
+  uploadMaterial = new FormGroup({
     materialfile: new FormControl(),
   });
 
@@ -26,31 +37,63 @@ export class AddFileModalComponent implements OnInit {
   constructor(public _snackbar: MatSnackBar, public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
     // NO DEFINITION
   }
-  onFileChange(event, field) {
-    if (event.target.files && event.target.files.length) {
-      console.log('field------------', field);
 
-      const [file] = event.target.files;
-      this.fileMaterial = event.target.files;
-      // just checking if it is an image, ignore if you want
-      if (!file.type.startsWith('image')) {
-        this.uploadFile.get(field).setErrors({
-          required: true
-        });
-        this.cd.markForCheck();
-      } else {
-        // unlike most tutorials, i am using the actual Blob/file object instead of the data-url
-        this.uploadFile.patchValue({
-          [field]: file
-        });
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
+  files: any = [];
+
+  uploadFile(event, value) {
+    if (value == 'browse') {
+      for (let index = 0; index < event.target.files.length; index++) {
+        const element = event.target.files[index];
+        this.files.push(element.name)
       }
+
+      this.fileMaterial = event.target.files;
+
+
+    } else {
+      for (let index = 0; index < event.length; index++) {
+        const element = event[index];
+        this.files.push(element.name)
+      }
+      this.fileMaterial = event;
     }
   }
 
-  
 
+  deleteAttachment(index) {
+    this.files.splice(index, 1)
+    this.fileMaterial.splice(index, 1)
+  }
+
+
+
+
+  // uploadFile(event, field) {
+
+  //   console.log('event------------>>>>>>>>>', event);
+
+
+  //   if (event.target.files && event.target.files.length) {
+  //     console.log('field------------', field);
+
+  //     const [file] = event.target.files;
+  //     this.fileMaterial = event.target.files;
+  //     // just checking if it is an image, ignore if you want
+  //     if (!file.type.startsWith('image')) {
+  //       this.uploadMaterial.get(field).setErrors({
+  //         required: true
+  //       });
+  //       this.cd.markForCheck();
+  //     } else {
+  //       // unlike most tutorials, i am using the actual Blob/file object instead of the data-url
+  //       this.uploadMaterial.patchValue({
+  //         [field]: file
+  //       });
+  //       // need to run CD since file load runs outside of zone
+  //       this.cd.markForCheck();
+  //     }
+  //   }
+  // }
 
 
   doSubmit() {

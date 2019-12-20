@@ -15,7 +15,7 @@
                     <mat-form-field>
                         <input formControlName='jobColor' required [(colorPicker)]="color" matInput
                             [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
-                            [cpAlphaChannel]="always" placeholder="Choose Color"/>
+                            [cpAlphaChannel]="always" placeholder="Choose Color" />
                     </mat-form-field>
                 </div>
             </div>
@@ -23,16 +23,19 @@
             <div class='row'>
                 <div class='col center'>
                     <mat-form-field>
-                        <mat-select placeholder="Client" (selectionChange)="clientChanged($event)" [(value)]="selectedClient">
+                        <mat-select placeholder="Client" (selectionChange)="clientChanged($event)"
+                            [(value)]="selectedClient">
                             <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-            
+
                 <div class='col center'>
                     <mat-form-field *ngIf="selectedClient">
-                        <mat-select placeholder="Location" [(value)]='selectedLocation' (selectionChange)="locationChanged($event)">
-                            <mat-option *ngFor="let location of selectedClient.locations" [value]="location">{{location.title}}
+                        <mat-select placeholder="Location" [(value)]='selectedLocation'
+                            (selectionChange)="locationChanged($event)">
+                            <mat-option *ngFor="let location of selectedClient.locations" [value]="location">
+                                {{location.title}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -45,14 +48,15 @@
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
                             <div *ngFor='let oneInstructorDetail of selectedInstructor'>
-                            <mat-form-field>
-                                <mat-select formControlName="singleInstructor"  placeholder="Choose Instructor" [value]='oneInstructorDetail'>
-                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
-                                        {{instructor.name}}</mat-option> 
-                                </mat-select>
-                            </mat-form-field>
-                            <button class='buttonTransparent' (click)='removeInstructor()'><i
-                                    class="fa fa-times close-color"></i> </button>
+                                <mat-form-field>
+                                    <mat-select formControlName="singleInstructor" placeholder="Choose Instructor"
+                                        [value]='oneInstructorDetail'>
+                                        <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                            {{instructor.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button class='buttonTransparent' (click)='removeInstructor()'><i
+                                        class="fa fa-times close-color"></i> </button>
                             </div>
                         </div>
                     </div>
@@ -72,13 +76,13 @@
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)='courseChanged($event); jobDates.clearCheckBoxes()'>
+                                <mat-select formControlName="course" placeholder="Choose Course"
+                                    (selectionChange)='courseChanged($event); jobDates.clearCheckBoxes()'>
                                     {{selectedCourse}}
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
                                         [value]='course'>
                                         <!-- {{selectedCourse.title}} -->
-                                        <span
-                                            class="badge position">{{course.duration}}</span> - {{course.title}}
+                                        <span class="badge position">{{course.duration}}</span> - {{course.title}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -94,8 +98,9 @@
                 </div>
                 <div class='col center'>
                     <mat-form-field>
-                        <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
-                            [errorStateMatcher]="matcher" (dateChange)='jobDates.EditDates($event.value, totalDays)'>
+                        <input matInput [matDatepicker]="picker" formControlName="startingDate"
+                            placeholder="Starting date" [errorStateMatcher]="matcher"
+                            (dateChange)='jobDates.EditDates($event.value, totalDays)'>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <!-- <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
@@ -105,15 +110,16 @@
                 </div>
             </div>
             <div class='row' style="display: block;">
-                <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate' [startingDate]='startingDate' #jobDates></app-job-dates>
+                <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate'
+                    [startingDate]='startingDate' #jobDates></app-job-dates>
             </div>
         </div>
     </div>
 </form>
 <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'> -->
-                        <!-- {{oneInstructorDetail}} -->
-                        <!-- (selectionChange)='instructorChange($event)' -->
-                    <!-- <mat-form-field >
+<!-- {{oneInstructorDetail}} -->
+<!-- (selectionChange)='instructorChange($event)' -->
+<!-- <mat-form-field >
                         <mat-select placeholder="Choose Instructor"  [(value)]='oneInstructorDetail'>
                             <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
                                 {{instructor.name}}</mat-option>

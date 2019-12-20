@@ -1,33 +1,42 @@
 <div class="pageContent">
     <div class="dashBoardSection">
         <!-- <div class="container-fluid"> -->
-            <h2>Overview</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-image-1">
-                        <div class="card-content text-right px-3">
-                            <span>Total Jobs</span>
-                            <p *ngIf="jobs">{{jobs.length}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-image-2">
-                        <div class="card-content text-right px-3">
-                            <span>Instructors</span>
-                            <p *ngIf="instructors">{{instructors.length}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-image-3">
-                        <div class="card-content text-right px-3">
-                            <span>Total Course</span>
-                            <p *ngIf="courses">{{courses.length}}</p>
-                        </div>
+        <h2>Overview</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="card card-image-1">
+                    <div class="card-content text-right px-3">
+                        <span>Total Jobs</span>
+                        <p *ngIf="jobs">{{jobs.length}}</p>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card card-image-2">
+                    <div class="card-content text-right px-3">
+                        <span>Instructors</span>
+                        <p *ngIf="instructors">{{instructors.length}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card card-image-3">
+                    <div class="card-content text-right px-3">
+                        <span>Total Course</span>
+                        <p *ngIf="courses">{{courses.length}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- </div> -->
     </div>
 </div>
+
+<!-- <div class="row">
+    <div class="col-md-6">
+        <app-instructors></app-instructors>
+    </div>
+    <div class="col-md-6">
+        <app-courses></app-courses>
+    </div>
+</div> -->

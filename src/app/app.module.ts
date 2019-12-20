@@ -75,6 +75,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 import { AuthGuard } from './auth.guard';
+import { DragDropDirective } from './drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { AuthGuard } from './auth.guard';
     ResetPasswordComponent,
     AssignmentStatusComponent,
     LearnerAllotmentTileComponent,
+    DragDropDirective,
 
   ],
   imports: [
