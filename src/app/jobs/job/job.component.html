@@ -33,10 +33,10 @@
 
                                             <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
                                             <div class="learner_title">
-                                                 instructor
-                                                 <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
+                                                instructor
+                                                <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
                                             </div>
-                                           
+
                                         </mat-list-item>
                                     </mat-list>
                                 </div>
@@ -44,7 +44,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
-                                        <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> 
+                                        <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
                                             <div class="learner_title">
                                                 College
                                                 <p> {{job.client.name}}</p>
@@ -53,18 +53,18 @@
                                     </mat-list>
                                 </div>
                             </div>
-                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
                                         <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
                                             <div class="learner_title">
-                                                 Location 
-                                                 <p> {{job.location.title}}</p>
+                                                Location :
+                                                <p> {{job.location.title}}</p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
                                 </div>
-                             </div>
+                            </div>
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <mat-divider [vertical]="true"></mat-divider>
                                 <div class="learner_detail_box">
@@ -73,7 +73,7 @@
                                             <div class="learner_title">
                                                 Course 
                                                 <p> {{job.course.title}}</p>
-                                            </div> 
+                                            </div>
                                         </mat-list-item>
                                     </mat-list>
                                 </div>

@@ -22,7 +22,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing.module';
 
-import { MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS, MatChipsModule } from '@angular/material';
+import { MatBadgeModule, MatTooltipModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatGridListModule, MatTableModule, MatSortModule, MAT_DATE_FORMATS, MatChipsModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
@@ -75,6 +75,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 import { AuthGuard } from './auth.guard';
+import { DragDropDirective } from './drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { AuthGuard } from './auth.guard';
     ResetPasswordComponent,
     AssignmentStatusComponent,
     LearnerAllotmentTileComponent,
+    DragDropDirective,
 
   ],
   imports: [
@@ -152,7 +154,8 @@ import { AuthGuard } from './auth.guard';
     MatSnackBarModule,
     ColorPickerModule,
     FileUploadModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
+    MatBadgeModule
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {

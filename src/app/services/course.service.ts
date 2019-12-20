@@ -65,6 +65,10 @@ export class CourseService {
     });
   }
   getCourse(id): Observable<any> {
+
+    if (!id) {
+      return;
+    }
     console.log("Getting courses");
     var that = this;
     return new Observable<any>((observer) => {

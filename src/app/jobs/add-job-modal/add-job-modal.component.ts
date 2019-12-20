@@ -34,6 +34,7 @@ export class AddJobModalComponent implements OnInit {
   jobDates: FormArray;
   totalDays = [];
   duration;
+  isDisabled: Boolean = false;
   finalCourseDates = [];
   instructor: FormArray;
   matcher = new MyErrorStateMatcher();
@@ -60,7 +61,7 @@ export class AddJobModalComponent implements OnInit {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
   }
-  
+
   daySelection(obj) {
     console.log("-----DAY SELECTION EVENT-----", obj)
     obj.singleJobDates.forEach((item) => {
@@ -105,6 +106,7 @@ export class AddJobModalComponent implements OnInit {
     this.instructor = this.addJobForm.get('instructors') as FormArray;
     this.instructor.push(this.createInstructor())
   }
+
   removeInstructor() {
     this.instructor.removeAt(this.instructor.length - 1);
   }
@@ -126,6 +128,8 @@ export class AddJobModalComponent implements OnInit {
     console.log("This.selectedCourse", this.selectedCourse)
 
     this.loading = true;
+
+    this.isDisabled = true;
     if (this.addJobForm.valid) {
       let InstructorsForDataBase = [];
       let instructorsForJobsPage = [];
@@ -164,6 +168,7 @@ export class AddJobModalComponent implements OnInit {
       this._jobService.addJob(newJobforDataBase).subscribe(data => {
         this.data = data;
         this.loading = false;
+        this.isDisabled = false;
         this.dialogRef.close(newJobforJobsPage);
       }, err => {
         alert("Error adding job.")

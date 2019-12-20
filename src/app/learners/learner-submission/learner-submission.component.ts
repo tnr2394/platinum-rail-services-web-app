@@ -36,12 +36,12 @@ export class LearnerSubmissionComponent implements OnInit {
   addFileModal() {
     var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId, status: this.statusToChange }).subscribe((courses) => {
       console.log("Course added in controller = ", courses);
+      this.openSnackBar("File Uploaded Successfully", "Ok");
       this.getAllotments(this.allotmentId)
     }, err => {
+      this.openSnackBar("Something Went Wrong", "Ok");
     });
   }
-
-
 
 
   getAllotments(allotmentId) {
@@ -63,7 +63,14 @@ export class LearnerSubmissionComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   deletedFile(event) {
+    this.openSnackBar("File Deleted Successfully", "Ok");
     console.log("File Deleted Event : ", event);
     this.files.splice(this.files.findIndex(function (i) {
       return i._id === event._id;

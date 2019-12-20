@@ -72,6 +72,7 @@ export class FilesComponent implements OnInit, OnChanges {
 
   deletedFile(event) {
     console.log("File Deleted Event : ", event);
+    this.openSnackBar("File Deleted Successfully", "Ok");
     this.files.splice(this.files.findIndex(function (i) {
       return i._id === event._id;
     }), 1);

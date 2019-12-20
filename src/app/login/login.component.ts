@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   activeRouteName: any;
   user: any;
+  msg: string = null;
+  errmsg: string = null;
+
   constructor(public route: Router, public dialog: MatDialog, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -73,15 +76,15 @@ export class LoginComponent implements OnInit {
       this.activeRouteName = param.user;
     });
 
-    console.log(' this.activeRouteName----------->>>>>>>', this.activeRouteName);
+    console.log(' this.activeRouteName:', this.activeRouteName);
 
     this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
-      console.log('Token:----------', token);
+      console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully", data);
       }, err => {
-        console.log('error while login');
-        alert("error while login.")
+        console.log('error while login', err);
+        this.errmsg = err.error.message;
       });
     })
   }

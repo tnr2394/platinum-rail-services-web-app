@@ -20,11 +20,9 @@ export class InstructorService {
       console.log("Observable");
       var that = this;
       this.http.post(config.baseApiUrl +  "instructors",data).subscribe((res:any)=>{
-      
       observer.next(res.data.instructor);
       observer.complete();
     })
-    
   });
   
 }
@@ -61,7 +59,6 @@ getInstructors(): Observable<any>{
     observer.next(res.data.instructors);
     observer.complete();
   })
-  
 });
 
 }

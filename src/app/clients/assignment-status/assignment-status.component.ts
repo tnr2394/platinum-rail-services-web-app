@@ -42,13 +42,11 @@ export class AssignmentStatusComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.jobId = params['jobid'];
       console.log("Calling getLearners with jobid = ", this.jobId);
-      this.getJob(this.job);
-    });
 
+    });
 
     this.getAssignmentList(this.jobId);
     this.assignmentStatusWithLearner(this.jobId);
-    this.getJob(this.jobId);
   }
 
 
@@ -61,17 +59,6 @@ export class AssignmentStatusComponent implements OnInit {
       console.log('unitArray---------', this.unitArray);
     });
   }
-
-  getJob(jobId) {
-    var that = this;
-    this._jobService.getJobById(jobId).subscribe((jobs) => {
-      console.log("Job Received =  Assignment Status", jobs);
-      this.job = jobs.pop();
-      console.log("Setting job = ", { job: this.job });
-    });
-  }
-
-
 
   loadLearners(object) {
     console.log("OBJECT", object);
@@ -103,7 +90,7 @@ export class AssignmentStatusComponent implements OnInit {
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
-      console.log('Learner List', this.learner);
+      console.log('Learner List---------------', this.learner);
     });
   }
 }

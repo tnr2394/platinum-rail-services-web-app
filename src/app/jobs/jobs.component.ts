@@ -58,7 +58,7 @@ export class JobsComponent implements OnInit {
 
   constructor(public _jobService: JobService, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ['badge-info', 'badge-success', 'badge-warning', 'badge-primary', 'badge-danger'];
-    this.jobs = [];
+    // this.jobs = [];
     // this.dataSource = this.jobs;
     this.dataSource = new MatTableDataSource<any>(this.jobs);
     console.log("DATA SOURCE", this.dataSource)

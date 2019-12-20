@@ -37,17 +37,18 @@ adminController.loginAdmin = function (req, res, next) {
     const recaptchaToken = req.body.recaptchaToken;
 
     reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
-        adminModel.findOne({ email: email }).exec((err, admin) => { 
+        adminModel.findOne({ email: email }).exec((err, admin) => {
             if (err) {
                 return res.status(500).send({ err })
             } else if (admin) {
+                
                 if (bcrypt.compareSync(password, admin.password)) {
                     let newAdmin = JSON.parse(JSON.stringify(admin));
                     newAdmin['userRole'] = 'admin';
                     var token = jwt.sign(newAdmin, 'platinum');
-                    req.session.currentUser = token;
-
+                    
                     sass = req.session;
+                    req.session.currentUser = token;
                     sass.currentUser = token;
 
                     console.log('req.session.currentUser', sass.currentUser);
@@ -57,12 +58,12 @@ adminController.loginAdmin = function (req, res, next) {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }
             } else {
-                return res.status(400).json({ message: 'Login failed Invalid email' });
+                return res.status(400).json({ message: 'Login failed Invalid email',admin });
             }
         });
-    // }).catch((error) => {
-    //     return res.status(400).json({ message: 'Failed captcha verification' });
-    // })
+    }).catch((error) => {
+        return res.status(400).json({ message: 'Failed captcha verification' });
+    })
 }
 
 adminController.forgotPassword = function (req, res, next) {

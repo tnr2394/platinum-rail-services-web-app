@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import {CourseService} from '../../services/course.service';
-import {MaterialService} from '../../services/material.service';
+import { CourseService } from '../../services/course.service';
+import { MaterialService } from '../../services/material.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { AddMaterialModalComponent } from './add-material-modal/add-material-modal.component';
 import { EditMaterialModalComponent } from './edit-material-modal/edit-material-modal.component';
-import {FilterService} from "../../services/filter.service";
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { FilterService } from "../../services/filter.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -32,23 +32,23 @@ export class MaterialsComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   course;
   // displayedColumns: string[] = ['title','duration','actions'];
-  dataSource:  MatTableDataSource<any>;
+  dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
   files;
   selectedMaterial: any;
   selectedMaterials = [];
   courseId;
-  displayAllocate : Boolean = true;
-  allMaterials:Observable<any>;
+  displayAllocate: Boolean = true;
+  allMaterials: Observable<any>;
   displayedColumns: string[] = ['Materials', 'Assignments'];
 
   // getMaterialsFromComponent;
-  @ViewChild(MatSort, {static: true}) set matSort(ms: MatSort) {
+  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
   }
-  @ViewChild(MatPaginator, {static: true}) set matPaginator(mp: MatPaginator) {
+  @ViewChild(MatPaginator, { static: true }) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.setDataSourceAttributes();
   }
@@ -59,24 +59,24 @@ export class MaterialsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
-  
-  constructor(public _courseService: CourseService,public _materialService: MaterialService,public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar,private activatedRoute: ActivatedRoute) {
-    this.bgColors = ["badge-info","badge-success","badge-warning","badge-primary","badge-danger"]; 
+
+
+  constructor(public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
+    this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.materials = [];
     // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
   }
-  
+
   ngAfterViewInit() {
-    console.log("AfterViewInit this.courseId = ",this.courseId);
+    console.log("AfterViewInit this.courseId = ", this.courseId);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log("DATASOURCE", this.dataSource)
     console.log('materialsDiaplay', this.materials);
-    
+
   }
-  
+
   applyFilter(filterValue: string) {
     // console.log("IN APPLY FILTER")
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -89,33 +89,40 @@ export class MaterialsComponent implements OnInit {
     this.materials = this._filter.filter(filterValue, this.materials, ['title', 'type']);
     this.dataSource.paginator = this.paginator;
   }
-  
-  getRandomColorClass(i){
+
+  getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
     this.lastColor = rand;
     return this.bgColors[rand];
   }
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params=>{
+    this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.courseId = params['id'];
+
       this.getMaterials(params['courseId']);
+
+
+      // if (this.courseId) {
+      //   this.getMaterials(params['courseId']);
+      // }
+
     });
-    this.courseId = this.data;    
-    console.log("Initialized Materials with course = ",this.courseId,{data:this.data});
-    if(this.courseId){
-      console.log("CourseId  ",this.courseId);
+    this.courseId = this.data;
+    console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
+    if (this.courseId) {
+      console.log("CourseId  ", this.courseId);
       this.getMaterials(this.courseId);
     }
     console.log("Materials onInit", this.materials)
     // this.allMaterials = this.dataSource.connect();
   }
-  onMaterialSelection(event){
-    if(event.checked == true){
+  onMaterialSelection(event) {
+    if (event.checked == true) {
       this.selectedMaterials.push(event.source.value)
     }
-    if(event.checked == false){
+    if (event.checked == false) {
       this.selectedMaterials.forEach((material) => {
         console.log('MATERIAL', material)
         if (material._id == event.source.value._id) {
@@ -127,103 +134,103 @@ export class MaterialsComponent implements OnInit {
     this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
     console.log("event emited")
   }
-  
+
   // UTILITY
-  
-  updateData(courses){
-    console.log("UPDATING DATA = ",courses)
+
+  updateData(courses) {
+    console.log("UPDATING DATA = ", courses)
     this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
     this.dataSource = new MatTableDataSource(courses);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log("SETTING SORT TO = ",this.dataSource.sort)
-    console.log("SETTING paginator TO = ",this.dataSource.paginator)
-    
+    console.log("SETTING SORT TO = ", this.dataSource.sort)
+    console.log("SETTING paginator TO = ", this.dataSource.paginator)
+
   }
-  
-  
-  
+
+
+
   // MODALS
-  addMaterialModal(){
-    var addedMaterial = this.openDialog(AddMaterialModalComponent,{course: this.course._id}).subscribe((materials)=>{
-      if(materials == undefined) return;
-      console.log("Material added in controller = ",materials);
+  addMaterialModal() {
+    var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
+      if (materials == undefined) return;
+      console.log("Material added in controller = ", materials);
       this.materials.push(materials);
-      this.openSnackBar("Material Added Successfully","Ok");
-      this.updateData(materials); 
-    },err=>{
-      return this.openSnackBar("Material could not be Added","Ok");
+      this.openSnackBar("Material Added Successfully", "Ok");
+      this.updateData(materials);
+    }, err => {
+      return this.openSnackBar("Material could not be Added", "Ok");
     });
   }
-  
-  
-  editMaterialModal(index, data){
-    this.openDialog(EditMaterialModalComponent,data).subscribe((material)=>{
-      console.log("DIALOG CLOSED",material)
+
+
+  editMaterialModal(index, data) {
+    this.openDialog(EditMaterialModalComponent, data).subscribe((material) => {
+      console.log("DIALOG CLOSED", material)
       // Handle Error
-      if(material.result == "err") return this.openSnackBar("material could not be edited","Ok");
-      
+      if (material.result == "err") return this.openSnackBar("material could not be edited", "Ok");
+
       // EDIT HANDLE
-      if(material.action == 'edit'){
-        console.log("HANDLING EDIT SUCCESS",material.data);
+      if (material.action == 'edit') {
+        console.log("HANDLING EDIT SUCCESS", material.data);
         data = material.data;
-        var Index = this.materials.findIndex(function(i){
+        var Index = this.materials.findIndex(function (i) {
           return i._id === data._id;
         })
         this.materials[Index] = material.data;
       }
       // DELETE HANDLE
-      else if(material.action == 'delete'){
-        console.log("Deleted ",material);
+      else if (material.action == 'delete') {
+        console.log("Deleted ", material);
       }
       this.updateData(this.materials);
-      this.handleSnackBar({msg:"material Edited Successfully",button:"Ok"});
+      this.handleSnackBar({ msg: "material Edited Successfully", button: "Ok" });
     });
   }
-  
-  deletedMaterial(event){
-    console.log("Material Deleted Event : ",event);
-    this.materials.splice(this.materials.findIndex(function(i){
+
+  deletedMaterial(event) {
+    console.log("Material Deleted Event : ", event);
+    this.materials.splice(this.materials.findIndex(function (i) {
       return i._id === event._id;
     }), 1);
   }
-  
-  loadMaterialFiles(event){
-    console.log("loadMaterialFiles Called with event = ",event)
+
+  loadMaterialFiles(event) {
+    console.log("loadMaterialFiles Called with event = ", event)
     this.selectedMaterial = event.materialId;
-    console.log("Setting selectedMaterial = ",event.materialId)
+    console.log("Setting selectedMaterial = ", event.materialId)
     this.files = event.files;
   }
-  
-  handleSnackBar(data){
-    this.openSnackBar(data.msg,data.button);
+
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
   }
-  
-  openDialog(someComponent,data = {}): Observable<any> {
-    console.log("OPENDIALOG","DATA = ",data);
-    const dialogRef = this.dialog.open(someComponent, {data});
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data });
     return dialogRef.afterClosed();
   }
-  
-  
+
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
-  
+
   // API CALLS
-  
-  getMaterials(courseId){
-    console.log("getting materials in materials component for courseId = ",courseId)
-    this._courseService.getCourse(courseId).subscribe((courses:any)=>{
+
+  getMaterials(courseId) {
+    console.log("getting materials in materials component for courseId = ", courseId)
+    this._courseService.getCourse(courseId).subscribe((courses: any) => {
       this.course = courses.pop();
       this.materials = this.course.materials;
       this.dataSource = new MatTableDataSource(this.materials);
       // console.log("++++++++++", this.materials);    
       // this.materials = this.dataSource.connect()///;
       // console.log("==========", this.materials);
-      
+
       this.updateData(courses)
     });
   }

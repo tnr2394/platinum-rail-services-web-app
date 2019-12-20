@@ -43,7 +43,7 @@ jobController.getJobs = async function (req, res) {
     }
 
     if (req.user.userRole == 'admin') {
-        query = {}
+        query = req.query
     } else if (req.user.userRole == 'instructor') {
         query = { instructors: { $in: req.user._id } }
     } else if (req.user.userRole == 'client') {
@@ -149,6 +149,9 @@ const getEmailOfInstructor = (instructorId) => {
 }
 
 
+/**
+ * Assignment List Using JobId With Group By Unit Number
+ */
 jobController.assignmentListUsingJobId = function (req, res) {
     let jobId = req.query._id;
 
@@ -258,9 +261,9 @@ jobController.assignmentListUsingJobId = function (req, res) {
     });
 }
 
-
-
-
+/**
+ * Total Assignment List Using JobId
+ */
 jobController.assignmentListUsingJobIdWithoutGroup = function (req, res) {
     let jobId = req.query._id;
 
@@ -359,10 +362,11 @@ jobController.assignmentListUsingJobIdWithoutGroup = function (req, res) {
 
 
 
+/**
+ * Function Returns Learner List With Allotment Arrays
+ */
 jobController.assignmentStatusWithLearner = function (req, res) {
     let jobId = req.query._id;
-
-
     console.log("Assignment List With Learner", jobId);
     learnersModel.aggregate([
         {
@@ -399,6 +403,7 @@ jobController.assignmentStatusWithLearner = function (req, res) {
                     assignmentStatus: '$allotments.status',
                     allotedAt: '$allotments.createdAt',
                     updatedAt: '$allotments.updatedAt',
+                    assignmentRemark: '$allotments.remark'
                 }
             }
         },
