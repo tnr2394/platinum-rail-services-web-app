@@ -1,8 +1,17 @@
 .uploadBtn{
-    font-size: xxx-large;
+    // font-size: xx-large;
     color:#4fc480;
     background-color: transparent;
     border: transparent;
+    width: 100%;
+    text-align: left;
+    padding: 0px 15px;
+    i{
+        font-size: 45px;
+        @media (max-width:575px){
+            font-size: 40px;
+        }
+    }
 }
 .background{
     background-color: lightgray;
@@ -34,6 +43,56 @@ div{
     margin-top: 15px;
 }
 .submitted{
-    margin: 35px 0px;
     font-size: 50px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    @media (max-width:767px){
+        font-size: 40px;
+    }
+}
+.assignment_title{
+    margin-bottom: 20px;
+    @media (max-width:575px){
+        font-size: 23px;
+    }
+}
+.remark_block{
+    p{
+        font-size: 16px;
+        line-height: 1.8;
+        word-spacing: 1px;
+        margin: 0;
+        @media (max-width:575px){
+            font-size: 14px;
+        }
+    }
+}
+@media (max-width:767px){
+    .fa-7x{
+        font-size: 70px !important;
+    }
+}
+@media (max-width:575px){
+    .submission{
+        padding-left: 20px;
+        font-size: 22px;
+    }
+    .col-lg-6{
+        padding: 0 !important;
+    }
+    .remark_block{
+        margin-top: 20px;
+    }
+    .remark{
+        font-size: 22px;
+    }
+    .fa-7x {
+        font-size: 50px !important;
+    }
+    .submitted{
+        font-size: 30px;
+    }
 }

@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Select Learners</h1>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i> Select Learners</h1>
     <div mat-dialog-content>
     <mat-form-field class='min-width'>
         <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
@@ -15,7 +15,7 @@
     </div>
     </div>
     <div mat-dialog-actions align="center" *ngIf="!loading">
-    <button mat-flat-button color="primary" (click)='getLearners()'>
+    <button mat-flat-button color="primary" (click)='getLearners()' class="mb-2">
         <i class="fa fa-floppy-o fa-fw"></i>
     Save</button>
     </div>

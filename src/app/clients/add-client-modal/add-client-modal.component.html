@@ -1,21 +1,21 @@
-<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Client </h1>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i> Add Client </h1>
 <form (ngSubmit)='doSubmit()'>
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>
             <!-- <mat-hint align="end">Not more then 60 characters long.</mat-hint> -->
             <mat-error >Name is required</mat-error>
 
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-email" placeholder="Client Email" [(ngModel)]='data.email' required>
             <mat-error >Email is required</mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
             <mat-error >Password is required.</mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="confirmPassword" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
             <mat-error >Confirm Password is required.</mat-error>
         

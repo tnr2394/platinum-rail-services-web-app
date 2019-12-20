@@ -1,19 +1,19 @@
 <h1 mat-dialog-title class="text-primary light-underline">
     <i class="fas fa-edit fa-fw"></i> 
-    Edit Course 
+    Edit Client
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()"  >
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-email" placeholder="Client Email" [(ngModel)]='data.email' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-md-6">
             <input matInput name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
         </mat-form-field>
             

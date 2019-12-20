@@ -48,12 +48,12 @@
 
 
 <div class="row">
-    <div class="col-12 " *ngIf="learner && learner.length > 0">
-
+    <div class="col-12" *ngIf="learner && learner.length > 0">
+        <div class="table-responsive">
         <table class="float-left">
             <thead>
                 <tr>
-                    <th style="height: 56px;">Learners</th>
+                    <th class="table_th">Learners</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,8 +62,9 @@
                 </tr>
             </tbody>
         </table>
-
+         
         <div *ngFor="let unit of unitArray">
+           
             <table class="float-left" border="1">
                 <thead>
                     <tr>
@@ -82,6 +83,7 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 
