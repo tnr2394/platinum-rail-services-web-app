@@ -41,6 +41,7 @@ adminController.loginAdmin = function (req, res, next) {
             if (err) {
                 return res.status(500).send({ err })
             } else if (admin) {
+                
                 if (bcrypt.compareSync(password, admin.password)) {
                     let newAdmin = JSON.parse(JSON.stringify(admin));
                     newAdmin['userRole'] = 'admin';
@@ -57,7 +58,7 @@ adminController.loginAdmin = function (req, res, next) {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }
             } else {
-                return res.status(400).json({ message: 'Login failed Invalid email' });
+                return res.status(400).json({ message: 'Login failed Invalid email',admin });
             }
         });
     }).catch((error) => {
