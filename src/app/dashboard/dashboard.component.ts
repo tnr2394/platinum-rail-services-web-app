@@ -9,6 +9,7 @@ import { CourseService } from '../services/course.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  currentUser: any;
 
   constructor(public _jobService: JobService, public _instructorService: InstructorService, public _courseService: CourseService) { }
 
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
     this.getJobs();
     this.getInstructors();
     this.getCourses();
+    this.currentUser = JSON.parse(localStorage.currentUser);
   }
 
   getJobs() {
