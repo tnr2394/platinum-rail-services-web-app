@@ -4,17 +4,17 @@
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
                 cdkFocusInitial>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12 p-0">
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword'
                 required>
         </mat-form-field>

@@ -53,4 +53,25 @@ i.fas.fa-square-full.fa-2x.Submitted {
 
 .learner-name{
     height: 40px;
+    text-align: right;
+    padding-right: 7px;
+    @media (max-width:575px){
+        font-size: 14px;
+    }
+}
+.table_th{
+    width: 115px;
+    text-align: center;
+    padding: 0px 15px;
+    height: 56px;
+}
+table {
+    margin: 0;
+
+    @media(max-width: 767px) {
+        min-width: auto;
+    }
+}
+.table-responsive{
+    display: flex !important;
 }
