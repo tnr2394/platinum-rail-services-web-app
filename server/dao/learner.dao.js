@@ -1,4 +1,5 @@
 var learnerModel = require('../models/learner.model');
+const jobModel = require('../models/job.model');
 var Q = require('q');
 const mailService = require('../services/mail.service');
 var learner = {};
@@ -10,7 +11,7 @@ learner.createLearner = function (obj) {
     newLearner.save((err, newLearner) => {
         if (err) return q.reject(err);
         console.log("newLearner Added Successfully =  ", newLearner);
-        learner.sendMailToLearner(newLearner._id).then((response) => {
+        learner.sendMailToLearner(newLearner._id, newLearner.job).then((response) => {
             return q.resolve(newLearner);
         }).catch((error) => {
             return q.reject(err);
@@ -88,33 +89,63 @@ learner.updateAssignment = function (learnerId, assignment) {
     return q.promise;
 }
 
-learner.sendMailToLearner = function (learnerId) {
+learner.sendMailToLearner = function (learnerId, JobId) {
 
     // console.log("newLearner Added Successfully =  ", newLearner);
     var q = Q.defer();
     console.log("Learner to be send email:", learnerId);
 
-    learnerModel.findOne({ _id: learnerId }).exec((err, learner) => {
-        if (err) {
-            q.reject(err);
-        } else if (learner) {
-            const defaultPasswordEmailoptions = {
-                to: learner.email,
-                subject: `You Added In Job`,
-                template: 'forgot-password'
-            };
-            mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
-                if (err) {
-                    console.log('error:', err);
-                    q.reject(err);
-                } else {
-                    q.resolve(mailResult);
-                }
-            });
-        }
-    });
+
+    getSingleJob(JobId).then((jobDetail) => {
+
+        learnerModel.findOne({ _id: learnerId }).exec((err, learner) => {
+            if (err) {
+                q.reject(err);
+            } else if (learner) {
+
+                const defaultPasswordEmailoptions = {
+                    to: learner.email,
+                    subject: `You Added In Job`,
+                    template: 'jobAssign-learner'
+                };
+
+                const mailData = { jobDetail: jobDetail, learner: learner }
+
+                mailService.sendMail(defaultPasswordEmailoptions, mailData, null, function (err, mailResult) {
+                    if (err) {
+                        console.log('error:', err);
+                        q.reject(err);
+                    } else {
+                        q.resolve(mailResult);
+                    }
+                });
+            }
+        });
+    }).catch((error) => {
+        q.reject(err);
+    })
     return q.promise;
 }
 
+
+const getSingleJob = (jobId) => {
+    return new Promise((resolve, reject) => {
+        jobModel.findOne({ _id: jobId })
+            .populate("client")
+            .populate("location")
+            .populate("course")
+            .populate("instructors")
+            .exec((err, jobs) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(jobs);
+                }
+            });
+
+    })
+}
+
+module.exports.getSingleJob = getSingleJob;
 
 module.exports = learner;

@@ -26,14 +26,39 @@ allotment.createAllotment = function (obj) {
     return q.promise;
 }
 
-allotment.updateAllotment = function (allotemntId, updateAllotment) {
-    console.log("Update Allotemnt in allotemnt DAO", allotemntId, updateAllotment);
+allotment.updateAllotment = function (allotmentId, updateAllotment) {
+    console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment);
     var q = Q.defer();
-    allotmentModel.findByIdAndUpdate({ _id: allotemntId }, { $set: updateAllotment }, (err, allotment) => {
+    allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment }, (err, allotment) => {
         if (err) return q.reject(err);
         else {
             console.log("Allotment Updated Successfully =  ", allotment, q);
-            return q.resolve(allotment);
+
+            allotmentUsingAllotmentId(allotmentId).then((res) => {
+
+                console.log('allotment Response---------->>>>>>>>', res);
+
+                const defaultPasswordEmailoptions = {
+                    to: res.learner.learnerEmail,
+                    subject: `Assignment Submitted`,
+                    template: 'submission-instructor'
+                };
+
+                console.log('defaultPasswordEmailoptions', defaultPasswordEmailoptions);
+
+                mailService.sendMail(defaultPasswordEmailoptions, res.assignment, null, function (err, mailResult) {
+                    if (err) {
+                        console.log('mail error--------------->>>>', err);
+                        return res.status(500).send({ err })
+                    } else {
+                        console.log('mailResult', mailResult);
+                        return q.resolve(allotment);
+                    }
+                });
+
+            }).catch((err) => {
+                console.log('ERROR While Instructor Email', err);
+            })
         }
     });
     return q.promise;
@@ -84,7 +109,7 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
                 if (err) q.reject(err);
                 console.log('Updated', updatedAllotment);
 
-                allotment.allotmentUsingAllotmentId(allotemntId).then((res) => {
+                allotmentUsingAllotmentId(allotemntId).then((res) => {
 
                     console.log('Email Response:', res);
 
@@ -104,10 +129,10 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
                     const defaultPasswordEmailoptions = {
                         to: instructorsArray,
                         subject: `Assignment Submitted`,
-                        template: 'forgot-password'
+                        template: 'submission-learner'
                     };
 
-                    mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+                    mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
                         if (err) {
                             console.log('error:', err);
                             return res.status(500).send({ err })
@@ -149,14 +174,14 @@ allotment.removeFileFromAllotment = function (fileId) {
     return q.promise;
 }
 
-allotment.allotmentUsingAllotmentId = function (allotemntId) {
-    console.log('Allotment Submission', allotemntId);
+const allotmentUsingAllotmentId = (allotmentId) => {
+    console.log('Allotment Submission', allotmentId);
     return new Promise((resolve, reject) => {
         allotmentModel.aggregate([
             {
                 $match:
                 {
-                    '_id': ObjectId(allotemntId)
+                    '_id': ObjectId(allotmentId)
                 },
             },
             {
@@ -223,22 +248,32 @@ allotment.allotmentUsingAllotmentId = function (allotemntId) {
             },
             {
                 $project: {
-                    status: 1,
                     instructors: {
                         _id: "$instructors._id",
                         name: "$instructors.name",
                         email: "$instructors.email",
+                    },
+                    assignment: {
+                        assignmentTitle: '$assignment.title',
+                        assignmentUnit: '$assignment.unitNo',
+                        assignmentNo: '$assignment.assignmentNo',
+                        assignmentStatus: '$status',
+                        assignmentRemark: '$remark'
+                    },
+                    learner: {
+                        learnerEmail: '$learner.email',
+                        learnerName: '$learner.name'
                     }
                 }
             },
             {
                 $group: {
                     _id: '$job._id',
-                    status: {
-                        $first: '$status'
-                    },
                     instructors: {
                         $push: '$instructors'
+                    },
+                    assignment: {
+                        $first: '$assignment'
                     },
                     learner: {
                         $first: '$learner'
@@ -317,6 +352,8 @@ allotment.allotmentUsingAssignmentId = function (assignmentId) {
         });
     })
 }
+
+module.exports.allotmentUsingAllotmentId = allotmentUsingAllotmentId;
 
 
 module.exports = allotment;

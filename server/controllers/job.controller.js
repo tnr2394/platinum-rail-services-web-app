@@ -56,6 +56,8 @@ jobController.getJobs = async function (req, res) {
     })
 }
 
+
+
 jobController.addJob = function (req, res) {
     console.log('ADD jobs', req.body);
 
@@ -77,26 +79,33 @@ jobController.addJob = function (req, res) {
         if (err) return res.status(500).send({ err })
         console.log("SENDING RESPONSE Jobs =  ", job)
 
-        getEmailOfInstructor(req.body.instructors).then((res) => {
+        const query = { _id: job._id }
 
-            console.log('Email Response:', res);
+        allJobs(query).then(jobs => {
+            getEmailOfInstructor(req.body.instructors).then((res) => {
+                console.log('Email Response:', res);
 
-            const defaultPasswordEmailoptions = {
-                to: res,
-                subject: `Job Added For You`,
-                template: 'forgot-password'
-            };
+                const defaultPasswordEmailoptions = {
+                    to: res.email,
+                    subject: `Job Added For You`,
+                    template: 'jobAssign-instructor'
+                };
 
-            mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
-                if (err) {
-                    console.log('error:', error);
-                    return res.status(500).send({ err })
-                } else {
-                    return res.send({ data: { job } });
-                }
-            });
+                jobs[0].instructor = res;
 
-        }).catch((err) => {
+                mailService.sendMail(defaultPasswordEmailoptions, jobs[0], null, function (err, mailResult) {
+                    if (err) {
+                        console.log('error:', error);
+                        return res.status(500).send({ err })
+                    } else {
+                        return res.send({ data: { job } });
+                    }
+                });
+                
+            }).catch((err) => {
+                console.log('ERROR While Instructor Email', err);
+            })
+        }).catch((error) => {
             console.log('ERROR While Instructor Email', err);
         })
     });
@@ -143,7 +152,7 @@ const getEmailOfInstructor = (instructorId) => {
     instructorModel.findOne({ _id: instructorId }, (err, instructor) => {
         console.log("GET EMAIL OF INSTRUCTOR =", { err, instructor })
         if (err) return q.reject(err);
-        return q.resolve(instructor.email);
+        return q.resolve(instructor);
     });
     return q.promise;
 }
