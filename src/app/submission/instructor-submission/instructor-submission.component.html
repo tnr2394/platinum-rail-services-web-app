@@ -1,17 +1,19 @@
 <div *ngIf="assignment">
-    <div class='row'>
-        <div class='col-10'>
-            <h1 style="font-size:28px;">Assignment Submission: {{assignment.assignment.title}}</h1>
+    <div class='row mx-0 mb-4 align-items-center'>
+        <div class='col-md-9'>
+            <h1 style="font-size:28px;">Assignment Submission: 
+               <span>{{assignment.assignment.title}}</span>
+            </h1>
         </div>
-        <div class='col-2'>
-            <mat-chip-list>
-                <i class='fa fa-clock fa-3x'></i>
+        <div class='col-md-3 justify-content-end'>
+            <mat-chip-list class="status_clock w-100">
+                <i class="fas fa-clock"></i>
                 <mat-chip class='chipColor'>{{assignment.status}}</mat-chip>
             </mat-chip-list>
         </div>
     </div>
     <mat-card>
-        <div class='row'>
+        <div class='px-0'>
             <h4 style="font-size: 18px;">Submission by {{assignment.learner.name}}</h4>
         </div>
         <div class='row'>

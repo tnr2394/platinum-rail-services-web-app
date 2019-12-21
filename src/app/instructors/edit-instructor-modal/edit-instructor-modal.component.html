@@ -1,22 +1,22 @@
-<h1 mat-dialog-title class="text-primary light-underline">
+<h1 mat-dialog-title class="text-primary light-underline mb-2">
     <i class="fas fa-edit fa-fw"></i> 
     Edit Instructor 
 </h1>
 <form #editInstructor (ngSubmit)="doSubmit()"  >
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
             <input required matInput name="instructor-name" placeholder="Instructor Name" [(ngModel)]='instructorData.name' cdkFocusInitial>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
             <input type="email" matInput placeholder="Instructor Email" name="instructor-email" [(ngModel)]='instructorData.email'>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
             <input type="text" matInput placeholder="Instructor Password" name="instructor-password" [(ngModel)]='instructorData.password'>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
             <input type="text" matInput placeholder="Confirm Password"  name="confirm-password" [(ngModel)]='instructorData.confirmPassword'>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="example-full-width col-sm-6">
             <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining" [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled required>
             <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
             <mat-datepicker #dateOfJoining disabled="false"></mat-datepicker>
