@@ -7,7 +7,8 @@
                 </h3>
             </div>
             <div class="col-6">
-                <button mat-flat-button color="primary" class="pull-right modal_open" (click)="addJobModal()">
+                <button *ngIf="currentUser.userRole == 'admin' " mat-flat-button color="primary"
+                    class="pull-right modal_open" (click)="addJobModal()">
                     <i class="fas fa-plus fa-fw"></i>
                     Add Job
                 </button>
@@ -137,7 +138,6 @@
                                         <tr mat-row *matRowDef="let job; columns: displayedColumns;"></tr>
                                     </tbody>
 
-
                                 </div>
                             </table>
                         </div>
@@ -145,10 +145,9 @@
                     </div>
                     <!--/.Card content-->
 
-                    <h1 class="text-center" *ngIf="jobs.length == 0">
+                    <h1 class="text-center" *ngIf="jobs && jobs.length == 0">
                         <i class="fas fa-empty-set"></i> No Jobs Assigned.
                     </h1>
-
 
                 </div>
             </div>

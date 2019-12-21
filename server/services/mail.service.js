@@ -31,6 +31,9 @@ function sendMail(options, data, attach, callback) {
     //     region: settings.awsMailer.region
     // }));
 
+
+    console.log('Inside send mail function');
+
     const transporter = mailer.createTransport({
         host: process.env.HOST,
         port: process.env.SMTPPORT,

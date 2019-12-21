@@ -16,6 +16,7 @@ async function allCourses(query) {
     return deferred.promise;
 
 }
+
 courseController.getCourses = async function (req, res, next) {
     var query = {};
     if (req.query) {
@@ -54,12 +55,9 @@ courseController.updateCourse = function (req, res, next) {
         if (err) {
             return res.status(500).send({ err })
         }
-
         return res.send({ data: { course } });
-
     })
 }
-
 
 courseController.deleteCourse = function (req, res, next) {
     console.log("Delete COURSE");

@@ -71,7 +71,7 @@
                                     <mat-list>
                                         <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
                                             <div class="learner_title">
-                                                Course 
+                                                Course
                                                 <p> {{job.course.title}}</p>
                                             </div>
                                         </mat-list-item>
@@ -101,10 +101,11 @@
         <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
         <div *ngIf="job">
             <!-- passing into material =  {{job.course._id}} -->
-            <app-materials [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)" #material>
+            <app-materials *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
+                [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)" #material>
             </app-materials>
             <button mat-flat-button color="primary" class="pull-right my-4" (click)="allocateLearners()"
-                *ngIf='displayAllocate == true'>
+                *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
                 <i class="fa fa-user-o fa-fw"></i>
                 Allocate to..
             </button>

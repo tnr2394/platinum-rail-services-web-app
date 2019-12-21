@@ -48,10 +48,26 @@ $light: #555;
     color: #3B86FF;
 }
 
+@font-face {
+    font-family: 'Roboto', sans-serif;
+   src: url(./assets/fonts/roboto/Roboto-Bold.ttf);
+   src: url(./assets/fonts/roboto/Roboto-Light.ttf);
+   src: url(./assets/fonts/roboto/Roboto-Regular.ttf);
+  }
+
+@font-face {
+    font-family: 'Source Sans Pro', sans-serif;
+   src: url(./assets/fonts/source-sans/SourceSansPro-Bold.ttf);
+   src: url(./assets/fonts/source-sans/SourceSansPro-Light.ttf);
+   src: url(./assets/fonts/source-sans/SourceSansPro-Regular.ttf);
+   src: url(./assets/fonts/source-sans/SourceSansPro-SemiBold.ttf);
+  }
+
+
+
 .font-sans{
     font-family: 'Source Sans Pro', sans-serif;
 }
-
 
 .font-roboto{
     font-family: 'Roboto', sans-serif;

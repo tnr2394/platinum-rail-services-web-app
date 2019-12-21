@@ -48,6 +48,7 @@ export class InstructorSubmissionComponent implements OnInit {
 
   }
 
+
   // getAllotments() {
   //   // console.log(this.learner);
   //   this._learnerService.getLearner(this.learner._id).subscribe(data => {
@@ -78,32 +79,21 @@ export class InstructorSubmissionComponent implements OnInit {
     });
   }
 
-  markComplete() {
-    console.log('MARK Completed Click');
-
-    var data = {
-      allotmentId: this.allotmentId,
-      status: 'Completed'
-    }
-
-    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(data).subscribe(data => {
-      this.getAllotments(this.allotmentId);
-    })
-  }
-
-  doSubmit(data) {
-    console.log('Data', data.value.remark);
+  doSubmit(data, assignmentStatus) {
 
     var Resubmission = {
       allotmentId: this.allotmentId,
-      status: 'Requested for Resubmission',
+      status: assignmentStatus,
       remark: data.value.remark
     }
 
     this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
       this.getAllotments(this.allotmentId)
+      this.remark.reset();
+      this.openSnackBar("Changes made Successfully", "Ok");
+    }, err => {
+      this.openSnackBar("Something Went Wrong", "Ok");
     })
-
   }
 
   openSnackBar(message: string, action: string) {
@@ -119,11 +109,5 @@ export class InstructorSubmissionComponent implements OnInit {
       return i._id === event._id;
     }), 1);
   }
-
-  requestResubmission() {
-    console.log('Request Resubmission Click');
-    console.log('MARK Completed Click');
-  }
-
 
 }

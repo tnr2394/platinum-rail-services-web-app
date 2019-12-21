@@ -403,7 +403,4 @@ learnerController.removeFileFromAllotment = function (req, res, next) {
 };
 
 
-
-
-
 module.exports = learnerController;
