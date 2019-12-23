@@ -4,7 +4,7 @@
 <form [formGroup]='addJobForm' class="add_job_form">
     <div mat-dialog-content class="container">
         <div class='top-margin' mat-dialog-content>
-            <div class='row'>
+            <div class='row mx-0'>
 
                 <div class='col col-sm center'>
                     <mat-form-field>
@@ -16,7 +16,7 @@
                     </mat-form-field>
                 </div>
 
-                <div class='col col-sm center'>
+                <div class='col col-sm center add_picker_position'>
                     <mat-form-field>
                         <input formControlName='jobColor' required [(colorPicker)]="color" matInput
                             [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class='row'>
+            <div class='row mx-0 align-items-center'>
 
                 <div class='col col-sm center'>
                     <mat-form-field *ngIf="selectedClient">
@@ -48,23 +48,9 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class='max-height col col-sm center instructor_select'>
-                    <div formArrayName="instructor"
-                        *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
-                        <div [formGroupName]="i">
-                            <mat-form-field>
-                                <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
-                                    <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
-                                        {{instructor.name}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <button class='buttonTransparent' (click)='removeInstructor()'><i
-                                    class="fa fa-times close-color"></i> </button>
-                        </div>
-                    </div>
-                </div>
+               
                 <!-- <div class='col col-sm center' formArrayName="course"> -->
-                <div class='col col-sm center course_select' formArrayName="course"
+                <div class='col col-sm course_select' formArrayName="course"
                     *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                     <div [formGroupName]="i">
 
@@ -74,11 +60,11 @@
                                 (selectionChange)="courseChanged($event)" #selected>
                                 <mat-option *ngFor="let course of courses" [value]='course'
                                     matTooltip='{{course.title}}'>
-                                    <div class="row">
-                                        <div class="col left">
+                                    <div class="d-inline-block w-100">
+                                        <div class="float-left">
                                             {{course.title | slice:0:25}}
                                         </div>
-                                        <div class="col text-right">
+                                        <div class="float-right">
                                             <span class="badge badge-primary " style="vertical-align: middle;">
                                                 {{course.duration}} </span>
                                         </div>
@@ -102,21 +88,7 @@
                         </div>
                     </div> -->
                 </div>
-            </div>
-            <div class='row instructor_btn'>
-                <div>
-                    <button mat-flat-button color="primary" class="pull-right buttonHeight" (click)='addInstructor()'>
-                        <i class="fa fa-user-plus"> Add Instructor</i>
-                    </button>
-                </div>
-            </div>
-            <div class='row'>
-
-                <div class="col center" *ngIf="selectedCourse">
-                    <h5 class="badge badge-dark">{{selectedCourse.duration}} days </h5>
-                </div>
-
-                <div class='col center'>
+                <div class='col col-sm center'>
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="startingDate"
                             placeholder="Starting date"
@@ -129,8 +101,36 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
+                
             </div>
-            <div class='row' style='display: block;'>
+            <div class='row mx-0 align-items-center'>
+                 <div class='col col-sm' *ngIf="selectedCourse">
+                     <h5 class="badge badge-dark">{{selectedCourse.duration}} days </h5>
+                 </div>
+                
+                 <div class='max-height col col-sm instructor_select'>
+                     <div formArrayName="instructor"
+                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
+                         <div [formGroupName]="i">
+                             <mat-form-field>
+                                 <mat-select formControlName="singleInstructor" placeholder="Choose Instructor">
+                                     <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                         {{instructor.name}}</mat-option>
+                                 </mat-select>
+                                 <button class='buttonTransparent' (click)='removeInstructor()'><i
+                                         class="fa fa-times close-color"></i> </button>
+                             </mat-form-field>
+                         </div>
+                     </div>
+                 </div>
+                <div class='col col-sm instructor_btn'>
+                    <button mat-flat-button color="primary" class="pull-right mb-4 buttonHeight" (click)='addInstructor()'>
+                        <i class="fa fa-user-plus"> Add Instructor</i>
+                    </button>
+                </div>
+            </div>
+
+            <div class='row mx-0' style='display: block;'>
                 <app-job-dates [duration]='duration' (dateChange)='daySelection($event)' #jobDates></app-job-dates>
             </div>
         </div>

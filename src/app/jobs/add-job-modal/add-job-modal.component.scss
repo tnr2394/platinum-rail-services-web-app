@@ -66,8 +66,8 @@
     background: transparent !important;
     border: transparent !important;
     position: absolute !important;
-    right: 0px !important;
-    top: 20px !important;
+    right: -14px !important;
+    top: 6px !important;
 }
 
 .checkBox {
@@ -150,7 +150,7 @@ mat-form-field {
 
     mat-form-field {
         min-width: 90%;
-        margin-left: 24px;
+        // margin-left: 24px;
     }
 
     .mat-form-field-infix {
@@ -158,9 +158,9 @@ mat-form-field {
         min-width: 90% !important;
     }
 
-    .course_select {
-        min-width: 50% !important;
-    }
+    // .course_select {
+    //     min-width: 50% !important;
+    // }
 }
 
 .instructor_select {
@@ -173,7 +173,7 @@ mat-form-field {
     }
 
     @media (max-width:991px) {
-        min-width: 50% !important;
+        // min-width: 50% !important;
 
         mat-form-field {
             width: 100% !important;

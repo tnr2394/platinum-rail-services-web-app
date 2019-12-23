@@ -231,3 +231,29 @@ th.mat-header-cell:first-of-type {
         }
     }
 }
+.add_picker_position{
+    color-picker {
+        @media (max-width:991px) {
+            .color-picker {
+                top: 204.297px !important;
+                left: auto !important;
+            }
+        }
+    }
+}
+.edit_color_picker{
+    color-picker {
+        @media (max-width:991px) {
+            .color-picker {
+                top: 204.297px !important;
+                left: auto !important;
+            }
+        }
+    }
+}
+.course_select{
+    .mat-option-text{
+        display: inline-block !important;
+        width: 100% !important;
+    }
+}
