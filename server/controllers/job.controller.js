@@ -37,18 +37,23 @@ async function allJobs(query) {
 jobController.getJobs = async function (req, res) {
 
 
+    console.log('Req.user-------------->>>>>>>>>', req.user, req.query);
+
+
     var query = {};
-    if (req.query) {
+    if (req.query !== {}) {
+        console.log('Inside If------------->>>>>>>>');
         query = req.query;
+    } else {
+        if (req.user.userRole == 'admin') {
+            query = req.query
+        } else if (req.user.userRole == 'instructor') {
+            query = { instructors: { $in: req.user._id } }
+        } else if (req.user.userRole == 'client') {
+            query = { client: req.user._id }
+        }
     }
 
-    if (req.user.userRole == 'admin') {
-        query = req.query
-    } else if (req.user.userRole == 'instructor') {
-        query = { instructors: { $in: req.user._id } }
-    } else if (req.user.userRole == 'client') {
-        query = { client: req.user._id }
-    }
 
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
@@ -101,7 +106,7 @@ jobController.addJob = function (req, res) {
                         return res.send({ data: { job } });
                     }
                 });
-                
+
             }).catch((err) => {
                 console.log('ERROR While Instructor Email', err);
             })

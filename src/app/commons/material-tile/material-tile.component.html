@@ -4,8 +4,9 @@
         <div class="row" *ngIf="!editing">
             <div class="col-xl-2 col-sm-2 text-center">
 
-                <a class="btn btn-primary text-white fab-item">
+                <a class="btn btn-primary text-white fab-item ">
                     <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i>
+                    {{getRandomColorClass(i)}}
                     <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
                 </a>
             </div>
@@ -13,7 +14,7 @@
                 <div class="row">
                     <div class="col-12 material_title">
                         {{material.title}}
-                        
+
                     </div>
                     <div class="col-12 file_icon justify-content-center">
                         <a mat-button class="text-success" (click)="editmaterial()">
