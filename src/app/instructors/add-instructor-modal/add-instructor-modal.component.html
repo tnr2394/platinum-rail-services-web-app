@@ -1,19 +1,19 @@
-<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Instructor </h1>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Instructor </h1>
 <form (ngSubmit)='doSubmit()'>
 <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
                 <input matInput name="instructor-name" placeholder="Instructor Name" [(ngModel)]='data.name' required cdkFocusInitial>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
                 <input matInput name="instructor-email" placeholder="Instructor Email" [(ngModel)]='data.email' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
                 <input matInput name="instructor-password" placeholder="Instructor Password" [(ngModel)]='data.password' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
                 <input matInput name="instructor-confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6">
+        <mat-form-field class="example-full-width col-sm-6">
                 <input matInput type="date" name="instructor-date-of-joining" placeholder="dateOfJoining" [(ngModel)]='data.dateOfJoining' required>
         </mat-form-field>
         

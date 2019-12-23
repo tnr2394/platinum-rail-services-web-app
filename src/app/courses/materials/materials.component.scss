@@ -19,8 +19,6 @@
     }
 
 }
-
-
 .page-title{
     font-weight: 400;
 }
@@ -37,9 +35,24 @@
             font-size: 20px;
             padding: 0 !important;
             span{
-                width: 100%;
                 display: block;
+                margin-top: 10px !important;
             }
+        }
+    }
+}
+.mat-badge-medium
+{   
+    position: relative !important;
+     width: fit-content !important;
+     @media (max-width:575px) {
+        .mat-badge-content {
+            position: absolute !important;
+            top: -20px !important;
+            margin-top: 10px !important;
+            width: 20px !important;
+            height: 20px !important;
+            line-height: 20px !important;
         }
     }
 }

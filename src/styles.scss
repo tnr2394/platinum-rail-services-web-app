@@ -199,6 +199,9 @@ th.mat-header-cell:first-of-type {
     .mat-dialog-title{
         font-size: 18px !important;
     }
+    .page-title{
+        font-size: 24px !important;
+    }
 }
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background{
@@ -210,4 +213,18 @@ th.mat-header-cell:first-of-type {
 }
 .mat-dialog-actions{
     margin-bottom: 0 !important;
+}
+// .job_select_submission {
+    .mat-option-text {
+        align-items: center !important;
+        justify-content: space-between !important;
+        height: 100% !important;
+        display: flex !important;
+    }
+// }
+.status_clock {
+    .mat-chip-list-wrapper {
+        justify-content: flex-end !important;
+        width: 100% !important;
+    }
 }

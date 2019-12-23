@@ -1,7 +1,7 @@
 
 <div class="row">
         <div class="col-12">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-6">
                     <h3 class="page-title">
                         Instructors
@@ -21,12 +21,12 @@
                         <div class="card-block">
                             <!--Title-->
                             <div class="card-title">
-                                <div class="row">
-                                    <mat-form-field class="example-full-width col-6">
+                                <div class="row table_search">
+                                    <mat-form-field class="example-full-width col-lg-6 col-md-6">
                                         <input matInput placeholder="Search"  (keyup)="applyFilter($event.target.value)" >
                                         <mat-icon matSuffix>search</mat-icon>
                                     </mat-form-field>
-                                    <mat-paginator class="col-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                    <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                                     
                                 </div>
                                 
@@ -34,30 +34,32 @@
                             <!--Text-->
                             <div *ngIf="dataSource">
                                 <h1>{{dataSource.length}}</h1>
-                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-                                    
-                                    <!-- Title Column -->
-                                    <ng-container matColumnDef="name">
-                                        <th class="text-center"  mat-header-cell *matHeaderCellDef mat-sort-header="title"> NAME </th>
-                                        <td class="mat-table-cell"  mat-cell *matCellDef="let instructor"> {{instructor.name}} </td>
-                                    </ng-container>
-                                    <!-- Duration Column -->
-                                    <ng-container matColumnDef="dateOfJoining">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Joining </th>
-                                        <td class="mat-table-cell" mat-cell *matCellDef="let instructor; let i = index;"><span style="width: 100px;" class="badge {{getRandomColorClass(i)}}"> {{showFormattedDate(instructor.dateOfJoining)}} </span></td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="actions">
-                                        <th mat-header-cell *matHeaderCellDef > EDIT </th>
-                                        <td class="mat-table-cell" mat-cell *matCellDef="let instructor; let i = index;"><a class="text-success bold" (click)="editInstructorModal(i, instructor)" ><i class="fa fa-edit"></i></a></td>
-                                    </ng-container>
-                                    <thead>
-                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
-                                    </tbody>
-                                </table>
-                                
+                                <div class="table-responsive">
+                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                        
+                                        <!-- Title Column -->
+                                        <ng-container matColumnDef="name">
+                                            <th class="text-center"  mat-header-cell *matHeaderCellDef mat-sort-header="title"> NAME </th>
+                                            <td class="mat-table-cell text-center"  mat-cell *matCellDef="let instructor"> {{instructor.name}} </td>
+                                        </ng-container>
+                                        <!-- Duration Column -->
+                                        <ng-container matColumnDef="dateOfJoining">
+                                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                Date Of Joining </th>
+                                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let instructor; let i = index;"><span style="width: 100px;" class="badge {{getRandomColorClass(i)}}"> {{showFormattedDate(instructor.dateOfJoining)}} </span></td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="actions">
+                                            <th class="text-center" mat-header-cell *matHeaderCellDef > EDIT </th>
+                                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let instructor; let i = index;"><a class="text-success bold" (click)="editInstructorModal(i, instructor)" ><i class="fa fa-edit"></i></a></td>
+                                        </ng-container>
+                                        <thead>
+                                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <h1 *ngIf="!(instructors)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-location',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddLocationComponent implements OnInit {
 
-  constructor() { }
+  data;
+  constructor(public dialogRef: MatDialogRef<AddLocationComponent>) { 
+    this.data = {
+      title: ""
+    }
+  }
+
+  doAddNewLocation(data){
+    if(this.data.title == ""){
+      console.log("Empty")
+    }
+    else{
+      this.dialogRef.close(data);
+    }
+  }
+  closeLocationModal(){
+    this.dialogRef.close(this.data);
+  }
 
   ngOnInit() {
   }
