@@ -1,11 +1,11 @@
 <div *ngIf="assignment">
     <div class='row mx-0 mb-4 align-items-center'>
-        <div class='col-md-9'>
-            <h1 style="font-size:28px;">Assignment Submission: 
+        <div class='col-lg-9'>
+            <h1 class="assi_submission">Assignment Submission: 
                <span>{{assignment.assignment.title}}</span>
             </h1>
         </div>
-        <div class='col-md-3 justify-content-end'>
+        <div class='col-lg-3 assignment_status'>
             <mat-chip-list class="status_clock w-100">
                 <i class="fas fa-clock"></i>
                 <mat-chip class='chipColor'>{{assignment.status}}</mat-chip>
@@ -14,54 +14,63 @@
     </div>
     <mat-card>
         <div class='px-0'>
-            <h4 style="font-size: 18px;">Submission by {{assignment.learner.name}}</h4>
+            <h4 class="submission_by">Submission by {{assignment.learner.name}}</h4>
         </div>
         <div class='row'>
-            <div class='col-6 background'>
-                <div class='row'>
-                    <div class='col-9'>
+            <div class='col-lg-6 background'>
+                <div class='row py-0 align-items-center'>
+                    <div class='col-10 p-0 d-flex align-items-center'>
+                        <span class="mb-0 mr-2"><i class="fas fa-file-alt text-success"></i></span>
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
                     </div>
-                    <div class='col-3'>
-                        <button class='uploadBtn'>
-                            <i class="fa fa-cloud-upload fa-xxl"></i>
+                    <div class='col-2 p-0'>
+                        <button class='uploadBtn d-flex align-items-center h-100 justify-content-center'>
+                            <i class="fa fa-cloud-upload"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class='row'>
-                    <div class="col-12">
+                    <div class="col-12 p-0">
                         <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file">
                         </file-tile>
                     </div>
                 </div>
             </div>
-            <div class='col-6'>
+            <div class='col-lg-6 status_area'>
                 <div class="col-12">
+                    <div class="d-flex justify-content-center align-items-center w-100">
+                        <button mat-raised-button class='btnColorGreen' (click)="doSubmit(remark,'Completed')"><i
+                                class="fas fa-check-double"></i>
+                            Mark
+                            Completed</button>
+                    </div>
+                    </div>
+                <div class="col-12 remark_area">
                     <form [formGroup]="remark">
                         <mat-form-field class="example-full-width">
                             <textarea rows="4" cols="100" matInput formControlName="remark"
                                 placeholder="Leave a remark"></textarea>
                         </mat-form-field>
                         <mat-divider></mat-divider>
-                        <div class='row center'>
-                            <div class="col-md-6">
+                        <div class='mt-3'>
+                            <div class="justify-content-center">
                                 <button mat-raised-button class='btnColorBlue'
                                     (click)="doSubmit(remark,'Requested for Resubmission')"><i
                                         class='fa fa-bell'></i>Request
                                     Resubmission</button>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
 
                                 <button mat-raised-button class='btnColorGreen'
                                     (click)="doSubmit(remark,'Completed')"><i class='fa fa-check'></i>
                                     Mark
                                     Completed</button>
 
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>
