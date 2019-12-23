@@ -1,30 +1,43 @@
 // Npm Modules
 const Q = require('q');
+const ObjectId = require('mongodb').ObjectId;
+const lodash = require('lodash');
+
+// Model Variables
 
 const allotmentModel = require('../models/allotment.model');
 const mailService = require('../services/mail.service');
 const fileDAO = require('./file.dao');
-const ObjectId = require('mongodb').ObjectId;
-const lodash = require('lodash');
-
 
 var allotment = {};
 
 allotment.createAllotment = function (obj) {
     const q = Q.defer();
     const newAllotment = new allotmentModel(obj);
-
-    newAllotment.save((err, newAllotment) => {
-        if (err) {
-            console.log('Err', err);
-            return q.reject(err);
-        } else {
-            console.log("newAllotment Added Successfully =  ", newAllotment);
-            return q.resolve(newAllotment);
-        }
-    });
+    allotmentModel.find(
+        {
+            assignment: obj.assignment,
+            learner: obj.learner
+        }, (err, allotFound) => {
+            if (err) {
+                return q.reject(err);
+            } else if (allotFound.length) {
+                return q.resolve(allotFound[0]);
+            } else {
+                console.log('Inside Else If', newAllotment);
+                newAllotment.save((err, newAllotment) => {
+                    if (err) {
+                        return q.reject(err);
+                    } else {
+                        console.log("newAllotment Added Successfully =  ", newAllotment);
+                        return q.resolve(newAllotment);
+                    }
+                });
+            }
+        })
     return q.promise;
 }
+
 
 allotment.updateAllotment = function (allotmentId, updateAllotment) {
     console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment);
@@ -36,22 +49,16 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
 
             allotmentUsingAllotmentId(allotmentId).then((res) => {
 
-                console.log('allotment Response---------->>>>>>>>', res);
-
                 const defaultPasswordEmailoptions = {
                     to: res.learner.learnerEmail,
                     subject: `Assignment Submitted`,
                     template: 'submission-instructor'
                 };
 
-                console.log('defaultPasswordEmailoptions', defaultPasswordEmailoptions);
-
                 mailService.sendMail(defaultPasswordEmailoptions, res.assignment, null, function (err, mailResult) {
                     if (err) {
-                        console.log('mail error--------------->>>>', err);
                         return res.status(500).send({ err })
                     } else {
-                        console.log('mailResult', mailResult);
                         return q.resolve(allotment);
                     }
                 });
@@ -107,24 +114,14 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
                 }
             }, { new: true }, (err, updatedAllotment) => {
                 if (err) q.reject(err);
-                console.log('Updated', updatedAllotment);
 
                 allotmentUsingAllotmentId(allotemntId).then((res) => {
 
-                    console.log('Email Response:', res);
-
                     let instructorsArray = [];
 
-                    console.log('res.instructors', res.instructors);
-
-
                     lodash.forEach(res.instructors, function (single) {
-
-                        console.log('Single--------->>>>>', single);
                         instructorsArray.push(single.email);
                     })
-
-                    console.log('instructorsArray', instructorsArray);
 
                     const defaultPasswordEmailoptions = {
                         to: instructorsArray,

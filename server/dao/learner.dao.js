@@ -79,7 +79,7 @@ learner.deleteLearner = function (learnerId) {
 learner.updateAssignment = function (learnerId, assignment) {
     console.log("Update Learner in location DAO", learnerId);
     var q = Q.defer();
-    learnerModel.findByIdAndUpdate({ _id: learnerId }, { $push: { allotments: assignment } }, { new: true }, (err, learner) => {
+    learnerModel.findByIdAndUpdate({ _id: learnerId }, { $addToSet: { allotments: assignment } }, { new: true }, (err, learner) => {
         if (err) return q.reject(err);
         else {
             console.log("Learner Uploaded & Updated Successfully =  ", learner, q);

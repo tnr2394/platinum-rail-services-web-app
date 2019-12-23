@@ -18,6 +18,7 @@ adminController.addAdmin = function (req, res, next) {
 
     const newAdmin = new adminModel({
         email: req.body.email,
+        name: req.body.name,
         password: bcrypt.hashSync(req.body.password, 10),
     });
 
@@ -41,12 +42,12 @@ adminController.loginAdmin = function (req, res, next) {
             if (err) {
                 return res.status(500).send({ err })
             } else if (admin) {
-                
+
                 if (bcrypt.compareSync(password, admin.password)) {
                     let newAdmin = JSON.parse(JSON.stringify(admin));
                     newAdmin['userRole'] = 'admin';
                     var token = jwt.sign(newAdmin, 'platinum');
-                    
+
                     sass = req.session;
                     req.session.currentUser = token;
                     sass.currentUser = token;
@@ -58,7 +59,7 @@ adminController.loginAdmin = function (req, res, next) {
                     return res.status(400).json({ message: 'Login failed Invalid password' });
                 }
             } else {
-                return res.status(400).json({ message: 'Login failed Invalid email',admin });
+                return res.status(400).json({ message: 'Login failed Invalid email', admin });
             }
         });
     }).catch((error) => {

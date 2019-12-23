@@ -207,7 +207,7 @@ learnerController.allotAssignments = function (req, res, next) {
                     const defaultPasswordEmailoptions = {
                         to: learners[0].email,
                         subject: `Assignments Alloted`,
-                        template: 'forgot-password'
+                        template: 'allotment-learner'
                     };
 
                     mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
