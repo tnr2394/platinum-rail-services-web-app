@@ -7,23 +7,32 @@
         <input type="file" formControlName="materialfile" name="fileupload"
             (change)="onFileChange($event,'materialfile')" id="file_upload" multiple />
     </button> -->
-
-    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
-        (onFileDropped)="uploadFile($event,'materialfile')">
-        <input hidden type="file" formControlName="materialfile" #fileInput (change)="uploadFile($event,'browse')"
-            multiple>
-    </div>
+    <mat-card>
+        <p>Upload</p>
+        <mat-card-content>
+            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+                (onFileDropped)="uploadFile($event,'materialfile')">
+                <input hidden type="file" formControlName="materialfile" #fileInput (change)="uploadFile($event,'browse')"
+                    multiple>
+                <div class="uploadfile_arrow">
+                    <div class="arrow_div"><i class="fas fa-arrow-circle-up"></i></div>
+                    <p class="drag_file">Drag & Drop</p>
+                    <p>or click to browse files</p>
+                </div>
+            </div>  
+        </mat-card-content>
+    </mat-card>
 
     <div class="files-list" *ngFor="let file of files;let i= index">
-        <p> {{ file }} </p>
-        <button class="delete-file" (click)="deleteAttachment(i)">
-            <i _ngcontent-nga-c17="" class="fas fa-trash" style="color:#FF6565;"></i>
-        </button>
+    {{ file }}
+        <span><button class="delete-file" (click)="deleteAttachment(i)">
+            <i _ngcontent-nga-c17="" class="fas fa-times-circle" style="color:#FF6565;"></i>
+        </button></span>
     </div>
 
 
     <div mat-dialog-actions align="center" *ngIf="!loading">
-        <button mat-flat-button color="primary" type="submit">
+        <button mat-flat-button color="primary" type="submit" class="mt-3">
             <i class="fas fa-save fa-fw"></i>
             Save
         </button>

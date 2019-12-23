@@ -64,14 +64,15 @@
 
     .uploadfilecontainer {
       // background-image: url("../../assets/cloud-2044823_960_720.png");
+      background-color: #F0F2F8 !important;
       background-repeat: no-repeat;
       background-size: 100px;
       background-position: center;
-      height: 200px;
-      width: 80%;
+      height: auto;
+      width: 100%;
       margin: 20px auto;
-      border: 2px dashed #1C8ADB;
-      border-radius: 10px;
+      // border: 2px dashed #1C8ADB;
+      border-radius: 0px;
   }
   
   .uploadfilecontainer:hover {
@@ -79,7 +80,58 @@
       background-color: #9ecbec !important;
       opacity: 0.8;
   }
-  
+  .uploadfile_arrow {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px;
+    .arrow_div{
+        position: relative;
+        color: #DDDFE7;
+        border:3px solid #DDDFE7;
+        border-radius: 50%;
+        padding: 3px;
+        margin-bottom: 15px;
+       &::before {
+         content: "";
+         position: absolute;
+         top: -7px;
+         left: -7px;
+         right: -7px;
+         bottom: -7px;
+         border-radius: 50%;
+         border: 2px solid #DDDFE7;
+         opacity: 0.7;
+       }
+      i {
+        font-size: 60px;
+        color: #DDDFE7;
+        @media (max-width:575px){
+          font-size: 47px;
+        }
+      }
+    }
+    
+  }
+  .drag_file{
+    font-size: 35px;
+    color: #43425D;
+    font-weight: 400;
+    margin-bottom: 0;
+    @media (max-width:575px){
+      font-size: 24px;
+    }
+  }
+  .files-list{
+    margin-top: 20px;
+  }
+  .delete-file{
+    border: none !important;
+    background: transparent !important;
+  }
       
     
  

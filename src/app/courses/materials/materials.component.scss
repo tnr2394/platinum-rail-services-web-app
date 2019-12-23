@@ -64,5 +64,6 @@
 @media (max-width:575px){
     .material_tile_row {
         margin-left: 0px;
+        max-height: 300px !important;
     }
 }

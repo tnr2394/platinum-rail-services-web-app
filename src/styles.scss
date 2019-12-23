@@ -226,5 +226,8 @@ th.mat-header-cell:first-of-type {
     .mat-chip-list-wrapper {
         justify-content: flex-end !important;
         width: 100% !important;
+        @media (max-width:991px) {
+            justify-content: center !important;
+        }
     }
 }
