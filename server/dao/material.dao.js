@@ -66,14 +66,11 @@ material.deleteMaterial = function (materialId) {
                     console.log('Deleted material from material collection');
                     q.resolve({ "deleted": material });
                 });
-
-
             }, err => {
                 console.error(err);
             }).catch(err => {
                 console.error(err);
             })
-
     })
     return q.promise;
 }

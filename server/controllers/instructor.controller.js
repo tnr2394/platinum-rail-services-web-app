@@ -115,7 +115,7 @@ instructorController.loginInstructor = function (req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
     const recaptchaToken = req.body.recaptchaToken;
-
+    
     reCaptchaService.verifyRecaptcha(recaptchaToken).then((Response) => {
         instructorModel.findOne({ email: email }).exec((err, instructor) => {
             if (err) {
@@ -157,10 +157,7 @@ instructorController.forgotPassword = function (req, res, next) {
                 template: 'forgot-password'
             };
 
-            const instructorDetail = {
-                name: instructor.name,
-                newPassword: newPassword
-            }
+            const instructorDetail = { name: instructor.name, newPassword: newPassword }
 
             mailService.sendMail(defaultPasswordEmailoptions, instructorDetail, null, function (err, mailResult) {
                 if (err) {
@@ -169,16 +166,11 @@ instructorController.forgotPassword = function (req, res, next) {
                     return res.status(200).json({ message: 'New Password Send To Email.' });
                 }
             });
-
         } else {
             return res.status(400).json({ message: 'Email Not Found' });
         }
     });
 }
-
-
-
-
 
 
 module.exports = instructorController;
