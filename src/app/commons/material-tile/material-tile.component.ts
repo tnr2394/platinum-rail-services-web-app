@@ -16,9 +16,12 @@ export class MaterialTileComponent implements OnInit {
   editing: boolean;
   loading: boolean;
   backupmaterial: any;
+  bgColors;
+  lastColor;
 
 
   constructor(private _materialService: MaterialService) {
+    this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
 
   }
   ngOnInit() {
@@ -27,6 +30,13 @@ export class MaterialTileComponent implements OnInit {
     // console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
 
+  }
+
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
   }
 
   getMaterialFiles() {
