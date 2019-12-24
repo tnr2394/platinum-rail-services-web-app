@@ -4,7 +4,7 @@
 <form [formGroup]='addJobForm' class="add_job_form">
     <div mat-dialog-content class="container">
         <div class='top-margin' mat-dialog-content>
-            <div class='row mx-0'>
+            <div class='row mx-0 mt-2'>
 
                 <!-- Job Title -->
          
@@ -146,7 +146,7 @@
     </div>
 </form>
 <div mat-dialog-actions>
-    <div class='submitButton pt-3 pb-5'>
+    <div class='submitButton pt-3'>
         <button mat-flat-button class="pull-right resetButton" (click)="ngOnInit();jobDates.clearCheckBoxes()">
             <i class="fa fa-repeat"></i>
             Reset

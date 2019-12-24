@@ -257,3 +257,31 @@ th.mat-header-cell:first-of-type {
         width: 100% !important;
     }
 }
+// calender css
+.cal-month-view {
+    @media (max-width:575px) {
+        .cal-cell-top {
+            min-height: 55px !important;
+        }
+
+        .cal-day-number {
+            font-size: 14px !important;
+            margin-top: 10px !important;
+            margin-right: 10px !important;
+        }
+
+        .cal-open-day-events {
+            font-size: 14px !important;
+        }
+
+        .cal-day-cell {
+            min-height: 55px !important;
+
+            .cal-today {
+                .cal-day-number {
+                    font-size: 20px !important;
+                }
+            }
+        }
+    }
+}

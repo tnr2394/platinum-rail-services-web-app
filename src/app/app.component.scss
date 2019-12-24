@@ -23,9 +23,22 @@ $white : "#ffffff";
 }
 .bg-nav-item{
     height: 150px;
-    padding-top: 55px;
     color: white;
     background: #474747;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    display: flex;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding-left: 5px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    i{
+        margin:0px 15px;
+        font-size: 50px;
+        color: #D9D9D9;
+    }
 }
 .side-nav-item{
     background: #474747 0% 0% no-repeat padding-box;
@@ -40,6 +53,8 @@ $white : "#ffffff";
     color:white;
     border-radius: 0px;
     font-family: 'Source Sans Pro', sans-serif;
-    
+    i{
+        margin: 0px 10px;
+    }
 }
 

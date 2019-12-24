@@ -19,6 +19,12 @@
 .dashBoardSection h2 {
     margin-bottom: 30px;
     font-size: 28px;
+    @media (max-width:767px){
+        font-size: 24px;
+    }
+    @media (max-width:575px){
+        font-size: 20px;
+    }
 }
 .card.table-first-dashboard {
     padding: 20px;
@@ -88,4 +94,14 @@ color: #43425D;
         }
     }
     @media(max-width:991px){
+    }
+    @media (max-width:767px){
+        h1{
+            font-size: 35px;
+        }
+    }
+    @media (max-width:575px){
+        h1{
+            font-size: 30px;
+        }
     }
