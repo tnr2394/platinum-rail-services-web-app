@@ -18,6 +18,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { LearnerSubmissionComponent } from './learners/learner-submission/learner-submission.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
+import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-dashboard.component';
+import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component'
+import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 import { AuthGuard } from './auth.guard';
 
 import { Role } from './_models/role';
@@ -36,7 +39,9 @@ const routes: Routes = [
 	{ path: 'scheduler', component: SchedulerComponent },
 	{ path: 'learners/:jobid', component: LearnersComponent },
 	{ path: 'jobs/:jobid', component: JobComponent },
-	{ path: 'learner/:id', component: SingleLearnerComponent },
+	{ path: 'learner/:id', component: LearnerDashboardComponent },
+	{ path: 'learnerReadingMaterial', component: LearnerReadingMaterialComponent },
+	{ path: 'learnerAllotment/:id', component: LearnerAllotmentTileComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
 	{ path: 'submission', component: SubmissionComponent },
 	{ path: 'submission/learner/:id', component: InstructorSubmissionComponent },
@@ -44,7 +49,8 @@ const routes: Routes = [
 	{ path: 'forgotpassword/:user', component: ForgotpasswordComponent },
 	{ path: 'learner/allotment/:id', component: LearnerSubmissionComponent },
 	{ path: 'resetpassword/:user', component: ResetPasswordComponent },
-	{ path: 'assignment/status/:jobid', component: AssignmentStatusComponent }
+	{ path: 'assignment/status/:jobid', component: AssignmentStatusComponent },
+	// { path: 'learners', component: LearnerDashboardComponent}
 ];
 
 @NgModule({

@@ -8,16 +8,16 @@
         class="fas fa-fw fa-chalkboard"></i> Dashboard</a>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Course</a>
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-book"></i> Course</a>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i>
-       Instructor</a>
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-user"></i>
+      Instructor</a>
 
 
     <a class="side-nav-item"
       *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')"
-      routerLink="/jobs" routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Job</a>
+      routerLink="/jobs" routerLinkActive="active-link" mat-button><i class="fas fa-fw  fa-bank"></i> Job</a>
 
 
     <a class="side-nav-item" *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')"
