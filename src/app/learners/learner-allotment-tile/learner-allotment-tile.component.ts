@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-learner-allotment-tile',
@@ -9,11 +10,15 @@ export class LearnerAllotmentTileComponent implements OnInit {
 
   @Input('learner') learner: any;
 
-  constructor() { }
+  constructor(public _fileService: FileService) { }
 
   ngOnInit() {
-    console.log("file tile initialized file= ", this.learner);
+    console.log("file tile initialized file= ");
   }
+
+  // getFiles(){
+    // this._fileService.getFilesByMaterial()
+  // }
 
 }
 

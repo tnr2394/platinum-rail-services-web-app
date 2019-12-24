@@ -130,6 +130,7 @@ export class MaterialService {
   }
 
   getmaterialsByCourseId(jobId): Observable<any> {
+    console.log("job id", jobId)
     console.log("Getting materials");
     var that = this;
     return new Observable<any>((observer) => {
