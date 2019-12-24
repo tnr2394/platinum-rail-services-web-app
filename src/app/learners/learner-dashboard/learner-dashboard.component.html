@@ -1,0 +1,22 @@
+<mat-card>
+    Reading Materials
+
+    <mat-card-content>
+        <mat-card *ngFor='let material of material' (click)="showMaterialFiles(material)">
+            <span style="padding: 20px; border: 1px solid black;" class="{{getRandomColorClass(i)}}" ><i class="fas fa-book-reader"></i></span>
+            {{getRandomColorClass(i)}}
+                {{material.title}}
+        </mat-card>
+    </mat-card-content>
+
+</mat-card>
+
+<mat-card>
+    Assignments
+    <mat-card-content >
+        <mat-card *ngFor='let assignment of assignments' (click)="showAllotmentTile(assignment)">
+            <i class="fas fa-clipboard-list"></i>
+            {{assignment.assignment.title}}
+        </mat-card>
+    </mat-card-content>
+</mat-card>

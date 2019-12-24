@@ -103,7 +103,7 @@ export class AddJobModalComponent implements OnInit {
   }
 
   addInstructor() {
-    this.instructor = this.addJobForm.get('instructors') as FormArray;
+    this.instructor = this.addJobForm.get('instructor') as FormArray;
     this.instructor.push(this.createInstructor())
   }
 

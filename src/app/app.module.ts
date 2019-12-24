@@ -76,6 +76,8 @@ import { AssignmentStatusComponent } from './clients/assignment-status/assignmen
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 import { AuthGuard } from './auth.guard';
 import { DragDropDirective } from './drag-drop.directive';
+import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-dashboard.component';
+import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,8 @@ import { DragDropDirective } from './drag-drop.directive';
     AssignmentStatusComponent,
     LearnerAllotmentTileComponent,
     DragDropDirective,
+    LearnerDashboardComponent,
+    LearnerReadingMaterialComponent,
 
   ],
   imports: [

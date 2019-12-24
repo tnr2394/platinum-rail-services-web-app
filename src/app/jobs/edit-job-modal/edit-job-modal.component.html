@@ -1,17 +1,17 @@
 <h1 mat-dialog-title><i class="fa fa-edit"></i> Edit Job</h1>
-<mat-divider></mat-divider>
+<mat-divider class="mb-1"></mat-divider>
 
 <form [formGroup]='addJobForm' class="add_job_form">
     <div mat-dialog-content class="container">
         <div class='top-margin' mat-dialog-content>
-            <div class='row'>
+            <div class='row mx-0'>
                 <div class='col center'>
                     <mat-form-field>
                         <input matInput formControlName="title" placeholder="Job Title">
                     </mat-form-field>
                 </div>
 
-                <div class='col center'>
+                <div class='col center edit_color_picker'>
                     <mat-form-field>
                         <input formControlName='jobColor' required [(colorPicker)]="color" matInput
                             [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class='row'>
+            <div class='row mx-0'>
                 <div class='col center'>
                     <mat-form-field>
                         <mat-select placeholder="Client" (selectionChange)="clientChanged($event)"
@@ -42,36 +42,7 @@
                 </div>
             </div>
 
-            <div class='row'>
-                <div class='max-height col center instructor_select'>
-                    <div formArrayName="instructor"
-                        *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
-                        <div [formGroupName]="i">
-                            <div *ngFor='let oneInstructorDetail of selectedInstructor'>
-                                <mat-form-field>
-                                    <mat-select formControlName="singleInstructor" placeholder="Choose Instructor"
-                                        [value]='oneInstructorDetail'>
-                                        <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
-                                            {{instructor.name}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <button class='buttonTransparent' (click)='removeInstructor()'><i
-                                        class="fa fa-times close-color"></i> </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'>
-                        {{oneInstructorDetail}}
-                    <mat-form-field >
-                        <mat-select placeholder="Choose Instructor" [(value)]='oneInstructorDetail' ngModel>
-                            <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
-                                {{instructor.name}}</mat-option>
-                                {{instructor}}
-                        </mat-select>
-                    </mat-form-field>
-                    <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
-                    </div> -->
-                </div>
+            <div class='row mx-0'>
                 <div class='col center course_select'>
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
@@ -89,9 +60,39 @@
                         </div>
                     </div>
                 </div>
+                <div class='max-height col center instructor_select'>
+                    <div formArrayName="instructor"
+                        *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
+                        <div [formGroupName]="i">
+                            <div *ngFor='let oneInstructorDetail of selectedInstructor'>
+                                <mat-form-field>
+                                    <mat-select formControlName="singleInstructor" placeholder="Choose Instructor"
+                                        [value]='oneInstructorDetail'>
+                                        <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                            {{instructor.name}}</mat-option>
+                                    </mat-select>
+                                    <button class='buttonTransparent' (click)='removeInstructor()'><i
+                                            class="fa fa-times close-color"></i> </button>
+                                </mat-form-field>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'>
+                        {{oneInstructorDetail}}
+                    <mat-form-field >
+                        <mat-select placeholder="Choose Instructor" [(value)]='oneInstructorDetail' ngModel>
+                            <mat-option *ngFor='let instructor of instructors' [value]='instructor'>
+                                {{instructor.name}}</mat-option>
+                                {{instructor}}
+                        </mat-select>
+                    </mat-form-field>
+                    <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
+                    </div> -->
+                </div>
             </div>
 
-            <div class='row'>
+            <div class='row mx-0'>
                 <div class='col mb-4'>
                     <button mat-flat-button color="primary" class="buttonHeight" (click)='addInstructor()'><i
                             class="fa fa-user-plus"></i> Add Instructor</button>
@@ -109,7 +110,7 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class='row' style="display: block;">
+            <div class='row mx-0' style="display: block;">
                 <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate'
                     [startingDate]='startingDate' #jobDates></app-job-dates>
             </div>
