@@ -1,8 +1,22 @@
 <mat-card>
-    <mat-card-header>
-        <button>Download</button>
-    </mat-card-header>
-
-    
+    <!-- <mat-card-header> -->
+    <div class="row">
+        <!-- <div > -->
+        <div class="col-md-3 materials_box" *ngFor="let file of fileList">
+            <mat-card class="p-0" style="position: relative;">
+                <mat-card-content class="material_card">
+                    <img src="../../../assets/icon-powerpoint.png" />
+                    <h3 class="file_title">{{file.title}}</h3>
+                </mat-card-content>
+                <div class="download_btn">
+                    <a href="#" class="text-white">
+                        <i class="fas fa-file-download"></i> Dowanload
+                    </a>
+                </div>
+            </mat-card>
+        </div>
+        <!-- </div> -->
+    </div>
+    <!-- </mat-card-header> -->
 </mat-card>
 <app-learner-submission></app-learner-submission>
