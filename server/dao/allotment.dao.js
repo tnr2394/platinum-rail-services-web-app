@@ -436,14 +436,14 @@ allotment.assignmentFilesUsingAllotmentId = (allotmentId) => {
             },
             {
                 $unwind: {
-                    path: '$files',
+                    path: '$assignment.files',
                     preserveNullAndEmptyArrays: true
                 }
             },
             {
                 $lookup: {
                     from: 'files',
-                    localField: 'files',
+                    localField: 'assignment.files',
                     foreignField: '_id',
                     as: 'files',
                 }
@@ -467,7 +467,7 @@ allotment.assignmentFilesUsingAllotmentId = (allotmentId) => {
                 console.log('Error:', error);
                 reject(error);
             } else {
-                console.log('Res', res[0]);
+                console.log('Res', res);
                 resolve(res[0]);
             }
         });

@@ -22,7 +22,7 @@ export class LearnerDashboardComponent implements OnInit {
   material = [];
   bgColors: string[];
   lastColor;
-  constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) { 
+  constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ['bg-info', 'bg-success', 'bg-warning', 'bg-primary', 'bg-danger'];
   }
 
@@ -37,14 +37,14 @@ export class LearnerDashboardComponent implements OnInit {
         console.log("RECEIVED = ", data);
         this.learner = data.pop();
         console.log("THis.learner", this.learner)
-        this.learner.allotments.forEach((assignment)=>{
+        this.learner.allotments.forEach((assignment) => {
           this.assignments = this.learner.allotments;
         })
-        console.log("ASSIGNMENTS",this.assignments[0].assignment.title)
-        if(this.learner.job == null){
+        console.log("ASSIGNMENTS", this.assignments[0].assignment.title)
+        if (this.learner.job == null) {
           console.log("LEARNER HAS NO JOB")
         }
-        else{
+        else {
           this.jobId = this.learner.job._id;
           console.log("JOBID", this.jobId)
           this.getJob()
@@ -53,11 +53,11 @@ export class LearnerDashboardComponent implements OnInit {
     })
   }
 
-  getJob(){
-    this._jobService.getJobById(this.jobId).subscribe((job)=>{
+  getJob() {
+    this._jobService.getJobById(this.jobId).subscribe((job) => {
       console.log("Recieved job", job)
-      job.forEach((job)=>{
-        if(this.jobId == job._id){
+      job.forEach((job) => {
+        if (this.jobId == job._id) {
           this.courseId = job.course._id;
         }
       })
@@ -66,27 +66,34 @@ export class LearnerDashboardComponent implements OnInit {
     })
   }
 
-  getMaterials(){
-    this._courseService.getCourse(this.courseId).subscribe((material)=>{
+  getMaterials() {
+    this._courseService.getCourse(this.courseId).subscribe((material) => {
       console.log("RECIEVED", material)
-      material[0].materials.forEach((material)=>{
-        if(material.type == "Reading"){
+      material[0].materials.forEach((material) => {
+        if (material.type == "Reading") {
           this.material.push(material);
         }
       })
     })
   }
 
-  showMaterialFiles(material){
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
+  }
+
+  showMaterialFiles(material) {
     let navigationExtras: NavigationExtras = {
-      state :{
+      state: {
         material: material
       }
     };
-    this.router.navigateByUrl('/learnerReadingMaterial',navigationExtras);
+    this.router.navigateByUrl('/learnerReadingMaterial', navigationExtras);
   }
 
-  showAllotmentTile(assignment){
+  showAllotmentTile(assignment) {
     console.log("ASSIGNMENT", assignment)
     this.router.navigateByUrl('/learnerAllotment/' + assignment._id);
   }
