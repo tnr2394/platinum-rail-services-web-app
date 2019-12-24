@@ -58,7 +58,7 @@
              <div class="table-responsive">
             <div *ngIf="dataSource">
                 <h1>{{dataSource.length}}</h1>
-                <div *ngIf='dataSource.data.length == "0"'>
+                <div *ngIf='dataSource.data.length == "0"' class="mb-2">
                     Choose Jobs to display learners
                 </div>
                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
