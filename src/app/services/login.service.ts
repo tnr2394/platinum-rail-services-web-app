@@ -61,15 +61,12 @@ export class LoginService {
 
         const learnerDashBoard = '/learner/' + res.profile._id;
 
-
-
-
         if (res.userRole == 'admin') {
           this.router.navigate(['/dashboard']);
         } else if (res.userRole == 'instructor') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/scheduler']);
         } else if (res.userRole == 'client') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/jobs']);
         } else if (res.userRole == 'learner') {
           this.router.navigate([learnerDashBoard]);
         }

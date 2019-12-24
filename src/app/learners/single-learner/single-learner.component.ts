@@ -67,6 +67,7 @@ export class SingleLearnerComponent implements OnInit {
   lastColor;
   learner;
   loading;
+  allotmentsLength;
   data: any;
   displayedColumns: string[] = ['unit', 'assignment', 'status', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -137,6 +138,7 @@ export class SingleLearnerComponent implements OnInit {
         console.log("RECEIVED = ", data)
         this.learner = data.pop();
         console.log("THIS LEARNER ALLOTMENT ARRAY = ");
+        this.allotmentsLength = this.learner.allotments.length;
         this.updateData(this.learner.allotments)
       });
     })

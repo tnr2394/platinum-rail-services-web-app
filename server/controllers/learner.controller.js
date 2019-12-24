@@ -237,9 +237,6 @@ learnerController.allotAssignments = function (req, res, next) {
 
 learnerController.assignmentSubmisssion = function (req, res, next) {
 
-
-    console.log('Req.body---------------', req.body);
-
     let files = [];
 
     if (Array.isArray(req.files.file)) {
@@ -401,6 +398,18 @@ learnerController.removeFileFromAllotment = function (req, res, next) {
             return res.status(500).send({ err })
         })
 };
+
+learnerController.assignmentFilesUsingAllotmentId = function (req, res, next) {
+    const assignmentId = req.query._id;
+    console.log('Allotment List Using assignmentId', assignmentId);
+
+    allotmentDOA.assignmentFilesUsingAllotmentId(assignmentId)
+        .then(function (assignment) {
+            return res.send({ data: { assignment }, msg: "Assigment fetched Successfully" });
+        }).catch(function (error) {
+            return res.status(500).send({ err })
+        })
+}
 
 
 module.exports = learnerController;
