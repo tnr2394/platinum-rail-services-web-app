@@ -1,0 +1,47 @@
+.download_btn{
+    // display: none;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    background-color: #4D4F5C; /* For browsers that do not support gradients */
+  background-image: linear-gradient(#4D4F5C, #0F1012);
+  a{
+      font-size: 20px;
+      i{
+          margin-right: 6px;
+      }
+  }
+}
+
+
+.pdf{
+    height: 156px;
+    width: 156px;
+    background-size:100%;
+    background: url('../../../assets/pdf-icon-round.png');
+    background-repeat: no-repeat;
+}
+
+.ppt{
+    height: 156px;
+    width: 156px;
+    background-size:100%;
+    background: url('../../../assets/icon-powerpoint.png');
+    background-repeat: no-repeat;
+}
+
+.docx{
+    height: 156px;
+    width: 156px;
+    background-size:100%;
+    background: url('../../../assets/icon-docx.png');
+    background-repeat: no-repeat;
+}
+
+.doc{
+    height: 156px;
+    width: 156px;
+    background-size:100%;
+    background: url('../../../assets/icon-docx.png');
+    background-repeat: no-repeat;
+}

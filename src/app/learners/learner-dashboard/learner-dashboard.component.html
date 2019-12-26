@@ -2,10 +2,11 @@
     Reading Materials
 
     <mat-card-content>
-        <mat-card *ngFor='let material of material;' (click)="showMaterialFiles(material)">
+        <mat-card *ngFor='let material of material;let i = index;' (click)="showMaterialFiles(material)">
+            <div class="inner_card">
             <span style="padding: 20px; border: 1px solid black;" class="{{getRandomColorClass(i)}}" ><i class="fas fa-book-reader"></i></span>
-            {{getRandomColorClass(i)}}
                 {{material.title}}
+            </div>
         </mat-card>
     </mat-card-content>
 
