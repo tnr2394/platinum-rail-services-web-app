@@ -26,6 +26,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
     this._fileService.getFilesByMaterial(this.material._id).subscribe((files)=>{
       console.log("FILES", files)
       this.fileList = files;
+      console.log("this.filesList", this.fileList)
     })
   }
 

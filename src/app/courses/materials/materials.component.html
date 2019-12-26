@@ -56,7 +56,9 @@
                                 <material-files [materialId]="selectedMaterial"></material-files>
                             </div>
                             <div class="col-lg-6" *ngIf="!selectedMaterial">
-                                Choose a Material to view its files.
+                                <mat-card class="text-info">
+                                    Choose a Material to view its files.
+                                </mat-card>
                             </div>
                         </div>
                         <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>

@@ -13,8 +13,13 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" *ngIf="files.length > 0">
         <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file">
         </file-tile>
+    </div>
+    <div class="col-12" *ngIf="files.length == 0">
+        <mat-card class="text-info">
+            No Files Found!
+        </mat-card>
     </div>
 </div>

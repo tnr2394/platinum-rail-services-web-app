@@ -3,7 +3,7 @@
     <mat-card-header>
         <button mat-button>Download</button>
     </mat-card-header>
-        <div class="row" *ngIf="fileList > 0">
+        <div class="row" *ngIf="fileList.length > 0">
             <div class="col-md-3 materials_box" *ngFor="let file of fileList">
                 <mat-card class="p-0">
                     <mat-card-content class="material_card">

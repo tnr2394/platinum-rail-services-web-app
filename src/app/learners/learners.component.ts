@@ -102,10 +102,10 @@ export class LearnersComponent implements OnInit {
       console.log("learner added in controller = ", learner);
       if (learner == undefined) return;
       this.learners.push(learner);
-      this.openSnackBar("learner Added Successfully", "Ok");
+      this.openSnackBar("Learner Added Successfully", "Ok");
       this.updateData(this.learners);
     }, err => {
-      return this.openSnackBar("learner could not be Added", "Ok");
+      return this.openSnackBar("Learner could not be Added", "Ok");
     });
   }
 
@@ -135,7 +135,7 @@ export class LearnersComponent implements OnInit {
         }), 1);
       }
       this.updateData(this.learners);
-      this.handleSnackBar({ msg: "learner Deleted Successfully", button: "Ok" });
+      this.handleSnackBar({ msg: "Learner changed successfully...", button: "Ok" });
     });
   }
 
