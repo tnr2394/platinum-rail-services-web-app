@@ -16,7 +16,7 @@ export class LearnerSubmissionComponent implements OnInit {
 
   allotmentId: any;
   assignment;
-  files;
+  files = [];
   statusToChange;
 
   ngOnInit() {
