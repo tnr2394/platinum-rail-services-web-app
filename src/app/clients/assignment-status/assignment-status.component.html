@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12"  *ngIf="!assignmentLength < 1">
+    <div class="col-12" *ngIf="!assignmentLength < 1 && !learnerLength < 1">
         <div class="table-responsive">
             <table class="float-left">
                 <thead>
@@ -39,6 +39,6 @@
     </div>
 
 
-    <p class="m-auto" *ngIf="assignmentLength < 1">No assignments added</p>
+    <p class="m-auto" *ngIf="assignmentLength < 1 || learnerLength < 1">No assignments Alloted</p>
 
 </div>

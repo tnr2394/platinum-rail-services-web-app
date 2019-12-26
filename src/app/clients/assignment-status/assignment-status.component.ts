@@ -32,6 +32,7 @@ export class AssignmentStatusComponent implements OnInit {
   unit;
   unitArray;
   assignmentLength;
+  learnerLength;
 
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
@@ -89,7 +90,8 @@ export class AssignmentStatusComponent implements OnInit {
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
-      console.log('Learner List---------------', this.learner);
+      this.learnerLength = this.learner.length;
+      console.log('Learner List Length',  this.learnerLength);
     });
   }
 }
