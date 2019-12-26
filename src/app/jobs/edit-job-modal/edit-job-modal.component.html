@@ -99,23 +99,21 @@
                 <div class='col col-sm center'>
                     <mat-form-field>
                         <mat-label>Choose Instructors</mat-label>
-                        <mat-select [(value)]="selectedInstructor"
-                            (selectionChange)="instructorChanged($event)" multiple>
+                        <mat-select [(value)]="selectedInstructor" (selectionChange)="instructorChanged($event)"
+                            multiple>
                             <mat-option *ngFor="let instructor of instructors" [value]="instructor">
                                 {{instructor.name}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-
-
             </div>
 
             <div class='row mx-0'>
-                <div class='col mb-4'>
+                <!-- <div class='col mb-4'>
                     <button mat-flat-button color="primary" class="buttonHeight" (click)='addInstructor()'><i
                             class="fa fa-user-plus"></i> Add Instructor</button>
-                </div>
+                </div> -->
                 <div class='col center'>
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="startingDate"
