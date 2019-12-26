@@ -23,7 +23,7 @@ export class LearnerDashboardComponent implements OnInit {
   bgColors: string[];
   lastColor;
   constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
-    this.bgColors = ['bg-info', 'bg-success', 'bg-warning', 'bg-primary', 'bg-danger'];
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
@@ -78,9 +78,17 @@ export class LearnerDashboardComponent implements OnInit {
   }
 
   getRandomColorClass(i) {
+    console.log("i",i);
     var rand = Math.floor(Math.random() * this.bgColors.length);
+    console.log("Before modulo", rand);
     rand = i % 5;
+    console.log("i", i);
+    console.log("After modulo", rand);
     this.lastColor = rand;
+    console.log("LastCOlor", this.lastColor = rand);
+    
+    console.log("Return", this.bgColors[rand]);
+    
     return this.bgColors[rand];
   }
 
