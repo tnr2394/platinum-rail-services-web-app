@@ -285,3 +285,14 @@ th.mat-header-cell:first-of-type {
         }
     }
 }
+.material_tile_table_row{
+    tr.mat-header-row {
+            height: 20px !important;
+            opacity: 0 !important;
+    }
+    td.mat-cell,
+    td.mat-footer-cell,
+    th.mat-header-cell{
+        border: none !important;
+    }
+}

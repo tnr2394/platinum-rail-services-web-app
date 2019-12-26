@@ -34,7 +34,6 @@
                 <div class='col col-sm course_select' formArrayName="course"
                     *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                     <div [formGroupName]="i">
-                        `
                         <mat-form-field>
                             <!-- NEW COURSE SELECT -->
                             <mat-select formControlName="course" placeholder="Choose Course"
