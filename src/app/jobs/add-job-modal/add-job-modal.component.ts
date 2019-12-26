@@ -31,6 +31,8 @@ export class AddJobModalComponent implements OnInit {
   courseDates = [];
   startingDate;
   temp;
+  selectedInstructors;
+  selectedInstructorsForDb = [];
   jobDates: FormArray;
   totalDays = [];
   duration;
@@ -57,6 +59,11 @@ export class AddJobModalComponent implements OnInit {
     this.selectedClient = data.value;
     console.log(this.selectedClient);
   }
+
+  instructorChanged(data) {
+    this.selectedInstructors = data.value;
+  }
+
   courseChanged(data) {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
@@ -79,7 +86,8 @@ export class AddJobModalComponent implements OnInit {
       title: new FormControl('', Validators.required),
       jobColor: new FormControl('', Validators.required),
       client: new FormControl(''),
-      instructor: new FormArray([this.createInstructor()]),
+      // instructor: new FormArray([this.createInstructor()]),
+      instructor: new FormControl(''),
       location: new FormControl(''),
       course: new FormArray([this.course()]),
       startingDate: new FormControl('', Validators.required)
@@ -134,17 +142,23 @@ export class AddJobModalComponent implements OnInit {
       let InstructorsForDataBase = [];
       let instructorsForJobsPage = [];
 
-      this.addJobForm.controls['instructor'].value.forEach((item) => {
-        InstructorsForDataBase.push(item.singleInstructor._id)
-        instructorsForJobsPage.push(item.singleInstructor)
+      // this.addJobForm.controls['instructor'].value.forEach((item) => {
+      //   InstructorsForDataBase.push(item.singleInstructor._id)
+      //   instructorsForJobsPage.push(item.singleInstructor)
+      // })
+
+      this.selectedInstructors.forEach((item) => {
+        this.selectedInstructorsForDb.push(item._id)
       })
+
+
 
       var newJobforDataBase = {
         title: this.addJobForm.controls['title'].value,
         jobColor: this.addJobForm.controls['jobColor'].value,
         client: this.selectedClient._id,
         location: this.addJobForm.controls['location'].value._id,
-        instructors: InstructorsForDataBase,
+        instructors: this.selectedInstructorsForDb,
         course: this.selectedCourse._id,
         startingDate: this.addJobForm.controls['startingDate'].value,
         totalDays: this.totalDays,
@@ -155,7 +169,7 @@ export class AddJobModalComponent implements OnInit {
         title: this.addJobForm.controls['title'].value,
         client: this.selectedClient,
         location: this.addJobForm.controls['location'].value,
-        instructors: instructorsForJobsPage,
+        instructors: this.selectedInstructors,
         course: this.selectedCourse,
         startingDate: this.addJobForm.controls['startingDate'].value,
         singleJobDate: this.singleJobDate,
@@ -163,7 +177,6 @@ export class AddJobModalComponent implements OnInit {
         color: this.addJobForm.controls['jobColor'].value,
       }
 
-      console.log('newJobforJobsPage', newJobforJobsPage)
 
       this._jobService.addJob(newJobforDataBase).subscribe(data => {
         this.data = data;
