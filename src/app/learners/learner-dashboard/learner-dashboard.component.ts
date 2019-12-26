@@ -16,6 +16,7 @@ export class LearnerDashboardComponent implements OnInit {
 
   jobId;
   learner;
+  learnerName = '';
   materialId = [];
   assignments;
   courseId;
@@ -36,11 +37,13 @@ export class LearnerDashboardComponent implements OnInit {
       this._learnerService.getLearner(params['id']).subscribe(data => {
         console.log("RECEIVED = ", data);
         this.learner = data.pop();
-        console.log("THis.learner", this.learner)
+        console.log("This.learner", this.learner)
+        this.learnerName = this.learner.name;
         this.learner.allotments.forEach((assignment) => {
           this.assignments = this.learner.allotments;
         })
-        console.log("ASSIGNMENTS", this.assignments[0].assignment.title)
+        console.log("ASSIGNMENTS", this.assignments)
+        // console.log("ASSIGNMENTS", this.assignments.pop().assignment.title)
         if (this.learner.job == null) {
           console.log("LEARNER HAS NO JOB")
         }
@@ -61,7 +64,6 @@ export class LearnerDashboardComponent implements OnInit {
           this.courseId = job.course._id;
         }
       })
-      // console.log("course id", this.courseId)
       this.getMaterials();
     })
   }
@@ -69,26 +71,20 @@ export class LearnerDashboardComponent implements OnInit {
   getMaterials() {
     this._courseService.getCourse(this.courseId).subscribe((material) => {
       console.log("RECIEVED", material)
-      material[0].materials.forEach((material) => {
+      let recievedMaterial = material.pop()
+      recievedMaterial.materials.forEach((material) => {
         if (material.type == "Reading") {
           this.material.push(material);
         }
+        console.log("Reading material is", this.material.length)
       })
     })
   }
 
   getRandomColorClass(i) {
-    console.log("i",i);
     var rand = Math.floor(Math.random() * this.bgColors.length);
-    console.log("Before modulo", rand);
     rand = i % 5;
-    console.log("i", i);
-    console.log("After modulo", rand);
     this.lastColor = rand;
-    console.log("LastCOlor", this.lastColor = rand);
-    
-    console.log("Return", this.bgColors[rand]);
-    
     return this.bgColors[rand];
   }
 
@@ -103,7 +99,12 @@ export class LearnerDashboardComponent implements OnInit {
 
   showAllotmentTile(assignment) {
     console.log("ASSIGNMENT", assignment)
-    this.router.navigateByUrl('/learnerAllotment/' + assignment._id);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        assignment: assignment
+      }
+    };
+    this.router.navigateByUrl('/learnerAllotment/' + assignment._id, navigationExtras);
   }
 
 

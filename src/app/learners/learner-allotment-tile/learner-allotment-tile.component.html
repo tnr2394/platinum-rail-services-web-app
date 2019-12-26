@@ -1,10 +1,9 @@
+<h3>{{assignment.assignment.title}}</h3>
 <mat-card>
-    <!-- <mat-card-header> -->
-    <div class="row">
+    <div class="row" *ngIf="fileList.length > 0">
         <div class="col-md-3 materials_box" *ngFor="let file of fileList">
             <mat-card class="p-0">
                 <mat-card-content class="material_card">
-                    <!-- <img src="../../../assets/icon-powerpoint.png" /> -->
                     <div [ngClass]="file.extension"> </div>
                     <h3 class="file_title">{{file.title}}</h3>
                 </mat-card-content>
@@ -16,8 +15,15 @@
             </mat-card>
         </div>
     </div>
-
-    <!-- </mat-card-header> -->
+    <div class="row" *ngIf="fileList.length == 0">
+        <div class="col-md-5 materials_box">
+            <mat-card>
+                <mat-card-header>
+                    <h5 class="text-info">No Files Found!</h5>
+                </mat-card-header>
+            </mat-card>
+        </div>
+    </div>
 </mat-card>
 
 <app-learner-submission></app-learner-submission>
