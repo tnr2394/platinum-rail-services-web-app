@@ -30,17 +30,17 @@
                         <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-6">
+                    <div class="row material_tile_table_row">
+                        <div class="col-lg-6 all_material_tile">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                 <!-- Title Column -->
                                 <ng-container matColumnDef="Materials">
-                                    <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+                                    <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
                                         NAME
                                     </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let material">
-                                        <div class="row material_tile_row" style="max-height: 500px;">
+                                        <div class="row material_tile_row">
                                             <div class='materialsDiaplay'>
                                                 <div class="col-11">
                                                     <material-tile [material]="material"
@@ -78,7 +78,7 @@
                             <material-files [materialId]="selectedMaterial"></material-files>
                         </div>
                         <div class="col-lg-6" *ngIf="!selectedMaterial">
-                            <mat-card class="text-info">
+                            <mat-card class="text-info choose_material">
                                 Choose a Material to view its files.
                             </mat-card>
                         </div>
