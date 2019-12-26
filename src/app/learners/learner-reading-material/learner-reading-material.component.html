@@ -1,11 +1,11 @@
-{{material.title}}
-<mat-card>
-    <mat-card-header>
-        <button mat-button>Download</button>
-    </mat-card-header>
-        <div class="row" *ngIf="fileList > 0">
-            <div class="col-md-3 materials_box" *ngFor="let file of fileList">
-                <mat-card class="p-0">
+<p class="material_main_title">{{material.title}}</p>
+<mat-card class="material_main_card">
+    <!-- <mat-card-header> -->
+        <button mat-button class="bg-info dwnload_all_btn"><i class="fas fa-download"></i> Download All</button>
+    <!-- </mat-card-header> -->
+        <div class="row" *ngIf="fileList.length > 0">
+            <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList">
+                <mat-card class="p-0 all_material_block">
                     <mat-card-content class="material_card">
                         <div [ngClass]="file.extension"> </div>
                         <h3 class="file_title">{{file.title}}</h3>
@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="row" *ngIf="fileList.length == '0'">
-            <div class="col-md-5 materials_box">
+            <div class="col-12 materials_box">
                 <mat-card>
                     <mat-card-header>
-                        <h5 class="text-info">No Files Found!</h5>
+                        <h5 class="text-info mb-0">No Files Found!</h5>
                     </mat-card-header>
                 </mat-card>
             </div>
