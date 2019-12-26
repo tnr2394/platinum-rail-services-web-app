@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileService } from '../../services/file.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -9,15 +9,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./learner-allotment-tile.component.scss']
 })
 export class LearnerAllotmentTileComponent implements OnInit {
-
   @Input('learner') learner: any;
 
-  constructor(public _fileService: FileService, private activatedRoute: ActivatedRoute) { }
+  assignment;
+
+  constructor(public _fileService: FileService, private activatedRoute: ActivatedRoute, private router: Router) { 
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.assignment = this.router.getCurrentNavigation().extras.state.assignment;
+    });
+  }
 
   allotmentId;
-  fileList;
+  fileList = [];
 
   ngOnInit() {
+    console.log("this.assignment", this.assignment)
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.allotmentId = params['id'];
@@ -25,7 +31,6 @@ export class LearnerAllotmentTileComponent implements OnInit {
     console.log("file tile initialized file= ", this.allotmentId);
     this.getAssignmentFileUsingAllotmentId(this.allotmentId);
   }
-
   getAssignmentFileUsingAllotmentId(allotmentId) {
     console.log("getAssignmentFileUsingAllotmentId= ", allotmentId);
     this._fileService.getAssignmentFileUsingAllotmentId(allotmentId).subscribe(data => {

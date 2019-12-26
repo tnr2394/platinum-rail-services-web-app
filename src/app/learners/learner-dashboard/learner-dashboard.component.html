@@ -1,23 +1,56 @@
-<mat-card>
-    Reading Materials
+<h1>Hello {{learnerName}}!</h1>
+<mat-card class="first_card">
+    <mat-card-header>
+        <h3>Reading Materials</h3>
+    </mat-card-header>
 
     <mat-card-content>
-        <mat-card *ngFor='let material of material;let i = index;' (click)="showMaterialFiles(material)">
-            <div class="inner_card">
-            <span style="padding: 20px; border: 1px solid black;" class="{{getRandomColorClass(i)}}" ><i class="fas fa-book-reader"></i></span>
-                {{material.title}}
+        <div class="row" *ngIf='material.length > 0'>
+            <div class="col-md-3 materials_box" *ngFor='let material of material;let i = index;'>
+                <mat-card class="p-0 inner-card"  (click)="showMaterialFiles(material)">
+                    <mat-card-content class="material_card">
+                        <span class="{{getRandomColorClass(i)}}"><i class="fas fa-book-reader icon round"></i></span>
+                        <h5 class="file_title">{{material.title}}</h5>
+                    </mat-card-content>
+                </mat-card>
             </div>
-        </mat-card>
+        </div>
+        <div class="row" *ngIf='material.length == 0'>
+            <div class="col-md-5 materials_box">
+            <mat-card>
+            <mat-card-header>
+                <h5 class="text-info">No Reading Material Found!</h5>
+            </mat-card-header>
+            </mat-card>
+            </div>
+        </div>
     </mat-card-content>
 
 </mat-card>
 
 <mat-card>
-    Assignments
+    <mat-card-header>
+    <h3>Assignments</h3>
+    </mat-card-header>
     <mat-card-content >
-        <mat-card *ngFor='let assignment of assignments' (click)="showAllotmentTile(assignment)">
-            <i class="fas fa-clipboard-list"></i>
-            {{assignment.assignment.title}}
-        </mat-card>
+        <div class="row" *ngIf='assignments != undefined'>
+            <div class="col-md-3 materials_box" *ngFor='let assignment of assignments;let i = index;'>
+                <mat-card class="p-0 inner-card" (click)="showAllotmentTile(assignment)">
+                    <mat-card-content class="material_card">
+                        <span class="{{getRandomColorClass(i)}}"><i class="fas fa-clipboard-list icon"></i></span>
+                        <h5 class="file_title">{{assignment.assignment.title}}</h5>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row" *ngIf='assignments == undefined'>
+            <div class="col-md-5 materials_box">
+                <mat-card>
+                    <mat-card-header>
+                        <h5 class="text-info">No Assignment Found!</h5>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
     </mat-card-content>
 </mat-card>
