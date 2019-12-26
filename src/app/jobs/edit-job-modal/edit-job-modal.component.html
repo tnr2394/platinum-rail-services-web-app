@@ -60,8 +60,8 @@
                         </div>
                     </div>
                 </div>
-                <div class='max-height col center instructor_select'>
-                    <div formArrayName="instructor"
+                <!-- <div class='max-height col center instructor_select'> -->
+                <!-- <div formArrayName="instructor"
                         *ngFor="let item of addJobForm.get('instructor').controls; let i = index;">
                         <div [formGroupName]="i">
                             <div *ngFor='let oneInstructorDetail of selectedInstructor'>
@@ -74,11 +74,16 @@
                                     <button class='buttonTransparent' (click)='removeInstructor()'><i
                                             class="fa fa-times close-color"></i> </button>
                                 </mat-form-field>
-                                
+
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'>
+                    </div> -->
+
+
+
+
+
+                <!-- <div class='row' *ngFor='let oneInstructorDetail of selectedInstructor; let i = index;'>
                         {{oneInstructorDetail}}
                     <mat-form-field >
                         <mat-select placeholder="Choose Instructor" [(value)]='oneInstructorDetail' ngModel>
@@ -89,7 +94,21 @@
                     </mat-form-field>
                     <button class='buttonTransparent' (click)='removeInstructor(i)'><i class="fa fa-times close-color"></i> </button>
                     </div> -->
+                <!-- </div> -->
+
+                <div class='col col-sm center'>
+                    <mat-form-field>
+                        <mat-label>Choose Instructors</mat-label>
+                        <mat-select [(value)]="selectedInstructor"
+                            (selectionChange)="instructorChanged($event)" multiple>
+                            <mat-option *ngFor="let instructor of instructors" [value]="instructor">
+                                {{instructor.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
+
+
             </div>
 
             <div class='row mx-0'>
