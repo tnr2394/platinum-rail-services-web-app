@@ -1,17 +1,18 @@
 <div class="row">
     <div class="col-12">
-        
+
         <div class="row">
 
             <div class="col-12 ">
                 <div class="card">
                     <div class="row material_row">
                         <div class="col-6">
-                    
-                              
-                            <h3  class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
+
+
+                            <h3 class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
                                 Materials for :
-                                <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false" matBadgeColor="warn" > {{course.title}}</span>
+                                <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
+                                    matBadgeColor="warn"> {{course.title}}</span>
                             </h3>
                         </div>
                         <div class="col-6">
@@ -28,44 +29,66 @@
                         </mat-form-field>
                         <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     </div>
-                    <!--Card content-->
-                    <div class="card-block material_card">
-                     
-                        <!--Text-->
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="row material_tile_row" style="max-height: 500px; overflow-y:scroll;">
-                                    <div *ngFor="let material of materials " class='materialsDiaplay'>
-                                        <div class="col-11">
-                                            <material-tile [material]="material"
-                                                [isSelected]="(material._id === selectedMaterial)"
-                                                (getFiles)="loadMaterialFiles($event)"
-                                                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-                                        </div>
-                                        <div class="col-1">
-                                            <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                <mat-checkbox (change)='onMaterialSelection($event)' [value]='material'>
-                                                </mat-checkbox>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                <!-- Title Column -->
+                                <ng-container matColumnDef="Materials">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+                                        NAME
+                                    </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let material">
+                                        <div class="row material_tile_row" style="max-height: 500px;">
+                                            <div class='materialsDiaplay'>
+                                                <div class="col-11">
+                                                    <material-tile [material]="material"
+                                                        [isSelected]="(material._id === selectedMaterial)"
+                                                        (getFiles)="loadMaterialFiles($event)"
+                                                        (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                        <mat-checkbox (change)='onMaterialSelection($event)'
+                                                            [value]='material'>
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="col-lg-6" *ngIf="selectedMaterial">
-                                <material-files [materialId]="selectedMaterial"></material-files>
-                            </div>
-                            <div class="col-lg-6" *ngIf="!selectedMaterial">
-                                Choose a Material to view its files.
-                            </div>
+                                    </td>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row
+                                        *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+
+
+
+
+                        <!--Card content-->
+
+                        <div class="col-lg-6" *ngIf="selectedMaterial">
+                            <material-files [materialId]="selectedMaterial"></material-files>
+                        </div>
+                        <div class="col-lg-6" *ngIf="!selectedMaterial">
+                            <mat-card class="text-info">
+                                Choose a Material to view its files.
+                            </mat-card>
+                        </div>
                     </div>
-                    <!-- /.Card content -->
-                    <h1 class="text-center" *ngIf="!materials">
-                        <i class="fa fa-refresh fa-spin fa-fw"></i>
-                    </h1>
+                    <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
                 </div>
+                <!-- /.Card content -->
+                <h1 class="text-center" *ngIf="!materials">
+                    <i class="fa fa-refresh fa-spin fa-fw"></i>
+                </h1>
             </div>
         </div>
     </div>

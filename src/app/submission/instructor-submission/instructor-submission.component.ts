@@ -18,7 +18,7 @@ export class InstructorSubmissionComponent implements OnInit {
   assignment;
   displayData = [];
   display: Boolean = false;
-  files;
+  files = [];
   data: any;
   allotmentId;
 

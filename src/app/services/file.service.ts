@@ -172,18 +172,18 @@ export class FileService {
     });
 
   }
-  getAssignmentFileUsingAllotmentId(id): Observable<any> {
-    console.log("Getting Files");
-    var that = this;
-    return new Observable<any>((observer) => {
-      console.log("Observable");
-      this.http.get(config.baseApiUrl + "learners/assignment/files?_id=" + id).subscribe((res: any) => {
-        console.log("Get Files Response : ", res);
-        observer.next(res.data.assignment.files);
-        observer.complete();
-      })
-    });
-  }
+  // getAssignmentFileUsingAllotmentId(id): Observable<any> {
+  //   console.log("Getting Files");
+  //   var that = this;
+  //   return new Observable<any>((observer) => {
+  //     console.log("Observable");
+  //     this.http.get(config.baseApiUrl + "learners/assignment/files?_id=" + id).subscribe((res: any) => {
+  //       console.log("Get Files Response : ", res);
+  //       observer.next(res.data.assignment.files);
+  //       observer.complete();
+  //     })
+  //   });
+  // }
 
   getAssignmentFileUsingAllotmentId(id): Observable<any> {
     console.log("Getting Files");

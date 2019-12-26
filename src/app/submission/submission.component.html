@@ -24,6 +24,7 @@
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
+                <!-- <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
             </div>
            
             <div class='col-xl-4 col-md-4'>
@@ -58,8 +59,8 @@
              <div class="table-responsive">
             <div *ngIf="dataSource">
                 <h1>{{dataSource.length}}</h1>
-                <div *ngIf='dataSource.data.length == "0"' class="mb-2">
-                    Choose Jobs to display learners
+                <div *ngIf='dataSource.data.length == "0"' class="mb-2 text-info">
+                    Choose Job to display learners!
                 </div>
                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 

@@ -16,8 +16,11 @@
                         <h3 class="submission d-flex justify-content-left align-items-center h-100">Submission</h3>
                     </div>
                 </div>
-                <mat-card>
+                <mat-card *ngIf="files.length > 0">
                     <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file"></file-tile>
+                </mat-card>
+                <mat-card *ngIf="files.length == 0" class="text-info">
+                    NO FILES FOUND
                 </mat-card>
                 <div class="row assignment-status" *ngIf="assignment">
                     <div class="col-3">

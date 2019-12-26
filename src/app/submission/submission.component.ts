@@ -127,6 +127,7 @@ export class SubmissionComponent implements OnInit {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
       this.learners = data;
       this.dataSource = new MatTableDataSource(this.learners);
+      this.dataSource.paginator = this.paginator;
       console.log("-----LEARNERS ARE-----", this.learners)
     });
   }

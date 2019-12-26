@@ -41,7 +41,7 @@ export class MaterialsComponent implements OnInit {
   courseId;
   displayAllocate: Boolean = true;
   allMaterials: Observable<any>;
-  displayedColumns: string[] = ['Materials', 'Assignments'];
+  displayedColumns: string[] = ['Materials'];
   copyMaterials;
 
   // getMaterialsFromComponent;
@@ -53,8 +53,6 @@ export class MaterialsComponent implements OnInit {
     this.paginator = mp;
     this.setDataSourceAttributes();
   }
-
-
 
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
@@ -86,7 +84,7 @@ export class MaterialsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
     console.log("THIS.MATERIALS IS", this.materials);
-   
+
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
     this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
     this.dataSource.paginator = this.paginator;
@@ -140,7 +138,7 @@ export class MaterialsComponent implements OnInit {
   // UTILITY
 
   updateData(courses) {
-    console.log("UPDATING DATA = ", courses)
+    console.log("UPDATING DATA = ", courses, this.paginator)
     this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
     this.dataSource = new MatTableDataSource(courses);
     this.dataSource.paginator = this.paginator;
@@ -228,13 +226,16 @@ export class MaterialsComponent implements OnInit {
     this._courseService.getCourse(courseId).subscribe((courses: any) => {
       this.course = courses.pop();
       this.materials = this.course.materials;
+
+      console.log('This material----------------->>>>>>>>>>>', this.materials);
+
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;
       // console.log("++++++++++", this.materials);    
       // this.materials = this.dataSource.connect()///;
       // console.log("==========", this.materials);
 
-      this.updateData(courses)
+      this.updateData(this.materials)
     });
   }
 }
