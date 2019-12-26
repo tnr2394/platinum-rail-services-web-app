@@ -3,9 +3,28 @@
     <mat-card-header>
         <button mat-button>Download</button>
     </mat-card-header>
-    <mat-card-content *ngFor='let file of files'>
-        FILE
-        <!-- {{file}} -->
-        
-    </mat-card-content>
+        <div class="row" *ngIf="fileList > 0">
+            <div class="col-md-3 materials_box" *ngFor="let file of fileList">
+                <mat-card class="p-0">
+                    <mat-card-content class="material_card">
+                        <div [ngClass]="file.extension"> </div>
+                        <h3 class="file_title">{{file.title}}</h3>
+                    </mat-card-content>
+                    <div class="download_btn">
+                        <a href="{{file.path}}" class="text-white">
+                            <i class="fas fa-file-download"></i>Download
+                        </a>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row" *ngIf="fileList.length == '0'">
+            <div class="col-md-5 materials_box">
+                <mat-card>
+                    <mat-card-header>
+                        <h5 class="text-info">No Files Found!</h5>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
 </mat-card>

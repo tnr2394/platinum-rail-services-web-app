@@ -10,7 +10,7 @@ import { FileService } from '../../services/file.service'
 export class LearnerReadingMaterialComponent implements OnInit {
 
   material;
-  files;
+  fileList = [];
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private _fileService: FileService) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.material = this.router.getCurrentNavigation().extras.state.material;
@@ -25,7 +25,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
   getMaterialFiles() {
     this._fileService.getFilesByMaterial(this.material._id).subscribe((files)=>{
       console.log("FILES", files)
-      this.files = files;
+      this.fileList = files;
     })
   }
 

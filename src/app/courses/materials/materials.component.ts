@@ -42,6 +42,7 @@ export class MaterialsComponent implements OnInit {
   displayAllocate: Boolean = true;
   allMaterials: Observable<any>;
   displayedColumns: string[] = ['Materials', 'Assignments'];
+  copyMaterials;
 
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
@@ -84,9 +85,10 @@ export class MaterialsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    console.log("THIS.MATERIALS IS", this.materials)
+    console.log("THIS.MATERIALS IS", this.materials);
+   
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
-    this.materials = this._filter.filter(filterValue, this.materials, ['title', 'type']);
+    this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
     this.dataSource.paginator = this.paginator;
   }
 
@@ -115,7 +117,7 @@ export class MaterialsComponent implements OnInit {
       console.log("CourseId  ", this.courseId);
       this.getMaterials(this.courseId);
     }
-    console.log("Materials onInit", this.materials)
+    console.log("Materials onInit", this.materials);
     // this.allMaterials = this.dataSource.connect();
   }
   onMaterialSelection(event) {
@@ -227,6 +229,7 @@ export class MaterialsComponent implements OnInit {
       this.course = courses.pop();
       this.materials = this.course.materials;
       this.dataSource = new MatTableDataSource(this.materials);
+      this.copyMaterials = this.materials;
       // console.log("++++++++++", this.materials);    
       // this.materials = this.dataSource.connect()///;
       // console.log("==========", this.materials);
