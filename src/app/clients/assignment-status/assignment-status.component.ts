@@ -31,6 +31,7 @@ export class AssignmentStatusComponent implements OnInit {
   jobId;
   unit;
   unitArray;
+  assignmentLength;
 
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
@@ -42,7 +43,6 @@ export class AssignmentStatusComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.jobId = params['jobid'];
       console.log("Calling getLearners with jobid = ", this.jobId);
-
     });
 
     this.getAssignmentList(this.jobId);
@@ -55,8 +55,7 @@ export class AssignmentStatusComponent implements OnInit {
       this.unit = data[0];
       this.unitArray = data;
       this.assignment = data.assignment;
-
-      console.log('unitArray---------', this.unitArray);
+      this.assignmentLength = this.unit.assignment.length;
     });
   }
 

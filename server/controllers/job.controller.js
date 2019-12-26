@@ -3,6 +3,7 @@
 
 var Q = require('q');
 const ObjectId = require('mongodb').ObjectId;
+const lodash = require('lodash');
 
 // Service Variables
 
@@ -37,12 +38,8 @@ async function allJobs(query) {
 jobController.getJobs = async function (req, res) {
 
 
-    console.log('Req.user-------------->>>>>>>>>', req.user, req.query);
-
-
     var query = {};
-    if (req.query !== {}) {
-        console.log('Inside If------------->>>>>>>>');
+    if (!req.query) {
         query = req.query;
     } else {
         if (req.user.userRole == 'admin') {
@@ -53,7 +50,6 @@ jobController.getJobs = async function (req, res) {
             query = { client: req.user._id }
         }
     }
-
 
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
@@ -83,35 +79,16 @@ jobController.addJob = function (req, res) {
         console.log(err)
         if (err) return res.status(500).send({ err })
         console.log("SENDING RESPONSE Jobs =  ", job)
-
-        const query = { _id: job._id }
-
-        allJobs(query).then(jobs => {
-            getEmailOfInstructor(req.body.instructors).then((res) => {
-                console.log('Email Response:', res);
-
-                const defaultPasswordEmailoptions = {
-                    to: res.email,
-                    subject: `Job Added For You`,
-                    template: 'jobAssign-instructor'
-                };
-
-                jobs[0].instructor = res;
-
-                mailService.sendMail(defaultPasswordEmailoptions, jobs[0], null, function (err, mailResult) {
-                    if (err) {
-                        console.log('error:', error);
-                        return res.status(500).send({ err })
-                    } else {
-                        return res.send({ data: { job } });
-                    }
-                });
-
+        jobController.sendMailToClient(job._id).then((Response) => {
+            jobController.sendMailToInstructor(job._id).then((res) => {
+                return res.send({ data: { job } });
             }).catch((err) => {
                 console.log('ERROR While Instructor Email', err);
+                return res.status(500).send({ err })
             })
         }).catch((error) => {
-            console.log('ERROR While Instructor Email', err);
+            console.log('ERROR While Client Email', error);
+            return res.status(500).send({ err })
         })
     });
 }
@@ -138,6 +115,7 @@ jobController.updateJob = function (req, res) {
         return res.send({ data: { job } });
     });
 }
+
 
 jobController.deleteJob = function (req, res) {
     console.log("Delete job");
@@ -168,9 +146,6 @@ const getEmailOfInstructor = (instructorId) => {
  */
 jobController.assignmentListUsingJobId = function (req, res) {
     let jobId = req.query._id;
-
-
-    console.log("Assignment List------------", jobId);
 
     jobModel.aggregate([
         {
@@ -442,5 +417,71 @@ jobController.assignmentStatusWithLearner = function (req, res) {
     });
 }
 
+
+
+jobController.sendMailToClient = (jobId) => {
+
+    return new Promise((resolve, reject) => {
+        console.log('Send Mail To Client For Job Creation', jobId);
+
+        const query = { _id: jobId }
+
+        allJobs(query).then((jobs) => {
+
+
+            const defaultPasswordEmailoptions = {
+                to: jobs[0].client.email,
+                subject: `Added ` + jobs[0].client.name + ` to a Job`,
+                template: 'jobAssign-client'
+            };
+
+            mailService.sendMail(defaultPasswordEmailoptions, jobs[0], null, function (err, mailResult) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(mailResult)
+                }
+            });
+        }).catch((error) => {
+            reject(error);
+        })
+    })
+}
+
+
+jobController.sendMailToInstructor = (jobId) => {
+
+    return new Promise((resolve, reject) => {
+        console.log('Send Mail To Client For Job Creation', jobId);
+
+        const query = { _id: jobId }
+
+        allJobs(query).then((jobs) => {
+
+            let instructorsArray = [];
+
+            lodash.forEach(jobs[0].instructors, function (single) {
+                instructorsArray.push(single.email);
+            })
+
+
+            const defaultPasswordEmailoptions = {
+                to: instructorsArray,
+                subject: `Added you to a Job`,
+                template: 'jobAssign-instructor'
+            };
+
+            mailService.sendMail(defaultPasswordEmailoptions, jobs[0], null, function (err, mailResult) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(mailResult)
+                }
+            });
+        }).catch((error) => {
+            reject(error);
+        })
+    })
+}
 
 module.exports = jobController;

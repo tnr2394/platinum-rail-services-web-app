@@ -55,8 +55,8 @@
 
 
                                     <!-- Client Column -->
-                                    <ng-container matColumnDef="client">
-                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
+                                    <ng-container matColumnDef="client" >
+                                        <th  class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell
                                             *matCellDef="let job"> {{job.client.name}}
@@ -71,6 +71,7 @@
                                             *matCellDef="let job">
                                             {{job.location.title}} </td>
                                     </ng-container>
+
                                     <!-- instructor Column -->
                                     <ng-container matColumnDef="instructor">
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>
@@ -107,8 +108,9 @@
                                                 <!-- <i class="fa fa-users"></i> -->
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <button mat-button class="text-primary" title="Edit Job"
-                                                (click)="editJobModal(i, job)"><i class="fa fa-edit"></i></button>
+                                            <button *ngIf="currentUser.userRole == 'admin'" mat-button
+                                                class="text-primary" title="Edit Job" (click)="editJobModal(i, job)"><i
+                                                    class="fa fa-edit"></i></button>
                                         </td>
                                     </ng-container>
 

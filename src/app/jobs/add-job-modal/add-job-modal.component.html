@@ -6,6 +6,8 @@
         <div class='top-margin' mat-dialog-content>
             <div class='row mx-0 mt-2'>
 
+                <!-- Job Title -->
+         
                 <div class='col col-sm center'>
                     <mat-form-field>
                         <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial
@@ -15,6 +17,19 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
+
+                <!-- Job Client -->
+
+                <div class='col col-sm center'>
+                    <mat-form-field>
+                        <mat-select formControlName="client" placeholder="Client"
+                            (selectionChange)="clientChanged($event)">
+                            <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
 
                 <div class='col col-sm center add_picker_position'>
                     <mat-form-field>
@@ -27,14 +42,8 @@
                     </mat-form-field>
                 </div>
 
-                <div class='col col-sm center'>
-                    <mat-form-field>
-                        <mat-select formControlName="client" placeholder="Client"
-                            (selectionChange)="clientChanged($event)">
-                            <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
+
+
             </div>
 
             <div class='row mx-0 align-items-center'>
@@ -56,7 +65,7 @@
 
                         <mat-form-field>
                             <!-- NEW COURSE SELECT -->
-                            <mat-select formControlName="course" placeholder="Course"
+                            <mat-select formControlName="course" placeholder="Choose Course"
                                 (selectionChange)="courseChanged($event)" #selected>
                                 <mat-option *ngFor="let course of courses" [value]='course'
                                     matTooltip='{{course.title}}'>

@@ -39,7 +39,9 @@ export class JobsComponent implements OnInit {
   paginator: MatPaginator;
   // MatPaginator Output
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['sr.no', 'client', 'instructor', 'status', 'course', 'actions']
+
+
+  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'actions']
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -64,6 +66,10 @@ export class JobsComponent implements OnInit {
     console.log("DATA SOURCE", this.dataSource)
 
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (this.currentUser.userRole == 'client') {
+      this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'actions']
+    }
     // 
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;    

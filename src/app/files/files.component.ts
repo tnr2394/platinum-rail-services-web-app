@@ -40,10 +40,10 @@ export class FilesComponent implements OnInit, OnChanges {
         this.files.push(data);
       })
 
-      this.openSnackBar("Course Added Successfully", "Ok");
+      this.openSnackBar("File Uploaded Successfully", "Ok");
       this.updateData(this.files);
     }, err => {
-      return this.openSnackBar("Course could not be Added", "Ok");
+      return this.openSnackBar("Something went wrong", "Ok");
     });
   }
   updateData(courses: any) {

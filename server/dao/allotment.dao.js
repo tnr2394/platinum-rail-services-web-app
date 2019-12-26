@@ -48,14 +48,13 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
             console.log("Allotment Updated Successfully =  ", allotment, q);
 
             allotmentUsingAllotmentId(allotmentId).then((res) => {
-
                 const defaultPasswordEmailoptions = {
                     to: res.learner.learnerEmail,
-                    subject: `Assignment Submitted`,
+                    subject: `Submission Status:` + res.assignment.assignmentStatus,
                     template: 'submission-instructor'
                 };
 
-                mailService.sendMail(defaultPasswordEmailoptions, res.assignment, null, function (err, mailResult) {
+                mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
                     if (err) {
                         return res.status(500).send({ err })
                     } else {
@@ -123,9 +122,11 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
                         instructorsArray.push(single.email);
                     })
 
+                    var mailSubject = res.client.clientName + '(' + res.client.location + ') ' + 'Assignment ' + res.assignment.assignmentStatus;
+
                     const defaultPasswordEmailoptions = {
                         to: instructorsArray,
-                        subject: `Assignment Submitted`,
+                        subject: mailSubject,
                         template: 'submission-learner'
                     };
 
@@ -244,6 +245,48 @@ const allotmentUsingAllotmentId = (allotmentId) => {
                 }
             },
             {
+                $lookup: {
+                    from: 'clients',
+                    localField: 'job.client',
+                    foreignField: '_id',
+                    as: 'client',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$client',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    localField: 'job.location',
+                    foreignField: '_id',
+                    as: 'location',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$location',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'courses',
+                    localField: 'job.course',
+                    foreignField: '_id',
+                    as: 'course',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$course',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
                 $project: {
                     instructors: {
                         _id: "$instructors._id",
@@ -260,6 +303,14 @@ const allotmentUsingAllotmentId = (allotmentId) => {
                     learner: {
                         learnerEmail: '$learner.email',
                         learnerName: '$learner.name'
+                    },
+                    client: {
+                        clientName: '$client.name',
+                        location: '$location.title'
+                    },
+                    course: {
+                        courseTitle: '$course.title',
+                        courseDuration: '$course.duration'
                     }
                 }
             },
@@ -274,7 +325,14 @@ const allotmentUsingAllotmentId = (allotmentId) => {
                     },
                     learner: {
                         $first: '$learner'
+                    },
+                    client: {
+                        $first: '$client'
+                    },
+                    course: {
+                        $first: '$course'
                     }
+
                 }
             }
         ]).exec((error, res) => {
@@ -349,6 +407,74 @@ allotment.allotmentUsingAssignmentId = function (assignmentId) {
         });
     })
 }
+
+
+
+allotment.assignmentFilesUsingAllotmentId = (allotmentId) => {
+    console.log('Allotment Submission', allotmentId);
+    return new Promise((resolve, reject) => {
+        allotmentModel.aggregate([
+            {
+                $match:
+                {
+                    '_id': ObjectId(allotmentId)
+                },
+            },
+            {
+                $lookup: {
+                    from: 'materials',
+                    localField: 'assignment',
+                    foreignField: '_id',
+                    as: 'assignment',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$assignment',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $unwind: {
+                    path: '$assignment.files',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'files',
+                    localField: 'assignment.files',
+                    foreignField: '_id',
+                    as: 'files',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$files',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    files: {
+                        $push: '$files'
+                    }
+                }
+            }
+        ]).exec((error, res) => {
+            if (error) {
+                console.log('Error:', error);
+                reject(error);
+            } else {
+                console.log('Res', res);
+                resolve(res[0]);
+            }
+        });
+    })
+}
+
+
 
 module.exports.allotmentUsingAllotmentId = allotmentUsingAllotmentId;
 

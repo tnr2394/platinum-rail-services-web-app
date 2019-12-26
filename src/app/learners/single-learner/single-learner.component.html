@@ -9,7 +9,7 @@
                     {{learner.email}}</p>
             </div>
             <div class="col-lg-3 col-md-6">
-                
+
             </div>
             <div class="col-lg-3 col-md-6">
 
@@ -43,7 +43,8 @@
                                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                                     <mat-icon matSuffix>search</mat-icon>
                                 </mat-form-field>
-                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                </mat-paginator>
 
                             </div>
 
@@ -57,10 +58,11 @@
                                     <!-- Unit Column -->
 
                                     <ng-container matColumnDef="unit">
-                                        <th class="text-center justify-content-center" style="" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="name">Unit </th>
+                                        <th class="text-center justify-content-center" style="" mat-header-cell
+                                            *matHeaderCellDef mat-sort-header="name">Unit </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner">
-                                            <i class="fas fa-file-alt bg-success"></i> Unit-{{learner.assignment.unitNo}}
+                                            <i class="fas fa-file-alt bg-success"></i>
+                                            Unit-{{learner.assignment.unitNo}}
                                         </td>
                                     </ng-container>
 
@@ -68,8 +70,8 @@
                                     <!-- Assignment Column -->
 
                                     <ng-container matColumnDef="assignment">
-                                        <th class="text-center justify-content-center" style="" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="assignment"> Assignment </th>
+                                        <th class="text-center justify-content-center" style="" mat-header-cell
+                                            *matHeaderCellDef mat-sort-header="assignment"> Assignment </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let assignment">
                                             Assignment-{{assignment.assignment.assignmentNo}}
                                         </td>
@@ -79,7 +81,8 @@
                                     <!-- Status Column -->
 
                                     <ng-container matColumnDef="status">
-                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
+                                            mat-sort-header>
                                             Status </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let assignment; let i = index;">
@@ -91,19 +94,16 @@
                                     <!-- action Column -->
 
                                     <ng-container matColumnDef="actions">
-                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef>View </th>
+                                        <th class="text-center justify-content-center" mat-header-cell
+                                            *matHeaderCellDef>View </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let assignment; let i = index;">
-                                            <a class="text-primary bold" routerLink="/learner/allotment/{{assignment._id}}">
+                                            <a class="text-primary bold"
+                                                routerLink="/learner/allotment/{{assignment._id}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </ng-container>
-
-
-
-
-
 
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row
@@ -123,6 +123,7 @@
                         <i class="fa fa-refresh fa-spin fa-fw"></i>
                     </h1>
 
+                    <p *ngIf="allotmentsLength < 1" class="text-center">No Assignment Allocated</p>
 
                 </div>
             </div>

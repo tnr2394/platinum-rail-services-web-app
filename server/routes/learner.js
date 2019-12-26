@@ -38,6 +38,11 @@ router.get('/allot-status', learnerController.allotmentUsingAssignmentId);
 router.delete('/allot/files', learnerController.removeFileFromAllotment);
 
 
+router.get('/assignment/files', learnerController.assignmentFilesUsingAllotmentId);
+
+
+
+
 
 
 
