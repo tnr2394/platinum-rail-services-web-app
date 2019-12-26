@@ -123,7 +123,7 @@ export class ClientsComponent implements OnInit {
         }), 1);
       }
       this.updateData(this.clients);
-      this.handleSnackBar({ msg: "Client Deleted Successfully", button: "Ok" });
+      this.handleSnackBar({ msg: "Client changed successfully...", button: "Ok" });
     });
   }
 

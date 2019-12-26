@@ -128,7 +128,7 @@ export class InstructorsComponent implements OnInit {
         }), 1);
       }
       this.updateData(this.instructors);
-      this.handleSnackBar({ msg: "instructor Edited Successfully", button: "Ok" });
+      this.handleSnackBar({ msg: "Changes Made Successfully", button: "Ok" });
     });
   }
 
