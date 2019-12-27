@@ -1,11 +1,11 @@
 <div *ngIf="assignment">
     <div class='row mx-0 mb-4 align-items-center'>
-        <div class='col-lg-9'>
-            <h1 class="assi_submission">Assignment Submission:
-                <span>{{assignment.assignment.title}}</span>
+        <div class='col-lg-8'>
+            <h1 class="assi_submission">Assignment Submission: 
+               <span>{{assignment.assignment.title}}</span>
             </h1>
         </div>
-        <div class='col-lg-3 assignment_status'>
+        <div class='col-lg-4 assignment_status'>
             <mat-chip-list class="status_clock w-100">
                 <i class="fas fa-clock"></i>
                 <mat-chip class='chipColor'>{{assignment.status}}</mat-chip>

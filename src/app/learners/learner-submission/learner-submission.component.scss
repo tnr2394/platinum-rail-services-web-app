@@ -6,6 +6,10 @@
     width: 100%;
     text-align: left;
     padding: 0px 15px;
+    &:active{
+        outline: none !important;
+        box-shadow: none !important;
+    }
     i{
         font-size: 45px;
         @media (max-width:575px){
@@ -43,14 +47,14 @@ div{
     margin-top: 15px;
 }
 .submitted{
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 400;
     justify-content: center;
     align-items: center;
     height: 100%;
     display: flex;
     @media (max-width:767px){
-        font-size: 40px;
+        font-size: 35px;
     }
 }
 .assignment_title{
@@ -93,6 +97,6 @@ div{
         font-size: 50px !important;
     }
     .submitted{
-        font-size: 30px;
+        font-size: 24px;
     }
 }

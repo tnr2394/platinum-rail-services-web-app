@@ -1,3 +1,6 @@
+.login_page{
+    margin-top: -25px;
+}
 .logo_image img {
     width: 100%;
     height: auto;
@@ -15,7 +18,7 @@
 .welcome_msg{
     font-size: 18px;
     color: #4D4F5C;
-    padding: 30px 0px;
+    padding: 25px 0px;
     margin-bottom: 0px;
     // font-weight: 300;
     font-family: 'Source Sans Pro', sans-serif;
@@ -24,7 +27,7 @@ form{
     padding: 0px 50px;
 }
 .mat-input-element {
-    font-size: 18px;
+    font-size: 16px;
     color: #43425D;
 }
 .remember_row{
@@ -46,40 +49,67 @@ form{
 .login_btn{
     color: white;
     background-color: #43425D;
-    padding: 12px 60px;
+    padding: 10px 60px;
+}
+@media (max-width:1600px){
+    .logo_image img{
+         max-width: 350px;
+    }
+    .login_btn {
+        padding: 8px 60px;
+    }
+}
+@media (max-width:1366px){
+    .logo_image img {
+        max-width: 280px;
+    }
+    .welcome_msg {
+        padding: 20px 0px;
+    }
 }
 @media screen and (max-width:991px){
     form {
         padding: 0px 30px;
     }
     .login_btn {
-        padding: 8px 54px;
+        padding: 4px 48px;
     }
     .login_form{
         width: 100% !important;
     }
     .logo_image img {
-        max-width: 370px;
+        max-width: 270px;
+    }
+    .welcome_msg {
+        padding: 15px 0px;
+        font-size: 16px;
     }
 }
 @media screen and (max-width:767px){
     .logo_image img {
-        max-width: 315px;
+        max-width: 230px;
+    }
+    .welcome_msg {
+        padding: 12px 0px;
+        font-size: 15px;
+    }
+    .login_btn{
+        padding: 0px 45px;
+    }
+    label{
+        margin-bottom: 0 !important;
     }
 }
 @media screen and (max-width:575px){
     .logo_image img {
-        max-width: 240px;
+        max-width: 200px;
     }
     .welcome_msg {
         font-size: 14px;
-        padding: 20px 0px;
+        padding: 10px 0px;
     }
     .mat-input-element {
         font-size: 15px;
-    }
-    .login_btn{
-        padding: 4px 45px;
     }
     form {
         padding: 0px 10px;

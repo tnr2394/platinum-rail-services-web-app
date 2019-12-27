@@ -5,14 +5,16 @@ $white : "#ffffff";
     width: 260px !important;  
     background: #3E3E3E 0% 0% no-repeat padding-box;
     background-size: cover; 
+    padding-top: 60px;
 }
 
 .content-container {
     position: absolute;
-    top: 60px;
+    top: 0px;
     bottom: 0px;
     left: 0;
     right: 0;
+    padding-top: 60px;
   }
 
 .active-link{
