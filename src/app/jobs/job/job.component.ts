@@ -66,9 +66,13 @@ export class JobComponent implements OnInit {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
       let learners = [];
       console.log("allocatedLearners", allocatedLearners);
-      allocatedLearners.forEach((learner) => {
-        learners.push({ learner: learner._id, assignments: this.materials });
-      });
+
+      if (allocatedLearners) {
+        allocatedLearners.forEach((learner) => {
+          learners.push({ learner: learner._id, assignments: this.materials });
+        });
+      }
+
       console.log("LEARNERS TO SEND", learners);
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT");

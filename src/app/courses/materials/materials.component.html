@@ -36,7 +36,8 @@
 
                                 <!-- Title Column -->
                                 <ng-container matColumnDef="Materials">
-                                    <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+                                    <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header="title">
                                         NAME
                                     </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let material">
@@ -50,8 +51,8 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                        <mat-checkbox (change)='onMaterialSelection($event)'
-                                                            [value]='material'>
+                                                        <mat-checkbox [ngModel]="selectedCheckbox"
+                                                            (change)='onMaterialSelection($event)' [value]='material'>
                                                         </mat-checkbox>
                                                     </div>
                                                 </div>
@@ -83,7 +84,7 @@
                             </mat-card>
                         </div>
                     </div>
-                    <mat-card  *ngIf="materials.length < 1">
+                    <mat-card *ngIf="materials.length < 1">
                         <h3 class="m-auto text-center text-info py-2 no_found_msg">
                             No Materials Found!
                         </h3>

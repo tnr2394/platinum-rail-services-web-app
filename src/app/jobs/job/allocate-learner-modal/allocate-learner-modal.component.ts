@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
+import { LearnerService } from '../../../services/learner.service';
+
 
 @Component({
   selector: 'app-allocate-learner-modal',
@@ -12,7 +14,7 @@ export class AllocateLearnerModalComponent implements OnInit {
   filter: any;
   searchText;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any,
+  constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any, public _learnerSerice: LearnerService,
     public dialogRef: MatDialogRef<AllocateLearnerModalComponent>, public formBuilder: FormBuilder) { }
 
   learners;
@@ -22,7 +24,15 @@ export class AllocateLearnerModalComponent implements OnInit {
   ngOnInit() {
     console.log("This . dialogData", this.DialogData)
     this.learners = this.DialogData;
+
+
+    this.isChecked()
   }
+  isChecked() {
+    this._learnerSerice.isChecked();
+  }
+
+
 
   onSelectChange(event) {
     // event.source.value

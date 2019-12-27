@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { MaterialService } from '../../services/material.service';
+import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -43,6 +44,7 @@ export class MaterialsComponent implements OnInit {
   allMaterials: Observable<any>;
   displayedColumns: string[] = ['Materials'];
   copyMaterials;
+  selectedCheckbox: Boolean;
 
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
@@ -60,11 +62,19 @@ export class MaterialsComponent implements OnInit {
   }
 
 
-  constructor(public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
+  constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.materials = [];
     // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
+
+    this._learnerSerice.isSelected.subscribe(res => {
+
+      console.log('Res received', res);
+      this.selectedCheckbox = false;
+
+    })
+
   }
 
   ngAfterViewInit() {
