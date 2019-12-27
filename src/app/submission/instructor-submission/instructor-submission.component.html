@@ -34,19 +34,44 @@
                 </div>
 
                 <div class='row' *ngIf="files.length > 0">
-                    <div class="col-12 p-0">
-                        <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file">
-                        </file-tile>
-                    </div>
-                </div>
-                <div class='row' *ngIf="files.length == 0">
-                    <div class="col-12 p-0">
-                    <mat-card class="text-info">
-                        No Files Found!
-                    </mat-card>
-                    </div>
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                        <ng-container matColumnDef="Materials">
+                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                mat-sort-header="title">
+                                NAME
+                            </th>
+
+                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let file">
+                                <div class="row material_tile_row">
+                                    <div class='materialsDiaplay'>
+                                        <div class="col-11">
+                                            <file-tile (deletedFile)="deletedFile($event)" [file]="file">
+                                            </file-tile>
+                                        </div>
+                                    </div>
+                                    <div class='row' *ngIf="files.length == 0">
+                                        <div class="col-12 p-0">
+                                            <mat-card class="text-info">
+                                                No Files Found!
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <thead>
+                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns">
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+
+
             <div class='col-lg-6 status_area'>
                 <div class="col-12">
                     <div class="d-flex justify-content-center align-items-center w-100">
@@ -55,7 +80,7 @@
                             Mark
                             Completed</button>
                     </div>
-                    </div>
+                </div>
                 <div class="col-12 remark_area">
                     <form [formGroup]="remark">
                         <mat-form-field class="example-full-width">
@@ -83,8 +108,8 @@
                 </div>
             </div>
         </div>
-    </mat-card>
+        <!-- </mat-card> -->
 
-    <div *ngIf='!assignment'>
-        {{learner}} Does not have any allocated {{material}} <i class="fa fa-frown-o"></i>
-    </div>
+        <div *ngIf='!assignment'>
+            {{learner}} Does not have any allocated {{material}} <i class="fa fa-frown-o"></i>
+        </div>

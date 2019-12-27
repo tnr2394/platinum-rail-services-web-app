@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LearnerService } from '../../services/learner.service'
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { FilterService } from "../../services/filter.service";
 
 @Component({
   selector: 'app-instructor-submission',
@@ -19,15 +21,18 @@ export class InstructorSubmissionComponent implements OnInit {
   displayData = [];
   display: Boolean = false;
   files = [];
+  copyFiles;
   data: any;
   allotmentId;
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['Materials'];
 
   remark = new FormGroup({
     remark: new FormControl(),
   });
 
 
-  constructor(public _snackBar: MatSnackBar, public _learnerService: LearnerService, public router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public _filter: FilterService, public _snackBar: MatSnackBar, public _learnerService: LearnerService, public router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.learner = this.router.getCurrentNavigation().extras.state.learner;
@@ -35,6 +40,10 @@ export class InstructorSubmissionComponent implements OnInit {
         this.unitNo = this.router.getCurrentNavigation().extras.state.unitNo;
         this.assignmentNo = this.router.getCurrentNavigation().extras.state.assignmentNo;
       }
+      this.files = [];
+      // this.allMaterials = this.materials[];
+      this.dataSource = new MatTableDataSource(this.files);
+
     });
   }
 
@@ -48,26 +57,19 @@ export class InstructorSubmissionComponent implements OnInit {
 
   }
 
+  applyFilter(filterValue: string) {
+    console.log("IN APPLY FILTER", filterValue);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    // console.log("this.dataSource.filter", this.dataSource.filter)
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    console.log("THIS.MATERIALS IS", this.files);
 
-  // getAllotments() {
-  //   // console.log(this.learner);
-  //   this._learnerService.getLearner(this.learner._id).subscribe(data => {
-  //     console.log("RECEIVED = ", data)
-  //     data.forEach((item) => {
-  //       // console.log(item.allotments)
-  //       item.allotments.forEach((item) => {
-  //         if (item.assignment != null) {
-  //           if (item.assignment.title == this.title
-  //             || item.assignmet.unitNo == this.unitNo
-  //             || item.assignment.assignmentNo == this.assignmentNo) {
-  //             this.displayData.push(item)
-  //           }
-  //         }
-  //       })
-  //     })
-  //   });
-  //   console.log("displayData", this.displayData)
-  // }
+    // this.dataSource = this._filter.filter(filterValue, this.files, ['title','type']);
+    this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
+    // this.dataSource.paginator = this.paginator;
+  }
 
   getAllotments(allotmentId) {
     console.log('Allotemnt Id:', allotmentId);
@@ -76,6 +78,8 @@ export class InstructorSubmissionComponent implements OnInit {
       console.log("RECEIVED = ", data[0].files)
       this.assignment = data[0];
       this.files = data[0].files;
+      this.copyFiles = this.files;
+      this.dataSource = new MatTableDataSource(this.files);
     });
   }
 

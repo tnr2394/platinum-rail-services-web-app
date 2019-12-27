@@ -79,8 +79,8 @@ jobController.addJob = function (req, res) {
         console.log(err)
         if (err) return res.status(500).send({ err })
         console.log("SENDING RESPONSE Jobs =  ", job)
-        jobController.sendMailToClient(job._id).then((Response) => {
-            jobController.sendMailToInstructor(job._id).then((res) => {
+        jobController.sendMailToClient(job._id).then((clientResponse) => {
+            jobController.sendMailToInstructor(job._id).then((instructorResponse) => {
                 return res.send({ data: { job } });
             }).catch((err) => {
                 console.log('ERROR While Instructor Email', err);
