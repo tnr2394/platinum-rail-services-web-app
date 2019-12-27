@@ -137,15 +137,14 @@ export class MaterialsComponent implements OnInit {
 
   // UTILITY
 
-  updateData(courses) {
-    console.log("UPDATING DATA = ", courses, this.paginator)
+  updateData(updateData) {
+    console.log("UPDATING DATA Called = ", updateData);
     this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
-    this.dataSource = new MatTableDataSource(courses);
+    this.dataSource = new MatTableDataSource(updateData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
-
   }
 
 
@@ -154,10 +153,9 @@ export class MaterialsComponent implements OnInit {
   addMaterialModal() {
     var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
       if (materials == undefined) return;
-      console.log("Material added in controller = ", materials);
       this.materials.push(materials);
       this.openSnackBar("Material Added Successfully", "Ok");
-      this.updateData(materials);
+      this.updateData(this.materials);
     }, err => {
       return this.openSnackBar("Material could not be Added", "Ok");
     });
@@ -227,7 +225,7 @@ export class MaterialsComponent implements OnInit {
       this.course = courses.pop();
       this.materials = this.course.materials;
 
-      console.log('This material----------------->>>>>>>>>>>', this.materials);
+      console.log('This material----------------->>>>>>>>>>>', this.materials, this.course);
 
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;
