@@ -9,6 +9,7 @@ import { from } from 'rxjs';
 export class MaterialTileComponent implements OnInit {
   @Input('material') material: any;
   @Input('isSelected') isSelected: Boolean;
+  @Input('index') i : any;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   backupMaterial: any;
@@ -21,7 +22,7 @@ export class MaterialTileComponent implements OnInit {
 
 
   constructor(private _materialService: MaterialService) {
-    this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
+    this.bgColors = ["btn-info", "btn-success", "btn-warning", "btn-primary", "btn-danger"];
 
   }
   ngOnInit() {
@@ -29,13 +30,18 @@ export class MaterialTileComponent implements OnInit {
     // this.DeleteMaterial.emit("Hello");
     // console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
+    console.log("INDEX", this.i);
+    
 
   }
 
-  getRandomColorClass(i) {
+  getRandomColorClass() {
+    // let i = Math.floor(Math.random() * this.bgColors.length);
     var rand = Math.floor(Math.random() * this.bgColors.length);
-    rand = i % 5;
+    rand = this.i % 5;
     this.lastColor = rand;
+    console.log("RETURNING", this.bgColors[rand]);
+    
     return this.bgColors[rand];
   }
 

@@ -40,12 +40,13 @@
                                         mat-sort-header="title">
                                         NAME
                                     </th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let material">
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
                                             <div class='materialsDiaplay'>
                                                 <div class="col-11">
                                                     <material-tile [material]="material"
                                                         [isSelected]="(material._id === selectedMaterial)"
+                                                        [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>

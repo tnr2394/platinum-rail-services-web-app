@@ -4,9 +4,8 @@
         <div class="row" *ngIf="!editing">
             <div class="col-xl-2 col-sm-2 text-center">
 
-                <a class="btn btn-primary text-white fab-item ">
+                <a class="btn {{getRandomColorClass()}} text-white fab-item ">
                     <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i>
-                    {{getRandomColorClass(i)}}
                     <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
                 </a>
             </div>
