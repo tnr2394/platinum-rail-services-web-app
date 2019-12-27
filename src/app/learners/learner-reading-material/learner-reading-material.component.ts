@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
+import * as _ from 'lodash';
 
 
 
@@ -18,6 +19,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
 
   material;
   fileList = [];
+  fileListLength;
 
   constructor(private _http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private _fileService: FileService) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -35,6 +37,8 @@ export class LearnerReadingMaterialComponent implements OnInit {
       console.log("FILES", files)
       this.fileList = files;
       console.log("this.filesList", this.fileList)
+      this.fileListLength = this.fileList.length;
+      console.log('File List Length:', this.fileListLength);
     })
   }
 
@@ -44,33 +48,21 @@ export class LearnerReadingMaterialComponent implements OnInit {
     console.log('Download all clicked');
 
     let zip: JSZip = new JSZip();
-    var count = 0;
-    var zipFilename = "zipFilename.zip";
-    var urls = [
-      'https://platinum-rail-services.s3.eu-west-2.amazonaws.com/bharatnatyam.pdf',
-      "https://static.inshorts.com/inshorts/images/v1/variants/jpg/m/2019/12_dec/26_thu/img_1577359501126_991.jpg"
-    ];
-
-    // zip.file("Hello.txt", "Hello World\n");
-    // // var img = zip.folder("images");
-    // // img.file("smile.gif", imgData, { base64: true });
-    // zip.generateAsync({ type: "blob" })
-    //   .then(function (content) {
-    //     // see FileSaver.js
-    //     saveAs(content, "example.zip");
-    //   });
+    let count = 0;
+    var zipFilename = this.material.title + '.zip';
 
 
-    urls.forEach(function (url) {
-      var filename = "filename";
+    _.forEach(this.fileList, (file) => {
+      var filename = file.path.split("/")[3];
       // loading a file and add it in a zip file
-      JSZipUtil.getBinaryContent(url, function (err, data) {
+      JSZipUtil.getBinaryContent(file.path, (err, data) => {
         if (err) {
           throw err; // or handle the error
         }
         zip.file(filename, data, { binary: true });
         count++;
-        if (count == urls.length) {
+
+        if (count == this.fileList.length) {
           zip.generateAsync({ type: 'blob' }).then(function (content) {
             saveAs(content, zipFilename);
           });
