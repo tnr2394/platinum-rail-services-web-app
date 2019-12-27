@@ -30,7 +30,7 @@
                         <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     </div>
 
-                    <div class="row material_tile_table_row">
+                    <div class="row material_tile_table_row" *ngIf="materials.length > 0">
                         <div class="col-lg-6 all_material_tile">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
@@ -83,7 +83,12 @@
                             </mat-card>
                         </div>
                     </div>
-                    <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                    <mat-card  *ngIf="materials.length < 1">
+                        <h3 class="m-auto text-center text-info py-2">
+                            No Materials Found!
+                        </h3>
+                    </mat-card>
+                    <!-- <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
                 </div>
                 <!-- /.Card content -->
                 <h1 class="text-center" *ngIf="!materials">
