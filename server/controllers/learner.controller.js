@@ -16,7 +16,7 @@ const reCaptchaService = require('../services/reCaptcha.service');
 const learnerDOA = require('../dao/learner.dao');
 const clientDOA = require('../dao/client.dao');
 const allotmentDOA = require('../dao/allotment.dao');
-
+const materialDOA = require('../dao/material.dao');
 const learnerModel = require('../models/learner.model')
 
 
@@ -169,6 +169,7 @@ learnerController.allotAssignments = function (req, res, next) {
 
     async.eachSeries(req.body, (singleLearner, outerCallback) => {
         console.log('Single learner', singleLearner);
+        // assignmentAllotmentMailDataLearner(singleLearner.assignments)
         async.eachSeries(singleLearner.assignments, (singleAssignment, innerCallback) => {
             console.log('singleAssignment', singleAssignment);
             const newAllotment = {
@@ -210,7 +211,10 @@ learnerController.allotAssignments = function (req, res, next) {
                         template: 'allotment-learner'
                     };
 
-                    mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+
+                    console.log('singleLearner.assignments--------', singleLearner);
+
+                    mailService.sendMail(defaultPasswordEmailoptions, singleLearner, null, function (err, mailResult) {
                         if (err) {
                             return res.status(500).send({ err })
                         } else {
@@ -319,6 +323,32 @@ learnerController.forgotPassword = function (req, res, next) {
             return res.status(400).json({ message: 'Email Not Found' });
         }
     });
+}
+
+
+const assignmentAllotmentMailDataLearner = (assignmentArray) => {
+
+    console.log('Assignment Array------->>>>>>>', assignmentArray);
+
+    // let assignmentList = [];
+
+    // return new Promise((resolve, reject) => {
+    //     async.eachSeries(assignmentArray, (singleAssignment, innerCallback) => {
+    //         materialDOA.getMaterialsByQuery(singleAssignment._id).then((response) => {
+    //             assignmentList.push(response)
+    //             innerCallback();
+    //         }).catch((error) => {
+    //             reject(callbackError);
+    //         })
+    //     }, (callbackError, callbackResponse) => {
+    //         if (callbackError) {
+    //             reject(callbackError);
+    //         } else {
+    //             console.log('assignmentList', assignmentList);
+    //             resolve(assignmentList)
+    //         }
+    //     })
+    // })
 }
 
 learnerController.resetPassword = function (req, res, next) {

@@ -120,6 +120,8 @@ export class SubmissionComponent implements OnInit {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
       console.log('Data----->>>>>', data);
       this.assignment = data[0].assignment;
+
+      console.log(' this.assignment length', this.assignment.length);
     });
   }
 

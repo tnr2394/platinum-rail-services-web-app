@@ -106,12 +106,27 @@ export class InstructorSubmissionComponent implements OnInit {
     });
   }
 
+  // UTILITY
+
+  updateData(files) {
+    console.log("UPDATING DATA = ", files)
+    this.dataSource = new MatTableDataSource(files);
+  }
+
+
+
   deletedFile(event) {
     console.log("File Deleted Event : ", event);
     this.openSnackBar("File Deleted Successfully", "Ok");
+
     this.files.splice(this.files.findIndex(function (i) {
       return i._id === event._id;
     }), 1);
+
+    this.updateData(this.files);
   }
+
+
+
 
 }

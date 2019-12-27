@@ -1,11 +1,10 @@
-
-        <div class="row">
-            <div class="col-6 p-0">
-                <h3 class="page-title pl-0">
-                    Submissions
-                </h3>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-6 p-0">
+        <h3 class="page-title pl-0">
+            Submissions
+        </h3>
+    </div>
+</div>
 
 <div class="row" style="min-width: 100%;">
     <!-- <div class='card'> -->
@@ -26,7 +25,7 @@
                 </mat-form-field>
                 <!-- <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
             </div>
-           
+
             <div class='col-xl-4 col-md-4'>
                 <mat-form-field class="job_select_submission">
                     <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
@@ -38,7 +37,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            
+
             <div class='col-xl-4 col-md-4'>
                 <mat-form-field>
                     <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
@@ -56,64 +55,73 @@
         </div>
 
         <div class='row'>
-             <div class="table-responsive">
-            <div *ngIf="dataSource">
-                <h1>{{dataSource.length}}</h1>
-                <div *ngIf='dataSource.data.length == "0"' class="mb-2 text-info">
-                    Choose Job to display learners!
-                </div>
-                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+            <div class="table-responsive">
+                <div *ngIf="dataSource">
+                    <h1>{{dataSource.length}}</h1>
+                    <div *ngIf='dataSource.data.length == "0"' class="mb-2 text-info">
+                        Choose Job to display learners!
+                    </div>
+                    
+                    <div *ngIf='assignment && assignment.length == "0"' class="mb-2 text-info">
+                        No Assignments In This Job!
+                    </div>
 
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="Learner" class="learner_name_submission">
-                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name
-                        </th>
-                        <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell *matCellDef="let learner">
-                            <!-- <div class="learner pl-4">
+
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="Learner" class="learner_name_submission">
+                            <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
+                                mat-sort-header="name"> Name
+                            </th>
+                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
+                                *matCellDef="let learner">
+                                <!-- <div class="learner pl-4">
                                 <i class="fas fa-user-graduate fa-2x mr-2"></i>
                             </div> -->
-                            <span class="learner pl-4"><i class="fas fa-user-graduate fa-2x mr-2"></i><a
-                                    routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
-                        </td>
-                    </ng-container>
+                                <span class="learner pl-4"><i class="fas fa-user-graduate fa-2x mr-2"></i><a
+                                        routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
+                            </td>
+                        </ng-container>
 
-                    <!--Assignment Column -->
+                        <!--Assignment Column -->
 
-                    <ng-container matColumnDef="Assignment">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment</th>
-                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                            Unit- {{learner.assignmentUnit}} Assignment-{{learner.assignmentNo}}
-                        </td>
-                    </ng-container>
+                        <ng-container matColumnDef="Assignment">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment</th>
+                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
+                                Unit- {{learner.assignmentUnit}} Assignment-{{learner.assignmentNo}}
+                            </td>
+                        </ng-container>
 
 
-                    <!-- Status Column -->
-                    <ng-container matColumnDef="Status">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                        <td class="mat-table-cell text-center m-0" mat-cell *matCellDef="let learner; let i = index;">
-                            <div [ngClass]="learner.assignmentStatus" class="text-center">
-                                <span>{{learner.assignmentStatus}}</span>
-                            </div>
-                        </td>
-                    </ng-container>
-                    <!-- View Column -->
-                    <ng-container matColumnDef="View">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
-                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                            <a mat-button class="text-primary bold"
-                                routerLink="/submission/learner/{{learner.allotemntId}}">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        </td>
-                    </ng-container>
-                    <thead>
-                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    </thead>
-                    <tbody>
-                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
-                    </tbody>
-                </table>
-            </div>
+                        <!-- Status Column -->
+                        <ng-container matColumnDef="Status">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                            <td class="mat-table-cell text-center m-0" mat-cell
+                                *matCellDef="let learner; let i = index;">
+                                <div [ngClass]="learner.assignmentStatus" class="text-center">
+                                    <span>{{learner.assignmentStatus}}</span>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <!-- View Column -->
+                        <ng-container matColumnDef="View">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
+                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
+                                <a mat-button class="text-primary bold"
+                                    routerLink="/submission/learner/{{learner.allotemntId}}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+                        </ng-container>
+                        <thead>
+                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        </thead>
+                        <tbody>
+                            <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </mat-card>

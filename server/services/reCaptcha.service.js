@@ -4,7 +4,6 @@ const request = require('request');
 const verifyRecaptcha = (recaptchaToken) => {
     return new Promise((resolve, reject) => {
         const recaptchaSecretKey = process.env.RECAPTCHASECRETKEY;
-
         const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + recaptchaSecretKey + "&response=" + recaptchaToken;
 
         request(verificationURL, function (error, response, body) {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { config } from '../config';
 
 @Injectable({
@@ -8,6 +9,10 @@ import { config } from '../config';
 })
 export class LearnerService {
   learners: any = [];
+
+  @Output() isSelected: EventEmitter<any> = new EventEmitter<any>();
+
+
   constructor(private http: HttpClient) {
     this.learners = [];
     console.log("learners initialized!!!!!!!", this.learners)
@@ -216,6 +221,11 @@ export class LearnerService {
         })
 
     });
+  }
+
+  isChecked() {
+    console.log('Is checked From Service');
+    this.isSelected.emit('false');
   }
 
 

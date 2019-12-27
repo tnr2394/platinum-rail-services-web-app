@@ -20,7 +20,7 @@ export class FileTileComponent implements OnInit {
   isSubmission;
 
   constructor(public _fileService: FileService, private route: ActivatedRoute, public router: Router) {
-    if (this.router.url.includes('submission') || this.router.url.includes('allotment')) {
+    if (this.router.url.includes('submission') || this.router.url.includes('learnerAllotment')) {
       this.isSubmission = true;
     } else {
       this.isSubmission = false;
