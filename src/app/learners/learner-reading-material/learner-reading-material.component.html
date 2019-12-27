@@ -19,6 +19,11 @@
             </mat-card>
         </div>
     </div>
+    <div class="row">
+        <div mat-dialog-actions align='center' *ngIf="loading">
+            Downloading... <i class="fas fa-refresh fa-spin"></i>
+        </div>
+    </div>
     <div class="row" *ngIf="fileList.length == '0'">
         <div class="col-12 materials_box">
             <mat-card>

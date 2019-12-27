@@ -20,6 +20,8 @@ export class LearnerReadingMaterialComponent implements OnInit {
   material;
   fileList = [];
   fileListLength;
+  loading: boolean = false;
+
 
   constructor(private _http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private _fileService: FileService) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -47,6 +49,9 @@ export class LearnerReadingMaterialComponent implements OnInit {
 
     console.log('Download all clicked');
 
+    this.loading = true;
+
+
     let zip: JSZip = new JSZip();
     let count = 0;
     var zipFilename = this.material.title + '.zip';
@@ -66,6 +71,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
           zip.generateAsync({ type: 'blob' }).then(function (content) {
             saveAs(content, zipFilename);
           });
+          this.loading = false;
         }
       });
     });
