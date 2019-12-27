@@ -30,9 +30,7 @@ export class MaterialTileComponent implements OnInit {
     // this.DeleteMaterial.emit("Hello");
     // console.log("material TAB = ",this.material);
     this.backupMaterial = JSON.parse(JSON.stringify(this.material));
-    console.log("INDEX", this.i);
-    
-
+    // console.log("INDEX", this.i);
   }
 
   getRandomColorClass() {
@@ -40,7 +38,7 @@ export class MaterialTileComponent implements OnInit {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = this.i % 5;
     this.lastColor = rand;
-    console.log("RETURNING", this.bgColors[rand]);
+    // console.log("RETURNING", this.bgColors[rand]);
     
     return this.bgColors[rand];
   }
@@ -56,6 +54,7 @@ export class MaterialTileComponent implements OnInit {
     console.log("Enabling Editing")
     this.editing = true;
   }
+
   updateMaterial() {
     this.loading = true;
     this._materialService.editMaterial(this.material).subscribe(updatedmaterial => {
@@ -68,10 +67,10 @@ export class MaterialTileComponent implements OnInit {
       alert("material couldn't be updated. Please try again later.")
       this.material = this.backupMaterial;
       this.editing = false;
-
     })
 
   }
+
   deleteMaterial() {
     this.loading = true;
 
@@ -87,12 +86,7 @@ export class MaterialTileComponent implements OnInit {
       alert("material couldn't be updated. Please try again later.")
       this.material = this.backupMaterial;
       this.editing = false;
-
     })
-
   }
-
-
-
 
 }

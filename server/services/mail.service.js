@@ -32,7 +32,7 @@ function sendMail(options, data, attach, callback) {
     // }));
 
 
-    console.log('Inside send mail function');
+    console.log('Inside send mail function', options, data);
 
     const transporter = mailer.createTransport({
         host: process.env.HOST,
