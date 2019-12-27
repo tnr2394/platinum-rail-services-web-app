@@ -6,7 +6,7 @@
             <div class="col-12 ">
                 <div class="card">
                     <div class="row material_row">
-                        <div class="col-6">
+                        <div class="col-sm-6">
 
 
                             <h3 class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
@@ -15,7 +15,7 @@
                                     matBadgeColor="warn"> {{course.title}}</span>
                             </h3>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6 material_btn_insmall">
                             <button mat-flat-button color="primary" class="pull-right" (click)="addMaterialModal()">
                                 <i class="fas fa-plus fa-fw"></i>
                                 Add Material
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <mat-card  *ngIf="materials.length < 1">
-                        <h3 class="m-auto text-center text-info py-2">
+                        <h3 class="m-auto text-center text-info py-2 no_found_msg">
                             No Materials Found!
                         </h3>
                     </mat-card>

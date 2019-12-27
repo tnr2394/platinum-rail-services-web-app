@@ -34,10 +34,7 @@
         @media (max-width:575px){
             font-size: 20px;
             padding: 0 !important;
-            span{
-                display: block;
-                margin-top: 10px !important;
-            }
+            text-align: center;
         }
     }
 }
@@ -56,11 +53,11 @@
         }
     }
 }
-@media (max-width:991px){
-    .material_tile_row{
-        margin-bottom: 20px;
-    }
-}
+// @media (max-width:991px){
+//     .material_tile_row{
+//         margin-bottom: 20px;
+//     }
+// }
 @media (max-width:575px){
     .material_tile_row {
         margin-left: 0px;
@@ -74,10 +71,19 @@
 .choose_material{
     margin: 20px 0px;
 }
-// .all_material_tile{
-//     max-height: 500px;
-//     overflow-y: scroll;
-// }
+@media (max-width:575px){
+    .material_btn_insmall{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+.all_material_tile{
+    max-height: 500px;
+    overflow-y: scroll;
+}
 // tr.mat-header-row {
 //     height: 20px;
 //     opacity: 0;

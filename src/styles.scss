@@ -296,3 +296,11 @@ th.mat-header-cell:first-of-type {
         border: none !important;
     }
 }
+.no_found_msg{
+    @media (max-width:767px){
+        font-size: 24px;
+    }
+    @media (max-width:575px){
+        font-size: 20px;
+    }
+}
