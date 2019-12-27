@@ -1,8 +1,7 @@
 <h3 class="material_main_title">{{assignment.assignment.title}}</h3>
 
 <mat-card class="material_main_card">
-    <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i class="fas fa-download"></i> Download
-        All</button>
+    <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i class="fas fa-download"></i><span> Download All</span></button>
 
     <div class="row" *ngIf="fileList.length > 0">
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList">

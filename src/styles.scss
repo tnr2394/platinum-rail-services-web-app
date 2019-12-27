@@ -296,11 +296,103 @@ th.mat-header-cell:first-of-type {
         border: none !important;
     }
 }
+.all_file_tile_row{
+    tr.mat-header-row {
+        height: 20px !important;
+        opacity: 0 !important;
+    }
+    thead {
+        background: #d9d9d9 !important;
+    }
+}
 .no_found_msg{
     @media (max-width:767px){
         font-size: 24px;
     }
     @media (max-width:575px){
         font-size: 20px;
+    }
+}
+.button_hover_effect{
+    position: relative;
+    transition: all .35s;
+    span{
+        position: relative;
+        z-index: 5;
+    }
+    &:after{
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border-radius: 4px;
+        background: #116cb8ee;
+        transition: all .35s;
+    }
+    &:hover{
+        &:after{
+            width: 100%;
+        }
+    }
+}
+.close_hover_effect{
+    position: relative;
+    transition: all .35s;
+
+    span {
+        position: relative;
+        z-index: 5;
+    }
+
+    &:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border-radius: 4px;
+        background: #b41f1fe1;
+        transition: all .35s;
+    }
+
+    &:hover {
+        &:after {
+            width: 100%;
+        }
+    }
+}
+.success_hover_effect {
+     position: relative;
+     transition: all .35s;
+
+     span {
+         position: relative;
+         z-index: 5;
+     }
+
+     &:after {
+         position: absolute;
+         content: "";
+         left: 0;
+         top: 0;
+         width: 0;
+         height: 100%;
+         border-radius: 4px;
+         background: #31aa6d;
+         transition: all .35s;
+     }
+
+     &:hover {
+         &:after {
+             width: 100%;
+         }
+     }
+}
+.mat-button{
+    &:active, &:focus{
+        outline:none !important;
     }
 }

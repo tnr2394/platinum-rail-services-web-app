@@ -52,8 +52,9 @@
                     <a mat-button class="text-danger pull-right" (click)="deleteMaterial()">
                         <i class="fas fa-trash"></i>
                     </a>
-                    <button *ngIf="!loading" mat-stroked-button (click)="updateMaterial()" color="primary"><i
-                            class="fas fa-edit fa-fw"></i> Save</button>
+                    <button *ngIf="!loading" mat-stroked-button (click)="updateMaterial()" class="button_hover_effect"
+                        color="primary"><i
+                            class="fas fa-edit fa-fw"></i><span> Save</span></button>
                 </div>
             </form>
         </div>
