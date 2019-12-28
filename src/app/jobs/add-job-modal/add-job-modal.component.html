@@ -91,7 +91,7 @@
                 <div class='col col-sm center'>
                     <mat-form-field>
                         <mat-label>Choose Instructors</mat-label>
-                        <mat-select [formControl]="instructor" (selectionChange)="instructorChanged($event)" multiple>
+                        <mat-select formControlName="instructor" (selectionChange)="instructorChanged($event)" multiple>
                             <mat-option *ngFor="let instructor of instructors" [value]="instructor">{{instructor.name}}
                             </mat-option>
                         </mat-select>
