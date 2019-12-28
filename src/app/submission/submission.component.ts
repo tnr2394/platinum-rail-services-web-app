@@ -68,8 +68,9 @@ export class SubmissionComponent implements OnInit {
   }
 
   jobChanged(event) {
+    this.learners = [];
+    this.dataSource = new MatTableDataSource(this.learners);
     this.selectedJob = event.value._id;
-    // this.getLearners(this.selectedJob);
     this.getAssignmentList(this.selectedJob);
   }
 
@@ -85,6 +86,7 @@ export class SubmissionComponent implements OnInit {
     this.selectedAssignment = event.value;
     console.log('this.selectedAssignment', this.selectedAssignment);
     this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
+
   }
 
   goToInstructorsSubmission(learner) {
