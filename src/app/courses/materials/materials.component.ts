@@ -107,18 +107,18 @@ export class MaterialsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params['id']);
-      this.courseId = params['id'];
+    // this.activatedRoute.params.subscribe(params => {
+    //   console.log('----------COURSEID ON INIT IS----------',params['id']);
+    //   this.courseId = params['id'];
 
-      this.getMaterials(params['courseId']);
+    //   this.getMaterials(params['courseId']);
 
 
-      // if (this.courseId) {
-      //   this.getMaterials(params['courseId']);
-      // }
+    //   // if (this.courseId) {
+    //   //   this.getMaterials(params['courseId']);
+    //   // }
 
-    });
+    // });
     this.courseId = this.data;
     console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
     if (this.courseId) {
@@ -232,6 +232,8 @@ export class MaterialsComponent implements OnInit {
   getMaterials(courseId) {
     console.log("getting materials in materials component for courseId = ", courseId)
     this._courseService.getCourse(courseId).subscribe((courses: any) => {
+      console.log('GETTING ');
+      
       this.course = courses.pop();
       this.materials = this.course.materials;
 

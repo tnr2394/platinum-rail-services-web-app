@@ -30,6 +30,9 @@
       routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-calendar-alt"></i>
       Scheduler</a>
 
+    <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'" routerLink='#'
+      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Dashboard</a>
+
     <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button><i
         class="fa fa-sign-out"></i> Logout</a>
   </mat-sidenav>
