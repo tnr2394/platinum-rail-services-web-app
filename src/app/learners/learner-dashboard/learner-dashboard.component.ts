@@ -15,6 +15,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 export class LearnerDashboardComponent implements OnInit {
 
   jobId;
+  loadingMaterials:Boolean;
   learner;
   learnerName = '';
   materialId = [];
@@ -28,6 +29,7 @@ export class LearnerDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadingMaterials = true;
     this.getAllotments();
   }
 
@@ -72,6 +74,7 @@ export class LearnerDashboardComponent implements OnInit {
     this._courseService.getCourse(this.courseId).subscribe((material) => {
       console.log("RECIEVED", material)
       let recievedMaterial = material.pop()
+      this.loadingMaterials = false;
       recievedMaterial.materials.forEach((material) => {
         if (material.type == "Reading") {
           this.material.push(material);

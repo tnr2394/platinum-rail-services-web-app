@@ -14,6 +14,7 @@ import { FilterService } from "../../services/filter.service";
 export class InstructorSubmissionComponent implements OnInit {
 
   learner;
+  loading:Boolean;
   title;
   unitNo;
   assignmentNo;
@@ -48,7 +49,7 @@ export class InstructorSubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loading =true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.allotmentId = params['id'];
@@ -59,6 +60,7 @@ export class InstructorSubmissionComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     console.log("IN APPLY FILTER", filterValue);
+    this.loading = false;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     // console.log("this.dataSource.filter", this.dataSource.filter)
     if (this.dataSource.paginator) {
@@ -77,6 +79,7 @@ export class InstructorSubmissionComponent implements OnInit {
       console.log("RECEIVED Allotment = ", data[0])
       console.log("RECEIVED = ", data[0].files)
       this.assignment = data[0];
+      this.loading = false;
       this.files = data[0].files;
       this.copyFiles = this.files;
       this.dataSource = new MatTableDataSource(this.files);

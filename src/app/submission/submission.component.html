@@ -121,9 +121,11 @@
                             <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
                         </tbody>
                     </table>
-                    <div class="text-info pt-3 text-center" *ngIf="learners < 1">
+                    <div class="text-info pt-3 text-center" *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
                         No Learners Found!
                     </div>
+                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                    </h3>
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
+  loading:Boolean;
   clients: any = [];
   bgColors: string[];
   lastColor;
@@ -67,6 +68,7 @@ export class ClientsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
+    this.loading = true;
     this.getClients();
   }
 
@@ -155,6 +157,7 @@ export class ClientsComponent implements OnInit {
     var that = this;
     this._clientService.getClients().subscribe((clients) => {
       this.clients = clients;
+      this.loading = false;
       this.updateData(clients)
     });
   }

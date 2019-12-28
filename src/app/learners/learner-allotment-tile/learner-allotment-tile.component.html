@@ -27,6 +27,10 @@
             </mat-card>
         </div>
     </div>
+    <mat-card *ngIf="loadingAssignments == true">
+        <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+        </h3>
+    </mat-card>
     <div mat-dialog-actions align='center' *ngIf="loading">
         Downloading... <i class="fas fa-refresh fa-spin"></i>
     </div>
