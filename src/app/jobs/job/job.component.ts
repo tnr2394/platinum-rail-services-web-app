@@ -65,6 +65,7 @@ export class JobComponent implements OnInit {
 
   allocateLearners() {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
+      if(allocatedLearners == undefined) return
       let learners = [];
       console.log("allocatedLearners", allocatedLearners);
 
