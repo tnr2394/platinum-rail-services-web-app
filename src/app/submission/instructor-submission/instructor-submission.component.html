@@ -108,7 +108,7 @@
             </div>
         </div>
         <!-- </mat-card> -->
-
-        <div *ngIf='!assignment'>
+        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
+        <div *ngIf='loading == false && !assignment'>
             {{learner}} Does not have any allocated {{material}} <i class="fa fa-frown-o"></i>
         </div>

@@ -78,11 +78,11 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- <h1 *ngIf="!(clients)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
                     </div>
                     <!--/.Card content-->
 
-                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="clients.length < 1">
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && clients.length < 1">
                         <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
                         No Client Found!
                     </h3>

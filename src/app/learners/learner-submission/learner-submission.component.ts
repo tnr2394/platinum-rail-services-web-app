@@ -15,11 +15,13 @@ export class LearnerSubmissionComponent implements OnInit {
   constructor(public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
 
   allotmentId: any;
+  loading:Boolean;
   assignment;
   files = [];
   statusToChange;
 
   ngOnInit() {
+    this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.allotmentId = params['id'];
@@ -50,7 +52,7 @@ export class LearnerSubmissionComponent implements OnInit {
       console.log("RECEIVED Allotment = ", data[0])
       console.log("RECEIVED = ", data[0].files)
       this.assignment = data[0];
-
+      this.loading = false;
       console.log('this.assignment----------', this.assignment);
 
       if (this.assignment.status == 'Pending') {

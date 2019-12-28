@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { JobService } from '../../services/job.service';
 import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component';
 
+
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
@@ -64,6 +65,7 @@ export class JobComponent implements OnInit {
 
   allocateLearners() {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
+      if(allocatedLearners == undefined) return
       let learners = [];
       console.log("allocatedLearners", allocatedLearners);
 
@@ -77,6 +79,14 @@ export class JobComponent implements OnInit {
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT");
       });
+      this.openSnackBar("Materials Allocated Successfully", "Ok");
+    }, err => {
+      return this.openSnackBar("Materials could not be allocated", "Ok");
+    });
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 

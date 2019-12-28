@@ -18,6 +18,7 @@ import * as _ from 'lodash';
 export class LearnerReadingMaterialComponent implements OnInit {
 
   material;
+  loadingMaterials:Boolean;
   fileList = [];
   fileListLength;
   loading: boolean = false;
@@ -30,6 +31,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadingMaterials = true;
     console.log("Materials", this.material)
     this.getMaterialFiles();
   }
@@ -38,6 +40,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
     this._fileService.getFilesByMaterial(this.material._id).subscribe((files) => {
       console.log("FILES", files)
       this.fileList = files;
+      this.loadingMaterials = false;
       console.log("this.filesList", this.fileList)
       this.fileListLength = this.fileList.length;
       console.log('File List Length:', this.fileListLength);

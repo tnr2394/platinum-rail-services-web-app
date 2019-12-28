@@ -30,6 +30,7 @@ export class JobsComponent implements OnInit {
   currentPage: any;
   dataSource: MatTableDataSource<any>;
   currentUser;
+  loading : Boolean;
 
   // MatPaginator Inputs
   length;
@@ -102,6 +103,7 @@ export class JobsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
+    this.loading = true;
     // this.getCourses();
     this.getJobs();
     this.currentUser = JSON.parse(localStorage.currentUser);
@@ -257,6 +259,7 @@ export class JobsComponent implements OnInit {
     var that = this;
     this._jobService.getJobs().subscribe((data) => {
       this.jobs = data;
+      this.loading = false;
       console.log('Jobs Received : ', this.jobs);
       this.updateData(this.jobs);
       this.getStatus(data);

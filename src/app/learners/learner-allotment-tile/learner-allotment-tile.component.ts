@@ -18,6 +18,7 @@ export class LearnerAllotmentTileComponent implements OnInit {
   @Input('learner') learner: any;
 
   assignment;
+  loadingAssignments:Boolean;
   loading: boolean = false;
 
   constructor(public _fileService: FileService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -30,6 +31,7 @@ export class LearnerAllotmentTileComponent implements OnInit {
   fileList = [];
 
   ngOnInit() {
+    this.loadingAssignments = true;
     console.log("this.assignment", this.assignment)
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
@@ -42,6 +44,7 @@ export class LearnerAllotmentTileComponent implements OnInit {
     console.log("getAssignmentFileUsingAllotmentId= ", allotmentId);
     this._fileService.getAssignmentFileUsingAllotmentId(allotmentId).subscribe(data => {
       this.fileList = data;
+      this.loadingAssignments = false
       console.log(' this.fileList ======>>>>>>>>>', this.fileList);
     })
   }

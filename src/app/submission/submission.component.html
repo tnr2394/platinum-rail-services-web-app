@@ -58,11 +58,11 @@
             <div class="table-responsive">
                 <div *ngIf="dataSource">
                     <h1>{{dataSource.length}}</h1>
-                    <div *ngIf='dataSource.data.length == "0"' class="mb-2 text-info">
-                        Choose Job to display learners!
+                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined' class="mb-2 text-info text-center">
+                        Choose Job and Assignment Number to display learners!
                     </div>
                     
-                    <div *ngIf='assignment && assignment.length == "0"' class="mb-2 text-info">
+                    <div *ngIf='assignment && assignment.length == "0"' class="mb-2 text-info text-center">
                         No Assignments In This Job!
                     </div>
 
@@ -121,6 +121,11 @@
                             <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
                         </tbody>
                     </table>
+                    <div class="text-info pt-3 text-center" *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
+                        No Learners Found!
+                    </div>
+                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                    </h3>
                 </div>
             </div>
         </div>
