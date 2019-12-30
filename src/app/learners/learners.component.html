@@ -60,8 +60,12 @@
                                                 (click)="editLearnerModal(i, learner)">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a mat-button class="text-primary bold"
-                                                routerLink="/single-learner/{{learner._id}}">
+                                            <a *ngIf="currentUser && (currentUser.userRole == 'client') " mat-button
+                                                class="text-primary bold" routerLink="/single-learner/{{learner._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a *ngIf="currentUser && (currentUser.userRole !== 'client') " mat-button
+                                                class="text-primary bold" routerLink="/learner/{{learner._id}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
