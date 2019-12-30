@@ -51,7 +51,7 @@ export class MaterialsComponent implements OnInit {
   copyMaterials;
   selectedCheckbox: Boolean;
   view: Boolean = false;
-
+  loading: Boolean;
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -118,6 +118,7 @@ export class MaterialsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
+    this.loading = true;
     console.log("this.activatedRoute", this.activatedRoute.params)
     this.activatedRoute.params.subscribe(params => {
       // console.log('----------COURSEID ON INIT IS----------',params['id']);
@@ -181,6 +182,7 @@ export class MaterialsComponent implements OnInit {
     var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
       if (materials == undefined) return;
       this.materials.push(materials);
+      this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
     }, err => {
@@ -255,7 +257,7 @@ export class MaterialsComponent implements OnInit {
       this.materials = this.course.materials;
 
       console.log('This material----------------->>>>>>>>>>>', this.materials, this.course);
-
+      this.loading = false;
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;
       // console.log("++++++++++", this.materials);    
