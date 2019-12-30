@@ -22,6 +22,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./materials.component.scss']
 })
 export class MaterialsComponent implements OnInit {
+  clearCheckBox() {
+    console.log("CHILD METHOD");
+    this.selectedCheckbox = false;
+  }
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
@@ -70,12 +74,12 @@ export class MaterialsComponent implements OnInit {
     // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
 
-    this._learnerSerice.isSelected.subscribe(res => {
+    // this._learnerSerice.isSelected.subscribe(res => {
 
-      console.log('Res received', res);
-      this.selectedCheckbox = false;
+    //   console.log('Res received', res);
+    //   this.selectedCheckbox = false;
 
-    })
+    // })
 
   }
 
