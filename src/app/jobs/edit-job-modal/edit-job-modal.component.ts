@@ -180,6 +180,13 @@ export class EditJobModalComponent implements OnInit {
     console.log('EVENT', event.value)
     this.duration = event.value.duration
   }
+  
+  daySelection(obj) {
+    console.log("-----DAY SELECTION EVENT-----", obj)
+    console.log("OBJ", obj)
+    this.singleJobDate = obj.singleJobDates;
+    this.totalDays = obj.totalDays;
+  }
 
   addJob() {
     let InstructorsID = [];
