@@ -57,6 +57,10 @@ app.use(cors({
 //   res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.83:4200');
 //   next();
 // });
+
+app.locals.moment = require('moment');
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
