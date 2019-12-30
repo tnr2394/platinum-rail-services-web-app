@@ -9,6 +9,10 @@ import { JobService } from '../services/job.service';
 import { CourseService } from '../services/course.service';
 import { MaterialService } from "../services/material.service";
 import { Router, NavigationExtras } from "@angular/router";
+import { Pipe, PipeTransform } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-submission',
@@ -19,7 +23,7 @@ import { Router, NavigationExtras } from "@angular/router";
 export class SubmissionComponent implements OnInit {
   loadingJobs: Boolean;
   loadingAssignments: Boolean
-  loadingLearners:Boolean
+  loadingLearners: Boolean
   learners;
   jobs = [];
   courses;
@@ -28,6 +32,8 @@ export class SubmissionComponent implements OnInit {
   selectedMaterial;
   materials = [];
   title = []
+  options = [];
+  statusList = [];
   unitNo = []
   assignmentNo = [];
   assignment;
@@ -37,6 +43,18 @@ export class SubmissionComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+  // @ViewChild('form') ngForm: NgForm;
+  model = { optionOne: false, optionTwo: false, optionThree: false }
+  formChangesSubscription;
+
+  assignmentStatus = [
+    { id: '0', display: 'Completed', status: 'Completed', checked: false },
+    { id: '0', display: 'Pending', status: 'Pending', checked: false },
+    { id: '1', display: 'Re-Submitted', status: 'Re-submitted', checked: false },
+    { id: '2', display: 'Resubmit Requestted', status: 'Request for resubmission', checked: false },
+    { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
+  ];
+
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -78,6 +96,25 @@ export class SubmissionComponent implements OnInit {
     this.dataSource = new MatTableDataSource(emptyList);
     this.selectedJob = event.value._id;
     this.getAssignmentList(this.selectedJob);
+  }
+
+  statusChanged(data) {
+    this.filterUsingStatus(data.source.value);
+  }
+
+
+  filterUsingStatus(assignment) {
+    if (!assignment.length) {
+      this.dataSource = new MatTableDataSource(this.learners);
+    } else {
+      const finalarray = [];
+      this.learners.forEach((e1) => assignment.forEach((e2) => {
+        if (e1.assignmentStatus == e2) {
+          finalarray.push(e1)
+        }
+      }));
+      this.dataSource = new MatTableDataSource(finalarray);
+    }
   }
 
   assignmentNoChanged(event) {

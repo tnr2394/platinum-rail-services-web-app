@@ -18,7 +18,7 @@
             <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div> -->
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
@@ -26,7 +26,7 @@
                 <!-- <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
             </div>
 
-            <div class='col-xl-4 col-md-4'>
+            <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
                     <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>
@@ -37,8 +37,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-
-            <div class='col-xl-4 col-md-4'>
+            <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
                         <span *ngFor='let assignment of assignment'>
@@ -49,19 +48,31 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+            <div class='col-xl-3 col-md-3'>
+                <mat-form-field>
+                    <mat-label>Choose Status</mat-label>
+                    <mat-select (selectionChange)="statusChanged($event)" multiple>
+                        <mat-option *ngFor="let assign of assignmentStatus" [value]="assign.status">{{assign.display}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
             <div>
                 <mat-paginator class="text-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
         </div>
 
+
         <div class='row'>
             <div class="table-responsive">
                 <div *ngIf="dataSource">
                     <h1>{{dataSource.length}}</h1>
-                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined' class="mb-2 text-info text-center">
+                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined'
+                        class="mb-2 text-info text-center">
                         Choose Job and Assignment Number to display learners!
                     </div>
-                    
+
                     <div *ngIf='assignment && assignment.length == "0"' class="mb-2 text-info text-center">
                         No Assignments In This Job!
                     </div>
@@ -121,10 +132,12 @@
                             <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
                         </tbody>
                     </table>
-                    <div class="text-info pt-3 text-center" *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
+                    <div class="text-info pt-3 text-center"
+                        *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
                         No Learners Found!
                     </div>
-                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
+                        class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h3>
                 </div>
             </div>
