@@ -197,6 +197,7 @@ export class JobsComponent implements OnInit {
       this.jobs.push(job);
       this.updateData(this.jobs);
       this.getStatus(job);
+      this.getJobs();
       this.openSnackBar("Job Added Successfully", "Ok");
     }, err => {
       return this.openSnackBar("Job could not be Added", "Ok");

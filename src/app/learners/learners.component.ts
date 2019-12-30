@@ -26,6 +26,7 @@ export class LearnersComponent implements OnInit {
   paginator: MatPaginator;
   sort: MatSort;
   currentUser;
+  loading: Boolean;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -51,6 +52,7 @@ export class LearnersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       this.jobId = params['jobid'];
       console.log("Calling getLearnersFromComponent with jobid = ", this.jobId);
@@ -168,6 +170,7 @@ export class LearnersComponent implements OnInit {
     console.log("Getting learners for jobid = ", jobId);
     this._learnerService.getLearnersByJobId(jobId).subscribe((learners) => {
       this.learners = learners;
+      this.loading = false;
       console.log("GOT LeARNERS");
       this.updateData(learners)
     });
