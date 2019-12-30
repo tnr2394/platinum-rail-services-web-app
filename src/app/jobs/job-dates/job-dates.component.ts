@@ -34,6 +34,7 @@ export class JobDatesComponent implements OnInit {
   day;
   event;
   totalDays = [];
+  dayExist: Boolean;
 
   constructor(public formBuilder: FormBuilder) { }
 
@@ -74,14 +75,31 @@ export class JobDatesComponent implements OnInit {
   // generateDates() {
     public generateDates(event, dayOfTheWeek, day) {
       console.log("Event", event, "DayOf The week", dayOfTheWeek , "Day", day)
+      this.dayExist = false
       if (event == true) {
-
         if (this.startingDate.getDay() == dayOfTheWeek) {
           console.log(this.startingDate.getDay(), '==', dayOfTheWeek)
           this.courseDates.push(this.startingDate)
           console.log("IN second if")
         }
-        this.totalDays.push(day)
+        if (this.totalDays.length < 1){
+          console.log("CHECKING LENGTH");
+          this.totalDays.push(day)
+        } 
+        else{
+          this.totalDays.forEach((item)=>{
+            console.log("COMPARING EACH ITEM");
+            console.log("ITEM", item, "== Day", day);
+            if(item == day){
+              console.log("ITEM", item,"== Day",day);
+              this.dayExist = true
+              console.log("After comparing DayExists", this.dayExist);
+            }
+          })
+          if (this.dayExist == false) {
+            this.totalDays.push(day)
+          }
+        }
         console.log("this.totaldays", this.totalDays)
 
         let tempDate: Date = this.temp.toDate();
@@ -119,7 +137,8 @@ export class JobDatesComponent implements OnInit {
         }
       }
       this.finalCourseDates = this.courseDates.sort((a, b) => b - a).reverse();
-      this.dateChange.emit({ singleJobDates: this.finalCourseDates, totalDays : this.totalDays})
+      console.log("DATA TO EMIT", this.finalCourseDates.slice(0, this.duration));
+      this.dateChange.emit({ singleJobDates: this.finalCourseDates.slice(0,this.duration), totalDays : this.totalDays})
     }
 
     public EditDates(newDate,arrayOfDays){
@@ -145,5 +164,12 @@ export class JobDatesComponent implements OnInit {
       })
       this.courseDates.length = 0;
       this.finalCourseDates = [];
+    }
+    singleDateChanged(event,j){
+      console.log(this.finalCourseDates[j])
+      console.log("SINGLE DATE CHANGE EVENT",event.value,j)
+      this.finalCourseDates.splice(j, 1, event.value)
+      console.log(this.finalCourseDates[j])
+      this.dateChange.emit({ singleJobDates: this.finalCourseDates.slice(0, this.duration), totalDays: this.totalDays })
     }
 }

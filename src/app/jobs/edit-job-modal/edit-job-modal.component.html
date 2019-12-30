@@ -129,7 +129,7 @@
             </div>
             <div class='row mx-0' style="display: block;">
                 <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate'
-                    [startingDate]='startingDate' #jobDates></app-job-dates>
+                    [startingDate]='startingDate' (dateChange)='daySelection($event)' #jobDates></app-job-dates>
             </div>
         </div>
     </div>

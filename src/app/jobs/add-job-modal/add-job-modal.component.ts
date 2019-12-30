@@ -70,12 +70,15 @@ export class AddJobModalComponent implements OnInit {
 
   daySelection(obj) {
     console.log("-----DAY SELECTION EVENT-----", obj)
-    obj.singleJobDates.forEach((item) => {
-      this.singleJobDate.push(item)
-    })
-    obj.totalDays.forEach((item) => {
-      this.totalDays.push(item)
-    })
+    console.log("OBJ", obj)
+    this.singleJobDate = obj.singleJobDates;
+    this.totalDays = obj.totalDays;
+    // obj.singleJobDates.forEach((item) => {
+    //   this.singleJobDate.push(item)
+    // })
+    // obj.totalDays.forEach((item) => {
+    //   this.totalDays.push(item)
+    // })
   }
 
   ngOnInit() {
@@ -154,7 +157,8 @@ export class AddJobModalComponent implements OnInit {
         color: this.addJobForm.controls['jobColor'].value,
       }
 
-
+      console.log("DATA-----", newJobforDataBase);
+      
       this._jobService.addJob(newJobforDataBase).subscribe(data => {
         this.data = data;
         this.loading = false;
