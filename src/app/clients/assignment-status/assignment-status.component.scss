@@ -53,7 +53,7 @@ i.fas.fa-square-full.fa-2x.Submitted {
     padding: 0;
 }
 th{
-    padding: 0;
+    padding: 0px 4px;
     @media (max-width:575px){
         font-size: 14px;
     }
@@ -73,13 +73,17 @@ th{
     min-width: 140px;
     text-align: center;
     padding: 0px 15px;
-    height: 45px;
+    height: 52px;
+    @media (max-width:575px){
+        height: 45px;
+    }
 }
 table {
     margin: 0;
 
     @media(max-width: 767px) {
-        min-width: auto;
+        min-width: max-content;
+        white-space: nowrap;
     }
 }
 .table-responsive{
