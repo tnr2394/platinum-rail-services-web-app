@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Course } from 'src/app/interfaces/course';
-import {ClientService} from '../../services/client.service'
+import { ClientService } from '../../services/client.service';
+declare var $;
+
 
 @Component({
   selector: 'app-edit-client-modal',
@@ -12,50 +14,63 @@ export class EditClientModalComponent implements OnInit {
   loading: Boolean = false;
   clientData;
   passwordMismatch: boolean;
+  show: boolean;
+  pwd: boolean;
+  show1: boolean;
+  pwd1: boolean;
+
   ngOnInit() {
 
-    console.log("DATA = ",this.data);
+    console.log("DATA = ", this.data);
     this.clientData = JSON.parse(JSON.stringify(this.data));
     this.data.confirmPassword = this.data.password;
+
+    $("#password").click(function () {
+      $("#password").toggleClass("fa-eye fa-eye-slash");
+    });
+
+    $("#cpassword").click(function () {
+      $("#cpassword").toggleClass("fa-eye fa-eye-slash");
+    });
   }
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _clientService: ClientService) {
-      // NO DEFINITION
+    // NO DEFINITION
   }
 
-  validate(data){
-    console.log("Validating ",data);
-    if(!data.name) return false;
-    if(!data.email) return false;
-    if(!data.password) return false;
-    if(!data.confirmPassword) return false;
-    if(data.password !== data.confirmPassword){ 
+  validate(data) {
+    console.log("Validating ", data);
+    if (!data.name) return false;
+    if (!data.email) return false;
+    if (!data.password) return false;
+    if (!data.confirmPassword) return false;
+    if (data.password !== data.confirmPassword) {
       this.passwordMismatch = true;
       return false;
     }
     this.passwordMismatch = false;
     return true;
   }
-  
-  doSubmit(){
-    console.log("Submit ",this.data);
-    console.log("Validating = ",this.validate(this.data));
-    if(!this.validate(this.data)){
+
+  doSubmit() {
+    console.log("Submit ", this.data);
+    console.log("Validating = ", this.validate(this.data));
+    if (!this.validate(this.data)) {
       console.log("RETURNING");
       return;
     }
-  
+
     // Do Submit
     this.loading = true;
-    this._clientService.editClient(this.data).subscribe(client=>{
+    this._clientService.editClient(this.data).subscribe(client => {
       this.clientData = client;
-      console.log("CLIENTDATA = ",client);
+      console.log("CLIENTDATA = ", client);
       this.loading = false;
       this.closoeDialog({
         action: 'edit',
         result: 'success',
         data: this.clientData
       });
-    },err=>{
+    }, err => {
       alert("Error editing Client.")
       this.loading = false;
       this.closoeDialog({
@@ -66,10 +81,10 @@ export class EditClientModalComponent implements OnInit {
     });
   }
 
-  delete(){
-    console.warn("DELETING ",this.data._id);
-    this.loading = true;    
-    this._clientService.deleteClient(this.clientData._id).subscribe(clients=>{
+  delete() {
+    console.warn("DELETING ", this.data._id);
+    this.loading = true;
+    this._clientService.deleteClient(this.clientData._id).subscribe(clients => {
       // this.data = clients;
       this.loading = false;
       this.closoeDialog({
@@ -77,7 +92,7 @@ export class EditClientModalComponent implements OnInit {
         result: 'success',
         data: this.clientData
       });
-    },err=>{
+    }, err => {
       alert("Error deleting course.")
       this.loading = false;
       this.closoeDialog({
@@ -89,9 +104,17 @@ export class EditClientModalComponent implements OnInit {
 
   }
 
+  password() {
+    this.show = !this.show;
+    this.pwd = !this.pwd;
+  }
 
+  cpassword() {
+    this.show1 = !this.show1;
+    this.pwd1 = !this.pwd1
+  }
 
-  closoeDialog(result){
+  closoeDialog(result) {
     this.dialogRef.close(result);
   }
   onNoClick(): void {

@@ -10,8 +10,10 @@
                 <mat-error>Useremail is required</mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width w-100">
-                <input matInput name="password" placeholder="Password" type="password" formControlName="password"
-                    required>
+                <input matInput name="password" [type]="show ? 'text' : 'password'" id="password" placeholder="Password"
+                    type="password" formControlName="password" required>
+                <span toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                    (click)="password()"></span>
                 <mat-error>Password is required.</mat-error>
             </mat-form-field>
 

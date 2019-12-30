@@ -12,11 +12,16 @@
             <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
+                [(ngModel)]='data.password' required>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="password()"></span>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword'
-                required>
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password"
+                [(ngModel)]='data.confirmPassword' required>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="cpassword()"></span>
         </mat-form-field>
     </div>
     <div class="row">
@@ -32,7 +37,7 @@
         <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
             (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
-           <span> Delete</span>
+            <span> Delete</span>
         </button>
 
     </div>
