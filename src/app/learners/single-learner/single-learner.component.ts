@@ -69,7 +69,7 @@ export class SingleLearnerComponent implements OnInit {
   loading;
   allotmentsLength;
   data: any;
-  displayedColumns: string[] = ['unit', 'assignment', 'status', 'actions'];
+  displayedColumns: string[] = ['unit', 'assignment', 'status'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
