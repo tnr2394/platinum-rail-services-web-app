@@ -51,7 +51,7 @@
                                                         (getFiles)="loadMaterialFiles($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>
-                                                <div class="col-1">
+                                                <div class="col-1" *ngIf="view == false">
                                                     <div class="checkbox" *ngIf='material.type == "Assignment"'>
                                                         <mat-checkbox [ngModel]="selectedCheckbox"
                                                             (change)='onMaterialSelection($event)' [value]='material'>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { CourseService } from '../../services/course.service';
 import { MaterialService } from '../../services/material.service';
 import { LearnerService } from '../../services/learner.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -25,6 +25,7 @@ export class MaterialsComponent implements OnInit {
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
 
   materials: any = [];
   bgColors: string[];
@@ -45,6 +46,7 @@ export class MaterialsComponent implements OnInit {
   displayedColumns: string[] = ['Materials'];
   copyMaterials;
   selectedCheckbox: Boolean;
+  view: Boolean = false;
 
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
@@ -62,7 +64,7 @@ export class MaterialsComponent implements OnInit {
   }
 
 
-  constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
+  constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.materials = [];
     // this.allMaterials = this.materials[];
@@ -76,6 +78,11 @@ export class MaterialsComponent implements OnInit {
     })
 
   }
+
+  // public childMethod(){
+  //   console.log("MATERIAL COMPONENT CHILD METHOD")
+  // }
+  
 
   ngAfterViewInit() {
     console.log("AfterViewInit this.courseId = ", this.courseId);
@@ -107,18 +114,24 @@ export class MaterialsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
-    // this.activatedRoute.params.subscribe(params => {
-    //   console.log('----------COURSEID ON INIT IS----------',params['id']);
-    //   this.courseId = params['id'];
+    console.log("this.activatedRoute", this.activatedRoute.params)
+    this.activatedRoute.params.subscribe(params => {
+      // console.log('----------COURSEID ON INIT IS----------',params['id']);
+      // this.courseId = params['id'];
+      // console.log("this.courseID", this.courseId);
+      if (params['courseId'] != undefined){
+        this.getMaterials(params['courseId']);
+      }
+      // if (this.courseId) {
+      //   this.getMaterials(params['courseId']);
+      // }
 
-    //   this.getMaterials(params['courseId']);
-
-
-    //   // if (this.courseId) {
-    //   //   this.getMaterials(params['courseId']);
-    //   // }
-
-    // });
+    });
+    
+    if (this.router.url.includes('/materials')) {
+      this.view = true;
+      console.log("VIEW VALUE IS", this.view)
+    }
     this.courseId = this.data;
     console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
     if (this.courseId) {
