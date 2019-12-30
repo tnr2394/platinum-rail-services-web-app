@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { EditLearnerModalComponent } from '../../learners/edit-learner-modal/edi
 import { Observable } from 'rxjs';
 import { JobService } from '../../services/job.service';
 import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component';
+import { MaterialsComponent } from '../../courses/materials/materials.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.scss']
 })
-export class JobComponent implements OnInit {
+export class JobComponent implements OnInit, AfterViewInit {
   job;
   learners: any = [];
   materials = [];
@@ -31,6 +32,7 @@ export class JobComponent implements OnInit {
   displayAllocate: Boolean = true;
   currentUser;
 
+  @ViewChild(MaterialsComponent, {static:false}) materialsComp:MaterialsComponent;
 
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
@@ -47,6 +49,13 @@ export class JobComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.currentUser);
   }
+  ngAfterViewInit(): void {
+    
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    
+  }
+
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
@@ -79,6 +88,7 @@ export class JobComponent implements OnInit {
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT");
       });
+      this.materialsComp.clearCheckBox();
       this.openSnackBar("Materials Allocated Successfully", "Ok");
     }, err => {
       return this.openSnackBar("Materials could not be allocated", "Ok");

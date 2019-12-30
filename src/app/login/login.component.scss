@@ -46,6 +46,20 @@ form{
         }
     }
 }
+
+span.field-icon.toggle-password{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color:#adb5be;
+    line-height: 47px;
+    z-index: 11;
+}
+
+
+
 .login_btn{
     color: white;
     background-color: #43425D;

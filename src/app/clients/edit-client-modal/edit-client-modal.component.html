@@ -1,41 +1,50 @@
 <h1 mat-dialog-title class="text-primary light-underline">
-    <i class="fas fa-edit fa-fw"></i> 
+    <i class="fas fa-edit fa-fw"></i>
     Edit Client
 </h1>
-<form #editCourse (ngSubmit)="doSubmit()"  >
+<form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>
+            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required
+                cdkFocusInitial>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-email" placeholder="Client Email" [(ngModel)]='data.email' required>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput name="password" placeholder="Password" [(ngModel)]='data.password' required>
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
+                [(ngModel)]='data.password' required>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="password()"></span>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password"
+                [(ngModel)]='data.confirmPassword' required>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="cpassword()"></span>
         </mat-form-field>
-            
+
     </div>
     <div class="row">
-            <!-- <div class="col-4"></div> -->
-            <div class="col-12 text-center" *ngIf="passwordMismatch">
-                    <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please re-enter.</span>
-            </div>
+        <!-- <div class="col-4"></div> -->
+        <div class="col-12 text-center" *ngIf="passwordMismatch">
+            <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please
+                re-enter.</span>
         </div>
-    <div  *ngIf="!loading">
-                    <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
-                            class="fas fa-save fa-fw"></i>
-                        <span>Save</span></button>
-                    <button mat-flat-button class="close_hover_effect" type="button" color="warn" class="text-white pull-right"  (click)="delete()">
-                            <i class="fas fa-trash fa-fw"></i> 
-                            <span> Delete</span>
-                    </button>
-                    
+    </div>
+    <div *ngIf="!loading">
+        <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
+                class="fas fa-save fa-fw"></i>
+            <span>Save</span></button>
+        <button mat-flat-button class="close_hover_effect" type="button" color="warn" class="text-white pull-right"
+            (click)="delete()">
+            <i class="fas fa-trash fa-fw"></i>
+            <span> Delete</span>
+        </button>
+
     </div>
     <div mat-dialog-actions *ngIf="loading" class="text-center">
-            Working... <i class="fas fa-refresh fa-spin"></i>
+        Working... <i class="fas fa-refresh fa-spin"></i>
     </div>
-    
+
 </form>

@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { Observable } from 'rxjs';
+declare var $;
 
 
 @Component({
@@ -20,6 +21,9 @@ export class LoginComponent implements OnInit {
   user: any;
   msg: string = null;
   errmsg: string = null;
+  show: boolean;
+  pwd: boolean;
+
 
   constructor(public route: Router, public dialog: MatDialog, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
     this.loginForm = new FormGroup({
@@ -39,6 +43,12 @@ export class LoginComponent implements OnInit {
     this.router.params.subscribe(param => {
       this.activeRouteName = param.user;
     });
+
+    $(".toggle-password").click(function () {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+    });
+
+
   }
 
   validate(data) {
@@ -67,6 +77,12 @@ export class LoginComponent implements OnInit {
       // return this.openSnackBar("Client could not be Added", "Ok");
     });
   }
+
+  password() {
+    this.show = !this.show;
+    this.pwd = !this.pwd;
+  }
+
 
 
 

@@ -60,8 +60,8 @@
                                     <ng-container matColumnDef="unit">
                                         <th class="text-center justify-content-center" mat-header-cell
                                             *matHeaderCellDef mat-sort-header="name">Unit </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner">
-                                            <i class="fas fa-file-alt bg-success"></i>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner;let i = index">
+                                            <i class="fas fa-file-alt {{getRandomColorClass(i)}}"></i>
                                             Unit-{{learner.assignment.unitNo}}
                                         </td>
                                     </ng-container>
@@ -92,7 +92,7 @@
                                     </ng-container>
 
                                     <!-- action Column -->
-
+<!-- 
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center justify-content-center" mat-header-cell
                                             *matHeaderCellDef>View </th>
@@ -103,7 +103,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row

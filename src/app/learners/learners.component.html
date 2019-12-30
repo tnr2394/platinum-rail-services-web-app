@@ -12,7 +12,7 @@
                                 mat-flat-button color="primary" class="pull-right button_hover_effect"
                                 (click)="addLearnerModal()">
                                 <i class="fas fa-plus fa-fw"></i>
-                               <span> Add learners</span>
+                                <span> Add learners</span>
                             </button>
                         </div>
                         <div class="card-title">
@@ -55,12 +55,17 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> ACTIONS </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let learner; let i = index;">
-                                            <a mat-button class="text-success bold"
+                                            <a *ngIf="currentUser && (currentUser.userRole == 'admin' ||currentUser.userRole == 'instructor') "
+                                                mat-button class="text-success bold"
                                                 (click)="editLearnerModal(i, learner)">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a mat-button class="text-primary bold"
-                                                routerLink="/learner/{{learner._id}}">
+                                            <a *ngIf="currentUser && (currentUser.userRole == 'client') " mat-button
+                                                class="text-primary bold" routerLink="/single-learner/{{learner._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a *ngIf="currentUser && (currentUser.userRole !== 'client') " mat-button
+                                                class="text-primary bold" routerLink="/learner/{{learner._id}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
@@ -76,12 +81,13 @@
                             </div>
 
                         </div>
-                        <!-- <h1 *ngIf="!(learners)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                class="fa fa-cog fa-spin text-info"></i>
+                        </h3>
                     </div>
                     <!--/.Card content-->
 
-                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="learners.length < 1">
-                        <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
                         No Learner Found!
                     </h3>
 

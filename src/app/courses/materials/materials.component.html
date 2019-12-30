@@ -51,7 +51,7 @@
                                                         (getFiles)="loadMaterialFiles($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>
-                                                <div class="col-1">
+                                                <div class="col-1" *ngIf="view == false">
                                                     <div class="checkbox" *ngIf='material.type == "Assignment"'>
                                                         <mat-checkbox [ngModel]="selectedCheckbox"
                                                             (change)='onMaterialSelection($event)' [value]='material'>
@@ -70,6 +70,8 @@
                                     <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
                                 </tbody>
                             </table>
+                            <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                            </h3>
                         </div>
 
 
@@ -86,7 +88,7 @@
                             </mat-card>
                         </div>
                     </div>
-                    <mat-card *ngIf="materials.length < 1">
+                    <mat-card *ngIf="loading == false && materials.length < 1">
                         <h3 class="m-auto text-center text-info py-2 no_found_msg">
                             No Materials Found!
                         </h3>

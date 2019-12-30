@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './jobs/job/job.component';
-import { InstructorsComponent } from './instructors/instructors.component';	
+import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -40,6 +40,7 @@ const routes: Routes = [
 	{ path: 'learners/:jobid', component: LearnersComponent },
 	{ path: 'jobs/:jobid', component: JobComponent },
 	{ path: 'learner/:id', component: LearnerDashboardComponent },
+	{ path: 'single-learner/:id', component: SingleLearnerComponent },
 	{ path: 'learnerReadingMaterial', component: LearnerReadingMaterialComponent },
 	{ path: 'learnerAllotment/:id', component: LearnerAllotmentTileComponent },
 	{ path: 'materials/:courseId', component: MaterialsComponent },
@@ -50,7 +51,6 @@ const routes: Routes = [
 	{ path: 'learner/allotment/:id', component: LearnerSubmissionComponent },
 	{ path: 'resetpassword/:user', component: ResetPasswordComponent },
 	{ path: 'assignment/status/:jobid', component: AssignmentStatusComponent },
-	// { path: 'learners', component: LearnerDashboardComponent}
 ];
 
 @NgModule({

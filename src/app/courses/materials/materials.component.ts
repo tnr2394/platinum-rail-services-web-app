@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { CourseService } from '../../services/course.service';
 import { MaterialService } from '../../services/material.service';
 import { LearnerService } from '../../services/learner.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -22,9 +22,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./materials.component.scss']
 })
 export class MaterialsComponent implements OnInit {
+  clearCheckBox() {
+    console.log("CHILD METHOD");
+    this.selectedCheckbox = false;
+  }
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
 
   materials: any = [];
   bgColors: string[];
@@ -45,7 +50,8 @@ export class MaterialsComponent implements OnInit {
   displayedColumns: string[] = ['Materials'];
   copyMaterials;
   selectedCheckbox: Boolean;
-
+  view: Boolean = false;
+  loading: Boolean;
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -62,20 +68,25 @@ export class MaterialsComponent implements OnInit {
   }
 
 
-  constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
+  constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.materials = [];
     // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
 
-    this._learnerSerice.isSelected.subscribe(res => {
+    // this._learnerSerice.isSelected.subscribe(res => {
 
-      console.log('Res received', res);
-      this.selectedCheckbox = false;
+    //   console.log('Res received', res);
+    //   this.selectedCheckbox = false;
 
-    })
+    // })
 
   }
+
+  // public childMethod(){
+  //   console.log("MATERIAL COMPONENT CHILD METHOD")
+  // }
+  
 
   ngAfterViewInit() {
     console.log("AfterViewInit this.courseId = ", this.courseId);
@@ -107,18 +118,25 @@ export class MaterialsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
-    // this.activatedRoute.params.subscribe(params => {
-    //   console.log('----------COURSEID ON INIT IS----------',params['id']);
-    //   this.courseId = params['id'];
+    this.loading = true;
+    console.log("this.activatedRoute", this.activatedRoute.params)
+    this.activatedRoute.params.subscribe(params => {
+      // console.log('----------COURSEID ON INIT IS----------',params['id']);
+      // this.courseId = params['id'];
+      // console.log("this.courseID", this.courseId);
+      if (params['courseId'] != undefined){
+        this.getMaterials(params['courseId']);
+      }
+      // if (this.courseId) {
+      //   this.getMaterials(params['courseId']);
+      // }
 
-    //   this.getMaterials(params['courseId']);
-
-
-    //   // if (this.courseId) {
-    //   //   this.getMaterials(params['courseId']);
-    //   // }
-
-    // });
+    });
+    
+    if (this.router.url.includes('/materials')) {
+      this.view = true;
+      console.log("VIEW VALUE IS", this.view)
+    }
     this.courseId = this.data;
     console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
     if (this.courseId) {
@@ -164,6 +182,7 @@ export class MaterialsComponent implements OnInit {
     var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
       if (materials == undefined) return;
       this.materials.push(materials);
+      this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
     }, err => {
@@ -238,7 +257,7 @@ export class MaterialsComponent implements OnInit {
       this.materials = this.course.materials;
 
       console.log('This material----------------->>>>>>>>>>>', this.materials, this.course);
-
+      this.loading = false;
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;
       // console.log("++++++++++", this.materials);    

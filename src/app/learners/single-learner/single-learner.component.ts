@@ -69,7 +69,7 @@ export class SingleLearnerComponent implements OnInit {
   loading;
   allotmentsLength;
   data: any;
-  displayedColumns: string[] = ['unit', 'assignment', 'status', 'actions'];
+  displayedColumns: string[] = ['unit', 'assignment', 'status'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
@@ -89,7 +89,7 @@ export class SingleLearnerComponent implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute, public _filter: FilterService, private _learnerService: LearnerService) {
-    this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
     this.data = {
       title: ""
     }

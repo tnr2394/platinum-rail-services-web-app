@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // import { instructor } from 'src/app/interfaces/instructor';
 import { InstructorService } from '../../services/instructor.service'
 import { format } from 'url';
+declare var $;
+
 
 export interface Instructor {
   _id: string;
@@ -23,6 +25,13 @@ export class EditInstructorModalComponent implements OnInit {
   loading: Boolean = false;
   instructorData;
   passwordMismatch: boolean;
+
+  show: boolean;
+  pwd: boolean;
+
+  show1: boolean;
+  pwd1: boolean;
+
   ngOnInit() {
 
     console.log("DATA = ", this.data);
@@ -31,6 +40,13 @@ export class EditInstructorModalComponent implements OnInit {
     console.log("DATE = ", this.instructorData.dateOfJoining);
     this.instructorData.confirmPassword = this.instructorData.password;
 
+    $("#password").click(function () {
+      $("#password").toggleClass("fa-eye fa-eye-slash");
+    });
+
+    $("#cpassword").click(function () {
+      $("#cpassword").toggleClass("fa-eye fa-eye-slash");
+    });
   }
   constructor(public dialogRef: MatDialogRef<Instructor>, @Inject(MAT_DIALOG_DATA) public data: any, public _instructorService: InstructorService) {
     // NO DEFINITION
@@ -56,6 +72,16 @@ export class EditInstructorModalComponent implements OnInit {
   formatDate(date) {
     var d = new Date(date);
     return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+  }
+
+  password() {
+    this.show = !this.show;
+    this.pwd = !this.pwd;
+  }
+
+  cpassword() {
+    this.show1 = !this.show1;
+    this.pwd1 = !this.pwd1
   }
 
   doSubmit() {

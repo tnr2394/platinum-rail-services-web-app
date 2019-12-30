@@ -6,7 +6,7 @@
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <!-- <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
-    <div >
+    <div>
         <mat-grid-list cols="2" rowHeight='30px'>
             <mat-grid-tile *ngFor='let learner of learners' class='learners'>
                 <mat-checkbox  (change)='onSelectChange($event)' [value]='learner' >{{learner.name}}</mat-checkbox>
