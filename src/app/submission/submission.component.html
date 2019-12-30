@@ -49,8 +49,8 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div>
-                <mat-paginator class="text-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <div class="col-12">
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
         </div>
 
@@ -58,11 +58,11 @@
             <div class="table-responsive">
                 <div *ngIf="dataSource">
                     <h1>{{dataSource.length}}</h1>
-                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined' class="mb-2 text-info text-center">
+                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined' class="msg_text mb-2 text-info text-center">
                         Choose Job and Assignment Number to display learners!
                     </div>
                     
-                    <div *ngIf='assignment && assignment.length == "0"' class="mb-2 text-info text-center">
+                    <div *ngIf='assignment && assignment.length == "0"' class="msg_text mb-2 text-info text-center">
                         No Assignments In This Job!
                     </div>
 

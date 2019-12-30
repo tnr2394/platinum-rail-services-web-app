@@ -183,10 +183,10 @@ th.mat-header-cell:first-of-type {
 @media (max-width:767px){
     .mat-paginator-container{
         justify-content: space-between !important;
-        // padding: 0 !important;
+        padding: 0 !important;
     }
     .mat-paginator-range-label{
-        margin: 0 !important;
+        margin: 0 5px !important;
     }
     .mat-paginator-page-size{
         margin-right: 30px !important;
