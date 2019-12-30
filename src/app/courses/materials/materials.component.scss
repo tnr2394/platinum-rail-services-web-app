@@ -30,6 +30,7 @@
 }
 .material_row{
     align-items: center !important;
+    padding-top: 10px;
     h3{
         @media (max-width:575px){
             font-size: 20px;
@@ -70,6 +71,9 @@
 }
 .choose_material{
     margin: 20px 0px;
+    @media (max-width:575px){
+        font-size: 14px;
+    }
 }
 @media (max-width:575px){
     .material_btn_insmall{
@@ -82,7 +86,7 @@
 }
 .all_material_tile{
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 // tr.mat-header-row {
 //     height: 20px;

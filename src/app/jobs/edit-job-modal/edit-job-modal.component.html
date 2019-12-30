@@ -148,10 +148,13 @@
 </div> -->
 <div mat-dialog-actions class="center mt-3 mb-1">
     <div *ngIf="!loading">
-        <button mat-flat-button color="primary" (click)='addJob()'><i class="fas fa-save fa-fw"></i> Save</button>
-        <button mat-flat-button type="button" color="warn" class="text-white pull-right" (click)="delete()">
+        <button mat-flat-button class="button_hover_effect" color="primary" (click)='addJob()'><i
+                class="fas fa-save fa-fw"></i><span>
+                Save</span></button>
+        <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
+            (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
-            Delete
+           <span> Delete</span>
         </button>
     </div>
 </div>

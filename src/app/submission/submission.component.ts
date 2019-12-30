@@ -17,6 +17,9 @@ import { Router, NavigationExtras } from "@angular/router";
 })
 
 export class SubmissionComponent implements OnInit {
+  loadingJobs: Boolean;
+  loadingAssignments: Boolean
+  loadingLearners:Boolean
   learners;
   jobs = [];
   courses;
@@ -63,28 +66,26 @@ export class SubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadingJobs = true;
     this.getJobs();
-    this.getMaterials();
+    // this.getMaterials();
   }
 
   jobChanged(event) {
+    this.loadingAssignments = true;
+    // this.learners = [];
+    let emptyList = [];
+    this.dataSource = new MatTableDataSource(emptyList);
     this.selectedJob = event.value._id;
-    // this.getLearners(this.selectedJob);
     this.getAssignmentList(this.selectedJob);
-  }
-
-  materialChanged(event) {
-    this.selectedMaterial = event.value
-  }
-
-  unitNoChanged(event) {
-    this.selectedUnit = event.value;
   }
 
   assignmentNoChanged(event) {
     this.selectedAssignment = event.value;
     console.log('this.selectedAssignment', this.selectedAssignment);
     this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
+    this.loadingLearners = true;
+
   }
 
   goToInstructorsSubmission(learner) {
@@ -104,6 +105,7 @@ export class SubmissionComponent implements OnInit {
   getJobs() {
     this._jobService.getJobs().subscribe((data) => {
       this.jobs = data;
+      this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
     });
   }
@@ -120,7 +122,7 @@ export class SubmissionComponent implements OnInit {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
       console.log('Data----->>>>>', data);
       this.assignment = data[0].assignment;
-
+      this.loadingAssignments = false;
       console.log(' this.assignment length', this.assignment.length);
     });
   }
@@ -128,23 +130,10 @@ export class SubmissionComponent implements OnInit {
   getAllotmentListUsingAssignmentId(assignmentId) {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
       this.learners = data;
+      this.loadingLearners = false;
       this.dataSource = new MatTableDataSource(this.learners);
       this.dataSource.paginator = this.paginator;
       console.log("-----LEARNERS ARE-----", this.learners)
     });
-  }
-
-  getMaterials() {
-    this._materialService.getAllMaterials().subscribe((material) => {
-      material.material.forEach((item) => {
-        if (item.type == 'Assignment') {
-          this.materials.push(item)
-          this.title.push(item.title)
-          this.unitNo.push(item.unitNo)
-          this.assignmentNo.push(item.assignmentNo)
-        }
-      })
-      console.log("MATERIAL RECIEVED", material.material)
-    })
   }
 }

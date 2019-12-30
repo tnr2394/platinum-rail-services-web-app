@@ -1,13 +1,13 @@
 <div *ngIf="!job">
-    <h1 class="text-center">
+    <h1 class="text-center text-info mt-5">
         Loading... <i class="fas fa-refresh fa-spin"></i>
     </h1>
 </div>
 <div class="row" *ngIf="job">
     <div class="col-12">
-        <div class="row">
+        <div class="row m-0">
             <div>
-                <h3 class="page-title">
+                <h3 class="page-title pl-0">
                     Job: {{job.title}}
                 </h3>
             </div>
@@ -104,10 +104,11 @@
             <app-materials *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
                 [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)" #material>
             </app-materials>
-            <button mat-flat-button color="primary" class="pull-right my-4" (click)="allocateLearners()"
+            <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"
+                (click)="allocateLearners()"
                 *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
                 <i class="fa fa-user-o fa-fw"></i>
-                Allocate to..
+               <span> Allocate to..</span>
             </button>
         </div>
     </div>

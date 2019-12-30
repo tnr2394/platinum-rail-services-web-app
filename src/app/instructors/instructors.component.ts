@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./instructors.component.scss']
 })
 export class InstructorsComponent implements OnInit {
+  loading:Boolean;
   instructors: any = [];
   bgColors: string[];
   lastColor;
@@ -65,6 +66,7 @@ export class InstructorsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
+    this.loading = true;
     this.getCourses();
   }
 
@@ -160,6 +162,7 @@ export class InstructorsComponent implements OnInit {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {
       this.instructors = instructors;
+      this.loading = false;
       this.updateData(instructors)
     });
   }

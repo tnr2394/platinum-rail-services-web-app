@@ -13,10 +13,13 @@
                 
         </div>
         <div  *ngIf="!loading">
-                        <button mat-flat-button color="primary" type="submit" ><i class="fas fa-save fa-fw"></i> Save</button>
-                        <button mat-flat-button type="button" color="warn" class="text-white pull-right"  (click)="delete()">
+                        <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
+                                        class="fas fa-save fa-fw"></i>
+                                <span>Save</span></button>
+                        <button mat-flat-button class="close_hover_effect" type="button" color="warn"
+                                class="text-white pull-right" (click)="delete()">
                                 <i class="fas fa-trash fa-fw"></i> 
-                                Delete
+                                <span>Delete</span>
                         </button>
                         
         </div>

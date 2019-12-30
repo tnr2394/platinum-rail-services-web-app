@@ -38,7 +38,6 @@ export class AddJobModalComponent implements OnInit {
   duration;
   isDisabled: Boolean = false;
   finalCourseDates = [];
-  instructor: FormArray;
   matcher = new MyErrorStateMatcher();
   singleJobDate = [];
 
@@ -86,7 +85,6 @@ export class AddJobModalComponent implements OnInit {
       title: new FormControl('', Validators.required),
       jobColor: new FormControl('', Validators.required),
       client: new FormControl(''),
-      // instructor: new FormArray([this.createInstructor()]),
       instructor: new FormControl(''),
       location: new FormControl(''),
       course: new FormArray([this.course()]),
@@ -99,24 +97,10 @@ export class AddJobModalComponent implements OnInit {
     this.getInstructors();
   }
 
-  createInstructor(): FormGroup {
-    return this.formBuilder.group({
-      singleInstructor: new FormControl('')
-    })
-  }
   course(): FormGroup {
     return this.formBuilder.group({
       course: new FormControl('')
     })
-  }
-
-  addInstructor() {
-    this.instructor = this.addJobForm.get('instructor') as FormArray;
-    this.instructor.push(this.createInstructor())
-  }
-
-  removeInstructor() {
-    this.instructor.removeAt(this.instructor.length - 1);
   }
 
   searchDays($event) {
@@ -142,16 +126,9 @@ export class AddJobModalComponent implements OnInit {
       let InstructorsForDataBase = [];
       let instructorsForJobsPage = [];
 
-      // this.addJobForm.controls['instructor'].value.forEach((item) => {
-      //   InstructorsForDataBase.push(item.singleInstructor._id)
-      //   instructorsForJobsPage.push(item.singleInstructor)
-      // })
-
       this.selectedInstructors.forEach((item) => {
         this.selectedInstructorsForDb.push(item._id)
       })
-
-
 
       var newJobforDataBase = {
         title: this.addJobForm.controls['title'].value,

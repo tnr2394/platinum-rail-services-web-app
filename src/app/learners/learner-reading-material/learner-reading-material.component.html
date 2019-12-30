@@ -1,8 +1,8 @@
 <p class="material_main_title">{{material.title}}</p>
 <mat-card class="material_main_card">
     <!-- <mat-card-header> -->
-    <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i class="fas fa-download"></i> Download
-        All</button>
+    <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i
+            class="fas fa-download"></i><span> Download All</span></button>
     <!-- </mat-card-header> -->
     <div class="row" *ngIf="fileList.length > 0">
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList">
@@ -13,18 +13,18 @@
                 </mat-card-content>
                 <div class="download_btn">
                     <a href="{{file.path}}" class="text-white">
-                        <i class="fas fa-file-download"></i>Download
+                        <i class="fas fa-file-download"></i><span>Download</span>
                     </a>
                 </div>
             </mat-card>
         </div>
     </div>
     <div class="row">
-        <div mat-dialog-actions align='center' *ngIf="loading">
+        <div mat-dialog-actions class="text-info pb-3 pl-3" align='center' *ngIf="loading">
             Downloading... <i class="fas fa-refresh fa-spin"></i>
         </div>
     </div>
-    <div class="row" *ngIf="fileList.length == '0'">
+    <div class="row" *ngIf="loadingMaterials == false && fileList.length == '0'">
         <div class="col-12 materials_box">
             <mat-card>
                 <mat-card-header>
@@ -33,4 +33,8 @@
             </mat-card>
         </div>
     </div>
+    <mat-card *ngIf="loadingMaterials == true">
+        <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+        </h3>
+    </mat-card>
 </mat-card>

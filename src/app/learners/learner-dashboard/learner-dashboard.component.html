@@ -15,7 +15,7 @@
                 </mat-card>
             </div>
         </div>
-        <div class="row" *ngIf='material.length == 0'>
+        <div class="row" *ngIf='loadingMaterials == false && material.length == 0'>
             <div class="col-12 materials_box">
             <mat-card class="mb-3">
             <mat-card-header>

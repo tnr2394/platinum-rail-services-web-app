@@ -16,9 +16,10 @@
                             </h3>
                         </div>
                         <div class="col-sm-6 material_btn_insmall">
-                            <button mat-flat-button color="primary" class="pull-right" (click)="addMaterialModal()">
+                            <button mat-flat-button color="primary" class="pull-right button_hover_effect"
+                                (click)="addMaterialModal()">
                                 <i class="fas fa-plus fa-fw"></i>
-                                Add Material
+                                <span> Add Material</span>
                             </button>
                         </div>
                     </div>
@@ -43,7 +44,7 @@
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
                                             <div class='materialsDiaplay'>
-                                                <div class="col-11">
+                                                <div class="col-11 pl-0">
                                                     <material-tile [material]="material"
                                                         [isSelected]="(material._id === selectedMaterial)"
                                                         [index]='i'
