@@ -51,7 +51,7 @@ export class SubmissionComponent implements OnInit {
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
     { id: '0', display: 'Pending', status: 'Pending', checked: false },
     { id: '1', display: 'Re-Submitted', status: 'Re-submitted', checked: false },
-    { id: '2', display: 'Resubmit Requestted', status: 'Request for resubmission', checked: false },
+    { id: '2', display: 'Resubmit Requestted', status: 'Requested for Resubmission', checked: false },
     { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
   ];
 
