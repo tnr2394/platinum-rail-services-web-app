@@ -9,6 +9,7 @@ import { AddCourseModalComponent } from './add-course-modal/add-course-modal.com
 import { EditCourseModalComponent } from './edit-course-modal/edit-course-modal.component';
 import { FilterService } from "../services/filter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -25,6 +26,7 @@ export class CoursesComponent implements OnInit {
   lastColor;
   length;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  view;
 
   displayedColumns: string[] = ['title', 'duration', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -44,7 +46,7 @@ export class CoursesComponent implements OnInit {
   }
 
 
-  constructor(public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.courses = [];
     this.dataSource = new MatTableDataSource(this.courses);
@@ -70,9 +72,14 @@ export class CoursesComponent implements OnInit {
   }
   ngOnInit() {
     console.log("VALUE OF COURSES IS", this.courses);
-    
+
     this.loading = true;
     this.getCourses();
+    if (this.router.url.includes('/dashboard')) {
+      this.view = true;
+      console.log("VIEW VALUE IS", this.view)
+    }
+
   }
 
 

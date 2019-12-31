@@ -7,25 +7,14 @@
 </div>
 
 <div class="row" style="min-width: 100%;">
-    <!-- <div class='card'> -->
-    <!-- <div class="row"> -->
     <mat-card style="min-width: 100%;">
-        <!-- <div class="row p-0">
-            <mat-form-field class="example-full-width col-lg-6 col-md-6">
-                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-            <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-        </div> -->
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
             <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
-                <!-- <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
             </div>
-
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
                     <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
@@ -68,10 +57,11 @@
             <div class="table-responsive">
                 <div *ngIf="dataSource">
                     <h1>{{dataSource.length}}</h1>
-                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined' class="msg_text mb-2 text-info text-center">
+                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined'
+                        class="msg_text mb-2 text-info text-center">
                         Choose Job and Assignment Number to display learners!
                     </div>
-                    
+
                     <div *ngIf='assignment && assignment.length == "0"' class="msg_text mb-2 text-info text-center">
                         No Assignments In This Job!
                     </div>

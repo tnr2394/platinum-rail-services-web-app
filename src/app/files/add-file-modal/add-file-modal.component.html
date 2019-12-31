@@ -12,22 +12,22 @@
         <mat-card-content>
             <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
                 (onFileDropped)="uploadFile($event,'materialfile')">
-                <input hidden type="file" formControlName="materialfile" #fileInput (change)="uploadFile($event,'browse')"
-                    multiple>
+                <input hidden type="file" accept=".pdf, .ppt, .doc, .docx" formControlName="materialfile" #fileInput
+                    (change)="uploadFile($event,'browse')" multiple>
                 <div class="uploadfile_arrow">
                     <div class="arrow_div"><i class="fas fa-arrow-circle-up"></i></div>
                     <p class="drag_file">Drag & Drop</p>
                     <p>or click to browse files</p>
                 </div>
-            </div>  
+            </div>
         </mat-card-content>
     </mat-card>
 
     <div class="files-list" *ngFor="let file of files;let i= index">
-    {{ file }}
+        {{ file }}
         <span><button class="delete-file" (click)="deleteAttachment(i)">
-            <i _ngcontent-nga-c17="" class="fas fa-times-circle" style="color:#FF6565;"></i>
-        </button></span>
+                <i _ngcontent-nga-c17="" class="fas fa-times-circle" style="color:#FF6565;"></i>
+            </button></span>
     </div>
 
 

@@ -128,6 +128,7 @@ export class LearnersComponent implements OnInit {
           return i._id === data._id;
         })
         this.learners[Index] = data.data;
+        this.handleSnackBar({ msg: "Learner edited successfully.", button: "Ok" });
       }
       // DELETE HANDLE
       else if (data.action == 'delete') {
@@ -135,9 +136,9 @@ export class LearnersComponent implements OnInit {
         this.learners.splice(this.learners.findIndex(function (i) {
           return i._id === data.data._id;
         }), 1);
+        this.handleSnackBar({ msg: "Learner deleted successfully.", button: "Ok" });
       }
       this.updateData(this.learners);
-      this.handleSnackBar({ msg: "Learner changed successfully...", button: "Ok" });
     });
   }
 

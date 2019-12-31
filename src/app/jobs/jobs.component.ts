@@ -30,7 +30,7 @@ export class JobsComponent implements OnInit {
   currentPage: any;
   dataSource: MatTableDataSource<any>;
   currentUser;
-  loading : Boolean;
+  loading: Boolean;
 
   // MatPaginator Inputs
   length;
@@ -227,6 +227,7 @@ export class JobsComponent implements OnInit {
         // this.getStatus(this.jobs[Index])
 
         console.log("check index", Index)
+        this.handleSnackBar({ msg: "Job Edited Successfully", button: "Ok" });
       }
       // DELETE HANDLE
       else if (data.action == 'delete') {
@@ -234,9 +235,10 @@ export class JobsComponent implements OnInit {
         this.jobs.splice(this.jobs.findIndex(function (i) {
           return i._id === data.data._id;
         }), 1);
+        this.handleSnackBar({ msg: "Job Deleted Successfully", button: "Ok" });
       }
       this.updateData(this.jobs);
-      this.handleSnackBar({ msg: "Changes made Successfully", button: "Ok" });
+
     });
   }
 
