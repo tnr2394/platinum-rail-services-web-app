@@ -38,7 +38,6 @@ export class LearnerSubmissionComponent implements OnInit {
   addFileModal() {
     var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId, status: this.statusToChange }).subscribe((courses) => {
       console.log("Course added in controller = ", courses);
-      this.openSnackBar("File Uploaded Successfully", "Ok");
       this.getAllotments(this.allotmentId)
     }, err => {
       this.openSnackBar("Something Went Wrong", "Ok");

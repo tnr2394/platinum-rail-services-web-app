@@ -122,6 +122,7 @@ export class AddFileModalComponent implements OnInit {
         this.data = data;
         this.loading = false;
         this.dialogRef.close(data);
+        this.openSnackBar("File Uploaded Successfully", "Ok");
 
       }, err => {
         alert("Error Uploading Files.")
@@ -147,7 +148,7 @@ export class AddFileModalComponent implements OnInit {
         this.data = data;
         this.loading = false;
         this.dialogRef.close(data);
-
+        this.openSnackBar("File uploaded successfully.", "Ok");
       }, err => {
         alert("Error Uploading Files.")
         this.loading = false;
@@ -158,6 +159,13 @@ export class AddFileModalComponent implements OnInit {
     }
 
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackbar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
 
   onNoClick(): void {
     this.dialogRef.close();
