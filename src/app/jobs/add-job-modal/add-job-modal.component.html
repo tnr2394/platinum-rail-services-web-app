@@ -10,7 +10,7 @@
 
                 <div class='col col-sm center'>
                     <mat-form-field>
-                        <input matInput formControlName="title" placeholder="Job Title" required cdkFocusInitial
+                        <input matInput formControlName="title" placeholder="Job Title" cdkFocusInitial
                             [errorStateMatcher]="matcher">
                         <mat-error *ngIf="addJobForm.controls['title'].hasError('required')">
                             Please enter a job title
@@ -158,7 +158,7 @@
         <button mat-flat-button color="primary" [disabled]="isDisabled" class="pull-right button_hover_effect"
             (click)="addJob()">
             <i class="fas fa-plus fa-fw"></i>
-           <span> Add Job</span>
+            <span> Add Job</span>
         </button>
     </div>
 </div>

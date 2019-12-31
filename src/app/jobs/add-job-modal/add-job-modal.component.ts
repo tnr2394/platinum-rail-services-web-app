@@ -8,6 +8,7 @@ import { ClientService } from '../../services/client.service';
 import { CourseService } from '../../services/course.service';
 import { InstructorService } from '../../services/instructor.service';
 import { JobService } from '../../services/job.service';
+import { Title } from '@angular/platform-browser';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,6 +36,7 @@ export class AddJobModalComponent implements OnInit {
   selectedInstructorsForDb = [];
   jobDates: FormArray;
   totalDays = [];
+  newTitle;
   duration;
   isDisabled: Boolean = false;
   finalCourseDates = [];
@@ -85,7 +87,7 @@ export class AddJobModalComponent implements OnInit {
     console.log("ON INIT", this.startingDate);
 
     this.addJobForm = this.formBuilder.group({
-      title: new FormControl('', Validators.required),
+      title: new FormControl(''),
       jobColor: new FormControl('', Validators.required),
       client: new FormControl(''),
       instructor: new FormControl(''),
@@ -133,8 +135,14 @@ export class AddJobModalComponent implements OnInit {
         this.selectedInstructorsForDb.push(item._id)
       })
 
+      if (this.addJobForm.controls['title'].value) {
+        this.newTitle = this.addJobForm.controls['title'].value
+      } else {
+        this.newTitle = this.selectedClient.name + '-' + this.selectedCourse.title;
+      }
+
       var newJobforDataBase = {
-        title: this.addJobForm.controls['title'].value,
+        title: this.newTitle,
         jobColor: this.addJobForm.controls['jobColor'].value,
         client: this.selectedClient._id,
         location: this.addJobForm.controls['location'].value._id,
@@ -146,7 +154,7 @@ export class AddJobModalComponent implements OnInit {
       };
 
       var newJobforJobsPage = {
-        title: this.addJobForm.controls['title'].value,
+        title: this.newTitle,
         client: this.selectedClient,
         location: this.addJobForm.controls['location'].value,
         instructors: this.selectedInstructors,
@@ -158,7 +166,7 @@ export class AddJobModalComponent implements OnInit {
       }
 
       console.log("DATA-----", newJobforDataBase);
-      
+
       this._jobService.addJob(newJobforDataBase).subscribe(data => {
         this.data = data;
         this.loading = false;
