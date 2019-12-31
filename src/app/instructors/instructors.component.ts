@@ -9,6 +9,7 @@ import { AddInstructorModalComponent } from './add-instructor-modal/add-instruct
 import { EditInstructorModalComponent } from './edit-instructor-modal/edit-instructor-modal.component';
 import { FilterService } from "../services/filter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-instructors',
@@ -16,11 +17,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./instructors.component.scss']
 })
 export class InstructorsComponent implements OnInit {
-  loading:Boolean;
+  loading: Boolean;
   instructors: any = [];
   bgColors: string[];
   lastColor;
   length;
+  view;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
   displayedColumns: string[] = ['name', 'dateOfJoining', 'actions'];
@@ -41,7 +43,7 @@ export class InstructorsComponent implements OnInit {
   }
 
 
-  constructor(public _instructorService: InstructorService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router, public _instructorService: InstructorService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.instructors = [];
     this.dataSource = new MatTableDataSource(this.instructors);
@@ -68,6 +70,13 @@ export class InstructorsComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.getCourses();
+
+    console.log('Function is calling');
+
+    if (this.router.url.includes('/dashboard')) {
+      this.view = true;
+      console.log("VIEW VALUE IS", this.view)
+    }
   }
 
 
@@ -157,7 +166,7 @@ export class InstructorsComponent implements OnInit {
 
 
   // API CALLS
-  
+
   getCourses() {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {

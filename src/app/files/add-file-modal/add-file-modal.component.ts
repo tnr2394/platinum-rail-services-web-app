@@ -22,7 +22,6 @@ import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 export class AddFileModalComponent implements OnInit {
   loading: Boolean = false;
   fileMaterial: any = [];
-
   dragAreaClass: string = 'hidden';
   dragAreaContent: string = 'Choose a file or drag it here';
 
