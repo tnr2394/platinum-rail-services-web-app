@@ -54,10 +54,8 @@ export class AppComponent {
 
   Logout() {
     console.log('Logout is called');
-
-    // this.router.navigate(['/login/admin']);
-    this.router.navigate(['/login/admin']);
     localStorage.clear();
+    this.router.navigate(['/login/admin']);
     setTimeout(function () { window.location.reload() }, 1);
 
   }

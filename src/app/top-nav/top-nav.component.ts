@@ -23,13 +23,14 @@ export class TopNavComponent implements OnInit {
       this.currentUser = res;
     })
 
-    this.loggedInUser = localStorage.getItem("currentUser");
-    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   }
   openMenu() {
     this.sideNavService.open();
   }
 
   ngOnInit() {
+    this.loggedInUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
 }
