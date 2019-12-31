@@ -1,12 +1,12 @@
 .uploadBtn{
     // font-size: xx-large;
-    color:#4fc480;
+    color:#4586ff;
     background-color: transparent;
     border: transparent;
     width: 100%;
     text-align: left;
     padding: 0px 15px;
-    &:active{
+    &:active, &:focus, &:hover{
         outline: none !important;
         box-shadow: none !important;
     }
