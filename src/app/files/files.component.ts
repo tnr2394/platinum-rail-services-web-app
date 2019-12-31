@@ -18,10 +18,10 @@ export class FilesComponent implements OnInit, OnChanges {
   materials: any;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
+  
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
     console.log("SOMETHING CHANGED!!", this.materialId);
     this.getFiles();
-
   }
 
   ngOnInit() {

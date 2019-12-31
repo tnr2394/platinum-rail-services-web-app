@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
     });
 
     if (this._loginService.currentUserValue) {
-
-      console.log('Inside IF----------');
       this.route.navigate(['/dashboard']);
     }
 

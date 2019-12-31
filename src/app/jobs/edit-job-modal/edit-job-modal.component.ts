@@ -180,7 +180,7 @@ export class EditJobModalComponent implements OnInit {
     console.log('EVENT', event.value)
     this.duration = event.value.duration
   }
-  
+
   daySelection(obj) {
     console.log("-----DAY SELECTION EVENT-----", obj)
     console.log("OBJ", obj)
@@ -233,6 +233,13 @@ export class EditJobModalComponent implements OnInit {
       totalDays: this.totalDays,
       singleJobDate: this.singleJobDate
     }
+
+    console.log('Edited Job:', editedJob);
+
+
+    return;
+
+
     let dataToDisplay = {
       title: this.addJobForm.controls['title'].value,
       color: this.addJobForm.controls['jobColor'].value,

@@ -151,7 +151,7 @@
 <div mat-dialog-actions>
     <div class='submitButton pt-3'>
         <button mat-flat-button class="pull-right resetButton close_hover_effect"
-            (click)="ngOnInit();jobDates.clearCheckBoxes()">
+            (click)="jobDates.clearCheckBoxes();clearForm()">
             <i class="fa fa-repeat"></i>
             <span> Reset</span>
         </button>

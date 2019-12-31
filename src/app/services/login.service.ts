@@ -24,18 +24,14 @@ export class LoginService {
 
 
   constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('profile'));
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): any {
     return this.currentUserSubject.value;
   }
-
-
-
-
-
+  
   login(data: any, routename, token): Observable<any> {
     data.recaptchaToken = token;
     console.log("Adding clients", data);
@@ -53,11 +49,9 @@ export class LoginService {
         this.currentUserSubject.next(res.profile);
 
 
-        this.userRole.emit(res.userRole)
+        this.userRole.emit(res.userRole);
         this.userProfile.emit(res.profile);
         this.userToken.emit(res.token);
-
-
 
         const learnerDashBoard = '/learner/' + res.profile._id;
 
@@ -73,6 +67,7 @@ export class LoginService {
 
         observer.next(res.data);
         observer.complete();
+        return res.profile;
       }, err => {
         console.log("ERROR ")
         observer.error(err);
@@ -84,6 +79,16 @@ export class LoginService {
     });
 
   }
+  logout() {
+
+    console.log('Logout is called');
+    localStorage.clear();
+    this.router.navigate(['/login/admin']);
+    setTimeout(function () { window.location.reload() }, 1);
+    this.currentUserSubject.next(null);
+
+  }
+
 
   forgotPassword(data: any, routename): Observable<any> {
     console.log("forgotpassword", data);

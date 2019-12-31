@@ -14,12 +14,10 @@ const reCaptchaService = require('../services/reCaptcha.service');
 // Dao Variables
 
 const learnerDOA = require('../dao/learner.dao');
-const clientDOA = require('../dao/client.dao');
 const allotmentDOA = require('../dao/allotment.dao');
-const materialDOA = require('../dao/material.dao');
 const learnerModel = require('../models/learner.model')
-
-
+const materialDOA = require('../dao/material.dao');
+const clientDOA = require('../dao/client.dao');
 
 
 var learnerController = {};
@@ -325,32 +323,6 @@ learnerController.forgotPassword = function (req, res, next) {
     });
 }
 
-
-const assignmentAllotmentMailDataLearner = (assignmentArray) => {
-
-    console.log('Assignment Array------->>>>>>>', assignmentArray);
-
-    // let assignmentList = [];
-
-    // return new Promise((resolve, reject) => {
-    //     async.eachSeries(assignmentArray, (singleAssignment, innerCallback) => {
-    //         materialDOA.getMaterialsByQuery(singleAssignment._id).then((response) => {
-    //             assignmentList.push(response)
-    //             innerCallback();
-    //         }).catch((error) => {
-    //             reject(callbackError);
-    //         })
-    //     }, (callbackError, callbackResponse) => {
-    //         if (callbackError) {
-    //             reject(callbackError);
-    //         } else {
-    //             console.log('assignmentList', assignmentList);
-    //             resolve(assignmentList)
-    //         }
-    //     })
-    // })
-}
-
 learnerController.resetPassword = function (req, res, next) {
     console.log("Reset Password Instructor", req.body);
 
@@ -386,8 +358,7 @@ learnerController.updateAllotment = function (req, res, next) {
     if (req.body.remark) updateAllotment['remark'] = req.body.remark;
 
     const allotmentId = req.body.allotmentId;
-
-
+    
     allotmentDOA.updateAllotment(allotmentId, updateAllotment)
         .then(updated => {
             console.log("updated ", updated);
