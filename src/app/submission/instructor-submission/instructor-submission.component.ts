@@ -14,7 +14,7 @@ import { FilterService } from "../../services/filter.service";
 export class InstructorSubmissionComponent implements OnInit {
 
   learner;
-  loading:Boolean;
+  loading: Boolean;
   title;
   unitNo;
   assignmentNo;
@@ -49,7 +49,7 @@ export class InstructorSubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading =true;
+    this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.allotmentId = params['id'];
@@ -97,7 +97,11 @@ export class InstructorSubmissionComponent implements OnInit {
     this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
       this.getAllotments(this.allotmentId)
       this.remark.reset();
-      this.openSnackBar("Changes made Successfully", "Ok");
+      if (assignmentStatus == 'Completed') {
+        this.openSnackBar("Assignment marked as completed.", "Ok");
+      } else {
+        this.openSnackBar("Assignment requested for resubmission.", "Ok");
+      }
     }, err => {
       this.openSnackBar("Something Went Wrong", "Ok");
     })

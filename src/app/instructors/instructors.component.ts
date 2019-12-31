@@ -130,6 +130,7 @@ export class InstructorsComponent implements OnInit {
           return i._id === data._id;
         })
         this.instructors[Index] = instructor.data;
+        this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
       }
       // DELETE HANDLE
       else if (instructor && instructor.action == 'delete') {
@@ -137,9 +138,10 @@ export class InstructorsComponent implements OnInit {
         this.instructors.splice(this.instructors.findIndex(function (i) {
           return i._id === data._id;
         }), 1);
+        this.handleSnackBar({ msg: "Instructor Deleted Successfully", button: "Ok" });
       }
       this.updateData(this.instructors);
-      this.handleSnackBar({ msg: "Changes Made Successfully", button: "Ok" });
+
     });
   }
 

@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-  loading:Boolean;
+  loading: Boolean;
   clients: any = [];
   bgColors: string[];
   lastColor;
@@ -116,6 +116,7 @@ export class ClientsComponent implements OnInit {
           return i._id === data._id;
         })
         this.clients[Index] = data.data;
+        this.handleSnackBar({ msg: "Client edited successfully.", button: "Ok" });
       }
       // DELETE HANDLE
       else if (data.action == 'delete') {
@@ -123,9 +124,10 @@ export class ClientsComponent implements OnInit {
         this.clients.splice(this.clients.findIndex(function (i) {
           return i._id === data.data._id;
         }), 1);
+        this.handleSnackBar({ msg: "Client deleted successfully.", button: "Ok" });
       }
       this.updateData(this.clients);
-      this.handleSnackBar({ msg: "Client changed successfully...", button: "Ok" });
+
     });
   }
 
