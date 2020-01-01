@@ -19,8 +19,8 @@
                 <mat-card *ngIf="files.length > 0">
                     <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file"></file-tile>
                 </mat-card>
-                <mat-card>
-                    <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
+                <mat-card *ngIf="loading == true">
+                    <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
                 </mat-card>
                 <mat-card *ngIf="loading == false && files.length == 0" class="text-info">
                     NO FILES FOUND

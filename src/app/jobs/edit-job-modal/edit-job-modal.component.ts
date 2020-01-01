@@ -98,8 +98,7 @@ export class EditJobModalComponent implements OnInit {
       this.singleJobDate.push(date)
     });
 
-
-
+    this.selectedCourseNew = this.DialogData.course._id;
 
     this.color = this.DialogData.color;
     console.log("Dialog Data color", this.DialogData.color)
@@ -183,6 +182,7 @@ export class EditJobModalComponent implements OnInit {
 
   courseChanged(event) {
     console.log('EVENT', event.value)
+    this.selectedCourse = event.value;
     this.duration = event.value.duration
     this.selectedCourseNew = event.value._id;
     this.selectedCourseNameNew = event.value.title;
@@ -228,6 +228,8 @@ export class EditJobModalComponent implements OnInit {
     this.selectedInstructor.forEach((item) => {
       this.selectedInstructorsForDb.push(item._id)
     })
+
+
 
 
     console.log('this.selectedClient.name', this.selectedClient.name, this.selectedCourseNameNew);
@@ -367,6 +369,7 @@ export class EditJobModalComponent implements OnInit {
       let i = 0;
       this.courses.forEach((course) => {
         if (course._id === this.DialogData.course._id) {
+
           this.selectedCourse = this.courses[i];
           this.duration = this.courses[i].duration;
 
