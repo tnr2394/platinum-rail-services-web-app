@@ -55,6 +55,7 @@ export class EditJobModalComponent implements OnInit {
   jobDateComponent: JobDatesComponent;
   selectedInstructorsForDb = [];
   selectedInstructors;
+  selectedCourseNew;
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -179,6 +180,7 @@ export class EditJobModalComponent implements OnInit {
   courseChanged(event) {
     console.log('EVENT', event.value)
     this.duration = event.value.duration
+    this.selectedCourseNew = event.value._id;
   }
 
   daySelection(obj) {
@@ -228,7 +230,7 @@ export class EditJobModalComponent implements OnInit {
       client: this.selectedClient._id,
       location: this.addJobForm.controls['location'].value._id,
       instructor: this.selectedInstructorsForDb,
-      course: this.selectedCourse._id,
+      course: this.selectedCourseNew,
       startingDate: this.addJobForm.controls['startingDate'].value,
       totalDays: this.totalDays,
       singleJobDate: this.singleJobDate
@@ -237,7 +239,7 @@ export class EditJobModalComponent implements OnInit {
     console.log('Edited Job:', editedJob);
 
 
-    return;
+    // return;
 
 
     let dataToDisplay = {
@@ -247,7 +249,7 @@ export class EditJobModalComponent implements OnInit {
       location: this.addJobForm.controls['location'].value,
       instructor: InstructorsID,
       instructors: InstructorsName,
-      course: this.selectedCourse,
+      course: this.selectedCourseNew,
       startingDate: this.addJobForm.controls['startingDate'].value,
       totalDays: this.totalDays,
       singleJobDate: this.singleJobDate,
@@ -343,6 +345,8 @@ export class EditJobModalComponent implements OnInit {
         if (course._id === this.DialogData.course._id) {
           this.selectedCourse = this.courses[i];
           this.duration = this.courses[i].duration;
+
+          console.log('course------->>>>>>', course);
           this.addCourse(course)
         }
         i += 1;
