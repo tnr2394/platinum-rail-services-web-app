@@ -9,21 +9,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class AddLocationComponent implements OnInit {
 
   data;
-  constructor(public dialogRef: MatDialogRef<AddLocationComponent>) { 
+  loading;
+  constructor(public dialogRef: MatDialogRef<AddLocationComponent>) {
     this.data = {
       title: ""
     }
   }
 
-  doAddNewLocation(data){
-    if(this.data.title == ""){
+  doAddNewLocation(data) {
+    if (this.data.title == "") {
       console.log("Empty")
     }
-    else{
+    else {
       this.dialogRef.close(data);
     }
   }
-  closeLocationModal(){
+  closeLocationModal() {
     this.dialogRef.close(this.data);
   }
 
