@@ -35,6 +35,7 @@ export class EditJobModalComponent implements OnInit {
   jobDates: FormArray;
   totalDays = [];
   duration;
+  newTitle;
   finalCourseDates = [];
   instructor: FormArray;
   course: FormArray;
@@ -56,6 +57,9 @@ export class EditJobModalComponent implements OnInit {
   selectedInstructorsForDb = [];
   selectedInstructors;
   selectedCourseNew;
+  selectedClientNew;
+  selectedCourseNameNew;
+  selectedClientNameNew;
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -181,6 +185,7 @@ export class EditJobModalComponent implements OnInit {
     console.log('EVENT', event.value)
     this.duration = event.value.duration
     this.selectedCourseNew = event.value._id;
+    this.selectedCourseNameNew = event.value.title;
   }
 
   daySelection(obj) {
@@ -224,8 +229,19 @@ export class EditJobModalComponent implements OnInit {
       this.selectedInstructorsForDb.push(item._id)
     })
 
+
+    console.log('this.selectedClient.name', this.selectedClient.name, this.selectedCourseNameNew);
+
+    if (this.addJobForm.controls['title'].value) {
+      this.newTitle = this.addJobForm.controls['title'].value
+    } else {
+      console.log('this.selectedClient.name else', this.selectedClient.name, this.selectedCourseNameNew);
+      this.newTitle = this.selectedClient.name + '-' + this.selectedCourseNameNew;
+    }
+
+
     let editedJob = {
-      title: this.addJobForm.controls['title'].value,
+      title: this.newTitle,
       jobColor: this.addJobForm.controls['jobColor'].value,
       client: this.selectedClient._id,
       location: this.addJobForm.controls['location'].value._id,
@@ -243,7 +259,7 @@ export class EditJobModalComponent implements OnInit {
 
 
     let dataToDisplay = {
-      title: this.addJobForm.controls['title'].value,
+      title: this.newTitle,
       color: this.addJobForm.controls['jobColor'].value,
       client: this.selectedClient,
       location: this.addJobForm.controls['location'].value,
@@ -255,6 +271,14 @@ export class EditJobModalComponent implements OnInit {
       singleJobDate: this.singleJobDate,
       _id: this.DialogData._id
     }
+
+    console.log('Edited Job:', dataToDisplay);
+
+    // return;
+
+
+
+
 
     let id = this.DialogData._id
     this.loading = true;

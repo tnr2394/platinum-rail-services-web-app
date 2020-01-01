@@ -43,7 +43,7 @@
             </div>
 
             <div class='row mx-0'>
-                <div class='col center course_select'>
+                <div class='col course_select responsive_select'>
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
@@ -53,7 +53,7 @@
                                     <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
                                         [value]='course'>
                                         <!-- {{selectedCourse.title}} -->
-                                        <span class="badge position">{{course.duration}}</span> - {{course.title}}
+                                        - {{course.title}}<span class="badge position">{{course.duration}}</span>
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -154,7 +154,7 @@
         <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
             (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
-           <span> Delete</span>
+            <span> Delete</span>
         </button>
     </div>
 </div>
