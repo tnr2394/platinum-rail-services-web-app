@@ -15,10 +15,12 @@ export class LearnerSubmissionComponent implements OnInit {
   constructor(public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
 
   allotmentId: any;
-  loading:Boolean;
+  loading: Boolean;
   assignment;
   files = [];
   statusToChange;
+  currentUser;
+  isDisabled = true;
 
   ngOnInit() {
     this.loading = true;
@@ -27,6 +29,10 @@ export class LearnerSubmissionComponent implements OnInit {
       this.allotmentId = params['id'];
     });
     this.getAllotments(this.allotmentId)
+    this.currentUser = JSON.parse(localStorage.currentUser);
+    if (this.currentUser.userRole == 'learner') {
+      this.isDisabled = false;
+    }
   }
 
   openDialog(someComponent, data = {}): Observable<any> {

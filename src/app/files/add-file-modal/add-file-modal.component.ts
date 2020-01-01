@@ -60,8 +60,10 @@ export class AddFileModalComponent implements OnInit {
 
 
   deleteAttachment(index) {
+    console.log('this.files', this.files);
+    console.log('this.fileMaterial', this.fileMaterial);
     this.files.splice(index, 1)
-    this.fileMaterial.splice(index, 1)
+    // this.fileMaterial.splice(index, 1)
   }
 
 
