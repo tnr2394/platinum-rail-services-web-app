@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12" *ngIf="!assignmentLength < 1 && !learnerLength < 1">
+    <div class="col-12" *ngIf="assignmentLength != 0 && learnerLength != 0">
         <div class="table-responsive">
             <table class="float-left">
                 <thead>
@@ -40,9 +40,9 @@
 
 
     <!-- <p class="m-auto text-info" *ngIf="assignmentLength < 1 || learnerLength < 1">No assignments Alloted!</p> -->
-        <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="assignmentLength < 1 || learnerLength < 1">
-            <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
-            No Assignment Alloted!
-        </h3>
+    <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="assignmentLength < 1 || learnerLength < 1">
+        <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
+        No Assignment Alloted!
+    </h3>
 
 </div>

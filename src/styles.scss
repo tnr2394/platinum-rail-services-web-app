@@ -363,6 +363,7 @@ th.mat-header-cell:first-of-type {
         justify-content: space-between !important;
         height: 100% !important;
         display: flex !important;
+        // flex-direction: row-reverse !important;
     }
 // }
 .status_clock {
@@ -538,6 +539,9 @@ th.mat-header-cell:first-of-type {
     &:active, &:focus{
         outline:none !important;
     }
+}
+mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    border-bottom-color: rgba(0,0,0,.12) !important;
 }
 .dashboard_course_row {
     .mat-paginator-range-label {

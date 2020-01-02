@@ -94,6 +94,8 @@ export class InstructorSubmissionComponent implements OnInit {
       remark: data.value.remark
     }
 
+    this.loading = true;
+
     this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
       this.getAllotments(this.allotmentId)
       this.remark.reset();
@@ -102,6 +104,7 @@ export class InstructorSubmissionComponent implements OnInit {
       } else {
         this.openSnackBar("Assignment requested for resubmission.", "Ok");
       }
+      this.loading = false;
     }, err => {
       this.openSnackBar("Something Went Wrong", "Ok");
     })

@@ -19,7 +19,7 @@
                 <mat-form-field class="job_select_submission">
                     <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>
-                            <span>{{job.title}}-{{job.location.title}}</span>
+                            <span>{{job.title}}</span>
                             <span><i class="far fa-life-ring fa-1x" [style.color]=job.color
                                     style="float:right"></i></span>
                         </mat-option>
@@ -47,8 +47,8 @@
                 </mat-form-field>
             </div>
 
-            <div>
-                <mat-paginator class="text-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <div class="col-12 submission_pagination">
+                <mat-paginator class="text-left float-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
                     </table>
                     <div class="text-info pt-3 text-center"
                         *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
-                        No Learners Found!
+                        No Assignment Allocated!
                     </div>
                     <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>

@@ -1,16 +1,18 @@
-h1 Job Details
+p Hello Instructor, you have been assigned to a #{title}. Below are the Job details.
+
+h3 Job Details
 
 p title:#{title}
 p location:#{location.title}
 
 
-h1 Instructor Details
+h3 Instructor Details
 
 each instructor in instructors
     p name:#{instructor.name}
     p email:#{instructor.email}
 
-h1 Course Details
+h3 Course Details
 
 p title : #{course.title}
 p duration : #{course.duration}

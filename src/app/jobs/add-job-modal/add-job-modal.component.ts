@@ -108,6 +108,12 @@ export class AddJobModalComponent implements OnInit {
     })
   }
 
+  clearForm() {
+    this.addJobForm.reset();
+    this.selectedCourse.duration = null
+    console.log("form value---->", this.addJobForm)
+    this.ngOnInit();
+  }
   searchDays($event) {
     this.duration = this.selectedCourse.duration;
     this.startingDate = $event.value;

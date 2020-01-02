@@ -74,11 +74,10 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignmentStatusComponent } from './clients/assignment-status/assignment-status.component';
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
-import { AuthGuard } from './auth.guard';
 import { DragDropDirective } from './drag-drop.directive';
 import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-dashboard.component';
 import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component';
-
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -169,7 +168,7 @@ import { LearnerReadingMaterialComponent } from './learners/learner-reading-mate
   },
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcLOcYUAAAAAHo-l4hLSePmVP_U4vNj7VlUlU1A' },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    AuthGuard,
+    AuthGuard
   ],
 
   bootstrap: [AppComponent],

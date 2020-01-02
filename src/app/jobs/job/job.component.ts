@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { JobService } from '../../services/job.service';
 import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component';
 import { MaterialsComponent } from '../../courses/materials/materials.component';
+import { AssignmentStatusComponent } from '../../clients/assignment-status/assignment-status.component'
 
 
 @Component({
@@ -33,6 +34,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   currentUser;
 
   @ViewChild(MaterialsComponent, {static:false}) materialsComp:MaterialsComponent;
+  @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
 
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
@@ -89,6 +91,7 @@ export class JobComponent implements OnInit, AfterViewInit {
         console.log("DATA SENT");
       });
       this.materialsComp.clearCheckBox();
+      this.assignmentStatusComp.ngOnInit();
       this.openSnackBar("Materials Allocated Successfully", "Ok");
     }, err => {
       return this.openSnackBar("Materials could not be allocated", "Ok");

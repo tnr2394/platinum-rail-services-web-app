@@ -1,40 +1,44 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../app/services/login.service'
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginService } from './services/login.service';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
-
 export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private authenticationService: LoginService
-    ) { }
+  constructor(private router: Router,
+    private _loginService: LoginService) {
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // const currentUser = this.authenticationService.currentUserValue;
+  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    const currentUser = this._loginService.currentUserValue;
+    console.log("currentUser Admin:", currentUser);
+    if (currentUser != null) {
 
-        // console.log('currentUser---------------->>>>>>>', currentUser);
-        
-        // if (currentUser) {
-        //     // check if route is restricted by role
-        //     if (route.data.roles && route.data.roles.indexOf(currentUser.userRole) === -1) {
-        //         // role not authorised so redirect to home page
-        //         this.router.navigate(['/dashboard']);
-        //         return false;
-        //     }
+      if (route.data.roles && route.data.roles.indexOf(currentUser.userRole) === -1) {
+        // role not authorised so redirect to equivalent page
 
-        //     // authorised so return true
-        //     return true;
-        // }
+        if (currentUser.userRole == 'admin') {
+          this.router.navigate(['/dashboard']);
+        } else if (currentUser.userRole == 'instructor') {
+          this.router.navigate(['/scheduler']);
+        } else if (currentUser.userRole == 'client') {
+          this.router.navigate(['/jobs']);
+        } else if (currentUser.userRole == 'learner') {
+          this.router.navigate(['/learner/' + currentUser._id]);
+        }
 
-        // // not logged in so redirect to login page with the return url
-        // this.router.navigate(['/login/admin'], { queryParams: { returnUrl: state.url } });
         return false;
+      }
+
+      return true;
     }
+    // not logged in so redirect to login page with the return url
+    this.router.navigate(['/login/admin']);
+    return false;
+  }
+
 }
-
-
 

@@ -6,7 +6,7 @@
                 <div [ngClass]="file.extension"> </div>
             </div>
             <div class="col-10">
-                <div class="row">
+                <div class="row text-left">
                     <div class="col-xl-6">
                         <b style="
                         font-size: 13px;">{{file.title}}</b>
@@ -19,7 +19,7 @@
                         <span class="date" style='font-size: medium;'> {{ file.createdAt | date: 'shortDate' }}</span>
 
                         <a href="{{file.path}}" mat-button class="text-primary" download>
-                            <i class="fa fa-cloud-download"
+                            <i class="fas fa-cloud-download-alt"
                                 style="font-size: large;color:#3CC480;height: 21px;width: 30px;"></i>
                         </a>
 

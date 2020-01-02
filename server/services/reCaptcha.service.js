@@ -1,6 +1,5 @@
 const request = require('request');
 
-
 const verifyRecaptcha = (recaptchaToken) => {
     return new Promise((resolve, reject) => {
         const recaptchaSecretKey = process.env.RECAPTCHASECRETKEY;
