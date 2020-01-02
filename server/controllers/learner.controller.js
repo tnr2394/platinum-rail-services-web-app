@@ -209,10 +209,14 @@ learnerController.allotAssignments = function (req, res, next) {
                         template: 'allotment-learner'
                     };
 
+                    let assignmentData = {
+                        assignment: singleLearner
+                    }
 
-                    console.log('singleLearner.assignments--------', singleLearner);
 
-                    mailService.sendMail(defaultPasswordEmailoptions, singleLearner, null, function (err, mailResult) {
+                    console.log('singleLearner.assignments--------', assignmentData);
+
+                    mailService.sendMail(defaultPasswordEmailoptions, assignmentData, null, function (err, mailResult) {
                         if (err) {
                             return res.status(500).send({ err })
                         } else {
@@ -358,7 +362,7 @@ learnerController.updateAllotment = function (req, res, next) {
     if (req.body.remark) updateAllotment['remark'] = req.body.remark;
 
     const allotmentId = req.body.allotmentId;
-    
+
     allotmentDOA.updateAllotment(allotmentId, updateAllotment)
         .then(updated => {
             console.log("updated ", updated);
