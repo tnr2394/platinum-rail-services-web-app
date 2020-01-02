@@ -73,6 +73,11 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.materials = object.materials;
     console.log('OBJECT', object);
   }
+  assignmentAdded(){
+    console.log("IN ASSIGNMENT ADDED METHOD");
+    
+    this.assignmentStatusComp.ngOnInit();
+  }
 
   allocateLearners() {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
