@@ -5,8 +5,10 @@
             <div class="col-xl-2 col-sm-2 text-center">
 
                 <a class="btn {{getRandomColorClass()}} text-white fab-item ">
-                    <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i>
-                    <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
+                    <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
+                    <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
+                    <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard-list icon"></i>
+                    <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
                 </a>
             </div>
             <div class="col-xl-10 col-sm-10 text-center">

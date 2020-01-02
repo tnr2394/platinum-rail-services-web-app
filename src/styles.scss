@@ -199,7 +199,7 @@ $light: #555;
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
-    -webkit-font-feature-settings: 'liga';
+    // -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
   }
 
@@ -537,5 +537,10 @@ th.mat-header-cell:first-of-type {
 .mat-button{
     &:active, &:focus{
         outline:none !important;
+    }
+}
+.dashboard_course_row {
+    .mat-paginator-range-label {
+        margin: auto !important;
     }
 }

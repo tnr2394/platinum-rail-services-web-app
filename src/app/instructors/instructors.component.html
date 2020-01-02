@@ -41,7 +41,7 @@
                                     <!-- Title Column -->
                                     <ng-container matColumnDef="name">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="title"> NAME </th>
+                                            mat-sort-header="title"> Name </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let instructor">
                                             {{instructor.name}} </td>
                                     </ng-container>
@@ -55,7 +55,7 @@
                                                 {{showFormattedDate(instructor.dateOfJoining)}} </span></td>
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef> EDIT </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Edit </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let instructor; let i = index;"><a class="text-success bold"
                                                 (click)="editInstructorModal(i, instructor)"><i

@@ -41,20 +41,20 @@
                                     <!-- Title Column -->
                                     <ng-container matColumnDef="title">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="title"> TITLE </th>
+                                            mat-sort-header="title"> Title </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let course">
                                             {{course.title}} </td>
                                     </ng-container>
                                     <!-- Duration Column -->
                                     <ng-container matColumnDef="duration">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DURATION </th>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let course; let i = index;"><span
                                                 class="badge {{getRandomColorClass(i)}}"> {{course.duration}} </span>
                                         </td>
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef> EDIT </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let course; let i = index;">
                                             <a mat-button class="text-success" (click)="editCourseModal(i, course)">

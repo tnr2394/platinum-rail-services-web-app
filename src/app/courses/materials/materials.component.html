@@ -9,7 +9,7 @@
                         <div class="col-sm-6">
 
 
-                            <h3 class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
+                            <h3 class="card-title h5 mb-1" *ngIf="course">
                                 Materials for :
                                 <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
                                     matBadgeColor="warn"> {{course.title}}</span>
@@ -39,7 +39,7 @@
                                 <ng-container matColumnDef="Materials">
                                     <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
                                         mat-sort-header="title">
-                                        NAME
+                                        Name
                                     </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
