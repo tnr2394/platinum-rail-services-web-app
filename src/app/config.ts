@@ -12,7 +12,7 @@ const baseUrl = "http://192.168.1.83:3000/"
 
 // For Live Environment
 
-// const baseUrl = "http://15.206.171.225:3000/";
+// const baseUrl = "https://workspace.platinumrailservices.co.uk:3000/"
 
 export const config = {
     baseApiUrl: baseUrl,
