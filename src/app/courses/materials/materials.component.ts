@@ -30,6 +30,7 @@ export class MaterialsComponent implements OnInit {
   @Input('data') data: any;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
+  @Output() assignmentAdded = new EventEmitter<any>();
 
   materials: any = [];
   bgColors: string[];
@@ -182,9 +183,13 @@ export class MaterialsComponent implements OnInit {
     var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
       if (materials == undefined) return;
       this.materials.push(materials);
+      console.log("MATERIAL ADDED IS", materials);
       this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
+      if (materials.type == "Assignment"){
+        this.assignmentAdded.emit({assignmentAdded:'Done!'})
+      }
     }, err => {
       return this.openSnackBar("Material could not be Added", "Ok");
     });

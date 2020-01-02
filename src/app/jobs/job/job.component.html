@@ -25,7 +25,7 @@
                                         {{job.location.title}}</mat-list-item>
                                     <mat-list-item><i class="fas text-success fa-fw fa-book"></i> Course :
                                         {{job.course.title}}</mat-list-item>
-
+ 
                                 </mat-list> -->
                                 <div class="learner_detail_box">
                                     <mat-list class="" role="list">
@@ -33,7 +33,7 @@
 
                                             <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
                                             <div class="learner_title">
-                                                instructor
+                                                Instructor
                                                 <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
                                             </div>
 
@@ -102,7 +102,7 @@
         <div *ngIf="job">
             <!-- passing into material =  {{job.course._id}} -->
             <app-materials *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
-                [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)" #material>
+                [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()" #material>
             </app-materials>
             <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"
                 (click)="allocateLearners()"
