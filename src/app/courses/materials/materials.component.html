@@ -11,8 +11,9 @@
 
                             <h3 class="card-title h5 mb-1 d-inline-block w-100" *ngIf="course">
                                 Materials for :
-                                <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
-                                    matBadgeColor="warn"> {{course.title}}</span>
+                                <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
+                                    matBadgeColor="warn"> {{course.title}}</span> -->
+                                    <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon>
                             </h3>
                         </div>
                         <div class="col-sm-6 material_btn_insmall">
