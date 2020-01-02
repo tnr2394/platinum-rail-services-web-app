@@ -39,6 +39,9 @@ export class AssignmentStatusComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.learners);
   }
 
+  public test(){
+    console.log("CALLED FROM MATERIALS");
+  }
   ngOnInit() {
 
     this.activatedRoute.params.subscribe(params => {
