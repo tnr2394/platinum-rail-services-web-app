@@ -96,10 +96,10 @@
                                             *matCellDef="let job"> {{job.course.title}}
                                         </td>
                                     </ng-container>
-
+ 
                                     <!-- learners Column -->
                                     <ng-container matColumnDef="actions">
-                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Actions
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Action
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Actions" mat-cell
                                             *matCellDef="let job">
@@ -109,7 +109,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <button *ngIf="currentUser.userRole == 'admin'" mat-button
-                                                class="text-primary" title="Edit Job" (click)="editJobModal(i, job)"><i
+                                                class="text-success" title="Edit Job" (click)="editJobModal(i, job)"><i
                                                     class="fa fa-edit"></i></button>
                                         </td>
                                     </ng-container>

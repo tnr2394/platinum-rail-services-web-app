@@ -119,8 +119,8 @@
                     </div>
                     <!--/.Card content-->
 
-                    <h1 class="text-center" *ngIf="learner.length < 1">
-                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    <h1 class="text-center text-info" *ngIf="learner.length < 1">
+                        Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h1>
 
                     <p *ngIf="allotmentsLength < 1" class="text-center">No Assignment Allocated</p>
@@ -128,5 +128,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
