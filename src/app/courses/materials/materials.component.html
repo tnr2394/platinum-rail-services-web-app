@@ -13,7 +13,8 @@
                                 Materials for :
                                 <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
                                     matBadgeColor="warn"> {{course.title}}</span> -->
-                                    <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon>
+                                    <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
+                                    {{course.title}}<button mat-mini-fab disabled>{{materials.length}}</button>
                             </h3>
                         </div>
                         <div class="col-sm-6 material_btn_insmall">
