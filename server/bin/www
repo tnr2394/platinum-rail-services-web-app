@@ -8,6 +8,18 @@ var app = require('../app');
 var debug = require('debug')('platinum-rail-services-server:server');
 var http = require('http');
 
+// const fs = require('fs');
+// const https = require('https');
+
+// var privateKey = fs.readFileSync('/var/www/html/TriviaPost/Trivia-BackEnd/ssl/key.pem');
+// var certificate = fs.readFileSync('/var/www/html/TriviaPost/Trivia-BackEnd/ssl/server.crt');
+// var credentials = { key: privateKey, cert: certificate };
+// const secureServer = https.createServer(credentials, app);
+// secureServer.listen(process.env.PORT);
+// console.log(`Secure Server started on port ${process.env.PORT}`);
+
+
+
 /**
  * Get port from environment and store in Express.
  */
