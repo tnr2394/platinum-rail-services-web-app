@@ -134,7 +134,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'resetpassword/:user',
-		component: ResetPasswordComponent
+		component: ResetPasswordComponent,
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'assignment/status/:jobid',

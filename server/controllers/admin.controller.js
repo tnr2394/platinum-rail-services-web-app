@@ -28,6 +28,38 @@ adminController.addAdmin = function (req, res, next) {
     })
 }
 
+adminController.updateAdmin = function (req, res, next) {
+
+    const updateData = {};
+
+    if (req.body.name) { updateData['name'] = req.body.name }
+    if (req.body.password) { updateData['password'] = bcrypt.hashSync(req.body.password, 10) }
+
+    console.log('Update Admin', updateData);
+
+    adminModel.findOneAndUpdate({ email: email }, { $set: updateData }, (err, updateAdmin) => {
+        if (err) {
+            return res.status(500).send({ err })
+        } else {
+            return res.status(200).json({ message: 'Admin Update Successfully.' });
+        }
+    })
+}
+
+adminController.removeAdmin = function (req, res, next) {
+
+    const email = req.query.email;
+
+    console.log('Delete Admin', email);
+
+    adminModel.findByIdAndRemove({ email: email }, (err, deleteAdmin) => {
+        if (err) {
+            return res.status(500).send({ err })
+        } else {
+            return res.status(200).json({ message: 'Admin Deleted Successfully.' });
+        }
+    })
+}
 
 adminController.loginAdmin = function (req, res, next) {
 
@@ -68,7 +100,7 @@ adminController.loginAdmin = function (req, res, next) {
 }
 
 adminController.forgotPassword = function (req, res, next) {
-    console.log("Forgot Password learner");
+    console.log("Forgot Password Admin");
 
     const email = req.body.email;
     const newPassword = Math.floor(100000 + Math.random() * 9000000000);
@@ -103,6 +135,31 @@ adminController.forgotPassword = function (req, res, next) {
     });
 }
 
+adminController.resetPassword = function (req, res, next) {
+    console.log("Reset Password Admin", req.body);
+
+    const adminId = req.user._id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    adminModel.findOne({ _id: adminId }, (err, admin) => {
+        console.log("Updated admin", admin, err);
+        if (err) {
+            return res.status(500).send({ err })
+        } else if (admin) {
+            if (bcrypt.compareSync(oldPassword, admin.password)) {
+                admin.password = bcrypt.hashSync(newPassword, 10);
+                admin.save();
+                return res.status(200).json({ message: 'Your password changed successfully' });
+            } else {
+                return res.status(500).send({ msg: 'password does not match' })
+            }
+        } else {
+            console.log('err');
+            return res.status(500).send({ err })
+        }
+    });
+}
 
 
 module.exports = adminController;

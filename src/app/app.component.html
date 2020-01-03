@@ -38,6 +38,9 @@
         class="fas fa-fw fa-chalkboard"></i>
       Dashboard</a>
 
+    <a class="side-nav-item" *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}"
+      routerLinkActive="active-link" mat-button><i class="fas fa-unlock-alt"></i>Reset Password</a>
+
 
     <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button><i
         class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>

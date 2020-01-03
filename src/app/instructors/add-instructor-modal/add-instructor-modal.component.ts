@@ -30,6 +30,8 @@ export class AddInstructorModalComponent implements OnInit {
     $("#cpassword").click(function () {
       $("#cpassword").toggleClass("fa-eye fa-eye-slash");
     });
+
+    
   }
 
   show: boolean;

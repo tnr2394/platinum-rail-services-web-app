@@ -14,6 +14,10 @@ const baseUrl = "http://192.168.1.83:3000/"
 
 // const baseUrl = "https://workspace.platinumrailservices.co.uk:3000/"
 
+// For Remove Console Logs 
+
+// console.log = function () { }
+
 export const config = {
     baseApiUrl: baseUrl,
 }

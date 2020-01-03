@@ -125,14 +125,12 @@ export class LoginService {
         observer.next(res.data);
         // observer.complete();
       }, err => {
-        console.log("ERROR ")
+        console.log("ERROR ", err)
         observer.error(err);
-      },
-        () => {
-          console.log("CALL COMPLETED ")
-          observer.complete();
-        })
-
+      }, () => {
+        console.log("CALL COMPLETED ")
+        observer.complete();
+      })
     });
 
   }

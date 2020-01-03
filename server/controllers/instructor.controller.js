@@ -70,15 +70,16 @@ instructorController.updateInstructor = function (req, res, next) {
 }
 
 instructorController.resetPassword = function (req, res, next) {
-    console.log("Reset Password Instructor", req.body);
+    console.log("Reset Password Instructor", req.body, req.user);
 
-    const instructorId = req.user.instructor._id;
+    const instructorId = req.user._id;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
     instructorModel.findOne({ _id: instructorId }, (err, instructor) => {
         console.log("Updated instructor", instructor, err);
         if (err) {
+            console.log('Err:', err);
             return res.status(500).send({ err })
         } else if (instructor) {
             if (instructor.password == oldPassword) {
@@ -93,8 +94,6 @@ instructorController.resetPassword = function (req, res, next) {
         }
     });
 }
-
-
 
 instructorController.deleteInstructor = function (req, res, next) {
     console.log("Delete Instructor");
@@ -115,7 +114,7 @@ instructorController.loginInstructor = function (req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
     const recaptchaToken = req.body.recaptchaToken;
-    
+
     reCaptchaService.verifyRecaptcha(recaptchaToken).then((Response) => {
         instructorModel.findOne({ email: email }).exec((err, instructor) => {
             if (err) {
