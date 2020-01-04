@@ -75,6 +75,8 @@ learnerController.addLearner = async function (req, res, next) {
         password: req.body.password,
         job: req.body.job
     };
+
+    console.log('New Learner', newLearner);
     learnerDOA.createLearner(newLearner).then(newLearner => {
         console.log("Created Learner", newLearner);
         return res.send({ data: { learner: newLearner } })

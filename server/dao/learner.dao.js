@@ -1,7 +1,7 @@
-var learnerModel = require('../models/learner.model');
+const learnerModel = require('../models/learner.model');
 const jobModel = require('../models/job.model');
-var Q = require('q');
 const mailService = require('../services/mail.service');
+var Q = require('q');
 var learner = {};
 
 learner.createLearner = function (obj) {
@@ -91,13 +91,10 @@ learner.updateAssignment = function (learnerId, assignment) {
 
 learner.sendMailToLearner = function (learnerId, JobId) {
 
-    // console.log("newLearner Added Successfully =  ", newLearner);
     var q = Q.defer();
     console.log("Learner to be send email:", learnerId);
 
-
     getSingleJob(JobId).then((jobDetail) => {
-
         learnerModel.findOne({ _id: learnerId }).exec((err, learner) => {
             if (err) {
                 q.reject(err);

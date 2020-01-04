@@ -24,11 +24,11 @@ export class InstructorsComponent implements OnInit {
   length;
   view;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-
   displayedColumns: string[] = ['name', 'dateOfJoining', 'actions'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -41,7 +41,6 @@ export class InstructorsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
 
   constructor(private router: Router, public _instructorService: InstructorService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
@@ -163,9 +162,6 @@ export class InstructorsComponent implements OnInit {
       duration: 2000,
     });
   }
-
-
-
 
   // API CALLS
 

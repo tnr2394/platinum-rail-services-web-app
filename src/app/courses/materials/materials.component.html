@@ -6,19 +6,17 @@
             <div class="col-12 ">
                 <div class="card">
                     <div class="row material_row">
-                        <div class="col-sm-6">
-
-
+                        <div class="col-lg-7">
                             <h3 class="card-title h5 mb-1" *ngIf="course">
                                 Materials for :
                                 <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
                                     matBadgeColor="warn"> {{course.title}}</span> -->
-                                    <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
-                                    <span class="course_t_span">{{course.title}} </span> <button mat-mini-fab
-                                        disabled>{{materials.length}}</button>
-                            </h3> 
+                                <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
+                                <span class="course_t_span">{{course.title}} </span> <button mat-mini-fab
+                                    disabled>{{materials.length}}</button>
+                            </h3>
                         </div>
-                        <div class="col-sm-6 material_btn_insmall">
+                        <div class="col-lg-5 material_btn_insmall">
                             <button mat-flat-button color="primary" class="pull-right button_hover_effect"
                                 (click)="addMaterialModal()">
                                 <i class="fas fa-plus fa-fw"></i>
@@ -44,13 +42,13 @@
                                         mat-sort-header="title">
                                         Name
                                     </th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
                                             <div class='materialsDiaplay'>
                                                 <div class="col-11 pl-0">
                                                     <material-tile [material]="material"
-                                                        [isSelected]="(material._id === selectedMaterial)"
-                                                        [index]='i'
+                                                        [isSelected]="(material._id === selectedMaterial)" [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>
@@ -73,7 +71,8 @@
                                     <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
                                 </tbody>
                             </table>
-                            <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                            <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                    class="fa fa-cog fa-spin text-info"></i>
                             </h3>
                         </div>
 

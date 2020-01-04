@@ -73,9 +73,6 @@ file.addFile = function(object) {
     return q.promise;
 }
 
-
-
-
 location.updateLocation = function(object) {
     console.log("Update Location in location DAO",object);
     var q = Q.defer();

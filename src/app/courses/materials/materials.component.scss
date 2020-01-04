@@ -32,7 +32,7 @@
     align-items: center !important;
     padding-top: 10px;
     h3{
-        @media (max-width:575px){
+        @media (max-width:991px){
             font-size: 20px;
             padding: 0 !important;
             text-align: center;
@@ -76,7 +76,7 @@
         font-size: 14px;
     }
 }
-@media (max-width:575px){
+@media (max-width:991px){
     .material_btn_insmall{
         display: flex;
         justify-content: center;

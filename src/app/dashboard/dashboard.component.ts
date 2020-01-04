@@ -11,7 +11,7 @@ import { LoginService } from '../services/login.service';
 export class DashboardComponent implements OnInit {
   currentUser: any;
 
-  constructor(public _jobService: JobService,public _loginService:LoginService, public _instructorService: InstructorService, public _courseService: CourseService) { 
+  constructor(public _jobService: JobService,public _loginService:LoginService, public _instructorService: InstructorService, public _courseService: CourseService) {
     this._loginService.currentUser.subscribe(x => this.currentUser = x);
   }
 

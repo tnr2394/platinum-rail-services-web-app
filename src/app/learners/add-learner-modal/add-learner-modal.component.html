@@ -1,16 +1,21 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline pb-2"><i class="fas fa-plus-circle"></i> Add Learner </h1>
 <form (ngSubmit)='doSubmit()'>
     <div mat-dialog-content>
+
+        <!-- Learner Name -->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
                 cdkFocusInitial>
-            <!-- <mat-hint align="end">Not more then 60 characters long.</mat-hint> -->
             <mat-error>Name is required</mat-error>
         </mat-form-field>
+
+        <!-- Learner Email -->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
             <mat-error>Email is required</mat-error>
         </mat-form-field>
+
+        <!-- Learner Password -->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
                 [(ngModel)]='data.password' required>
@@ -18,6 +23,8 @@
             <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
                 (click)="password()"></span>
         </mat-form-field>
+
+        <!-- Learner Confirm Password-->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password"
                 [(ngModel)]='data.confirmPassword' required>
@@ -25,25 +32,23 @@
             <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
                 (click)="cpassword()"></span>
         </mat-form-field>
+
     </div>
+
     <div class="row">
-        <!-- <div class="col-4"></div> -->
         <div class="col-12 text-center" *ngIf="passwordMismatch">
             <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please
                 re-enter.</span>
-
         </div>
-
-
     </div>
+
     <div mat-dialog-actions align="center" *ngIf="!loading">
         <button mat-flat-button color="primary" type="submit" class="mb-3 button_hover_effect">
             <i class="fas fa-save fa-fw"></i>
             <span> Save</span>
         </button>
-        <!-- <button mat-button (click)="onNoClick()">Cancle</button> -->
     </div>
     <div mat-dialog-actions align='center' *ngIf="loading">
-        Working... <i class="fas fa-refresh fa-spin"></i>
+        Working.. <i class="fas fa-refresh fa-spin"></i>
     </div>
 </form>

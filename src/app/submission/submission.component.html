@@ -9,12 +9,16 @@
 <div class="row" style="min-width: 100%;">
     <mat-card style="min-width: 100%;">
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
+
+            <!-- Serach Bar -->
             <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
             </div>
+
+            <!-- Select Job -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
                     <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
@@ -26,6 +30,8 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+
+            <!-- Select Assignment -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
@@ -37,6 +43,8 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+
+            <!-- Select Assignment Status -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-label>Choose Status</mat-label>
@@ -47,6 +55,7 @@
                 </mat-form-field>
             </div>
 
+            <!-- Pagination-->
             <div class="col-12 submission_pagination">
                 <mat-paginator class="text-left float-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
@@ -74,18 +83,14 @@
                             <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
                                 mat-sort-header="name"> Name
                             </th>
-                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
-                                *matCellDef="let learner">
-                                <!-- <div class="learner pl-4">
-                                <i class="fas fa-user-graduate fa-2x mr-2"></i>
-                            </div> -->
+                            <td class="mat-table-cell name_td align-items-center mx-0 p-0"
+                                mat-cell *matCellDef="let learner">
                                 <span class="learner pl-4"><i class="fas fa-user-graduate fa-2x mr-2"></i><a
                                         routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
                             </td>
                         </ng-container>
 
                         <!--Assignment Column -->
-
                         <ng-container matColumnDef="Assignment">
                             <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment</th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
@@ -104,6 +109,7 @@
                                 </div>
                             </td>
                         </ng-container>
+
                         <!-- View Column -->
                         <ng-container matColumnDef="View">
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
@@ -114,6 +120,7 @@
                                 </a>
                             </td>
                         </ng-container>
+                        
                         <thead>
                             <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         </thead>

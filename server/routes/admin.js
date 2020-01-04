@@ -13,6 +13,7 @@ router.post('/login', adminController.loginAdmin);
 router.put('/', adminController.updateAdmin);
 // Delete Admin
 router.delete('/', adminController.removeAdmin);
+// Reset Password Admin
 router.post('/reset-password', jwtService.validateJWT, adminController.resetPassword);
 
 

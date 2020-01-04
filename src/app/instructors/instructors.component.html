@@ -30,7 +30,6 @@
                                 </mat-paginator>
 
                             </div>
-
                         </div>
                         <!--Text-->
                         <div *ngIf="dataSource">
@@ -38,13 +37,14 @@
                             <div class="table-responsive">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
-                                    <!-- Title Column --> 
+                                    <!-- Title Column -->
                                     <ng-container matColumnDef="name">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef
                                             mat-sort-header="title"> Name </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let instructor">
                                             {{instructor.name}} </td>
                                     </ng-container>
+
                                     <!-- Duration Column -->
                                     <ng-container matColumnDef="dateOfJoining">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -54,6 +54,8 @@
                                                 class="badge {{getRandomColorClass(i)}}">
                                                 {{showFormattedDate(instructor.dateOfJoining)}} </span></td>
                                     </ng-container>
+
+                                    <!-- Actions Column -->
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Edit </th>
                                         <td class="mat-table-cell text-center" mat-cell
@@ -61,6 +63,7 @@
                                                 (click)="editInstructorModal(i, instructor)"><i
                                                     class="fa fa-edit"></i></a></td>
                                     </ng-container>
+
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row
                                             *matHeaderRowDef="displayedColumns"></tr>

@@ -182,7 +182,28 @@
     min-height: 156px;
     min-width: 156px;
     width: 100%;
-    background: url('../../../assets/pdf-icon-round.png');
+    background: url('../../../assets/icon-powerpoint.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.pptx {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/icon-powerpoint.png');
     background-repeat: no-repeat;
     background-position: center;
     // background-size:100%;
@@ -220,11 +241,32 @@
     }
 }
 
+.mp4 {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/mp4icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    //    background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
 .doc {
     min-height: 156px;
     min-width: 156px;
     width: 100%;
-    background: url('../../../assets/pdf-icon-round.png');
+    background: url('../../../assets/word-doc-icon.png');
     background-repeat: no-repeat;
     background-position: center;
     // background-size:100%;
