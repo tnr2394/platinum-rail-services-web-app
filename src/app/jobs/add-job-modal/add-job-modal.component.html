@@ -25,7 +25,7 @@
                         <mat-select formControlName="client" placeholder="Client"
                             (selectionChange)="clientChanged($event)">
                             <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
-                            <mat-option *ngIf='clients.length < 1'>No Client Found</mat-option>
+                            <mat-option *ngIf='clients && clients.length < 1'>No Client Found</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -51,7 +51,7 @@
                                         </div> -->
                                     </div>
                                 </mat-option>
-                                <mat-option *ngIf='courses.length < 1'>No Courses Found</mat-option>
+                                <mat-option *ngIf='courses && courses.length < 1'>No Courses Found</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -96,7 +96,7 @@
                         <mat-select formControlName="instructor" (selectionChange)="instructorChanged($event)" multiple>
                             <mat-option *ngFor="let instructor of instructors" [value]="instructor">{{instructor.name}}
                             </mat-option>
-                            <mat-option *ngIf='instructors.length < 1'>No Instructor Found</mat-option>
+                            <mat-option *ngIf='instructors && instructors.length < 1'>No Instructor Found</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

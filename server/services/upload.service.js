@@ -30,7 +30,6 @@ const s3UploadFile = (file, folder, options) => {
             console.log('PARAM:', params);
 
             s3bucket.upload(params, function (err, uploadedResponse) {
-                console.log("Yash2");
                 if (err) {
                     console.error("error while upload into S3 bucket", err);
                     return reject(err);
