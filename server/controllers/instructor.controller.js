@@ -3,7 +3,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Q = require('q');
-
+fileDAO = require('../dao/file.dao');
+const async = require("async");
 // Service Variables
 
 const mailService = require('../services/mail.service');
@@ -51,22 +52,113 @@ instructorController.addInstructor = function (req, res, next) {
 }
 
 instructorController.updateInstructor = function (req, res, next) {
-    console.log("Update Instructor", req.body);
 
-    var updatedInstructor = {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        dateOfJoining: req.body.dateOfJoining
-    };
+    if (req.files && req.files.file) {
 
-    instructorModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
-        console.log("Updated instructor", instructor, err);
-        if (err) {
-            return res.status(500).send({ err })
+        console.log('Inside If:');
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(req.files.file.name)[1];
+        var name = req.files.file.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "Qulification",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: req.files.file,
+            uploadedDate: new Date()
         }
-        return res.send({ data: { instructor } });
-    });
+
+        fileDAO.addFile(newFile).then((Response) => {
+            var updatedInstructor = {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                dateOfJoining: req.body.dateOfJoining,
+                qualificationTitle: req.body.qualificationTitle,
+                validUntil: req.body.validUntil,
+                file: Response._id,
+            };
+
+            instructorModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
+                console.log("Updated instructor", instructor, err);
+                if (err) {
+                    return res.status(500).send({ err })
+                }
+                return res.send({ data: { instructor } });
+            });
+
+        }).catch((error) => {
+            console.log('Error While File Upload', error);
+            return res.status(500).send({ err })
+        })
+    } else {
+
+        var updatedInstructor = {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            dateOfJoining: req.body.dateOfJoining,
+            qualificationTitle: req.body.qualificationTitle,
+            validUntil: req.body.validUntil,
+        };
+
+        instructorModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
+            console.log("Updated instructor", instructor, err);
+            if (err) {
+                return res.status(500).send({ err })
+            }
+            return res.send({ data: { instructor } });
+        });
+    }
+}
+
+
+instructorController.checkForQualificationCronJob = () => {
+    console.log('Function In Controller Is Calling');
+    const x = 6; //or whatever offset
+    let CurrentDate = new Date();
+    CurrentDate.setMonth(CurrentDate.getMonth() + x);
+    instructorModel.find({ validUntil: { $lt: CurrentDate } }, (err, instructor) => {
+        if (err) {
+            console.log('Err:', err);
+        } else {
+            async.eachSeries(instructor, (singleInstructor, innerCallback) => {
+                sendQualificationExpireMailToAdmin(singleInstructor).then((Response) => {
+                    innerCallback();
+                }).catch((error) => {
+                    console.log('Error:', error);
+                })
+            }, (callbackError, callbackResponse) => {
+                if (callbackError) {
+                    console.log("callbackError ", callbackError);
+                } else {
+                    console.log("Send Mail To Admin", callbackResponse);
+                }
+            })
+        }
+    })
+}
+
+const sendQualificationExpireMailToAdmin = (instructorDetail) => {
+    return new Promise((resolve, reject) => {
+        console.log('Send Mail To Admin Function');
+
+        const defaultPasswordEmailoptions = {
+            to: 'vishal.pankhaniya786@gmail.com',//admin Email here
+            subject: `Instructor Expire Mail`,
+            template: 'forgot-password'
+        };
+
+        mailService.sendMail(defaultPasswordEmailoptions, instructorDetail, null, function (err, mailResult) {
+            if (err) {
+                reject();
+            } else {
+                resolve();
+            }
+        });
+    })
 }
 
 instructorController.resetPassword = function (req, res, next) {
@@ -170,6 +262,8 @@ instructorController.forgotPassword = function (req, res, next) {
         }
     });
 }
+
+// module.exports.checkForQualificationCronJob = checkForQualificationCronJob;
 
 
 module.exports = instructorController;

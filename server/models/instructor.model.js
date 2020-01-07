@@ -1,34 +1,36 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var instructorSchema = new Schema({
-    name :{
+    name: {
         type: String,
-        unique : false,
-        required : true
+        unique: false,
+        required: true
     },
-    email : {
+    email: {
         type: String,
-        unique : false,
-        required : true
+        unique: false,
+        required: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
-    dateOfJoining:{
+    dateOfJoining: {
         type: Date,
         required: true
     },
-    qualifications:[{
-        title: {
-            type: String
-        },
-        validUntil: {
-            type: Date
-        }
-    }]
+    qualificationTitle: {
+        type: String
+    },
+    validUntil: {
+        type: Date
+    },
+    file: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
+    }
 }, {
-    timestamps: true
-});
+        timestamps: true
+    });
 var instructorModel = mongoose.model('instructor', instructorSchema);
 module.exports = instructorModel;

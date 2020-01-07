@@ -13,16 +13,18 @@ const s3UploadFile = (file, folder, options) => {
     return new Promise((resolve, reject) => {
         console.log('Inside S3 File:', process.env.Bucket);
 
+        console.log('settings----->>>>>>>>', settings);
+
         var s3bucket = new aws.S3({
-            accessKeyId: process.env.accessKeyId,
-            secretAccessKey: process.env.secretAccessKey,
-            Bucket: process.env.Bucket,
+            accessKeyId: settings.s3Bucket.key,
+            secretAccessKey: settings.s3Bucket.secret,
+            Bucket: settings.s3Bucket.bucket,
         });
 
         s3bucket.createBucket(function () {
 
             const params = {
-                Bucket: process.env.Bucket,
+                Bucket: settings.s3Bucket.bucket,
                 Key: file.name,
                 Body: file.data,
             };

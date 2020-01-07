@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // import { instructor } from 'src/app/interfaces/instructor';
 import { InstructorService } from '../../services/instructor.service'
 import { format } from 'url';
+import * as _ from 'lodash';
 declare var $;
 
 
@@ -25,12 +26,14 @@ export class EditInstructorModalComponent implements OnInit {
   loading: Boolean = false;
   instructorData;
   passwordMismatch: boolean;
-
+  certFile: any = [];
   show: boolean;
   pwd: boolean;
 
   show1: boolean;
   pwd1: boolean;
+
+  url;
 
   ngOnInit() {
 
@@ -87,15 +90,33 @@ export class EditInstructorModalComponent implements OnInit {
   doSubmit() {
     console.log("Submit ", this.data);
     console.log("this.instructorData", this.instructorData);
-    console.log("Validating = ", this.validate(this.data));
-    if (!this.validate(this.instructorData)) {
-      console.log("RETURNING");
-      return;
+
+    const data = new FormData();
+    _.forOwn(this.instructorData, (value, key) => {
+      data.append(key, value);
+    });
+
+
+
+    if (this.certFile.length) {
+      console.log('this.certFile.length--------->>>>', this.certFile);
+      for (let i = 0; i <= this.certFile.length; i++) {
+        data.append('file', this.certFile[i]);
+      }
     }
+
+    console.log('Data-------------->>>>>', data);
+
+
+    // console.log("Validating = ", this.validate(this.data));
+    // if (!this.validate(this.instructorData)) {
+    //   console.log("RETURNING");
+    //   return;
+    // }
 
     // Do Submit
     this.loading = true;
-    this._instructorService.editInstructor(this.instructorData).subscribe(instructors => {
+    this._instructorService.editInstructor(data).subscribe(instructors => {
       this.data = this.instructorData;
       this.loading = false;
       this.closoeDialog({
@@ -134,6 +155,21 @@ export class EditInstructorModalComponent implements OnInit {
         data: err
       });
     });
+  }
+
+
+  // for image preview on edit click
+  public addFile(event: any) {
+    this.certFile = event.target.files;
+
+    console.log('this.certFile', this.certFile);
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
 
   }
 

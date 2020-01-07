@@ -34,13 +34,14 @@ function sendMail(options, data, attach, callback) {
 
     console.log('Inside send mail function', options, data);
 
+
     const transporter = mailer.createTransport({
-        host: process.env.HOST,
-        port: process.env.SMTPPORT,
-        secure: process.env.SECURE,
+        host: settings.gmail.host,
+        port: settings.gmail.smtp_port,
+        secure: settings.gmail.secure,
         auth: {
-            user: process.env.SMTPUSERNAME,
-            pass: process.env.PASSWORD,
+            user: settings.gmail.smtp_user_name,
+            pass: settings.gmail.password,
         },
     });
 
