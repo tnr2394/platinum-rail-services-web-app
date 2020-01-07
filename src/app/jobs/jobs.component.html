@@ -7,10 +7,10 @@
                 </h3>
             </div>
             <div class="col-6">
-                <button *ngIf="currentUser.userRole == 'admin' " mat-flat-button color="primary"
+                <button *ngIf="!view && currentUser.userRole == 'admin' " mat-flat-button color="primary"
                     class="pull-right modal_open button_hover_effect" (click)="addJobModal()">
                     <i class="fas fa-plus fa-fw"></i>
-                   <span> Add Job</span>
+                    <span> Add Job</span>
                 </button>
             </div>
         </div>
@@ -55,8 +55,8 @@
 
 
                                     <!-- Client Column -->
-                                    <ng-container matColumnDef="client" >
-                                        <th  class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
+                                    <ng-container matColumnDef="client">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell
                                             *matCellDef="let job"> {{job.client.name}}
@@ -96,7 +96,7 @@
                                             *matCellDef="let job"> {{job.course.title}}
                                         </td>
                                     </ng-container>
- 
+
                                     <!-- learners Column -->
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Action
@@ -104,7 +104,7 @@
                                         <td class="mat-table-cell text-center" data-label="Actions" mat-cell
                                             *matCellDef="let job">
                                             <a mat-button class="text-primary" title="Job Details"
-                                                routerLink="{{job._id}}">
+                                                routerLink="/jobs/{{job._id}}">
                                                 <!-- <i class="fa fa-users"></i> -->
                                                 <i class="fa fa-eye"></i>
                                             </a>
@@ -143,13 +143,14 @@
                                 </div>
                             </table>
                         </div>
-                        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i></h3>
+                        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i
+                                class="fa fa-cog fa-spin text-info"></i></h3>
                     </div>
                     <!--/.Card content-->
 
                     <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="jobs && jobs.length == 0">
-                        <i class="fas fa-empty-set"></i> 
-                            No Jobs Assigned!
+                        <i class="fas fa-empty-set"></i>
+                        No Jobs Assigned!
                     </h3>
 
                 </div>

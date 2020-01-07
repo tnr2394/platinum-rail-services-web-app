@@ -80,42 +80,34 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 if (config.env.name === 'production') {
   var credentials = {
-    privateKey: fs.readFileSync('/etc/letsencrypt/live/prismanote.com/privkey.pem'),
-    certificate: fs.readFileSync('/etc/letsencrypt/live/prismanote.com/fullchain.pem')
+    key: fs.readFileSync('/var/www/html/platinum/ssl/privkey1.pem'),
+    cert: fs.readFileSync('/var/www/html/platinum/ssl/fullchain1.pem')
   };
 
   var server = https.createServer(credentials, app);
-  server.listen(4443);
+  server.listen(config.env.port);
   server.on('error', onError);
   server.on('listening', onListen);
 
-  var server2 = http.createServer(app);
-  server2.listen(8080);
 
-
-} else if (config.env.name === 'staging') {
+} else if (config.env.name === 'testing') {
 
   var credentials = {
-    privateKey: fs.readFileSync('/etc/letsencrypt/live/prismanote.it/privkey.pem'),
-    certificate: fs.readFileSync('/etc/letsencrypt/live/prismanote.it/fullchain.pem')
+    key: fs.readFileSync('/var/www/html/platinum/ssl/privkey1.pem'),
+    cert: fs.readFileSync('/var/www/html/platinum/ssl/fullchain1.pem')
   };
 
   var server = http.createServer(app);
-  server.listen(4443);
+  server.listen(config.env.port);
   server.on('error', onError);
   server.on('listening', onListen);
-
-  var server2 = http.createServer(app);
-  server2.listen(8080);
-
-
 
   // Development and Testing mode
 } else {
   if (config.env.name === 'development' && config.env.https) {
     var server = https.createServer({
-      key: fs.readFileSync('key.pem'),
-      cert: fs.readFileSync('cert.pem')
+      key: fs.readFileSync('/var/www/html/platinum/ssl/privkey1.pem'),
+      cert: fs.readFileSync('/var/www/html/platinum/ssl/fullchain1.pem')
     }, app);
   } else {
     var server = http.createServer(app);

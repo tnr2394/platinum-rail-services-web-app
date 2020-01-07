@@ -78,6 +78,7 @@ import { DragDropDirective } from './drag-drop.directive';
 import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-dashboard.component';
 import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component';
 import { AuthGuard } from './auth.guard';
+import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,6 +130,7 @@ import { AuthGuard } from './auth.guard';
     DragDropDirective,
     LearnerDashboardComponent,
     LearnerReadingMaterialComponent,
+    SingleInstructorComponent,
 
   ],
   imports: [

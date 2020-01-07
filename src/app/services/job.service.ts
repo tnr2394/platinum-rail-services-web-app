@@ -12,67 +12,79 @@ export class JobService {
   constructor(private http: HttpClient) {
     this.jobs = [];
     console.log('Jobs initialized!!', this.jobs);
-   }
+  }
 
-   addJob(data:any): Observable<any>{
-      console.log('Adding Jobs', data);
+  addJob(data: any): Observable<any> {
+    console.log('Adding Jobs', data);
 
-      return new Observable<any>((observer)=>{
-        var that = this;
-        this.http.post(config.baseApiUrl +  "jobs", data).subscribe((res:any)=>{
+    return new Observable<any>((observer) => {
+      var that = this;
+      this.http.post(config.baseApiUrl + "jobs", data).subscribe((res: any) => {
         observer.next(res.data.job);
-        },err=>{
-          console.log("ERROR");
-            observer.error(err);
-        },
-        ()=>{
+      }, err => {
+        console.log("ERROR");
+        observer.error(err);
+      },
+        () => {
           console.log("CALL COMPLETED ");
           observer.complete();
         });
-      });
-   }
+    });
+  }
 
-   editJobs(data:any, id){
-     console.log("Edit jobs------", data, id);
-     Object.assign(data, {_id:id})
-     return new Observable<any>((observer) => {
-       console.log("Observable");
-       this.http.put(config.baseApiUrl +  "jobs", data).subscribe((res: any) => {
-         console.log("Edited job : ", res);
-         observer.next(res.data.job);
-         observer.complete();
-       })
-     });
-
-   }
-
-   deleteJobs(id){
-     return new Observable((observer) => {
-       this.http.delete(config.baseApiUrl +  "jobs?_id=" + id).subscribe((res: any) => {
-         observer.next(res.data.jobs);
-         observer.complete();
-       })
+  editJobs(data: any, id) {
+    console.log("Edit jobs------", data, id);
+    Object.assign(data, { _id: id })
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.put(config.baseApiUrl + "jobs", data).subscribe((res: any) => {
+        console.log("Edited job : ", res);
+        observer.next(res.data.job);
+        observer.complete();
       })
-   }
+    });
 
-    getJobs():Observable<any>{
-     console.log("Getting jobs");
-     var that = this;
-     return new Observable<any>((observer) => {
-       console.log("Observable");
-       this.http.get(config.baseApiUrl +  "jobs").subscribe((res: any) => {
-         console.log("Get Jobs... : ", res);
-         observer.next(res.data);
-         observer.complete();
-       })
-     });
-   }
-   getJobById(jobId):Observable<any>{
+  }
+
+  deleteJobs(id) {
+    return new Observable((observer) => {
+      this.http.delete(config.baseApiUrl + "jobs?_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.jobs);
+        observer.complete();
+      })
+    })
+  }
+
+  getJobs(): Observable<any> {
     console.log("Getting jobs");
     var that = this;
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get(config.baseApiUrl +  "jobs?_id="+jobId).subscribe((res: any) => {
+      this.http.get(config.baseApiUrl + "jobs").subscribe((res: any) => {
+        console.log("Get Jobs... : ", res);
+        observer.next(res.data);
+        observer.complete();
+      })
+    });
+  }
+  getJobById(jobId): Observable<any> {
+    console.log("Getting jobs");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "jobs?_id=" + jobId).subscribe((res: any) => {
+        console.log("Get Jobs... : ", res);
+        observer.next(res.data);
+        observer.complete();
+      })
+    });
+  }
+  getJobByInstructorId(instructorId): Observable<any> {
+    console.log("Getting jobs");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "jobs/instructor?_id=" + instructorId).subscribe((res: any) => {
         console.log("Get Jobs... : ", res);
         observer.next(res.data);
         observer.complete();

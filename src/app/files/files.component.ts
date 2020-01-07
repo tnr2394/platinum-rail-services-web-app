@@ -3,6 +3,7 @@ import { AddFileModalComponent } from './add-file-modal/add-file-modal.component
 import { EditFileModalComponent } from './edit-file-modal/edit-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FileService } from '../services/file.service';
+import { FilterService } from '../services/filter.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
@@ -13,12 +14,13 @@ import * as _ from 'lodash';
 })
 export class FilesComponent implements OnInit, OnChanges {
   files = [];
+  copyFiles;
   @Input('materialId') materialId: any;
 
   materials: any;
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
+  constructor(public _filter: FilterService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
-  
+
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
     console.log("SOMETHING CHANGED!!", this.materialId);
     this.getFiles();
@@ -69,6 +71,11 @@ export class FilesComponent implements OnInit, OnChanges {
     return dialogRef.afterClosed();
   }
 
+  applyFilter(filterValue: string) {
+    this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
+    this.updateData(this.files);
+  }
+
 
   deletedFile(event) {
     console.log("File Deleted Event : ", event);
@@ -111,6 +118,7 @@ export class FilesComponent implements OnInit, OnChanges {
     this._fileService.getFilesByMaterial(this.materialId)
       .subscribe(files => {
         console.log("Response from service", files);
+        this.copyFiles = files;
         this.files = files;
         console.log("Files updated with - ", files);
       })

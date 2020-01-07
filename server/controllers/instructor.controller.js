@@ -16,10 +16,10 @@ var instructorModel = require('../models/instructor.model');
 
 var instructorController = {};
 
-async function allInstructors() {
+async function allInstructors(query) {
     var deferred = Q.defer();
 
-    instructorModel.find({}, (err, instructors) => {
+    instructorModel.find(query, (err, instructors) => {
         if (err) deferred.reject(err);
         console.log("RETRIVED DATA = ", instructors);
         deferred.resolve(instructors);
@@ -29,7 +29,11 @@ async function allInstructors() {
 }
 instructorController.getInstructors = async function (req, res, next) {
     console.log("GET Instructors");
-    allInstructors().then(instructors => {
+    var query = {};
+    if (req.query._id) {
+        var query = { _id: req.query._id }
+    }
+    allInstructors(query).then(instructors => {
         console.log("SENDING RESPONSE instructors = ", instructors)
         return res.send({ data: { instructors } });
     })

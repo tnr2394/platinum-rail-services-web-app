@@ -26,8 +26,9 @@
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients"
       routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-users"></i> Client</a>
 
-    <a class="side-nav-item" *ngIf="currentUser && (currentUser.userRole=='instructor')" routerLink="/scheduler"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-calendar-alt"></i>
+    <a class="side-nav-item"
+      *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
+      routerLink="/scheduler" routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-calendar-alt"></i>
       Scheduler</a>
 
     <!-- <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'" routerLink='#'

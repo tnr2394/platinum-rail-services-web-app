@@ -9,7 +9,7 @@ import { AddInstructorModalComponent } from './add-instructor-modal/add-instruct
 import { EditInstructorModalComponent } from './edit-instructor-modal/edit-instructor-modal.component';
 import { FilterService } from "../services/filter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-instructors',
@@ -154,6 +154,15 @@ export class InstructorsComponent implements OnInit {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data });
     return dialogRef.afterClosed();
+  }
+
+  goToSingleInstructor(instructor) {
+    let NavigationExtras: NavigationExtras = {
+      state: {
+        instructor: instructor,
+      }
+    };
+    this.router.navigateByUrl('/instructors/' + instructor._id)
   }
 
 

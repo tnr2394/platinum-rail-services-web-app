@@ -57,6 +57,20 @@ jobController.getJobs = async function (req, res) {
     })
 }
 
+jobController.getJobUsingInstructorId = async function (req, res) {
+
+    const instructorId = req.query._id;
+
+    console.log('Instructor Id', instructorId);
+    
+    query = { instructors: { $in: instructorId } }
+
+    allJobs(query).then(jobs => {
+        res.send({ data: jobs })
+        console.log('---JOBS---', jobs)
+    })
+}
+
 
 
 jobController.addJob = function (req, res) {

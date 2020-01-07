@@ -11,6 +11,7 @@ import { EditJobModalComponent } from './edit-job-modal/edit-job-modal.component
 import { FilterService } from '../services/filter.service';
 import { JobService } from '../services/job.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import { FormsModule, NgForm } from '@angular/forms'
 
@@ -31,6 +32,7 @@ export class JobsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   currentUser;
   loading: Boolean;
+  view;
 
   // MatPaginator Inputs
   length;
@@ -59,7 +61,7 @@ export class JobsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(public _jobService: JobService, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private router: Router, public _jobService: JobService, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ['badge-info', 'badge-success', 'badge-warning', 'badge-primary', 'badge-danger'];
     // this.jobs = [];
     // this.dataSource = this.jobs;
@@ -107,6 +109,10 @@ export class JobsComponent implements OnInit {
     // this.getCourses();
     this.getJobs();
     this.currentUser = JSON.parse(localStorage.currentUser);
+    if (this.router.url.includes('/dashboard')) {
+      this.view = true;
+      console.log("VIEW VALUE IS", this.view)
+    }
     // this.getStatus()
   }
 

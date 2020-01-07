@@ -11,6 +11,10 @@ var instructorSchema = new Schema({
         unique: false,
         required: true
     },
+    contact: {
+        type: Number,
+        unique: true
+    },
     password: {
         type: String,
         required: true

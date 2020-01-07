@@ -21,6 +21,7 @@ import { AssignmentStatusComponent } from './clients/assignment-status/assignmen
 import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-dashboard.component';
 import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component'
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
+import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -142,6 +143,11 @@ const routes: Routes = [
 		component: AssignmentStatusComponent,
 		canActivate: [AuthGuard],
 	},
+	{
+		path: 'instructors/:id',
+		component: SingleInstructorComponent,
+		canActivate: [AuthGuard],
+	}
 ];
 
 @NgModule({
