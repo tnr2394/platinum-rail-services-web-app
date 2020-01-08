@@ -4,6 +4,7 @@
 </h1>
 <form #editInstructor (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
+
         <mat-form-field class="example-full-width col-sm-6">
             <input required matInput name="instructor-name" placeholder="Instructor Name"
                 [(ngModel)]='instructorData.name' cdkFocusInitial>
@@ -12,6 +13,20 @@
         <mat-form-field class="example-full-width col-sm-6">
             <input type="email" matInput placeholder="Instructor Email" name="instructor-email"
                 [(ngModel)]='instructorData.email'>
+        </mat-form-field>
+
+        <label class="input-file-button" for="hello"><span>Profile</span>
+            <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
+                [(ngModel)]="instructorData.profile" required="required" (change)="addProfileImage($event)">
+        </label>
+
+        <div class="col-md-6" *ngIf="url1">
+            <img [src]="url1" height="50px" width="50px">
+        </div>
+
+        <mat-form-field class="example-full-width col-sm-6">
+            <input type="email" matInput placeholder="Instructor Mobile" name="instructor-mobile"
+                [(ngModel)]='instructorData.mobile'>
         </mat-form-field>
 
         <mat-form-field class="example-full-width col-sm-6">
@@ -76,3 +91,23 @@
     </div>
 
 </form>
+
+<!-- <div class="container">
+    <div class="row" style="margin-top: 5%;">
+        <div class="text-center col-md-12">
+            <input type="file" (change)="fileChangeEvent($event)" />
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5%;">
+        <div class="text-center col-md-8">
+            <h5>Crop Image</h5>
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="100" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+        <div class="text-center col-md-4">
+            <h5>Preview</h5>
+            <img [src]="croppedImage" />
+        </div>
+    </div>
+</div> -->

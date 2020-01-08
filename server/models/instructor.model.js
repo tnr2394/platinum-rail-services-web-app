@@ -11,9 +11,13 @@ var instructorSchema = new Schema({
         unique: false,
         required: true
     },
-    contact: {
+    mobile: {
         type: Number,
         unique: true
+    },
+    profilePic: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
     },
     password: {
         type: String,

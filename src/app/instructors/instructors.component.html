@@ -56,13 +56,14 @@
 
                                     <!-- Actions Column -->
                                     <ng-container matColumnDef="actions">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Edit </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Action </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let instructor; let i = index;">
-                                            <a class="text-success bold" (click)="editInstructorModal(i, instructor)"><i
-                                                    class="fa fa-edit"></i></a>
-
-                                            <a class="text-primary bold" (click)="goToSingleInstructor(instructor)">
+                                            <a mat-button class="text-success"
+                                                (click)="editInstructorModal(i, instructor)"><i class="fa fa-edit"></i>
+                                            </a>
+                                            <a mat-button class="text-primary"
+                                                (click)="goToSingleInstructor(instructor)">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>

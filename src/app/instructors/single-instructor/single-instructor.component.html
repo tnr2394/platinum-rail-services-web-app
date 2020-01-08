@@ -1,6 +1,19 @@
 <h3 *ngIf="instructor">{{instructor.name}}</h3>
 <h3>7621859675</h3>
 
+<div *ngIf="instructor && instructor.profilePic">
+    <img src="{{instructor.profilePic.path}}" height="200" width="200">
+</div>
+
+
+<div class="row">
+    <button mat-flat-button *ngIf="!view" color="primary" class="pull-right button_hover_effect"
+        (click)="editInstructorModal(i, instructor)">
+        <i class="fas fa-pencil-alt"></i>
+        <span>Edit Profile</span>
+    </button>
+</div>
+
 <div class="row">
     <div class="col-12 ">
         <div class="card">

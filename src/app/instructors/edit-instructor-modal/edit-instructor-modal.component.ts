@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // import { instructor } from 'src/app/interfaces/instructor';
 import { InstructorService } from '../../services/instructor.service'
 import { format } from 'url';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 import * as _ from 'lodash';
 declare var $;
 
@@ -29,10 +30,10 @@ export class EditInstructorModalComponent implements OnInit {
   certFile: any = [];
   show: boolean;
   pwd: boolean;
-
   show1: boolean;
   pwd1: boolean;
-
+  url1: any;
+  profileFile: any = [];
   url;
 
   ngOnInit() {
@@ -99,9 +100,14 @@ export class EditInstructorModalComponent implements OnInit {
 
 
     if (this.certFile.length) {
-      console.log('this.certFile.length--------->>>>', this.certFile);
       for (let i = 0; i <= this.certFile.length; i++) {
         data.append('file', this.certFile[i]);
+      }
+    }
+
+    if (this.profileFile.length) {
+      for (let i = 0; i <= this.profileFile.length; i++) {
+        data.append('profile', this.profileFile[i]);
       }
     }
 
@@ -173,7 +179,17 @@ export class EditInstructorModalComponent implements OnInit {
 
   }
 
+  public addProfileImage(event: any) {
+    this.profileFile = event.target.files;
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.url1 = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
 
+  }
 
   closoeDialog(result) {
     this.dialogRef.close(result);
@@ -181,5 +197,28 @@ export class EditInstructorModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  // title = 'angular-image-uploader';
+
+  // imageChangedEvent: any = '';
+  // croppedImage: any = '';
+
+  // fileChangeEvent(event: any): void {
+  //   this.imageChangedEvent = event;
+  // }
+  // imageCropped(event: ImageCroppedEvent) {
+  //   this.croppedImage = event.base64;
+  //   console.log(' this.croppedImage', this.croppedImage);
+  // }
+  // imageLoaded() {
+  //   // show cropper
+  // }
+  // cropperReady() {
+  //   // cropper ready
+  // }
+  // loadImageFailed() {
+  //   // show message
+  // }
+
 
 }

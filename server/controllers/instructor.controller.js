@@ -19,11 +19,14 @@ var instructorController = {};
 async function allInstructors(query) {
     var deferred = Q.defer();
 
-    instructorModel.find(query, (err, instructors) => {
-        if (err) deferred.reject(err);
-        console.log("RETRIVED DATA = ", instructors);
-        deferred.resolve(instructors);
-    });
+    instructorModel.find(query)
+        .populate("file")
+        .populate("profilePic")
+        .exec((err, instructors) => {
+            if (err) deferred.reject(err);
+            console.log("RETRIVED DATA = ", instructors);
+            deferred.resolve(instructors);
+        });
     return deferred.promise;
 
 }
@@ -57,67 +60,134 @@ instructorController.addInstructor = function (req, res, next) {
 
 instructorController.updateInstructor = function (req, res, next) {
 
-    if (req.files && req.files.file) {
+    console.log('Instructor Data:', req.body, req.files);
 
-        console.log('Inside If:');
-        var re = /(?:\.([^.]+))?$/;
-        var ext = re.exec(req.files.file.name)[1];
-        var name = req.files.file.name.split('.').slice(0, -1).join('.')
+    var updatedInstructor = {};
 
-        var newFile = {
-            title: name,
-            type: "Qulification",// OR SUBMISSION OR DOCUMENT
-            path: "NEWPATH",
-            extension: ext,
-            uploadedBy: 'ADMIN',
-            file: req.files.file,
-            uploadedDate: new Date()
-        }
+    if (req.body.name) updatedInstructor['name'] = req.body.name;
+    if (req.body.email) updatedInstructor['email'] = req.body.email;
+    if (req.body.password) updatedInstructor['password'] = req.body.password;
+    if (req.body.dateOfJoining) updatedInstructor['dateOfJoining'] = req.body.dateOfJoining;
+    if (req.body.qualificationTitle) updatedInstructor['qualificationTitle'] = req.body.qualificationTitle;
+    if (req.body.validUntil) updatedInstructor['validUntil'] = req.body.validUntil;
+    if (req.body.mobile) updatedInstructor['mobile'] = req.body.mobile;
 
-        fileDAO.addFile(newFile).then((Response) => {
-            var updatedInstructor = {
-                name: req.body.name,
-                email: req.body.email,
-                password: req.body.password,
-                dateOfJoining: req.body.dateOfJoining,
-                qualificationTitle: req.body.qualificationTitle,
-                validUntil: req.body.validUntil,
-                file: Response._id,
-            };
-
-            instructorModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
-                console.log("Updated instructor", instructor, err);
-                if (err) {
-                    return res.status(500).send({ err })
-                }
-                return res.send({ data: { instructor } });
-            });
-
-        }).catch((error) => {
-            console.log('Error While File Upload', error);
-            return res.status(500).send({ err })
+    if (req.files && req.files.profile && req.files.file) {
+        Promise.all([
+            updateProfilePicture(req.files.profile),
+            updateQualificationFile(req.files.file)
+        ]).then((success) => {
+            updatedInstructor['profilePic'] = success[0]._id;
+            updatedInstructor['file'] = success[1]._id;
+            updateInstructorDetail(updatedInstructor, req.body._id).then((updatedInstructor) => {
+                return res.send({ data: { updatedInstructor } });
+            }).catch((updateError) => {
+                return res.status(500).send({ updateError })
+            })
+        }).catch((reason) => {
+            return res.status(500).send({ reason })
         })
-    } else {
-
-        var updatedInstructor = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            dateOfJoining: req.body.dateOfJoining,
-            qualificationTitle: req.body.qualificationTitle,
-            validUntil: req.body.validUntil,
-        };
-
-        instructorModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
-            console.log("Updated instructor", instructor, err);
-            if (err) {
+    }
+    else if (req.files) {
+        if (req.files.file) {
+            updateQualificationFile(req.files.file).then((certRes) => {
+                updatedInstructor['file'] = certRes._id;
+                updateInstructorDetail(updatedInstructor, req.body._id).then((updatedInstructor) => {
+                    return res.send({ data: { updatedInstructor } });
+                }).catch((updateError) => {
+                    return res.status(500).send({ updateError })
+                })
+            }).catch((error) => {
                 return res.status(500).send({ err })
-            }
-            return res.send({ data: { instructor } });
-        });
+            })
+        }
+        else if (req.files.profile) {
+            updateProfilePicture(req.files.profile).then((profileRes) => {
+                updatedInstructor['profilePic'] = profileRes._id;
+                updateInstructorDetail(updatedInstructor, req.body._id).then((updatedInstructor) => {
+                    return res.send({ data: { updatedInstructor } });
+                }).catch((updateError) => {
+                    return res.status(500).send({ updateError })
+                })
+            }).catch((error) => {
+                return res.status(500).send({ err })
+            })
+        }
+    } else {
+        updateInstructorDetail(updatedInstructor, req.body._id).then((updatedInstructor) => {
+            return res.send({ data: { updatedInstructor } });
+        }).catch((updateError) => {
+            return res.status(500).send({ updateError })
+        })
     }
 }
 
+const updateInstructorDetail = (updatedInstructor, instructorId) => {
+    return new Promise((resolve, reject) => {
+        instructorModel.findOneAndUpdate({ _id: instructorId }, { $set: updatedInstructor }, { new: true }, (err, instructor) => {
+            console.log("Updated instructor", instructor, err);
+            if (err) {
+                reject(err);
+            } else {
+                resolve(instructor);
+            }
+        });
+    })
+}
+
+const updateProfilePicture = (profileImg) => {
+    return new Promise((resolve, reject) => {
+
+        console.log('Profile Picture Function:', profileImg);
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(profileImg.name)[1];
+        var name = profileImg.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "Profile",
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: profileImg,
+            uploadedDate: new Date()
+        }
+
+        fileDAO.addFile(newFile).then((profileResponse) => {
+            resolve(profileResponse);
+        }).catch((error) => {
+            console.log('Error While Profile Upload', error);
+            reject(error);
+        })
+    })
+}
+
+const updateQualificationFile = (certFile) => {
+    return new Promise((resolve, reject) => {
+
+        console.log('Profile Picture Function:', certFile);
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(certFile.name)[1];
+        var name = certFile.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "Certificate",
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: certFile,
+            uploadedDate: new Date()
+        }
+
+        fileDAO.addFile(newFile).then((profileResponse) => {
+            resolve(profileResponse);
+        }).catch((error) => {
+            console.log('Error While Profile Upload', error);
+            reject(error);
+        })
+    })
+}
 
 instructorController.checkForQualificationCronJob = () => {
     console.log('Function In Controller Is Calling');
@@ -266,8 +336,5 @@ instructorController.forgotPassword = function (req, res, next) {
         }
     });
 }
-
-// module.exports.checkForQualificationCronJob = checkForQualificationCronJob;
-
 
 module.exports = instructorController;

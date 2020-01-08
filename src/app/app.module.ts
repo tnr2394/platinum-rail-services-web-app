@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
@@ -158,6 +159,7 @@ import { SingleInstructorComponent } from './instructors/single-instructor/singl
     CdkTableModule,
     MatSnackBarModule,
     ColorPickerModule,
+    ImageCropperModule,
     FileUploadModule,
     RecaptchaV3Module,
     MatBadgeModule

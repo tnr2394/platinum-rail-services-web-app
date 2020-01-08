@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
+import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { JobService } from '../../services/job.service';
 import { InstructorService } from '../../services/instructor.service';
 import { FilterService } from '../../services/filter.service';
+import { EditInstructorModalComponent } from '../../instructors/edit-instructor-modal/edit-instructor-modal.component'
 
 @Component({
   selector: 'app-single-instructor',
@@ -30,7 +33,7 @@ export class SingleInstructorComponent implements OnInit {
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
 
-  constructor(public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.instructorId = params.id;
     });
@@ -58,6 +61,60 @@ export class SingleInstructorComponent implements OnInit {
     }))
   }
 
+  editInstructorModal(index, data) {
+    this.openDialog(EditInstructorModalComponent, data).subscribe((instructor) => {
+      console.log("DIALOG CLOSED", instructor)
+      // Handle Undefined
+
+      if (!instructor) { return }
+
+      // Handle Error
+
+      if (instructor && instructor.result == "err") return this.openSnackBar("instructor could not be edited", "Ok");
+
+      // EDIT HANDLE
+      // if (instructor && instructor.action == 'edit') {
+      //   console.log("HANDLING EDIT SUCCESS", instructor.data);
+      //   data = instructor.data;
+      //   var Index = this.instructors.findIndex(function (i) {
+      //     return i._id === data._id;
+      //   })
+      //   this.instructors[Index] = instructor.data;
+      //   this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
+      // }
+      // // DELETE HANDLE
+      // else if (instructor && instructor.action == 'delete') {
+      //   console.log("Deleted ", instructor);
+      //   this.instructors.splice(this.instructors.findIndex(function (i) {
+      //     return i._id === data._id;
+      //   }), 1);
+      //   this.handleSnackBar({ msg: "Instructor Deleted Successfully", button: "Ok" });
+      // }
+      // this.updateData(this.instructors);
+
+    });
+  }
+
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
+  }
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data });
+    return dialogRef.afterClosed();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
+
+
+  
   updateData(jobs) {
     this.dataSource = new MatTableDataSource(jobs);
     this.dataSource.paginator = this.paginator;
