@@ -1,5 +1,5 @@
 <h3 *ngIf="instructor">{{instructor.name}}</h3>
-<h3>7621859675</h3>
+<h3 *ngIf="instructor">{{instructor.mobile}}</h3>
 
 <div *ngIf="instructor && instructor.profilePic">
     <img src="{{instructor.profilePic.path}}" height="200" width="200">

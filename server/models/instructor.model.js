@@ -12,7 +12,7 @@ var instructorSchema = new Schema({
         required: true
     },
     mobile: {
-        type: Number,
+        type: String,
         unique: true
     },
     profilePic: {
@@ -32,6 +32,9 @@ var instructorSchema = new Schema({
     },
     validUntil: {
         type: Date
+    },
+    competencies: {
+        type: Array
     },
     file: {
         type: Schema.Types.ObjectId,

@@ -71,6 +71,7 @@ instructorController.updateInstructor = function (req, res, next) {
     if (req.body.qualificationTitle) updatedInstructor['qualificationTitle'] = req.body.qualificationTitle;
     if (req.body.validUntil) updatedInstructor['validUntil'] = req.body.validUntil;
     if (req.body.mobile) updatedInstructor['mobile'] = req.body.mobile;
+    if (req.body.competencies) updatedInstructor['competencies'] = req.body.competencies;
 
     if (req.files && req.files.profile && req.files.file) {
         Promise.all([

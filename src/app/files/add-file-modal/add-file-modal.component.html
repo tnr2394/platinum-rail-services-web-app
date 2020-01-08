@@ -12,7 +12,7 @@
         <mat-card-content>
             <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
                 (onFileDropped)="uploadFile($event,'materialfile')">
-                <input hidden type="file" accept=".pdf, .ppt, .doc, .docx ,.mp4" formControlName="materialfile"
+                <input hidden type="file" accept=".pdf, .ppt, .doc, .docx ,.mp4,.jpg,.jpeg,.png,.zip,.csv,.mov,.mkv,.txt,.xls,.xlsx,.xlsm" formControlName="materialfile"
                     #fileInput (change)="uploadFile($event,'browse')" multiple>
                 <div class="uploadfile_arrow">
                     <div class="arrow_div"><i class="fas fa-arrow-circle-up"></i></div>

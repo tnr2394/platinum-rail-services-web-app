@@ -55,6 +55,13 @@
                 [(ngModel)]='instructorData.qualificationTitle' cdkFocusInitial>
         </mat-form-field>
 
+        <div>
+            <tag-input [(ngModel)]="instructorData.competencies" name="instructor-competencies"
+                placeholder="Instuctor competencies" (onSelect)="onSelect($event)" [modelAsStrings]="true">
+            </tag-input>
+        </div>
+
+
         <mat-form-field class="example-full-width col-sm-6">
             <input matInput [matDatepicker]="dateOfExpire" [(ngModel)]="instructorData.validUntil"
                 [ngModelOptions]="{standalone: true}" placeholder="Date Of Expire">

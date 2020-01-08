@@ -94,9 +94,14 @@ export class EditInstructorModalComponent implements OnInit {
 
     const data = new FormData();
     _.forOwn(this.instructorData, (value, key) => {
-      data.append(key, value);
+      if (key == 'competencies') {
+        for (let i = 0; i < this.instructorData.competencies.length; i++) {
+          data.append(key, this.instructorData.competencies[i]);
+        }
+      } else {
+        data.append(key, value);
+      }
     });
-
 
 
     if (this.certFile.length) {

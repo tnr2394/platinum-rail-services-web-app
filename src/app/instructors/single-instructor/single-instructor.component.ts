@@ -64,6 +64,8 @@ export class SingleInstructorComponent implements OnInit {
   editInstructorModal(index, data) {
     this.openDialog(EditInstructorModalComponent, data).subscribe((instructor) => {
       console.log("DIALOG CLOSED", instructor)
+
+      this.getInstructor(this.instructorId);
       // Handle Undefined
 
       if (!instructor) { return }
@@ -73,24 +75,12 @@ export class SingleInstructorComponent implements OnInit {
       if (instructor && instructor.result == "err") return this.openSnackBar("instructor could not be edited", "Ok");
 
       // EDIT HANDLE
-      // if (instructor && instructor.action == 'edit') {
-      //   console.log("HANDLING EDIT SUCCESS", instructor.data);
-      //   data = instructor.data;
-      //   var Index = this.instructors.findIndex(function (i) {
-      //     return i._id === data._id;
-      //   })
-      //   this.instructors[Index] = instructor.data;
-      //   this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
-      // }
-      // // DELETE HANDLE
-      // else if (instructor && instructor.action == 'delete') {
-      //   console.log("Deleted ", instructor);
-      //   this.instructors.splice(this.instructors.findIndex(function (i) {
-      //     return i._id === data._id;
-      //   }), 1);
-      //   this.handleSnackBar({ msg: "Instructor Deleted Successfully", button: "Ok" });
-      // }
-      // this.updateData(this.instructors);
+      if (instructor && instructor.action == 'edit') {
+        console.log("HANDLING EDIT SUCCESS", instructor.data);
+        console.log('This Instructor after update:', this.instructor);
+
+        this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
+      }
 
     });
   }
@@ -114,7 +104,7 @@ export class SingleInstructorComponent implements OnInit {
 
 
 
-  
+
   updateData(jobs) {
     this.dataSource = new MatTableDataSource(jobs);
     this.dataSource.paginator = this.paginator;

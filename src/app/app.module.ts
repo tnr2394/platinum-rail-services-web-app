@@ -37,6 +37,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from './courses/edit-course-modal/edit-course-modal.component';
@@ -161,6 +162,7 @@ import { SingleInstructorComponent } from './instructors/single-instructor/singl
     ColorPickerModule,
     ImageCropperModule,
     FileUploadModule,
+    TagInputModule,
     RecaptchaV3Module,
     MatBadgeModule
   ],
