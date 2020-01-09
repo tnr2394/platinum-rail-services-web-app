@@ -51,12 +51,37 @@ instructorController.addInstructor = function (req, res, next) {
         password: req.body.password,
         dateOfJoining: req.body.dateOfJoining
     });
-    newInstructor.save((err, instructor) => {
-        console.log("SENDING RESPONSE Instructors = ", instructor)
 
-        return res.send({ data: { instructor } });
+    checkInstructorExists(req.body.email).then((response) => {
+        if (response) {
+            return res.status(400).send({ data: {}, msg: "Instructor Already Exists" });
+        } else {
+            newInstructor.save((err, instructor) => {
+                console.log("SENDING RESPONSE Instructors = ", instructor)
+                return res.send({ data: { instructor } });
+            })
+        }
+    }).catch((error) => {
+        return res.status(500).send({ error })
     })
 }
+
+const checkInstructorExists = (email) => {
+    return new Promise((resolve, reject) => {
+        console.log('Inside Check Learner Function');
+        instructorModel.find({ email: email }, (error, instructor) => {
+            if (error) {
+                reject(error);
+            } else if (instructor.length != 0) {
+                console.log('instructor Detail:', instructor);
+                resolve(true)
+            } else {
+                resolve(false)
+            }
+        });
+    });
+}
+
 
 instructorController.updateInstructor = function (req, res, next) {
 

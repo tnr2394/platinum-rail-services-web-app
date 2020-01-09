@@ -82,7 +82,7 @@ learnerController.addLearner = async function (req, res, next) {
             return res.status(400).send({ data: {}, msg: "Learner Already Exists" });
         } else {
             learnerDOA.createLearner(newLearner).then(newLearner => {
-                console.log("Created Learner", newLearner);
+                console.log("Created Learner:::::::::", newLearner);
                 return res.send({ data: { learner: newLearner } })
             }, err => {
                 return res.status(500).send({ err });
@@ -91,8 +91,6 @@ learnerController.addLearner = async function (req, res, next) {
     }).catch((error) => {
         console.log('Error::::::::::::', error);
     })
-
-
 }
 
 const checkLearnerExists = (jobId, email) => {

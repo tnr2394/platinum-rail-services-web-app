@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgF
 import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 
 import { ClientService } from '../../services/client.service';
 import { CourseService } from '../../services/course.service';
@@ -53,8 +54,10 @@ export class EditJobModalComponent implements OnInit {
   selectedLocation;
   selectedCourse;
   selectedInstructor = [];
+  deletedInstructor = [];
   jobDateComponent: JobDatesComponent;
   selectedInstructorsForDb = [];
+  deletedInstructorsForDb = [];
   selectedInstructors;
   selectedCourseNew;
   selectedClientNew;
@@ -229,8 +232,16 @@ export class EditJobModalComponent implements OnInit {
       this.selectedInstructorsForDb.push(item._id)
     })
 
+    this.DialogData.instructors.forEach((item) => {
+      this.deletedInstructorsForDb.push(item._id)
+    })
 
+    console.log("this.DialogData.instructors", this.DialogData.instructors);
+    console.log("this.selectedInstructor", this.selectedInstructor);
 
+    this.deletedInstructor = _.difference(this.deletedInstructorsForDb, this.selectedInstructorsForDb)
+
+    console.log('Final Array:', this.deletedInstructor);
 
     console.log('this.selectedClient.name', this.selectedClient.name, this.selectedCourseNameNew);
 
@@ -251,7 +262,8 @@ export class EditJobModalComponent implements OnInit {
       course: this.selectedCourseNew,
       startingDate: this.addJobForm.controls['startingDate'].value,
       totalDays: this.totalDays,
-      singleJobDate: this.singleJobDate
+      singleJobDate: this.singleJobDate,
+      removedInstructor: this.deletedInstructor
     }
 
     console.log('Edited Job:', editedJob);
@@ -275,11 +287,6 @@ export class EditJobModalComponent implements OnInit {
     }
 
     console.log('Edited Job:', dataToDisplay);
-
-    // return;
-
-
-
 
 
     let id = this.DialogData._id
