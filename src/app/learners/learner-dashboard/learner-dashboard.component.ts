@@ -15,7 +15,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 export class LearnerDashboardComponent implements OnInit {
 
   jobId;
-  loadingMaterials:Boolean;
+  loadingMaterials: Boolean;
   learner;
   learnerName = '';
   materialId = [];
@@ -79,7 +79,7 @@ export class LearnerDashboardComponent implements OnInit {
         if (material.type == "Reading") {
           this.material.push(material);
         }
-        console.log("Reading material is", this.material.length)
+        // console.log("Reading material is", this.material.length)
       })
     })
   }
@@ -109,6 +109,5 @@ export class LearnerDashboardComponent implements OnInit {
     };
     this.router.navigateByUrl('/learnerAllotment/' + assignment._id, navigationExtras);
   }
-
-
+  
 }

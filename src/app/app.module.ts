@@ -176,7 +176,6 @@ import { SingleInstructorComponent } from './instructors/single-instructor/singl
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     AuthGuard
   ],
-
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

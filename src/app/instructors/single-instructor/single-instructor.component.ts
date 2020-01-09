@@ -78,7 +78,6 @@ export class SingleInstructorComponent implements OnInit {
       if (instructor && instructor.action == 'edit') {
         console.log("HANDLING EDIT SUCCESS", instructor.data);
         console.log('This Instructor after update:', this.instructor);
-
         this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
       }
 
@@ -100,10 +99,6 @@ export class SingleInstructorComponent implements OnInit {
       duration: 2000,
     });
   }
-
-
-
-
 
   updateData(jobs) {
     this.dataSource = new MatTableDataSource(jobs);

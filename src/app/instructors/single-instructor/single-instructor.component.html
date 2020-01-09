@@ -1,5 +1,6 @@
 <h3 *ngIf="instructor">{{instructor.name}}</h3>
-<h3 *ngIf="instructor">{{instructor.mobile}}</h3>
+<h3 *ngIf="instructor">
+    <i class="fas fa-mobile-alt"></i>{{instructor.mobile}}</h3>
 
 <div *ngIf="instructor && instructor.profilePic">
     <img src="{{instructor.profilePic.path}}" height="200" width="200">
@@ -30,7 +31,6 @@
                         <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
                         </mat-paginator>
                     </div>
-
                 </div>
                 <!--Text-->
                 <div class="table-responsive">
@@ -121,7 +121,6 @@
                                 </th>
                                 <td class="mat-table-cell text-center" data-label="View" mat-cell
                                     *matCellDef="let job;let i = index;">
-
                                 </td>
                             </ng-container>
 
@@ -135,7 +134,7 @@
                         </div>
                     </table>
                 </div>
-                <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i
+                <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading...<i
                         class="fa fa-cog fa-spin text-info"></i></h3>
             </div>
             <!--/.Card content-->

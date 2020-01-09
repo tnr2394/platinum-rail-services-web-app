@@ -86,8 +86,8 @@
         <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
                 class="fas fa-save fa-fw"></i><span>
                 Save</span></button>
-        <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
-            (click)="delete()">
+        <button *ngIf="currentUser && currentUser.userRole == 'admin'" mat-flat-button type="button" color="warn"
+            class="text-white pull-right close_hover_effect" (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
             <span> Delete</span>
         </button>
@@ -98,23 +98,3 @@
     </div>
 
 </form>
-
-<!-- <div class="container">
-    <div class="row" style="margin-top: 5%;">
-        <div class="text-center col-md-12">
-            <input type="file" (change)="fileChangeEvent($event)" />
-        </div>
-    </div>
-    <div class="row" style="margin-top: 5%;">
-        <div class="text-center col-md-8">
-            <h5>Crop Image</h5>
-            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
-                [resizeToWidth]="100" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
-                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
-        </div>
-        <div class="text-center col-md-4">
-            <h5>Preview</h5>
-            <img [src]="croppedImage" />
-        </div>
-    </div>
-</div> -->

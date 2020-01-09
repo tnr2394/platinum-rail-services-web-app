@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { LearnerService } from 'src/app/services/learner.service';
 declare var $;
 
@@ -36,7 +36,7 @@ export class AddLearnerModalComponent implements OnInit {
 
 
   }
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _learnerService: LearnerService, private formBuilder: FormBuilder) {
+  constructor(public _snackBar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _learnerService: LearnerService, private formBuilder: FormBuilder) {
     // NO DEFINITION
   }
 
@@ -71,11 +71,11 @@ export class AddLearnerModalComponent implements OnInit {
       console.log("Added Successfully", data);
       this.dialogRef.close(data);
 
-    }, err => {
-      alert("Error Adding Learner.")
+    }, error => {
+      console.log('Error', error);
+      this.openSnackBar(error, "Ok");
       this.loading = false;
       this.dialogRef.close(null);
-
     });
 
   }
@@ -88,6 +88,13 @@ export class AddLearnerModalComponent implements OnInit {
   cpassword() {
     this.show1 = !this.show1;
     this.pwd1 = !this.pwd1
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

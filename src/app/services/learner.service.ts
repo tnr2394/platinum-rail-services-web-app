@@ -29,8 +29,8 @@ export class LearnerService {
         observer.next(res.data.learner);
         // observer.complete();
       }, err => {
-        console.log("ERROR ")
-        observer.error(err);
+        console.log("ERROR ", err)
+        observer.error(err.msg);
       },
         () => {
           console.log("CALL COMPLETED ")

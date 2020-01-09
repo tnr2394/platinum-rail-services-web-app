@@ -23,10 +23,12 @@ export interface Instructor {
   templateUrl: './edit-instructor-modal.component.html',
   styleUrls: ['./edit-instructor-modal.component.scss']
 })
+
 export class EditInstructorModalComponent implements OnInit {
   loading: Boolean = false;
   instructorData;
   passwordMismatch: boolean;
+  currentUser: any;
   certFile: any = [];
   show: boolean;
   pwd: boolean;
@@ -39,6 +41,7 @@ export class EditInstructorModalComponent implements OnInit {
   ngOnInit() {
 
     console.log("DATA = ", this.data);
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.instructorData = JSON.parse(JSON.stringify(this.data));
     // this.instructorData.dateOfJoining = this.formatDate(this.instructorData.dateOfJoining);
     console.log("DATE = ", this.instructorData.dateOfJoining);
@@ -71,8 +74,6 @@ export class EditInstructorModalComponent implements OnInit {
     return true;
   }
 
-
-
   formatDate(date) {
     var d = new Date(date);
     return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
@@ -103,27 +104,25 @@ export class EditInstructorModalComponent implements OnInit {
       }
     });
 
-
+    // Certificate Files Here
     if (this.certFile.length) {
       for (let i = 0; i <= this.certFile.length; i++) {
         data.append('file', this.certFile[i]);
       }
     }
 
+    // Profile Files Here
     if (this.profileFile.length) {
       for (let i = 0; i <= this.profileFile.length; i++) {
         data.append('profile', this.profileFile[i]);
       }
     }
 
-    console.log('Data-------------->>>>>', data);
-
-
-    // console.log("Validating = ", this.validate(this.data));
-    // if (!this.validate(this.instructorData)) {
-    //   console.log("RETURNING");
-    //   return;
-    // }
+    console.log("Validating = ", this.validate(this.data));
+    if (!this.validate(this.instructorData)) {
+      console.log("RETURNING");
+      return;
+    }
 
     // Do Submit
     this.loading = true;
@@ -172,7 +171,6 @@ export class EditInstructorModalComponent implements OnInit {
   // for image preview on edit click
   public addFile(event: any) {
     this.certFile = event.target.files;
-
     console.log('this.certFile', this.certFile);
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -193,37 +191,14 @@ export class EditInstructorModalComponent implements OnInit {
       }
       reader.readAsDataURL(event.target.files[0]);
     }
-
   }
 
   closoeDialog(result) {
     this.dialogRef.close(result);
   }
+  
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  // title = 'angular-image-uploader';
-
-  // imageChangedEvent: any = '';
-  // croppedImage: any = '';
-
-  // fileChangeEvent(event: any): void {
-  //   this.imageChangedEvent = event;
-  // }
-  // imageCropped(event: ImageCroppedEvent) {
-  //   this.croppedImage = event.base64;
-  //   console.log(' this.croppedImage', this.croppedImage);
-  // }
-  // imageLoaded() {
-  //   // show cropper
-  // }
-  // cropperReady() {
-  //   // cropper ready
-  // }
-  // loadImageFailed() {
-  //   // show message
-  // }
-
 
 }

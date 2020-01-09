@@ -76,12 +76,38 @@ learnerController.addLearner = async function (req, res, next) {
         job: req.body.job
     };
 
-    console.log('New Learner', newLearner);
-    learnerDOA.createLearner(newLearner).then(newLearner => {
-        console.log("Created Learner", newLearner);
-        return res.send({ data: { learner: newLearner } })
-    }, err => {
-        return res.status(500).send({ err });
+    checkLearnerExists(req.body.job, req.body.email).then((response) => {
+        console.log('Response:::::::::::', response);
+        if (response) {
+            return res.status(400).send({ data: {}, msg: "Learner Already Exists" });
+        } else {
+            learnerDOA.createLearner(newLearner).then(newLearner => {
+                console.log("Created Learner", newLearner);
+                return res.send({ data: { learner: newLearner } })
+            }, err => {
+                return res.status(500).send({ err });
+            });
+        }
+    }).catch((error) => {
+        console.log('Error::::::::::::', error);
+    })
+
+
+}
+
+const checkLearnerExists = (jobId, email) => {
+    return new Promise((resolve, reject) => {
+        console.log('Inside Check Learner Function');
+        learnerModel.find({ job: jobId, email: email }, (error, learner) => {
+            if (error) {
+                reject(error);
+            } else if (learner.length != 0) {
+                console.log('Learner Detail:', learner);
+                resolve(true)
+            } else {
+                resolve(false)
+            }
+        });
     });
 }
 
@@ -203,21 +229,13 @@ learnerController.allotAssignments = function (req, res, next) {
                 var query = { _id: singleLearner.learner }
                 learnerDOA.getLearnersByQuery(query).then(learners => {
 
-                    console.log('learners.email', learners[0].email);
-
                     const defaultPasswordEmailoptions = {
                         to: learners[0].email,
                         subject: `Assignments Alloted`,
                         template: 'allotment-learner'
                     };
 
-                    let assignmentData = {
-                        assignment: singleLearner
-                    }
-
-
-                    console.log('singleLearner.assignments--------', assignmentData);
-
+                    let assignmentData = { assignment: singleLearner }
                     mailService.sendMail(defaultPasswordEmailoptions, assignmentData, null, function (err, mailResult) {
                         if (err) {
                             return res.status(500).send({ err })

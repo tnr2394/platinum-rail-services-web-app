@@ -17,6 +17,7 @@ export class AppComponent {
   loggedInUser;
   currentUser;
   learnerRouteName;
+  instructorRouteName;
 
   constructor(private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
@@ -29,6 +30,11 @@ export class AppComponent {
       if (this.currentUser && this.currentUser.userRole == 'learner') {
         this.learnerRouteName = '/learner/' + this.currentUser._id;
         console.log(' this.currentUser', this.learnerRouteName);
+      }
+
+      if (this.currentUser && this.currentUser.userRole == 'instructor') {
+        this.instructorRouteName = '/instructors/' + this.currentUser._id;
+        console.log(' this.currentUser', this.instructorRouteName);
       }
     })
   }
@@ -46,6 +52,10 @@ export class AppComponent {
       this.learnerRouteName = '/learner/' + this.currentUser._id;
       console.log(' this.currentUser', this.learnerRouteName);
     }
+    if (this.currentUser && this.currentUser.userRole == 'instructor') {
+      this.instructorRouteName = '/instructors/' + this.currentUser._id;
+      console.log(' this.currentUser', this.instructorRouteName);
+    }
   }
 
   close(reason: string) {
@@ -54,7 +64,7 @@ export class AppComponent {
 
   Logout() {
     console.log('Logout is called');
-  this._loginService.logout();
+    this._loginService.logout();
   }
 
 }
