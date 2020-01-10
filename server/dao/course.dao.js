@@ -15,6 +15,7 @@ course.addMaterial = function(courseId,materialId){
     });
     return q.promise;
 }
+
 course.deleteMaterial = function(courseId,materialId){
     var q = Q.defer();
     console.log("Deleting material in course DAO",{courseId,materialId});

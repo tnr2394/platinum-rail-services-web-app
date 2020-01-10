@@ -46,10 +46,11 @@ courseController.addCourse = function (req, res, next) {
 courseController.updateCourse = function (req, res, next) {
     console.log("Update COURSES", req.body);
 
-    var updatedCourse = {
-        title: req.body.title,
-        duration: req.body.duration
-    };
+    var updatedCourse = {};
+
+    if (req.body.title) updatedCourse['title'] = req.body.title;
+    if (req.body.duration) updatedCourse['duration'] = req.body.duration;
+
     courseModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedCourse }, { new: true }, (err, course) => {
         console.log("Updated Course", course, err);
         if (err) {

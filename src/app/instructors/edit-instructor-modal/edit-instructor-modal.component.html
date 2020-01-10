@@ -5,6 +5,10 @@
 <form #editInstructor (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
 
+        <div *ngIf="instructorData.profilePic">
+            <img src="{{instructorData.profilePic.path}}" height="200" width="200">
+        </div>
+
         <mat-form-field class="example-full-width col-sm-6">
             <input required matInput name="instructor-name" placeholder="Instructor Name"
                 [(ngModel)]='instructorData.name' cdkFocusInitial>

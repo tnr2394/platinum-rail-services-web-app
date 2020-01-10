@@ -77,6 +77,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.locals.moment = require('moment');
+
 
 if (config.env.name === 'production') {
   var credentials = {

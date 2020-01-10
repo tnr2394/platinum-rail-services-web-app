@@ -104,8 +104,7 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
     var q = Q.defer();
     fileDAO.addFile(obj).then((response) => {
         console.log('File added now update allotment file array', response._id);
-        allotmentModel.updateOne(
-            { _id: allotemntId },
+        allotmentModel.updateOne({ _id: allotemntId },
             {
                 $addToSet: { files: response._id },
                 $set: {
@@ -172,6 +171,10 @@ allotment.removeFileFromAllotment = function (fileId) {
     return q.promise;
 }
 
+/**
+ * Allotment Detail Using AllotmentId
+ * @param {string} allotmentId 
+ */
 const allotmentUsingAllotmentId = (allotmentId) => {
     console.log('Allotment Submission', allotmentId);
     return new Promise((resolve, reject) => {
@@ -347,6 +350,9 @@ const allotmentUsingAllotmentId = (allotmentId) => {
     })
 }
 
+/**
+ * Allotment Detail Using AssignmentId
+ */
 allotment.allotmentUsingAssignmentId = function (assignmentId) {
     console.log('Assignment Submission', assignmentId);
     return new Promise((resolve, reject) => {
@@ -408,8 +414,9 @@ allotment.allotmentUsingAssignmentId = function (assignmentId) {
     })
 }
 
-
-
+/**
+ * Assignment Fiiles Using AllotmentId (Uploaded by Instructor Inside Assignment)
+ */
 allotment.assignmentFilesUsingAllotmentId = (allotmentId) => {
     console.log('Allotment Submission', allotmentId);
     return new Promise((resolve, reject) => {

@@ -75,7 +75,6 @@ file.addFile = function (object) {
                 console.log('Error:', error);
                 return reject(error);
             })
-
     })
 
 }

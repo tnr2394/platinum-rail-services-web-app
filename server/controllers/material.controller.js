@@ -74,13 +74,14 @@ materialController.addMaterial = async function (req, res, next) {
 
 materialController.updateMaterial = async function (req, res, next) {
 
-    var updatedMaterial = {
-        _id: req.body._id,
-        title: req.body.title,
-        unitNo: req.body.unitNo,
-        assignmentNo: req.body.assignmentNo
-    };
-    console.log("Update material DOA in material-Controller", req.body);
+    var updatedMaterial = {};
+
+    if (req.body._id) updatedMaterial['_id'] = req.body._id;
+    if (req.body.title) updatedMaterial['title'] = req.body.title;
+    if (req.body.unitNo) updatedMaterial['unitNo'] = req.body.unitNo;
+    if (req.body.assignmentNo) updatedMaterial['assignmentNo'] = req.body.assignmentNo;
+
+    console.log("Update material DOA in material-Controller", updatedMaterial);
 
     materialDOA.updateMaterial(updatedMaterial).then(material => {
         console.log("Updated material in controller", material);

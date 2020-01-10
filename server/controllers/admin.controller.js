@@ -128,7 +128,6 @@ adminController.forgotPassword = function (req, res, next) {
                     return res.status(200).json({ message: 'New Password Send To Email.' });
                 }
             });
-
         } else {
             return res.status(400).json({ message: 'Email Not Found' });
         }

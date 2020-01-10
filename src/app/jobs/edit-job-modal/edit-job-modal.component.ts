@@ -63,6 +63,7 @@ export class EditJobModalComponent implements OnInit {
   selectedClientNew;
   selectedCourseNameNew;
   selectedClientNameNew;
+  minDate: any;
 
   frequencyDays = [
     { id: '0', day: 'Sunday', checked: false },
@@ -93,6 +94,8 @@ export class EditJobModalComponent implements OnInit {
 
   ngOnInit() {
     console.log("The data recieved is", this.DialogData);
+
+    this.minDate = new Date();
 
     this.DialogData.totalDays.forEach((day) => {
       this.totalDays.push(day)
@@ -236,19 +239,11 @@ export class EditJobModalComponent implements OnInit {
       this.deletedInstructorsForDb.push(item._id)
     })
 
-    console.log("this.DialogData.instructors", this.DialogData.instructors);
-    console.log("this.selectedInstructor", this.selectedInstructor);
-
     this.deletedInstructor = _.difference(this.deletedInstructorsForDb, this.selectedInstructorsForDb)
-
-    console.log('Final Array:', this.deletedInstructor);
-
-    console.log('this.selectedClient.name', this.selectedClient.name, this.selectedCourseNameNew);
 
     if (this.addJobForm.controls['title'].value) {
       this.newTitle = this.addJobForm.controls['title'].value
     } else {
-      console.log('this.selectedClient.name else', this.selectedClient.name, this.selectedCourseNameNew);
       this.newTitle = this.selectedClient.name + '-' + this.selectedCourseNameNew;
     }
 
@@ -376,11 +371,8 @@ export class EditJobModalComponent implements OnInit {
       let i = 0;
       this.courses.forEach((course) => {
         if (course._id === this.DialogData.course._id) {
-
           this.selectedCourse = this.courses[i];
           this.duration = this.courses[i].duration;
-
-          console.log('course------->>>>>>', course);
           this.addCourse(course)
         }
         i += 1;
@@ -393,22 +385,14 @@ export class EditJobModalComponent implements OnInit {
     var that = this;
     this._instructorService.getInstructors().subscribe((instructors) => {
       this.instructors = instructors;
-
-      console.log('All Instructors------>>>>>>>>', this.instructors);
-      console.log("This.DialogData = ", this.DialogData.instructors)
       this.DialogData.instructors.forEach((id) => {
-        // console.log("----------THIS IS ID INSIDE GETINSTRUCTORS----------", id)
         this.instructors.forEach((item) => {
-          // console.log("ITEM._ID", item._id, "== id", id)
           if (item._id == id._id) {
             this.selectedInstructor.push(item)
-            console.log("ITEM PUSHEN IN SELECTEDINSTRUCRTOR", this.selectedInstructor)
           }
         })
       })
       this.addJobForm.controls.instructor.setValue(this.selectedInstructor);
-      console.log("form value", this.addJobForm.value)
-
     });
   }
 

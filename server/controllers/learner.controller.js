@@ -111,12 +111,12 @@ const checkLearnerExists = (jobId, email) => {
 
 
 learnerController.updateLearner = async function (req, res, next) {
-    var updatedLearner = {
-        _id: req.body._id,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    };
+    var updatedLearner = {};
+    if (req.body._id) updatedLearner['_id'] = req.body._id;
+    if (req.body.name) updatedLearner['name'] = req.body.name;
+    if (req.body.email) updatedLearner['email'] = req.body.email;
+    if (req.body.password) updatedLearner['password'] = req.body.password;
+
     console.log("Update Learner DOA in Learner-Controller", req.body);
 
     learnerDOA.updateLearner(updatedLearner).then(learner => {

@@ -241,6 +241,8 @@ const getEmailOfInstructor = (instructorId) => {
 jobController.assignmentListUsingJobId = function (req, res) {
     let jobId = req.query._id;
 
+    console.log('Assignment List Using Job Id:', jobId);
+
     jobModel.aggregate([
         {
             $match:

@@ -44,11 +44,11 @@ clientController.getClient = async function (req, res, next) {
 clientController.addClient = function (req, res, next) {
     console.log("ADD clients", req.body);
 
-    var newClient = new clientModel({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    });
+    var newClient = new clientModel({});
+
+    if (req.body.name) newClient['name'] = req.body.name;
+    if (req.body.email) newClient['email'] = req.body.email;
+    if (req.body.password) newClient['password'] = req.body.password;
 
     checkClientExists(req.body.email).then((client) => {
         if (client) {
@@ -72,7 +72,7 @@ const checkClientExists = (clientEmail) => {
         console.log('Check Client Function:', clientEmail);
         clientModel.find({ email: clientEmail }, (error, client) => {
             if (error) {
-                console.log('Found Error:::::::', error);
+                console.log('Found Error:::::::::', error);
                 reject(error);
             } else if (client.length != 0) {
                 console.log('Found Client::::::::', client);
@@ -104,6 +104,7 @@ clientController.addLocation = function (req, res, next) {
         return res.status(500).send({ err });
     };
 }
+
 clientController.updateLocation = function (req, res, next) {
     console.log("Update Location");
 
@@ -113,8 +114,6 @@ clientController.updateLocation = function (req, res, next) {
         return res.status(500).send({ err });
     })
 }
-
-
 
 clientController.deleteLocation = function (req, res, next) {
     console.log("Delete Location", req.query);
@@ -172,7 +171,6 @@ clientController.loginClient = function (req, res, next) {
 
                     let newClient = JSON.parse(JSON.stringify(client));
                     newClient['userRole'] = 'client';
-
                     var token = jwt.sign(newClient, 'platinum');
                     req.session.currentUser = token;
 

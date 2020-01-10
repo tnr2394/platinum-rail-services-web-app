@@ -21,6 +21,7 @@ export class AppPasswordDirective {
       span.innerHTML = 'Show password';
     }
   }
+  
   setup() {
     console.log('this.el.nativeElement.parentNode', this.el);
     const parent = this.el.nativeElement.parentNode;

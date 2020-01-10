@@ -52,6 +52,7 @@ export class AddJobModalComponent implements OnInit {
   color: any;
   rgba: any;
   always: any;
+  minDate: any;
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) { }
@@ -85,7 +86,7 @@ export class AddJobModalComponent implements OnInit {
 
   ngOnInit() {
     console.log("ON INIT", this.startingDate);
-
+    this.minDate = new Date();
     this.addJobForm = this.formBuilder.group({
       title: new FormControl(''),
       jobColor: new FormControl('', Validators.required),
