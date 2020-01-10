@@ -20,18 +20,17 @@ export class AuthInterceptor implements HttpInterceptor {
                 headers: req.headers.set("authorization", accessToken)
             });
             return next.handle(cloned)
-                .pipe(
-                    map((response: HttpResponse<any>) => {
-                        return response;
-                    }),
+                .pipe(map((response: HttpResponse<any>) => {
+                    return response;
+                }),
 
                     // Cath Error 400 Bad Request
                     catchError((error: HttpErrorResponse) => {
                         const errorMessage = error.error.message;
                         if (error.status === 400) {
-
+                            console.log('Error Occured Status 400', error);
                         } else if (error.status === 500) {
-
+                            console.log('Error Occured Status 500', error);
                         }
                         return throwError(error.error);
                     })

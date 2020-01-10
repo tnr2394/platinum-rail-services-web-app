@@ -138,26 +138,19 @@ jobController.updateJob = function (req, res) {
 
 const sendInstructorRemovedMail = (instructors, jobId) => {
     return new Promise((resolve, reject) => {
-
         if (instructors.length == 0) {
             resolve();
         } else {
             console.log('sendInstructorRemovedMail Function Called', instructors, jobId);
             async.eachSeries(instructors, (singleInstructor, callback) => {
-                console.log('Single Instrucors', singleInstructor);
                 instructorDetail(singleInstructor).then((instructorDetail) => {
                     jobDetail(jobId).then((jobDetail) => {
-                        
+
                         const defaultPasswordEmailoptions = {
                             to: instructorDetail.email,
                             subject: `Removed From Job`,
                             template: 'jobRemove-instructor'
                         };
-
-                        console.log('jobDetail:::::::::::', jobDetail);
-
-                        console.log('instructorDetail::::::::::::::', instructorDetail);
-
 
                         const MailData = { job: jobDetail, instructor: instructorDetail }
 

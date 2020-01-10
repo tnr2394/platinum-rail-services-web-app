@@ -45,7 +45,6 @@ export class CoursesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-
   constructor(private router: Router, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.courses = [];
@@ -159,9 +158,6 @@ export class CoursesComponent implements OnInit {
       duration: 2000,
     });
   }
-
-
-
 
   // API CALLS
 
