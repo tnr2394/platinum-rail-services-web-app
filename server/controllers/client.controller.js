@@ -5,6 +5,7 @@ const Q = require('q');
 const jwt = require("jsonwebtoken");
 
 const reCaptchaService = require('../services/reCaptcha.service');
+const preService = require('../services/predelete.service');
 
 
 
@@ -145,13 +146,22 @@ clientController.updateClient = function (req, res, next) {
 clientController.deleteClient = function (req, res, next) {
     console.log("Delete client");
     let clientId = req.query._id;
-    console.log("client to be deleted : ", clientId);
-    clientModel.deleteOne({ _id: clientId }, (err, deleted) => {
-        if (err) {
-            return res.status(500).send({ err })
+
+    preService.preClientDelete(clientId).then((response) => {
+        if (response) {
+            console.log("client to be deleted : ", clientId);
+            clientModel.deleteOne({ _id: clientId }, (err, deleted) => {
+                if (err) {
+                    return res.status(500).send({ err })
+                }
+                console.log("Deleted ", deleted);
+                return res.send({ data: {}, msg: "Deleted Successfully" });
+            })
+        } else {
+            return res.status(400).send({ data: {}, msg: "Client Not Deleted" });
         }
-        console.log("Deleted ", deleted);
-        return res.send({ data: {}, msg: "Deleted Successfully" });
+    }).catch((error) => {
+        return res.status(500).send({ error })
     })
 }
 

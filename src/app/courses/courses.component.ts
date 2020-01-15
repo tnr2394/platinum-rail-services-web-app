@@ -137,6 +137,8 @@ export class CoursesComponent implements OnInit {
       }
       this.updateData(this.courses);
       this.handleSnackBar({ msg: "Course Edited Successfully", button: "Ok" });
+    }, err => {
+      console.log('Errro:::::::::::::::::::', err);
     });
   }
 

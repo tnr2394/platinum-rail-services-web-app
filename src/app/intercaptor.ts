@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs/';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 // import 'rxjs/add/operator/do';
 
 @Injectable()
 
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private route: ActivatedRoute,
+    constructor(public _snackBar: MatSnackBar, private route: ActivatedRoute,
         private router: Router, ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,7 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
                     catchError((error: HttpErrorResponse) => {
                         const errorMessage = error.error.message;
                         if (error.status === 400) {
-                            console.log('Error Occured Status 400', error);
+                            console.log('Error Occured Status 400:::::::::::::::', error.error.msg);
+                            this.handleSnackBar({ msg: error.error.msg, button: "Ok" });
                         } else if (error.status === 500) {
                             console.log('Error Occured Status 500', error);
                         }
@@ -51,5 +53,15 @@ export class AuthInterceptor implements HttpInterceptor {
                 );
         };
 
+    }
+
+    handleSnackBar(data) {
+        this.openSnackBar(data.msg, data.button);
+    }
+
+    openSnackBar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 }
