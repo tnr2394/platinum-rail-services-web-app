@@ -325,8 +325,10 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         var ext = re.exec(singleFile.name)[1];
         var name = singleFile.name.split('.').slice(0, -1).join('.')
 
+        var newName = name + '-' + req.user._id + '-' + Date.now();
+        
         var newFile = {
-            title: name,
+            title: newName,
             type: "material",// OR SUBMISSION OR DOCUMENT
             path: "NEWPATH",
             extension: ext,

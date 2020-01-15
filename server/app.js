@@ -96,8 +96,8 @@ if (config.env.name === 'production') {
 } else if (config.env.name === 'testing') {
 
   var credentials = {
-    key: fs.readFileSync('/var/www/html/platinum/ssl/privkey1.pem'),
-    cert: fs.readFileSync('/var/www/html/platinum/ssl/fullchain1.pem')
+    key: fs.readFileSync('/var/www/html/platinumTesting/ssl/privkey1.pem'),
+    cert: fs.readFileSync('/var/www/html/platinumTesting/ssl/fullchain1.pem')
   };
 
   var server = http.createServer(app);
