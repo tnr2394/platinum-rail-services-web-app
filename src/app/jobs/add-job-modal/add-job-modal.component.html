@@ -106,7 +106,8 @@
 
             <div class='col col-sm center'>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
+                    <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="startingDate"
+                        placeholder="Starting date"
                         (dateChange)='searchDays($event); jobDates.EditDates($event.value, totalDays)'
                         [errorStateMatcher]="matcher">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

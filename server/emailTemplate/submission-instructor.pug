@@ -1,6 +1,5 @@
 if assignment.assignmentStatus == 'Requested for Resubmission'
     p You have recieved a request for resubmission of assignment.
-
 else
     p Your Assignment is marked as completed.
 
@@ -8,10 +7,10 @@ else
 h3 Assignment Detail
 
 p #{assignment.assignmentTitle}
-p Unit-#{assignment.assignmentUnit}
-p Assignment-#{assignment.assignmentNo}
+p Unit : #{assignment.assignmentUnit}
+p Assignment : #{assignment.assignmentNo}
 
-p Status-#{assignment.assignmentStatus}
+p Status : #{assignment.assignmentStatus}
 
 h3 Remarks
 
@@ -22,11 +21,11 @@ else
 
 h3 Course Detail
 
-p Title:#{course.courseTitle}
-p Duration:#{course.courseDuration} 
+p Title : #{course.courseTitle}
+p Duration : #{course.courseDuration} 
 
 h3 Client Detail
 
-p Title:#{client.clientName}
-p Location:#{client.location}
+p Title : #{client.clientName}
+p Location : #{client.location}
 

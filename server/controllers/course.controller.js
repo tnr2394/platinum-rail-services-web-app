@@ -1,6 +1,8 @@
 var courseModel = require('../models/course.model');
 var Q = require('q');
 
+const preService = require('../services/predelete.service');
+
 var courseController = {};
 
 async function allCourses(query) {
@@ -46,10 +48,11 @@ courseController.addCourse = function (req, res, next) {
 courseController.updateCourse = function (req, res, next) {
     console.log("Update COURSES", req.body);
 
-    var updatedCourse = {
-        title: req.body.title,
-        duration: req.body.duration
-    };
+    var updatedCourse = {};
+
+    if (req.body.title) updatedCourse['title'] = req.body.title;
+    if (req.body.duration) updatedCourse['duration'] = req.body.duration;
+
     courseModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedCourse }, { new: true }, (err, course) => {
         console.log("Updated Course", course, err);
         if (err) {
@@ -62,14 +65,29 @@ courseController.updateCourse = function (req, res, next) {
 courseController.deleteCourse = function (req, res, next) {
     console.log("Delete COURSE");
     let courseId = req.query._id;
-    console.log("Course to be deleted : ", courseId);
-    courseModel.deleteOne({ _id: courseId }, (err, deleted) => {
-        if (err) {
-            return res.status(500).send({ err })
+
+    preService.preCourseDelete(courseId).then((reponse) => {
+
+        console.log('reponse::::::', reponse);
+        if (reponse) {
+            console.log("Course to be deleted : ", courseId);
+            courseModel.remove({ _id: courseId }, (err, deleted) => {
+                if (err) {
+                    return res.status(500).send({ err })
+                }
+                console.log("Deleted ", deleted);
+                return res.send({ data: {}, msg: "Deleted Successfully" });
+            })
+
+        } else {
+            console.log('Couse Not deleted');
+            return res.status(400).send({ data: {}, msg: "Couse Not deleted" });
         }
-        console.log("Deleted ", deleted);
-        return res.send({ data: {}, msg: "Deleted Successfully" });
+
+    }).catch((error) => {
+        return res.status(500).send({ error })
     })
+
 }
 
 module.exports = courseController;

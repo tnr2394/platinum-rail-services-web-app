@@ -1,15 +1,93 @@
 <h1 class="learner_title">Hello {{learnerName}}!</h1>
+
+<h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3>
+
+<div class="row" *ngIf="job">
+    <div class="col-12">
+        <!-- <div class="row m-0">
+            <div>
+                <h3 class="page-title pl-0">
+                    Job: {{job.title}}
+                </h3>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card job_card">
+                    <div class="card-block">
+                        <div class="row mt-4 mb-2">
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                                <div class="learner_detail_box">
+                                    <mat-list class="" role="list">
+                                        <mat-list-item role="listitem" class="p-0">
+
+                                            <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
+                                            <div class="learner_title">
+                                                Instructor
+                                                <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
+                                            </div>
+
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
+                                            <div class="learner_title">
+                                                College
+                                                <p> {{job.client.name}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
+                                            <div class="learner_title">
+                                                Location
+                                                <p> {{job.location.title}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                                <mat-divider [vertical]="true"></mat-divider>
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
+                                            <div class="learner_title pl-2">
+                                                Course
+                                                <p> {{job.course.title}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <mat-card class="first_card">
     <!-- <mat-card-header> -->
-        <h3 class="mb-4 learner_card_title">Reading Materials</h3>
+    <h3 class="mb-4 learner_card_title">Reading Materials</h3>
     <!-- </mat-card-header> -->
 
     <mat-card-content>
         <div class="row" *ngIf='material.length > 0'>
             <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor='let material of material;let i = index;'>
-                <mat-card class="p-0 inner-card"  (click)="showMaterialFiles(material)">
+                <mat-card class="p-0 inner-card" (click)="showMaterialFiles(material)">
                     <mat-card-content class="material_card">
-                        <span class="materia_icon_span {{getRandomColorClass(i)}}"><i class="fas fa-book-reader icon round"></i></span>
+                        <span class="materia_icon_span {{getRandomColorClass(i)}}"><i
+                                class="fas fa-book-reader icon round"></i></span>
                         <h5 class="materials_title">{{material.title}}</h5>
                     </mat-card-content>
                 </mat-card>
@@ -17,11 +95,11 @@
         </div>
         <div class="row" *ngIf='loadingMaterials == false && material.length == 0'>
             <div class="col-12 materials_box">
-            <mat-card class="mb-3">
-            <mat-card-header>
-                <h5 class="text-info">No Reading Material Found!</h5>
-            </mat-card-header>
-            </mat-card>
+                <mat-card class="mb-3">
+                    <mat-card-header>
+                        <h5 class="text-info">No Reading Material Found!</h5>
+                    </mat-card-header>
+                </mat-card>
             </div>
         </div>
     </mat-card-content>
@@ -32,7 +110,7 @@
     <!-- <mat-card-header> -->
     <h3 class="mb-4 learner_card_title">Assignments</h3>
     <!-- </mat-card-header> -->
-    <mat-card-content >
+    <mat-card-content>
         <div class="row" *ngIf='assignments != undefined'>
             <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor='let assignment of assignments;let i = index;'>
                 <mat-card class="p-0 inner-card" (click)="showAllotmentTile(assignment)">

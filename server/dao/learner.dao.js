@@ -90,24 +90,19 @@ learner.updateAssignment = function (learnerId, assignment) {
 }
 
 learner.sendMailToLearner = function (learnerId, JobId) {
-
     var q = Q.defer();
     console.log("Learner to be send email:", learnerId);
-
     getSingleJob(JobId).then((jobDetail) => {
         learnerModel.findOne({ _id: learnerId }).exec((err, learner) => {
             if (err) {
                 q.reject(err);
             } else if (learner) {
-
                 const defaultPasswordEmailoptions = {
                     to: learner.email,
                     subject: `You Added In Job`,
                     template: 'jobAssign-learner'
                 };
-
                 const mailData = { jobDetail: jobDetail, learner: learner }
-
                 mailService.sendMail(defaultPasswordEmailoptions, mailData, null, function (err, mailResult) {
                     if (err) {
                         console.log('error:', err);

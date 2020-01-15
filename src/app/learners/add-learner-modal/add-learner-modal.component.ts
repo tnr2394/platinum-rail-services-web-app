@@ -25,7 +25,6 @@ export class AddLearnerModalComponent implements OnInit {
       nomatch: true
     });
 
-
     $("#password").click(function () {
       $("#password").toggleClass("fa-eye fa-eye-slash");
     });

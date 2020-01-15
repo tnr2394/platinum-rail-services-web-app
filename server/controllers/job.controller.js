@@ -4,6 +4,7 @@
 var Q = require('q');
 const ObjectId = require('mongodb').ObjectId;
 const lodash = require('lodash');
+const async = require("async");
 
 // Service Variables
 
@@ -62,7 +63,7 @@ jobController.getJobUsingInstructorId = async function (req, res) {
     const instructorId = req.query._id;
 
     console.log('Instructor Id', instructorId);
-    
+
     query = { instructors: { $in: instructorId } }
 
     allJobs(query).then(jobs => {
@@ -108,7 +109,7 @@ jobController.addJob = function (req, res) {
 }
 
 jobController.updateJob = function (req, res) {
-    console.log('BODY', req.body._id)
+    console.log('BODY', req.body)
     var updatedJob = {
         title: req.body.title,
         color: req.body.jobColor,
@@ -120,14 +121,93 @@ jobController.updateJob = function (req, res) {
         totalDays: req.body.totalDays,
         singleJobDate: req.body.singleJobDate
     }
-    console.log("UPDATEDJOB = ", updatedJob)
-    jobModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedJob }, (err, job) => {
-        console.log("Updated job", job, err);
-        if (err) {
-            return res.status(500).send({ err })
+
+    sendInstructorRemovedMail(req.body.removedInstructor, req.body._id).then((sendMailResponse) => {
+        console.log("UPDATEDJOB = ", updatedJob)
+        jobModel.findOneAndUpdate({ _id: req.body._id }, { $set: updatedJob }, (err, job) => {
+            console.log("Updated job", job, err);
+            if (err) {
+                return res.status(500).send({ err })
+            }
+            return res.send({ data: { job } });
+        });
+    }).catch((sendMailError) => {
+        return res.status(500).send({ sendMailError })
+    })
+}
+
+const sendInstructorRemovedMail = (instructors, jobId) => {
+    return new Promise((resolve, reject) => {
+        if (instructors.length == 0) {
+            resolve();
+        } else {
+            console.log('sendInstructorRemovedMail Function Called', instructors, jobId);
+            async.eachSeries(instructors, (singleInstructor, callback) => {
+                instructorDetail(singleInstructor).then((instructorDetail) => {
+                    jobDetail(jobId).then((jobDetail) => {
+
+                        const defaultPasswordEmailoptions = {
+                            to: instructorDetail.email,
+                            subject: `Removed From Job`,
+                            template: 'jobRemove-instructor'
+                        };
+
+                        const MailData = { job: jobDetail, instructor: instructorDetail }
+
+                        mailService.sendMail(defaultPasswordEmailoptions, MailData, null, function (err, mailResult) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                callback();
+                            }
+                        });
+                    }).catch((jobError) => {
+                        reject(jobError);
+                    })
+                }).catch((err) => {
+                    reject(err);
+                })
+            }, (callbackError, callbackResponse) => {
+                if (callbackError) {
+                    reject(callbackError);
+                } else {
+                    console.log("Final callback");
+                    resolve(callbackResponse)
+                }
+            })
         }
-        return res.send({ data: { job } });
-    });
+
+    })
+}
+
+const jobDetail = (jobId) => {
+    return new Promise((resolve, reject) => {
+        jobModel.findOne({ _id: jobId })
+            .populate("client")
+            .populate("location")
+            .populate("course")
+            .populate("instructors")
+            .exec((err, jobs) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(jobs)
+                }
+            });
+    })
+}
+
+const instructorDetail = (instructorId) => {
+    return new Promise((resolve, reject) => {
+        instructorModel.findOne({ _id: instructorId })
+            .exec((err, instructors) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(instructors)
+                }
+            });
+    })
 }
 
 
@@ -160,6 +240,8 @@ const getEmailOfInstructor = (instructorId) => {
  */
 jobController.assignmentListUsingJobId = function (req, res) {
     let jobId = req.query._id;
+
+    console.log('Assignment List Using Job Id:', jobId);
 
     jobModel.aggregate([
         {

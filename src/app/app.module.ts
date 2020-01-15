@@ -81,6 +81,7 @@ import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-
 import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component';
 import { AuthGuard } from './auth.guard';
 import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
+import { AppPasswordDirective } from './app-password.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +134,7 @@ import { SingleInstructorComponent } from './instructors/single-instructor/singl
     LearnerDashboardComponent,
     LearnerReadingMaterialComponent,
     SingleInstructorComponent,
+    AppPasswordDirective,
 
   ],
   imports: [

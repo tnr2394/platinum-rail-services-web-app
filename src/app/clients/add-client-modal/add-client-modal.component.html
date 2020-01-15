@@ -24,6 +24,7 @@
                 (click)="password()"></span>
         </mat-form-field>
 
+
         <!-- Client Confirm Password-->
         <mat-form-field class="example-full-width col-md-6">
             <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password"
@@ -34,7 +35,7 @@
         </mat-form-field>
 
     </div>
-    
+
     <div class="row">
         <div class="col-12 text-center" *ngIf="passwordMismatch">
             <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please

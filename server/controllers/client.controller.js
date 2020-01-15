@@ -1,10 +1,11 @@
-var clientModel = require('../models/client.model');
-var locationDOA = require('../dao/location.dao');
-var clientDOA = require('../dao/client.dao');
-var Q = require('q');
+const clientModel = require('../models/client.model');
+const locationDOA = require('../dao/location.dao');
+const clientDOA = require('../dao/client.dao');
+const Q = require('q');
 const jwt = require("jsonwebtoken");
 
 const reCaptchaService = require('../services/reCaptcha.service');
+const preService = require('../services/predelete.service');
 
 
 
@@ -44,17 +45,44 @@ clientController.getClient = async function (req, res, next) {
 clientController.addClient = function (req, res, next) {
     console.log("ADD clients", req.body);
 
-    var newClient = new clientModel({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    });
-    newClient.save((err, client) => {
-        if (err) return res.status(500).send({ err })
-        console.log("SENDING RESPONSE Clients =  ", client)
-        return res.send({ data: { client } });
+    var newClient = new clientModel({});
 
+    if (req.body.name) newClient['name'] = req.body.name;
+    if (req.body.email) newClient['email'] = req.body.email;
+    if (req.body.password) newClient['password'] = req.body.password;
+
+    checkClientExists(req.body.email).then((client) => {
+        if (client) {
+            console.log('client:::::::::::::', client);
+            return res.status(400).send({ data: {}, msg: "Client Already Exists" });
+        } else {
+            newClient.save((err, client) => {
+                if (err) return res.status(500).send({ err })
+                console.log("SENDING RESPONSE Clients =  ", client)
+                return res.send({ data: { client } });
+            })
+        }
+    }).catch((error) => {
+        if (err) return res.status(500).send({ err })
     })
+}
+
+
+const checkClientExists = (clientEmail) => {
+    return new Promise((resolve, reject) => {
+        console.log('Check Client Function:', clientEmail);
+        clientModel.find({ email: clientEmail }, (error, client) => {
+            if (error) {
+                console.log('Found Error:::::::::', error);
+                reject(error);
+            } else if (client.length != 0) {
+                console.log('Found Client::::::::', client);
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
 }
 
 
@@ -77,6 +105,7 @@ clientController.addLocation = function (req, res, next) {
         return res.status(500).send({ err });
     };
 }
+
 clientController.updateLocation = function (req, res, next) {
     console.log("Update Location");
 
@@ -86,8 +115,6 @@ clientController.updateLocation = function (req, res, next) {
         return res.status(500).send({ err });
     })
 }
-
-
 
 clientController.deleteLocation = function (req, res, next) {
     console.log("Delete Location", req.query);
@@ -119,13 +146,22 @@ clientController.updateClient = function (req, res, next) {
 clientController.deleteClient = function (req, res, next) {
     console.log("Delete client");
     let clientId = req.query._id;
-    console.log("client to be deleted : ", clientId);
-    clientModel.deleteOne({ _id: clientId }, (err, deleted) => {
-        if (err) {
-            return res.status(500).send({ err })
+
+    preService.preClientDelete(clientId).then((response) => {
+        if (response) {
+            console.log("client to be deleted : ", clientId);
+            clientModel.deleteOne({ _id: clientId }, (err, deleted) => {
+                if (err) {
+                    return res.status(500).send({ err })
+                }
+                console.log("Deleted ", deleted);
+                return res.send({ data: {}, msg: "Deleted Successfully" });
+            })
+        } else {
+            return res.status(400).send({ data: {}, msg: "Client Not Deleted" });
         }
-        console.log("Deleted ", deleted);
-        return res.send({ data: {}, msg: "Deleted Successfully" });
+    }).catch((error) => {
+        return res.status(500).send({ error })
     })
 }
 
@@ -145,7 +181,6 @@ clientController.loginClient = function (req, res, next) {
 
                     let newClient = JSON.parse(JSON.stringify(client));
                     newClient['userRole'] = 'client';
-
                     var token = jwt.sign(newClient, 'platinum');
                     req.session.currentUser = token;
 
@@ -164,7 +199,6 @@ clientController.loginClient = function (req, res, next) {
 
 clientController.forgotPassword = function (req, res, next) {
     console.log("Forgot Password Client");
-
     const email = req.body.email;
     const newPassword = Math.floor(100000 + Math.random() * 9000000000);
 
@@ -179,10 +213,7 @@ clientController.forgotPassword = function (req, res, next) {
                 template: 'forgot-password'
             };
 
-            const clientDetail = {
-                name: client.name,
-                newPassword: newPassword
-            }
+            const clientDetail = { name: client.name, newPassword: newPassword }
 
             mailService.sendMail(defaultPasswordEmailoptions, clientDetail, null, function (err, mailResult) {
                 if (err) {

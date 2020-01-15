@@ -4,6 +4,11 @@
 .position_btn{
     position: relative;
     bottom: -80px;
+    @media (max-width:500px){
+        span{
+            display: none;
+        }
+    }
 }
 .profile_image{
     position: relative;
@@ -15,17 +20,55 @@
     img{
         border-radius: 50%;
         position: absolute;
+        width:200px;
+        height: 200px;
          top: -205px;
          z-index: 2;
          box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.7);
          background: white;
+         @media (max-width:768px){
+             width: 170px;
+             height: 170px;
+             top: -190px;
+         }
+         @media (max-width:575px){
+             width: 140px;
+             height: 140px;
+             top: -165px;
+         }
+         @media (max-width:500px){
+             width: 125px;
+             height: 125px;
+             top: -150px;
+         }
     }
 }
 .profile_card{
     margin-top: 130px;
     margin-bottom: 30px;
     padding: 100px 15px 30px;
+    @media (max-width:575px){
+        padding: 90px 15px 30px;
+    }
     // .row{
     //     justify-content: space-evenly !important;
     // }
+}
+.instructor_profile_card{
+    h3{
+        @media (max-width:768px){
+            font-size: 24px;
+        }
+        @media (max-width:575px){
+            font-size: 20px;
+        }
+    }
+}
+table {
+    margin: 0;
+    width: 100%;
+
+    @media(max-width: 991px) {
+        min-width: 725px;
+    }
 }

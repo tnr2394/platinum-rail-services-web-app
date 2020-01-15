@@ -35,6 +35,7 @@ var materialsRouter = require('./routes/materials');
 var adminRouter = require('./routes/admin');
 
 const instructorController = require('./controllers/instructor.controller');
+const dbBackupService = require('./services/dbbackup.service');
 
 // Make the settings in the environment config global available
 global.settings = config.env.settings;
@@ -76,6 +77,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.locals.moment = require('moment');
 
 
 if (config.env.name === 'production') {
@@ -128,6 +131,18 @@ if (config.env.name === 'production') {
 //   });
 
 // checkQualificationCronJob.start();
+
+
+// const dbBackupCronJob = cron.schedule('1 * * * * *', () => {
+
+//   console.log('db backup Running Now');
+//   dbBackupService.dbAutoBackUp();
+// }, {
+//     scheduled: true,
+//   });
+
+
+// dbBackupCronJob.start();
 
 
 app.use('/', indexRouter);

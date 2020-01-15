@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ClientService } from "../../services/client.service";
 declare var $;
@@ -37,7 +37,7 @@ export class AddClientModalComponent implements OnInit {
       $("#password").toggleClass("fa-eye fa-eye-slash");
     });
   }
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _clientService: ClientService, private formBuilder: FormBuilder) {
+  constructor(public _snackBar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _clientService: ClientService, private formBuilder: FormBuilder) {
     // NO DEFINITION
   }
 
@@ -73,12 +73,18 @@ export class AddClientModalComponent implements OnInit {
       this.dialogRef.close(data);
 
     }, err => {
-      alert("Error Adding Client.")
+      console.log('Error::::', err.msg);
+      this.openSnackBar(err.msg, "Ok");
       this.loading = false;
       this.dialogRef.close(null);
-
     });
 
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

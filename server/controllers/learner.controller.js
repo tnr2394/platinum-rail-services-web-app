@@ -82,7 +82,7 @@ learnerController.addLearner = async function (req, res, next) {
             return res.status(400).send({ data: {}, msg: "Learner Already Exists" });
         } else {
             learnerDOA.createLearner(newLearner).then(newLearner => {
-                console.log("Created Learner", newLearner);
+                console.log("Created Learner:::::::::", newLearner);
                 return res.send({ data: { learner: newLearner } })
             }, err => {
                 return res.status(500).send({ err });
@@ -91,8 +91,6 @@ learnerController.addLearner = async function (req, res, next) {
     }).catch((error) => {
         console.log('Error::::::::::::', error);
     })
-
-
 }
 
 const checkLearnerExists = (jobId, email) => {
@@ -113,22 +111,67 @@ const checkLearnerExists = (jobId, email) => {
 
 
 learnerController.updateLearner = async function (req, res, next) {
-    var updatedLearner = {
-        _id: req.body._id,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    };
-    console.log("Update Learner DOA in Learner-Controller", req.body);
+    var updatedLearner = {};
+    if (req.body._id) updatedLearner['_id'] = req.body._id;
+    if (req.body.name) updatedLearner['name'] = req.body.name;
+    if (req.body.email) updatedLearner['email'] = req.body.email;
+    if (req.body.password) updatedLearner['password'] = req.body.password;
+    if (req.body.phone) updatedLearner['phone'] = req.body.phone;
 
-    learnerDOA.updateLearner(updatedLearner).then(learner => {
-        console.log("Updated learner in controller", learner);
-        return res.send({ data: { learner } });
-    }, err => {
-        console.error(err);
-        return res.status(500).send({ err })
-    }).catch(err => {
-        console.error(err);
+    console.log("Update Learner DOA in Learner-Controller", req.body, req.files);
+
+    if (req.files && req.files.profile) {
+        updateProfilePicture(req.files.profile).then((profileRes) => {
+            updatedLearner['profilePic'] = profileRes._id;
+            learnerDOA.updateLearner(updatedLearner).then(learner => {
+                console.log("Updated learner in controller", learner);
+                return res.send({ data: { learner } });
+            }, err => {
+                console.error(err);
+                return res.status(500).send({ err })
+            }).catch(err => {
+                console.error(err);
+            })
+        }).catch((error) => {
+            return res.status(500).send({ err })
+        })
+    } else {
+        learnerDOA.updateLearner(updatedLearner).then(learner => {
+            console.log("Updated learner in controller", learner);
+            return res.send({ data: { learner } });
+        }, err => {
+            console.error(err);
+            return res.status(500).send({ err })
+        }).catch(err => {
+            console.error(err);
+        })
+    }
+}
+
+const updateProfilePicture = (profileImg) => {
+    return new Promise((resolve, reject) => {
+
+        console.log('Profile Picture Function:', profileImg);
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(profileImg.name)[1];
+        var name = profileImg.name.split('.').slice(0, -1).join('.')
+
+        var newFile = {
+            title: name,
+            type: "Profile",
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: profileImg,
+            uploadedDate: new Date()
+        }
+
+        fileDAO.addFile(newFile).then((profileResponse) => {
+            resolve(profileResponse);
+        }).catch((error) => {
+            console.log('Error While Profile Upload', error);
+            reject(error);
+        })
     })
 }
 

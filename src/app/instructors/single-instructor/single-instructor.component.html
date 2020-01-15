@@ -15,11 +15,11 @@
     
     <!-- <div class="profile_picture_area"> -->
         <div *ngIf="instructor && instructor.profilePic" class="profile_image">
-            <img src="{{instructor.profilePic.path}}" height="200" width="200">
+            <img src="{{instructor.profilePic.path}}">
         </div>
     <!-- </div> -->
     <div class="card-block">
-        <div class="row">
+        <div class="row instructor_profile_card">
             <div class="col-sm-6 text-center justify-content-center">
                 <h3 *ngIf="instructor">
                     <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h3>
