@@ -543,6 +543,20 @@ th.mat-header-cell:first-of-type {
 mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
     border-bottom-color: rgba(0,0,0,.12) !important;
 }
+// .single_instructor {
+    .mat-list-base{
+        .mat-list-item{
+            .mat-list-item-content {
+                justify-content: center !important;
+            }
+        }
+        .mat-list-option{
+             .mat-list-item-content {
+                 justify-content: center !important;
+             }
+        }
+    }
+// }
 .dashboard_course_row {
     .mat-paginator-range-label {
         margin: auto !important;
