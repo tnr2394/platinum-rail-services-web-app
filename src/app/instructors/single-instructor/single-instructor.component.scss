@@ -1,0 +1,31 @@
+.mat-list-item-content{
+    justify-content: center !important;
+}
+.position_btn{
+    position: relative;
+    bottom: -80px;
+}
+.profile_image{
+    position: relative;
+    object-fit: cover;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    img{
+        border-radius: 50%;
+        position: absolute;
+         top: -205px;
+         z-index: 2;
+         box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.7);
+         background: white;
+    }
+}
+.profile_card{
+    margin-top: 130px;
+    margin-bottom: 30px;
+    padding: 100px 15px 30px;
+    // .row{
+    //     justify-content: space-evenly !important;
+    // }
+}
