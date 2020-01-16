@@ -6,10 +6,6 @@ import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { FilterPipe } from 'ngx-filter-pipe';
 
-
-
-
-
 @Component({
   selector: 'app-learner-dashboard',
   templateUrl: './learner-dashboard.component.html',

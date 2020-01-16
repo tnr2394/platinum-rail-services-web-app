@@ -29,6 +29,7 @@ export class SingleInstructorComponent implements OnInit {
   paginator: MatPaginator;
   searchText;
   loading;
+  profilePath;
   view;
   // MatPaginator Output
   pageEvent: PageEvent;
@@ -50,6 +51,7 @@ export class SingleInstructorComponent implements OnInit {
   }
 
   getJob(instructorId) {
+    console.log('Get Job Called');
     this._jobService.getJobByInstructorId(instructorId).subscribe((res => {
       console.log('Get Jobs', res);
       this.jobs = res;
@@ -61,6 +63,7 @@ export class SingleInstructorComponent implements OnInit {
     this._instrctorService.getInstructorById(instructorId).subscribe((res => {
       console.log('Get Instructor Detail', res[0]);
       this.instructor = res[0];
+      this.profilePath = this.instructor.profilePic;
     }))
   }
 
