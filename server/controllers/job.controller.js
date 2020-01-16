@@ -24,37 +24,169 @@ var jobController = {};
 async function allJobs(query) {
     var deferred = Q.defer();
 
-    jobModel.find(query)
-        .populate("client")
-        .populate("location")
-        .populate("course")
-        .populate("instructors")
-        .exec((err, jobs) => {
-            if (err) deferred.reject(err);
-            deferred.resolve(jobs);
-        });
+    jobModel.aggregate([
+        {
+            $match: query
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'clients',
+                localField: 'client',
+                foreignField: '_id',
+                as: 'client',
+            }
+        },
+        {
+            $unwind: {
+                path: '$client',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'locations',
+                localField: 'location',
+                foreignField: '_id',
+                as: 'location',
+            }
+        },
+        {
+            $unwind: {
+                path: '$location',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$instructors',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'instructors',
+                localField: 'instructors',
+                foreignField: '_id',
+                as: 'instructors',
+            }
+        },
+        {
+            $unwind: {
+                path: '$instructors',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'learners',
+                localField: '_id',
+                foreignField: 'job',
+                as: 'learners',
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                instructors: {
+                    $push: '$instructors'
+                },
+                learners: {
+                    $first: '$learners'
+                },
+                client: {
+                    $first: '$client'
+                },
+                location: {
+                    $first: '$location'
+                },
+                singleJobDate: {
+                    $first: '$singleJobDate'
+                },
+                startingDate: {
+                    $first: '$startingDate'
+                },
+                totalDays: {
+                    $first: '$totalDays'
+                },
+                color: {
+                    $first: '$color'
+                },
+                title: {
+                    $first: '$title'
+                },
+                course: {
+                    $first: '$course',
+                }
+            }
+        },
+        {
+            $project: {
+                instructors: 1,
+                course: 1,
+                totalDays: 1,
+                startingDate: 1,
+                singleJobDate: 1,
+                location: 1,
+                client: 1,
+                color: 1,
+                title: 1,
+                numberOfLearners: { $cond: { if: { $isArray: "$learners" }, then: { $size: "$learners" }, else: "NA" } }
+            }
+        }
+    ]).exec((err, jobs) => {
+        if (err) deferred.reject(err);
+        deferred.resolve(jobs);
+    });
     return deferred.promise;
+
+    // jobModel.find(query)
+    //     .populate("client")
+    //     .populate("location")
+    //     .populate("course")
+    //     .populate("instructors")
+    //     .exec((err, jobs) => {
+    //         if (err) deferred.reject(err);
+    //         deferred.resolve(jobs);
+    //     });
+    // return deferred.promise;
 }
 
 jobController.getJobs = async function (req, res) {
 
+    let query = {
+        $and: []
+    }
 
-    var query = {};
-    if (!req.query) {
-        query = req.query;
+    if (req.query && req.query._id) {
+        query['$and'].push({ '_id': ObjectId(req.query._id) })
     } else {
         if (req.user.userRole == 'admin') {
-            query = req.query
+            query = {}
         } else if (req.user.userRole == 'instructor') {
-            query = { instructors: { $in: req.user._id } }
+            query['$and'].push({ 'instructors': ObjectId(req.user._id) })
         } else if (req.user.userRole == 'client') {
-            query = { client: req.user._id }
+            query['$and'].push({ 'client': ObjectId(req.user._id) })
         }
     }
 
+    console.log('Query:::::::::::::', query);
+
     allJobs(query).then(jobs => {
         res.send({ data: jobs })
-        console.log('---JOBS---', jobs)
     })
 }
 
@@ -67,8 +199,9 @@ jobController.getJobUsingInstructorId = async function (req, res) {
     query = { instructors: { $in: instructorId } }
 
     allJobs(query).then(jobs => {
+        console.log('---JOBS:::::::::::::::::::', jobs)
         res.send({ data: jobs })
-        console.log('---JOBS---', jobs)
+
     })
 }
 
