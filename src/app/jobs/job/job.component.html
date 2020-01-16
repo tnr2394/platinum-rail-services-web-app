@@ -98,6 +98,7 @@
                                                 <p>Dates</p>
                                                 <span> {{startDate | date:'shortDate'}} -
                                                     {{endDate | date:'shortDate'}}</span>
+                                                <p>{{completionPercent}}%</p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
@@ -113,6 +114,8 @@
             <app-assignment-status></app-assignment-status>
         </div>
         <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
+
+        <app-scheduler></app-scheduler>
         <div *ngIf="job">
             <!-- passing into material =  {{job.course._id}} -->
             <app-materials *ngIf="job && job.course" [data]="job.course._id"

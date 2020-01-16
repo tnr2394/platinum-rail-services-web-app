@@ -34,6 +34,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   currentUser;
   startDate;
   endDate;
+  completionPercent;
 
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
@@ -114,21 +115,20 @@ export class JobComponent implements OnInit, AfterViewInit {
     var that = this;
     console.log("Getting JOB for jobid = ", this.jobId);
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
-      console.log("Job Received = ", jobs);
+
+      console.log('Single Job:::::::::::::::::::', jobs[0]);
       this.startDate = jobs[0].startingDate;
-      console.log('start Date:::::::::::::::::::::::::::', this.startDate);
       this.endDate = jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]
+      let start = new Date(jobs[0].singleJobDate[0]).getTime()
+      let end = new Date(jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]).getTime()
+      let today = new Date().getTime()
+      let totalDays = (end - start) / (1000 * 3600 * 24)
+      let daysPassed = (today - start) / (1000 * 3600 * 24)
+      this.completionPercent = Math.round((daysPassed / totalDays) * 100);
 
-      var today: any = new Date();
-
-      console.log('Today Date:::::::::::::::::::', today);
-
-      //use Math.abs to avoid sign
-      var q = Math.abs(today - this.startDate);
-      var d = Math.abs(this.endDate - this.startDate);
-      // alert("Rounded: " + Math.round((q / d) * 100) + "%");
-      // alert("Fraction: " + ((q / d) * 100) + "%");
-
+      if (this.completionPercent < 0) {
+        this.completionPercent = 0;
+      }
 
       this.job = jobs.pop();
       console.log("Setting job = ", { job: this.job });

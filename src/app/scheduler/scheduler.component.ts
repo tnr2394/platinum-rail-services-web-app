@@ -1,6 +1,7 @@
-import { Component, OnInit,ChangeDetectionStrategy,  ViewChild, TemplateRef } from '@angular/core';
-import {JobService} from "../services/job.service";
-import {Router} from "@angular/router"
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { JobService } from "../services/job.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import * as _ from 'lodash';
 
 import {
   startOfDay,
@@ -19,7 +20,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
-import {MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 const colors: any = {
@@ -46,12 +47,15 @@ const colors: any = {
 })
 export class SchedulerComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-  
+
   view: CalendarView = CalendarView.Month;
-  jobs = [{client:"SKUK",value:1},{client:"Shipley",value:2},{client:"FOC",value:3},{client:"Shipley",value:4}];
+  jobs = [{ client: "SKUK", value: 1 }, { client: "Shipley", value: 2 }, { client: "FOC", value: 3 }, { client: "Shipley", value: 4 }];
   CalendarView = CalendarView;
   events = [];
   viewDate: Date = new Date();
+  jobId;
+
+  jobsForFilter;
 
   modalData: {
     action: string;
@@ -155,7 +159,8 @@ export class SchedulerComponent implements OnInit {
   activeDayIsOpen: boolean = true;
   job: any;
 
-  constructor(private modal: NgbModal, private _jobService: JobService,private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService, private router: Router) {
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -172,11 +177,11 @@ export class SchedulerComponent implements OnInit {
   }
 
 
-// Model Opener
+  // Model Opener
   handleEvent(action: string, event): void {
-    console.log("Handling event", {action,event})
+    console.log("Handling event", { action, event })
     this.modalData = { event, action };
-    this.router.navigate(['/learners/'+event.jobid]);
+    this.router.navigate(['/learners/' + event.jobid]);
     // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -187,72 +192,104 @@ export class SchedulerComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getJobs();
+
+    if (this.router.url.includes('/jobs')) {
+      console.log("VIEW VALUE IS HERE");
+      this.getJobs();
+      this.activatedRoute.params.subscribe(params => {
+        this.jobId = params['jobid'];
+        console.log("Calling getLearners with jobid = ", this.jobId);
+        // this.filterJobUsingJobId(this.jobId);
+      });
+    }
+    // this.getJobs();
   }
 
   // Utility
-  createEventObject(obj){
-    console.log("Creating Event object from = ",obj);
+  createEventObject(obj) {
+    console.log("Creating Event object from = ", obj);
     var newEvent = {
-        start: new Date(obj.startingDate),
-        title: obj.title,
-        color: {
-          primary: obj.color,
-        },
-        allDay: true,
-        jobid: obj.jobid
+      start: new Date(obj.startingDate),
+      title: obj.title,
+      color: {
+        primary: obj.color,
+      },
+      allDay: true,
+      jobid: obj.jobid
     }
-    console.log("Event object created = ",newEvent);
+    console.log("Event object created = ", newEvent);
     return newEvent;
   }
 
-  
-  makeEventsArrayForJob(job){
+
+  makeEventsArrayForJob(job) {
     var dates = job.singleJobDate;
-    console.log("Processing Job with dates = ",dates);
+    console.log("Processing Job with dates = ", dates);
     var events = [];
-    for(var i = 0; i < dates.length; i++){
+    for (var i = 0; i < dates.length; i++) {
       var newObj = this.createEventObject({
         startingDate: dates[i],
-        title: job.title+" - "+job.location.title,
+        title: job.title + " - " + job.location.title,
         color: job.color,
         jobid: job._id
       })
       events.push(newObj);
-    }    
-    console.log("Events = ",events);
+    }
+    console.log("Events = ", events);
     return events;
     // this.events = events;
   }
 
-  jobChanged(event){
+  jobChanged(event) {
     this.job = event.value;
     this.resetEvents();
     this.populateAllJobs([this.job]);
-    console.log("this.job = ",this.job);
+    console.log("this.job = ", this.job);
     // this.loadDatesForJob(this.job);
   }
 
-  populateAllJobs(jobs){
-    console.log("PopulateAllJobs Called with jobs = ",jobs);
+  populateAllJobs(jobs) {
+    console.log("PopulateAllJobs Called with jobs = ", jobs);
 
-    for(var i = 0; i < jobs.length; i++){
+    for (var i = 0; i < jobs.length; i++) {
       var events = this.makeEventsArrayForJob(jobs[i]);
-      this.events = [...events]; 
+      this.events = [...events];
     }
 
   }
-  resetEvents(){
+  resetEvents() {
     this.events = [];
   }
 
-// APIs
-getJobs(){
-  this._jobService.getJobs().subscribe(jobs=>{
-    this.jobs = jobs;
-  },err=>{
-    console.error(err);
-  })
-}
+  // APIs
+  getJobs() {
+    this._jobService.getJobs().subscribe(jobs => {
+      this.jobs = jobs;
+      this.jobsForFilter = jobs;
+
+      console.log('this.jobs::::::::::::::::::::::::', this.jobs);
+      this.filterJobUsingJobId(this.jobId)
+    }, err => {
+      console.error(err);
+    })
+  }
+
+
+  filterJobUsingJobId(jobId) {
+    let finalJob;
+    console.log('this.jobs:::::::::::::::::::::::::::::', this.jobsForFilter);
+    _.forEach(this.jobsForFilter, (singleJob) => {
+      console.log('singleJob:::::::::::::', singleJob);
+      if (singleJob._id == jobId) {
+        finalJob = singleJob;
+      }
+    })
+    console.log('finalJob:::::::::::::::::::::::::::::::::::', finalJob);
+    this.resetEvents();
+    setTimeout(() => {    //<<<---    using ()=> syntax
+      this.populateAllJobs([finalJob]);
+    },500);
+
+  }
 
 }
