@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { FormsModule, NgForm } from '@angular/forms'
+import { groupBy } from 'rxjs/operators';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { FormsModule, NgForm } from '@angular/forms'
   styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
+  completionPercent;
   test = [];
   searchText: string;
   jobs;
@@ -44,7 +46,7 @@ export class JobsComponent implements OnInit {
   pageEvent: PageEvent;
 
 
-  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'actions']
+  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -71,12 +73,14 @@ export class JobsComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (this.currentUser.userRole == 'client') {
-      this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'actions']
+      this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
     }
     // 
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;    
   }
+  // tslint:disable-next-line: member-ordering
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -105,6 +109,8 @@ export class JobsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnInit() {
+    console.log("JOBS COMPONENT");
+    
     this.loading = true;
     // this.getCourses();
     this.getJobs();
@@ -272,8 +278,52 @@ export class JobsComponent implements OnInit {
       console.log('Jobs Received : ', this.jobs);
       this.updateData(this.jobs);
       this.getStatus(data);
+      this.completionOfJob(this.jobs)
+      this.sortByLocation()
     })
   }
+
+  completionOfJob(jobs){
+    let oneJob;
+    this.jobs.forEach((job)=>{
+      oneJob = job;
+      let start = new Date(oneJob.singleJobDate[0]).getTime()
+      let end = new Date(oneJob.singleJobDate[oneJob.singleJobDate.length - 1]).getTime()
+      let today = new Date().getTime()
+      let totalDays = (end - start) / (1000 * 3600 * 24)
+      let daysPassed = (today - start) / (1000 * 3600 * 24)
+       this.completionPercent = Math.round((daysPassed / totalDays) * 100);
+      if (this.completionPercent > 100) {
+        console.log(job.title, "complete==", this.completionPercent);
+        this.completionPercent = 100;
+      }
+      else if (this.completionPercent < 0) {
+        console.log(job.title, "has NOT begun==", this.completionPercent);
+        this.completionPercent = 0;
+      }
+      else { console.log(job.title, "in progress==", this.completionPercent);}
+      job["completion"] = this.completionPercent;
+    })
+    this.updateData(this.jobs)
+    console.log("IN COMPLITION FUNCTION", this.jobs);
+    
+  }
+
+  sortByLocation(){
+    let group = this.jobs.reduce((key, array) => {
+      // locations = key;
+      console.log('array', array);
+      console.log('key', key);
+      key[array.location.title] = [...key[array.location.title] || [], array];
+      console.log("KEY", key);
+      return key;
+    }, {});
+    let groupedJobs = group;
+    let x = Object.keys(groupedJobs)
+    console.log("ONLY ONE LOCATIONS", groupedJobs.x);
+  }
+  
+  
   // Paginator
   // public handlePage(e: any) {
   //   this.currentPage = e.pageIndex;

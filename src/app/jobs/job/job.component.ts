@@ -126,8 +126,8 @@ export class JobComponent implements OnInit, AfterViewInit {
       //use Math.abs to avoid sign
       var q = Math.abs(today - this.startDate);
       var d = Math.abs(this.endDate - this.startDate);
-      alert("Rounded: " + Math.round((q / d) * 100) + "%");
-      alert("Fraction: " + ((q / d) * 100) + "%");
+      // alert("Rounded: " + Math.round((q / d) * 100) + "%");
+      // alert("Fraction: " + ((q / d) * 100) + "%");
 
 
       this.job = jobs.pop();

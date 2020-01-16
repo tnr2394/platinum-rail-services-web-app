@@ -7,6 +7,7 @@ import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { ClientsComponent } from './clients/clients.component';
+import { ClientDashboardComponent } from './clients/client-dashboard/client-dashboard.component';
 import { SingleClientComponent } from './clients/single-client/single-client.component';
 import { LearnersComponent } from './learners/learners.component';
 import { SingleLearnerComponent } from './learners/single-learner/single-learner.component';
@@ -147,6 +148,10 @@ const routes: Routes = [
 		path: 'instructors/:id',
 		component: SingleInstructorComponent,
 		canActivate: [AuthGuard],
+	},
+	{
+		path: 'client/dashboard',
+		component: ClientDashboardComponent
 	}
 ];
 
