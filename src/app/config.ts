@@ -14,6 +14,11 @@ const baseUrl = "http://localhost:3000/";
 
 // const baseUrl = "https://workspace.platinumrailservices.co.uk:3000/"
 
+
+//For Testing Environment
+
+// const baseUrl = "https://testing.platinumrailservices.co.uk:4000/"
+
 // For Remove Console Logs 
 
 // console.log = function () { }

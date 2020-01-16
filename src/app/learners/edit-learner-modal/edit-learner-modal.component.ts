@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Course } from 'src/app/interfaces/course';
 import { LearnerService } from '../../services/learner.service';
+import * as _ from 'lodash';
 declare var $;
 
 @Component({
@@ -18,6 +19,9 @@ export class EditLearnerModalComponent implements OnInit {
   pwd: boolean;
   show1: boolean;
   pwd1: boolean;
+
+  url1: any;
+  profileFile: any = [];
 
 
 
@@ -56,15 +60,29 @@ export class EditLearnerModalComponent implements OnInit {
 
   doSubmit() {
     console.log("Submit ", this.data);
+
     console.log("Validating = ", this.validate(this.data));
     if (!this.validate(this.data)) {
       console.log("RETURNING");
       return;
     }
 
+    const learner = new FormData();
+    _.forOwn(this.data, (value, key) => {
+
+      learner.append(key, value);
+
+    });
+
+    if (this.profileFile.length) {
+      for (let i = 0; i <= this.profileFile.length; i++) {
+        learner.append('profile', this.profileFile[i]);
+      }
+    }
+
     // Do Submit
     this.loading = true;
-    this._learnerService.editLearner(this.data).subscribe(learner => {
+    this._learnerService.editLearner(learner).subscribe(learner => {
       this.learnerData = learner;
       console.log("learnerDATA = ", learner);
       this.loading = false;
@@ -115,6 +133,18 @@ export class EditLearnerModalComponent implements OnInit {
   cpassword() {
     this.show1 = !this.show1;
     this.pwd1 = !this.pwd1
+  }
+
+  public addProfileImage(event: any) {
+    this.profileFile = event.target.files;
+    console.log('This.profile Pic', this.profileFile);
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.url1 = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 

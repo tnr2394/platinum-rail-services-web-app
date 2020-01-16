@@ -8,6 +8,13 @@ var learnerSchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: Number,
+    },
+    profilePic: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
+    },
     password: {
         type: String,
         required: true

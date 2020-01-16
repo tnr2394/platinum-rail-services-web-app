@@ -24,6 +24,8 @@ export class LearnerDashboardComponent implements OnInit {
   material = [];
   bgColors: string[];
   lastColor;
+  job;
+  currentUser;
   constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
@@ -31,6 +33,7 @@ export class LearnerDashboardComponent implements OnInit {
   ngOnInit() {
     this.loadingMaterials = true;
     this.getAllotments();
+    this.currentUser = JSON.parse(localStorage.currentUser);
   }
 
   getAllotments() {
@@ -61,6 +64,7 @@ export class LearnerDashboardComponent implements OnInit {
   getJob() {
     this._jobService.getJobById(this.jobId).subscribe((job) => {
       console.log("Recieved job", job)
+      this.job = job[0];
       job.forEach((job) => {
         if (this.jobId == job._id) {
           this.courseId = job.course._id;
@@ -109,5 +113,5 @@ export class LearnerDashboardComponent implements OnInit {
     };
     this.router.navigateByUrl('/learnerAllotment/' + assignment._id, navigationExtras);
   }
-  
+
 }

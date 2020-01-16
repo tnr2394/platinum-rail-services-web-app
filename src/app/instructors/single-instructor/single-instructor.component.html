@@ -1,19 +1,45 @@
-<h3 *ngIf="instructor">{{instructor.name}}</h3>
+<!-- <h3 *ngIf="instructor">{{instructor.name}}</h3>
 <h3 *ngIf="instructor">
     <i class="fas fa-mobile-alt"></i>{{instructor.mobile}}</h3>
 
 <div *ngIf="instructor && instructor.profilePic">
     <img src="{{instructor.profilePic.path}}" height="200" width="200">
+</div> -->
+
+<button mat-flat-button *ngIf="!view" color="primary" class="pull-right button_hover_effect position_btn"
+    (click)="editInstructorModal(i, instructor)">
+    <i class="fas fa-pencil-alt"></i>
+    <span>Edit Profile</span>
+</button>
+<div class="card profile_card">
+    
+    <!-- <div class="profile_picture_area"> -->
+        <div *ngIf="instructor && instructor.profilePic" class="profile_image">
+            <img src="{{instructor.profilePic.path}}">
+        </div>
+    <!-- </div> -->
+    <div class="card-block">
+        <div class="row instructor_profile_card">
+            <div class="col-sm-6 text-center justify-content-center">
+                <h3 *ngIf="instructor">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h3>
+            </div>
+            <div class="col-sm-6 text-center justify-content-center">
+                <h3 *ngIf="instructor">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{instructor.mobile}}</h3>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div class="row">
+<!-- <div class="row">
     <button mat-flat-button *ngIf="!view" color="primary" class="pull-right button_hover_effect"
         (click)="editInstructorModal(i, instructor)">
         <i class="fas fa-pencil-alt"></i>
         <span>Edit Profile</span>
     </button>
-</div>
+</div> -->
 
 <div class="row">
     <div class="col-12 ">
@@ -68,13 +94,13 @@
                             </ng-container>
 
                             <!-- instructor Column -->
-                            <ng-container matColumnDef="instructor">
+                            <ng-container matColumnDef="instructor" class="single_instructor">
                                 <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>
                                     Instructor </th>
                                 <td class="mat-table-cell text-center" data-label="Instructor" mat-cell
                                     *matCellDef="let job">
-                                    <mat-list align='center'>
-                                        <mat-list-item class="text-center"
+                                    <mat-list align='center' class="justify-content-center">
+                                        <mat-list-item class="text-center justify-content-center"
                                             *ngFor='let oneInstructor of job.instructors'>
                                             <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span>
                                                 {{oneInstructor.name}}</span>

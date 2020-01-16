@@ -35,6 +35,7 @@ var materialsRouter = require('./routes/materials');
 var adminRouter = require('./routes/admin');
 
 const instructorController = require('./controllers/instructor.controller');
+const dbBackupService = require('./services/dbbackup.service');
 
 // Make the settings in the environment config global available
 global.settings = config.env.settings;
@@ -95,8 +96,8 @@ if (config.env.name === 'production') {
 } else if (config.env.name === 'testing') {
 
   var credentials = {
-    key: fs.readFileSync('/var/www/html/platinum/ssl/privkey1.pem'),
-    cert: fs.readFileSync('/var/www/html/platinum/ssl/fullchain1.pem')
+    key: fs.readFileSync('/var/www/html/platinumTesting/ssl/privkey1.pem'),
+    cert: fs.readFileSync('/var/www/html/platinumTesting/ssl/fullchain1.pem')
   };
 
   var server = http.createServer(app);
@@ -130,6 +131,18 @@ if (config.env.name === 'production') {
 //   });
 
 // checkQualificationCronJob.start();
+
+
+// const dbBackupCronJob = cron.schedule('1 * * * * *', () => {
+
+//   console.log('db backup Running Now');
+//   dbBackupService.dbAutoBackUp();
+// }, {
+//     scheduled: true,
+//   });
+
+
+// dbBackupCronJob.start();
 
 
 app.use('/', indexRouter);

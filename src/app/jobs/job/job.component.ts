@@ -32,8 +32,10 @@ export class JobComponent implements OnInit, AfterViewInit {
   sort: MatSort;
   displayAllocate: Boolean = true;
   currentUser;
+  startDate;
+  endDate;
 
-  @ViewChild(MaterialsComponent, {static:false}) materialsComp:MaterialsComponent;
+  @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
 
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
@@ -52,10 +54,10 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.currentUser = JSON.parse(localStorage.currentUser);
   }
   ngAfterViewInit(): void {
-    
+
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    
+
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
@@ -73,15 +75,15 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.materials = object.materials;
     console.log('OBJECT', object);
   }
-  assignmentAdded(){
+  assignmentAdded() {
     console.log("IN ASSIGNMENT ADDED METHOD");
-    
+
     this.assignmentStatusComp.ngOnInit();
   }
 
   allocateLearners() {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
-      if(allocatedLearners == undefined) return
+      if (allocatedLearners == undefined) return
       let learners = [];
       console.log("allocatedLearners", allocatedLearners);
 
@@ -113,6 +115,9 @@ export class JobComponent implements OnInit, AfterViewInit {
     console.log("Getting JOB for jobid = ", this.jobId);
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
       console.log("Job Received = ", jobs);
+      this.startDate = jobs[0].startingDate;
+      console.log('start Date:::::::::::::::::::::::::::', this.startDate);
+      this.endDate = jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]
       this.job = jobs.pop();
       console.log("Setting job = ", { job: this.job });
     });

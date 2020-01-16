@@ -12,6 +12,10 @@
             <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone'
+                required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
                 [(ngModel)]='data.password' required>
             <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
@@ -23,6 +27,16 @@
             <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
                 (click)="cpassword()"></span>
         </mat-form-field>
+
+        <label class="input-file-button" for="hello"><span>Profile</span>
+            <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
+                [(ngModel)]="data.profile" required="required" (change)="addProfileImage($event)">
+        </label>
+
+        <div class="col-md-6" *ngIf="url1">
+            <img [src]="url1" height="50px" width="50px">
+        </div>
+
     </div>
     <div class="row">
         <!-- <div class="col-4"></div> -->

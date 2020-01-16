@@ -9,6 +9,7 @@ const async = require("async");
 
 const mailService = require('../services/mail.service');
 const reCaptchaService = require('../services/reCaptcha.service');
+const preService = require('../services/predelete.service');
 
 // Model Variables
 
@@ -294,14 +295,24 @@ instructorController.resetPassword = function (req, res, next) {
 instructorController.deleteInstructor = function (req, res, next) {
     console.log("Delete Instructor");
     let instructorId = req.query._id;
-    console.log("Course to be deleted : ", instructorId);
-    instructorModel.deleteOne({ _id: instructorId }, (err, deleted) => {
-        if (err) {
-            return res.status(500).send({ err })
+    preService.preInstructorDelete(instructorId).then((response) => {
+        if (response) {
+            console.log("Course to be deleted : ", instructorId);
+            instructorModel.deleteOne({ _id: instructorId }, (err, deleted) => {
+                if (err) {
+                    return res.status(500).send({ err })
+                }
+                console.log("Deleted ", deleted);
+                return res.send({ data: {}, msg: "Deleted Successfully" });
+            })
+        } else {
+            console.log('Instructor Not Deleted');
+            return res.status(400).send({ data: {}, msg: "Instructor Not Deleted" });
         }
-        console.log("Deleted ", deleted);
-        return res.send({ data: {}, msg: "Deleted Successfully" });
+    }).catch((error) => {
+        return res.status(500).send({ error })
     })
+
 }
 
 instructorController.loginInstructor = function (req, res, next) {
