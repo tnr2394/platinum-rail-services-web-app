@@ -82,6 +82,7 @@ import { LearnerReadingMaterialComponent } from './learners/learner-reading-mate
 import { AuthGuard } from './auth.guard';
 import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
 import { AppPasswordDirective } from './app-password.directive';
+import { ClientDashboardComponent } from './clients/client-dashboard/client-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -135,6 +136,7 @@ import { AppPasswordDirective } from './app-password.directive';
     LearnerReadingMaterialComponent,
     SingleInstructorComponent,
     AppPasswordDirective,
+    ClientDashboardComponent,
 
   ],
   imports: [
