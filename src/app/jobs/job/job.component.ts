@@ -34,11 +34,11 @@ export class JobComponent implements OnInit, AfterViewInit {
   currentUser;
   startDate;
   endDate;
+  jobForScheduler;
   completionPercent;
 
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
-
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
@@ -78,7 +78,6 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
   assignmentAdded() {
     console.log("IN ASSIGNMENT ADDED METHOD");
-
     this.assignmentStatusComp.ngOnInit();
   }
 
@@ -117,6 +116,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
 
       console.log('Single Job:::::::::::::::::::', jobs[0]);
+      this.jobForScheduler = jobs[0];
       this.startDate = jobs[0].startingDate;
       this.endDate = jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]
       let start = new Date(jobs[0].singleJobDate[0]).getTime()

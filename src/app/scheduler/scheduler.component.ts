@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, Input } from '@angular/core';
 import { JobService } from "../services/job.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import * as _ from 'lodash';
@@ -46,6 +46,8 @@ const colors: any = {
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent implements OnInit {
+  @Input('job') jobRecieved : any;
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -54,6 +56,7 @@ export class SchedulerComponent implements OnInit {
   events = [];
   viewDate: Date = new Date();
   jobId;
+  viewDropdown: Boolean = true;
 
   jobsForFilter;
 
@@ -192,19 +195,26 @@ export class SchedulerComponent implements OnInit {
 
 
   ngOnInit() {
-
-    if (this.router.url.includes('/jobs')) {
-      console.log("VIEW VALUE IS HERE");
-      this.getJobs();
-      this.activatedRoute.params.subscribe(params => {
-        this.jobId = params['jobid'];
-        console.log("Calling getLearners with jobid = ", this.jobId);
-        // this.filterJobUsingJobId(this.jobId);
-      });
-    }
+    console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
+    
+      if (this.router.url.includes('/jobs')) {
+        this.viewDropdown = false;
+        console.log("VIEW VALUE IS HERE");
+        if (this.jobRecieved != undefined) {
+          console.log("**********IN if Condition**********");
+          this.populateAllJobs([this.jobRecieved])
+      }
+      }
+      else {
+        this.getJobs();
+        this.activatedRoute.params.subscribe(params => {
+          this.jobId = params['jobid'];
+          console.log("Calling getLearners with jobid = ", this.jobId);
+          // this.filterJobUsingJobId(this.jobId);
+        });
     // this.getJobs();
+    }
   }
-
   // Utility
   createEventObject(obj) {
     console.log("Creating Event object from = ", obj);
@@ -250,7 +260,6 @@ export class SchedulerComponent implements OnInit {
 
   populateAllJobs(jobs) {
     console.log("PopulateAllJobs Called with jobs = ", jobs);
-
     for (var i = 0; i < jobs.length; i++) {
       var events = this.makeEventsArrayForJob(jobs[i]);
       this.events = [...events];
