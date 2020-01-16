@@ -1,4 +1,12 @@
 <div class="row">
+    <ul class="legend" *ngIf="assignmentLength != 0 && learnerLength != 0">
+        <li><span class="unassigned"></span>Unassigned</li>
+        <li><span class="pending"></span>Pending</li>
+        <li><span class="submitted"></span>Submitted</li>
+        <li><span class="resubmitted"></span>Re-submitted</li>
+        <li><span class="requestforresubmission"></span>Request for resubmission</li>
+        <li><span class="completed"></span>Completed</li>
+    </ul>
     <div class="col-12" *ngIf="assignmentLength != 0 && learnerLength != 0">
         <div class="table-responsive">
             <table class="float-left">

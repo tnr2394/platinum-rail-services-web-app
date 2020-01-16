@@ -77,7 +77,7 @@ const routes: Routes = [
 		path: 'learners/:jobid',
 		component: LearnersComponent,
 		canActivate: [AuthGuard],
-		data: { roles: [Role.Instructor] }
+		data: { roles: [Role.Instructor, Role.Admin] }
 	},
 	{
 		path: 'jobs/:jobid',
