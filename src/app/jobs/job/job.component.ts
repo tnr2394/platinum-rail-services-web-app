@@ -85,15 +85,11 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
       if (allocatedLearners == undefined) return
       let learners = [];
-      console.log("allocatedLearners", allocatedLearners);
-
       if (allocatedLearners) {
         allocatedLearners.forEach((learner) => {
           learners.push({ learner: learner._id, assignments: this.materials });
         });
       }
-
-      console.log("LEARNERS TO SEND", learners);
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT");
       });
@@ -112,26 +108,27 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   getJob(jobId) {
     var that = this;
-    console.log("Getting JOB for jobid = ", this.jobId);
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
-
-      console.log('Single Job:::::::::::::::::::', jobs[0]);
       this.jobForScheduler = jobs[0];
-      this.startDate = jobs[0].startingDate;
-      this.endDate = jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]
-      let start = new Date(jobs[0].singleJobDate[0]).getTime()
-      let end = new Date(jobs[0].singleJobDate[jobs[0].singleJobDate.length - 1]).getTime()
-      let today = new Date().getTime()
-      let totalDays = (end - start) / (1000 * 3600 * 24)
-      let daysPassed = (today - start) / (1000 * 3600 * 24)
-      this.completionPercent = Math.round((daysPassed / totalDays) * 100);
-
-      if (this.completionPercent < 0) {
-        this.completionPercent = 0;
-      }
-
       this.job = jobs.pop();
+      this.completionPercentage(this.job)
       console.log("Setting job = ", { job: this.job });
     });
+  }
+
+  completionPercentage(job) {
+
+    this.startDate = job.startingDate;
+    this.endDate = job.singleJobDate[job.singleJobDate.length - 1]
+    let start = new Date(job.singleJobDate[0]).getTime()
+    let end = new Date(job.singleJobDate[job.singleJobDate.length - 1]).getTime()
+    let today = new Date().getTime()
+    let totalDays = (end - start) / (1000 * 3600 * 24)
+    let daysPassed = (today - start) / (1000 * 3600 * 24)
+    this.completionPercent = Math.round((daysPassed / totalDays) * 100);
+
+    if (this.completionPercent < 0) {
+      this.completionPercent = 0;
+    }
   }
 }

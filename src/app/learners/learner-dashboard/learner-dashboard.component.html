@@ -1,3 +1,9 @@
+<div *ngIf="loading">
+    <h1 class="text-center text-info mt-5">
+        Loading... <i class="fas fa-refresh fa-spin"></i>
+    </h1>
+</div>
+
 <h1 class="learner_title">Hello {{learnerName}}!</h1>
 
 <h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3>

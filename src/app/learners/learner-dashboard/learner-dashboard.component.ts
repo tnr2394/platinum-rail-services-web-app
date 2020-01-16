@@ -17,6 +17,7 @@ export class LearnerDashboardComponent implements OnInit {
   loadingMaterials: Boolean;
   learner;
   learnerName = '';
+  loading = false;
   materialId = [];
   searchText;
   assignments;
@@ -44,6 +45,7 @@ export class LearnerDashboardComponent implements OnInit {
   }
 
   getAllotments() {
+    this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this._learnerService.getLearner(params['id']).subscribe(data => {
@@ -55,6 +57,7 @@ export class LearnerDashboardComponent implements OnInit {
           this.assignments = this.learner.allotments;
         })
         console.log("ASSIGNMENTS", this.assignments)
+        this.loading = false;
         // console.log("ASSIGNMENTS", this.assignments.pop().assignment.title)
         if (this.learner.job == null) {
           console.log("LEARNER HAS NO JOB")
@@ -90,7 +93,6 @@ export class LearnerDashboardComponent implements OnInit {
         if (material.type == "Reading") {
           this.material.push(material);
         }
-        // console.log("Reading material is", this.material.length)
       })
     })
   }
