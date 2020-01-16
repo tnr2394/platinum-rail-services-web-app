@@ -44,7 +44,7 @@
       <div class="col-md-4">
         
         <h4 class="job_select">JOB</h4>
-          <mat-form-field class=" col-6" *ngIf="jobs">
+          <mat-form-field class=" col-6" *ngIf="jobs && viewDropdown == true">
             <mat-select [(ngModel)]="job" style="display: block;" (selectionChange)="jobChanged($event)">
               <mat-option *ngFor="let job of jobs"  [value]='job'>{{job.title}}</mat-option>
             </mat-select>
