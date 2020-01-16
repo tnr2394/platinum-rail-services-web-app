@@ -4,6 +4,9 @@ import { LearnerService } from '../../services/learner.service';
 import { JobService } from '../../services/job.service';
 import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { FilterPipe } from 'ngx-filter-pipe';
+
+
 
 
 
@@ -19,14 +22,22 @@ export class LearnerDashboardComponent implements OnInit {
   learner;
   learnerName = '';
   materialId = [];
+  searchText;
   assignments;
   courseId;
   material = [];
   bgColors: string[];
   lastColor;
   job;
+  panelOpenState = true;
   currentUser;
-  constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
+  userFilter: any = { title: '' };
+  assignmentFilter: any = {
+    assignment: {
+      title: ''
+    }
+  }
+  constructor(private filterPipe: FilterPipe, private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 

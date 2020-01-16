@@ -37,6 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 // import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
@@ -164,10 +166,12 @@ import { ClientDashboardComponent } from './clients/client-dashboard/client-dash
     CdkTableModule,
     MatSnackBarModule,
     ColorPickerModule,
+    MatExpansionModule,
     ImageCropperModule,
     FileUploadModule,
     RecaptchaV3Module,
-    MatBadgeModule
+    MatBadgeModule,
+    FilterPipeModule
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
