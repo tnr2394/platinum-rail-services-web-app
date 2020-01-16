@@ -123,6 +123,14 @@
                                             {{job.status}}</td>
                                     </ng-container>
 
+                                    <!-- Completion % -->
+                                    <ng-container matColumnDef="completion">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Complition %
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Status" mat-cell *matCellDef="let job">
+                                            {{job.completion}} %</td>
+                                    </ng-container>
+
                                     <!-- view Column -->
                                     <ng-container matColumnDef="view">
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> View

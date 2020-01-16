@@ -23,6 +23,7 @@ import { groupBy } from 'rxjs/operators';
   styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
+  completionPercent;
   test = [];
   searchText: string;
   jobs;
@@ -45,7 +46,7 @@ export class JobsComponent implements OnInit {
   pageEvent: PageEvent;
 
 
-  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'actions']
+  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -72,7 +73,7 @@ export class JobsComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (this.currentUser.userRole == 'client') {
-      this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'actions']
+      this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
     }
     // 
     // this.dataSource.paginator = this.paginator;
@@ -291,15 +292,21 @@ export class JobsComponent implements OnInit {
       let today = new Date().getTime()
       let totalDays = (end - start) / (1000 * 3600 * 24)
       let daysPassed = (today - start) / (1000 * 3600 * 24)
-      let percent = Math.round((daysPassed / totalDays) * 100);
-      if (percent > 100) {
-        console.log(job.title,"complete==",percent);
+       this.completionPercent = Math.round((daysPassed / totalDays) * 100);
+      if (this.completionPercent > 100) {
+        console.log(job.title, "complete==", this.completionPercent);
+        this.completionPercent = 100;
       }
-      else if (percent < 0) {
-        console.log(job.title,"has NOT begun==",percent);
+      else if (this.completionPercent < 0) {
+        console.log(job.title, "has NOT begun==", this.completionPercent);
+        this.completionPercent = 0;
       }
-      else{console.log(job.title,"in progress==", percent);}
+      else { console.log(job.title, "in progress==", this.completionPercent);}
+      job["completion"] = this.completionPercent;
     })
+    this.updateData(this.jobs)
+    console.log("IN COMPLITION FUNCTION", this.jobs);
+    
   }
 
   sortByLocation(){
@@ -314,7 +321,6 @@ export class JobsComponent implements OnInit {
     let groupedJobs = group;
     let x = Object.keys(groupedJobs)
     console.log("ONLY ONE LOCATIONS", groupedJobs.x);
-    
   }
   
   
