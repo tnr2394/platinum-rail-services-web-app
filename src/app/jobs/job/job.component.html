@@ -47,7 +47,7 @@
                                         <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
                                             <div class="learner_title">
                                                 College
-                                                <p> {{job.client.name}}</p>
+                                                <p *ngIf="job && job.client"> {{job.client.name}}</p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
@@ -59,7 +59,7 @@
                                         <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
                                             <div class="learner_title">
                                                 Location
-                                                <p> {{job.location.title}}</p>
+                                                <p *ngIf="job && job.location"> {{job.location.title}}</p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
@@ -73,7 +73,7 @@
                                         <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
                                             <div class="learner_title pl-2">
                                                 Course
-                                                <p> {{job.course.title}}</p>
+                                                <p *ngIf="job && job.course"> {{job.course.title}}</p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
@@ -90,19 +90,19 @@
                                     </mat-list-item>
                                 </mat-list> -->
                             </div>
-                            <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
                                         <mat-list-item><i class="far fa-calendar-alt text-warning"></i>
                                             <div class="learner_title">
-                                                Location
-                                                <p> {{startDate | date:'shortDate'}}</p>
-                                                <p> {{endDate | date:'shortDate'}}</p>
+                                                <p>Dates</p>
+                                                <span> {{startDate | date:'shortDate'}} -
+                                                    {{endDate | date:'shortDate'}}</span>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,9 +115,8 @@
         <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
         <div *ngIf="job">
             <!-- passing into material =  {{job.course._id}} -->
-            <app-materials *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
-                [data]="job.course._id" (getMaterialsFromComponent)="loadMaterials($event)"
-                (assignmentAdded)="assignmentAdded()" #material>
+            <app-materials *ngIf="job && job.course" [data]="job.course._id"
+                (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()" #material>
             </app-materials>
             <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"
                 (click)="allocateLearners()"

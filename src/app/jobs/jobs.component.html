@@ -49,7 +49,8 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Job Title" mat-cell
                                             *matCellDef="let job; let i = index;"> <i class="fas fa-dot-circle fa-fw"
-                                                [ngStyle]="{color:job.color }"></i> {{job.title}}
+                                                [ngStyle]="{color:job.color }"></i>
+                                            <p *ngIf="job">{{job.title}}</p>
                                         </td>
                                     </ng-container>
 
@@ -59,7 +60,8 @@
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell
-                                            *matCellDef="let job"> {{job.client.name}}
+                                            *matCellDef="let job">
+                                            <p *ngIf="job && job.client"> {{job.client.name}}</p>
                                         </td>
                                     </ng-container>
 
@@ -69,7 +71,9 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Location" mat-cell
                                             *matCellDef="let job">
-                                            {{job.location.title}} </td>
+                                            <p *ngIf="job && job.location"> {{job.location.title}}</p>
+
+                                        </td>
                                     </ng-container>
 
                                     <!-- instructor Column -->
@@ -81,7 +85,8 @@
                                             <mat-list align='center'>
                                                 <mat-list-item class="text-center"
                                                     *ngFor='let oneInstructor of job.instructors'>
-                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span>
+                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span
+                                                        *ngIf="job && job.instructors">
                                                         {{oneInstructor.name}}</span>
                                                 </mat-list-item>
                                             </mat-list>
@@ -93,7 +98,8 @@
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Course
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Course" mat-cell
-                                            *matCellDef="let job"> {{job.course.title}}
+                                            *matCellDef="let job">
+                                            <p *ngIf="job && job.course">{{job.course.title}}</p>
                                         </td>
                                     </ng-container>
 

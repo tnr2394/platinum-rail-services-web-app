@@ -27,6 +27,9 @@ export class SingleInstructorComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   sort: MatSort;
   paginator: MatPaginator;
+  searchText;
+  loading;
+  view;
   // MatPaginator Output
   pageEvent: PageEvent;
 
