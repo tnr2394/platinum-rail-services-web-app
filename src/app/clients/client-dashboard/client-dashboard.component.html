@@ -1,2 +1,8 @@
 <p>Welcome {{clientName}}</p>
-<app-jobs></app-jobs>
+<div class='cards'>
+<mat-card *ngFor='let job of jobs'>
+    <mat-card-title>
+        {{job.title}}
+    </mat-card-title>
+</mat-card>
+</div>

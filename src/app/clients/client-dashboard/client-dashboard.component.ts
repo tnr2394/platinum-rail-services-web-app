@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JobService } from '../../services/job.service'
 
 @Component({
   selector: 'app-client-dashboard',
@@ -6,14 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-dashboard.component.scss']
 })
 export class ClientDashboardComponent implements OnInit {
+  jobs = [];
   currentUser;
   clientName = '';
 
-  constructor() { }
+  constructor(public _jobService: JobService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name
+
+    this.getJobs();
+  }
+
+  getJobs(){
+    this._jobService.getJobs().subscribe(jobs=>{
+      console.log("JOBS RECIEVED", jobs);
+      this.jobs = jobs;
+    })
   }
 
 }
