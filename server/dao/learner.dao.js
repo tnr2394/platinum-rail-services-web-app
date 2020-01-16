@@ -45,9 +45,25 @@ learner.getLearnersByQuery = function (query) {
             q.resolve(learners)
             console.log("SENDING RESPONSE learner =  ", learners);
         })
+    
     return q.promise;
 }
-
+learner.learnersPerJob = function(){
+    map = function () { 
+        emit(this.job, 1) 
+    }
+    reduce = function (key, values) {
+        return Array.sum(values)
+    }
+    learnerModel.mapReduce({
+        map: map,
+        reduce: reduce,
+        out: { inline: 1 }
+    }, function (err, result) {
+        if (err) console.log("ERROR", err);
+        return result
+    })
+}
 
 learner.updateLearner = function (object) {
     console.log("Update Learner in location DAO", object);
