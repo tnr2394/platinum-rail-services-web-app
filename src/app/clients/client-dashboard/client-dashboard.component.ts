@@ -13,6 +13,8 @@ export class ClientDashboardComponent implements OnInit {
   jobToPass;
   currentUser;
   clientName = '';
+  selectedJob;
+  private isSelected: string;
 
   constructor(public _jobService: JobService) { }
   @ViewChild(JobComponent, { static: false }) jobComp: JobComponent;
@@ -24,9 +26,13 @@ export class ClientDashboardComponent implements OnInit {
 
     this.getJobs();
   }
+  setColor(value,i) {
+    this.isSelected = value;
+  }
 
   jobChanged(job){
     console.log("JOB CHANGED", job);
+    this.selectedJob = job
     this.jobComp.job = job;
     this.jobComp.jobIdFromClient = job._id;
     this.jobComp.completionPercentage(job)
@@ -37,7 +43,8 @@ export class ClientDashboardComponent implements OnInit {
     this._jobService.getJobs().subscribe(jobs=>{
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
-      let firstJob = jobs[1]
+      this.selectedJob = jobs[0]
+      let firstJob = jobs[0]
       console.log("FIRST JOB", firstJob);
       this.jobComp.job = firstJob;
       this.jobComp.jobIdFromClient = firstJob._id;
