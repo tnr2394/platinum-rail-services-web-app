@@ -135,7 +135,7 @@
             <div class="row" *ngIf='material.length > 0'>
                 <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
                     *ngFor='let material of material | filterBy: userFilter;let i = index;'>
-                    <mat-card class="p-0 inner-card" (click)="showMaterialFiles(material)">
+                    <mat-card class="p-0 inner-card h-100" (click)="showMaterialFiles(material)">
                         <mat-card-content class="material_card">
                             <span class="materia_icon_span {{getRandomColorClass(i)}}"><i
                                     class="fas fa-book-reader icon round"></i></span>
@@ -180,7 +180,7 @@
             <div class="row" *ngIf='assignments != undefined'>
                 <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
                     *ngFor='let assignment of assignments | filterBy: assignmentFilter.assignment.title;let i = index;'>
-                    <mat-card class="p-0 inner-card" (click)="showAllotmentTile(assignment)">
+                    <mat-card class="p-0 inner-card h-100" (click)="showAllotmentTile(assignment)">
                         <mat-card-content class="material_card">
                             <span class="materia_icon_span {{getRandomColorClass(i)}}"><i
                                     class="fas fa-clipboard-list icon"></i></span>
