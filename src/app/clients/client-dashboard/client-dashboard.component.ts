@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { JobService } from '../../services/job.service'
-import { JobComponent } from '../../jobs/job/job.component'
+import { JobService } from '../../services/job.service';
+import { JobComponent } from '../../jobs/job/job.component';
+declare var $;
 
 @Component({
   selector: 'app-client-dashboard',
@@ -18,20 +19,29 @@ export class ClientDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.clientName = this.currentUser.name
+    this.clientName = this.currentUser.name;
+
+    $(document).ready(function () {
+      $('mat-card').click(function () {
+        $('mat-card').removeClass("active");
+        $(this).addClass("active");
+      });
+    });
 
     this.getJobs();
   }
 
-  jobChanged(job){
+  jobChanged(job) {
     console.log("JOB CHANGED", job);
     this.jobComp.job = job;
     this.jobComp.jobIdFromClient = job._id;
     this.jobComp.completionPercentage(job)
+    // $('.inner_card').addClass("active");
+
   }
 
-  getJobs(){
-    this._jobService.getJobs().subscribe(jobs=>{
+  getJobs() {
+    this._jobService.getJobs().subscribe(jobs => {
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
       let firstJob = jobs[0]

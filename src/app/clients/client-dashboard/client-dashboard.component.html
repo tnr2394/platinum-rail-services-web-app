@@ -1,14 +1,15 @@
 <p>Welcome {{clientName}}</p>
 <div class='cards'>
-<mat-card class='outer_card'>
-<mat-card class='inner_card' *ngFor='let job of jobs' (click)="jobChanged(job)">
-    <mat-card-title>
-        {{job.title}}
-    </mat-card-title>
-    <mat-card-content>
-        {{job.numberOfLearners}}
-    </mat-card-content>
-</mat-card>
-</mat-card>
+    <mat-card class='outer_card'>
+        <mat-card class='inner_card' *ngFor='let job of jobs' (click)="jobChanged(job)">
+            <mat-card-title>
+                {{job.location.title}}
+            </mat-card-title>
+            <mat-card-content>
+                {{job.title}}
+                <h3>{{job.numberOfLearners}}</h3>
+            </mat-card-content>
+        </mat-card>
+    </mat-card>
 </div>
 <app-job></app-job>
