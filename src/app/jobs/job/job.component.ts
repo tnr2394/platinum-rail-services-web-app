@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
@@ -36,7 +36,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   endDate;
   jobForScheduler;
   completionPercent;
-
+  @Input('jobIdFromClient') jobIdFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
@@ -46,11 +46,21 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.jobId = params['jobid'];
-      console.log("Calling getLearners with jobid = ", this.jobId);
-      this.getJob(this.job);
-    });
+    console.log("this.jobIdFromClient", this.jobIdFromClient);
+    
+    if(this.jobIdFromClient != undefined){
+      this.jobId = this.jobIdFromClient
+      this.getJob(this.jobId)
+    }
+    else{
+      this.activatedRoute.params.subscribe(params => {
+        this.jobId = params['jobid'];
+        console.log("Calling getLearners with jobid = ", this.jobId);
+        this.getJob(this.job);  
+      });
+      
+    }
+    
 
     this.currentUser = JSON.parse(localStorage.currentUser);
   }

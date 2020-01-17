@@ -111,9 +111,9 @@
         </div>
 
         <div class="card py-4">
-            <app-assignment-status></app-assignment-status>
+            <app-assignment-status [jobId]='job._id'></app-assignment-status>
         </div>
-        <app-learners (getLearnersFromComponent)="loadLearners($event)"></app-learners>
+        <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
 
         <app-scheduler [job]="jobForScheduler"></app-scheduler>
         <div *ngIf="job">

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { JobService } from '../../services/job.service'
+import { JobComponent } from '../../jobs/job/job.component'
 
 @Component({
   selector: 'app-client-dashboard',
@@ -8,10 +9,12 @@ import { JobService } from '../../services/job.service'
 })
 export class ClientDashboardComponent implements OnInit {
   jobs = [];
+  jobToPass;
   currentUser;
   clientName = '';
 
   constructor(public _jobService: JobService) { }
+  @ViewChild(JobComponent, { static: false }) jobComp: JobComponent;
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
@@ -20,10 +23,18 @@ export class ClientDashboardComponent implements OnInit {
     this.getJobs();
   }
 
+  jobChanged(job){
+    console.log("JOB CHANGED", job);
+    this.jobToPass = job._id;
+    // this.jobComp.ngOnInit()
+  }
+
   getJobs(){
     this._jobService.getJobs().subscribe(jobs=>{
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
+      this.jobToPass = jobs[0];
+      console.log("this.jobToPass", this.jobToPass);
     })
   }
 

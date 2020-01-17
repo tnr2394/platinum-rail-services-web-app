@@ -37,6 +37,7 @@ export class LearnersComponent implements OnInit {
     this.setDataSourceAttributes();
   }
   @Input('jo') isActive: Boolean;
+  @Input('jobId') jobIdFromClient;
   @Output() getLearnersFromComponent: EventEmitter<any> = new EventEmitter<any>();
 
   setDataSourceAttributes() {
@@ -52,13 +53,19 @@ export class LearnersComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("jobIdFromClient", this.jobIdFromClient);
     this.loading = true;
-    this.activatedRoute.params.subscribe(params => {
-      this.jobId = params['jobid'];
-      console.log("Calling getLearnersFromComponent with jobid = ", this.jobId);
-      this.getLearners(this.jobId);
-      this.getJob(this.job);
-    })
+    if (this.jobIdFromClient != undefined){
+      this.jobId = this.jobIdFromClient
+    }
+    else{
+      this.activatedRoute.params.subscribe(params => {
+        this.jobId = params['jobid'];
+        console.log("Calling getLearnersFromComponent with jobid = ", this.jobId);
+      })
+    }
+    this.getLearners(this.jobId);
+    this.getJob(this.job);
     this.currentUser = JSON.parse(localStorage.currentUser);
   }
 

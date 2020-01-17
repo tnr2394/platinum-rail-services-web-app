@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
@@ -33,7 +33,7 @@ export class AssignmentStatusComponent implements OnInit {
   unitArray;
   assignmentLength;
   learnerLength;
-
+  @Input('jobId') jobIdFromClient; 
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
@@ -43,11 +43,17 @@ export class AssignmentStatusComponent implements OnInit {
     console.log("CALLED FROM MATERIALS");
   }
   ngOnInit() {
-
-    this.activatedRoute.params.subscribe(params => {
-      this.jobId = params['jobid'];
-      console.log("Calling getLearners with jobid = ", this.jobId);
-    });
+    console.log("jobIdFromClient", this.jobIdFromClient);
+    
+    if (this.jobIdFromClient != undefined){
+      this.jobId = this.jobIdFromClient
+    }
+    else{
+      this.activatedRoute.params.subscribe(params => {
+        this.jobId = params['jobid'];
+        console.log("Calling getLearners with jobid = ", this.jobId);
+      });
+    }
 
     this.getAssignmentList(this.jobId);
     this.assignmentStatusWithLearner(this.jobId);
