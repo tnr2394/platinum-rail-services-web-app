@@ -12,12 +12,12 @@
                 </h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <div class="card pl-0">
                     <div class="card-block">
                         <div class="row mt-4 mb-2">
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <!-- <mat-list>
                                     <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> College :
                                         {{job.client.name}}</mat-list-item>
@@ -41,7 +41,7 @@
                                     </mat-list>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <div class="learner_detail_box">
                                     <mat-list>
                                         <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
@@ -53,7 +53,7 @@
                                     </mat-list>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <div class="learner_detail_box">
                                     <mat-list>
                                         <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <mat-divider [vertical]="true"></mat-divider>
                                 <div class="learner_detail_box">
                                     <mat-list>
@@ -90,14 +90,14 @@
                                     </mat-list-item>
                                 </mat-list> -->
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <div class="learner_detail_box">
                                     <mat-list>
                                         <mat-list-item><i class="far fa-calendar-alt text-warning"></i>
-                                            <div class="learner_title">
-                                                <p>Dates</p>
-                                                <span> {{startDate | date:'shortDate'}} -
-                                                    {{endDate | date:'shortDate'}}</span>
+                                            <div class="learner_title pl-2">
+                                                Dates
+                                                <p> {{startDate | date:'shortDate'}} -
+                                                    {{endDate | date:'shortDate'}}</p>
                                                 <p>{{completionPercent}}%</p>
                                             </div>
                                         </mat-list-item>
@@ -116,7 +116,7 @@
         <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
 
         <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler>
-        <div *ngIf="job && !clientDashboard">
+        <div *ngIf="job && !clientDashboard" class="mt-3">
             <!-- passing into material =  {{job.course._id}} -->
             <app-materials *ngIf="job && job.course" [data]="job.course._id"
                 (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()" #material>
