@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { JobService } from '../../services/job.service';
-import { JobComponent } from '../../jobs/job/job.component';
-declare var $;
+import { JobService } from '../../services/job.service'
+import { JobComponent } from '../../jobs/job/job.component'
+import { LearnersComponent } from '../../learners/learners.component'
 
 @Component({
   selector: 'app-client-dashboard',
@@ -16,17 +16,18 @@ export class ClientDashboardComponent implements OnInit {
 
   constructor(public _jobService: JobService) { }
   @ViewChild(JobComponent, { static: false }) jobComp: JobComponent;
+  @ViewChild(LearnersComponent, { static: false }) learnerComp: LearnersComponent;
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name;
 
-    $(document).ready(function () {
-      $('mat-card').click(function () {
-        $('mat-card').removeClass("active");
-        $(this).addClass("active");
-      });
-    });
+    // $(document).ready(function () {
+    //   $('mat-card').click(function () {
+    //     $('mat-card').removeClass("active");
+    //     $(this).addClass("active");
+    //   });
+    // });
 
     this.getJobs();
   }
@@ -36,15 +37,14 @@ export class ClientDashboardComponent implements OnInit {
     this.jobComp.job = job;
     this.jobComp.jobIdFromClient = job._id;
     this.jobComp.completionPercentage(job)
-    // $('.inner_card').addClass("active");
-
+    this.jobComp.jobChangedByClient(job);
   }
 
   getJobs() {
     this._jobService.getJobs().subscribe(jobs => {
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
-      let firstJob = jobs[0]
+      let firstJob = jobs[1]
       console.log("FIRST JOB", firstJob);
       this.jobComp.job = firstJob;
       this.jobComp.jobIdFromClient = firstJob._id;
