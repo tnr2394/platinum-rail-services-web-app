@@ -49,7 +49,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     console.log("this.jobIdFromClient", this.jobIdFromClient);
     
     if(this.jobIdFromClient != undefined){
-      this.jobId = this.jobIdFromClient
+      this.jobId = this.jobIdFromClient._id
       this.getJob(this.jobId)
     }
     else{
@@ -119,6 +119,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   getJob(jobId) {
     var that = this;
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
+      console.log("GETTING SINGLE JOB",jobs);
       this.jobForScheduler = jobs[0];
       this.job = jobs.pop();
       this.completionPercentage(this.job)
@@ -139,6 +140,9 @@ export class JobComponent implements OnInit, AfterViewInit {
 
     if (this.completionPercent < 0) {
       this.completionPercent = 0;
+    }
+    if (this.completionPercent > 100) {
+      this.completionPercent = 100;
     }
   }
 }
