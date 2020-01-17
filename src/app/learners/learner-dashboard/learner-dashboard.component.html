@@ -4,9 +4,39 @@
     </h1>
 </div>
 
-<h1 class="learner_title">Hello {{learnerName}}!</h1>
+<!-- <h1 class="learner_title">Hello {{learnerName}}!</h1>
 
-<h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3>
+<h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3> -->
+
+<div class="card profile_card">
+
+    <!-- <div class="profile_picture_area"> -->
+    <div *ngIf="profilePath" class="profile_image">
+        <img src="{{profilePath.path}}">
+    </div>
+
+    <div *ngIf="!profilePath" class="profile_image">
+        <img src="../../../assets/default-user.jpg">
+    </div>
+    <!-- </div> -->
+    <div class="card-block">
+        <div class="row instructor_profile_card">
+            <div class="col-sm-3 text-center justify-content-center">
+                <h4 *ngIf="learnerName">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{learnerName}}</h4>
+            </div>
+            <div class="col-sm-4 text-center justify-content-center">
+                <h4 *ngIf="learner && learner.phone">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{learner.phone}}</h4>
+            </div>
+            <div class="col-sm-5 text-center justify-content-center">
+                <h4 *ngIf="learner">
+                    <i class="fas fa-envelope text-info mr-1"></i> {{learner.email}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="row" *ngIf="job">
     <div class="col-12">
