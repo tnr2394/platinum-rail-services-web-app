@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
@@ -37,10 +37,24 @@ export class SingleInstructorComponent implements OnInit {
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
 
+  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+  @ViewChild(MatPaginator, { static: true }) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.instructorId = params.id;
     });
+    this.dataSource = new MatTableDataSource<any>(this.jobs);
   }
 
   ngOnInit() {
@@ -53,6 +67,7 @@ export class SingleInstructorComponent implements OnInit {
   getJob(instructorId) {
     console.log('Get Job Called');
     this._jobService.getJobByInstructorId(instructorId).subscribe((res => {
+      this.dataSource = new MatTableDataSource<any>(this.jobs);
       console.log('Get Jobs', res);
       this.jobs = res;
       this.updateData(res);
