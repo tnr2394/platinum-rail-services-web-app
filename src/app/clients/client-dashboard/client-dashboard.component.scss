@@ -1,5 +1,5 @@
 .inner_card{
-    min-width: 20% !important;
+    min-width: 230px !important;
     margin-right: 2%;
 }
 .cards{
@@ -9,5 +9,14 @@
 .outer_card{
     overflow: auto;
     display: flex;
-    min-width: -webkit-fill-available;
+    min-width: 100%;
 }
+.card-image-2{
+    background-image: url(../../../assets/instructo3.png);
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left 15px;
+}
+// mat-card-content{
+//     color: gray;
+// }

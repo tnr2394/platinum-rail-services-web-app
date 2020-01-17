@@ -1,13 +1,13 @@
 <p>Welcome {{clientName}}</p>
 <div class='cards'>
 <mat-card class='outer_card'>
-<mat-card class='inner_card' *ngFor='let job of jobs' (click)="jobChanged(job);" [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}" >
-    <mat-card-title>
+<mat-card class='inner_card card-image-2' *ngFor='let job of jobs' (click)="jobChanged(job);" [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}" >
+    <mat-card-content class="text-right" [ngStyle]="{'color':(job._id == selectedJob._id)?'white':'gray'}">
         {{job.title}}
-    </mat-card-title>
-    <mat-card-content>
-        {{job.numberOfLearners}}
     </mat-card-content>
+    <mat-card-title class="text-right" [ngStyle]="{'color':(job._id == selectedJob._id)?'white':'black'}">
+        {{job.numberOfLearners}}
+    </mat-card-title>
 </mat-card>
 </mat-card>
 </div>
