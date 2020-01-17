@@ -22,7 +22,14 @@ export class ClientDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.clientName = this.currentUser.name
+    this.clientName = this.currentUser.name;
+
+    // $(document).ready(function () {
+    //   $('mat-card').click(function () {
+    //     $('mat-card').removeClass("active");
+    //     $(this).addClass("active");
+    //   });
+    // });
 
     this.getJobs();
   }
@@ -30,7 +37,7 @@ export class ClientDashboardComponent implements OnInit {
     this.isSelected = value;
   }
 
-  jobChanged(job){
+  jobChanged(job) {
     console.log("JOB CHANGED", job);
     this.selectedJob = job
     this.jobComp.job = job;
@@ -39,8 +46,8 @@ export class ClientDashboardComponent implements OnInit {
     this.jobComp.jobChangedByClient(job);
   }
 
-  getJobs(){
-    this._jobService.getJobs().subscribe(jobs=>{
+  getJobs() {
+    this._jobService.getJobs().subscribe(jobs => {
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
       this.selectedJob = jobs[0]

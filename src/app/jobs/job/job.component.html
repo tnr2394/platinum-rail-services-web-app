@@ -115,8 +115,8 @@
         </div>
         <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
 
-        <app-scheduler [job]="jobForScheduler"></app-scheduler>
-        <div *ngIf="job">
+        <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler>
+        <div *ngIf="job && !clientDashboard">
             <!-- passing into material =  {{job.course._id}} -->
             <app-materials *ngIf="job && job.course" [data]="job.course._id"
                 (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()" #material>
