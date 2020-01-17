@@ -1,8 +1,13 @@
-mat-card{
+.inner_card{
     min-width: 20% !important;
     margin-right: 2%;
 }
 .cards{
     display: flex;
     flex-direction: row;
+}
+.outer_card{
+    overflow: auto;
+    display: flex;
+    min-width: -webkit-fill-available;
 }

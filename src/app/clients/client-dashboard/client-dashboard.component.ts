@@ -25,14 +25,21 @@ export class ClientDashboardComponent implements OnInit {
 
   jobChanged(job){
     console.log("JOB CHANGED", job);
-    this.jobToPass = job._id;
-    // this.jobComp.ngOnInit()
+    this.jobComp.job = job;
+    this.jobComp.jobIdFromClient = job._id;
+    this.jobComp.completionPercentage(job)
   }
 
   getJobs(){
     this._jobService.getJobs().subscribe(jobs=>{
       console.log("JOBS RECIEVED", jobs);
       this.jobs = jobs;
+      let firstJob = jobs[0]
+      console.log("FIRST JOB", firstJob);
+      this.jobComp.job = firstJob;
+      this.jobComp.jobIdFromClient = firstJob._id;
+      this.jobComp.completionPercentage(firstJob)
+      // this.jobComp.job = jobs[0];
       this.jobToPass = jobs[0];
       console.log("this.jobToPass", this.jobToPass);
     })
