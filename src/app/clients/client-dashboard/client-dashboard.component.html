@@ -1,7 +1,7 @@
 <p>Welcome {{clientName}}</p>
 <div class='cards'>
 <mat-card class='outer_card'>
-<mat-card class='inner_card' *ngFor='let job of jobs' (click)="jobChanged(job);" [ngStyle]="{'background-color':(job.title == selectedJob.title) ? '#A3A0FB' : 'white'}" >
+<mat-card class='inner_card' *ngFor='let job of jobs' (click)="jobChanged(job);" [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}" >
     <mat-card-title>
         {{job.title}}
     </mat-card-title>
