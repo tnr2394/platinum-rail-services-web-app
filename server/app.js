@@ -93,14 +93,14 @@ if (config.env.name === 'production') {
   server.on('listening', onListen);
 
 
-} else if (config.env.name === 'testing') {
+} else if (config.env.name === 'test') {
 
   var credentials = {
     key: fs.readFileSync('/var/www/html/platinumTesting/ssl/privkey1.pem'),
     cert: fs.readFileSync('/var/www/html/platinumTesting/ssl/fullchain1.pem')
   };
 
-  var server = http.createServer(app);
+  var server = http.createServer(credentials, app);
   server.listen(config.env.port);
   server.on('error', onError);
   server.on('listening', onListen);

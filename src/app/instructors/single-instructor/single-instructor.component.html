@@ -12,11 +12,15 @@
     <span>Edit Profile</span>
 </button>
 <div class="card profile_card">
-    
+
     <!-- <div class="profile_picture_area"> -->
-        <div *ngIf="instructor && instructor.profilePic" class="profile_image">
-            <img src="{{instructor.profilePic.path}}">
-        </div>
+    <div *ngIf="profilePath" class="profile_image">
+        <img src="{{instructor.profilePic.path}}">
+    </div>
+
+    <div *ngIf="!profilePath" class="profile_image">
+        <img src="../../../assets/default-user.jpg">
+    </div>
     <!-- </div> -->
     <div class="card-block">
         <div class="row instructor_profile_card">

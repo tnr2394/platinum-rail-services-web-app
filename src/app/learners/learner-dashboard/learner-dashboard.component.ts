@@ -4,8 +4,7 @@ import { LearnerService } from '../../services/learner.service';
 import { JobService } from '../../services/job.service';
 import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-
-
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-learner-dashboard',
@@ -18,15 +17,24 @@ export class LearnerDashboardComponent implements OnInit {
   loadingMaterials: Boolean;
   learner;
   learnerName = '';
+  loading = false;
   materialId = [];
+  searchText;
   assignments;
   courseId;
   material = [];
   bgColors: string[];
   lastColor;
   job;
+  panelOpenState = true;
   currentUser;
-  constructor(private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
+  userFilter: any = { title: '' };
+  assignmentFilter: any = {
+    assignment: {
+      title: ''
+    }
+  }
+  constructor(private filterPipe: FilterPipe, private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
@@ -37,6 +45,7 @@ export class LearnerDashboardComponent implements OnInit {
   }
 
   getAllotments() {
+    this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this._learnerService.getLearner(params['id']).subscribe(data => {
@@ -48,6 +57,7 @@ export class LearnerDashboardComponent implements OnInit {
           this.assignments = this.learner.allotments;
         })
         console.log("ASSIGNMENTS", this.assignments)
+        this.loading = false;
         // console.log("ASSIGNMENTS", this.assignments.pop().assignment.title)
         if (this.learner.job == null) {
           console.log("LEARNER HAS NO JOB")
@@ -83,7 +93,6 @@ export class LearnerDashboardComponent implements OnInit {
         if (material.type == "Reading") {
           this.material.push(material);
         }
-        // console.log("Reading material is", this.material.length)
       })
     })
   }

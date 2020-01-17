@@ -196,7 +196,8 @@ jobController.getJobUsingInstructorId = async function (req, res) {
 
     console.log('Instructor Id', instructorId);
 
-    query = { instructors: { $in: instructorId } }
+    let query = { $and: [] }
+    query['$and'].push({ 'instructors': ObjectId(instructorId) })
 
     allJobs(query).then(jobs => {
         console.log('---JOBS:::::::::::::::::::', jobs)
@@ -653,7 +654,10 @@ jobController.sendMailToClient = (jobId) => {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Client For Job Creation', jobId);
 
-        const query = { _id: jobId }
+
+        let query = { $and: [] }
+        query['$and'].push({ '_id': ObjectId(jobId) })
+
 
         allJobs(query).then((jobs) => {
 
@@ -683,7 +687,10 @@ jobController.sendMailToInstructor = (jobId) => {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Client For Job Creation', jobId);
 
-        const query = { _id: jobId }
+
+
+        let query = { $and: [] }
+        query['$and'].push({ '_id': ObjectId(jobId) })
 
         allJobs(query).then((jobs) => {
 
