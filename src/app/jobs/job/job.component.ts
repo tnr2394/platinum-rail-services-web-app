@@ -10,6 +10,7 @@ import { JobService } from '../../services/job.service';
 import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate-learner-modal.component';
 import { MaterialsComponent } from '../../courses/materials/materials.component';
 import { AssignmentStatusComponent } from '../../clients/assignment-status/assignment-status.component'
+import { LearnersComponent } from '../../learners/learners.component'
 
 
 @Component({
@@ -39,6 +40,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   @Input('jobIdFromClient') jobIdFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
+  @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
   constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
@@ -51,6 +53,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     if(this.jobIdFromClient != undefined){
       this.jobId = this.jobIdFromClient._id
       this.getJob(this.jobId)
+      this.learnersComp.jobIdFromClient = this.jobId
     }
     else{
       this.activatedRoute.params.subscribe(params => {
@@ -63,6 +66,13 @@ export class JobComponent implements OnInit, AfterViewInit {
     
 
     this.currentUser = JSON.parse(localStorage.currentUser);
+  }
+
+  jobChangedByClient(job){
+    console.log("in jobChangedByClient");
+    this.learnersComp.jobIdFromClient = job._id;
+    this.learnersComp.getLearners(job._id);
+    this.assignmentStatusComp.assignmentStatusWithLearner(job._id)
   }
   ngAfterViewInit(): void {
 
