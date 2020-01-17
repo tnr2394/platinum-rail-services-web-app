@@ -204,16 +204,17 @@ export class SchedulerComponent implements OnInit {
           console.log("**********IN if Condition**********");
           this.populateAllJobs([this.jobRecieved])
       }
+        else {
+          this.getJobs();
+          this.activatedRoute.params.subscribe(params => {
+            this.jobId = params['jobid'];
+            console.log("Calling getLearners with jobid = ", this.jobId);
+            // this.filterJobUsingJobId(this.jobId);
+          });
+          // this.getJobs();
+        }
       }
-      else {
-        this.getJobs();
-        this.activatedRoute.params.subscribe(params => {
-          this.jobId = params['jobid'];
-          console.log("Calling getLearners with jobid = ", this.jobId);
-          // this.filterJobUsingJobId(this.jobId);
-        });
-    // this.getJobs();
-    }
+      
   }
   // Utility
   createEventObject(obj) {
