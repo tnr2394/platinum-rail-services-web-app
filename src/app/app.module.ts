@@ -39,6 +39,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { MatTabsModule } from '@angular/material/tabs';
 // import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
@@ -147,6 +148,7 @@ import { ClientDashboardComponent } from './clients/client-dashboard/client-dash
     MDBBootstrapModule.forRoot(),
     MatListModule,
     MatPaginatorModule,
+    MatTabsModule,
     MatSelectModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatMenuModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule, MatChipsModule,
     MatSidenavModule, MatTooltipModule,
     AppRoutingModule,

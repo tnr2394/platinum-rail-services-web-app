@@ -21,14 +21,6 @@ export class ClientDashboardComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name;
-
-    // $(document).ready(function () {
-    //   $('mat-card').click(function () {
-    //     $('mat-card').removeClass("active");
-    //     $(this).addClass("active");
-    //   });
-    // });
-
     this.getJobs();
   }
 
