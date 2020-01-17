@@ -57,7 +57,7 @@
                                     <mat-list class="" role="list">
                                         <mat-list-item role="listitem" class="p-0">
 
-                                            <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
+                                            <i class="fas text-danger fa-fw fa-user-tie mr-1 text-left"></i>
                                             <div class="learner_title">
                                                 Instructor
                                                 <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
@@ -70,7 +70,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
-                                        <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
+                                        <mat-list-item><i class="fas text-primary fa-fw fa-building text-left"></i>
                                             <div class="learner_title">
                                                 College
                                                 <p> {{job.client.name}}</p>
@@ -82,7 +82,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
-                                        <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
+                                        <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt text-left"></i>
                                             <div class="learner_title">
                                                 Location
                                                 <p> {{job.location.title}}</p>
@@ -95,7 +95,7 @@
                                 <mat-divider [vertical]="true"></mat-divider>
                                 <div class="learner_detail_box">
                                     <mat-list>
-                                        <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
+                                        <mat-list-item><i class="fas text-success fa-fw fa-book text-left"></i>
                                             <div class="learner_title pl-2">
                                                 Course
                                                 <p> {{job.course.title}}</p>
@@ -133,7 +133,7 @@
 
         <mat-card-content>
             <div class="row" *ngIf='material.length > 0'>
-                <div class="col-lg-3 col-md-6 col-sm-6 materials_box"
+                <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
                     *ngFor='let material of material | filterBy: userFilter;let i = index;'>
                     <mat-card class="p-0 inner-card" (click)="showMaterialFiles(material)">
                         <mat-card-content class="material_card">
@@ -178,7 +178,7 @@
         <!-- </mat-card-header> -->
         <mat-card-content>
             <div class="row" *ngIf='assignments != undefined'>
-                <div class="col-lg-3 col-md-6 col-sm-6 materials_box"
+                <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
                     *ngFor='let assignment of assignments | filterBy: assignmentFilter.assignment.title;let i = index;'>
                     <mat-card class="p-0 inner-card" (click)="showAllotmentTile(assignment)">
                         <mat-card-content class="material_card">
