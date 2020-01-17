@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../../services/filter.service';
 import { AddLearnerModalComponent } from '../../learners/add-learner-modal/add-learner-modal.component';
 import { EditLearnerModalComponent } from '../../learners/edit-learner-modal/edit-learner-modal.component';
@@ -37,11 +37,12 @@ export class JobComponent implements OnInit, AfterViewInit {
   endDate;
   jobForScheduler;
   completionPercent;
+  clientDashboard;
   @Input('jobIdFromClient') jobIdFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
-  constructor(public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
+  constructor(private router: Router, public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
@@ -49,26 +50,31 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log("this.jobIdFromClient", this.jobIdFromClient);
-    
-    if(this.jobIdFromClient != undefined){
+
+    if (this.router.url.includes('/client/dashboard')) {
+      this.clientDashboard = true;
+      console.log("VIEW VALUE IS", this.clientDashboard)
+    }
+
+    if (this.jobIdFromClient != undefined) {
       this.jobId = this.jobIdFromClient._id
       this.getJob(this.jobId)
       this.learnersComp.jobIdFromClient = this.jobId
     }
-    else{
+    else {
       this.activatedRoute.params.subscribe(params => {
         this.jobId = params['jobid'];
         console.log("Calling getLearners with jobid = ", this.jobId);
-        this.getJob(this.job);  
+        this.getJob(this.job);
       });
-      
+
     }
-    
+
 
     this.currentUser = JSON.parse(localStorage.currentUser);
   }
 
-  jobChangedByClient(job){
+  jobChangedByClient(job) {
     console.log("in jobChangedByClient");
     this.learnersComp.jobIdFromClient = job._id;
     this.learnersComp.getLearners(job._id);
@@ -129,7 +135,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   getJob(jobId) {
     var that = this;
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
-      console.log("GETTING SINGLE JOB",jobs);
+      console.log("GETTING SINGLE JOB", jobs);
       this.jobForScheduler = jobs[0];
       this.job = jobs.pop();
       this.completionPercentage(this.job)
