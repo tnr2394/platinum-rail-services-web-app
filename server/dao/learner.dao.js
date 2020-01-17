@@ -26,6 +26,7 @@ learner.getLearnersByQuery = function (query) {
 
     learnerModel.find(query)
         .populate('job')
+        .populate('profilePic')
         .populate({
             path: 'allotments',
             populate: {
