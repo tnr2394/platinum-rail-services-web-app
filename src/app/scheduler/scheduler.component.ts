@@ -161,6 +161,7 @@ export class SchedulerComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
   job: any;
+  selectedJob;
 
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService, private router: Router) {
   }
@@ -205,14 +206,19 @@ export class SchedulerComponent implements OnInit {
           this.populateAllJobs([this.jobRecieved])
       }
         else {
-          this.getJobs();
-          this.activatedRoute.params.subscribe(params => {
-            this.jobId = params['jobid'];
-            console.log("Calling getLearners with jobid = ", this.jobId);
-            // this.filterJobUsingJobId(this.jobId);
-          });
           // this.getJobs();
         }
+      }
+      else{
+        console.log("IN ELSE");  
+        this.getJobs();
+        this.activatedRoute.params.subscribe(params => {
+          this.jobId = params['jobid'];
+          if (params['jobid'] != undefined){
+            console.log("Calling getLearners with jobid = ********** ", params['jobid']);
+            this.filterJobUsingJobId(this.jobId);
+          }
+        });
       }
       
   }
@@ -265,19 +271,19 @@ export class SchedulerComponent implements OnInit {
       var events = this.makeEventsArrayForJob(jobs[i]);
       this.events = [...events];
     }
-
   }
   resetEvents() {
     this.events = [];
   }
 
   // APIs
-  getJobs() {
+  getJobs(){
     this._jobService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
       this.jobsForFilter = jobs;
-
-      console.log('this.jobs::::::::::::::::::::::::', this.jobs);
+      this.selectedJob = jobs[0]
+      this.jobId = this.selectedJob._id;
+      console.log('this.jobs', this.jobs);
       this.filterJobUsingJobId(this.jobId)
     }, err => {
       console.error(err);
@@ -286,8 +292,10 @@ export class SchedulerComponent implements OnInit {
 
 
   filterJobUsingJobId(jobId) {
+    console.log("JOBID", this.jobId);
+    
     let finalJob;
-    console.log('this.jobs:::::::::::::::::::::::::::::', this.jobsForFilter);
+    console.log('this.jobs', this.jobsForFilter);
     _.forEach(this.jobsForFilter, (singleJob) => {
       console.log('singleJob:::::::::::::', singleJob);
       if (singleJob._id == jobId) {
@@ -299,7 +307,5 @@ export class SchedulerComponent implements OnInit {
     setTimeout(() => {    //<<<---    using ()=> syntax
       this.populateAllJobs([finalJob]);
     },500);
-
   }
-
 }
