@@ -30,11 +30,7 @@ export class LearnerDashboardComponent implements OnInit {
   panelOpenState = true;
   currentUser;
   userFilter: any = { title: '' };
-  assignmentFilter: any = {
-    assignment: {
-      title: ''
-    }
-  }
+
   constructor(private filterPipe: FilterPipe, private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }

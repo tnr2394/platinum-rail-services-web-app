@@ -8,7 +8,7 @@
       <a routerLink="/instructors/{{currentUser._id}}"> {{currentUser.name}}</a></h4>
 
     <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='client'"><i class="far fa-user"></i>
-      <a routerLink="/instructors/{{currentUser._id}}"> {{currentUser.name}}</a></h4>
+      <a routerLink="/client/{{currentUser._id}}"> {{currentUser.name}}</a></h4>
 
     <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'"><i class="far fa-user"></i>
       <a routerLink="/learner/{{currentUser._id}}"> {{currentUser.name}}</a></h4>

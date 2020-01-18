@@ -82,7 +82,8 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="learner_detail_box">
                                     <mat-list>
-                                        <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt text-left"></i>
+                                        <mat-list-item><i
+                                                class="fas text-warning fa-fw fa-map-marker-alt text-left"></i>
                                             <div class="learner_title">
                                                 Location
                                                 <p> {{job.location.title}}</p>
@@ -169,17 +170,16 @@
         <h3 class="mb-4 learner_card_title">Assignments</h3>
 
         <mat-form-field class="example-full-width col-lg-6 col-md-6">
-            <input matInput placeholder="Search" [(ngModel)]="assignmentFilter.assignment.title">
+            <input matInput [(ngModel)]="searchtext" placeholder="Search">
             <mat-icon matSuffix>search</mat-icon>
+
         </mat-form-field>
-
-
 
         <!-- </mat-card-header> -->
         <mat-card-content>
             <div class="row" *ngIf='assignments != undefined'>
                 <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
-                    *ngFor='let assignment of assignments | filterBy: assignmentFilter.assignment.title;let i = index;'>
+                    *ngFor='let assignment of assignments | search : searchtext;let i = index;'>
                     <mat-card class="p-0 inner-card h-100" (click)="showAllotmentTile(assignment)">
                         <mat-card-content class="material_card">
                             <span class="materia_icon_span {{getRandomColorClass(i)}}"><i

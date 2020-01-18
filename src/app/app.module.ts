@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FileUploadModule } from 'ng2-file-upload';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { DatePipe } from '@angular/common';
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -140,6 +141,7 @@ import { ClientDashboardComponent } from './clients/client-dashboard/client-dash
     SingleInstructorComponent,
     AppPasswordDirective,
     ClientDashboardComponent,
+    SearchPipe,
 
   ],
   imports: [
