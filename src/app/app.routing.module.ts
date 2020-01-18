@@ -150,7 +150,7 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 	},
 	{
-		path: 'client/dashboard',
+		path: 'client/:id',
 		component: ClientDashboardComponent
 	}
 ];

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { JobService } from '../../services/job.service'
 import { JobComponent } from '../../jobs/job/job.component'
 import { LearnersComponent } from '../../learners/learners.component'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-client-dashboard',
@@ -14,13 +15,17 @@ export class ClientDashboardComponent implements OnInit {
   currentUser;
   clientName = '';
   selectedJob;
+  clientId;
   private isSelected: string;
 
-  constructor(public _jobService: JobService) { }
+  constructor(public _jobService: JobService, private activatedRoute: ActivatedRoute) { }
   @ViewChild(JobComponent, { static: false }) jobComp: JobComponent;
   @ViewChild(LearnersComponent, { static: false }) learnerComp: LearnersComponent;
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.clientId = params.id;
+    });
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name;
     this.getJobs();
