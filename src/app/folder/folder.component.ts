@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
-import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component'
+import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
+import { FolderService } from '../services/folder.service'
+
 
 @Component({
   selector: 'app-folder',
@@ -14,11 +16,12 @@ export class FolderComponent implements OnInit {
   bgColors;
   lastColor;
 
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { 
+  constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
+    this.getFolders();
   }
 
   getRandomColorClass(i) {
@@ -39,12 +42,20 @@ export class FolderComponent implements OnInit {
     });
   }
 
-  createFolder(){
-    this.openDialog(CreateFolderModalComponent).subscribe(folder=>{
-      if(folder == undefined) return
+  createFolder() {
+    this.openDialog(CreateFolderModalComponent).subscribe(folder => {
+      if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
       this.allFolders.push(folder);
     })
+  }
+
+  getFolders() {
+    var that = this;
+    this._folderService.getFolders().subscribe((folders) => {
+      console.log('Folders', folders);
+      this.allFolders = folders;
+    });
   }
 
 }
