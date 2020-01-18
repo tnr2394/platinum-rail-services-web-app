@@ -4,8 +4,8 @@
 </h1>
 <form #editInstructor (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
-         <div *ngIf="instructorData.profilePic">
-             <img src="{{instructorData.profilePic.path}}" height="200" width="200">
+         <div *ngIf="instructorData.profilePic" class="modal_preview">
+             <img src="{{instructorData.profilePic.path}}">
          </div>
         <mat-form-field class="example-full-width col-sm-6">
             <input required matInput name="instructor-name" placeholder="Instructor Name"
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div *ngIf="!loading">
+    <div *ngIf="!loading" class="my-1">
         <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
                 class="fas fa-save fa-fw"></i><span>
                 Save</span></button>
