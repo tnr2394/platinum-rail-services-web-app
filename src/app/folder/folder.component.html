@@ -3,4 +3,10 @@
     folder component works!
     <button style="float: right;" (click)='createFolder()'>create folder</button>
     </div>
+    <mat-card *ngFor='let singleFolder of allFolders;let i = index'>
+        <mat-card-content>
+            <span class="materia_icon_span {{getRandomColorClass(i)}}"><i class="fas fa-folder-open icon"></i></span>
+                <h5>{{singleFolder}}</h5>
+        </mat-card-content>
+    </mat-card>
 </mat-card>
