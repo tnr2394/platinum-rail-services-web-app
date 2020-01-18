@@ -28,6 +28,7 @@ export class InstructorsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+  searchText;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -58,6 +59,18 @@ export class InstructorsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  filter(searchText) {
+    console.log('FILTER CALLED', searchText);
+    if (searchText === '') {
+      this.dataSource = this.instructors;
+      this.dataSource.paginator = this.paginator;
+      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      return;
+    }
+    this.dataSource = this._filter.filter(searchText, this.instructors, ['name']);
+    this.dataSource.paginator = this.paginator;
+    // this.filiterator();
   }
 
   getRandomColorClass(i) {
