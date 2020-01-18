@@ -23,6 +23,8 @@ import { LearnerDashboardComponent } from './learners/learner-dashboard/learner-
 import { LearnerReadingMaterialComponent } from './learners/learner-reading-material/learner-reading-material.component'
 import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile/learner-allotment-tile.component';
 import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
+import { MyDocumentsComponent } from './my-documents/my-documents.component';
+import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -152,6 +154,14 @@ const routes: Routes = [
 	{
 		path: 'client/:id',
 		component: ClientDashboardComponent
+	},
+	{
+		path: 'mydocuments',
+		component: MyDocumentsComponent
+	},
+	{
+		path: 'single-folder/:id',
+		component: SingleFolderComponent
 	}
 ];
 
