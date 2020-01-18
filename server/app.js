@@ -24,15 +24,16 @@ config.db = require(path.join(__dirname, 'config', 'database'));
 
 
 // db();
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var coursesRouter = require('./routes/courses');
-var instructorsRouter = require('./routes/instructors');
-var clientsRouter = require('./routes/clients');
-var jobsRouter = require('./routes/job');
-var learnersRouter = require('./routes/learner');
-var materialsRouter = require('./routes/materials');
-var adminRouter = require('./routes/admin');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const coursesRouter = require('./routes/courses');
+const instructorsRouter = require('./routes/instructors');
+const clientsRouter = require('./routes/clients');
+const jobsRouter = require('./routes/job');
+const learnersRouter = require('./routes/learner');
+const materialsRouter = require('./routes/materials');
+const adminRouter = require('./routes/admin');
+const folderRouter = require('./routes/folder');
 
 const instructorController = require('./controllers/instructor.controller');
 const dbBackupService = require('./services/dbbackup.service');
@@ -154,6 +155,7 @@ app.use('/jobs', jobsRouter);
 app.use('/learners', learnersRouter);
 app.use('/materials', materialsRouter);
 app.use('/admin', adminRouter);
+app.use('/folder', folderRouter);
 
 
 
