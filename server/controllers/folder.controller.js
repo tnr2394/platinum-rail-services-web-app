@@ -14,6 +14,7 @@ async function allfolders(query) {
     var deferred = Q.defer();
 
     folderModel.find(query)
+        .populate('files')
         .exec((err, folders) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", folders);
@@ -67,6 +68,62 @@ folderController.deleteFolder = function (req, res, next) {
         return res.send({ data: {}, msg: "Folder Deleted Successfully" });
     })
 }
+
+
+
+
+
+folderController.addFile = function (req, res, next) {
+    console.log("Update Folder", req.body, req.files);
+
+    let files = [];
+
+    if (Array.isArray(req.files.file)) {
+        files = req.files.file
+    } else {
+        files[0] = req.files.file;
+    }
+
+    async.eachSeries(files, (singleFile, innerCallback) => {
+        console.log('singleFile', singleFile);
+
+        const folderId = req.body.folderId;
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(singleFile.name)[1];
+        var name = singleFile.name.split('.').slice(0, -1).join('.')
+
+        var newName = name + '-' + Date.now();
+
+        var newFile = {
+            title: newName,
+            type: "material",// OR SUBMISSION OR DOCUMENT
+            path: "NEWPATH",
+            extension: ext,
+            uploadedBy: 'ADMIN',
+            file: singleFile,
+            uploadedDate: new Date()
+        }
+
+        console.log('new file object', newFile, folderId);
+
+        folderDOA.uploadFileToFolder(folderId, newFile)
+            .then(updated => {
+                console.log("updated ", updated);
+                innerCallback();
+            }, err => {
+                return res.status(500).send({ err })
+            })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: {}, msg: "File Uploaded Successfully" });
+        }
+    })
+}
+
 
 folderController.updateFolder = function (req, res, next) {
     console.log("Update Folder", req.body);

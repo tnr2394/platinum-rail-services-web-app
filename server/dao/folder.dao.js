@@ -19,5 +19,23 @@ folder.createFolder = function (obj) {
     return q.promise;
 }
 
+folder.uploadFileToFolder = function (folderId, obj) {
+    console.log('File Upload', folderId, obj);
+    var q = Q.defer();
+    fileDAO.addFile(obj).then((response) => {
+        console.log('File added now update Folder', response._id);
+        folderModel.updateOne({ _id: folderId }, { $addToSet: { files: response._id }, }, { new: true }, (err, updatedFolder) => {
+            if (err) q.reject(err);
+            else {
+                q.resolve(updatedFolder);
+            }
+        });
+    }).catch((error) => {
+        q.reject(error);
+    });
+    return q.promise;
+}
+
+
 
 module.exports = folder;

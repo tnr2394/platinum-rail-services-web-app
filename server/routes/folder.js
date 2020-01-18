@@ -12,11 +12,15 @@ router.get('/', folderController.getFolders);
 
 
 
+// ADD File
+router.post('/files', folderController.addFile);
+
+
+
 // FILE OPERATIONS
 // /* GET Files listing. */
 // router.get('/files', materialController.getFiles);
-// // ADD Material
-// router.post('/files', materialController.addFile);
+
 // // Delete Material
 // router.delete('/files', materialController.deleteFile);
 

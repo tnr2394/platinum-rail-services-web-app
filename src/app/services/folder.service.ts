@@ -50,6 +50,39 @@ export class FolderService {
     });
   }
 
+  getFolder(id): Observable<any> {
+    console.log("Getting clients");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "folder?_id=" + id).subscribe((res: any) => {
+        console.log("Get Folders : ", res);
+        observer.next(res.data.folders);
+        observer.complete();
+      })
+    });
+  }
+
+  uploadFileToFolder(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "folder/files", data).subscribe((res: any) => {
+        observer.next(res.data.file);
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+  }
+
 
 
 }

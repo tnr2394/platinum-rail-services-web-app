@@ -11,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { MaterialService } from 'src/app/services/material.service';
 import { FileService } from 'src/app/services/file.service';
 import { LearnerService } from 'src/app/services/learner.service';
+import { FolderService } from '../../services/folder.service';
 import { browser } from 'protractor';
 import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 
@@ -33,7 +34,7 @@ export class AddFileModalComponent implements OnInit {
   ngOnInit(): void {
     console.log("Upload files initialized", this.data);
   }
-  constructor(public _snackbar: MatSnackBar, public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
+  constructor(public _folderService: FolderService, public _snackbar: MatSnackBar, public cd: ChangeDetectorRef, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService, public _fileService: FileService, public _learnerService: LearnerService) {
     // NO DEFINITION
   }
 
@@ -132,6 +133,32 @@ export class AddFileModalComponent implements OnInit {
         this.dialogRef.close();
 
       });
+    } else if (this.data.folderId) {
+      console.log('Inside Else If:::::::::::', this.data.folderId);
+
+      let formData = new FormData();
+      formData.set('folderId', this.data.folderId);
+
+      if (this.fileMaterial.length > 0) {
+        for (let i = 0; i <= this.fileMaterial.length; i++) {
+          formData.append('file', this.fileMaterial[i]);
+        }
+      }
+
+      this.loading = true;
+      this._folderService.uploadFileToFolder(formData).subscribe(data => {
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
+        this.openSnackBar("File Uploaded Successfully", "Ok");
+
+      }, err => {
+        alert("Error Uploading Files.")
+        this.loading = false;
+        this.dialogRef.close();
+
+      });
+
     } else {
 
       let formData = new FormData();
