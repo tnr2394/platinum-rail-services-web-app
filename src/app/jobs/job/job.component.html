@@ -34,7 +34,17 @@
                                             <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
                                             <div class="learner_title">
                                                 Instructor
-                                                <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
+                                                <p *ngFor="let instructor of job.instructors"> 
+                                                    <a *ngIf='currentUser.userRole == "admin" || currentUser.userRole == "instructor";else elseBlock' routerLink="/instructors/{{instructor._id}}">
+                                                        {{instructor.name}}
+                                                    </a>
+                                                    <ng-template #elseBlock>{{instructor.name}}</ng-template>
+                                                </p>
+                                                <!-- <a routerLink="/instructors/{{job.instructors._id}}">
+                                                <p *ngFor="let instructor of job.instructors">
+                                                    {{instructor.name}}
+                                                </p>
+                                                </a> -->
                                             </div>
 
                                         </mat-list-item>
@@ -47,7 +57,13 @@
                                         <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
                                             <div class="learner_title">
                                                 College
-                                                <p *ngIf="job && job.client"> {{job.client.name}}</p>
+                                                <p *ngIf="job && job.client"> 
+                                                <a *ngIf='currentUser.userRole == "admin" || currentUser.userRole == "client";else elseBlock'
+                                                    routerLink="/client/{{job.client._id}}">
+                                                    {{job.client.name}}
+                                                </a>
+                                                <ng-template #elseBlock>{{job.client.name}}</ng-template>
+                                                </p>
                                             </div>
                                         </mat-list-item>
                                     </mat-list>

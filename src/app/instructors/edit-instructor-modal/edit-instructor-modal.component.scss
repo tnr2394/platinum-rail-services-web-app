@@ -8,3 +8,24 @@ span.field-icon.toggle-password{
     line-height: 40px;
     z-index: 11;
 }
+.modal_preview{
+    text-align: center;
+    margin: 25px 0px;
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        @media (max-width:767px){
+            width: 180px;
+            height: 180px;
+        }
+        @media (max-width:575px){
+            width: 150px;
+            height: 150px;
+        }
+        @media (max-width:422px){
+            width: 140px;
+            height: 140px;
+        }
+    }
+}
