@@ -85,9 +85,11 @@
                                             <mat-list align='center'>
                                                 <mat-list-item class="text-center"
                                                     *ngFor='let oneInstructor of job.instructors'>
-                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span
-                                                        *ngIf="job && job.instructors">
-                                                        {{oneInstructor.name}}</span>
+                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> 
+                                                    <a routerLink="/instructors/{{oneInstructor._id}}">
+                                                        <span *ngIf="job && job.instructors">
+                                                            {{oneInstructor.name}}</span>
+                                                    </a>
                                                 </mat-list-item>
                                             </mat-list>
                                         </td>

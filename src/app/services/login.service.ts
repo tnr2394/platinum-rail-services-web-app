@@ -68,7 +68,7 @@ export class LoginService {
         } else if (res.userRole == 'instructor') {
           this.router.navigate(['/scheduler']);
         } else if (res.userRole == 'client') {
-          this.router.navigate(['/client/dashboard']);
+          this.router.navigate(['/client/:id']);
         } else if (res.userRole == 'learner') {
           this.router.navigate([learnerDashBoard]);
         }
