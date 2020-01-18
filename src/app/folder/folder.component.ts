@@ -10,9 +10,22 @@ import { CreateFolderModalComponent } from './create-folder-modal/create-folder-
 })
 export class FolderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
+  allFolders = [];
+  bgColors;
+  lastColor;
+
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { 
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
+  }
 
   ngOnInit() {
+  }
+
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
@@ -25,9 +38,12 @@ export class FolderComponent implements OnInit {
       duration: 2000,
     });
   }
-  
+
   createFolder(){
     this.openDialog(CreateFolderModalComponent).subscribe(folder=>{
+      if(folder == undefined) return
+      console.log("FOLDER NAME RECIEVED", folder);
+      this.allFolders.push(folder);
     })
   }
 
