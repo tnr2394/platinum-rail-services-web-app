@@ -23,7 +23,7 @@
                         <div class="card-title">
                             <div class="row table_search">
                                 <mat-form-field class="example-full-width col-lg-6 col-md-6">
-                                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                    <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
                                     <mat-icon matSuffix>search</mat-icon>
                                 </mat-form-field>
                                 <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
@@ -32,7 +32,7 @@
                         </div>
                         <!--Text-->
                         <div *ngIf="dataSource">
-                            <h1>{{dataSource.length}}</h1>
+                            <!-- <h1>{{dataSource.length}}</h1> -->
                             <div class="table-responsive">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 

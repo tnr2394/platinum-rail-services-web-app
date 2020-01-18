@@ -87,6 +87,11 @@ import { AuthGuard } from './auth.guard';
 import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
 import { AppPasswordDirective } from './app-password.directive';
 import { ClientDashboardComponent } from './clients/client-dashboard/client-dashboard.component';
+import { MyDocumentsComponent } from './my-documents/my-documents.component';
+import { FolderComponent } from './folder/folder.component';
+import { CreateFolderModalComponent } from './folder/create-folder-modal/create-folder-modal.component';
+import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
+import { ShareFileModalComponent } from './folder/share-file-modal/share-file-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,7 +147,11 @@ import { ClientDashboardComponent } from './clients/client-dashboard/client-dash
     AppPasswordDirective,
     ClientDashboardComponent,
     SearchPipe,
-
+    MyDocumentsComponent,
+    FolderComponent,
+    CreateFolderModalComponent,
+    SingleFolderComponent,
+    ShareFileModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -177,7 +186,7 @@ import { ClientDashboardComponent } from './clients/client-dashboard/client-dash
     MatBadgeModule,
     FilterPipeModule
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
