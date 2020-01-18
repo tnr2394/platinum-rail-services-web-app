@@ -145,8 +145,8 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   completionPercentage(job) {
 
-    this.startDate = job.startingDate;
-    this.endDate = job.singleJobDate[job.singleJobDate.length - 1]
+    this.startDate = new Date(job.singleJobDate[0]);
+    this.endDate = new Date(job.singleJobDate[job.singleJobDate.length - 1])
     let start = new Date(job.singleJobDate[0]).getTime()
     let end = new Date(job.singleJobDate[job.singleJobDate.length - 1]).getTime()
     let today = new Date().getTime()

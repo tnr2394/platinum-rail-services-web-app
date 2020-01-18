@@ -30,11 +30,11 @@
         min-width:85px;
         font-size: 36px;
     }
-    @media (max-width:575px){
-        min-height: 120px;
-        min-width:120px;
-        font-size: 60px;
-    }
+    // @media (max-width:575px){
+    //     min-height: 120px;
+    //     min-width:120px;
+    //     font-size: 60px;
+    // }
 }
 .materia_icon_span {
     border-radius: 100%;
@@ -198,4 +198,8 @@
     @media (max-width:575px){
         width: 50%;
     }
+    @media (max-width:422px){
+        width: 100%;
+    }
+    margin-bottom: 25px;
 }
