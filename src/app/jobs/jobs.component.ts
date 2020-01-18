@@ -279,7 +279,6 @@ export class JobsComponent implements OnInit {
       this.updateData(this.jobs);
       this.getStatus(data);
       this.completionOfJob(this.jobs)
-      this.sortByLocation()
     })
   }
 
@@ -305,22 +304,7 @@ export class JobsComponent implements OnInit {
       job["completion"] = this.completionPercent;
     })
     this.updateData(this.jobs)
-    console.log("IN COMPLITION FUNCTION", this.jobs);
-    
-  }
-
-  sortByLocation(){
-    let group = this.jobs.reduce((key, array) => {
-      // locations = key;
-      console.log('array', array);
-      console.log('key', key);
-      key[array.location.title] = [...key[array.location.title] || [], array];
-      console.log("KEY", key);
-      return key;
-    }, {});
-    let groupedJobs = group;
-    let x = Object.keys(groupedJobs)
-    console.log("ONLY ONE LOCATIONS", groupedJobs.x);
+    console.log("IN COMPLITION FUNCTION", this.jobs); 
   }
   
   
