@@ -17,7 +17,7 @@
                 [(ngModel)]='instructorData.email'>
         </mat-form-field>
 
-        <label class="input-file-button" for="hello"><span>Profile</span>
+        <label class="input-file-button example-full-width col-sm-6" for="hello"><span>Profile</span>
             <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
                 [(ngModel)]="instructorData.profile" required="required" (change)="addProfileImage($event)">
         </label>
@@ -71,7 +71,7 @@
             <mat-datepicker #dateOfExpire disabled="false"></mat-datepicker>
         </mat-form-field>
 
-        <label class="input-file-button" for="hello"><span>Upload Image</span>
+        <label class="input-file-button example-full-width col-sm-6" for="hello"><span>Upload Image</span>
             <input type="file" name="certificate-file" accept=".jpeg, .jpg, .png, .gif"
                 [(ngModel)]="instructorData.certificate" required="required" (change)="addFile($event)">
         </label>

@@ -49,9 +49,11 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.currentUser);
+
     console.log("this.jobIdFromClient", this.jobIdFromClient);
 
-    if (this.router.url.includes('/client/dashboard')) {
+    if (this.currentUser.userRole == 'client') {
       this.clientDashboard = true;
       console.log("VIEW VALUE IS", this.clientDashboard)
     }
@@ -69,9 +71,6 @@ export class JobComponent implements OnInit, AfterViewInit {
       });
 
     }
-
-
-    this.currentUser = JSON.parse(localStorage.currentUser);
   }
 
   jobChangedByClient(job) {

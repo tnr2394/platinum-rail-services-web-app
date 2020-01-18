@@ -206,6 +206,20 @@ jobController.getJobUsingInstructorId = async function (req, res) {
     })
 }
 
+jobController.getJobUsingClientId = async function (req, res){
+    const clientId = req.query._id;
+    console.log("Client Id", clientId);
+
+    let query = { $and: [] }
+    query['$and'].push({ 'client': ObjectId(clientId) })
+
+    allJobs(query).then(jobs => {
+        console.log('---JOBS:::::::::::::::::::', jobs)
+        res.send({ data: jobs })
+    })
+    
+}
+
 
 
 jobController.addJob = function (req, res) {

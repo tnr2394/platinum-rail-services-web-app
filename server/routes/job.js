@@ -19,6 +19,8 @@ router.delete('/', jobController.deleteJob)
 
 router.get('/instructor', jobController.getJobUsingInstructorId);
 
+router.get('/client', jobController.getJobUsingClientId);
+
 router.get('/assignment', jobController.assignmentListUsingJobId);
 
 router.get('/assignment/group', jobController.assignmentListUsingJobIdWithoutGroup);

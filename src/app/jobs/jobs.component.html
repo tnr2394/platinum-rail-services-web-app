@@ -61,7 +61,11 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell
                                             *matCellDef="let job">
-                                            <p *ngIf="job && job.client"> {{job.client.name}}</p>
+                                            <p *ngIf="job && job.client"> 
+                                            <a routerLink="/client/{{job.client._id}}">
+                                                {{job.client.name}}
+                                            </a>
+                                            </p>
                                         </td>
                                     </ng-container>
 
