@@ -47,6 +47,7 @@
           <mat-form-field class=" col-6" *ngIf="jobs && viewDropdown == true">
             <mat-select [(ngModel)]="job" style="display: block;" (selectionChange)="jobChanged($event)">
               <mat-option *ngFor="let job of jobs"  [value]='job'>{{job.title}}</mat-option>
+              <mat-option *ngIf='jobs.length < 0'>No Jobs Found!</mat-option>
             </mat-select>
         </mat-form-field>
         
