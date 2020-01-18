@@ -25,6 +25,9 @@ export class ClientDashboardComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.clientId = params.id;
+      if (params.id != undefined){
+        this.getJobsByClientId();
+      }
     });
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name;
@@ -46,17 +49,38 @@ export class ClientDashboardComponent implements OnInit {
   getJobs() {
     this._jobService.getJobs().subscribe(jobs => {
       console.log("JOBS RECIEVED", jobs);
-      this.jobs = jobs;
-      this.selectedJob = jobs[0]
-      let firstJob = jobs[0]
-      console.log("FIRST JOB", firstJob);
-      this.jobComp.job = firstJob;
-      this.jobComp.jobIdFromClient = firstJob._id;
-      this.jobComp.completionPercentage(firstJob)
-      // this.jobComp.job = jobs[0];
-      this.jobToPass = jobs[0];
-      console.log("this.jobToPass", this.jobToPass);
+      this.jobs = jobs; this.displayJobs(this.jobs)
+      // this.selectedJob = jobs[0]
+      // let firstJob = jobs[0]
+      // console.log("FIRST JOB", firstJob);
+      // this.jobComp.job = firstJob;
+      // this.jobComp.jobIdFromClient = firstJob._id;
+      // this.jobComp.completionPercentage(firstJob)
+      // // this.jobComp.job = jobs[0];
+      // this.jobToPass = jobs[0];
+      // console.log("this.jobToPass", this.jobToPass);
+      
     })
+  }
+
+  getJobsByClientId(){
+    this._jobService.getJobByClientId(this.clientId).subscribe(jobs => {
+      console.log("Job recieved", jobs);
+      this.jobs = jobs;
+      this.displayJobs(this.jobs)
+    })
+  }
+
+  displayJobs(jobs){
+    this.selectedJob = jobs[0]
+    let firstJob = jobs[0]
+    console.log("FIRST JOB", firstJob);
+    this.jobComp.job = firstJob;
+    this.jobComp.jobIdFromClient = firstJob._id;
+    this.jobComp.completionPercentage(firstJob)
+    // this.jobComp.job = jobs[0];
+    this.jobToPass = jobs[0];
+    console.log("this.jobToPass", this.jobToPass);
   }
 
 }

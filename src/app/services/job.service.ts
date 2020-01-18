@@ -91,4 +91,16 @@ export class JobService {
       })
     });
   }
+  getJobByClientId(clientId): Observable<any> {
+    console.log("Getting jobs");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "jobs/client?_id=" + clientId).subscribe((res: any) => {
+        console.log("Get Jobs... : ", res);
+        observer.next(res.data);
+        observer.complete();
+      })
+    });
+  }
 }
