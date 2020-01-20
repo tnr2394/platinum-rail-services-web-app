@@ -19,13 +19,12 @@ export class CreateFolderModalComponent implements OnInit {
   save() {
     console.log('FOLDER NAME IS', this.folderName);
     if (this.folderName != '') {
-
       this._folderService.createFolder(this.folderName).subscribe(data => {
         this.data = data;
         console.log("Create Successfully", data);
         this.dialogRef.close(data);
       }, err => {
-        console.log('Error::::', err.msg);
+        console.log('Error', err.msg);
         this.dialogRef.close(null);
       })
     }

@@ -25,9 +25,5 @@ export class MyDocumentsComponent implements OnInit {
       duration: 2000,
     });
   }
-  share(){
-    this.openDialog(ShareFileModalComponent).subscribe(folder => {
-    })
-  }
 
 }

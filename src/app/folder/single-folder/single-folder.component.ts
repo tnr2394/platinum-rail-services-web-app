@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
@@ -8,6 +8,9 @@ import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
+import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.component';
+import { ContextMenuComponent } from "ngx-contextmenu";
+
 
 
 
@@ -19,7 +22,8 @@ import * as _ from 'lodash';
 
 export class SingleFolderComponent implements OnInit {
 
-  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, public dialog: MatDialog) { }
+  @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   folderId;
   fileList;
   folder;
@@ -39,6 +43,22 @@ export class SingleFolderComponent implements OnInit {
       this.getFolderFiles();
     }, err => {
     });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  shareWith(file) {
+    console.log("ShareWith", file);
+    this.openDialog(ShareFileModalComponent).subscribe(users => {
+      console.log('Users', users);
+      users.file = file.item;
+      console.log("AFTER ADDING ID", users);
+      this.openSnackBar("Shared Successfully", "ok")
+    })
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
