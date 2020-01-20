@@ -11,6 +11,7 @@ import { MaterialService } from "../services/material.service";
 import { Router, NavigationExtras } from "@angular/router";
 import { Pipe, PipeTransform } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { isEmpty } from 'rxjs/operators';
 
 
 
@@ -170,14 +171,29 @@ export class SubmissionComponent implements OnInit {
   getAllAllotedAssignmentsUsingJobId(jobId) {
 
     this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
-      console.log('Data::::::::::::::::', data);
-      if (data[0] != '') {
+      console.log('Data::::::::::::::::', data[0]);
+
+      var obj = data[0];
+
+      function isEmpty(obj) {
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key))
+            return false;
+        }
+        return true;
+      }
+
+
+      if (!isEmpty(obj)) {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.loadingAssignments = false;
       }
     });
   }
+
+
+
 
   getAllotmentListUsingAssignmentId(assignmentId) {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
