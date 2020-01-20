@@ -47,12 +47,13 @@ const colors: any = {
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent implements OnInit {
-  @Input('job') jobRecieved : any;
+  @Input('job') jobRecieved: any;
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
-  jobs = [{ client: "SKUK", value: 1 }, { client: "Shipley", value: 2 }, { client: "FOC", value: 3 }, { client: "Shipley", value: 4 }];
+  jobs: any;
+  //  jobs = [{ client: "SKUK", value: 1 }, { client: "Shipley", value: 2 }, { client: "FOC", value: 3 }, { client: "Shipley", value: 4 }];
   CalendarView = CalendarView;
   events = [];
   viewDate: Date = new Date();
@@ -167,12 +168,12 @@ export class SchedulerComponent implements OnInit {
   allevents = [];
   loading: Boolean = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService, 
+  constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
     private router: Router, private injector: Injector) {
-      if(this.router.url.includes('/jobs')){
-        this.test = this.injector.get(MAT_DIALOG_DATA)
-        console.log("IN IF CONDITION", this.test);
-      }
+    if (this.router.url.includes('/jobs')) {
+      this.test = this.injector.get(MAT_DIALOG_DATA)
+      console.log("IN IF CONDITION", this.test);
+    }
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -206,33 +207,33 @@ export class SchedulerComponent implements OnInit {
 
   ngOnInit() {
     console.log("this.loading", this.loading);
-    
+
     console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
     // console.log("The data recieved is", this.DialogData);
-    
-      if (this.router.url.includes('/jobs')) {
-        // this.viewDropdown = false;
-        console.log("VIEW VALUE IS HERE");
-        if (this.jobRecieved != undefined) {
-            console.log("**********IN if Condition**********");
-            this.populateAllJobs([this.jobRecieved])
-        }
-        else if(this.test != undefined){
-            this.populateAllJobs([this.test])
-        }
+
+    if (this.router.url.includes('/jobs')) {
+      // this.viewDropdown = false;
+      console.log("VIEW VALUE IS HERE");
+      if (this.jobRecieved != undefined) {
+        console.log("**********IN if Condition**********");
+        this.populateAllJobs([this.jobRecieved])
       }
-      else{
-        console.log("IN ELSE");  
-        this.getJobs();
-        // this.activatedRoute.params.subscribe(params => {
-        //   this.jobId = params['jobid'];
-        //   if (params['jobid'] != undefined){
-        //     console.log("Calling getLearners with jobid = ********** ", params['jobid']);
-        //     // this.filterJobUsingJobId(this.jobId);
-        //   }
-        // });
+      else if (this.test != undefined) {
+        this.populateAllJobs([this.test])
       }
-      
+    }
+    else {
+      console.log("IN ELSE");
+      this.getJobs();
+      // this.activatedRoute.params.subscribe(params => {
+      //   this.jobId = params['jobid'];
+      //   if (params['jobid'] != undefined){
+      //     console.log("Calling getLearners with jobid = ********** ", params['jobid']);
+      //     // this.filterJobUsingJobId(this.jobId);
+      //   }
+      // });
+    }
+
   }
   // Utility
   createEventObject(obj) {
@@ -292,11 +293,11 @@ export class SchedulerComponent implements OnInit {
   }
 
   // APIs
-  getJobs(){
+  getJobs() {
     this._jobService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
       // this.jobsForFilter = jobs;
-      this.jobs.forEach(job=>{
+      this.jobs.forEach(job => {
         console.log("in for each");
         this.populateAllJobs([job])
       })
@@ -314,7 +315,7 @@ export class SchedulerComponent implements OnInit {
 
   // filterJobUsingJobId() {
   //   // console.log("JOBID", this.jobId);
-    
+
   //   let finalJob;
   //   console.log('this.jobs', this.jobsForFilter);
   //   _.forEach(this.jobsForFilter, (singleJob) => {

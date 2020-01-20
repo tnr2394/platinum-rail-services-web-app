@@ -676,87 +676,77 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
         },
         {
             $lookup: {
-                from: 'courses',
-                localField: 'course',
-                foreignField: '_id',
-                as: 'course',
+                from: 'learners',
+                localField: '_id',
+                foreignField: 'job',
+                as: 'learner',
             }
         },
         {
             $unwind: {
-                path: '$course',
+                path: '$learner',
                 preserveNullAndEmptyArrays: true
-            }
-        },
-        {
-            $unwind: {
-                path: '$course.materials',
-                preserveNullAndEmptyArrays: true
-            }
-        },
-        {
-            $lookup: {
-                from: 'materials',
-                localField: 'course.materials',
-                foreignField: '_id',
-                as: 'material',
-            }
-        },
-        {
-            $unwind: {
-                path: '$material',
-                preserveNullAndEmptyArrays: true
-            }
-        },
-        {
-            $project: {
-                assignment: {
-                    assignmentTitle: '$material.title',
-                    assignmentNo: '$material.assignmentNo',
-                    assignmentUnit: '$material.unitNo',
-                    assignmentId: '$material._id',
-                    assignmentType: '$material.type',
-                }
             }
         },
         {
             $group: {
                 _id: '$_id',
-                assignment: {
-                    $push: '$assignment'
-                }
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                unitNo: '$_id',
-                assignment: {
-                    $filter: {
-                        input: "$assignment",
-                        as: "assignments",
-                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
-                    }
+                learner: {
+                    $push: '$learner'
                 }
             }
         },
         {
             $unwind: {
-                path: '$assignment',
+                path: '$learner',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner.allotments',
                 preserveNullAndEmptyArrays: true
             }
         },
         {
             $lookup: {
                 from: 'allotments',
-                localField: 'assignment.assignmentId',
-                foreignField: 'assignment',
+                localField: 'learner.allotments',
+                foreignField: '_id',
                 as: 'allotment',
             }
         },
         {
             $unwind: {
                 path: '$allotment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                allotment: {
+                    $push: '$allotment'
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'allotment.assignment',
+                foreignField: '_id',
+                as: 'allotment.assignment',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment.assignment',
                 preserveNullAndEmptyArrays: true
             }
         },
@@ -774,25 +764,25 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
                 preserveNullAndEmptyArrays: true
             }
         },
-        // {
-        //     $project: {
-        //         _id: 0,
-        //         allotemntId: '$allotment._id',
-        //         learnerName: '$learner.name',
-        //         learnerId: '$learner._id',
-        //         assignmentTitle: '$assignment.title',
-        //         assignmentUnit: '$assignment.assignmentUnit',
-        //         assignmentNo: '$assignment.assignmentNo',
-        //         assignmentStatus: '$allotment.status',
-        //     }
-        // }
+        {
+            $project: {
+                _id: 0,
+                allotemntId: '$allotment._id',
+                learnerName: '$learner.name',
+                learnerId: '$learner._id',
+                assignmentTitle: '$allotment.assignment.title',
+                assignmentUnit: '$allotment.assignment.unitNo',
+                assignmentNo: '$allotment.assignment.assignmentNo',
+                assignmentStatus: '$allotment.status',
+            }
+        }
     ]).exec((error, assignment) => {
         if (error) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
             console.log('assignment', assignment);
-            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+            return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
         }
     });
 }
