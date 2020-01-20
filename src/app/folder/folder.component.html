@@ -25,6 +25,14 @@
             <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
                 <i class="fa fa-share-alt" aria-hidden="true"></i> Share
             </ng-template>
+            <ng-template contextMenuItem divider="true"></ng-template>
+            <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </ng-template>
+            <ng-template contextMenuItem divider="true"></ng-template>
+            <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+            </ng-template>
         </context-menu>
     </mat-card-content>
 </mat-card>
