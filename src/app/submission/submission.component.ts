@@ -55,6 +55,7 @@ export class SubmissionComponent implements OnInit {
     { id: '2', display: 'Resubmit Requestted', status: 'Requested for Resubmission', checked: false },
     { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
   ];
+  initialData: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -107,24 +108,37 @@ export class SubmissionComponent implements OnInit {
   selectedStatus(event,index,status){
     console.log("event", event,"index", index, "status", status);
     if(event == true){
-      this.learners.forEach(learner=>{
-        if(learner.assignmentStatus == status){
-          this.filteredLearners.push(learner)
+      console.log("this.datasource", this.dataSource.data);
+      this.dataSource.data.forEach(obj=>{
+        if (obj.assignmentStatus == status){
+          this.filteredLearners.push(obj)
         }
       })
+      this.dataSource = new MatTableDataSource(this.filteredLearners);
     }
     // console.log("Filtered LEARNERS", this.filteredLearners);
     
     else if(event == false){
-      for(var i = 0; i < this.filteredLearners.length; i++){
+      if (this.filteredLearners.length < 1) {
+        this.dataSource = new MatTableDataSource(this.initialData);
+      }
+      else {for(var i = 0; i < this.filteredLearners.length; i++){
         console.log("in for loop", i);
         if (this.filteredLearners[i].assignmentStatus == status ){
           this.filteredLearners.splice(i,1)
+          i--;
         }
-      }      
+        if (this.filteredLearners.length < 1) {
+          this.dataSource = new MatTableDataSource(this.initialData);
+        }
+        else{
+          this.dataSource = new MatTableDataSource(this.filteredLearners);
+        }
+        console.log("filteredLearners.length", this.filteredLearners.length);
+      }
+           
     }
-    this.dataSource = new MatTableDataSource(this.filteredLearners);
-    
+  }
     console.log("Filtered LEARNERS", this.filteredLearners);
   }
 
@@ -196,6 +210,7 @@ export class SubmissionComponent implements OnInit {
 
     this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
       console.log('Data::::::::::::::::', data);
+      this.initialData = data;
       if (data[0] != '') {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
