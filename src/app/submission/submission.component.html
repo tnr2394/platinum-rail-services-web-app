@@ -11,7 +11,7 @@
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
 
             <!-- Serach Bar -->
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
@@ -45,9 +45,16 @@
             </div>
 
             <!-- Select Assignment Status -->
-            <div *ngFor='let status of assignmentStatus;let i = index'>
-                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">{{status.display}}</mat-checkbox>
+            <div class="row">
+                <div *ngFor='let status of assignmentStatus;let i = index'>
+                    <div class="col-md-2">
+                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                            (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">{{status.display}}
+                        </mat-checkbox>
+                    </div>
+                </div>
             </div>
+
             <!-- <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-label>Choose Status</mat-label>

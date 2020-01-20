@@ -49,6 +49,8 @@ export class SubmissionComponent implements OnInit {
   formChangesSubscription;
   filteredLearners = [];
 
+  sepArray = [];
+
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
     { id: '0', display: 'Pending', status: 'Pending', checked: false },
@@ -109,43 +111,58 @@ export class SubmissionComponent implements OnInit {
   selectedStatus(event, index, status) {
     console.log("event", event, "index", index, "status", status);
     if (event == true) {
-      console.log("this.datasource", this.dataSource.data);
-      this.dataSource.data.forEach(obj => {
-        if (obj.assignmentStatus == status) {
-          this.filteredLearners.push(obj)
-        }
-      })
-      this.dataSource = new MatTableDataSource(this.filteredLearners);
+      this.sepArray.push(status);
+      // console.log("this.datasource", this.dataSource.data);
+      // this.dataSource.data.forEach(obj => {
+      //   if (obj.assignmentStatus == status) {
+      //     this.filteredLearners.push(obj)
+      //   }
+      // })
+      // this.dataSource = new MatTableDataSource(this.filteredLearners);
     }
     // console.log("Filtered LEARNERS", this.filteredLearners);
 
     else if (event == false) {
-      if (this.filteredLearners.length < 1) {
-        this.dataSource = new MatTableDataSource(this.initialData);
-      }
-      else {
-        for (var i = 0; i < this.filteredLearners.length; i++) {
-          console.log("in for loop", i);
-          if (this.filteredLearners[i].assignmentStatus == status) {
-            this.filteredLearners.splice(i, 1)
-            i--;
-          }
-          if (this.filteredLearners.length < 1) {
-            this.dataSource = new MatTableDataSource(this.initialData);
-          }
-          else {
-            this.dataSource = new MatTableDataSource(this.filteredLearners);
-          }
-          console.log("filteredLearners.length", this.filteredLearners.length);
-        }
+      // this.sepArray.pop(status);
 
+      const index = this.sepArray.indexOf(status);
+      if (index > -1) {
+        this.sepArray.splice(index, 1);
       }
+
+
+      // if (this.filteredLearners.length < 1) {
+      //   this.dataSource = new MatTableDataSource(this.initialData);
+      // }
+      // else {
+      //   for (var i = 0; i < this.filteredLearners.length; i++) {
+      //     console.log("in for loop", i);
+      //     if (this.filteredLearners[i].assignmentStatus == status) {
+      //       this.filteredLearners.splice(i, 1)
+      //       i--;
+      //     }
+      //     if (this.filteredLearners.length < 1) {
+      //       this.dataSource = new MatTableDataSource(this.initialData);
+      //     }
+      //     else {
+      //       this.dataSource = new MatTableDataSource(this.filteredLearners);
+      //     }
+      //     console.log("filteredLearners.length", this.filteredLearners.length);
+      //   }
+
+      // }
     }
+
+    console.log('Final::::::Array::::::::::', this.sepArray);
     console.log("Filtered LEARNERS", this.filteredLearners);
+
+    this.filterUsingStatus(this.sepArray);
   }
 
 
   filterUsingStatus(assignment) {
+
+    console.log('Ass::::::::::::', assignment, this.learners);
     if (!assignment.length) {
       this.dataSource = new MatTableDataSource(this.learners);
     } else {
@@ -199,9 +216,7 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
-      console.log('Data----->>>>>', data);
       this.assignment = data[0].assignment;
-
       this.loadingAssignments = false;
       console.log(' this.assignment length', this.assignment.length);
     });
@@ -211,7 +226,6 @@ export class SubmissionComponent implements OnInit {
   getAllAllotedAssignmentsUsingJobId(jobId) {
 
     this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
-      console.log('Data::::::::::::::::', data[0]);
 
       var obj = data[0];
 
@@ -222,9 +236,10 @@ export class SubmissionComponent implements OnInit {
         }
         return true;
       }
-      
+
       if (!isEmpty(obj)) {
-        this.dataSource = new MatTableDataSource(data);
+        this.learners = data;
+        this.dataSource = new MatTableDataSource(this.learners);
         this.dataSource.paginator = this.paginator;
         this.loadingAssignments = false;
       }
