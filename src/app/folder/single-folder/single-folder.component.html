@@ -13,11 +13,14 @@
         <h4 mat-dialog-actions class="text-info mt-3 pl-3" align='center' *ngIf="loading">
             Downloading... <i class="fas fa-refresh fa-spin"></i>
         </h4>
+        <mat-form-field>
+            <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()" value="value">
+        </mat-form-field>
     </div>
 
     <!-- </mat-card-header> -->
     <div class="row" *ngIf="fileList && fileList.length > 0">
-        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList" [contextMenu]="basicMenu" [contextMenuSubject]="file">
+        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay" [contextMenu]="basicMenu" [contextMenuSubject]="file">
             <mat-card class="p-0 all_material_block">
                 <mat-card-content class="material_card">
                     <div [ngClass]="file.extension"> </div>
@@ -34,7 +37,11 @@
     <!-- CONTEXT MENU -->
     <context-menu>
         <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-            Share
+            <i class="fa fa-share-alt" aria-hidden="true"></i> Share
+        </ng-template>
+        <ng-template contextMenuItem divider="true"></ng-template>
+        <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
         </ng-template>
     </context-menu>
 

@@ -10,6 +10,7 @@ import { saveAs } from "file-saver";
 import * as _ from 'lodash';
 import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.component';
 import { ContextMenuComponent } from "ngx-contextmenu";
+import { FilterService } from '../../services/filter.service'
 
 
 
@@ -23,12 +24,15 @@ import { ContextMenuComponent } from "ngx-contextmenu";
 export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
-  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
+  filesToDisplay: any;
+  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, 
+    public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) { }
   folderId;
   fileList;
   folder;
   loading;
   loadingMaterials;
+  searchText;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -61,6 +65,15 @@ export class SingleFolderComponent implements OnInit {
     })
   }
 
+  filter(){
+    if(this.searchText == ''){
+      this.filesToDisplay = this.fileList;
+    }
+    else {
+      this.filesToDisplay = this._filterService.filter(this.searchText, this.fileList, ['title']);
+    }
+  }
+
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { width: "1000px", data });
@@ -72,6 +85,8 @@ export class SingleFolderComponent implements OnInit {
       console.log('folder:::::::::', folder);
       this.folder = folder[0];
       this.fileList = folder[0].files;
+      this.filesToDisplay = this.fileList;
+      console.log("THis.fileList", this.fileList);
     })
   }
 
