@@ -92,6 +92,7 @@ import { FolderComponent } from './folder/folder.component';
 import { CreateFolderModalComponent } from './folder/create-folder-modal/create-folder-modal.component';
 import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
 import { ShareFileModalComponent } from './folder/share-file-modal/share-file-modal.component';
+import { ContextMenuModule } from 'ngx-contextmenu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -184,7 +185,8 @@ import { ShareFileModalComponent } from './folder/share-file-modal/share-file-mo
     FileUploadModule,
     RecaptchaV3Module,
     MatBadgeModule,
-    FilterPipeModule
+    FilterPipeModule,
+    ContextMenuModule.forRoot()
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {

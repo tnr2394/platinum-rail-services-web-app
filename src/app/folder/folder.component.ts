@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
 import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
-import { FolderService } from '../services/folder.service'
-
+import { FolderService } from '../services/folder.service';
+import { ContextMenuComponent } from "ngx-contextmenu";
+import { ShareFileModalComponent } from './share-file-modal/share-file-modal.component';
+import { ok } from 'assert';
 
 @Component({
   selector: 'app-folder',
@@ -16,6 +18,7 @@ export class FolderComponent implements OnInit {
   bgColors;
   lastColor;
 
+  @ViewChild(ContextMenuComponent,{static:false}) public basicMenu: ContextMenuComponent;
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
@@ -40,6 +43,15 @@ export class FolderComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+  shareWith(singleFolder){
+    console.log("ShareWith", singleFolder);
+    this.openDialog(ShareFileModalComponent).subscribe(users=>{
+      console.log('Users', users);
+      users.file = singleFolder.item;
+      console.log("AFTER ADDING ID", users);
+      this.openSnackBar("Shared Successfully", "ok")
+    })
   }
 
   createFolder() {

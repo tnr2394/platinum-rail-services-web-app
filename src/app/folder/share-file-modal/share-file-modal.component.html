@@ -1,1 +1,28 @@
-<p>share-file-modal works!</p>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Share with...</h1>
+<div mat-dialog-content>
+    <mat-form-field class='min-width'>
+        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class='outerDiv'>
+    <div class='col-6'>
+        <mat-grid-list cols="1" rowHeight='30px'>
+            <mat-grid-tile *ngFor='let instructor of instructors' class='leftAlign'>
+                <mat-checkbox (change)='onInstructorChange($event)' [value]='instructor'>{{instructor.name}}</mat-checkbox>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div class='col-6'>
+        <mat-grid-list cols="1" rowHeight='30px'>
+            <mat-grid-tile *ngFor='let client of clients' class='leftAlign'>
+                <mat-checkbox (change)='onClientChange($event)' [value]='client'>{{client.name}}</mat-checkbox>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    </div>
+</div>
+<div mat-dialog-actions align="center" *ngIf="!loading">
+    <button mat-flat-button color="primary" (click)='share()' class="mb-2 button_hover_effect">
+        <i class="fa fa-share-alt fa-fw"></i><span> Share</span>
+    </button>
+</div>
