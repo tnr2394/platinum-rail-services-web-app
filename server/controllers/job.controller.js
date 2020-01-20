@@ -206,7 +206,7 @@ jobController.getJobUsingInstructorId = async function (req, res) {
     })
 }
 
-jobController.getJobUsingClientId = async function (req, res){
+jobController.getJobUsingClientId = async function (req, res) {
     const clientId = req.query._id;
     console.log("Client Id", clientId);
 
@@ -217,7 +217,7 @@ jobController.getJobUsingClientId = async function (req, res){
         console.log('---JOBS:::::::::::::::::::', jobs)
         res.send({ data: jobs })
     })
-    
+
 }
 
 
@@ -656,6 +656,142 @@ jobController.assignmentStatusWithLearner = function (req, res) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
+            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+        }
+    });
+}
+
+
+jobController.allotedAssignmentListUsingJobId = function (req, res) {
+    let jobId = req.query._id;
+
+    console.log('Assignment List Using Job Id:', jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'course',
+                foreignField: '_id',
+                as: 'course',
+            }
+        },
+        {
+            $unwind: {
+                path: '$course',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                unitNo: '$_id',
+                assignment: {
+                    $filter: {
+                        input: "$assignment",
+                        as: "assignments",
+                        cond: { $and: [{ $eq: ["$$assignments.assignmentType", 'Assignment'] }] }
+                    }
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$assignment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'allotments',
+                localField: 'assignment.assignmentId',
+                foreignField: 'assignment',
+                as: 'allotment',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'learners',
+                localField: 'allotment.learner',
+                foreignField: '_id',
+                as: 'learner',
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        // {
+        //     $project: {
+        //         _id: 0,
+        //         allotemntId: '$allotment._id',
+        //         learnerName: '$learner.name',
+        //         learnerId: '$learner._id',
+        //         assignmentTitle: '$assignment.title',
+        //         assignmentUnit: '$assignment.assignmentUnit',
+        //         assignmentNo: '$assignment.assignmentNo',
+        //         assignmentStatus: '$allotment.status',
+        //     }
+        // }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            console.log('assignment', assignment);
             return res.send({ data: { assignment }, msg: "Deleted Successfully" });
         }
     });

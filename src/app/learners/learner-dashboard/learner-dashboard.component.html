@@ -25,13 +25,17 @@
                 <h4 *ngIf="learnerName">
                     <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{learnerName}}</h4>
             </div>
-            <div class="col-sm-4 text-center justify-content-center">
-                <h4 *ngIf="learner && learner.phone">
-                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{learner.phone}}</h4>
+            <div class="col-sm-6 text-center justify-content-center">
+                <h4 *ngIf="email">
+                    <i class="fas fa-envelope text-info mr-1"></i> {{email}}</h4>
+                <h4 *ngIf="!email">
+                    <i class="fas fa-envelope text-info mr-1"></i>No email</h4>
             </div>
-            <div class="col-sm-5 text-center justify-content-center">
-                <h4 *ngIf="learner">
-                    <i class="fas fa-envelope text-info mr-1"></i> {{learner.email}}</h4>
+            <div class="col-sm-3 text-center justify-content-center">
+                <h4 *ngIf="mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{mobile}}</h4>
+                <h4 *ngIf="!mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i>No mobile</h4>
             </div>
         </div>
     </div>

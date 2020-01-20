@@ -96,6 +96,7 @@ export class SubmissionComponent implements OnInit {
     this.dataSource = new MatTableDataSource(emptyList);
     this.selectedJob = event.value._id;
     this.getAssignmentList(this.selectedJob);
+    this.getAllAllotedAssignmentsUsingJobId(this.selectedJob);
   }
 
   statusChanged(data) {
@@ -157,6 +158,17 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
+      console.log('Data----->>>>>', data);
+      this.assignment = data[0].assignment;
+      this.loadingAssignments = false;
+      console.log(' this.assignment length', this.assignment.length);
+    });
+  }
+
+
+  getAllAllotedAssignmentsUsingJobId(jobId) {
+
+    this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
       console.log('Data----->>>>>', data);
       this.assignment = data[0].assignment;
       this.loadingAssignments = false;

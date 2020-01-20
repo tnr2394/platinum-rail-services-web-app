@@ -28,6 +28,8 @@ export class LearnerDashboardComponent implements OnInit {
   lastColor;
   job;
   profilePath;
+  mobile;
+  email;
   panelOpenState = true;
   currentUser;
   userFilter: any = { title: '' };
@@ -51,6 +53,8 @@ export class LearnerDashboardComponent implements OnInit {
         this.learner = data.pop();
         console.log("This.learner", this.learner)
         this.learnerName = this.learner.name;
+        this.mobile = this.learner.phone;
+        this.email = this.learner.email;
         this.profilePath = this.learner.profilePic;
         this.learner.allotments.forEach((assignment) => {
           this.assignments = this.learner.allotments;

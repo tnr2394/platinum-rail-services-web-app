@@ -1,8 +1,8 @@
 <div *ngIf="assignment">
     <div class='row mx-0 mb-4 align-items-center'>
         <div class='col-lg-8'>
-            <h1 class="assi_submission">Assignment Submission: 
-               <span>{{assignment.assignment.title}}</span>
+            <h1 class="assi_submission">Assignment Submission:
+                <span>{{assignment.assignment.title}}</span>
             </h1>
         </div>
         <div class='col-lg-4 assignment_status'>
@@ -19,18 +19,18 @@
         <div class='row'>
             <div class='col-lg-6 background'>
                 <div class='row py-0 align-items-center'>
-                    <div class='col-10 p-0 d-flex align-items-center'>
+                    <div class='col-12 p-0 d-flex align-items-center'>
                         <span class="mb-0 mr-2"><i class="fas fa-file-alt text-success"></i></span>
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
                     </div>
-                    <div class='col-2 p-0'>
+                    <!-- <div class='col-2 p-0'>
                         <button class='uploadBtn d-flex align-items-center h-100 justify-content-center'>
                             <i class="fas fa-cloud-upload-alt"></i>
                         </button>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class='row all_file_tile_row' *ngIf="files.length > 0">
@@ -72,11 +72,12 @@
 
 
 
-            <div class='col-lg-6 status_area'>
+            <div class='col-lg-6 status_area' *ngIf="assignment.status !== 'Pending'">
                 <div class="col-12">
                     <div class="d-flex justify-content-center align-items-center w-100">
-                        <button mat-raised-button class='btnColorGreen success_hover_effect' (click)="doSubmit(remark,'Completed')"><i
-                                class="fas fa-check-double"></i><span> Mark Completed</span>
+                        <button mat-raised-button class='btnColorGreen success_hover_effect'
+                            (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span> Mark
+                                Completed</span>
                         </button>
                     </div>
                 </div>
@@ -90,25 +91,17 @@
                         <div class='mt-3'>
                             <div class="justify-content-center">
                                 <button mat-raised-button class='btnColorBlue button_hover_effect'
-                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i
-                                        class='fa fa-bell'></i>
+                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i class='fa fa-bell'></i>
                                     <span> Request Resubmission</span></button>
                             </div>
-                            <!-- <div class="col-md-6">
-
-                                <button mat-raised-button class='btnColorGreen'
-                                    (click)="doSubmit(remark,'Completed')"><i class='fa fa-check'></i>
-                                    Mark
-                                    Completed</button>
-
-                            </div> -->
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!-- </mat-card> -->
-        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
+        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                class="fa fa-cog fa-spin text-info"></i></h3>
         <div *ngIf='loading == false && !assignment'>
             {{learner}} Does not have any allocated {{material}} <i class="fa fa-frown-o"></i>
         </div>

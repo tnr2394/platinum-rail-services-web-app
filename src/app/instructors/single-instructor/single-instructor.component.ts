@@ -31,6 +31,8 @@ export class SingleInstructorComponent implements OnInit {
   loading;
   profilePath;
   view;
+  mobile;
+  email;
   // MatPaginator Output
   pageEvent: PageEvent;
 
@@ -79,6 +81,8 @@ export class SingleInstructorComponent implements OnInit {
       console.log('Get Instructor Detail', res[0]);
       this.instructor = res[0];
       this.profilePath = this.instructor.profilePic;
+      this.mobile = this.instructor.phone;
+      this.email = this.instructor.email;
     }))
   }
 
