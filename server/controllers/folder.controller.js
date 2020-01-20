@@ -9,6 +9,8 @@ const folderController = {};
 const folderDOA = require('../dao/folder.dao');
 
 const folderModel = require('../models/folder.model');
+const instructorModel = require('../models/instructor.model');
+const clientModel = require('../models/client.model');
 
 async function allfolders(query) {
     var deferred = Q.defer();
@@ -139,6 +141,82 @@ folderController.updateFolder = function (req, res, next) {
             return res.status(500).send({ err })
         }
         return res.send({ data: { folder } });
+    })
+}
+
+
+
+folderController.shareFolder = function (req, res, next) {
+    console.log("Sharing Folder", req.body.file);
+    const sharedFolder = req.body.file;
+    const instructorList = req.body.selectedInstructors;
+    const clientList = req.body.selectedClients;
+
+    if (req.body.selectedInstructors && req.body.selectedClients) {
+        Promise.all([
+            shareFolderToInstructor(sharedFolder, instructorList),
+            shareFolderToClient(sharedFolder, clientList)
+        ]).then((success) => {
+            return res.send({ data: { success } });
+        }).catch((reason) => {
+            return res.status(500).send({ reason })
+        })
+    } else if (req.body.selectedInstructors) {
+        shareFolderToInstructor(sharedFolder, instructorList).then((res) => {
+
+        }).catch((error) => {
+
+        })
+    } else if (req.body.selectedClients) {
+        shareFolderToClient(sharedFolder, clientList).then((res) => {
+
+        }).catch((error) => {
+            return res.status(500).send({ error })
+        })
+    }
+}
+
+const shareFolderToInstructor = (folder, instructors) => {
+    console.log('Inside Instructor');
+    return new Promise((resolve, reject) => {
+        async.eachSeries(instructors, (singleIns, innerCallback) => {
+            instructorModel.findOneAndUpdate({ _id: singleIns._id }, { $addToSet: { sharedFolder: folder._id } }, { new: true }, (err, updatedMaterial) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    innerCallback();
+                }
+            });
+        }, (callbackError, callbackResponse) => {
+            if (callbackError) {
+                console.log("callbackError ", callbackError);
+                reject(callbackError);
+            } else {
+                resolve(callbackResponse);
+            }
+        })
+    })
+}
+
+const shareFolderToClient = (folder, clients) => {
+    console.log('Inside Instructor');
+    return new Promise((resolve, reject) => {
+        async.eachSeries(clients, (singleClient, innerCallback) => {
+            clientModel.findOneAndUpdate({ _id: singleClient._id }, { $addToSet: { sharedFolder: folder._id } }, { new: true }, (err, updatedMaterial) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    innerCallback();
+                }
+            });
+        }, (callbackError, callbackResponse) => {
+            if (callbackError) {
+                console.log("callbackError ", callbackError);
+                reject(callbackError);
+            } else {
+                resolve(callbackResponse);
+            }
+        })
     })
 }
 

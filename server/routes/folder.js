@@ -16,6 +16,11 @@ router.get('/', folderController.getFolders);
 router.post('/files', folderController.addFile);
 
 
+router.post('/share', folderController.shareFolder);
+
+//  router.get('/files', materialController.getFiles);
+
+
 
 // FILE OPERATIONS
 // /* GET Files listing. */
