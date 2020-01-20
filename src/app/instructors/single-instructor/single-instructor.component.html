@@ -24,13 +24,21 @@
     <!-- </div> -->
     <div class="card-block">
         <div class="row instructor_profile_card">
-            <div class="col-sm-6 text-center justify-content-center">
-                <h3 *ngIf="instructor">
-                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h3>
+            <div class="col-sm-3 text-center justify-content-center">
+                <h4 *ngIf="instructor">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h4>
             </div>
             <div class="col-sm-6 text-center justify-content-center">
-                <h3 *ngIf="instructor">
-                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{instructor.mobile}}</h3>
+                <h4 *ngIf="email">
+                    <i class="fas fa-envelope text-info mr-1"></i> {{email}}</h4>
+                <h4 *ngIf="!email">
+                    <i class="fas fa-envelope text-info mr-1"></i>No Email</h4>
+            </div>
+            <div class="col-sm-3 text-center justify-content-center">
+                <h4 *ngIf="mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{mobile}}</h4>
+                <h4 *ngIf="!mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i>No mobile</h4>
             </div>
         </div>
     </div>

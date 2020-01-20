@@ -27,4 +27,9 @@ router.get('/assignment/group', jobController.assignmentListUsingJobIdWithoutGro
 
 router.get('/assignment-status', jobController.assignmentStatusWithLearner);
 
+router.get('/all-assignment', jobController.allotedAssignmentListUsingJobId);
+
+
+
+
 module.exports = router;

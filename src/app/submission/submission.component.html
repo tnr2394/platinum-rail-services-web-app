@@ -60,7 +60,7 @@
 
             <!-- Pagination-->
             <div class="col-12 submission_pagination">
-                <mat-paginator class="text-left float-left" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                <mat-paginator class="text-left float-left" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
             </div>
         </div>
 
@@ -86,8 +86,8 @@
                             <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
                                 mat-sort-header="name"> Name
                             </th>
-                            <td class="mat-table-cell name_td align-items-center mx-0 p-0"
-                                mat-cell *matCellDef="let learner">
+                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
+                                *matCellDef="let learner">
                                 <span class="learner pl-4"><i class="fas fa-user-graduate fa-2x mr-2"></i><a
                                         routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
                             </td>
@@ -123,7 +123,7 @@
                                 </a>
                             </td>
                         </ng-container>
-                        
+
                         <thead>
                             <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         </thead>
