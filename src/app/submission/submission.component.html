@@ -45,7 +45,10 @@
             </div>
 
             <!-- Select Assignment Status -->
-            <div class='col-xl-3 col-md-3'>
+            <div *ngFor='let status of assignmentStatus;let i = index'>
+                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">{{status.display}}</mat-checkbox>
+            </div>
+            <!-- <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-label>Choose Status</mat-label>
                     <mat-select (selectionChange)="statusChanged($event)" multiple>
@@ -53,7 +56,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
+            </div> -->
 
             <!-- Pagination-->
             <div class="col-12 submission_pagination">

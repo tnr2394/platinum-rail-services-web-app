@@ -46,6 +46,7 @@ export class SubmissionComponent implements OnInit {
   // @ViewChild('form') ngForm: NgForm;
   model = { optionOne: false, optionTwo: false, optionThree: false }
   formChangesSubscription;
+  filteredLearners = [];
 
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
@@ -100,6 +101,30 @@ export class SubmissionComponent implements OnInit {
 
   statusChanged(data) {
     this.filterUsingStatus(data.source.value);
+  }
+
+  selectedStatus(event,index,status){
+    console.log("event", event,"index", index, "status", status);
+    if(event == true){
+      this.learners.forEach(learner=>{
+        if(learner.assignmentStatus == status){
+          this.filteredLearners.push(learner)
+        }
+      })
+    }
+    // console.log("Filtered LEARNERS", this.filteredLearners);
+    
+    else if(event == false){
+      for(var i = 0; i < this.filteredLearners.length; i++){
+        console.log("in for loop", i);
+        if (this.filteredLearners[i].assignmentStatus == status ){
+          this.filteredLearners.splice(i,1)
+        }
+      }      
+    }
+    this.dataSource = new MatTableDataSource(this.filteredLearners);
+    
+    console.log("Filtered LEARNERS", this.filteredLearners);
   }
 
 
