@@ -88,7 +88,8 @@ export class EditJobModalComponent implements OnInit {
     this.addJobForm.controls['location'].setValue(data.value)
   }
 
-  constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
+  constructor(public _clientService: ClientService, public _courseService: CourseService, 
+    public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, @Inject(MAT_DIALOG_DATA) public DialogData: any,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
 

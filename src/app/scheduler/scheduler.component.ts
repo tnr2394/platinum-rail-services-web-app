@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, Input, Inject, Injector } from '@angular/core';
 import { JobService } from "../services/job.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import * as _ from 'lodash';
+import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 
 import {
   startOfDay,
@@ -162,8 +163,16 @@ export class SchedulerComponent implements OnInit {
   activeDayIsOpen: boolean = true;
   job: any;
   selectedJob;
+  test: any;
+  allevents = [];
+  loading: Boolean = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService, 
+    private router: Router, private injector: Injector) {
+      if(this.router.url.includes('/jobs')){
+        this.test = this.injector.get(MAT_DIALOG_DATA)
+        console.log("IN IF CONDITION", this.test);
+      }
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -196,29 +205,32 @@ export class SchedulerComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log("this.loading", this.loading);
+    
     console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
+    // console.log("The data recieved is", this.DialogData);
     
       if (this.router.url.includes('/jobs')) {
-        this.viewDropdown = false;
+        // this.viewDropdown = false;
         console.log("VIEW VALUE IS HERE");
         if (this.jobRecieved != undefined) {
-          console.log("**********IN if Condition**********");
-          this.populateAllJobs([this.jobRecieved])
-      }
-        else {
-          // this.getJobs();
+            console.log("**********IN if Condition**********");
+            this.populateAllJobs([this.jobRecieved])
+        }
+        else if(this.test != undefined){
+            this.populateAllJobs([this.test])
         }
       }
       else{
         console.log("IN ELSE");  
         this.getJobs();
-        this.activatedRoute.params.subscribe(params => {
-          this.jobId = params['jobid'];
-          if (params['jobid'] != undefined){
-            console.log("Calling getLearners with jobid = ********** ", params['jobid']);
-            this.filterJobUsingJobId(this.jobId);
-          }
-        });
+        // this.activatedRoute.params.subscribe(params => {
+        //   this.jobId = params['jobid'];
+        //   if (params['jobid'] != undefined){
+        //     console.log("Calling getLearners with jobid = ********** ", params['jobid']);
+        //     // this.filterJobUsingJobId(this.jobId);
+        //   }
+        // });
       }
       
   }
@@ -250,27 +262,30 @@ export class SchedulerComponent implements OnInit {
         color: job.color,
         jobid: job._id
       })
+      this.allevents.push(newObj);
       events.push(newObj);
+      // this.allevents.push(events)
     }
     console.log("Events = ", events);
     return events;
     // this.events = events;
   }
 
-  jobChanged(event) {
-    this.job = event.value;
-    this.resetEvents();
-    this.populateAllJobs([this.job]);
-    console.log("this.job = ", this.job);
-    // this.loadDatesForJob(this.job);
-  }
+  // jobChanged(event) {
+  //   this.job = event.value;
+  //   this.resetEvents();
+  //   this.populateAllJobs([this.job]);
+  //   console.log("this.job = ", this.job);
+  //   // this.loadDatesForJob(this.job);
+  // }
 
   populateAllJobs(jobs) {
     console.log("PopulateAllJobs Called with jobs = ", jobs);
     for (var i = 0; i < jobs.length; i++) {
+      console.log("IN FOR LOOP");
       var events = this.makeEventsArrayForJob(jobs[i]);
-      this.events = [...events];
     }
+    console.log("After for loop", this.allevents);
   }
   resetEvents() {
     this.events = [];
@@ -280,32 +295,39 @@ export class SchedulerComponent implements OnInit {
   getJobs(){
     this._jobService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
-      this.jobsForFilter = jobs;
-      this.selectedJob = jobs[0]
-      this.jobId = this.selectedJob._id;
-      console.log('this.jobs', this.jobs);
-      this.filterJobUsingJobId(this.jobId)
+      // this.jobsForFilter = jobs;
+      this.jobs.forEach(job=>{
+        console.log("in for each");
+        this.populateAllJobs([job])
+      })
+      // this.loading = false;
+      // this.populateAllJobs(this.jobs);
+      // this.selectedJob = jobs[0]
+      // this.jobId = this.selectedJob._id;
+      // console.log('this.jobs', this.jobs);
+      // this.filterJobUsingJobId(this.jobId)
     }, err => {
       console.error(err);
     })
   }
 
 
-  filterJobUsingJobId(jobId) {
-    console.log("JOBID", this.jobId);
+  // filterJobUsingJobId() {
+  //   // console.log("JOBID", this.jobId);
     
-    let finalJob;
-    console.log('this.jobs', this.jobsForFilter);
-    _.forEach(this.jobsForFilter, (singleJob) => {
-      console.log('singleJob:::::::::::::', singleJob);
-      if (singleJob._id == jobId) {
-        finalJob = singleJob;
-      }
-    })
-    console.log('finalJob:::::::::::::::::::::::::::::::::::', finalJob);
-    this.resetEvents();
-    setTimeout(() => {    //<<<---    using ()=> syntax
-      this.populateAllJobs([finalJob]);
-    },500);
-  }
+  //   let finalJob;
+  //   console.log('this.jobs', this.jobsForFilter);
+  //   _.forEach(this.jobsForFilter, (singleJob) => {
+  //     console.log('singleJob:::::::::::::', singleJob);
+  //     this.populateAllJobs([singleJob])
+  //     // if (singleJob._id == jobId) {
+  //     //   finalJob = singleJob;
+  //     // }
+  //   })
+  //   console.log('finalJob:::::::::::::::::::::::::::::::::::', finalJob);
+  //   this.resetEvents();
+  //   setTimeout(() => {    //<<<---    using ()=> syntax
+  //     this.populateAllJobs([finalJob]);
+  //   },500);
+  // }
 }
