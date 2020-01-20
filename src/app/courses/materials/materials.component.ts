@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { CourseService } from '../../services/course.service';
 import { MaterialService } from '../../services/material.service';
 import { LearnerService } from '../../services/learner.service';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -36,7 +36,7 @@ export class MaterialsComponent implements OnInit {
   bgColors: string[];
   lastColor;
   length;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions: number[] = [10, 25, 100];
   course;
   // displayedColumns: string[] = ['title','duration','actions'];
   dataSource: MatTableDataSource<any>;
@@ -87,7 +87,7 @@ export class MaterialsComponent implements OnInit {
   // public childMethod(){
   //   console.log("MATERIAL COMPONENT CHILD METHOD")
   // }
-  
+
 
   ngAfterViewInit() {
     console.log("AfterViewInit this.courseId = ", this.courseId);
@@ -125,7 +125,7 @@ export class MaterialsComponent implements OnInit {
       // console.log('----------COURSEID ON INIT IS----------',params['id']);
       // this.courseId = params['id'];
       // console.log("this.courseID", this.courseId);
-      if (params['courseId'] != undefined){
+      if (params['courseId'] != undefined) {
         this.getMaterials(params['courseId']);
       }
       // if (this.courseId) {
@@ -133,7 +133,7 @@ export class MaterialsComponent implements OnInit {
       // }
 
     });
-    
+
     if (this.router.url.includes('/materials')) {
       this.view = true;
       console.log("VIEW VALUE IS", this.view)
@@ -187,8 +187,8 @@ export class MaterialsComponent implements OnInit {
       this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
-      if (materials.type == "Assignment"){
-        this.assignmentAdded.emit({assignmentAdded:'Done!'})
+      if (materials.type == "Assignment") {
+        this.assignmentAdded.emit({ assignmentAdded: 'Done!' })
       }
     }, err => {
       return this.openSnackBar("Material could not be Added", "Ok");
@@ -257,7 +257,7 @@ export class MaterialsComponent implements OnInit {
     console.log("getting materials in materials component for courseId = ", courseId)
     this._courseService.getCourse(courseId).subscribe((courses: any) => {
       console.log('GETTING ');
-      
+
       this.course = courses.pop();
       this.materials = this.course.materials;
 

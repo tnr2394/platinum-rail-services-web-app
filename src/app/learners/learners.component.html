@@ -22,7 +22,7 @@
                                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                                     <mat-icon matSuffix>search</mat-icon>
                                 </mat-form-field>
-                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]">
                                 </mat-paginator>
 
                             </div>
@@ -51,7 +51,7 @@
                                             </span></td>
                                     </ng-container>
                                     <!-- Action Column -->
-                                    <ng-container matColumnDef="actions"> 
+                                    <ng-container matColumnDef="actions">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let learner; let i = index;">
@@ -88,7 +88,7 @@
                     <!--/.Card content-->
 
                     <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
-                        No Learner Found!
+                        No Learner Added!
                     </h3>
 
 

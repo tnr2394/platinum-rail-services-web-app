@@ -20,6 +20,7 @@ export class LearnerDashboardComponent implements OnInit {
   loading = false;
   materialId = [];
   searchText;
+  searchtext;
   assignments;
   courseId;
   material = [];

@@ -4,9 +4,16 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FolderService } from '../../services/folder.service';
+import * as  JSZip from 'jszip';
+import * as JSZipUtil from 'jszip-utils'
+import { saveAs } from "file-saver";
+import * as _ from 'lodash';
 import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.component';
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { FilterService } from '../../services/filter.service'
+
+
+
 
 @Component({
   selector: 'app-single-folder',
@@ -23,6 +30,8 @@ export class SingleFolderComponent implements OnInit {
   folderId;
   fileList;
   folder;
+  loading;
+  loadingMaterials;
   searchText;
 
   ngOnInit() {
@@ -80,4 +89,37 @@ export class SingleFolderComponent implements OnInit {
       console.log("THis.fileList", this.fileList);
     })
   }
+
+  downloadAll() {
+
+    console.log('Download all clicked');
+
+    this.loading = true;
+
+    let zip: JSZip = new JSZip();
+    let count = 0;
+    var zipFilename = this.folder.title + '.zip';
+
+
+    _.forEach(this.fileList, (file) => {
+      var filename = file.path.split("/")[3];
+      // loading a file and add it in a zip file
+      JSZipUtil.getBinaryContent(file.path, (err, data) => {
+        if (err) {
+          throw err; // or handle the error
+        }
+        zip.file(filename, data, { binary: true });
+        count++;
+
+        if (count == this.fileList.length) {
+          zip.generateAsync({ type: 'blob' }).then(function (content) {
+            saveAs(content, zipFilename);
+          });
+          this.loading = false;
+        }
+      });
+    });
+  }
+
+
 }

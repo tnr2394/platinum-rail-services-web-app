@@ -39,6 +39,14 @@ var instructorSchema = new Schema({
     file: {
         type: Schema.Types.ObjectId,
         ref: 'file'
+    },
+    sharedFile: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
+    },
+    sharedFolder: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
     }
 }, {
         timestamps: true

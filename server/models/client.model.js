@@ -17,6 +17,14 @@ var clientSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    sharedFile: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
+    },
+    sharedFolder: {
+        type: Schema.Types.ObjectId,
+        ref: 'file'
     }
 }, {
     timestamps: true
