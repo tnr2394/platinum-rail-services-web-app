@@ -160,6 +160,7 @@ export class SubmissionComponent implements OnInit {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
       console.log('Data----->>>>>', data);
       this.assignment = data[0].assignment;
+
       this.loadingAssignments = false;
       console.log(' this.assignment length', this.assignment.length);
     });
@@ -169,10 +170,12 @@ export class SubmissionComponent implements OnInit {
   getAllAllotedAssignmentsUsingJobId(jobId) {
 
     this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
-      console.log('Data----->>>>>', data);
-      this.assignment = data[0].assignment;
-      this.loadingAssignments = false;
-      console.log(' this.assignment length', this.assignment.length);
+      console.log('Data::::::::::::::::', data);
+      if (data[0] != '') {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.loadingAssignments = false;
+      }
     });
   }
 
