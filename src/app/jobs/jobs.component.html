@@ -27,7 +27,7 @@
                                         (ngModelChange)='filter(searchText)'>
                                     <mat-icon matSuffix>search</mat-icon>
                                 </mat-form-field>
-                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]">
                                 </mat-paginator>
                                 <!-- <mat-paginator class="col-6" [length]="jobs.length"
                         [pageSize]="pageSize"
@@ -61,10 +61,10 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell
                                             *matCellDef="let job">
-                                            <p *ngIf="job && job.client"> 
-                                            <a routerLink="/client/{{job.client._id}}">
-                                                {{job.client.name}}
-                                            </a>
+                                            <p *ngIf="job && job.client">
+                                                <a routerLink="/client/{{job.client._id}}">
+                                                    {{job.client.name}}
+                                                </a>
                                             </p>
                                         </td>
                                     </ng-container>
@@ -89,7 +89,7 @@
                                             <mat-list align='center'>
                                                 <mat-list-item class="text-center"
                                                     *ngFor='let oneInstructor of job.instructors'>
-                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> 
+                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
                                                     <a routerLink="/instructors/{{oneInstructor._id}}">
                                                         <span *ngIf="job && job.instructors">
                                                             {{oneInstructor.name}}</span>
@@ -137,9 +137,11 @@
 
                                     <!-- Completion % -->
                                     <ng-container matColumnDef="completion">
-                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Complition %
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>
+                                            Complition %
                                         </th>
-                                        <td class="mat-table-cell text-center" data-label="Status" mat-cell *matCellDef="let job">
+                                        <td class="mat-table-cell text-center" data-label="Status" mat-cell
+                                            *matCellDef="let job">
                                             {{job.completion}} %</td>
                                     </ng-container>
 

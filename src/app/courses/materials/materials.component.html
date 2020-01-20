@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-12">
 
+        <h3 class="page-title" *ngIf="course">Course : {{course.title}}</h3>
         <div class="row">
 
             <div class="col-12 ">
@@ -8,11 +9,11 @@
                     <div class="row material_row">
                         <div class="col-lg-7">
                             <h3 class="card-title h5 mb-1" *ngIf="course">
-                                Materials for :
+                                Materials:
                                 <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
                                     matBadgeColor="warn"> {{course.title}}</span> -->
                                 <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
-                                <span class="course_t_span">{{course.title}} </span> <button mat-mini-fab
+                                <span class="course_t_span"></span> <button mat-mini-fab
                                     disabled>{{materials.length}}</button>
                             </h3>
                         </div>
@@ -29,7 +30,7 @@
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
-                        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
                     </div>
 
                     <div class="row material_tile_table_row" *ngIf="materials.length > 0">
