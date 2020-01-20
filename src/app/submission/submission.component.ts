@@ -47,6 +47,7 @@ export class SubmissionComponent implements OnInit {
   // @ViewChild('form') ngForm: NgForm;
   model = { optionOne: false, optionTwo: false, optionThree: false }
   formChangesSubscription;
+  filteredLearners = [];
 
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
@@ -55,6 +56,7 @@ export class SubmissionComponent implements OnInit {
     { id: '2', display: 'Resubmit Requestted', status: 'Requested for Resubmission', checked: false },
     { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
   ];
+  initialData: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -102,6 +104,44 @@ export class SubmissionComponent implements OnInit {
 
   statusChanged(data) {
     this.filterUsingStatus(data.source.value);
+  }
+
+  selectedStatus(event, index, status) {
+    console.log("event", event, "index", index, "status", status);
+    if (event == true) {
+      console.log("this.datasource", this.dataSource.data);
+      this.dataSource.data.forEach(obj => {
+        if (obj.assignmentStatus == status) {
+          this.filteredLearners.push(obj)
+        }
+      })
+      this.dataSource = new MatTableDataSource(this.filteredLearners);
+    }
+    // console.log("Filtered LEARNERS", this.filteredLearners);
+
+    else if (event == false) {
+      if (this.filteredLearners.length < 1) {
+        this.dataSource = new MatTableDataSource(this.initialData);
+      }
+      else {
+        for (var i = 0; i < this.filteredLearners.length; i++) {
+          console.log("in for loop", i);
+          if (this.filteredLearners[i].assignmentStatus == status) {
+            this.filteredLearners.splice(i, 1)
+            i--;
+          }
+          if (this.filteredLearners.length < 1) {
+            this.dataSource = new MatTableDataSource(this.initialData);
+          }
+          else {
+            this.dataSource = new MatTableDataSource(this.filteredLearners);
+          }
+          console.log("filteredLearners.length", this.filteredLearners.length);
+        }
+
+      }
+    }
+    console.log("Filtered LEARNERS", this.filteredLearners);
   }
 
 
@@ -182,8 +222,7 @@ export class SubmissionComponent implements OnInit {
         }
         return true;
       }
-
-
+      
       if (!isEmpty(obj)) {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
