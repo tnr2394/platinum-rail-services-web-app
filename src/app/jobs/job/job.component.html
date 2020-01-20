@@ -8,7 +8,7 @@
         <div class="row m-0">
             <div>
                 <h3 class="page-title pl-0">
-                    Job: {{job.title}}
+                   Job: {{job.title}} <button mat-mini-fab color="primary" (click)="scheduler()"><i class="far fa-calendar-alt"></i></button>
                 </h3>
             </div>
         </div>
@@ -131,7 +131,7 @@
         </div>
         <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
 
-        <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler>
+        <!-- <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler> -->
         <div *ngIf="job && !clientDashboard" class="mt-3">
             <!-- passing into material =  {{job.course._id}} -->
             <app-materials *ngIf="job && job.course" [data]="job.course._id"

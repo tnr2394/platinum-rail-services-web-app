@@ -11,6 +11,7 @@ import { AllocateLearnerModalComponent } from './allocate-learner-modal/allocate
 import { MaterialsComponent } from '../../courses/materials/materials.component';
 import { AssignmentStatusComponent } from '../../clients/assignment-status/assignment-status.component'
 import { LearnersComponent } from '../../learners/learners.component'
+import { SchedulerComponent } from '../../scheduler/scheduler.component'
 
 
 @Component({
@@ -88,7 +89,7 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
-    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    const dialogRef = this.dialog.open(someComponent, { data, width: '600px', height: '600px' });
     return dialogRef.afterClosed();
   }
 
@@ -104,6 +105,11 @@ export class JobComponent implements OnInit, AfterViewInit {
   assignmentAdded() {
     console.log("IN ASSIGNMENT ADDED METHOD");
     this.assignmentStatusComp.ngOnInit();
+  }
+  scheduler(){
+    this.openDialog(SchedulerComponent, this.jobForScheduler).subscribe((jobs)=>{
+
+    })
   }
 
   allocateLearners() {
