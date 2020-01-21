@@ -165,6 +165,7 @@ export class SchedulerComponent implements OnInit {
   job: any;
   selectedJob;
   test: any;
+  dialogref = null;
   allevents = [];
   loading: Boolean = true;
 
@@ -172,6 +173,7 @@ export class SchedulerComponent implements OnInit {
     private router: Router, private injector: Injector) {
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
       this.test = this.injector.get(MAT_DIALOG_DATA)
+      this.dialogref = this.injector.get(MatDialogRef)
       console.log("IN IF CONDITION", this.test);
     }
   }
@@ -196,6 +198,9 @@ export class SchedulerComponent implements OnInit {
     console.log("Handling event", { action, event })
     this.modalData = { event, action };
     this.router.navigate(['/jobs/' + event.jobid]);
+    if(this.dialogref != null){
+      this.dialogref.close();
+    }
     // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
