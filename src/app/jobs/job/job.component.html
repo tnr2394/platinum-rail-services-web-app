@@ -6,17 +6,21 @@
 <div class="row" *ngIf="job">
     <div class="col-12">
         <div class="row m-0">
-            <div>
+            <div class="col-6">
                 <h3 class="page-title pl-0">
-                   Job: {{job.title}} <button mat-mini-fab color="primary" (click)="scheduler(job)"><i class="far fa-calendar-alt"></i></button>
+                    Job: {{job.title}}
                 </h3>
+            </div>
+            <div class="col-6">
+                <button class="pull-right cal-button" color="primary" (click)="scheduler(job)"><i
+                        class="far fa-calendar-alt"></i></button>
             </div>
         </div>
         <div class="row m-0">
             <div class="col-12 p-0">
-                <div class="card pl-0">
+                <div class="card">
                     <div class="card-block">
-                        <div class="row mt-4 mb-2">
+                        <div class="row mx-0 mt-4 mb-2">
                             <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
                                 <!-- <mat-list>
                                     <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> College :
@@ -28,23 +32,41 @@
  
                                 </mat-list> -->
                                 <div class="learner_detail_box">
-                                    <mat-list align='center'>
-                                        <mat-list-item class="text-center"
-                                            *ngFor='let oneInstructor of job.instructors'>
-                                            <div class="inst_pic"
-                                                *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path">
-                                                <img src="{{oneInstructor.profilePic.path}}">
+                                    <mat-list>
+
+                                        <mat-list-item><i class="fas text-primary fas fa-user-tie"></i>
+                                            <div class="learner_title ml-3">
+                                                Instructors
+                                                <ul class="inst_list">
+                                                    <li *ngFor='let oneInstructor of job.instructors'>
+                                                        <a routerLink="/instructors/{{oneInstructor._id}}"
+                                                            title=" {{oneInstructor.name}}">
+                                                            <div class="inst_pic"
+                                                                *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path">
+                                                                <img src="{{oneInstructor.profilePic.path}}">
+                                                            </div>
+
+                                                            <div class="inst_pic"
+                                                                *ngIf="oneInstructor && !oneInstructor.profilePic">
+                                                                <img src="../../../assets/Avatar.png">
+                                                            </div>
+                                                        </a>
+
+
+                                                        <!-- <span *ngIf="job && job.instructors">
+                                                               </span> -->
+
+                                                    </li>
+                                                </ul>
                                             </div>
-
-                                            <div class="inst_pic" *ngIf="oneInstructor && !oneInstructor.profilePic">
-                                                <img src="../../../assets/default-user.jpg">
-                                            </div>
+                                        </mat-list-item>
 
 
-                                            <a routerLink="/instructors/{{oneInstructor._id}}">
-                                                <span *ngIf="job && job.instructors">
-                                                    {{oneInstructor.name}}</span>
-                                            </a>
+
+
+                                        <!-- <i class="fas text-primary fa-fw fa-building"></i> -->
+                                        <mat-list-item>
+
                                         </mat-list-item>
                                     </mat-list>
                                 </div>

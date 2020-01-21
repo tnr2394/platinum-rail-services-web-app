@@ -100,7 +100,7 @@ export class AssignmentStatusComponent implements OnInit {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
       this.learnerLength = this.learner.length;
-      console.log('Learner List Length',  this.learnerLength);
+      console.log('Learner List:::::::::::::::::::::::',this.learner);
     });
   }
 }

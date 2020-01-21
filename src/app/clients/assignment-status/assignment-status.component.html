@@ -17,7 +17,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let learn of learner">
-                        <td class="learner-name"> {{learn.learnerName}} </td>
+                        <a routerLink="/learner/{{learn._id}}">
+                            <td class="learner-name"> {{learn.learnerName}} </td>
+                        </a>
                     </tr>
                 </tbody>
             </table>

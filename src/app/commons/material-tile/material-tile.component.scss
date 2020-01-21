@@ -1,12 +1,12 @@
 .fab-item {
   border-radius: 100%;
   padding-top: 1px;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   text-align: center;
   color: white;
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
   transform: translate3d(0, 0, 0);
   transition: transform ease-out 200ms;
 }
@@ -35,4 +35,10 @@
 .fa-readme:before {
   content: "\f4d5";
   margin-left: -2px;
+}
+.fa-book-reader{
+  font-size: 25px;
+}
+.fa-clipboard-list{
+  font-size: 25px;
 }

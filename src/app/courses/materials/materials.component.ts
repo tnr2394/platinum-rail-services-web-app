@@ -53,6 +53,15 @@ export class MaterialsComponent implements OnInit {
   selectedCheckbox: Boolean;
   view: Boolean = false;
   loading: Boolean;
+
+  typeArray = [];
+
+  assignmentStatus = [
+    { id: '0', display: 'Assignment', status: 'Assignment', checked: false },
+    { id: '1', display: 'Reading', status: 'Reading', checked: false },
+  ];
+
+
   // getMaterialsFromComponent;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -175,6 +184,37 @@ export class MaterialsComponent implements OnInit {
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
   }
+
+  selectedStatus(event, index, status) {
+    console.log("event", event, "index", index, "status", status);
+    if (event == true) {
+      this.typeArray.push(status);
+
+    }
+    else if (event == false) {
+      const index = this.typeArray.indexOf(status);
+      if (index > -1) {
+        this.typeArray.splice(index, 1);
+      }
+    }
+    this.filterUsingStatus(this.typeArray);
+  }
+
+
+  filterUsingStatus(assignment) {
+    if (!assignment.length) {
+      this.dataSource = new MatTableDataSource(this.materials);
+    } else {
+      const finalarray = [];
+      this.materials.forEach((e1) => assignment.forEach((e2) => {
+        if (e1.type == e2) {
+          finalarray.push(e1)
+        }
+      }));
+      this.updateData(finalarray);
+    }
+  }
+
 
 
 

@@ -76,26 +76,73 @@
 .legend .requestforresubmission { background-color: #ff9800c4; }
 .legend .completed { background-color:#64FE00; }
 
-
-.inst_pic {
-    position: relative;
-    margin-right: 10px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    overflow: hidden;
-    img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        min-width: 100%;
-        max-width: 100%;
-        min-height: 100%;
-        max-height: 100%;
-        object-fit: cover;
+.inst_list{
+    padding: 0;
+    margin: 0;
+    display: table;
+    li{
+        display: inline-block;
+        margin-left: -8px;
+        float: left;
+        &:first-child{
+            margin: 0;
+        }
+    }
+    &:hover{
+        li{
+            opacity: 0.6;
+            &:hover{
+                opacity: 1;
+                position: relative;
+                z-index: 1;
+            }
+        }
+    }
+    .inst_pic {
+        position: relative;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid #fff;
+        box-shadow: 0px 0px 3px #000;
+        img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-width: 100%;
+            max-width: 100%;
+            min-height: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+        &:hover {
+            img{
+                transform: scale(1.15);
+            }
+        }
     }
 }
 
+.cdk-overlay-pane{
+    width: 100% !important;
+  }
 
+  .cal-button
+    {
+        background-color: unset;
+        outline: none;
+        border: none;
+        color: white;
+        i{
+            font-size: 20px;
+            background-color: #4385f4;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+        }
+    }
+  
