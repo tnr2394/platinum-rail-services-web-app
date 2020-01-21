@@ -1,0 +1,7 @@
+<h2 mat-dialog-title class="mat-dialog-title light-underline pb-2"><i class="fas fa-trash"></i> Delete</h2>
+<mat-dialog-content>Are you sure you want to delete the {{data}}?</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="confirm('no')">No</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button (click)="confirm('yes')">Yes</button>
+</mat-dialog-actions>

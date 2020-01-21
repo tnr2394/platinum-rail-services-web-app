@@ -93,6 +93,7 @@ import { CreateFolderModalComponent } from './folder/create-folder-modal/create-
 import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
 import { ShareFileModalComponent } from './folder/share-file-modal/share-file-modal.component';
 import { ContextMenuModule } from 'ngx-contextmenu';
+import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/delete-confirm-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,6 +154,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
     CreateFolderModalComponent,
     SingleFolderComponent,
     ShareFileModalComponent,
+    DeleteConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -188,7 +190,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
     FilterPipeModule,
     ContextMenuModule.forRoot()
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
