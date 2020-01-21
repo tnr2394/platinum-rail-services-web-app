@@ -206,6 +206,11 @@
     <mat-card style="min-width: 100%;">
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
 
+            <div class="col-md-12">
+                <h3>Assignments</h3>
+            </div>
+
+
             <!-- Serach Bar -->
             <div class="col-md-6">
                 <mat-form-field class="example-full-width">
@@ -228,22 +233,16 @@
 
                     <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="Learner" class="learner_name_submission">
-                            <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
-                                mat-sort-header="name"> Name
-                            </th>
-                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
-                                *matCellDef="let learner">
-                                <span class="learner pl-4"><i
-                                        class="fas fa-user-graduate fa-2x mr-2"></i>{{learnerName}}</span>
-                            </td>
-                        </ng-container>
+
 
                         <!--Assignment Column -->
                         <ng-container matColumnDef="Assignment">
                             <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment</th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let allotment; let i = index;">
+
+                                <a class="btn {{getRandomColorClass(i)}} text-white fab-item ">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </a>
                                 Unit- {{allotment.assignment.unitNo}} Assignment-{{allotment.assignment.assignmentNo}}
                             </td>
                         </ng-container>
@@ -265,7 +264,7 @@
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let allotment; let i = index;">
                                 <a mat-button class="text-primary bold"
-                                    routerLink="/submission/learner/{{allotment._id}}">
+                                    routerLink="/learner/allotment/{{allotment._id}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>

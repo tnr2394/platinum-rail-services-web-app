@@ -332,3 +332,21 @@
       padding:0px 15px;
     }
   }
+
+  .fab-item {
+    border-radius: 100%;
+    padding-top: 1px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    transform: translate3d(0, 0, 0);
+    transition: transform ease-out 200ms;
+  }
+
+  .fa-clipboard-list{
+    font-size: 25px;
+  }
+  
