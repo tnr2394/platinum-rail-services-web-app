@@ -112,57 +112,19 @@ export class SubmissionComponent implements OnInit {
     console.log("event", event, "index", index, "status", status);
     if (event == true) {
       this.sepArray.push(status);
-      // console.log("this.datasource", this.dataSource.data);
-      // this.dataSource.data.forEach(obj => {
-      //   if (obj.assignmentStatus == status) {
-      //     this.filteredLearners.push(obj)
-      //   }
-      // })
-      // this.dataSource = new MatTableDataSource(this.filteredLearners);
     }
-    // console.log("Filtered LEARNERS", this.filteredLearners);
 
     else if (event == false) {
-      // this.sepArray.pop(status);
-
       const index = this.sepArray.indexOf(status);
       if (index > -1) {
         this.sepArray.splice(index, 1);
       }
-
-
-      // if (this.filteredLearners.length < 1) {
-      //   this.dataSource = new MatTableDataSource(this.initialData);
-      // }
-      // else {
-      //   for (var i = 0; i < this.filteredLearners.length; i++) {
-      //     console.log("in for loop", i);
-      //     if (this.filteredLearners[i].assignmentStatus == status) {
-      //       this.filteredLearners.splice(i, 1)
-      //       i--;
-      //     }
-      //     if (this.filteredLearners.length < 1) {
-      //       this.dataSource = new MatTableDataSource(this.initialData);
-      //     }
-      //     else {
-      //       this.dataSource = new MatTableDataSource(this.filteredLearners);
-      //     }
-      //     console.log("filteredLearners.length", this.filteredLearners.length);
-      //   }
-
-      // }
     }
-
-    console.log('Final::::::Array::::::::::', this.sepArray);
-    console.log("Filtered LEARNERS", this.filteredLearners);
-
     this.filterUsingStatus(this.sepArray);
   }
 
 
   filterUsingStatus(assignment) {
-
-    console.log('Ass::::::::::::', assignment, this.learners);
     if (!assignment.length) {
       this.dataSource = new MatTableDataSource(this.learners);
     } else {

@@ -4,6 +4,8 @@ import { LearnerService } from '../../services/learner.service';
 import { JobService } from '../../services/job.service';
 import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
@@ -34,6 +36,10 @@ export class LearnerDashboardComponent implements OnInit {
   currentUser;
   userFilter: any = { title: '' };
 
+  displayedColumns: string[] = ['Learner', 'Assignment', 'Status', 'View'];
+  dataSource: MatTableDataSource<any>;
+  paginator: MatPaginator;
+
   constructor(private filterPipe: FilterPipe, private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
@@ -60,6 +66,7 @@ export class LearnerDashboardComponent implements OnInit {
           this.assignments = this.learner.allotments;
         })
         console.log("ASSIGNMENTS", this.assignments)
+        this.dataSource = new MatTableDataSource(this.assignments);
         this.loading = false;
         // console.log("ASSIGNMENTS", this.assignments.pop().assignment.title)
         if (this.learner.job == null) {
