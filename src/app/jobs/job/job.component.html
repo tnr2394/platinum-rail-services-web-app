@@ -8,7 +8,8 @@
         <div class="row m-0">
             <div>
                 <h3 class="page-title pl-0">
-                   Job: {{job.title}} <button mat-mini-fab color="primary" (click)="scheduler()"><i class="far fa-calendar-alt"></i></button>
+                    Job: {{job.title}} <button mat-mini-fab color="primary" (click)="scheduler()"><i
+                            class="far fa-calendar-alt"></i></button>
                 </h3>
             </div>
         </div>
@@ -28,25 +29,23 @@
  
                                 </mat-list> -->
                                 <div class="learner_detail_box">
-                                    <mat-list class="" role="list">
-                                        <mat-list-item role="listitem" class="p-0">
-
-                                            <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
-                                            <div class="learner_title">
-                                                Instructor
-                                                <p *ngFor="let instructor of job.instructors"> 
-                                                    <a *ngIf='currentUser.userRole == "admin" || currentUser.userRole == "instructor";else elseBlock' routerLink="/instructors/{{instructor._id}}">
-                                                        {{instructor.name}}
-                                                    </a>
-                                                    <ng-template #elseBlock>{{instructor.name}}</ng-template>
-                                                </p>
-                                                <!-- <a routerLink="/instructors/{{job.instructors._id}}">
-                                                <p *ngFor="let instructor of job.instructors">
-                                                    {{instructor.name}}
-                                                </p>
-                                                </a> -->
+                                    <mat-list align='center'>
+                                        <mat-list-item class="text-center"
+                                            *ngFor='let oneInstructor of job.instructors'>
+                                            <div class="inst_pic"
+                                                *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path">
+                                                <img src="{{oneInstructor.profilePic.path}}">
                                             </div>
 
+                                            <div class="inst_pic" *ngIf="oneInstructor && !oneInstructor.profilePic">
+                                                <img src="../../../assets/default-user.jpg">
+                                            </div>
+
+
+                                            <a routerLink="/instructors/{{oneInstructor._id}}">
+                                                <span *ngIf="job && job.instructors">
+                                                    {{oneInstructor.name}}</span>
+                                            </a>
                                         </mat-list-item>
                                     </mat-list>
                                 </div>
@@ -57,12 +56,12 @@
                                         <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
                                             <div class="learner_title">
                                                 College
-                                                <p *ngIf="job && job.client"> 
-                                                <a *ngIf='currentUser.userRole == "admin" || currentUser.userRole == "client";else elseBlock'
-                                                    routerLink="/client/{{job.client._id}}">
-                                                    {{job.client.name}}
-                                                </a>
-                                                <ng-template #elseBlock>{{job.client.name}}</ng-template>
+                                                <p *ngIf="job && job.client">
+                                                    <a *ngIf='currentUser.userRole == "admin" || currentUser.userRole == "client";else elseBlock'
+                                                        routerLink="/client/{{job.client._id}}">
+                                                        {{job.client.name}}
+                                                    </a>
+                                                    <ng-template #elseBlock>{{job.client.name}}</ng-template>
                                                 </p>
                                             </div>
                                         </mat-list-item>

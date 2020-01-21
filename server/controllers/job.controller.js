@@ -92,6 +92,20 @@ async function allJobs(query) {
         },
         {
             $lookup: {
+                from: 'files',
+                localField: 'instructors.profilePic',
+                foreignField: '_id',
+                as: 'instructors.profilePic',
+            }
+        },
+        {
+            $unwind: {
+                path: '$instructors.profilePic',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
                 from: 'learners',
                 localField: '_id',
                 foreignField: 'job',

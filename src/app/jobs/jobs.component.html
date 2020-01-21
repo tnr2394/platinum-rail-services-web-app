@@ -89,7 +89,18 @@
                                             <mat-list align='center'>
                                                 <mat-list-item class="text-center"
                                                     *ngFor='let oneInstructor of job.instructors'>
-                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
+                                                    <div class="inst_pic"
+                                                        *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path">
+                                                        <img src="{{oneInstructor.profilePic.path}}">
+                                                    </div>
+
+                                                    <div class="inst_pic"
+                                                        *ngIf="oneInstructor && !oneInstructor.profilePic">
+                                                        <img src="../../../assets/default-user.jpg">
+                                                    </div>
+
+
+
                                                     <a routerLink="/instructors/{{oneInstructor._id}}">
                                                         <span *ngIf="job && job.instructors">
                                                             {{oneInstructor.name}}</span>

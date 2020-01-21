@@ -1,6 +1,6 @@
 .inner_card{
-    min-width: 230px !important;
-    margin-right: 2%;
+    min-width: 250px !important;
+    margin-right: 1.5%;
 }
 .cards{
     display: flex;
@@ -11,11 +11,12 @@
     display: flex;
     min-width: 100%;
 }
-.card-image-2{
+.card-image-2
+{
     background-image: url(../../../assets/instructo3.png);
-    background-repeat:no-repeat;
-    background-size: contain;
-    background-position: left 15px;
+    background-repeat: no-repeat;
+    background-position: 0px 25px;
+    background-size: 55%;
 }
 // mat-card-content{
 //     color: gray;
