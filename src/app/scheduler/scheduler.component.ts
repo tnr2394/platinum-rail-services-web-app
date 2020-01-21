@@ -213,7 +213,7 @@ export class SchedulerComponent implements OnInit {
 
     if (this.router.url.includes('/jobs')) {
       // this.viewDropdown = false;
-      console.log("VIEW VALUE IS HERE");
+      // console.log("VIEW VALUE IS HERE");
       if (this.jobRecieved != undefined) {
         console.log("**********IN if Condition**********");
         this.populateAllJobs([this.jobRecieved])
@@ -254,7 +254,7 @@ export class SchedulerComponent implements OnInit {
 
   makeEventsArrayForJob(job) {
     var dates = job.singleJobDate;
-    console.log("Processing Job with dates = ", dates);
+    console.log("Processing Job with dates = ", job.title);
     var events = [];
     for (var i = 0; i < dates.length; i++) {
       var newObj = this.createEventObject({
@@ -265,6 +265,7 @@ export class SchedulerComponent implements OnInit {
       })
       this.allevents.push(newObj);
       events.push(newObj);
+      this.refresh.next();
       // this.allevents.push(events)
     }
     console.log("Events = ", events);
@@ -296,11 +297,12 @@ export class SchedulerComponent implements OnInit {
   getJobs() {
     this._jobService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
+      this.populateAllJobs(this.jobs)
       // this.jobsForFilter = jobs;
-      this.jobs.forEach(job => {
-        console.log("in for each");
-        this.populateAllJobs([job])
-      })
+      // this.jobs.forEach(job => {
+      //   console.log("in for each");
+      //   this.populateAllJobs([job])
+      // })
       // this.loading = false;
       // this.populateAllJobs(this.jobs);
       // this.selectedJob = jobs[0]
