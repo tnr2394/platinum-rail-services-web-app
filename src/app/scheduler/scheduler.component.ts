@@ -195,7 +195,7 @@ export class SchedulerComponent implements OnInit {
   handleEvent(action: string, event): void {
     console.log("Handling event", { action, event })
     this.modalData = { event, action };
-    this.router.navigate(['/learners/' + event.jobid]);
+    this.router.navigate(['/jobs/' + event.jobid]);
     // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
