@@ -170,7 +170,7 @@ export class SchedulerComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
     private router: Router, private injector: Injector) {
-    if (this.router.url.includes('/jobs')) {
+    if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
       this.test = this.injector.get(MAT_DIALOG_DATA)
       console.log("IN IF CONDITION", this.test);
     }
@@ -211,7 +211,7 @@ export class SchedulerComponent implements OnInit {
     console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
     // console.log("The data recieved is", this.DialogData);
 
-    if (this.router.url.includes('/jobs')) {
+    if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
       // this.viewDropdown = false;
       // console.log("VIEW VALUE IS HERE");
       if (this.jobRecieved != undefined) {

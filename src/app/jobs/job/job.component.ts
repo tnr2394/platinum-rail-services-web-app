@@ -106,9 +106,10 @@ export class JobComponent implements OnInit, AfterViewInit {
     console.log("IN ASSIGNMENT ADDED METHOD");
     this.assignmentStatusComp.ngOnInit();
   }
-  scheduler(){
-    this.openDialog(SchedulerComponent, this.jobForScheduler).subscribe((jobs)=>{
-
+  scheduler(job) {
+    console.log("JOB found in scheculer", job);
+    this.jobForScheduler = job;
+    this.openDialog(SchedulerComponent, this.jobForScheduler).subscribe((jobs) => {
     })
   }
 
