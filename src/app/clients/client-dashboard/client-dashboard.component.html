@@ -9,7 +9,7 @@
         <mat-card class='inner_card card-image-2' *ngFor='let job of jobs' (click)="jobChanged(job);"
             [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}">
             <mat-card-content class="text-right" [ngStyle]="{'color':(job._id == selectedJob._id)?'white':'gray'}">
-                <h5>{{job.location.title}}</h5>
+                <h5 style="font-weight: 600;">{{job.location.title}}</h5>
             </mat-card-content>
             <mat-card-title class="text-right" [ngStyle]="{'color':(job._id == selectedJob._id)?'white':'black'}">
                 {{job.numberOfLearners}}

@@ -11,7 +11,7 @@ import { runInThisContext } from 'vm';
 })
 export class ShareFileModalComponent implements OnInit {
 
-  constructor(public _instructorService: InstructorService, public _clientService: ClientService, 
+  constructor(public _instructorService: InstructorService, public _clientService: ClientService,
     public dialogRef: MatDialogRef<ShareFileModalComponent>) { }
 
   instructors;
@@ -19,13 +19,15 @@ export class ShareFileModalComponent implements OnInit {
   searchText;
   selectedInstructors = [];
   selectedClients = [];
+  loading;
+  filter;
 
   ngOnInit() {
     this.getInstructors();
     this.getClients();
   }
 
-  onInstructorChange(event){
+  onInstructorChange(event) {
     console.log(event);
     if (event.checked == true) {
       this.selectedInstructors.push(event.source.value)
@@ -39,7 +41,7 @@ export class ShareFileModalComponent implements OnInit {
     }
   }
 
-  onClientChange(event){
+  onClientChange(event) {
     console.log(event);
     if (event.checked == true) {
       this.selectedClients.push(event.source.value)
@@ -53,7 +55,7 @@ export class ShareFileModalComponent implements OnInit {
     }
   }
 
-  share(){
+  share() {
     console.log("SELECTED INSTRUCTORS", this.selectedInstructors);
     console.log("SELECTED Clients", this.selectedClients);
     let selectedUsers = {
@@ -65,14 +67,14 @@ export class ShareFileModalComponent implements OnInit {
 
 
 
-// API CALLS
-  getInstructors(){
-    this._instructorService.getInstructors().subscribe(instructors=>{
+  // API CALLS
+  getInstructors() {
+    this._instructorService.getInstructors().subscribe(instructors => {
       this.instructors = instructors;
     });
   }
-  getClients(){
-    this._clientService.getClients().subscribe(clients=>{
+  getClients() {
+    this._clientService.getClients().subscribe(clients => {
       this.clients = clients;
     })
 
