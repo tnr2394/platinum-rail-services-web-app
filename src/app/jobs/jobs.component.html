@@ -143,7 +143,8 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Status" mat-cell
                                             *matCellDef="let job">
-                                            {{job.status}}</td>
+                                            <span style="width: 100px;" class="badge {{job.status}}">
+                                                {{job.status}}</span></td>
                                     </ng-container>
 
                                     <!-- Completion % -->
