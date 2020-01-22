@@ -168,12 +168,14 @@ export class SchedulerComponent implements OnInit {
   dialogref = null;
   allevents = [];
   loading: Boolean = true;
+  displayTitle: Boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
     private router: Router, private injector: Injector) {
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
       this.test = this.injector.get(MAT_DIALOG_DATA)
       this.dialogref = this.injector.get(MatDialogRef)
+      this.displayTitle = false;
       console.log("IN IF CONDITION", this.test);
     }
   }
@@ -200,6 +202,7 @@ export class SchedulerComponent implements OnInit {
     this.router.navigate(['/jobs/' + event.jobid]);
     if(this.dialogref != null){
       this.dialogref.close();
+      this.displayTitle = false;
     }
     // this.modal.open(this.modalContent, { size: 'lg' });
   }

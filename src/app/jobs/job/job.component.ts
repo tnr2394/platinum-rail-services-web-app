@@ -39,10 +39,12 @@ export class JobComponent implements OnInit, AfterViewInit {
   jobForScheduler;
   completionPercent;
   clientDashboard;
+  sendDataToAllocateModal: { learners: any; materials: number; };
   @Input('jobIdFromClient') jobIdFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
+  
   constructor(private router: Router, public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
@@ -101,6 +103,10 @@ export class JobComponent implements OnInit, AfterViewInit {
   loadMaterials(object) {
     this.materials = object.materials;
     console.log('OBJECT', object);
+    this.sendDataToAllocateModal = {
+      learners: this.learners,
+      materials: this.materials.length
+    }
   }
   assignmentAdded() {
     console.log("IN ASSIGNMENT ADDED METHOD");
@@ -109,12 +115,17 @@ export class JobComponent implements OnInit, AfterViewInit {
   scheduler(job) {
     console.log("JOB found in scheculer", job);
     this.jobForScheduler = job;
-    this.openDialog(SchedulerComponent, this.jobForScheduler).subscribe((jobs) => {
+    let dialogRefScheduler = this.dialog.open(SchedulerComponent,{
+      data: this.jobForScheduler,
+      // minWidth: '100vw',
+      // height: '100vh'
+      width: '100vh',
+      height: '100vh'
     })
   }
 
   allocateLearners() {
-    this.openDialog(AllocateLearnerModalComponent, this.learners).subscribe((allocatedLearners) => {
+    this.openDialog(AllocateLearnerModalComponent, this.sendDataToAllocateModal).subscribe((allocatedLearners) => {
       if (allocatedLearners == undefined) return
       let learners = [];
       if (allocatedLearners) {
