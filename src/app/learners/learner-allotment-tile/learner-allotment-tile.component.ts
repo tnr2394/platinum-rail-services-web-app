@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileService } from '../../services/file.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LearnerService } from '../../services/learner.service';
 
 import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
@@ -18,13 +19,14 @@ export class LearnerAllotmentTileComponent implements OnInit {
   @Input('learner') learner: any;
 
   assignment;
-  loadingAssignments:Boolean;
+  loadingAssignments: Boolean;
+  assignmentDetail;
   loading: boolean = false;
 
-  constructor(public _fileService: FileService, private activatedRoute: ActivatedRoute, private router: Router) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.assignment = this.router.getCurrentNavigation().extras.state.assignment;
-    });
+  constructor(public _learnerService: LearnerService, public _fileService: FileService, private activatedRoute: ActivatedRoute, private router: Router) {
+    // this.activatedRoute.queryParams.subscribe(params => {
+    //   this.assignment = this.router.getCurrentNavigation().extras.state.assignment;
+    // });
   }
 
   allotmentId;
@@ -39,7 +41,18 @@ export class LearnerAllotmentTileComponent implements OnInit {
     });
     console.log("file tile initialized file= ", this.allotmentId);
     this.getAssignmentFileUsingAllotmentId(this.allotmentId);
+    this.getAllotments(this.allotmentId);
   }
+
+  getAllotments(allotmentId) {
+    console.log('Get Allotments Called', allotmentId);
+    this._learnerService.getAllotedLearnerFilesUsingAllotmentId(allotmentId).subscribe(data => {
+      console.log("RECEIVED Allotment = ", data[0])
+      this.assignmentDetail = data[0];
+    });
+  }
+
+
   getAssignmentFileUsingAllotmentId(allotmentId) {
     console.log("getAssignmentFileUsingAllotmentId= ", allotmentId);
     this._fileService.getAssignmentFileUsingAllotmentId(allotmentId).subscribe(data => {

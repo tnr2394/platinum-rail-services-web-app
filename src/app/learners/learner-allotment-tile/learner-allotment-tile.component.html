@@ -1,4 +1,6 @@
-<h3 class="material_main_title">{{assignment.assignment.title}}</h3>
+<h3 class="material_main_title"
+    *ngIf="assignmentDetail && assignmentDetail.assignment && assignmentDetail.assignment.title">
+    {{assignmentDetail.assignment.title}}</h3>
 
 <mat-card class="material_main_card">
     <div class="row m-0">
@@ -8,7 +10,7 @@
             Downloading... <i class="fas fa-refresh fa-spin"></i>
         </h4>
     </div>
-     
+
 
     <div class="row" *ngIf="fileList.length > 0">
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList">
@@ -38,7 +40,7 @@
         <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
         </h3>
     </mat-card>
-   
+
 
 
 </mat-card>
