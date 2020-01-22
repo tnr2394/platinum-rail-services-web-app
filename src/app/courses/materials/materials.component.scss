@@ -103,3 +103,13 @@
 .course_t_span{
     position: relative;
 }
+mat-form-field{
+    width: 100% !important;
+}
+.material_flex_paginator{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

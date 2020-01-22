@@ -3,8 +3,7 @@
     <h3 class="page-title p-0">Jobs</h3>
 </div>
 
-<div class='cards'>
-
+<div class='cards mb-3'>
     <mat-card class='outer_card'>
         <mat-card class='inner_card card-image-2' *ngFor='let job of jobs' (click)="jobChanged(job);"
             [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}">

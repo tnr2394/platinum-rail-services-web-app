@@ -26,24 +26,27 @@
                         </div>
                     </div>
                     <div class="row table_search">
-                        <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                        <div class="col-6 material_flex_paginator">
+                        <mat-form-field class="example-full-width">
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
-                        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                        <div class="row mt-1">
+                            <div *ngFor='let status of assignmentStatus;let i = index'>
+                                <div class="col-md-2">
+                                    <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                                        (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                        {{status.display}}
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
 
                     <!-- Select Assignment Status -->
-                    <div class="row">
-                        <div *ngFor='let status of assignmentStatus;let i = index'>
-                            <div class="col-md-2">
-                                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                                    (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
-                                    {{status.display}}
-                                </mat-checkbox>
-                            </div>
-                        </div>
-                    </div>
+                    
 
 
                     <div class="row material_tile_table_row" *ngIf="materials.length > 0">
