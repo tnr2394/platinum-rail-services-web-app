@@ -45,7 +45,7 @@
             </div>
 
             <!-- Select Assignment Status -->
-            <div class="row">
+            <div class="row justify-content-between w-100">
                 <div *ngFor='let status of assignmentStatus;let i = index'>
                     <div class="col-md-2">
                         <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'

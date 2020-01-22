@@ -119,7 +119,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       data: this.jobForScheduler,
       // minWidth: '100vw',
       // height: '100vh'
-      width: '100vh',
+      panelClass: 'customScheduler',
+      width: '100%',
+      // margin: 'auto',
       height: '100vh'
     })
   }
