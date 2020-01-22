@@ -8,6 +8,7 @@ const lodash = require('lodash');
 const allotmentModel = require('../models/allotment.model');
 const mailService = require('../services/mail.service');
 const fileDAO = require('./file.dao');
+const learnerDAO = require('./learner.dao');
 
 var allotment = {};
 
@@ -47,9 +48,25 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
         else {
             console.log("Allotment Updated Successfully =  ", allotment, q);
 
+            let emailArrays = [];
+
+
+
             allotmentUsingAllotmentId(allotmentId).then((res) => {
+
+                if (res.learner) {
+                    emailArrays.push(res.learner.learnerEmail)
+                }
+
+                lodash.forEach(res.instructors, function (single) {
+                    emailArrays.push(single.email);
+                })
+
+
+                console.log('Final Email Arrays::::::::::', emailArrays);
+
                 const defaultPasswordEmailoptions = {
-                    to: res.learner.learnerEmail,
+                    to: emailArrays,
                     subject: `Submission Status:` + res.assignment.assignmentStatus,
                     template: 'submission-instructor'
                 };
@@ -69,6 +86,27 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
     });
     return q.promise;
 }
+
+
+// const sendMailInstructorsForAllotmentUpdate = (learnerId) => {
+
+//     return new Promise((resolve, reject) => {
+//         console.log('LearnerId::::::::::::::::::::::', learnerId);
+
+//         const query = { _id: learnerId }
+
+//         learnerDAO.getLearnersByQuery(query).then((response) => {
+
+//             console.log('Response::::::::::::::', JSON.stringify(response));
+
+//         }).catch((error) => {
+//             console.log('Error::::::::::::::::::::', error);
+//         })
+
+//     })
+
+
+// }
 
 allotment.getAllotment = function (allotemntId) {
     console.log("Get Allotemnts in allotemnt DAO", allotemntId);

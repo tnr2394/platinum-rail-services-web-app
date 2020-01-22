@@ -114,6 +114,13 @@ export class LearnerDashboardComponent implements OnInit {
     return this.bgColors[rand];
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   showMaterialFiles(material) {
     let navigationExtras: NavigationExtras = {
       state: {

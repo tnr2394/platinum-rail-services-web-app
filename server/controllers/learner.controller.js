@@ -435,7 +435,6 @@ learnerController.updateAllotment = function (req, res, next) {
         }, err => {
             return res.status(500).send({ err })
         })
-
 }
 
 learnerController.allotmentUsingAssignmentId = function (req, res, next) {
