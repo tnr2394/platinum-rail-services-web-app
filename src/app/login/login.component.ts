@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   errmsg: string = null;
   show: boolean;
   pwd: boolean;
+  returnUrl;
 
 
   constructor(public route: Router, public dialog: MatDialog, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit {
     this.router.params.subscribe(param => {
       this.activeRouteName = param.user;
     });
+
+    this.returnUrl = this.router.snapshot.queryParams['returnUrl'] || '/';
 
     $(".toggle-password").click(function () {
       $(this).toggleClass("fa-eye fa-eye-slash");
@@ -96,6 +99,7 @@ export class LoginComponent implements OnInit {
       console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully", data);
+        this.route.navigateByUrl(this.returnUrl);
       }, err => {
         console.log('error while login', err);
         this.errmsg = err.error.message;

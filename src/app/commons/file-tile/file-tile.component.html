@@ -7,7 +7,7 @@
             </div>
             <div class="col-10">
                 <div class="row text-left">
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 file_title">
                         <b style="
                         font-size: 13px;" title="{{file.title}}">{{file.title}}</b>
                         <!-- <b>{{file}}</b> -->
@@ -16,14 +16,16 @@
                     <!-- <div class="col-12"> -->
                     <div class='col-xl-6'>
 
-                        <span class="date" style='font-size: medium;'> {{ file.createdAt | date: 'shortDate' }}</span>
+                        <span class="date" title="uploaded At" style='font-size: medium;'>
+                            {{ file.createdAt | date: 'shortDate' }}</span>
 
-                        <a href="{{file.path}}" mat-button class="text-primary" download>
+                        <a href="{{file.path}}" mat-button class="text-primary" title="download" download>
                             <i class="fas fa-cloud-download-alt"
                                 style="font-size: large;color:#3CC480;height:21px;width:30px;"></i>
                         </a>
 
-                        <button (click)="delete()" style='background-color: transparent; border: transparent;'>
+                        <button (click)="delete()" title="Delete"
+                            style='background-color: transparent; border: transparent;'>
                             <i class="fas fa-trash" style='color:#FF6565;'></i>
                         </button>
                     </div>
