@@ -52,7 +52,7 @@ function sendMail(options, data, attach, callback) {
 
     //Fill default options
     if (!options.from) {
-        options.from = '"platinum rail services"<no-reply@platinum.com>';
+        options.from = '"PRS"<no-reply@platinum.com>';
     }
 
     if (!options.type) {
