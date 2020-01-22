@@ -94,6 +94,7 @@ import { SingleFolderComponent } from './folder/single-folder/single-folder.comp
 import { ShareFileModalComponent } from './folder/share-file-modal/share-file-modal.component';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/delete-confirm-modal.component';
+import { ProfileComponent } from './commons/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,6 +156,7 @@ import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/dele
     SingleFolderComponent,
     ShareFileModalComponent,
     DeleteConfirmModalComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,42 @@
+<div class="outer_div">
+<div class="col-4">
+<app-profile></app-profile>
+</div>
+<div class="col-8">
 <div *ngIf="loading">
     <h1 class="text-center text-info mt-5">
         Loading... <i class="fas fa-refresh fa-spin"></i>
     </h1>
 </div>
-
+<div class="rows" style="display: flex;float: right; margin-bottom: 30px;">
+<mat-card>
+    <h1>EXAM 1</h1>
+    <h3>Pass</h3>
+</mat-card>
+<mat-card>
+    <h1>EXAM 2</h1>
+    <h3>Fail</h3>
+</mat-card>
+</div>
 <!-- <h1 class="learner_title">Hello {{learnerName}}!</h1>
 
 <h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3> -->
 
-<div class="card profile_card">
+
+<!-- CARD IN PROFILE COMP -->
+
+<!-- <div class="card profile_card"> -->
 
     <!-- <div class="profile_picture_area"> -->
-    <div *ngIf="profilePath" class="profile_image">
+    <!-- <div *ngIf="profilePath" class="profile_image">
         <img src="{{profilePath.path}}">
     </div>
 
     <div *ngIf="!profilePath" class="profile_image">
         <img src="../../../assets/default-user.jpg">
-    </div>
+    </div> -->
     <!-- </div> -->
-    <div class="card-block">
+    <!-- <div class="card-block">
         <div class="row instructor_profile_card">
             <div class="col-sm-3 text-center justify-content-center">
                 <h4 *ngIf="learnerName">
@@ -39,11 +56,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
-<div class="row" *ngIf="job">
-    <div class="col-12">
+<!-- <div class="row" *ngIf="job">
+    <div class="col-12"> -->
         <!-- <div class="row m-0">
             <div>
                 <h3 class="page-title pl-0">
@@ -51,7 +68,7 @@
                 </h3>
             </div>
         </div> -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12">
                 <div class="card job_card">
                     <div class="card-block">
@@ -115,7 +132,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -288,4 +305,6 @@
             </div>
         </div>
     </mat-card>
+</div>
+<!-- </div> -->
 </div>
