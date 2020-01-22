@@ -13,6 +13,7 @@ export class AllocateLearnerModalComponent implements OnInit {
   loading: boolean;
   filter: any;
   searchText;
+  btnDisabled: Boolean = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any, public _learnerSerice: LearnerService,
     public dialogRef: MatDialogRef<AllocateLearnerModalComponent>, public formBuilder: FormBuilder) { }
@@ -23,9 +24,10 @@ export class AllocateLearnerModalComponent implements OnInit {
   //  learnersForm;
   ngOnInit() {
     console.log("This . dialogData", this.DialogData)
-    this.learners = this.DialogData;
-
-
+    this.learners = this.DialogData.learners;
+    if(this.DialogData.materials > 0){
+      this.btnDisabled = false;
+    }
     this.isChecked()
   }
   isChecked() {
