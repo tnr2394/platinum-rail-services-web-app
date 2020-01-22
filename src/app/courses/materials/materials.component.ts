@@ -38,7 +38,6 @@ export class MaterialsComponent implements OnInit {
   length;
   pageSizeOptions: number[] = [10, 25, 100];
   course;
-  // displayedColumns: string[] = ['title','duration','actions'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
@@ -54,11 +53,11 @@ export class MaterialsComponent implements OnInit {
   view: Boolean = false;
   loading: Boolean;
 
-  typeArray = [];
+  typeArray = ['Assignment', 'Reading'];
 
   assignmentStatus = [
-    { id: '0', display: 'Assignment', status: 'Assignment', checked: false },
-    { id: '1', display: 'Reading', status: 'Reading', checked: false },
+    { id: '0', display: 'Assignment', status: 'Assignment', checked: true },
+    { id: '1', display: 'Reading', status: 'Reading', checked: true },
   ];
 
 
@@ -131,16 +130,9 @@ export class MaterialsComponent implements OnInit {
     this.loading = true;
     console.log("this.activatedRoute", this.activatedRoute.params)
     this.activatedRoute.params.subscribe(params => {
-      // console.log('----------COURSEID ON INIT IS----------',params['id']);
-      // this.courseId = params['id'];
-      // console.log("this.courseID", this.courseId);
       if (params['courseId'] != undefined) {
         this.getMaterials(params['courseId']);
       }
-      // if (this.courseId) {
-      //   this.getMaterials(params['courseId']);
-      // }
-
     });
 
     if (this.router.url.includes('/materials')) {
@@ -153,8 +145,6 @@ export class MaterialsComponent implements OnInit {
       console.log("CourseId  ", this.courseId);
       this.getMaterials(this.courseId);
     }
-    console.log("Materials onInit", this.materials);
-    // this.allMaterials = this.dataSource.connect();
   }
   onMaterialSelection(event) {
     if (event.checked == true) {
@@ -301,14 +291,10 @@ export class MaterialsComponent implements OnInit {
       this.course = courses.pop();
       this.materials = this.course.materials;
 
-      console.log('This material----------------->>>>>>>>>>>', this.materials, this.course);
+      console.log('This material:::', this.materials, this.course);
       this.loading = false;
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;
-      // console.log("++++++++++", this.materials);    
-      // this.materials = this.dataSource.connect()///;
-      // console.log("==========", this.materials);
-
       this.updateData(this.materials)
     });
   }
