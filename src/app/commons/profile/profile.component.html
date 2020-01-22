@@ -1,0 +1,57 @@
+<div>
+<div *ngIf="profilePath" class="profile_image">
+    <img src="{{profilePath.path}}">
+</div>
+
+<div *ngIf="!profilePath" class="profile_image">
+    <img src="../../../assets/default-user.jpg">
+</div>
+
+<h4>Personal Details</h4>
+<mat-divider></mat-divider>
+<mat-card class="outer_card">
+    <div>
+        <div>
+            <!-- class="text-center justify-content-center" -->
+            <i class="fas fa-user-tie fa-fw text-primary mr-1 fa-3x"></i> {{currentUser.name}}
+        </div>
+
+        <div>
+             <i class="fas fa-envelope text-info mr-1 fa-3x"></i> {{currentUser.email}}
+        </div>
+
+        <div>
+             <i class="fas fa-mobile-alt text-warning mr-1 fa-3x"></i> {{currentUser.mobile}}
+        </div>
+    </div>
+</mat-card>
+
+<h4 class="mt-3">Job Details</h4>
+<mat-divider></mat-divider>
+<mat-card class="outer_card">
+    <div>
+        <div>
+            <i class="fas text-danger fa-fw fa-user-tie mr-1 text-left fa-3x"></i>
+            <b>Instructor</b><span *ngFor="let instructor of instructor"> {{instructor.name}} </span>
+        </div>
+
+        <div>
+        <i class="fas text-primary fa-fw fa-building text-left fa-3x"></i>
+            <b>College</b> {{client}}
+        </div>
+
+        <div>
+            <i class="fas text-warning fa-fw fa-map-marker-alt text-left fa-3x"></i>
+            <b>Location</b> {{location}}
+        </div>
+        <div>
+            <i class="fas text-success fa-fw fa-book text-left fa-3x"></i>
+            <b>Course</b> {{course}}
+        </div>
+        <!-- <div>
+            <i class="far fa-calendar-alt text-warning fa-3x"></i>
+            Date
+        </div> -->
+    </div>
+</mat-card>
+</div>

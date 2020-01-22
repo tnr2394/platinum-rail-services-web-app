@@ -25,6 +25,7 @@ import { LearnerAllotmentTileComponent } from './learners/learner-allotment-tile
 import { SingleInstructorComponent } from './instructors/single-instructor/single-instructor.component';
 import { MyDocumentsComponent } from './my-documents/my-documents.component';
 import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
+import { ProfileComponent } from './commons/profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -162,6 +163,10 @@ const routes: Routes = [
 	{
 		path: 'single-folder/:id',
 		component: SingleFolderComponent
+	},
+	{
+		path: 'profile',
+		component: ProfileComponent
 	}
 ];
 
