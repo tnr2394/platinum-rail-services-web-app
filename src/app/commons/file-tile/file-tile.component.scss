@@ -130,5 +130,19 @@
     }
     
 }
-
+.file_title{
+    b{
+        height: 18px;
+        width:190px;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        margin: 0 5px 0 5px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #000;
+    }
+}
 

@@ -48,8 +48,9 @@ export class SubmissionComponent implements OnInit {
   model = { optionOne: false, optionTwo: false, optionThree: false }
   formChangesSubscription;
   filteredLearners = [];
-
   sepArray = [];
+  bgColors = [];
+  lastColor;
 
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
@@ -75,6 +76,7 @@ export class SubmissionComponent implements OnInit {
 
   constructor(private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
+    this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -91,12 +93,10 @@ export class SubmissionComponent implements OnInit {
   ngOnInit() {
     this.loadingJobs = true;
     this.getJobs();
-    // this.getMaterials();
   }
 
   jobChanged(event) {
     this.loadingAssignments = true;
-    // this.learners = [];
     let emptyList = [];
     this.dataSource = new MatTableDataSource(emptyList);
     this.selectedJob = event.value._id;
@@ -143,11 +143,16 @@ export class SubmissionComponent implements OnInit {
     console.log('this.selectedAssignment', this.selectedAssignment);
     this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
     this.loadingLearners = true;
+  }
 
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
   }
 
   goToInstructorsSubmission(learner) {
-    console.log("LEARNER", learner)
     let NavigationExtras: NavigationExtras = {
       state: {
         learner: learner,

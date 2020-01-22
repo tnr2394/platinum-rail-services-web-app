@@ -94,8 +94,9 @@
                                 mat-sort-header="name"> Name
                             </th>
                             <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
-                                *matCellDef="let learner">
-                                <span class="learner pl-4"><i class="fas fa-user-graduate fa-2x mr-2"></i><a
+                                *matCellDef="let learner;let i = index;">
+                                <span class="learner pl-4"><i
+                                        class="fas fa-user-graduate fa-2x mr-2 {{getRandomColorClass(i)}}"></i><a
                                         routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
                             </td>
                         </ng-container>
