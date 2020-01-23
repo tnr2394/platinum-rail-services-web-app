@@ -39,6 +39,7 @@ export class LearnersComponent implements OnInit {
   @Input('jo') isActive: Boolean;
   @Input('jobId') jobIdFromClient;
   @Output() getLearnersFromComponent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() learnerAdded: EventEmitter<any> = new EventEmitter<any>();
 
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
@@ -111,6 +112,7 @@ export class LearnersComponent implements OnInit {
       console.log("learner added in controller = ", learner);
       if (learner == undefined) return;
       this.learners.push(learner);
+      this.learnerAdded.emit({learner})
       this.openSnackBar("Learner Added Successfully", "Ok");
       this.updateData(this.learners);
     }, err => {

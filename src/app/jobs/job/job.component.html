@@ -126,7 +126,7 @@
         <div class="card py-4">
             <app-assignment-status [jobId]='job._id'></app-assignment-status>
         </div>
-        <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
+        <app-learners (getLearnersFromComponent)="loadLearners($event)" (learnerAdded)="addedLearner($event)" [jobId]='job._id'></app-learners>
 
         <!-- <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler> -->
         <div *ngIf="job && !clientDashboard" class="mt-3">

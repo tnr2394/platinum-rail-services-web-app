@@ -43,6 +43,8 @@ export class AssignmentStatusComponent implements OnInit {
     console.log("CALLED FROM MATERIALS");
   }
   ngOnInit() {
+    console.log("ASSIGNMENT STATU CALLED");
+    
     console.log("jobIdFromClient", this.jobIdFromClient);
     
     if (this.jobIdFromClient != undefined){
