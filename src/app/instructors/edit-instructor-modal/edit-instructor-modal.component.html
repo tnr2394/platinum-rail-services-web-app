@@ -4,58 +4,70 @@
 </h1>
 <form #editInstructor (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
-         <div *ngIf="instructorData.profilePic" class="modal_preview">
-             <img src="{{instructorData.profilePic.path}}">
-         </div>
-        <mat-form-field class="example-full-width col-sm-6">
-            <input required matInput name="instructor-name" placeholder="Instructor Name"
-                [(ngModel)]='instructorData.name' cdkFocusInitial>
-        </mat-form-field>
+        <div class="row">
+            <div class="col-md-6">
+                <div *ngIf="instructorData.profilePic" class="modal_preview">
+                    <img src="{{instructorData.profilePic.path}}">
+                </div>
 
-        <mat-form-field class="example-full-width col-sm-6">
-            <input type="email" matInput placeholder="Instructor Email" name="instructor-email"
-                [(ngModel)]='instructorData.email'>
-        </mat-form-field>
+                <label class="input-file-button example-full-width" for="hello"><span>Profile</span>&nbsp;&nbsp;
+                    <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
+                        [(ngModel)]="instructorData.profile" required="required" (change)="addProfileImage($event)">
+                </label>
 
-        <label class="input-file-button example-full-width col-sm-6" for="hello"><span>Profile</span>
-            <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
-                [(ngModel)]="instructorData.profile" required="required" (change)="addProfileImage($event)">
-        </label>
+            </div>
+            <div class="col-md-6 pt-3">
+                <mat-form-field class="example-full-width">
+                    <input required matInput name="instructor-name" placeholder="Instructor Name" [(ngModel)]='instructorData.name'
+                        cdkFocusInitial>
+                </mat-form-field>
+                
+                <mat-form-field class="example-full-width">
+                    <input type="email" matInput placeholder="Instructor Email" name="instructor-email"
+                        [(ngModel)]='instructorData.email'>
+                </mat-form-field>
 
-        <div class="col-md-6" *ngIf="url1">
-            <img [src]="url1" height="50px" width="50px">
+                <div class="" *ngIf="url1">
+                    <img [src]="url1" height="50px" width="50px">
+                </div>
+
+                <mat-form-field class="example-full-width">
+                    <input type="email" matInput placeholder="Instructor Mobile" name="instructor-mobile"
+                        [(ngModel)]='instructorData.mobile'>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input [type]="show ? 'text' : 'password'" matInput placeholder="Instructor Password" name="instructor-password"
+                        [(ngModel)]='instructorData.password'>
+                    <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                        (click)="password()"></span>
+                </mat-form-field>
+                
+               
+            </div>
         </div>
-
-        <mat-form-field class="example-full-width col-sm-6">
-            <input type="email" matInput placeholder="Instructor Mobile" name="instructor-mobile"
-                [(ngModel)]='instructorData.mobile'>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width col-sm-6">
-            <input [type]="show ? 'text' : 'password'" matInput placeholder="Instructor Password"
-                name="instructor-password" [(ngModel)]='instructorData.password'>
-            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="password()"></span>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width col-sm-6">
-            <input [type]="show1 ? 'text' : 'password'" matInput placeholder="Confirm Password" name="confirm-password"
-                [(ngModel)]='instructorData.confirmPassword'>
-            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="cpassword()"></span>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width col-sm-6">
-            <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining"
-                [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled required>
-            <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
-            <mat-datepicker #dateOfJoining disabled="false"></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width col-sm-6">
+        <div class="row flex-row-reverse pt-1">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input [type]="show1 ? 'text' : 'password'" matInput placeholder="Confirm Password" name="confirm-password"
+                        [(ngModel)]='instructorData.confirmPassword'>
+                    <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                        (click)="cpassword()"></span>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="dateOfJoining" [(ngModel)]="instructorData.dateOfJoining"
+                        [ngModelOptions]="{standalone: true}" placeholder="Input disabled" disabled required>
+                    <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
+                    <mat-datepicker #dateOfJoining disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <mat-form-field class="example-full-width col-sm-6">
             <input required matInput name="qulification-title" placeholder="Qulification Title"
                 [(ngModel)]='instructorData.qualificationTitle' cdkFocusInitial>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <!-- <div>
             <tag-input [(ngModel)]="instructorData.competencies" name="instructor-competencies"
@@ -64,7 +76,7 @@
         </div> -->
 
 
-        <mat-form-field class="example-full-width col-sm-6">
+        <!-- <mat-form-field class="example-full-width col-sm-6">
             <input matInput [matDatepicker]="dateOfExpire" [(ngModel)]="instructorData.validUntil"
                 [ngModelOptions]="{standalone: true}" placeholder="Date Of Expire">
             <mat-datepicker-toggle matSuffix [for]="dateOfExpire"></mat-datepicker-toggle>
@@ -74,7 +86,7 @@
         <label class="input-file-button example-full-width col-sm-6" for="hello"><span>Upload Image</span>
             <input type="file" name="certificate-file" accept=".jpeg, .jpg, .png, .gif"
                 [(ngModel)]="instructorData.certificate" required="required" (change)="addFile($event)">
-        </label>
+        </label> -->
 
     </div>
     <div class="row">
