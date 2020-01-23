@@ -33,24 +33,24 @@ export class AssignmentStatusComponent implements OnInit {
   unitArray;
   assignmentLength;
   learnerLength;
-  @Input('jobId') jobIdFromClient; 
+  @Input('jobId') jobIdFromClient;
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
   }
 
-  public test(){
+  public test() {
     console.log("CALLED FROM MATERIALS");
   }
   ngOnInit() {
     console.log("ASSIGNMENT STATU CALLED");
-    
+
     console.log("jobIdFromClient", this.jobIdFromClient);
-    
-    if (this.jobIdFromClient != undefined){
+
+    if (this.jobIdFromClient != undefined) {
       this.jobId = this.jobIdFromClient
     }
-    else{
+    else {
       this.activatedRoute.params.subscribe(params => {
         this.jobId = params['jobid'];
         console.log("Calling getLearners with jobid = ", this.jobId);
@@ -97,12 +97,21 @@ export class AssignmentStatusComponent implements OnInit {
     }
   }
 
+  checkArrayForRouting(assignmentArray, assignment) {
+    let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
+    if (index >= 0) {
+      return assignmentArray[index].allotmentId;
+    } else {
+      return 'Unassigned';
+    }
+  }
+
 
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
       this.learnerLength = this.learner.length;
-      console.log('Learner List:::::::::::::::::::::::',this.learner);
+      console.log('Learner List:::::::::::::::::::::::', this.learner);
     });
   }
 }

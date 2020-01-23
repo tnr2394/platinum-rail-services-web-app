@@ -646,6 +646,7 @@ jobController.assignmentStatusWithLearner = function (req, res) {
             $project: {
                 learnerName: '$name',
                 assignment: {
+                    allotmentId: '$allotments._id',
                     assignmentId: '$allotments.assignment',
                     assignmentStatus: '$allotments.status',
                     allotedAt: '$allotments.createdAt',

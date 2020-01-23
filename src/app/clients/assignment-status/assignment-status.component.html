@@ -38,8 +38,15 @@
                     <tbody>
                         <tr *ngFor="let learn of learner">
                             <td *ngFor="let ass of unit.assignment" class="td-width">
-                                <div title="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
-                                    [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
+                                <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'"
+                                    routerLink="/submission/learner/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
+                                    <div title="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
+                                        [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
+                                </a>
+                                <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
+                                    <div title="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
+                                        [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
+                                </a>
                             </td>
                         </tr>
                     </tbody>

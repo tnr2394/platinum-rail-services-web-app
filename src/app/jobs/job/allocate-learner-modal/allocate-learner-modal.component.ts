@@ -54,21 +54,6 @@ export class AllocateLearnerModalComponent implements OnInit {
     }
   }
 
-  // filter(searchText) {
-  //   console.log('Search Text::::::::', searchText);
-  //   if (!searchText.length) {
-  //     this.learners = this.learnerCopy;
-  //   } else {
-  //     const finalarray = [];
-  //     this.learners.forEach((e1) => {
-  //       console.log('e1.name::::', e1.name);
-  //       if (e1.name == searchText) {
-  //         finalarray.push(e1)
-  //       }
-  //       this.learners = finalarray;
-  //     })
-  //   }
-  // }
 
   filter(filterValue: string) {
     this.learners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
