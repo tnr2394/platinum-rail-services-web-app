@@ -100,6 +100,10 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.learners = object.learners;
     console.log("Learners loaded by event = ", object.learners);
   }
+  addedLearner(object){
+    console.log("Object in addedLearner", object);
+    this.assignmentStatusComp.ngOnInit();
+  }
   loadMaterials(object) {
     this.materials = object.materials;
     console.log('OBJECT', object);
