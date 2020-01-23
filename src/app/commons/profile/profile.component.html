@@ -12,39 +12,39 @@
 <mat-card class="outer_card">
     <div>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
             </div>
-            <div class="col-sm-9 pl-1 personal_info">
+            <div class="col-9 pl-1 personal_info">
                 {{name}}
             </div>
         </div>
 
         <div class="row pt-1">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas fa-envelope text-info mr-1"></i>
             </div>
-            <div class="col-sm-9 pl-1 personal_info">
+            <div class="col-9 pl-1 personal_info">
                 {{email}}
             </div>
              
         </div>
 
         <div *ngIf="mobile" class="row pt-1">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas fa-mobile-alt text-warning mr-1"></i>
             </div>
-            <div class="col-sm-9 pl-1 personal_info">
+            <div class="col-9 pl-1 personal_info">
                 {{mobile}}
             </div>
            
         </div>
         
         <div *ngIf="!mobile" class="row pt-1">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas fa-mobile-alt text-warning mr-1"></i>
             </div>
-            <div class="col-sm-9 pl-1 personal_info">
+            <div class="col-9 pl-1 personal_info">
                 No phone
             </div>
           
@@ -57,39 +57,39 @@
 <mat-card class="outer_card">
     <div>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
             </div>
-           <div class="col-sm-9 pl-1">
+           <div class="col-9 pl-1">
                 <b>Instructor</b>
                 <p><span *ngFor="let instructor of instructor"> {{instructor.name}}</span></p>
            </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas text-primary fa-fw fa-building"></i>
             </div>
-            <div class="col-sm-9 pl-1">
+            <div class="col-9 pl-1">
                 <b>College</b>
                 <p>{{client}}</p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas text-warning fa-fw fa-map-marker-alt"></i>
             </div>
-            <div class="col-sm-9 pl-1">
+            <div class="col-9 pl-1">
                 <b>Location</b>
                 <p>{{location}}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-3">
                 <i class="fas text-success fa-fw fa-book"></i>
             </div>
-            <div class="col-sm-9 pl-1">
+            <div class="col-9 pl-1">
                 <b>Course</b>
                 <p>{{course}}</p>
             </div>

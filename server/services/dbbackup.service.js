@@ -1,114 +1,71 @@
 const fs = require('fs');
 const _ = require('lodash');
-const exec = require('child_process').exec;
 const aws = require('aws-sdk')
+const mongoS3Backup = require('mongo-dump-s3-2');
 
-var dbOptions = {
-    user: '<databaseUsername>',
-    pass: '<databasePassword>',
-    host: 'localhost',
-    port: 27017,
-    database: 'platinum',
-    autoBackup: true,
-    removeOldBackup: true,
-    keepLastDaysBackup: 2,
-    autoBackupPath: '/var/www/html/platinum-db-backup/' // i.e. /var/database-backup/
-};
-/* return date object */
-exports.stringToDate = function (dateString) {
-    return new Date(dateString);
-}
-/* return if variable is empty or not. */
-const empty = (mixedVar) => {
-    var undef, key, i, len;
-    var emptyValues = [undef, null, false, 0, '', '0'];
-    for (i = 0, len = emptyValues.length; i < len; i++) {
-        if (mixedVar === emptyValues[i]) {
-            return true;
-        }
-    }
-    if (typeof mixedVar === 'object') {
-        for (key in mixedVar) {
-            return false;
-        }
-        return true;
-    }
-    return false;
-};
+let currentDate = new Date();
+let newBackupDir = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
 
-// Auto backup script
-const dbAutoBackUp = () => {
-    // check for auto backup is enabled or disabled
-    if (dbOptions.autoBackup == true) {
-        console.log('Inside Function');
-        var date = new Date();
-        var beforeDate, oldBackupDir, oldBackupPath;
-        currentDate = this.stringToDate(date); // Current date
-        var newBackupDir = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
-        var newBackupPath = dbOptions.autoBackupPath + 'mongodump-' + newBackupDir; // New backup path for current backup process
-        // check for remove old backup after keeping # of days given in configuration
-        if (dbOptions.removeOldBackup == true) {
-            beforeDate = _.clone(currentDate);
-            beforeDate.setDate(beforeDate.getDate() - dbOptions.keepLastDaysBackup); // Substract number of days to keep backup and remove old backup
-            oldBackupDir = beforeDate.getFullYear() + '-' + (beforeDate.getMonth() + 1) + '-' + beforeDate.getDate();
-            oldBackupPath = dbOptions.autoBackupPath + 'mongodump-' + oldBackupDir; // old backup(after keeping # of days)
-        }
-        var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --out ' + newBackupPath; // Command for mongodb dump process
 
-        // var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
 
-        console.log('cmd---------------------', cmd);
-        exec(cmd, function (error, stdout, stderr) {
-            if (empty(error)) {
-                // check for remove old backup after keeping # of days given in configuration
-                if (dbOptions.removeOldBackup == true) {
-                    if (fs.existsSync(oldBackupPath)) {
-                        exec("rm -rf " + oldBackupPath, function (err) { });
-                    }
-                }
-            }
-            console.log('Sucess Backup');
-        });
-    }
+const backupClient = mongoS3Backup({
+    bucketName: 'platinum-database-backup',
+    accessKey: '',
+    accessSecret: ''
+});
+
+
+
+function dbAutoBackUp() {
+    backupClient.backupDatabase({ uri: 'mongodb://localhost/' + 'platinum', backupName: 'platinum' + newBackupDir })
+        .then(response => {
+            console.log('Success response ', response)
+            listDirectories(); //show all files in s3
+        })
+        .catch(err => {
+            console.log("Error", err)
+        })
+
 }
 
-// uploadDir('/var/www/html/platinum-db-backup/', settings.s3Bucket.bucket);
-
-
-
-const uploadDir = function (s3Path, bucketName) {
-
-    let s3 = new AWS.S3();
-
-    function walkSync(currentDirPath, callback) {
-        fs.readdirSync(currentDirPath).forEach(function (name) {
-            var filePath = path.join(currentDirPath, name);
-            var stat = fs.statSync(filePath);
-            if (stat.isFile()) {
-                callback(filePath, stat);
-            } else if (stat.isDirectory()) {
-                walkSync(filePath, callback);
-            }
-        });
-    }
-
-    walkSync(s3Path, function (filePath, stat) {
-        let bucketPath = filePath.substring(s3Path.length + 1);
-        let params = { Bucket: bucketName, Key: bucketPath, Body: fs.readFileSync(filePath) };
-        s3.putObject(params, function (err, data) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log('Successfully uploaded ' + bucketPath + ' to ' + bucketName);
-            }
-        });
-
+function listDirectories() {
+    const s3params = {
+        Bucket: 'platinum-database-backup',
+        MaxKeys: 20,
+        Delimiter: '/',
+    };
+    s3.listObjectsV2(s3params, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        for (let i = 0; i < data.Contents.length; i++) {
+            dates[i] = data.Contents[i].LastModified
+            fileName[i] = data.Contents[i].Key
+        }
+        getValidDB(dates) //remove files created before 7 days
     });
 };
 
+function getValidDB(dates) {
+    var dateOffset = (24 * 60 * 60 * 1000) * 7; //7 days
+    var expectedDate = new Date();
+    expectedDate.setTime(expectedDate.getTime() - dateOffset);
 
+    for (let i = 0; i < dates.length; i++) {
+        //check if file is old or not
+        if (dates[i].toISOString().split('T')[0] <= expectedDate.toISOString().split('T')[0]) {
+            console.log(true);
+            var params = {
+                Bucket: 'rao-database-backup',
+                Key: fileName[i]
+            };
 
-
-
+            s3.deleteObject(params, function (err, data) { //remove from s3
+                if (err) console.log(err);  // an error occurred
+                else console.log(data); // successful response
+            });
+        }
+    }
+}
 
 module.exports.dbAutoBackUp = dbAutoBackUp;

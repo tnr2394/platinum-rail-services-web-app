@@ -13,7 +13,7 @@ const s3UploadFile = (file, folder, options) => {
     return new Promise((resolve, reject) => {
         console.log('Inside S3 File:', process.env.Bucket);
 
-        console.log('settings----->>>>>>>>', settings);
+        console.log('settings::::', settings);
 
         var s3bucket = new aws.S3({
             accessKeyId: settings.s3Bucket.key,

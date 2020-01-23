@@ -12,6 +12,7 @@ let options = {
     socketTimeoutMS: 30000,
     keepAlive: true,
     reconnectTries: 30,
+    useUnifiedTopology: true,
     autoIndex: false, // Don't build indexes
     reconnectInterval: 500, // Reconnect every 500ms
     poolSize: 10, // Maintain up to 10 socket connections

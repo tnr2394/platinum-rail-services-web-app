@@ -364,15 +364,44 @@
     background-repeat:no-repeat;
     background-size: contain;
     background-position: left;
+    @media (max-width:991px){
+        width: 270px;
+        height: 125px;
+    }
+    @media (max-width:767px){
+        width: 245px;
+        height: 115px;
+    }
+    @media (max-width:575px){
+        width: 186px;
+        height: 100px;
+    }
+    @media (max-width:441px){
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
     p{
         font-size: 30px;
         color: white;
         margin-bottom: 0 !important;
+        @media (max-width:991px){
+            font-size: 24px;
+        }
+        @media (max-width:767px){
+            font-size: 20px;
+        }
     }
     h1{
         color: white;
         font-size: 45px;
         font-weight: 700;
+        @media (max-width:991px){
+            font-size: 40px;
+        }
+        @media (max-width:991px){
+            font-size: 32px;
+        }
     }
 }
 .fail_card{
@@ -384,4 +413,19 @@
 }
 .assignment_column{
     padding-top: 55px;
+    @media (max-width:575px){
+        padding-top: 20px;
+    }
+}
+.assign_row{
+    @media (max-width:575px){
+        padding: 0px 15px;
+    }
+}
+.exam_row{
+    float: right;
+    margin-bottom: 30px;
+    @media (max-width:441px){
+        float: none !important;
+    }
 }
