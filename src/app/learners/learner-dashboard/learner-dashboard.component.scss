@@ -353,3 +353,20 @@
 .outer_div{
     display: flex;
 }
+.exam_card{
+    // background: #3CC480;
+    width: 315px;
+    text-align: right;
+    background-image: url('/src/assets/exam_bg.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left;
+    p{
+        font-size: 30px;
+        // color: white;
+    }
+    h1{
+        font-size: 45px;
+        font-weight: 700;
+    }
+}

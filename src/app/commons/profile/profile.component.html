@@ -13,15 +13,15 @@
     <div>
         <div>
             <!-- class="text-center justify-content-center" -->
-            <i class="fas fa-user-tie fa-fw text-primary mr-1 fa-3x"></i> {{name}}
+            <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> {{name}}
         </div>
 
         <div>
-             <i class="fas fa-envelope text-info mr-1 fa-3x"></i> {{email}}
+             <i class="fas fa-envelope text-info mr-1"></i> {{email}}
         </div>
 
         <div>
-             <i class="fas fa-mobile-alt text-warning mr-1 fa-3x"></i> {{mobile}}
+             <i class="fas fa-mobile-alt text-warning mr-1"></i> {{mobile}}
         </div>
     </div>
 </mat-card>
@@ -30,22 +30,26 @@
 <mat-divider></mat-divider>
 <mat-card class="outer_card">
     <div>
-        <div>
-            <i class="fas text-danger fa-fw fa-user-tie mr-1 text-left fa-3x"></i>
-            <b>Instructor</b><span *ngFor="let instructor of instructor"> {{instructor.name}} </span>
+        <div class="row">
+            <div class="col-1">
+                <i class="fas text-danger fa-fw fa-user-tie mr-1 text-left"></i>
+            </div>
+           <div class="col-11">
+                <b>Instructor</b><span *ngFor="let instructor of instructor"> {{instructor.name}} </span>
+           </div>
         </div>
 
         <div>
-        <i class="fas text-primary fa-fw fa-building text-left fa-3x"></i>
+        <i class="fas text-primary fa-fw fa-building text-left"></i>
             <b>College</b> {{client}}
         </div>
 
         <div>
-            <i class="fas text-warning fa-fw fa-map-marker-alt text-left fa-3x"></i>
+            <i class="fas text-warning fa-fw fa-map-marker-alt text-left"></i>
             <b>Location</b> {{location}}
         </div>
         <div>
-            <i class="fas text-success fa-fw fa-book text-left fa-3x"></i>
+            <i class="fas text-success fa-fw fa-book text-left"></i>
             <b>Course</b> {{course}}
         </div>
         <!-- <div>

@@ -3,19 +3,19 @@
 <app-profile></app-profile>
 </div>
 <div class="col-8">
-<div *ngIf="loading">
+<!-- <div *ngIf="loading">
     <h1 class="text-center text-info mt-5">
         Loading... <i class="fas fa-refresh fa-spin"></i>
     </h1>
-</div>
+</div> -->
 <div class="rows" style="display: flex;float: right; margin-bottom: 30px;">
-<mat-card>
-    <h1>EXAM 1</h1>
-    <h3>Pass</h3>
+<mat-card class="exam_card">
+    <p>Exam-1</p>
+    <h1>Pass</h1>
 </mat-card>
-<mat-card>
-    <h1>EXAM 2</h1>
-    <h3>Fail</h3>
+<mat-card class="exam_card">
+    <p>Exam-2</p>
+    <h1>Fail</h1>
 </mat-card>
 </div>
 <!-- <h1 class="learner_title">Hello {{learnerName}}!</h1>
