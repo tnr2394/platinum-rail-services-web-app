@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
       this.job = jobRecieved.pop();
       this.client = this.job.client.name;
       this.location = this.job.location.title;
-      this.course = this.job.location.title;
+      this.course = this.job.course.title;
       this.instructor = this.job.instructors;
     })
   }

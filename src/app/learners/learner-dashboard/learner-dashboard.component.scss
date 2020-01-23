@@ -355,19 +355,33 @@
     display: flex;
 }
 .exam_card{
-    // background: #3CC480;
-    width: 315px;
+    background: #3CC480;
+    width: 280px;
+    height: 130px;
     text-align: right;
-    background-image: url('/src/assets/exam_bg.png');
+    margin-left: 20px;
+    background-image: url('../../../assets/exam_bg.png');
     background-repeat:no-repeat;
     background-size: contain;
     background-position: left;
     p{
         font-size: 30px;
-        // color: white;
+        color: white;
+        margin-bottom: 0 !important;
     }
     h1{
+        color: white;
         font-size: 45px;
         font-weight: 700;
     }
+}
+.fail_card{
+    background: #FF6565;
+    background-image: url('../../../assets/exam_bg.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left;
+}
+.assignment_column{
+    padding-top: 55px;
 }
