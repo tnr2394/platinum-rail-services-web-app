@@ -6,7 +6,7 @@ const baseUrl = "http://localhost:3333/";
 
 // For Ip Environement
 
-// const baseUrl = "http://192.168.1.83:3000/"
+const baseUrl = "http://192.168.1.83:3000/"
 
 
 

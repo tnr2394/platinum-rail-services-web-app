@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
 import { LearnerService } from '../../../services/learner.service';
+import { FilterService } from '../../../services/filter.service';
 
 
 @Component({
@@ -11,21 +12,22 @@ import { LearnerService } from '../../../services/learner.service';
 })
 export class AllocateLearnerModalComponent implements OnInit {
   loading: boolean;
-  filter: any;
   searchText;
   btnDisabled: Boolean = true;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any, public _learnerSerice: LearnerService,
+  constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any, public _filter: FilterService, public _learnerSerice: LearnerService,
     public dialogRef: MatDialogRef<AllocateLearnerModalComponent>, public formBuilder: FormBuilder) { }
 
   learners;
+  learnerCopy;
 
   allocatedLearners = [];
   //  learnersForm;
   ngOnInit() {
     console.log("This . dialogData", this.DialogData)
     this.learners = this.DialogData.learners;
-    if(this.DialogData.materials > 0){
+    this.learnerCopy = this.learners;
+    if (this.DialogData.materials > 0) {
       this.btnDisabled = false;
     }
     this.isChecked()
@@ -50,6 +52,26 @@ export class AllocateLearnerModalComponent implements OnInit {
         }
       })
     }
+  }
+
+  // filter(searchText) {
+  //   console.log('Search Text::::::::', searchText);
+  //   if (!searchText.length) {
+  //     this.learners = this.learnerCopy;
+  //   } else {
+  //     const finalarray = [];
+  //     this.learners.forEach((e1) => {
+  //       console.log('e1.name::::', e1.name);
+  //       if (e1.name == searchText) {
+  //         finalarray.push(e1)
+  //       }
+  //       this.learners = finalarray;
+  //     })
+  //   }
+  // }
+
+  filter(filterValue: string) {
+    this.learners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
   }
 
   getLearners() {
