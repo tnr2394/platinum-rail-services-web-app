@@ -115,11 +115,20 @@ export class LearnerDashboardComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (filterValue == '') {
+      this.dataSource = new MatTableDataSource(this.assignments);
+    } else {
+      let finalarray = [];
+      this.assignments.forEach((e1) => {
+        if (e1.assignment.assignmentNo == filterValue || e1.assignment.unitNo == filterValue) {
+          finalarray.push(e1)
+        }
+      })
+      this.dataSource = new MatTableDataSource(finalarray);
     }
   }
+
+
 
   showMaterialFiles(material) {
     let navigationExtras: NavigationExtras = {
