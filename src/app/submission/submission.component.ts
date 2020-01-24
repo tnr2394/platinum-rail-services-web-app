@@ -51,6 +51,7 @@ export class SubmissionComponent implements OnInit {
   sepArray = [];
   bgColors = [];
   lastColor;
+  copyLearners;
 
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
@@ -141,8 +142,8 @@ export class SubmissionComponent implements OnInit {
   assignmentNoChanged(event) {
     this.selectedAssignment = event.value;
     console.log('this.selectedAssignment', this.selectedAssignment);
-    this.getAllotmentListUsingAssignmentId(this.selectedAssignment);
-    this.loadingLearners = true;
+    this.learners = this._filter.filter(this.selectedAssignment, this.copyLearners, ['assignmentId']);
+    this.dataSource = new MatTableDataSource(this.learners);
   }
 
   getRandomColorClass(i) {
@@ -206,6 +207,8 @@ export class SubmissionComponent implements OnInit {
 
       if (!isEmpty(obj)) {
         this.learners = data;
+        this.copyLearners = this.learners;
+        console.log('All Learnes:::::::::::', this.copyLearners);
         this.dataSource = new MatTableDataSource(this.learners);
         this.dataSource.paginator = this.paginator;
         this.loadingAssignments = false;

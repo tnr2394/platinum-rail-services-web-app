@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   name: any;
   email: any;
   mobile: any;
+  profilePath;
 
   constructor(private _jobService: JobService, public _learnerService: LearnerService,
     private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -26,22 +27,23 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     // GETTING LEARNER ID
     this.activatedRoute.params.subscribe(params => {
-      console.log("ID-----",params['id']);
-      this._learnerService.getLearner(params['id']).subscribe(learner=>{
+      console.log("ID-----", params['id']);
+      this._learnerService.getLearner(params['id']).subscribe(learner => {
         this.learner = learner.pop();
-        console.log("learner", learner);  
+        console.log("learner:::", this.learner);
         this.name = this.learner.name;
         this.email = this.learner.email;
         this.mobile = this.learner.mobile;
+        this.profilePath = this.learner.profilePic;
         this.getJob(this.learner.job._id);
       })
-      
+
     })
     console.log("The learner is", this.learner);
   }
 
-  getJob(id){
-    this._jobService.getJobById(id).subscribe((jobRecieved)=>{
+  getJob(id) {
+    this._jobService.getJobById(id).subscribe((jobRecieved) => {
       console.log("Job Recieved", jobRecieved);
       this.job = jobRecieved.pop();
       this.client = this.job.client.name;
