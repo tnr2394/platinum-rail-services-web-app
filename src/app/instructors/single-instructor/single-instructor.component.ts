@@ -81,7 +81,7 @@ export class SingleInstructorComponent implements OnInit {
       console.log('Get Instructor Detail', res[0]);
       this.instructor = res[0];
       this.profilePath = this.instructor.profilePic;
-      this.mobile = this.instructor.phone;
+      this.mobile = this.instructor.mobile;
       this.email = this.instructor.email;
     }))
   }

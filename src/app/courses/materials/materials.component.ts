@@ -177,7 +177,6 @@ export class MaterialsComponent implements OnInit {
     console.log("event", event, "index", index, "status", status);
     if (event == true) {
       this.typeArray.push(status);
-
     }
     else if (event == false) {
       const index = this.typeArray.indexOf(status);
@@ -215,6 +214,9 @@ export class MaterialsComponent implements OnInit {
       this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
+      this.assignmentStatus.forEach(status=>{
+        status.checked = true
+      })
       if (materials.type == "Assignment") {
         this.assignmentAdded.emit({ assignmentAdded: 'Done!' })
       }

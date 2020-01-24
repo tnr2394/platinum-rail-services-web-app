@@ -31,6 +31,7 @@ export class LearnerAllotmentTileComponent implements OnInit {
 
   allotmentId;
   fileList = [];
+  disable;
 
   ngOnInit() {
     this.loadingAssignments = true;
@@ -57,6 +58,10 @@ export class LearnerAllotmentTileComponent implements OnInit {
     console.log("getAssignmentFileUsingAllotmentId= ", allotmentId);
     this._fileService.getAssignmentFileUsingAllotmentId(allotmentId).subscribe(data => {
       this.fileList = data;
+      if(this.fileList.length < 1){
+        this.disable = true
+      }
+      else this.disable = false
       this.loadingAssignments = false
       console.log(' this.fileList ======>>>>>>>>>', this.fileList);
     })
