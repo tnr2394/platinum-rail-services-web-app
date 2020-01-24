@@ -141,9 +141,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       }
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT");
+        this.assignmentStatusComp.ngOnInit();
       });
       this.materialsComp.clearCheckBox();
-      this.assignmentStatusComp.ngOnInit();
       this.openSnackBar("Materials Allocated Successfully", "Ok");
     }, err => {
       return this.openSnackBar("Materials could not be allocated", "Ok");
