@@ -87,27 +87,6 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
     return q.promise;
 }
 
-
-// const sendMailInstructorsForAllotmentUpdate = (learnerId) => {
-
-//     return new Promise((resolve, reject) => {
-//         console.log('LearnerId::::::::::::::::::::::', learnerId);
-
-//         const query = { _id: learnerId }
-
-//         learnerDAO.getLearnersByQuery(query).then((response) => {
-
-//             console.log('Response::::::::::::::', JSON.stringify(response));
-
-//         }).catch((error) => {
-//             console.log('Error::::::::::::::::::::', error);
-//         })
-
-//     })
-
-
-// }
-
 allotment.getAllotment = function (allotemntId) {
     console.log("Get Allotemnts in allotemnt DAO", allotemntId);
     var q = Q.defer();
