@@ -37,7 +37,7 @@ export class SubmissionComponent implements OnInit {
   statusList = [];
   unitNo = []
   assignmentNo = [];
-  assignment;
+  assignment: any = [];
   selectedUnit;
   selectedAssignment;
   displayedColumns: string[] = ['Learner', 'Assignment', 'Status', 'View'];
@@ -97,8 +97,12 @@ export class SubmissionComponent implements OnInit {
   }
 
   jobChanged(event) {
+    console.log("event details", event)
     this.loadingAssignments = true;
     let emptyList = [];
+    this.assignment = [];
+    this.selectedAssignment = null;
+    console.log('this.assignment::::::::::', this.assignment, this.selectedAssignment);
     this.dataSource = new MatTableDataSource(emptyList);
     this.selectedJob = event.value._id;
     this.getAssignmentList(this.selectedJob);
@@ -184,9 +188,10 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
+      this.selectedAssignment = null;
       this.assignment = data[0].assignment;
       this.loadingAssignments = false;
-      console.log(' this.assignment length', this.assignment.length);
+      console.log(' this.assignment length', this.assignment.length, this.assignment);
     });
   }
 
@@ -215,9 +220,6 @@ export class SubmissionComponent implements OnInit {
       }
     });
   }
-
-
-
 
   getAllotmentListUsingAssignmentId(assignmentId) {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {

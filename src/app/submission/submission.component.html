@@ -34,7 +34,8 @@
             <!-- Select Assignment -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
-                    <mat-select placeholder="Assignment Number" (selectionChange)='assignmentNoChanged($event)'>
+                    <mat-select placeholder="Assignment Number" name="selectedAssignment"
+                        [(ngModel)]="selectedAssignment" (selectionChange)='assignmentNoChanged($event)'>
                         <span *ngFor='let assignment of assignment'>
                             <mat-option [value]='assignment.assignmentId'>
                                 Unit- {{assignment.assignmentUnit}} Assignment-{{assignment.assignmentNo}}
