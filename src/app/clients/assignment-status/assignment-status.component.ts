@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
@@ -17,7 +17,11 @@ import { DatePipe } from '@angular/common';
   templateUrl: './assignment-status.component.html',
   styleUrls: ['./assignment-status.component.scss']
 })
-export class AssignmentStatusComponent implements OnInit {
+export class AssignmentStatusComponent implements OnInit, OnChanges {
+  ngOnChanges(changes) {
+    console.log("IN ON CHANGES",changes);
+    // changes.prop contains the old and the new value...
+  }
   assignment;
 
   // displayedColumns: string[];
