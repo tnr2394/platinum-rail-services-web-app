@@ -785,6 +785,7 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
                 allotemntId: '$allotment._id',
                 learnerName: '$learner.name',
                 learnerId: '$learner._id',
+                assignmentId: '$allotment.assignment._id',
                 assignmentTitle: '$allotment.assignment.title',
                 assignmentUnit: '$allotment.assignment.unitNo',
                 assignmentNo: '$allotment.assignment.assignmentNo',

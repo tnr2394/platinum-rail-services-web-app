@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
       console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully", data);
-        this.route.navigateByUrl(this.returnUrl);
+        // this.route.navigateByUrl(this.returnUrl);
       }, err => {
         console.log('error while login', err);
         this.errmsg = err.error.message;
