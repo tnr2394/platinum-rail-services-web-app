@@ -7,7 +7,6 @@ var courseController = {};
 
 async function allCourses(query) {
     var deferred = Q.defer();
-
     courseModel.find(query)
         .populate("materials")
         .exec((err, courses) => {
@@ -16,7 +15,6 @@ async function allCourses(query) {
             deferred.resolve(courses);
         });
     return deferred.promise;
-
 }
 
 courseController.getCourses = async function (req, res, next) {

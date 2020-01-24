@@ -44,13 +44,14 @@ materialController.getMaterial = async function (req, res, next) {
 materialController.addMaterial = async function (req, res, next) {
     console.log("ADD material", req.body);
 
-    var newmaterial = {
-        course: req.body.course,
-        title: req.body.title,
-        type: req.body.type,
-        unitNo: req.body.unitNo,
-        assignmentNo: req.body.assignmentNo
-    };
+    let newmaterial = {};
+
+    if (req.body.course) newmaterial['course'] = req.body.course;
+    if (req.body.title) newmaterial['title'] = req.body.title;
+    if (req.body.type) newmaterial['type'] = req.body.type;
+    if (req.body.unitNo) newmaterial['unitNo'] = req.body.unitNo;
+    if (req.body.assignmentNo) newmaterial['assignmentNo'] = req.body.assignmentNo;
+
     materialDOA.createMaterial(newmaterial).then(newmaterial => {
         console.log("Material Created in controller. Calling AddMaterial for courseDOA", newmaterial);
 

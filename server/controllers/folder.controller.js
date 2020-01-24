@@ -71,10 +71,9 @@ folderController.deleteFolder = function (req, res, next) {
     })
 }
 
-
-
-
-
+/**
+ * Add File Inside Folder
+ */
 folderController.addFile = function (req, res, next) {
     console.log("Update Folder", req.body, req.files);
 

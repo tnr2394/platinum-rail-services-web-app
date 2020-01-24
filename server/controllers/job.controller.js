@@ -84,7 +84,7 @@ async function allJobs(query) {
                 as: 'instructors',
             }
         },
-        {
+        {                       
             $unwind: {
                 path: '$instructors',
                 preserveNullAndEmptyArrays: true

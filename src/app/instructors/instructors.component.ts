@@ -60,6 +60,7 @@ export class InstructorsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   filter(searchText) {
     console.log('FILTER CALLED', searchText);
     if (searchText === '') {
@@ -79,6 +80,7 @@ export class InstructorsComponent implements OnInit {
     this.lastColor = rand;
     return this.bgColors[rand];
   }
+  
   ngOnInit() {
     this.loading = true;
     this.getCourses();
