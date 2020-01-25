@@ -126,13 +126,13 @@
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Actions" mat-cell
                                             *matCellDef="let job">
-                                            <a mat-button class="text-primary" title="Job Details"
+                                            <a mat-button class="text-primary" placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class"
                                                 routerLink="/jobs/{{job._id}}">
                                                 <!-- <i class="fa fa-users"></i> -->
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <button *ngIf="currentUser.userRole == 'admin'" mat-button
-                                                class="text-success" title="Edit Job" (click)="editJobModal(i, job)"><i
+                                                class="text-success" placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class" (click)="editJobModal(i, job)"><i
                                                     class="fa fa-edit"></i></button>
                                         </td>
                                     </ng-container>

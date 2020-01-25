@@ -57,6 +57,7 @@
                                             *matCellDef="let learner; let i = index;">
                                             <a *ngIf="currentUser && (currentUser.userRole == 'admin' ||currentUser.userRole == 'instructor') "
                                                 mat-button class="text-success bold"
+                                                placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class"
                                                 (click)="editLearnerModal(i, learner)">
                                                 <i class="fa fa-edit"></i>
                                             </a>
@@ -65,7 +66,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </a> -->
                                             <!-- *ngIf="currentUser && (currentUser.userRole !== 'client') " -->
-                                            <a mat-button
+                                            <a mat-button placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class"
                                                 class="text-primary bold" routerLink="/learner/{{learner._id}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
