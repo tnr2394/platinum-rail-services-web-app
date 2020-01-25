@@ -3,7 +3,8 @@ import { MatSidenav } from '@angular/material';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { LoginService } from './services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { $ } from 'protractor';
+// import { $ } from 'protractor';
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,14 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+
+    $('.collapseToggle').on('click', function () {
+      $(".sidebar").toggleClass('sidebar--Collapse');
+      // $('.main').toggleClass('main--slide'); 
+      $('#toggleIcon').toggleClass('rotate');
+    });
+
+
     console.log("Set Side Nav")
     this.sidenavService.setSidenav(this.sidemenu);
 

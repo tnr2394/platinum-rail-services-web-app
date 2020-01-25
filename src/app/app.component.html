@@ -1,8 +1,115 @@
 <app-top-nav></app-top-nav>
-<app-side-nav-fixed></app-side-nav-fixed>
-<mat-sidenav-container class="content-container" (backdropClick)="close('backdrop')">
+
+
+
+<div class="">
+  <div class="sidebar sidebar--Collapse">
+    <div class="collapseToggle">
+      <span id="toggleIcon" class="fa fa-chevron-left rotate"></span>
+    </div>
+    <ul class="nav nav-sidebar">
+      <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
+        <a routerLink="/admin/{{currentUser._id}}">
+          <i class="far fa-user"></i>
+          <span><strong>{{currentUser.name}}</strong></span>
+        </a>
+      </li>
+      <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='instructor'">
+        <a routerLink="/instructors/{{currentUser._id}}">
+          <i class="far fa-user"></i>
+          <span><strong>{{currentUser.name}}</strong></span>
+        </a>
+      </li>
+      <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='client'">
+        <a routerLink="/client/{{currentUser._id}}">
+          <i class="far fa-user"></i>
+          <span><strong>{{currentUser.name}}</strong></span>
+        </a>
+      </li>
+      <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'">
+        <a routerLink="/learner/{{currentUser._id}}">
+          <i class="far fa-user"></i>
+          <span><strong>{{currentUser.name}}</strong></span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-chalkboard"></i>
+          <span class="menuText">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-book"></i>
+          <span class="menuText">Course</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-user"></i>
+          <span class="menuText">Instructor</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')" routerLink="/jobs" routerLinkActive="active-link">
+          <i class="fas fa-university"></i>
+          <span class="menuText">Job</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')" routerLink="/submission" routerLinkActive="active-link">
+          <i class="fas fa-clipboard-check"></i>
+          <span class="menuText">Submission</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-users"></i>
+          <span class="menuText">Client</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')" routerLink="/scheduler" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-calendar-alt"></i>
+          <span class="menuText">Scheduler</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/mydocuments" routerLinkActive="active-link">
+          <i class="fas fa-folder"></i>
+          <span class="menuText">My Documents</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'" routerLink="{{learnerRouteName}}" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-chalkboard"></i>
+          <span class="menuText">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" routerLinkActive="active-link">
+          <i class="fas fa-unlock-alt"></i>
+          <span class="menuText">Reset Password</span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link">
+          <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+          <span class="menuText">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<!-- <mat-sidenav-container class="content-container" (backdropClick)="close('backdrop')">
   <mat-sidenav id="sidemenu" #sidemenu (keydown.escape)="close('escape')" disableClose>
-    <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'"><i class="far fa-user"></i>
+    <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
+      <i class="far fa-user"></i>
       {{currentUser.name}}</h4>
 
     <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='instructor'"><i class="far fa-user"></i>
@@ -15,56 +122,63 @@
       <a routerLink="/learner/{{currentUser._id}}"> {{currentUser.name}}</a></h4>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Dashboard</a>
+      routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-chalkboard"></i>Dashboard
+    </a>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-book"></i> Course</a>
+      routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-book"></i>Course
+    </a>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-user"></i>
-      Instructor</a>
-
-    <!-- <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='instructor'"
-      routerLink="{{instructorRouteName}}" routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-user"></i>
-      My Profile</a> -->
+      routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-user"></i>Instructor
+    </a>
 
     <a class="side-nav-item"
       *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')"
-      routerLink="/jobs" routerLinkActive="active-link" mat-button><i class="fas fa-university"></i> Job</a>
+      routerLink="/jobs" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-university"></i> Job
+    </a>
 
 
     <a class="side-nav-item" *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')"
-      routerLink="/submission" routerLinkActive="active-link" mat-button><i class="fas fa-clipboard-check"></i>
-      Submission</a>
+      routerLink="/submission" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-clipboard-check"></i>Submission
+    </a>
 
     <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients"
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-users"></i> Client</a>
+      routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-users"></i> Client
+    </a>
 
     <a class="side-nav-item"
       *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
-      routerLink="/scheduler" routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-calendar-alt"></i>
-      Scheduler</a>
+      routerLink="/scheduler" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-calendar-alt"></i>Scheduler
+    </a>
 
 
-    <a class="side-nav-item" routerLink="/mydocuments" routerLinkActive="active-link" mat-button><i
-        class="fas fa-folder"></i>
-      My Documents</a>
+    <a class="side-nav-item" routerLink="/mydocuments" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-folder"></i>My Documents
+    </a>
 
-
-    <!-- <a class="side-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'" routerLink='#'
-      routerLinkActive="active-link" mat-button><i class="fas fa-fw fa-chalkboard"></i> Dashboard</a> -->
 
     <a class="side-nav-item" *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'"
-      routerLink="{{learnerRouteName}}" routerLinkActive="active-link" mat-button><i
-        class="fas fa-fw fa-chalkboard"></i>
-      Dashboard</a>
+      routerLink="{{learnerRouteName}}" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-fw fa-chalkboard"></i>Dashboard
+    </a>
 
     <a class="side-nav-item" *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}"
-      routerLinkActive="active-link" mat-button><i class="fas fa-unlock-alt"></i>Reset Password</a>
+      routerLinkActive="active-link" mat-button>
+      <i class="fas fa-unlock-alt"></i>Reset Password
+    </a>
 
 
-    <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button><i
-        class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+    <a class="side-nav-item" *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link" mat-button>
+      <i class="fas fa-sign-out-alt" aria-hidden="true"></i>Logout
+    </a>
   </mat-sidenav>
 
   <mat-sidenav-content style="background-color:#FAFAF7">
@@ -76,4 +190,4 @@
     </footer>
 
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
+* {
+  font-family: Roboto;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+  .sidenav {
+    position: absolute;
+    width: 300px;
+    left: -240px;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: #212121;
+    box-shadow: 2px 0px 5px #555;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    transition: all 0.3s ease;
+  }
+  .sidenav:hover {
+    left: 0px;
+  }
+  .sidenav:hover ~ .content {
+    background: url("http://turret.in/images/backgrounds/stripe.png"), rgba(0,0,0,0.4);
+  }
+
+    .sidenav .nav:not(:last-child) {
+      cursor: pointer;
+      width: 300px;
+      border-bottom: 1px solid #333;
+      box-shadow: -1px 1px 1px #090909;
+    }
+
+      .sidenav .nav .icon, .sidenav .nav .description {
+        float: right;
+        line-height: 60px;
+        color: #e5e5e5;
+      }
+
+      .sidenav .nav .icon {
+        width: 60px;
+        height: 60px;
+        font-size: 40px;
+        text-align: center;
+        
+        transition: all 0.2s ease;
+      }
+      .sidenav .nav.active .icon, .sidenav .nav:hover .icon {
+        color: #FF9800;
+      }
+
+      .sidenav .nav .description {
+        font-size: 20px;
+        padding-right: 10px;
+      }
+
+  .content {
+    position: absolute;
+    height: 100%;
+    left: 60px;
+    right: 0;
+    background: #ECEFF1;
+    
+    transition: all 0.4s ease;
+  }
