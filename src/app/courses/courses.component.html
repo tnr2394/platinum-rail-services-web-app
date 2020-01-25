@@ -57,10 +57,12 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let course; let i = index;">
-                                            <a mat-button class="text-success" (click)="editCourseModal(i, course)">
+                                            <a mat-button class="text-success" (click)="editCourseModal(i, course)"
+                                            placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a mat-button class="text-primary" routerLink="/materials/{{course._id}}">
+                                            <a mat-button class="text-primary" routerLink="/materials/{{course._id}}"
+                                            placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>

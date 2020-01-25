@@ -127,6 +127,7 @@
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
                                 <a mat-button class="text-primary bold"
+                                placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class"
                                     routerLink="/submission/learner/{{learner.allotemntId}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
