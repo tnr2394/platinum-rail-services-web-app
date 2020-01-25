@@ -45,6 +45,13 @@
             <span> Edit Profile</span>
         </button>
     </div>
+    <div class="row">
+        <mat-card>
+            <mat-card-title>
+            Competencies
+            </mat-card-title>
+        </mat-card>
+    </div>
 </div>
 <!-- <div class="card profile_card"> -->
 
@@ -89,16 +96,26 @@
 </div> -->
 <div class='col-9'>
 <div class='row justify-content-end'>
-    <mat-card class="demo_card">
+    <div class="col-12">
+    <mat-card>
+        <app-my-documents></app-my-documents>
+    </mat-card>
+    </div>
+    <!-- <div class="col-3">
+    <mat-card>
         <mat-card-title>
             Total Jobs
-            {{jobs.length}}
         </mat-card-title>
     </mat-card>
+    </div> -->
+</div>
+<div class='row'>
+<h3>Jobs</h3><button placement="bottom" ngbTooltip="Scheduler" tooltipClass="tooltip-class" class="pull-right cal-button" color="primary" (click)="scheduler(job)"><i class="far fa-calendar-alt"
+        ></i></button>
 </div>
 <div class="row">
     <div class="col-12 ">
-        <div class="card demo_changes">
+        <div class="card demo_changes" >
             <!--Card content-->
             <div class="card-block ">
                 <!--Title-->
