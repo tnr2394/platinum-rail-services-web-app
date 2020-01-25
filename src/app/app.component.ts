@@ -19,6 +19,7 @@ export class AppComponent {
   currentUser;
   learnerRouteName;
   instructorRouteName;
+  isVisible: boolean = true;
 
   constructor(private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)

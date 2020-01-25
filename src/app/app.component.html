@@ -1,108 +1,119 @@
 <app-top-nav></app-top-nav>
-
-
-
-<div class="">
-  <div class="sidebar sidebar--Collapse">
+<div>
+  <div class="sidebar sidebar--Collapse" [hidden]="!currentUser">
     <div class="collapseToggle">
       <span id="toggleIcon" class="fa fa-chevron-left rotate"></span>
     </div>
     <ul class="nav nav-sidebar">
       <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
-        <a routerLink="/admin/{{currentUser._id}}">
+        <a routerLink="/dashboard">
           <i class="far fa-user"></i>
-          <span><strong>{{currentUser.name}}</strong></span>
+          <span class="menuText"><strong>{{currentUser.name}}</strong></span>
         </a>
       </li>
       <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='instructor'">
         <a routerLink="/instructors/{{currentUser._id}}">
           <i class="far fa-user"></i>
-          <span><strong>{{currentUser.name}}</strong></span>
+          <span class="menuText"><strong>{{currentUser.name}}</strong></span>
         </a>
       </li>
       <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='client'">
         <a routerLink="/client/{{currentUser._id}}">
           <i class="far fa-user"></i>
-          <span><strong>{{currentUser.name}}</strong></span>
+          <span class="menuText"><strong>{{currentUser.name}}</strong></span>
         </a>
       </li>
       <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='learner'">
         <a routerLink="/learner/{{currentUser._id}}">
           <i class="far fa-user"></i>
-          <span><strong>{{currentUser.name}}</strong></span>
+          <span class="menuText"><strong>{{currentUser.name}}</strong></span>
         </a>
       </li>
       <li>
         <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard" routerLinkActive="active-link">
           <i class="fas fa-fw fa-chalkboard"></i>
-          <span class="menuText">Dashboard</span>
+          <span class="menuText">{{isVisible}}</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" placement="right" ngbTooltip="Course"
+          tooltipClass="tooltip-class" routerLink="/courses" routerLinkActive="active-link">
           <i class="fas fa-fw fa-book"></i>
           <span class="menuText">Course</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" routerLinkActive="active-link">
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" placement="right"
+          ngbTooltip="Instructors" tooltipClass="tooltip-class" routerLinkActive="active-link">
           <i class="fas fa-fw fa-user"></i>
           <span class="menuText">Instructor</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')" routerLink="/jobs" routerLinkActive="active-link">
+        <a *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')"
+          routerLink="/jobs" placement="right" ngbTooltip="Jobs" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-university"></i>
           <span class="menuText">Job</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')" routerLink="/submission" routerLinkActive="active-link">
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')"
+          routerLink="/submission" placement="right" ngbTooltip="Submissions" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-clipboard-check"></i>
           <span class="menuText">Submission</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" routerLinkActive="active-link">
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" placement="right"
+          ngbTooltip="Clients" tooltipClass="tooltip-class" routerLinkActive="active-link">
           <i class="fas fa-fw fa-users"></i>
           <span class="menuText">Client</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')" routerLink="/scheduler" routerLinkActive="active-link">
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
+          routerLink="/scheduler" placement="right" ngbTooltip="Scheduler" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-fw fa-calendar-alt"></i>
           <span class="menuText">Scheduler</span>
         </a>
       </li>
       <li>
-        <a routerLink="/mydocuments" routerLinkActive="active-link">
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
+          routerLink="/mydocuments" placement="right" ngbTooltip="My Documents" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-folder"></i>
           <span class="menuText">My Documents</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'" routerLink="{{learnerRouteName}}" routerLinkActive="active-link">
+        <a *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'" routerLink="{{learnerRouteName}}"
+          routerLinkActive="active-link">
           <i class="fas fa-fw fa-chalkboard"></i>
           <span class="menuText">Dashboard</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" routerLinkActive="active-link">
+        <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" placement="right"
+          ngbTooltip="Reset Password" tooltipClass="tooltip-class" routerLinkActive="active-link">
           <i class="fas fa-unlock-alt"></i>
           <span class="menuText">Reset Password</span>
         </a>
       </li>
       <li>
-        <a *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link">
+        <a *ngIf="loggedInUser" (click)="Logout()" placement="right" ngbTooltip="Logout" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
           <span class="menuText">Logout</span>
         </a>
       </li>
     </ul>
   </div>
-  <div class="main">
-    <router-outlet></router-outlet>
-  </div>
+</div>
+<div class="main">
+  <router-outlet></router-outlet>
 </div>
 
 

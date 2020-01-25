@@ -80,7 +80,7 @@ $white : "#ffffff";
 .sidebar {
     width: 210px;
     background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-    z-index: 999;
+    z-index: 1;
     transition: all 0.5s;
     display: block;
     height: auto;
@@ -117,7 +117,6 @@ $white : "#ffffff";
         li {
             display: inline-block;
             float: left;
-            line-height: 40px;
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
@@ -145,6 +144,9 @@ $white : "#ffffff";
                     float: left;
                     line-height: 40px;
                     width: calc(100% - 50px);
+                    strong{
+                        font-weight: 900;
+                    }
                 }
             }
         }
