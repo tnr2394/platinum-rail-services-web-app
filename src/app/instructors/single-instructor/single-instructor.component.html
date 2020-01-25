@@ -6,23 +6,58 @@
     <img src="{{instructor.profilePic.path}}" height="200" width="200">
 </div> -->
 
-<button mat-flat-button *ngIf="!view" color="primary" class="pull-right button_hover_effect position_btn"
-    (click)="editInstructorModal(i, instructor)">
-    <i class="fas fa-pencil-alt"></i>
-    <span> Edit Profile</span>
-</button>
-<div class="card profile_card">
+<div class='row'>
+<div class='col-3'>
+    <div class='row justify-content-center'>
+    <div *ngIf="profilePath" class="profile_image">
+        <img src="{{instructor.profilePic.path}}">
+    </div>
+    
+    <div *ngIf="!profilePath" class="profile_image mb-3">
+        <img src="../../../assets/Avatar.png">
+    </div>
+    </div>
+    <h4 class="mt-3">Personal details</h4>
+    <mat-divider></mat-divider>
+    <div class='row mt-2'>
+        <mat-card>
+            <div >
+                <h5 *ngIf="instructor">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h5>
+            </div>
+            <div >
+                <h5 *ngIf="email">
+                    <i class="fas fa-envelope text-info mr-1"></i> {{email}}</h5>
+                <h4 *ngIf="!email">
+                    <i class="fas fa-envelope text-info mr-1"></i>No Email</h4>
+            </div>
+            <div >
+                <h5 *ngIf="mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i> {{mobile}}</h5>
+                <h5 *ngIf="!mobile">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i>No mobile</h5>
+            </div>
+        </mat-card>
+    </div>
+    <div class='row mt-3'>
+        <button mat-flat-button *ngIf="!view" color="primary" (click)="editInstructorModal(i, instructor)">
+            <i class="fas fa-pencil-alt"></i>
+            <span> Edit Profile</span>
+        </button>
+    </div>
+</div>
+<!-- <div class="card profile_card"> -->
 
     <!-- <div class="profile_picture_area"> -->
-    <div *ngIf="profilePath" class="profile_image">
+    <!-- <div *ngIf="profilePath" class="profile_image">
         <img src="{{instructor.profilePic.path}}">
     </div>
 
     <div *ngIf="!profilePath" class="profile_image">
         <img src="../../../assets/Avatar.png">
-    </div>
+    </div> -->
     <!-- </div> -->
-    <div class="card-block">
+    <!-- <div class="card-block">
         <div class="row instructor_profile_card">
             <div class="col-md-3 text-center justify-content-center">
                 <h4 *ngIf="instructor">
@@ -42,7 +77,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- <div class="row">
@@ -52,12 +87,20 @@
         <span>Edit Profile</span>
     </button>
 </div> -->
-
+<div class='col-9'>
+<div class='row justify-content-end'>
+    <mat-card class="demo_card">
+        <mat-card-title>
+            Total Jobs
+            {{jobs.length}}
+        </mat-card-title>
+    </mat-card>
+</div>
 <div class="row">
     <div class="col-12 ">
-        <div class="card">
+        <div class="card demo_changes">
             <!--Card content-->
-            <div class="card-block">
+            <div class="card-block ">
                 <!--Title-->
                 <div class="card-title">
                     <div class="row table_search">
@@ -184,4 +227,6 @@
 
         </div>
     </div>
+</div>
+</div>
 </div>
