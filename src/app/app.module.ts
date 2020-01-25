@@ -95,6 +95,7 @@ import { ShareFileModalComponent } from './folder/share-file-modal/share-file-mo
 import { ContextMenuModule } from 'ngx-contextmenu';
 import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/delete-confirm-modal.component';
 import { ProfileComponent } from './commons/profile/profile.component';
+import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -157,6 +158,7 @@ import { ProfileComponent } from './commons/profile/profile.component';
     ShareFileModalComponent,
     DeleteConfirmModalComponent,
     ProfileComponent,
+    SideNavFixedComponent,
   ],
   imports: [
     BrowserModule,

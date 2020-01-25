@@ -1,4 +1,5 @@
 <app-top-nav></app-top-nav>
+<app-side-nav-fixed></app-side-nav-fixed>
 <mat-sidenav-container class="content-container" (backdropClick)="close('backdrop')">
   <mat-sidenav id="sidemenu" #sidemenu (keydown.escape)="close('escape')" disableClose>
     <h4 class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'"><i class="far fa-user"></i>

@@ -101,6 +101,7 @@ export class SubmissionComponent implements OnInit {
     this.loadingAssignments = true;
     let emptyList = [];
     this.assignment = [];
+    this.copyLearners = [];
     this.selectedAssignment = null;
     console.log('this.assignment::::::::::', this.assignment, this.selectedAssignment);
     this.dataSource = new MatTableDataSource(emptyList);
@@ -178,13 +179,13 @@ export class SubmissionComponent implements OnInit {
     });
   }
 
-  getLearners(jobId) {
-    this._learnerService.getLearnersByJobId(jobId).subscribe((data) => {
-      this.learners = data;
-      this.dataSource = new MatTableDataSource(this.learners);
-      console.log("-----LEARNERS ARE-----", this.learners)
-    });
-  }
+  // getLearners(jobId) {
+  //   this._learnerService.getLearnersByJobId(jobId).subscribe((data) => {
+  //     this.learners = data;
+  //     this.dataSource = new MatTableDataSource(this.learners);
+  //     console.log("-----LEARNERS ARE-----", this.learners)
+  //   });
+  // }
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
