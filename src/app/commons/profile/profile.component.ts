@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   email: any;
   mobile: any;
   profilePath;
+  view;
 
   constructor(private _jobService: JobService, public _learnerService: LearnerService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit {
     })
     console.log("The learner is", this.learner);
   }
-  getLearner(){
+  getLearner() {
     this.activatedRoute.params.subscribe(params => {
       console.log("ID-----", params['id']);
       this._learnerService.getLearner(params['id']).subscribe(learner => {
@@ -88,7 +89,7 @@ export class ProfileComponent implements OnInit {
     this.openSnackBar(data.msg, data.button);
   }
 
-  editLearner(){
+  editLearner() {
     this.openDialog(EditLearnerModalComponent, this.learner).subscribe((data) => {
       console.log("DIALOG CLOSED", data)
       // Handle Error
@@ -100,7 +101,7 @@ export class ProfileComponent implements OnInit {
         console.log("HANDLING EDIT SUCCESS", data);
         data = data;
         this.getLearner()
-      
+
 
         this.handleSnackBar({ msg: "Learner edited successfully.", button: "Ok" });
       }

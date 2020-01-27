@@ -47,7 +47,7 @@ const colors: any = {
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent implements OnInit {
-  @Input('job') jobRecieved: any;
+  @Input('jobs') jobRecieved: any;
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
