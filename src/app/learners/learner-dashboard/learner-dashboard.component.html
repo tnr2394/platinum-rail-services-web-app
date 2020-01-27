@@ -20,15 +20,15 @@
         </div> -->
 
         <div *ngFor="let exam of exams">
-            <div class=" row mx-0 exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
+            <div class="row exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
                 [@bounce]="{ value: bounce}">
-                <div class="card-block">
+                <div class="card-block exam_main_card">
                     <div *ngIf="!editing" [@inOutAnimation]>
-                        <div class=" text-right card-title h4">
+                        <div class=" text-right card-title h4 mb-0">
                             <p>{{exam.display}}</p>
-                            <h1>{{exam.status}}</h1>
+                            <h1 class="mb-0">{{exam.status}}</h1>
                         </div>
-                        <a class="pull-right "><i class="fas fa-edit text-success fa-fw bg-danger"
+                        <a class="pull-right "><i class="fas fa-edit text-white fa-fw"
                                 (click)="editStatus()"></i></a>
                     </div>
                     <div *ngIf="editing" [@inOutAnimation]>

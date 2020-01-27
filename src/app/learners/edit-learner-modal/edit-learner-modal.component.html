@@ -4,17 +4,41 @@
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
-                cdkFocusInitial>
-        </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
-        </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone'
-                required>
-        </mat-form-field>
+        <div class=row>
+        <div class="col-md-6">
+        <div class="profile_image ">
+            <div class="profile_image_box ng-star-inserted" title="Profile Image" touranchor="change-profile"
+                ng-reflect-tour-anchor="change-profile">
+                <input type="file" id="profile" name="fileUpload" (change)="addProfileImage($event)" accept=".jpg, .png, .jpeg"
+                    hidden="true" style="display:none;">
+                <label for="profile" class="profile_and_cover_edit" title="Change Profile"><i class="fas fa-edit"></i></label>
+        
+                <div class="" *ngIf="url1">
+                    <img [src]="url1">
+                </div>
+        
+                <div class="" *ngIf="data.profilePic && !url1">
+                    <img src="{{data.profilePic.path}}">
+                </div>
+        
+                <div class="" *ngIf="!data.profilePic && !url1">
+                    <img src="../../../assets/Avatar.png">
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6 pt-3">
+            <mat-form-field class="example-full-width">
+                <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required cdkFocusInitial>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone' required>
+            </mat-form-field>
+        </div>
+        
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
             <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
                 [(ngModel)]='data.password' required>
@@ -27,33 +51,14 @@
             <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
                 (click)="cpassword()"></span>
         </mat-form-field>
-
+        
+        </div>
         <!-- <label class="input-file-button" for="hello"><span>Profile</span>
             <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
                 [(ngModel)]="data.profile" required="required" (change)="addProfileImage($event)">
         </label> -->
 
-        <div class="profile_image">
-            <div class="profile_image_box ng-star-inserted" title="Profile Image" touranchor="change-profile"
-                ng-reflect-tour-anchor="change-profile">
-                <input type="file" id="profile" name="fileUpload" (change)="addProfileImage($event)"
-                    accept=".jpg, .png, .jpeg" hidden="true" style="display:none;">
-                <label for="profile" class="profile_and_cover_edit" title="Change Profile"><i
-                        class="fas fa-edit"></i></label>
-
-                <div class="" *ngIf="url1">
-                    <img [src]="url1">
-                </div>
-
-                <div class="" *ngIf="data.profilePic && !url1">
-                    <img src="{{data.profilePic.path}}">
-                </div>
-
-                <div class="" *ngIf="!data.profilePic && !url1">
-                    <img src="../../../assets/Avatar.png">
-                </div>
-            </div>
-        </div>
+        
 
 
         <!-- <div class="col-md-6" *ngIf="url1">

@@ -7,9 +7,9 @@
                     <!--Card content-->
                     <div class="card-block">
                         <!--Title-->
-                        <div class="card-title h5 mb-1 d-inline-block w-100">Learners
+                        <div class="card-title h5 mb-1 d-inline-block w-100"><span class="learner_title">Learners</span>
                             <button *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
-                                mat-flat-button color="primary" class="pull-right button_hover_effect"
+                                mat-flat-button color="primary" class="pull-right button_hover_effect add_learner_btn"
                                 (click)="addLearnerModal()">
                                 <i class="fas fa-plus fa-fw"></i>
                                 <span> Add learners</span>
