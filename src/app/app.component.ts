@@ -48,6 +48,9 @@ export class AppComponent {
       $(".sidebar").toggleClass('sidebar--Collapse');
       // $('.main').toggleClass('main--slide'); 
       $('#toggleIcon').toggleClass('rotate');
+      $(".sidebar").hasClass('sidebar--Collapse')
+        ? $(".tooltip-class").css({ 'display': 'block' })
+        : $(".tooltip-class").css({ 'display': 'none' });
     });
     this.sidenavService.setSidenav(this.sidemenu);
 
@@ -64,6 +67,10 @@ export class AppComponent {
       this.instructorRouteName = '/instructors/' + this.currentUser._id;
       console.log(' this.currentUser', this.instructorRouteName);
     }
+  }
+
+  getToolTipEvent() {
+    return $(".sidebar").hasClass('sidebar--Collapse');
   }
 
   getToolTip() {

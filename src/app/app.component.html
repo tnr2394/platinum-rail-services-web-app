@@ -5,7 +5,6 @@
       <span id="toggleIcon" class="fa fa-chevron-left rotate" placement="right" ngbTooltip="{{getToolTip()}}"
         tooltipClass="tooltip-class"></span>
     </div>
-    {{toolTip}}
     <ul class="nav nav-sidebar">
       <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
         <a routerLink="/dashboard">
@@ -33,14 +32,16 @@
       </li>
       <li>
         <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard" placement="right"
-          ngbTooltip="Dashboard" tooltipClass="tooltip-class" routerLinkActive="active-link">
+          ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}" tooltipClass="tooltip-class"
+          routerLinkActive="active-link">
           <i class="fas fa-fw fa-chalkboard"></i>
           <span class="menuText">Dashboard</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" placement="right" ngbTooltip="Course"
-          tooltipClass="tooltip-class" routerLink="/courses" routerLinkActive="active-link">
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" placement="right"
+          ngbTooltip="{{getToolTipEvent() ? 'Course' : ''}}" tooltipClass="tooltip-class" routerLink="/courses"
+          routerLinkActive="active-link">
           <i class="fas fa-fw fa-book"></i>
           <span class="menuText">Course</span>
         </a>
