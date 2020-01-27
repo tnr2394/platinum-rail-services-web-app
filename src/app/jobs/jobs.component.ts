@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 
 import { FormsModule, NgForm } from '@angular/forms'
 import { groupBy } from 'rxjs/operators';
+import { SchedulerComponent } from '../scheduler/scheduler.component';
 
 
 @Component({
@@ -177,6 +178,19 @@ export class JobsComponent implements OnInit {
       // this.jobs.push(jobs);
       console.log("ONLY SINGLE JOB", jobs)
     }
+  }
+  scheduler(job) {
+    console.log("JOB found in scheculer", job);
+    // this.jobForScheduler = job;
+    let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
+      // data: this.jobForScheduler,
+      // minWidth: '100vw',
+      // height: '100vh'
+      panelClass: 'customScheduler',
+      width: '100%',
+      // margin: 'auto',
+      height: '100vh'
+    })
   }
 
   // UTILITY

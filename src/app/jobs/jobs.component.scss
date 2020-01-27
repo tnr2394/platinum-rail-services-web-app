@@ -60,3 +60,17 @@ p{
         object-fit: cover;
     }
 }
+.cal-button
+    {
+        background-color: unset;
+        outline: none;
+        border: none;
+        color: white;
+        i{
+            font-size: 20px;
+            background-color: #4385f4;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+        }
+    }
