@@ -9,6 +9,7 @@ import { JobService } from '../../services/job.service';
 import { InstructorService } from '../../services/instructor.service';
 import { FilterService } from '../../services/filter.service';
 import { EditInstructorModalComponent } from '../../instructors/edit-instructor-modal/edit-instructor-modal.component'
+import { SchedulerComponent } from 'src/app/scheduler/scheduler.component';
 
 @Component({
   selector: 'app-single-instructor',
@@ -114,8 +115,18 @@ export class SingleInstructorComponent implements OnInit {
     this.openSnackBar(data.msg, data.button);
   }
 
-  scheduler(job) {
-
+  scheduler() {
+    // console.log("JOB found in scheculer", job);
+    // this.jobForScheduler = job;
+    let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
+      // data: this.jobForScheduler,
+      // minWidth: '100vw',
+      // height: '100vh'
+      panelClass: 'customScheduler',
+      width: '100%',
+      // margin: 'auto',
+      height: '100vh'
+    })
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
