@@ -50,6 +50,9 @@ export class AppComponent {
       $(".sidebar").toggleClass('sidebar--Collapse');
       // $('.main').toggleClass('main--slide'); 
       $('#toggleIcon').toggleClass('rotate');
+      $(".sidebar").hasClass('sidebar--Collapse')
+        ? $(".tooltip-class").css({ 'display': 'block' })
+        : $(".tooltip-class").css({ 'display': 'none' });
     });
     this.sidenavService.setSidenav(this.sidemenu);
 
@@ -68,6 +71,10 @@ export class AppComponent {
     }
   }
 
+  getToolTipEvent() {
+    return $(".sidebar").hasClass('sidebar--Collapse');
+  }
+
   getToolTip() {
     if ($(".sidebar").hasClass('sidebar--Collapse')){
       this.disabled = true;
@@ -76,10 +83,6 @@ export class AppComponent {
       this.disabled = false;
     }
     return $(".sidebar").hasClass('sidebar--Collapse') ? 'expand' : 'collapse';
-  }
-
-  getToolTipEvent() {
-    return $(".sidebar").hasClass('sidebar--Collapse');
   }
 
   ngOnChanges() {
