@@ -84,11 +84,7 @@ export class AppComponent {
     }
     return $(".sidebar").hasClass('sidebar--Collapse') ? 'expand' : 'collapse';
   }
-
-  ngOnChanges() {
-    this.cd.detectChanges();
-  }
-
+  
   close(reason: string) {
     this.sidemenu.close();
   }
