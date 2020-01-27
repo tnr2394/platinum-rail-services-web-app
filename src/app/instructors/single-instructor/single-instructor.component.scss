@@ -100,14 +100,17 @@ table {
             border-radius: 50%;
         }
     }
+
 .jobs_list{
     justify-content: space-between;
     margin: 0;
     align-items: center;
 }
+
 tr.mat-header-row{
     height: 45px;
     background: #F5F6FA;
+}
 .inst_pic {
     position: relative;
     margin-right: 10px;
@@ -127,5 +130,4 @@ tr.mat-header-row{
         max-height: 100%;
         object-fit: cover;
     }
-}
 }
