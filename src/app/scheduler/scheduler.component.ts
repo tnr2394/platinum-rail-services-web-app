@@ -172,7 +172,7 @@ export class SchedulerComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
     private router: Router, private injector: Injector) {
-    if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
+    if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
       this.test = this.injector.get(MAT_DIALOG_DATA)
       this.dialogref = this.injector.get(MatDialogRef)
       this.displayTitle = false;
@@ -217,9 +217,11 @@ export class SchedulerComponent implements OnInit {
     console.log("this.loading", this.loading);
 
     console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
+    console.log("TEST**********", this.test);
+    
     // console.log("The data recieved is", this.DialogData);
 
-    if (this.router.url.includes('/jobs') || this.router.url.includes('/client')) {
+    if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
       // this.viewDropdown = false;
       // console.log("VIEW VALUE IS HERE");
       if (this.jobRecieved != undefined) {
@@ -228,11 +230,16 @@ export class SchedulerComponent implements OnInit {
       }
       
       else if (this.test != undefined) {
-        this.populateAllJobs([this.test])
+        this.populateAllJobs(this.test)
       }
+  
       else if (this.test == undefined) {
+        // this.populateAllJobs([this.test])
         this.getJobs()
       }
+      // else if ( (this.router.url.includes('/instrutors')){
+
+      // }
     }
     else {
       console.log("IN ELSE");
@@ -265,7 +272,12 @@ export class SchedulerComponent implements OnInit {
 
 
   makeEventsArrayForJob(job) {
+    if(job.length < 1) return
+    console.log("job in makeEvents", job);
+    
     var dates = job.singleJobDate;
+    console.log("Dates", dates);
+    
     console.log("Processing Job with dates = ", job.title);
     var events = [];
     for (var i = 0; i < dates.length; i++) {

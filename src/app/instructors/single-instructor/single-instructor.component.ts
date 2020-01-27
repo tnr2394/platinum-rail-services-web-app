@@ -40,6 +40,7 @@ export class SingleInstructorComponent implements OnInit {
 
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
+  jobForScheduler: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -116,10 +117,10 @@ export class SingleInstructorComponent implements OnInit {
   }
 
   scheduler() {
-    // console.log("JOB found in scheculer", job);
-    // this.jobForScheduler = job;
+    console.log("JOB found in scheculer", this.jobs);
+    this.jobForScheduler = this.jobs;
     let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
-      // data: this.jobForScheduler,
+      data: this.jobForScheduler,
       // minWidth: '100vw',
       // height: '100vh'
       panelClass: 'customScheduler',
