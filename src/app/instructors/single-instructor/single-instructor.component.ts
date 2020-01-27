@@ -23,6 +23,7 @@ export class SingleInstructorComponent implements OnInit {
   length;
   currentUser;
   jobs;
+  job;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   sort: MatSort;
@@ -111,6 +112,10 @@ export class SingleInstructorComponent implements OnInit {
 
   handleSnackBar(data) {
     this.openSnackBar(data.msg, data.button);
+  }
+
+  scheduler(job) {
+
   }
 
   openDialog(someComponent, data = {}): Observable<any> {

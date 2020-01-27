@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { LoginService } from './services/login.service';
@@ -19,9 +19,10 @@ export class AppComponent {
   currentUser;
   learnerRouteName;
   instructorRouteName;
+  toolTip: any = 'expand';
   isVisible: boolean = true;
 
-  constructor(private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
+  constructor(public cd: ChangeDetectorRef, private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
     this._loginService.userRole.subscribe(res => {
       this.loggedInUser = res;
@@ -48,9 +49,6 @@ export class AppComponent {
       // $('.main').toggleClass('main--slide'); 
       $('#toggleIcon').toggleClass('rotate');
     });
-
-
-    console.log("Set Side Nav")
     this.sidenavService.setSidenav(this.sidemenu);
 
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -68,6 +66,14 @@ export class AppComponent {
     }
   }
 
+  getToolTip() {
+    return $(".sidebar").hasClass('sidebar--Collapse') ? 'expand' : 'collapse';
+  }
+
+  ngOnChanges() {
+    this.cd.detectChanges();
+  }
+
   close(reason: string) {
     this.sidemenu.close();
   }
@@ -76,5 +82,4 @@ export class AppComponent {
     console.log('Logout is called');
     this._loginService.logout();
   }
-
 }
