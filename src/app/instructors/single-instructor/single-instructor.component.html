@@ -7,53 +7,48 @@
 </div> -->
 
 <div class='row'>
-    <div class='col-3'>
-        <div class='row justify-content-center'>
-            <div *ngIf="profilePath" class="profile_image">
-                <img src="{{instructor.profilePic.path}}">
+<div class='col-3'>
+    <div class='row justify-content-center'>
+    <div *ngIf="profilePath" class="profile_image">
+        <img src="{{instructor.profilePic.path}}">
+    </div>
+    
+    <div *ngIf="!profilePath" class="profile_image mb-3">
+        <img src="../../../assets/Avatar.png">
+    </div>
+    </div>
+    <div class='row' style="position: relative;">
+        <h4 class="mt-3">Instructor</h4>
+        <div>
+            <button mat-flat-button *ngIf="!view" class="edit-btn" color="primary" (click)="editInstructorModal(i, instructor)">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+        </div>
+    </div>
+    
+    <mat-divider></mat-divider>
+    <div class='row mt-2'>
+        <mat-card class="w-100">
+            <div >
+                <h5 *ngIf="instructor">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h5>
             </div>
 
             <div *ngIf="!profilePath" class="profile_image mb-3">
                 <img src="../../../assets/Avatar.png">
             </div>
-        </div>
-        <h4 class="mt-3">Personal details</h4>
-        <mat-divider></mat-divider>
-        <div class='row mt-2'>
-            <mat-card>
-                <div>
-                    <h5 *ngIf="instructor">
-                        <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>{{instructor.name}}</h5>
-                </div>
-                <div>
-                    <h5 *ngIf="email">
-                        <i class="fas fa-envelope text-info mr-1"></i> {{email}}</h5>
-                    <h4 *ngIf="!email">
-                        <i class="fas fa-envelope text-info mr-1"></i>No Email</h4>
-                </div>
-                <div>
-                    <h5 *ngIf="mobile">
-                        <i class="fas fa-mobile-alt text-warning mr-1"></i> {{mobile}}</h5>
-                    <h5 *ngIf="!mobile">
-                        <i class="fas fa-mobile-alt text-warning mr-1"></i>No mobile</h5>
-                </div>
-            </mat-card>
-        </div>
-        <div class='row mt-3'>
-            <button mat-flat-button *ngIf="!view" color="primary" (click)="editInstructorModal(i, instructor)">
-                <i class="fas fa-pencil-alt"></i>
-                <span> Edit Profile</span>
-            </button>
-        </div>
-        <div class="row">
-            <mat-card>
-                <mat-card-title>
-                    Competencies
-                </mat-card-title>
-            </mat-card>
-        </div>
+        </mat-card>
     </div>
-    <!-- <div class="card profile_card"> -->
+    
+    <!-- <div class="row">
+        <mat-card>
+            <mat-card-title>
+            Competencies
+            </mat-card-title>
+        </mat-card>
+    </div> -->
+</div>
+<!-- <div class="card profile_card"> -->
 
     <!-- <div class="profile_picture_area"> -->
     <!-- <div *ngIf="profilePath" class="profile_image">
@@ -94,22 +89,22 @@
         <span>Edit Profile</span>
     </button>
 </div> -->
-    <div class='col-9'>
-        <div class='row justify-content-end'>
-            <div class="col-12">
-                <mat-card>
-                    <app-my-documents></app-my-documents>
-                </mat-card>
-            </div>
-            <!-- <div class="col-3">
+<div class='col-9'>
+<!-- <div class='row justify-content-end'>
+    <div class="col-12">
+    <mat-card>
+        <app-my-documents></app-my-documents>
+    </mat-card>
+    </div> -->
+    <!-- <div class="col-3">
     <mat-card>
         <mat-card-title>
             Total Jobs
         </mat-card-title>
     </mat-card>
     </div> -->
-        </div>
-        <div class='row'>
+        <!-- </div> -->
+        <div class='row jobs_list'>
             <h3>Jobs</h3><button placement="bottom" ngbTooltip="Scheduler" tooltipClass="tooltip-class"
                 class="pull-right cal-button" color="primary" (click)="scheduler(job)"><i
                     class="far fa-calendar-alt"></i></button>

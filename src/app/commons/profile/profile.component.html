@@ -7,7 +7,16 @@
         <img src="../../../assets/default-user.jpg">
     </div>
 
-    <h4>Personal Details</h4>
+    <!-- <h4>Personal Details</h4> -->
+    <div class='row' style="position: relative;">
+        <h4 class="mt-3">Personal details</h4>
+        <div>
+            <button mat-flat-button *ngIf="!view" class="edit-btn" color="primary"
+                (click)="editLearner()">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+        </div>
+    </div>
     <mat-divider></mat-divider>
     <mat-card class="outer_card">
         <div>
