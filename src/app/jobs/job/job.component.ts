@@ -120,7 +120,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     console.log("JOB found in scheculer", job);
     this.jobForScheduler = job;
     let dialogRefScheduler = this.dialog.open(SchedulerComponent,{
-      data: this.jobForScheduler,
+      data: [this.jobForScheduler],
       // minWidth: '100vw',
       // height: '100vh'
       panelClass: 'customScheduler',
