@@ -9,6 +9,7 @@ import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { trigger, transition, query, animateChild, state, style, animate, useAnimation } from '@angular/animations';
 import { bounce } from 'ng-animate';
+declare var $: any;
 
 export const FLIP_TRANSITION = [
   trigger(
@@ -49,16 +50,20 @@ export class LearnerDashboardComponent implements OnInit {
 
   @Input('isActive') isActive: Boolean;
   @Input('location') location: any;
-  @Output() onDeleted: EventEmitter<any> = new EventEmitter<any>();
+  // @Output() onDeleted: EventEmitter<any> = new EventEmitter<any>();
 
   editing: boolean = false;
+  editing1: boolean = false;
+  editing2: boolean = false;
   backupLocation;
   bounce: any;
 
-  exams = [
-    { id: '0', display: 'Exam-1', status: 'Pass', },
-    { id: '1', display: 'Exam-2', status: 'Fail', },
-  ];
+  exam1 =
+    { id: '0', display: 'Exam-1', status: 'Pass' };
+
+  exam2 =
+    { id: '0', display: 'Exam-1', status: 'Pass' };
+
 
   jobId;
   loadingMaterials: Boolean;
@@ -131,14 +136,19 @@ export class LearnerDashboardComponent implements OnInit {
     alert("Selected" + this.isActive);
   }
 
-  editStatus() {
-    console.log("Enabling Editing")
-    this.editing = true;
+  editStatus1() {
+    this.editing1 = true;
   }
 
-  updateStatus() {
-    this.editing = false;
-    console.log('Update Status::::::::::');
+  editStatus2() {
+    this.editing2 = true;
+  }
+
+  updateStatus1() {
+    this.editing1 = false;
+  }
+  updateStatus2() {
+    this.editing2 = false;
   }
 
 
