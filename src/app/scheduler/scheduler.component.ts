@@ -226,8 +226,12 @@ export class SchedulerComponent implements OnInit {
         console.log("**********IN if Condition**********");
         this.populateAllJobs([this.jobRecieved])
       }
+      
       else if (this.test != undefined) {
         this.populateAllJobs([this.test])
+      }
+      else if (this.test == undefined) {
+        this.getJobs()
       }
     }
     else {

@@ -179,8 +179,8 @@ export class JobsComponent implements OnInit {
       console.log("ONLY SINGLE JOB", jobs)
     }
   }
-  scheduler(job) {
-    console.log("JOB found in scheculer", job);
+  scheduler() {
+    // console.log("JOB found in scheculer", job);
     // this.jobForScheduler = job;
     let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
       // data: this.jobForScheduler,
