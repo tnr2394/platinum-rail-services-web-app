@@ -8,7 +8,7 @@
                 Loading... <i class="fas fa-refresh fa-spin"></i>
             </h1>
         </div>
-        <div class="row mx-0 exam_row">
+        <!-- <div class="row mx-0 exam_row">
             <mat-card class="exam_card">
                 <p>Exam-1</p>
                 <h1>Pass</h1>
@@ -17,7 +17,45 @@
                 <p>Exam-2</p>
                 <h1>Fail</h1>
             </mat-card>
+        </div> -->
+
+        <div *ngFor="let exam of exams">
+            <div class=" row mx-0 exam_row  card location-bg exam_card " [ngClass]="{'editing-location': editing}"
+                [@bounce]="{ value: bounce}">
+                <div class="card-block">
+                    <div *ngIf="!editing" [@inOutAnimation]>
+                        <div class=" text-right card-title h4">
+                            <p>{{exam.display}}</p>
+                            <h1>{{exam.status}}</h1>
+                        </div>
+                        <a class="pull-right "><i class="fas fa-edit text-success fa-fw bg-danger"
+                                (click)="editStatus()"></i></a>
+                    </div>
+                    <div *ngIf="editing" [@inOutAnimation]>
+                        <form>
+                            <mat-form-field class="col-12">
+                                <input matInput name="location" placeholder="Status" [(ngModel)]='exam.status' required
+                                    cdkFocusInitial>
+                                <mat-error>Location is required</mat-error>
+                            </mat-form-field>
+                            <div class="col-12">
+                                <button *ngIf="loading" disabled mat-stroked-button color="primary">
+                                    <i class="fas fa-refresh fa-spin fa-fw"></i>
+                                </button>
+                                <button *ngIf="!loading" class="button_hover_effect" mat-stroked-button
+                                    (click)="updateStatus()" color="primary"><i class="fas fa-edit fa-fw"></i>
+                                    <span>Save</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
+
+
         <!-- <h1 class="learner_title">Hello {{learnerName}}!</h1>
 
 <h3 *ngIf="learner && learner.phone">{{learner.phone}}</h3> -->
@@ -283,8 +321,8 @@
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let allotment; let i = index;">
-                                        <a mat-button class="text-primary bold"
-                                        placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class"
+                                        <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
+                                            tooltipClass="tooltip-class"
                                             routerLink="/learnerAllotment/{{allotment._id}}">
                                             <i class="fa fa-eye"></i>
                                         </a>

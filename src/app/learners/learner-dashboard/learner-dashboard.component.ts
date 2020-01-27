@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MaterialService } from '../../services/material.service';
 import { LearnerService } from '../../services/learner.service';
 import { JobService } from '../../services/job.service';
@@ -7,13 +7,58 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { FilterPipe } from 'ngx-filter-pipe';
+import { trigger, transition, query, animateChild, state, style, animate, useAnimation } from '@angular/animations';
+import { bounce } from 'ng-animate';
+
+export const FLIP_TRANSITION = [
+  trigger(
+    'inOutAnimation',
+    [
+      transition(
+        ':enter',
+        [
+          style({ opacity: 0 }),
+          animate('0.5s ease-in-out',
+            style({ opacity: 1 }))
+        ]
+      ),
+      transition(
+        ':leave',
+        [
+          style({ opacity: 1 }),
+          animate('0s ease-in',
+            style({ opacity: 0 }))
+        ]
+      )
+    ]
+  ),
+  trigger('bounce', [transition('* => *', useAnimation(bounce))]),
+];
+
+
+
 
 @Component({
   selector: 'app-learner-dashboard',
   templateUrl: './learner-dashboard.component.html',
-  styleUrls: ['./learner-dashboard.component.scss']
+  styleUrls: ['./learner-dashboard.component.scss'],
+  animations: [FLIP_TRANSITION]
 })
 export class LearnerDashboardComponent implements OnInit {
+
+
+  @Input('isActive') isActive: Boolean;
+  @Input('location') location: any;
+  @Output() onDeleted: EventEmitter<any> = new EventEmitter<any>();
+
+  editing: boolean = false;
+  backupLocation;
+  bounce: any;
+
+  exams = [
+    { id: '0', display: 'Exam-1', status: 'Pass', },
+    { id: '1', display: 'Exam-2', status: 'Fail', },
+  ];
 
   jobId;
   loadingMaterials: Boolean;
@@ -80,6 +125,22 @@ export class LearnerDashboardComponent implements OnInit {
       });
     })
   }
+
+
+  select() {
+    alert("Selected" + this.isActive);
+  }
+
+  editStatus() {
+    console.log("Enabling Editing")
+    this.editing = true;
+  }
+
+  updateStatus() {
+    this.editing = false;
+    console.log('Update Status::::::::::');
+  }
+
 
   getJob() {
     this._jobService.getJobById(this.jobId).subscribe((job) => {
