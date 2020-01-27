@@ -31,64 +31,55 @@
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard" placement="right"
-          ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-fw fa-chalkboard"></i>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard"  routerLinkActive="active-link">
+          <i class="fas fa-fw fa-chalkboard" placement="right"
+          ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}"  tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Dashboard</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" placement="right"
-          ngbTooltip="{{getToolTipEvent() ? 'Course' : ''}}" tooltipClass="tooltip-class" routerLink="/courses"
-          routerLinkActive="active-link">
-          <i class="fas fa-fw fa-book"></i>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-book" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Course' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Course</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" placement="right"
-          ngbTooltip="Instructors" tooltipClass="tooltip-class" routerLinkActive="active-link">
-          <i class="fas fa-fw fa-user"></i>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-user" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Instructors' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Instructor</span>
         </a>
       </li>
       <li>
         <a *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')"
-          routerLink="/jobs" placement="right" ngbTooltip="Jobs" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-university"></i>
+          routerLink="/jobs" routerLinkActive="active-link">
+          <i class="fas fa-university" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Jobs' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Job</span>
         </a>
       </li>
       <li>
         <a *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')"
-          routerLink="/submission" placement="right" ngbTooltip="Submissions" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-clipboard-check"></i>
+          routerLink="/submission" routerLinkActive="active-link">
+          <i class="fas fa-clipboard-check" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Submission' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Submission</span>
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" placement="right"
-          ngbTooltip="Clients" tooltipClass="tooltip-class" routerLinkActive="active-link">
-          <i class="fas fa-fw fa-users"></i>
+        <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-users" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Clients' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Client</span>
         </a>
       </li>
       <li>
         <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
-          routerLink="/scheduler" placement="right" ngbTooltip="Scheduler" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-fw fa-calendar-alt"></i>
+          routerLink="/scheduler" routerLinkActive="active-link">
+          <i class="fas fa-fw fa-calendar-alt" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Scheduler' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Scheduler</span>
         </a>
       </li>
       <li>
         <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
-          routerLink="/mydocuments" placement="right" ngbTooltip="My Documents" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-folder"></i>
+          routerLink="/mydocuments" routerLinkActive="active-link">
+          <i class="fas fa-folder" placement="right" ngbTooltip="{{getToolTipEvent() ? 'My Documents' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">My Documents</span>
         </a>
       </li>
@@ -100,17 +91,15 @@
         </a>
       </li>
       <li>
-        <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" placement="right"
-          ngbTooltip="Reset Password" tooltipClass="tooltip-class" routerLinkActive="active-link">
-          <i class="fas fa-unlock-alt"></i>
+        <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" routerLinkActive="active-link">
+          <i class="fas fa-unlock-alt" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Reset Password' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
           <span class="menuText">Reset Password</span>
         </a>
       </li>
       <li>
-        <a *ngIf="loggedInUser" (click)="Logout()" placement="right" ngbTooltip="Logout" tooltipClass="tooltip-class"
-          routerLinkActive="active-link">
-          <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-          <span class="menuText">Logout</span>
+        <a *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link">
+          <i class="fas fa-sign-out-alt" aria-hidden="true" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Logout' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
+          <span class="menuText" >Logout</span>
         </a>
       </li>
     </ul>
