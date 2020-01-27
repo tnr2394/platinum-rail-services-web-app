@@ -21,6 +21,8 @@ export class AppComponent {
   instructorRouteName;
   toolTip: any = 'expand';
   isVisible: boolean = true;
+  disableTooltip;
+  disabled: boolean;
 
   constructor(public cd: ChangeDetectorRef, private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
@@ -67,7 +69,17 @@ export class AppComponent {
   }
 
   getToolTip() {
+    if ($(".sidebar").hasClass('sidebar--Collapse')){
+      this.disabled = true;
+    }
+    else{
+      this.disabled = false;
+    }
     return $(".sidebar").hasClass('sidebar--Collapse') ? 'expand' : 'collapse';
+  }
+
+  getToolTipEvent() {
+    return $(".sidebar").hasClass('sidebar--Collapse');
   }
 
   ngOnChanges() {

@@ -607,11 +607,16 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
       box-shadow:2px 2px rgba(4, 67, 170, 0.692);
       animation: mymove 5s infinite;
       opacity: 1 !important;
+      min-width: 119px;
     }
 @keyframes mymove {
   50% {box-shadow: 4px 6px 4px rgba(4, 67, 170, 0.692);}
 }
 .tooltip-class .arrow::before {
     border-bottom: 5px solid rgb(4, 79, 199);
+    z-index: 1;
+}
+.tooltip-sidebar-class .arrow::before{
+    border-right: 5px solid rgb(4, 79, 199);
     z-index: 1;
 }
