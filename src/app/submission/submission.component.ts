@@ -95,6 +95,9 @@ export class SubmissionComponent implements OnInit {
   ngOnInit() {
     this.loadingJobs = true;
     this.getJobs();
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
   }
 
   jobChanged(event) {

@@ -121,6 +121,9 @@ export class JobsComponent implements OnInit {
       this.view = true;
       console.log("VIEW VALUE IS", this.view)
     }
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
     // this.getStatus()
   }
 

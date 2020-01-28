@@ -143,6 +143,9 @@ export class MaterialsComponent implements OnInit {
       console.log("CourseId  ", this.courseId);
       this.getMaterials(this.courseId);
     }
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
   }
   onMaterialSelection(event) {
     if (event.checked == true) {

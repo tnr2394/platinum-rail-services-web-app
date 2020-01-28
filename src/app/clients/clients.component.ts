@@ -70,6 +70,9 @@ export class ClientsComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.getClients();
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
   }
 
 

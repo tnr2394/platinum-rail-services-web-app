@@ -52,6 +52,9 @@ export class InstructorsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
   }
 
   applyFilter(filterValue: string) {

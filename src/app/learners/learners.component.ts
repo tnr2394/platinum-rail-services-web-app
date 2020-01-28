@@ -68,6 +68,9 @@ export class LearnersComponent implements OnInit {
     this.getLearners(this.jobId);
     this.getJob(this.job);
     this.currentUser = JSON.parse(localStorage.currentUser);
+    const paginatorIntl = this.paginator._intl;
+    paginatorIntl.nextPageLabel = '';
+    paginatorIntl.previousPageLabel = '';
   }
 
   ngAfterViewInit() {
