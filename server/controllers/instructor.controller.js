@@ -173,9 +173,10 @@ const updateProfilePicture = (profileImg) => {
         var re = /(?:\.([^.]+))?$/;
         var ext = re.exec(profileImg.name)[1];
         var name = profileImg.name.split('.').slice(0, -1).join('.')
+        var newName = name + '-' + '-' + Date.now();
 
         var newFile = {
-            title: name,
+            title: newName,
             type: "Profile",
             path: "NEWPATH",
             extension: ext,
@@ -200,9 +201,10 @@ const updateQualificationFile = (certFile) => {
         var re = /(?:\.([^.]+))?$/;
         var ext = re.exec(certFile.name)[1];
         var name = certFile.name.split('.').slice(0, -1).join('.')
+        var newName = name + '-' + '-' + Date.now();
 
         var newFile = {
-            title: name,
+            title: newName,
             type: "Certificate",
             path: "NEWPATH",
             extension: ext,

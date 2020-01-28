@@ -1,131 +1,128 @@
-// .login_page{
-//     margin-top: -25px;
-// }
 .logo_image img {
-    width: 100%;
-    height: auto;
-    max-width: 410px;
+  width: 100%;
+  height: auto;
+  max-width: 410px;
 }
 .login_form {
-    width: 50%;
+  width: 50%;
 }
-.msg_success{
-    background-color: lightgreen;
+.msg_success {
+  background-color: lightgreen;
 }
-.msg_error{
-    color:red;
+.msg_error {
+  color: red;
 }
-.welcome_msg{
-    font-size: 18px;
-    color: #4D4F5C;
-    padding: 25px 0px;
-    margin-bottom: 0px;
-    // font-weight: 300;
-    font-family: 'Source Sans Pro', sans-serif;
+.welcome_msg {
+  font-size: 18px;
+  color: #4d4f5c;
+  padding: 25px 0px;
+  margin-bottom: 0px;
+  font-family: "Source Sans Pro", sans-serif;
 }
-form{
-    padding: 0px 50px;
+form {
+  padding: 0px 50px;
 }
 .mat-input-element {
+  font-size: 16px;
+  color: #43425d;
+}
+.remember_row {
+  label {
+    color: #43425d;
+  }
+  a {
+    color: #43425d !important;
+  }
+  @media screen and (max-width: 575px) {
+    label {
+      font-size: 13px;
+    }
+    a {
+      font-size: 13px;
+    }
+  }
+}
+
+span.field-icon.toggle-password {
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+  margin: auto;
+  color: #adb5be;
+  line-height: 47px;
+  z-index: 11;
+}
+
+.login_btn {
+  color: white;
+  background-color: #43425d;
+  padding: 10px 60px;
+}
+@media (max-width: 1600px) {
+  .logo_image img {
+    max-width: 350px;
+  }
+  .login_btn {
+    padding: 8px 60px;
+  }
+}
+@media (max-width: 1366px) {
+  .logo_image img {
+    max-width: 280px;
+  }
+  .welcome_msg {
+    padding: 20px 0px;
+  }
+}
+@media screen and (max-width: 991px) {
+  form {
+    padding: 0px 30px;
+  }
+  .login_btn {
+    padding: 4px 48px;
+  }
+  .login_form {
+    width: 100% !important;
+  }
+  .logo_image img {
+    max-width: 270px;
+  }
+  .welcome_msg {
+    padding: 15px 0px;
     font-size: 16px;
-    color: #43425D;
+  }
 }
-.remember_row{
-    label{
-        color: #43425D;
-    }
-    a{
-        color: #43425D !important;
-    }
-    @media screen and (max-width:575px){
-        label{
-            font-size: 13px;
-        }
-        a {
-            font-size: 13px;
-        }
-    }
+@media screen and (max-width: 767px) {
+  .logo_image img {
+    max-width: 230px;
+  }
+  .welcome_msg {
+    padding: 12px 0px;
+    font-size: 15px;
+  }
+  .login_btn {
+    padding: 0px 45px;
+  }
+  label {
+    margin-bottom: 0 !important;
+  }
+}
+@media screen and (max-width: 575px) {
+  .logo_image img {
+    max-width: 200px;
+  }
+  .welcome_msg {
+    font-size: 14px;
+    padding: 14px 0px;
+  }
+  .mat-input-element {
+    font-size: 15px;
+  }
+  form {
+    padding: 0px 10px;
+  }
 }
 
-span.field-icon.toggle-password{
-    position: absolute;
-    right: 15px;
-    // top: 0;
-    bottom: 0;
-    margin: auto;
-    color:#adb5be;
-    line-height: 47px;
-    z-index: 11;
-}
-
-
-
-.login_btn{
-    color: white;
-    background-color: #43425D;
-    padding: 10px 60px;
-}
-@media (max-width:1600px){
-    .logo_image img{
-         max-width: 350px;
-    }
-    .login_btn {
-        padding: 8px 60px;
-    }
-}
-@media (max-width:1366px){
-    .logo_image img {
-        max-width: 280px;
-    }
-    .welcome_msg {
-        padding: 20px 0px;
-    }
-}
-@media screen and (max-width:991px){
-    form {
-        padding: 0px 30px;
-    }
-    .login_btn {
-        padding: 4px 48px;
-    }
-    .login_form{
-        width: 100% !important;
-    }
-    .logo_image img {
-        max-width: 270px;
-    }
-    .welcome_msg {
-        padding: 15px 0px;
-        font-size: 16px;
-    }
-}
-@media screen and (max-width:767px){
-    .logo_image img {
-        max-width: 230px;
-    }
-    .welcome_msg {
-        padding: 12px 0px;
-        font-size: 15px;
-    }
-    .login_btn{
-        padding: 0px 45px;
-    }
-    label{
-        margin-bottom: 0 !important;
-    }
-}
-@media screen and (max-width:575px){
-    .logo_image img {
-        max-width: 200px;
-    }
-    .welcome_msg {
-        font-size: 14px;
-        padding: 14px 0px;
-    }
-    .mat-input-element {
-        font-size: 15px;
-    }
-    form {
-        padding: 0px 10px;
-    }
+.grecaptcha-badge {
+  visibility: visible !important;
 }
