@@ -614,10 +614,14 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .tooltip-class .arrow::before {
-    border-bottom: 5px solid rgb(4, 79, 199);
+    border-bottom: 5px solid rgb(4, 79, 199) !important;
     z-index: 1;
 }
 .tooltip-sidebar-class .arrow::before{
-    border-right: 5px solid rgb(4, 79, 199);
+    border-right: 5px solid rgb(4, 79, 199) !important;
+    z-index: 1;
+}
+.tooltip-top-class .arrow::before{
+    border-top: 5px solid rgb(4, 79, 199) !important;
     z-index: 1;
 }
