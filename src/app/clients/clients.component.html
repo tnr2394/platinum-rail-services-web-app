@@ -60,11 +60,11 @@
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let client; let i = index;">
                                             <a class="text-success bold mr-5" (click)="editClientModal(i, client)"
-                                            placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class">
+                                            placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class" triggers="hover">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="text-primary bold" routerLink="{{client._id}}"
-                                            placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class">
+                                            placement="bottom" ngbTooltip="Details" triggers="hover" tooltipClass="tooltip-class">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
