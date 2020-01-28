@@ -50,6 +50,7 @@ export class SubmissionComponent implements OnInit {
   filteredLearners = [];
   sepArray = [];
   bgColors = [];
+  finalLearner = [];
   lastColor;
   copyLearners;
 
@@ -185,6 +186,7 @@ export class SubmissionComponent implements OnInit {
   updateData(learner) {
     console.log("UPDATING DATA = ", learner)
     this.dataSource = new MatTableDataSource(learner);
+    this.finalLearner = learner;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)

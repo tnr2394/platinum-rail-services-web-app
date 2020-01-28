@@ -79,15 +79,17 @@
                     <h1>{{dataSource.length}}</h1>
                     <div *ngIf='selectedJob == undefined && selectedAssignment == undefined'
                         class="msg_text mb-2 text-info text-center">
-                        Choose Job and Assignment Number to display learners!
+                        Choose Job to display Assignments!
                     </div>
-
+                    <!-- 
                     <div *ngIf='assignment && assignment.length == "0"' class="msg_text mb-2 text-info text-center">
                         No Assignments In This Job!
-                    </div>
+                    </div> -->
 
 
                     <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+
 
                         <!-- Name Column -->
                         <ng-container matColumnDef="Learner" class="learner_name_submission">
@@ -126,8 +128,8 @@
                         <ng-container matColumnDef="View">
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                <a mat-button class="text-primary bold"
-                                placement="bottom" ngbTooltip="Details"  tooltipClass="tooltip-class"
+                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
+                                    tooltipClass="tooltip-class"
                                     routerLink="/submission/learner/{{learner.allotemntId}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
@@ -141,8 +143,7 @@
                             <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
                         </tbody>
                     </table>
-                    <div class="text-info pt-3 text-center"
-                        *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
+                    <div class="text-info pt-3 text-center" *ngIf="finalLearner.length == 0">
                         No Assignment Allocated!
                     </div>
                     <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
