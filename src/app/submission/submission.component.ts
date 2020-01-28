@@ -104,7 +104,7 @@ export class SubmissionComponent implements OnInit {
     this.copyLearners = [];
     this.selectedAssignment = null;
     console.log('this.assignment::::::::::', this.assignment, this.selectedAssignment);
-    this.dataSource = new MatTableDataSource(emptyList);
+    this.updateData(emptyList);
     this.selectedJob = event.value._id;
     this.getAssignmentList(this.selectedJob);
     this.getAllAllotedAssignmentsUsingJobId(this.selectedJob);
@@ -132,7 +132,7 @@ export class SubmissionComponent implements OnInit {
 
   filterUsingStatus(assignment) {
     if (!assignment.length) {
-      this.dataSource = new MatTableDataSource(this.learners);
+      this.updateData(this.learners);
     } else {
       const finalarray = [];
       this.learners.forEach((e1) => assignment.forEach((e2) => {
@@ -140,7 +140,7 @@ export class SubmissionComponent implements OnInit {
           finalarray.push(e1)
         }
       }));
-      this.dataSource = new MatTableDataSource(finalarray);
+      this.updateData(finalarray);
     }
   }
 
@@ -148,7 +148,7 @@ export class SubmissionComponent implements OnInit {
     this.selectedAssignment = event.value;
     console.log('this.selectedAssignment', this.selectedAssignment);
     this.learners = this._filter.filter(this.selectedAssignment, this.copyLearners, ['assignmentId']);
-    this.dataSource = new MatTableDataSource(this.learners);
+    this.updateData(this.learners);
   }
 
   getRandomColorClass(i) {
@@ -179,13 +179,17 @@ export class SubmissionComponent implements OnInit {
     });
   }
 
-  // getLearners(jobId) {
-  //   this._learnerService.getLearnersByJobId(jobId).subscribe((data) => {
-  //     this.learners = data;
-  //     this.dataSource = new MatTableDataSource(this.learners);
-  //     console.log("-----LEARNERS ARE-----", this.learners)
-  //   });
-  // }
+
+  // UTILITY
+
+  updateData(learner) {
+    console.log("UPDATING DATA = ", learner)
+    this.dataSource = new MatTableDataSource(learner);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    console.log("SETTING SORT TO = ", this.dataSource.sort)
+    console.log("SETTING paginator TO = ", this.dataSource.paginator)
+  }
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
@@ -215,8 +219,7 @@ export class SubmissionComponent implements OnInit {
         this.learners = data;
         this.copyLearners = this.learners;
         console.log('All Learnes:::::::::::', this.copyLearners);
-        this.dataSource = new MatTableDataSource(this.learners);
-        this.dataSource.paginator = this.paginator;
+        this.updateData(this.learners)
         this.loadingAssignments = false;
       }
     });
@@ -226,8 +229,7 @@ export class SubmissionComponent implements OnInit {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
       this.learners = data;
       this.loadingLearners = false;
-      this.dataSource = new MatTableDataSource(this.learners);
-      this.dataSource.paginator = this.paginator;
+      this.updateData(this.learners);
       console.log("-----LEARNERS ARE-----", this.learners)
     });
   }
