@@ -47,7 +47,6 @@ const colors: any = {
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent implements OnInit {
-  @Input('jobs') jobRecieved: any;
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
@@ -164,7 +163,7 @@ export class SchedulerComponent implements OnInit {
   activeDayIsOpen: boolean = true;
   job: any;
   selectedJob;
-  test: any;
+  jobsForModal: any;
   dialogref = null;
   allevents = [];
   loading: Boolean = true;
@@ -173,10 +172,10 @@ export class SchedulerComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
     private router: Router, private injector: Injector) {
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
-      this.test = this.injector.get(MAT_DIALOG_DATA)
+      this.jobsForModal = this.injector.get(MAT_DIALOG_DATA)
       this.dialogref = this.injector.get(MatDialogRef)
       this.displayTitle = false;
-      console.log("IN IF CONDITION", this.test);
+      console.log("IN IF CONDITION Of Constructor", this.jobsForModal);
     }
   }
 
@@ -215,44 +214,20 @@ export class SchedulerComponent implements OnInit {
 
   ngOnInit() {
     console.log("this.loading", this.loading);
-
-    console.log("JOV FROM SINGLE JOB PAGE", this.jobRecieved);
-    console.log("TEST**********", this.test);
-    
-    // console.log("The data recieved is", this.DialogData);
+    console.log("jobsForModal**********", this.jobsForModal);
 
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
-      // this.viewDropdown = false;
-      // console.log("VIEW VALUE IS HERE");
-      if (this.jobRecieved != undefined) {
-        console.log("**********IN if Condition**********");
-        this.populateAllJobs([this.jobRecieved])
+      if (this.jobsForModal != undefined) {
+        this.populateAllJobs( this.jobsForModal)
       }
-      
-      else if (this.test != undefined) {
-        this.populateAllJobs(this.test)
-      }
-  
-      else if (this.test == undefined) {
-        // this.populateAllJobs([this.test])
+      else if (this.jobsForModal == undefined) {
         this.getJobs()
       }
-      // else if ( (this.router.url.includes('/instrutors')){
-
-      // }
     }
     else {
       console.log("IN ELSE");
       this.getJobs();
-      // this.activatedRoute.params.subscribe(params => {
-      //   this.jobId = params['jobid'];
-      //   if (params['jobid'] != undefined){
-      //     console.log("Calling getLearners with jobid = ********** ", params['jobid']);
-      //     // this.filterJobUsingJobId(this.jobId);
-      //   }
-      // });
     }
-
   }
   // Utility
   createEventObject(obj) {

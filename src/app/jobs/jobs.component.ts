@@ -48,6 +48,7 @@ export class JobsComponent implements OnInit {
 
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
+  jobForScheduler: any;
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -181,9 +182,9 @@ export class JobsComponent implements OnInit {
   }
   scheduler() {
     // console.log("JOB found in scheculer", job);
-    // this.jobForScheduler = job;
+    this.jobForScheduler = this.jobs;
     let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
-      // data: this.jobForScheduler,
+      data: this.jobForScheduler,
       // minWidth: '100vw',
       // height: '100vh'
       panelClass: 'customScheduler',
