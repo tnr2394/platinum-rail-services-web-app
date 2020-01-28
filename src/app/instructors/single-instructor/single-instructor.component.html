@@ -21,7 +21,7 @@
             <h4 class="mt-3">Instructor</h4>
             <div>
                 <button mat-flat-button *ngIf="!view" class="edit-btn" color="primary"
-                    (click)="editInstructorModal(i, instructor)">
+                    (click)="editInstructorModal(i, instructor)" placement="bottom" ngbTooltip="Edit Profile" tooltipClass="tooltip-class">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
             </div>
@@ -113,7 +113,7 @@
         <!-- </div> -->
         <div class='row jobs_list'>
             <h3>Jobs</h3><button placement="bottom" ngbTooltip="Scheduler" tooltipClass="tooltip-class"
-                class="pull-right cal-button" color="primary" (click)="scheduler(instructor)"><i
+                class="pull-right cal-button" color="primary" (click)="scheduler()"><i
                     class="far fa-calendar-alt"></i></button>
         </div>
         <div class="row">
