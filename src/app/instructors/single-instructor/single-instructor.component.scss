@@ -131,3 +131,18 @@ tr.mat-header-row{
         object-fit: cover;
     }
 }
+.outer_card{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    i{
+        font-size: 25px;
+    }
+    .col-3{
+        text-align: center;
+    }
+    .personal_info{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+}
