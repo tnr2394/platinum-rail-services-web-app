@@ -74,7 +74,7 @@ export class JobDatesComponent implements OnInit {
   }
 
   enableCheckBoxes(){
-    this.checkEnable = false
+    this.checkEnable =  false
   }
 
   // generateDates() {

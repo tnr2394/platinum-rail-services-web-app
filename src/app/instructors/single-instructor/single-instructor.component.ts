@@ -64,21 +64,21 @@ export class SingleInstructorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<any>(this.jobs);
+    // this.dataSource = new MatTableDataSource<any>(this.jobs);
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.getJob(this.instructorId);
+    // this.getJob(this.instructorId);
     this.getInstructor(this.instructorId);
   }
 
-  getJob(instructorId) {
-    console.log('Get Job Called');
-    this._jobService.getJobByInstructorId(instructorId).subscribe((res => {
-      this.dataSource = new MatTableDataSource<any>(this.jobs);
-      console.log('Get Jobs', res);
-      this.jobs = res;
-      this.updateData(res);
-    }))
-  }
+  // getJob(instructorId) {
+  //   console.log('Get Job Called');
+  //   this._jobService.getJobByInstructorId(instructorId).subscribe((res => {
+  //     this.dataSource = new MatTableDataSource<any>(this.jobs);
+  //     console.log('Get Jobs', res);
+  //     this.jobs = res;
+  //     this.updateData(res);
+  //   }))
+  // }
 
   getInstructor(instructorId) {
     this._instrctorService.getInstructorById(instructorId).subscribe((res => {
