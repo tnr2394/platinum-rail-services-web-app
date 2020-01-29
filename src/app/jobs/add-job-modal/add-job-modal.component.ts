@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Inject, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -10,6 +10,7 @@ import { InstructorService } from '../../services/instructor.service';
 import { JobService } from '../../services/job.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { JobDatesComponent } from '../job-dates/job-dates.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,6 +24,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './add-job-modal.component.html',
   styleUrls: ['./add-job-modal.component.scss'],
 })
+
+
 export class AddJobModalComponent implements OnInit {
 
   clients;
@@ -54,6 +57,7 @@ export class AddJobModalComponent implements OnInit {
   rgba: any;
   always: any;
   minDate: any;
+  @ViewChild(JobDatesComponent, { static: false }) jobDateComp: JobDatesComponent;
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) { }
@@ -129,12 +133,14 @@ export class AddJobModalComponent implements OnInit {
   }
 
   clearForm() {
+    this.jobDateComp.checkEnable = true;
     this.addJobForm.reset();
     this.selectedCourse.duration = null
     console.log("form value---->", this.addJobForm)
     this.ngOnInit();
   }
   searchDays($event) {
+    this.jobDateComp.enableCheckBoxes();
     this.duration = this.selectedCourse.duration;
     this.startingDate = $event.value;
     this.temp = moment($event.value);

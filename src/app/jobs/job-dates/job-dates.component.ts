@@ -35,6 +35,7 @@ export class JobDatesComponent implements OnInit {
   event;
   totalDays = [];
   dayExist: Boolean;
+  checkEnable : Boolean = true;
 
   constructor(public formBuilder: FormBuilder) { }
 
@@ -70,6 +71,10 @@ export class JobDatesComponent implements OnInit {
       const control = new FormControl();
       (this.dateForm.controls.frequency as FormArray).push(control);
     });
+  }
+
+  enableCheckBoxes(){
+    this.checkEnable = false
   }
 
   // generateDates() {

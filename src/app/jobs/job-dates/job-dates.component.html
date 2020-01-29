@@ -6,7 +6,7 @@
                 <label formArrayName="frequency" *ngFor="let day of dateForm.controls.frequency.controls; let i = index">
                     <!-- <input type="checkbox" [ngModelOptions]="{standalone: true}"
                         [(ngModel)]='frequencyDays[i].checked' (ngModelChange)="generateDates($event,i,frequencyDays[i].day)"> -->
-                        <mat-checkbox [ngModelOptions]="{standalone: true}"
+                        <mat-checkbox [ngModelOptions]="{standalone: true}" [disabled]="checkEnable"
                         [(ngModel)]='frequencyDays[i].checked' (ngModelChange)="generateDates($event,i,frequencyDays[i].day)"></mat-checkbox>
                      &nbsp;&nbsp;{{frequencyDays[i].day}}
                 </label>
