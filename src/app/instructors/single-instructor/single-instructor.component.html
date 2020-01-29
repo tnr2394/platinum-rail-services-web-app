@@ -67,6 +67,15 @@
                             No phone</h5>
                     </div>
                 </div>
+                <div class='row mt-2'>
+                    <div class="col-3">
+                        <i class="fas fa-calendar-check text-info mr-1"></i>
+                    </div>
+                    <div class="col-9 personal_info">
+                        <h5 *ngIf="instructor">
+                            {{dateOfJoining | date:'shortDate'}}</h5>
+                    </div>
+                </div>
             </mat-card>
         
 

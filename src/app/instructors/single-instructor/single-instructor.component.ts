@@ -41,6 +41,7 @@ export class SingleInstructorComponent implements OnInit {
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
   jobForScheduler: any;
+  dateOfJoining: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -86,6 +87,7 @@ export class SingleInstructorComponent implements OnInit {
       this.profilePath = this.instructor.profilePic;
       this.mobile = this.instructor.mobile;
       this.email = this.instructor.email;
+      this.dateOfJoining = new Date(this.instructor.dateOfJoining);
     }))
   }
 
