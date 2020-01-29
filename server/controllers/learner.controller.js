@@ -245,7 +245,7 @@ learnerController.allotAssignments = function (req, res, next) {
                 assignment: singleAssignment._id,
                 learner: singleLearner.learner,
                 status: 'Pending',
-                deadlineDate: Date.now(),
+                deadlineDate: singleLearner.dueDate
             }
 
             // Create New Allotment With Single Learner
@@ -326,7 +326,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         var name = singleFile.name.split('.').slice(0, -1).join('.')
 
         var newName = name + '-' + req.user._id + '-' + Date.now();
-        
+
         var newFile = {
             title: newName,
             type: "material",// OR SUBMISSION OR DOCUMENT

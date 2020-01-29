@@ -86,7 +86,7 @@ export class LearnerDashboardComponent implements OnInit {
   currentUser;
   userFilter: any = { title: '' };
 
-  displayedColumns: string[] = ['Assignment', 'Status', 'View'];
+  displayedColumns: string[] = ['Assignment', 'DueDate', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
 

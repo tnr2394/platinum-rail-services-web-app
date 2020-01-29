@@ -21,54 +21,67 @@
             <h3 class="mt-3">Instructor</h3>
             <div>
                 <button mat-flat-button *ngIf="!view" class="edit-btn" color="primary"
-                    (click)="editInstructorModal(i, instructor)" placement="bottom" ngbTooltip="Edit Profile" tooltipClass="tooltip-class"  triggers="hover">
+                    (click)="editInstructorModal(i, instructor)" placement="bottom" ngbTooltip="Edit Profile"
+                    tooltipClass="tooltip-class" triggers="hover">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
             </div>
         </div>
 
         <mat-divider></mat-divider>
-        
-            <mat-card class="w-100 outer_card">
-                <div class='row mt-2'>
-                    <div class="col-3">
-                        <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
-                        
-                    </div>
-                    <div class="col-9 personal_info">
-                        <h5 *ngIf="instructor">
-                            {{instructor.name}}</h5>
-                    </div>
+
+        <mat-card class="w-100 outer_card">
+            <div class='row mt-2'>
+                <div class="col-3">
+                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
+
                 </div>
-                <div class='row mt-2'>
-                    <div class="col-3">
+                <div class="col-9 personal_info">
+                    <h5 *ngIf="instructor">
+                        {{instructor.name}}</h5>
+                </div>
+            </div>
+            <div class='row mt-2'>
+                <div class="col-3">
                     <i class="fas fa-envelope text-info mr-1"></i>
-                    </div>
-                    <div class="col-9 personal_info">
-                        <h5 *ngIf="instructor" class="email">
-                            {{instructor.email}}</h5>
-                    </div>
                 </div>
-                <div class='row mt-2' *ngIf="instructor && instructor.mobile">
-                    <div class="col-3">
-                        <i class="fas fa-mobile-alt text-warning mr-1"></i>
-                    </div>
-                    <div class="col-9 personal_info">
-                        <h5 >
-                            {{instructor.mobile}}</h5>
-                    </div>
+                <div class="col-9 personal_info">
+                    <h5 *ngIf="instructor" class="email">
+                        {{instructor.email}}</h5>
                 </div>
-                <div class='row mt-2' *ngIf="instructor && !instructor.mobile">
-                    <div class="col-3">
-                        <i class="fas fa-mobile-alt text-warning mr-1"></i>
-                    </div>
-                    <div class="col-9 personal_info" >
-                        <h5 >
-                            No phone</h5>
-                    </div>
+            </div>
+            <div class='row mt-2' *ngIf="instructor && instructor.mobile">
+                <div class="col-3">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i>
                 </div>
-            </mat-card>
-        
+                <div class="col-9 personal_info">
+                    <h5>
+                        {{instructor.mobile}}</h5>
+                </div>
+            </div>
+            <div class='row mt-2' *ngIf="instructor && !instructor.mobile">
+                <div class="col-3">
+                    <i class="fas fa-mobile-alt text-warning mr-1"></i>
+                </div>
+                <div class="col-9 personal_info">
+                    <h5>
+                        No phone</h5>
+                </div>
+            </div>
+
+            <div class='row mt-2' *ngIf="instructor && instructor.dateOfJoining">
+                <div class="col-3">
+                    <i class="far fa-calendar-alt text-success mr-1"></i>
+                </div>
+                <div class="col-9 personal_info">
+                    <h5>
+                        {{instructor.dateOfJoining | date:'mediumDate'}}</h5>
+                </div>
+            </div>
+
+
+        </mat-card>
+
 
         <!-- <div class="row">
         <mat-card>

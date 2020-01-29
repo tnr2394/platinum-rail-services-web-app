@@ -10,14 +10,6 @@
     <mat-card style="min-width: 100%;">
         <div class='row' style="margin-left: -15px; margin-right: -15px;">
 
-            <!-- Serach Bar -->
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                    <mat-icon matSuffix>search</mat-icon>
-                </mat-form-field>
-            </div>
-
             <!-- Select Job -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
@@ -31,7 +23,21 @@
                 </mat-form-field>
             </div>
 
-            <!-- Select Assignment -->
+            <!-- Select Assignment Number -->
+            <!-- <div class='col-xl-3 col-md-3'>
+                <mat-form-field>
+                    <mat-select placeholder="Unit Number" name="selectedAssignment" [(ngModel)]="selectedAssignment"
+                        (selectionChange)='assignmentNoChanged($event)'>
+                        <span *ngFor='let assignment of assignment'>
+                            <mat-option [value]='assignment.assignmentId'>
+                                Unit- {{assignment.assignmentUnit}}
+                            </mat-option>
+                        </span>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+
+            <!-- Select Unit Number -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-select placeholder="Assignment Number" name="selectedAssignment"
@@ -44,6 +50,20 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+
+
+
+            <!-- Serach Bar -->
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
+
+
+
 
             <!-- Select Assignment Status -->
             <div class="row justify-content-between w-100">
