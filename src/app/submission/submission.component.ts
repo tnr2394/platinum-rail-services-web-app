@@ -38,6 +38,7 @@ export class SubmissionComponent implements OnInit {
   unitNo = []
   assignmentNo = [];
   assignment: any = [];
+  unitList = [];
   selectedUnit;
   selectedAssignment;
   displayedColumns: string[] = ['Learner', 'Assignment', 'Status', 'View'];
@@ -53,6 +54,7 @@ export class SubmissionComponent implements OnInit {
   finalLearner = [];
   lastColor;
   copyLearners;
+  firstJob
 
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
@@ -95,6 +97,7 @@ export class SubmissionComponent implements OnInit {
   ngOnInit() {
     this.loadingJobs = true;
     this.getJobs();
+    this.defaultJob();
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';
     paginatorIntl.previousPageLabel = '';
@@ -112,6 +115,20 @@ export class SubmissionComponent implements OnInit {
     this.selectedJob = event.value._id;
     this.getAssignmentList(this.selectedJob);
     this.getAllAllotedAssignmentsUsingJobId(this.selectedJob);
+  }
+
+  defaultJob() {
+
+    console.log('Default Job Selection:::::::');
+
+    this._jobService.getJobs().subscribe((data) => {
+
+      console.log('data::::::::::::::', data);
+      this.firstJob = data[0];
+      this.jobs = data;
+      this.loadingJobs = false;
+      console.log("JOBS ARE", this.jobs)
+    });
   }
 
   statusChanged(data) {
