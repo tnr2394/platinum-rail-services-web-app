@@ -2,6 +2,24 @@
   loading
 </div> -->
 <div class="row">
+
+<div class="col-md-3">
+  <div class="card" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+    <div class="card-body">
+      <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}" dragActiveClass="drag-active">
+        {{event.title}}
+      </p>
+      <!-- <ul>
+        <li >
+          <a href="#" [style.color]="event.color.primary">
+            {{ event.title }}
+          </a>
+        </li>
+      </ul> -->
+    </div>
+  </div>
+</div>
+
   <div class="col-12">
     <div class="row" *ngIf="displayTitle == true">
       <h3 class="page-title">Scheduler</h3>
@@ -16,7 +34,7 @@
                 <div
                 class="btn btn-primary"
                 mwlCalendarPreviousView
-                [view]="view"
+                [(view)]="view"
                 [(viewDate)]="viewDate"
                 (viewDateChange)="closeOpenMonthViewDay()"
                 >
@@ -32,7 +50,7 @@
             <div
             class="btn btn-primary"
             mwlCalendarNextView
-            [view]="view"
+            [(view)]="view"
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()"
             >
@@ -64,7 +82,7 @@
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
       (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)"
+      (eventTimesChanged)="eventDropped($event)"
       >
       
     </mwl-calendar-month-view>

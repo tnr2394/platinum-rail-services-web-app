@@ -72,6 +72,9 @@ export class AddJobModalComponent implements OnInit {
   }
 
   courseChanged(data) {
+    if (this.router.url.includes('/scheduler')) {
+      this.jobDateComp.enableCheckBoxes();  
+    }
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
     this.duration = this.selectedCourse.duration;
@@ -103,15 +106,15 @@ export class AddJobModalComponent implements OnInit {
   createForm(){
     if (this.router.url.includes('/scheduler')) {
       this.addJobForm = this.formBuilder.group({
-        title: new FormControl(''),
+        title: new FormControl(this.data.title),
         jobColor: new FormControl('', Validators.required),
         client: new FormControl(''),
         instructor: new FormControl(''),
         location: new FormControl(''),
         course: new FormArray([this.course()]),
-        startingDate: new FormControl(this.data, Validators.required)
+        startingDate: new FormControl(this.data.start, Validators.required)
       });
-      this.startingDate = this.data;
+      this.startingDate = this.data.start;
     }
     else{
       this.addJobForm = this.formBuilder.group({
@@ -153,7 +156,7 @@ export class AddJobModalComponent implements OnInit {
 
   addJob() {
 
-    console.log("Form value = ", this.addJobForm.value);
+    console.log("Form value = ", this.addJobForm);
     console.log("This.selectedCourse", this.selectedCourse)
 
     this.loading = true;
