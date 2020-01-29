@@ -6,16 +6,30 @@
         <div class='top-margin' mat-dialog-content>
             <div class='row mx-0 mt-2'>
 
-                <!-- Job Title -->
-
-                <div class='col col-sm center'>
-                    <mat-form-field>
-                        <input matInput formControlName="title" placeholder="Job Title" cdkFocusInitial
-                            [errorStateMatcher]="matcher">
-                        <mat-error *ngIf="addJobForm.controls['title'].hasError('required')">
-                            Please enter a job title
-                        </mat-error>
-                    </mat-form-field>
+                <!-- Job Course -->
+                
+                <div class='col col-sm course_select' formArrayName="course"
+                    *ngFor="let item of addJobForm.get('course').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <!-- NEW COURSE SELECT -->
+                            <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)="courseChanged($event)"
+                                #selected>
+                                <mat-option *ngFor="let course of courses" [value]='course' matTooltip='{{course.title}}'>
+                                    <div class="d-inline-block w-100">
+                                        <div class="float-left">
+                                            {{course.title | slice:0:25}}
+                                        </div>
+                                        <!-- <div class="float-right">
+                                                            <span class="badge badge-primary " style="vertical-align: middle;">
+                                                                {{course.duration}} </span>
+                                                        </div> -->
+                                    </div>
+                                </mat-option>
+                                <mat-option *ngIf='courses && courses.length < 1'>No Courses Found</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
 
                 <!-- Job Client -->
@@ -30,31 +44,15 @@
                     </mat-form-field>
                 </div>
 
-                <!-- Job Course -->
-
-                <div class='col col-sm course_select' formArrayName="course"
-                    *ngFor="let item of addJobForm.get('course').controls; let i = index;">
-                    <div [formGroupName]="i">
-                        <mat-form-field>
-                            <!-- NEW COURSE SELECT -->
-                            <mat-select formControlName="course" placeholder="Choose Course"
-                                (selectionChange)="courseChanged($event)" #selected>
-                                <mat-option *ngFor="let course of courses" [value]='course'
-                                    matTooltip='{{course.title}}'>
-                                    <div class="d-inline-block w-100">
-                                        <div class="float-left">
-                                            {{course.title | slice:0:25}}
-                                        </div>
-                                        <!-- <div class="float-right">
-                                            <span class="badge badge-primary " style="vertical-align: middle;">
-                                                {{course.duration}} </span>
-                                        </div> -->
-                                    </div>
-                                </mat-option>
-                                <mat-option *ngIf='courses && courses.length < 1'>No Courses Found</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                <!-- Job Title -->
+                
+                <div class='col col-sm center'>
+                    <mat-form-field>
+                        <input matInput formControlName="title" placeholder="Job Title" cdkFocusInitial [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="addJobForm.controls['title'].hasError('required')">
+                            Please enter a job title
+                        </mat-error>
+                    </mat-form-field>
                 </div>
 
             </div>

@@ -70,19 +70,7 @@ export class SchedulerComponent implements OnInit {
     event: CalendarEvent;
   };
 
-  allevents = [
-    // {
-    //   start : new Date(),
-    //   title: 'Add Job',
-    //   color: {primary: "#ffffff"},
-    //   // color: {
-    //   //   primary: "#ad2121",
-    //   //   secondary: "#FAE3E3"
-    //   // },
-    //   allDay: true,
-    //   jobid: '12345'
-    //     }
-  ]
+  allevents = []
 
   actions: CalendarEventAction[] = [
     {
@@ -178,6 +166,8 @@ export class SchedulerComponent implements OnInit {
     // }
   ];
 
+  externalEvents: CalendarEvent[] = []
+
   activeDayIsOpen: boolean = true;
   job: any;
   selectedJob;
@@ -197,20 +187,56 @@ export class SchedulerComponent implements OnInit {
       console.log("IN IF CONDITION Of Constructor", this.jobsForModal);
     }
   }
-  dayTooltip(event: CalendarEvent): string {
-    return "Add Job";
+  createNewJob(){
+    let job = {
+      title: 'New Job',
+      start: new Date(),
+      color: colors.yellow,
+      draggable: true
+    }
+    this.externalEvents.push(job)
   }
+  eventDropped({
+    event,
+    newStart,
+    newEnd,
+    allDay
+  }: CalendarEventTimesChangedEvent): void {
+    const externalIndex = this.externalEvents.indexOf(event);
+    if (typeof allDay !== 'undefined') {
+      event.allDay = allDay;
+    }
+    if (externalIndex > -1) {
+      this.externalEvents.splice(externalIndex, 1);
+      this.events.push(event);
+    }
+    event.start = newStart;
+    if (newEnd) {
+      event.end = newEnd;
+    }
+    if (this.view === 'month') {
+      this.viewDate = newStart;
+      this.activeDayIsOpen = true;
+    }
+    this.allevents = [...this.events];
+    if(this.externalEvents.length < 1){
+      this.createNewJob()
+    }
+  }
+  
+
+  externalDrop(event){
+    console.log("ecternal event dropped");
+    
+    if (this.externalEvents.indexOf(event) === -1) {
+      this.events = this.events.filter(iEvent => iEvent !== event);
+      this.externalEvents.push(event);
+    }
+  }
+  
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     console.log("DAY CLICKED", date , events);
-    // this.activeDayIsOpen = true;
-    // this.viewDate = date;
     this.newJobdate = date;
-    // this.openDialog(AddJobModalComponent, this.newJobdate).subscribe(job =>{
-    //   if(job == undefined) return
-    //   console.log("Job recieved", job);
-    //   this.populateAllJobs(job)
-    //   // this.getJobs();
-    // })
     
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -240,13 +266,27 @@ export class SchedulerComponent implements OnInit {
   // Model Opener
   handleEvent(action: string, event): void {
     console.log("Handling event", { action, event })
-    this.modalData = { event, action };
-    this.router.navigate(['/jobs/' + event.jobid]);
-    if(this.dialogref != null){
-      this.dialogref.close();
-      this.displayTitle = false;
+    if(event.title == "New Job"){
+      this.openDialog(AddJobModalComponent, event).subscribe(job=>{
+        if(job == undefined) return
+        console.log("JOB ADDED", job);
+        this.populateAllJobs([job])
+      })
     }
+    else{
+      this.router.navigate(['/jobs/' + event.jobid]);
+      if (this.dialogref != null) {
+        this.dialogref.close();
+        this.displayTitle = false;
+      }
+    }
+    // this.modalData = { event, action };
     // this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  addJobModel(event){
+    console.log("add job modal", event);
+    
   }
 
   closeOpenMonthViewDay() {
@@ -256,6 +296,7 @@ export class SchedulerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.createNewJob();
     console.log("this.loading", this.loading);
     console.log("jobsForModal**********", this.jobsForModal);
 
