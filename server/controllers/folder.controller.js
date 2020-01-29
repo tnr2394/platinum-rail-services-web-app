@@ -125,6 +125,7 @@ folderController.addFile = function (req, res, next) {
     })
 }
 
+// Update folder details
 
 folderController.updateFolder = function (req, res, next) {
     console.log("Update Folder", req.body);

@@ -1,29 +1,32 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var materialSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const materialSchema = new Schema({
     files: [{
         type: Schema.Types.ObjectId,
         ref: 'file'
     }],
-    title:{
-        type: String
+    title: {
+        type: String,
+        require: true
     },
-    type:{
-        type: String
+    type: {
+        type: String,
+        require: true
     },
-    unitNo:{
+    unitNo: {
         type: Number
     },
     assignmentNo: {
         type: Number
     },
-    course:{
+    course: {
         type: Schema.Types.ObjectId,
-        ref: 'course'
+        ref: 'course',
+        require: true
     }
 }, {
-    timestamps: true
-});
-var materialModel = mongoose.model('material', materialSchema);
+        timestamps: true
+    });
+const materialModel = mongoose.model('material', materialSchema);
 module.exports = materialModel;
 

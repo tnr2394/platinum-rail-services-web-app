@@ -1,102 +1,132 @@
-.uploadBtn{
-    // font-size: xx-large;
-    color:#4586ff;
-    background-color: transparent;
-    border: transparent;
-    width: 100%;
-    text-align: left;
-    padding: 0px 15px;
-    &:active, &:focus, &:hover{
-        outline: none !important;
-        box-shadow: none !important;
+.uploadBtn {
+  // font-size: xx-large;
+  color: #4586ff;
+  background-color: transparent;
+  border: transparent;
+  width: 100%;
+  text-align: left;
+  padding: 0px 15px;
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  i {
+    font-size: 45px;
+    @media (max-width: 575px) {
+      font-size: 40px;
     }
-    i{
-        font-size: 45px;
-        @media (max-width:575px){
-            font-size: 40px;
-        }
-    }
+  }
 }
-.background{
-    background-color: lightgray;
-}
-.center{
-    justify-content: center;
-}
-.btnColorGreen{
-    background-color: #3CC480;
-    color: white;
-}
-.btnColorBlue{
-    background-color: #3B86FF;
-    color: white;   
-}
-.chipColor{
-    background-color: #3B86FF;
-    color: white;
-}
-div{
-    padding: inherit;
+// .background {
+//   background-color: lightgray;
+// }
+
+.background {
+  background-color: #d9d9d9;
+//   @media (max-width: 575px) {
+//     padding-bottom: 1px;
+//   }
+//   .fa-file-alt {
+//     font-size: 30px;
+//     margin-right: 20px;
+//     @media (max-width: 575px) {
+//       font-size: 20px;
+//       margin-right: 2px;
+//     }
+//   }
+//   .mat-form-field {
+//     width: 75% !important;
+//   }
 }
 
-.assignment-status{
-    background-color: #4586FF;
-    color: white;
-    padding: 10px;
-    margin: 1px;
-    margin-top: 15px;
+.center {
+  justify-content: center;
 }
-.submitted{
-    font-size: 45px;
-    font-weight: 400;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    display: flex;
-    @media (max-width:767px){
-        font-size: 35px;
-    }
+.btnColorGreen {
+  background-color: #3cc480;
+  color: white;
 }
-.assignment_title{
-    margin-bottom: 20px;
-    @media (max-width:575px){
-        font-size: 23px;
-    }
+.btnColorBlue {
+  background-color: #3b86ff;
+  color: white;
 }
-.remark_block{
-    p{
-        font-size: 16px;
-        line-height: 1.8;
-        word-spacing: 1px;
-        margin: 0;
-        @media (max-width:575px){
-            font-size: 14px;
-        }
-    }
+.chipColor {
+  background-color: #3b86ff;
+  color: white;
 }
-@media (max-width:767px){
-    .fa-7x{
-        font-size: 70px !important;
-    }
+div {
+  padding: inherit;
 }
-@media (max-width:575px){
-    .submission{
-        padding-left: 20px;
-        font-size: 22px;
+
+.assignment-status {
+  background-color: #4586ff;
+  color: white;
+  padding: 10px;
+  margin: 1px;
+  margin-top: 15px;
+}
+.submitted {
+  font-size: 45px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  @media (max-width: 767px) {
+    font-size: 35px;
+  }
+}
+.assignment_title {
+  margin-bottom: 20px;
+  @media (max-width: 575px) {
+    font-size: 23px;
+  }
+}
+.remark_block {
+  p {
+    font-size: 16px;
+    line-height: 1.8;
+    word-spacing: 1px;
+    margin: 0;
+    @media (max-width: 575px) {
+      font-size: 14px;
     }
-    .col-lg-6{
-        padding: 0 !important;
-    }
-    .remark_block{
-        margin-top: 20px;
-    }
-    .remark{
-        font-size: 22px;
-    }
-    .fa-7x {
-        font-size: 50px !important;
-    }
-    .submitted{
-        font-size: 24px;
-    }
+  }
+}
+@media (max-width: 767px) {
+  .fa-7x {
+    font-size: 70px !important;
+  }
+}
+@media (max-width: 575px) {
+  .submission {
+    padding-left: 20px;
+    font-size: 22px;
+  }
+  .col-lg-6 {
+    padding: 0 !important;
+  }
+  .remark_block {
+    margin-top: 20px;
+  }
+  .remark {
+    font-size: 22px;
+  }
+  .fa-7x {
+    font-size: 50px !important;
+  }
+  .submitted {
+    font-size: 24px;
+  }
+}
+
+.remark_area {
+  .mat-form-field {
+    width: 100% !important;
+  }
+  @media (max-width: 575px) {
+    padding: 0 !important;
+  }
 }

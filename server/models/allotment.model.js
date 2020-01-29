@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 
-var allotmentSchema = new Schema({
+const allotmentSchema = new Schema({
     assignment: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -31,6 +31,6 @@ var allotmentSchema = new Schema({
 }, {
         timestamps: true
     });
-var allotmentModel = mongoose.model('allotment', allotmentSchema);
+const allotmentModel = mongoose.model('allotment', allotmentSchema);
 module.exports = allotmentModel;
 

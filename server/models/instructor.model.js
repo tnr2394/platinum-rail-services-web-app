@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var instructorSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const instructorSchema = new Schema({
     name: {
         type: String,
         unique: false,
@@ -51,5 +51,5 @@ var instructorSchema = new Schema({
 }, {
         timestamps: true
     });
-var instructorModel = mongoose.model('instructor', instructorSchema);
+const instructorModel = mongoose.model('instructor', instructorSchema);
 module.exports = instructorModel;

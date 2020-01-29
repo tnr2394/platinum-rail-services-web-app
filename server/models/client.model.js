@@ -1,16 +1,16 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var clientSchema = new Schema({
-    name :{
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const clientSchema = new Schema({
+    name: {
         type: String,
-        unique : false,
-        required : true
+        unique: false,
+        required: true
     },
-    locations : [{
+    locations: [{
         type: Schema.Types.ObjectId,
         ref: 'location'
     }],
-    email:{
+    email: {
         type: String,
         required: true
     },
@@ -27,7 +27,7 @@ var clientSchema = new Schema({
         ref: 'file'
     }
 }, {
-    timestamps: true
-});
-var clientModel = mongoose.model('client', clientSchema);
+        timestamps: true
+    });
+const clientModel = mongoose.model('client', clientSchema);
 module.exports = clientModel;

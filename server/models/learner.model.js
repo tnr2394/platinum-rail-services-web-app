@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var learnerSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const learnerSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        required: true
     },
     email: {
         type: String,
@@ -31,6 +32,6 @@ var learnerSchema = new Schema({
 }, {
         timestamps: true
     });
-var learnerModel = mongoose.model('learner', learnerSchema);
+const learnerModel = mongoose.model('learner', learnerSchema);
 module.exports = learnerModel;
 

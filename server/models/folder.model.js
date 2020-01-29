@@ -1,19 +1,21 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var folderSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const folderSchema = new Schema({
     title: {
-        type: String
+        type: String,
+        required: true
     },
     files: [{
         type: Schema.Types.ObjectId,
         ref: 'file'
     }],
     createdBy: {
-        type: String
+        type: String,
+        required: true
     }
 }, {
         timestamps: true
     });
-var folderModel = mongoose.model('folder', folderSchema);
+const folderModel = mongoose.model('folder', folderSchema);
 module.exports = folderModel;
 

@@ -1,14 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var locationSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const locationSchema = new Schema({
     title: {
         type: String
     },
-    client:{
+    client: {
         type: Schema.Types.ObjectId,
-        ref: 'client'
+        ref: 'client',
+        required: true
     }
 });
 
-var locationModel = mongoose.model('location', locationSchema);
+const locationModel = mongoose.model('location', locationSchema);
 module.exports = locationModel;

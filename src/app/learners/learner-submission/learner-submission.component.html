@@ -1,15 +1,19 @@
 <div>
-    <!-- <div class='assignment_title'>
-        <h4 *ngIf="assignment">Unit- {{assignment.assignment.unitNo}} Assignment- {{assignment.assignment.assignmentNo}}
-        </h4>
-    </div> -->
     <mat-card>
         <div class='row pt-0'>
             <div class='col-xl-6 col-lg-6'>
+
+
+                <!-- Submission By Name Section -->
+                <div class='px-0 pb-0'>
+                    <h4 class="submission_by" *ngIf="learner && learner.name">Submission by {{learner.name}}</h4>
+                </div>
+
+                <!-- File Upload Section -->
                 <div class='row p-0 mb-3'>
                     <div class='col-2 p-0'>
-                        <button [disabled]="isDisabled" class='uploadBtn' (click)="addFileModal()"
-                        placement="bottom" ngbTooltip="Upload"  tooltipClass="tooltip-class">
+                        <button class='uploadBtn' (click)="addFileModal()" placement="bottom" ngbTooltip="Upload"
+                            tooltipClass="tooltip-class">
                             <i class="fas fa-cloud-upload-alt"></i>
                         </button>
                     </div>
@@ -17,15 +21,52 @@
                         <h3 class="submission d-flex justify-content-left align-items-center h-100">Submission</h3>
                     </div>
                 </div>
-                <mat-card *ngIf="files.length > 0">
-                    <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file"></file-tile>
-                </mat-card>
-                <mat-card *ngIf="loading == true">
-                    <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
-                </mat-card>
-                <mat-card *ngIf="loading == false && files.length == 0" class="text-info">
-                    NO FILES FOUND
-                </mat-card>
+
+                <!-- Search Section -->
+                <div class='col-12 p-0 d-flex align-items-center'>
+                    <span class="mb-0 mr-2"><i class="fas fa-file-alt text-success"></i></span>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <!--Submission Files Section -->
+                <div class='row all_file_tile_row' *ngIf="files.length > 0">
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless mb-0">
+                        <ng-container matColumnDef="Materials">
+                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                mat-sort-header="title">
+                                NAME
+                            </th>
+
+                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let file">
+                                <div class="row material_tile_row">
+                                    <div class='materialsDiaplay w-100'>
+                                        <div class="col-12">
+                                            <file-tile (deletedFile)="deletedFile($event)" [file]="file">
+                                            </file-tile>
+                                        </div>
+                                    </div>
+                                    <div class='row' *ngIf="files.length == 0">
+                                        <div class="col-12 p-0">
+                                            <mat-card class="text-info">
+                                                No Files Found!
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <thead>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns">
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="row assignment-status" *ngIf="assignment">
                     <div class="col-4">
                         <i class="far fa-clock fa-7x"></i>
@@ -35,14 +76,52 @@
                     </div>
                 </div>
             </div>
-            <div class='col-xl-6 col-lg-6 remark_block' *ngIf="assignment">
+
+
+
+
+            <!-- Second Col-6 Remark Section -->
+
+            <div class='col-xl-6 col-lg-6 remark_block' *ngIf="currentUser.userRole == 'learner'">
                 <h3 class="mb-4 remark">Remark by Instructor</h3>
                 <div class='center p-0'>
                     <p>{{assignment.remark}}</p>
                     <h5 *ngIf="!assignment.remark">No Remarks</h5>
                 </div>
             </div>
+
+            <div class='col-lg-6 col-lg-6 remark_block' *ngIf="currentUser.userRole != 'learner'">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center align-items-center w-100">
+                        <button [disabled]="loading" mat-raised-button class='btnColorGreen success_hover_effect'
+                            (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span> Mark
+                                Completed</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 remark_area">
+                    <form [formGroup]="remark">
+                        <mat-form-field class="example-full-width" *ngIf="assignment && assignment.remark">
+                            <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
+                                formControlName="remark" placeholder="Leave a remark"></textarea>
+                        </mat-form-field>
+                        <mat-divider></mat-divider>
+                        <div class='mt-3'>
+                            <div class="justify-content-center">
+                                <button [disabled]="loading" mat-raised-button class='btnColorBlue button_hover_effect'
+                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i class='fa fa-bell'></i>
+                                    <span> Request Resubmission</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+
+        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                class="fa fa-cog fa-spin text-info"></i></h3>
+
+
     </mat-card>
 
     <!-- <div *ngIf='displayData.length == "0"'>

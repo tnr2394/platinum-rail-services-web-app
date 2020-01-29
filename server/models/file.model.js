@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var fileSchema = new Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const fileSchema = new Schema({
     title: {
         type: String,
         unique: false,
@@ -9,6 +9,7 @@ var fileSchema = new Schema({
     type: {
         type: String,
         required: true
+        // Material,Submission
     },
     path: {
         type: String,
@@ -27,5 +28,5 @@ var fileSchema = new Schema({
 }, {
         timestamps: true
     });
-var fileModel = mongoose.model('file', fileSchema);
+const fileModel = mongoose.model('file', fileSchema);
 module.exports = fileModel;

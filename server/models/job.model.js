@@ -1,40 +1,46 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var jobSchema = new Schema({
-    title: { 
-        type: String, 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const jobSchema = new Schema({
+    title: {
+        type: String,
         required: true
     },
-    color: { 
-        type: String, 
-        required: true 
+    color: {
+        type: String,
+        required: true
     },
-    client: { 
+    client: {
         type: Schema.Types.ObjectId,
-        ref: 'client'
+        ref: 'client',
+        required: true
     },
-    location: { 
+    location: {
         type: Schema.Types.ObjectId,
-        ref: 'location' 
+        ref: 'location',
+        required: true
     },
-    instructors: [{ 
+    instructors: [{
         type: Schema.Types.ObjectId,
-        ref: 'instructor'
+        ref: 'instructor',
+        required: true
     }],
-    course: { 
+    course: {
         type: Schema.Types.ObjectId,
-        ref: 'course'
+        ref: 'course',
+        required: true
     },
-    startingDate: { 
-        type: String 
+    startingDate: {
+        type: String,
+        required: true
     },
-    totalDays: [{ 
-        type: String 
+    totalDays: [{
+        type: String,
+        required: true
     }],
-    singleJobDate: [{ 
-        type:String
+    singleJobDate: [{
+        type: String
     }]
 })
 
-var jobModel = mongoose.model('job', jobSchema);
+const jobModel = mongoose.model('job', jobSchema);
 module.exports = jobModel;

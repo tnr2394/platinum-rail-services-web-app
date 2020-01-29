@@ -7,6 +7,8 @@ var Q = require('q');
 
 var folder = {};
 
+// Create new folder
+
 folder.createFolder = function (obj) {
     var q = Q.defer();
     var newFolder = new folderModel(obj);
@@ -18,6 +20,8 @@ folder.createFolder = function (obj) {
     });
     return q.promise;
 }
+
+// Upload File inside folder
 
 folder.uploadFileToFolder = function (folderId, obj) {
     console.log('File Upload', folderId, obj);

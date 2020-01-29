@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component'
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LearnerService } from '../../services/learner.service';
+import { FilterService } from '../../services/filter.service';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-learner-submission',
@@ -12,15 +15,26 @@ import { LearnerService } from '../../services/learner.service';
 })
 export class LearnerSubmissionComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) { }
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['Materials'];
+
+  constructor(public _filter: FilterService, public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) {
+    this.dataSource = new MatTableDataSource(this.files);
+  }
 
   allotmentId: any;
   loading: Boolean;
   assignment;
+  learner;
   files = [];
+  copyFiles = [];
   statusToChange;
   currentUser;
   isDisabled = true;
+
+  remark = new FormGroup({
+    remark: new FormControl(),
+  });
 
   ngOnInit() {
     this.loading = true;
@@ -50,15 +64,44 @@ export class LearnerSubmissionComponent implements OnInit {
     });
   }
 
+  doSubmit(data, assignmentStatus) {
+
+    var Resubmission = {
+      allotmentId: this.allotmentId,
+      status: assignmentStatus,
+      remark: data.value.remark
+    }
+
+    this.loading = true;
+
+    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
+      this.getAllotments(this.allotmentId)
+      this.remark.reset();
+      if (assignmentStatus == 'Completed') {
+        this.openSnackBar("Assignment marked as completed.", "Ok");
+      } else {
+        this.openSnackBar("Assignment requested for resubmission.", "Ok");
+      }
+      this.loading = false;
+    }, err => {
+      this.openSnackBar("Something Went Wrong", "Ok");
+    })
+  }
+
 
   getAllotments(allotmentId) {
     console.log('Get Allotments Called', allotmentId);
     this._learnerService.getAllotedLearnerFilesUsingAllotmentId(allotmentId).subscribe(data => {
-      console.log("RECEIVED Allotment = ", data[0])
-      console.log("RECEIVED = ", data[0].files)
       this.assignment = data[0];
       this.loading = false;
+      this.learner = data[0].learner;
       console.log('this.assignment----------', this.assignment);
+
+      if (this.assignment.remark) {
+
+      } else {
+        this.assignment.remark = 'No Remarks'
+      }
 
       if (this.assignment.status == 'Pending') {
         this.statusToChange = 'Submitted'
@@ -67,6 +110,9 @@ export class LearnerSubmissionComponent implements OnInit {
       }
 
       this.files = data[0].files;
+      this.copyFiles = this.files;
+
+      this.dataSource = new MatTableDataSource(this.files);
     });
   }
 
@@ -76,6 +122,15 @@ export class LearnerSubmissionComponent implements OnInit {
     });
   }
 
+  applyFilter(filterValue: string) {
+    this.loading = false;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
+  }
+
   deletedFile(event) {
     this.openSnackBar("File Deleted Successfully", "Ok");
     console.log("File Deleted Event : ", event);
@@ -83,6 +138,5 @@ export class LearnerSubmissionComponent implements OnInit {
       return i._id === event._id;
     }), 1);
   }
-
 
 }
