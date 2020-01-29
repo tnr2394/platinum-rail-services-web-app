@@ -6,16 +6,30 @@
         <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Due date" (dateChange)="dueDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <!-- <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
     <div>
         <mat-grid-list cols="2" rowHeight='30px'>
-            <mat-grid-tile *ngFor='let learner of learners' class='learners'>
-                <mat-checkbox  (change)='onSelectChange($event)' [value]='learner' >{{learner.name}}</mat-checkbox>
+            <mat-grid-tile *ngFor='let learner of learners; let i = index' class='learners'>
+                <mat-checkbox  (change)='onSelectChange($event, i)' [(ngModel)]="learners[i].checked" [disabled]="checkEnable" [value]='learner' >{{learner.name}}</mat-checkbox>
+                <div *ngIf="learners[i].checked" style="width: 30px;">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Due date" (dateChange)="singleDateChange($event,learner)">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker [startAt]="duedate"></mat-datepicker>
+                    </mat-form-field>
+                </div>
             </mat-grid-tile>
         </mat-grid-list>
     </div>
     </div>
     <div mat-dialog-actions align="center" *ngIf="!loading">
+    <mat-checkbox (change)="checkSelection($event)">Check/Uncheck</mat-checkbox>
+    <!-- <button (click)="selectAll()">Select All</button> -->
     <button mat-flat-button color="primary" (click)='getLearners()' class="mb-2 button_hover_effect" [disabled]='btnDisabled' >
         <i class="fa fa-share-square-o fa-fw"></i><span> Allocate</span>
    </button>

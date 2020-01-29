@@ -136,11 +136,11 @@ export class JobComponent implements OnInit, AfterViewInit {
       let learners = [];
       if (allocatedLearners) {
         allocatedLearners.forEach((learner) => {
-          learners.push({ learner: learner._id, assignments: this.materials });
+          learners.push({ learner: learner, assignments: this.materials });
         });
       }
       this._learnerService.allocateLearner(learners).subscribe(data => {
-        console.log("DATA SENT");
+        console.log("DATA SENT", learners);
         this.assignmentStatusComp.ngOnInit();
       });
       this.materialsComp.clearCheckBox();

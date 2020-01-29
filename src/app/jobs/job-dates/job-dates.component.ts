@@ -103,7 +103,9 @@ export class JobDatesComponent implements OnInit {
         console.log("this.totaldays", this.totalDays)
 
         let tempDate: Date = this.temp.toDate();
+        console.log("tempDate", tempDate);
         for (var i = 0; i < this.duration; i++) {
+          console.log("In for loop");
           let days = (7 - tempDate.getDay() + dayOfTheWeek)
           if (days >= 8) {
             days = (-1) * (7 - days);
@@ -112,6 +114,7 @@ export class JobDatesComponent implements OnInit {
           this.courseDates.push(tempDate)
           tempDate = nextDay;
         }
+        console.log("for loop ended");
       }
 
       else {

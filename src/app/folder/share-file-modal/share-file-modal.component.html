@@ -1,11 +1,15 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Share with...</h1>
 <div mat-dialog-content>
-    <mat-form-field class='min-width'>
+    <div class='row'>
+    <mat-form-field class='w-100'>
         <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    <div class='outerDiv'>
+    </div>
+    <div class='row'>
+    <div class='outerDiv col-12'>
     <div class='col-6'>
+        <h4>Instructors</h4>
         <mat-grid-list cols="1" rowHeight='30px'>
             <mat-grid-tile *ngFor='let instructor of instructors' class='leftAlign'>
                 <mat-checkbox (change)='onInstructorChange($event)' [value]='instructor'>{{instructor.name}}</mat-checkbox>
@@ -13,11 +17,13 @@
         </mat-grid-list>
     </div>
     <div class='col-6'>
+        <h4>Clients</h4>
         <mat-grid-list cols="1" rowHeight='30px'>
             <mat-grid-tile *ngFor='let client of clients' class='leftAlign'>
                 <mat-checkbox (change)='onClientChange($event)' [value]='client'>{{client.name}}</mat-checkbox>
             </mat-grid-tile>
         </mat-grid-list>
+    </div>
     </div>
     </div>
 </div>

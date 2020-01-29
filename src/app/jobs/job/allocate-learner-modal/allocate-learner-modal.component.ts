@@ -14,6 +14,9 @@ export class AllocateLearnerModalComponent implements OnInit {
   loading: boolean;
   searchText;
   btnDisabled: Boolean = true;
+  checked: boolean;
+  duedate: any;
+  checkEnable: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) public DialogData: any, public _filter: FilterService, public _learnerSerice: LearnerService,
     public dialogRef: MatDialogRef<AllocateLearnerModalComponent>, public formBuilder: FormBuilder) { }
@@ -24,8 +27,12 @@ export class AllocateLearnerModalComponent implements OnInit {
   allocatedLearners = [];
   //  learnersForm;
   ngOnInit() {
+    this.checkEnable = true;
     console.log("This . dialogData", this.DialogData)
     this.learners = this.DialogData.learners;
+    this.learners.forEach(learner => {
+      Object.assign(learner, { checked: false })
+    })
     this.learnerCopy = this.learners;
     if (this.DialogData.materials > 0) {
       this.btnDisabled = false;
@@ -36,10 +43,31 @@ export class AllocateLearnerModalComponent implements OnInit {
     this._learnerSerice.isChecked();
   }
 
+  selectAll(){
+    this.checked = true
+    this.learners.forEach(learner =>{
+      this.allocatedLearners.push(learner);
+    })
+  }
 
+  checkSelection(event){
+    if(event.checked == true){
+      this.checked = true;
+      this.learners.forEach(learner => {
+        learner.checked = true;
+        this.allocatedLearners.push(learner);
+      })
+    }
+    else{
+      this.checked = false;
+      this.learners.forEach(learner => {
+        learner.checked = false;
+        this.allocatedLearners = [];
+      })
+    }
+  }
 
-  onSelectChange(event) {
-    // event.source.value
+  onSelectChange(event, i) {
     console.log("EVENT CHANGE", event)
 
     if (event.checked == true) {
@@ -52,15 +80,27 @@ export class AllocateLearnerModalComponent implements OnInit {
         }
       })
     }
+    console.log("allocated learners", this.allocatedLearners);
   }
-
+  dueDate(event){
+    this.checkEnable = false;
+    console.log("Due date", event);
+    this.duedate = event.value;
+    this.learners.forEach(learner => {
+      learner.duedate = this.duedate;
+      // Object.assign(learner, {dueDate: this.duedate})
+    });
+  }
+  singleDateChange(event, learner){
+    learner.duedate = event.value;
+  }
 
   filter(filterValue: string) {
     this.learners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
   }
 
   getLearners() {
-    console.log("LEARNERS ARRAY IS", this.allocatedLearners)
+    console.log("LEARNERS ARRAY IS**********", this.allocatedLearners)
     this.dialogRef.close(this.allocatedLearners)
   }
 

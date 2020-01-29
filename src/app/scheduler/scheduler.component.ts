@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, Input, Inject, Injector } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, Input, Inject, Injector, ComponentRef } from '@angular/core';
 import { JobService } from "../services/job.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import * as _ from 'lodash';
-import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError, MatSnackBar } from '@angular/material';
 
 import {
   startOfDay,
@@ -14,7 +14,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -23,6 +23,7 @@ import {
 } from 'angular-calendar';
 import { MatDialog } from "@angular/material";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddJobModalComponent } from '../jobs/add-job-modal/add-job-modal.component';
 
 const colors: any = {
   red: {
@@ -49,6 +50,9 @@ const colors: any = {
 export class SchedulerComponent implements OnInit {
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  @Input('mwlCalendarTooltip') contents: string;
+
+  private tooltipRef: ComponentRef<SchedulerComponent>;
 
   view: CalendarView = CalendarView.Month;
   jobs: any;
@@ -65,6 +69,20 @@ export class SchedulerComponent implements OnInit {
     action: string;
     event: CalendarEvent;
   };
+
+  allevents = [
+    // {
+    //   start : new Date(),
+    //   title: 'Add Job',
+    //   color: {primary: "#ffffff"},
+    //   // color: {
+    //   //   primary: "#ad2121",
+    //   //   secondary: "#FAE3E3"
+    //   // },
+    //   allDay: true,
+    //   jobid: '12345'
+    //     }
+  ]
 
   actions: CalendarEventAction[] = [
     {
@@ -165,12 +183,13 @@ export class SchedulerComponent implements OnInit {
   selectedJob;
   jobsForModal: any;
   dialogref = null;
-  allevents = [];
+  // allevents = [];
   loading: Boolean = true;
   displayTitle: Boolean = true;
+  newJobdate: any;
 
   constructor(private activatedRoute: ActivatedRoute, private modal: NgbModal, private _jobService: JobService,
-    private router: Router, private injector: Injector) {
+    private router: Router, private injector: Injector, public dialog: MatDialog, public _snackBar: MatSnackBar) {
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
       this.jobsForModal = this.injector.get(MAT_DIALOG_DATA)
       this.dialogref = this.injector.get(MatDialogRef)
@@ -178,8 +197,21 @@ export class SchedulerComponent implements OnInit {
       console.log("IN IF CONDITION Of Constructor", this.jobsForModal);
     }
   }
-
+  dayTooltip(event: CalendarEvent): string {
+    return "Add Job";
+  }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log("DAY CLICKED", date , events);
+    // this.activeDayIsOpen = true;
+    // this.viewDate = date;
+    this.newJobdate = date;
+    // this.openDialog(AddJobModalComponent, this.newJobdate).subscribe(job =>{
+    //   if(job == undefined) return
+    //   console.log("Job recieved", job);
+    //   this.populateAllJobs(job)
+    //   // this.getJobs();
+    // })
+    
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -191,6 +223,17 @@ export class SchedulerComponent implements OnInit {
       }
       this.viewDate = date;
     }
+  }
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log('OPENDIALOG', 'DATA = ', data)
+    const dialogRef = this.dialog.open(someComponent, { data, width: '1000px', height: '967px' });
+    return dialogRef.afterClosed();
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 
