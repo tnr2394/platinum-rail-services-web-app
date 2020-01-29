@@ -191,7 +191,9 @@ import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component
     RecaptchaV3Module,
     MatBadgeModule,
     FilterPipeModule,
-    ContextMenuModule.forRoot()
+    ContextMenuModule.forRoot({
+      useBootstrap4: true,
+    })
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {

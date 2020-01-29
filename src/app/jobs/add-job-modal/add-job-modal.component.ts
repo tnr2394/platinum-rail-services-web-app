@@ -9,6 +9,7 @@ import { CourseService } from '../../services/course.service';
 import { InstructorService } from '../../services/instructor.service';
 import { JobService } from '../../services/job.service';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -54,7 +55,7 @@ export class AddJobModalComponent implements OnInit {
   always: any;
   minDate: any;
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any, private router: Router,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddJobModalComponent>) { }
 
   clientChanged(data) {
@@ -69,6 +70,7 @@ export class AddJobModalComponent implements OnInit {
   courseChanged(data) {
     this.selectedCourse = data.value;
     console.log(this.selectedCourse);
+    this.duration = this.selectedCourse.duration;
   }
 
   daySelection(obj) {
@@ -85,22 +87,39 @@ export class AddJobModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ON INIT", this.startingDate);
+    console.log("ON INIT", this.data);
     this.minDate = new Date();
-    this.addJobForm = this.formBuilder.group({
-      title: new FormControl(''),
-      jobColor: new FormControl('', Validators.required),
-      client: new FormControl(''),
-      instructor: new FormControl(''),
-      location: new FormControl(''),
-      course: new FormArray([this.course()]),
-      startingDate: new FormControl('', Validators.required)
-    });
+    this.createForm();
     this.finalCourseDates = [];
-
+    this.createForm();
     this.getClients();
     this.getCourses();
     this.getInstructors();
+  }
+  createForm(){
+    if (this.router.url.includes('/scheduler')) {
+      this.addJobForm = this.formBuilder.group({
+        title: new FormControl(''),
+        jobColor: new FormControl('', Validators.required),
+        client: new FormControl(''),
+        instructor: new FormControl(''),
+        location: new FormControl(''),
+        course: new FormArray([this.course()]),
+        startingDate: new FormControl(this.data, Validators.required)
+      });
+      this.startingDate = this.data;
+    }
+    else{
+      this.addJobForm = this.formBuilder.group({
+        title: new FormControl(''),
+        jobColor: new FormControl('', Validators.required),
+        client: new FormControl(''),
+        instructor: new FormControl(''),
+        location: new FormControl(''),
+        course: new FormArray([this.course()]),
+        startingDate: new FormControl('', Validators.required)
+      });
+    }
   }
 
   course(): FormGroup {

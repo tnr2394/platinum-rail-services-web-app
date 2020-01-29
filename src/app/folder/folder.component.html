@@ -23,17 +23,17 @@
             </div>
         </div>
         <!-- CONTEXT MENU -->
-        <context-menu>
+        <context-menu [menuClass]="'contextMenu'">
             <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
                 <i class="fa fa-share-alt" aria-hidden="true"></i> Share
             </ng-template>
             <ng-template contextMenuItem divider="true"></ng-template>
             <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                <i class="fa fa-edit" aria-hidden="true"></i> Edit
             </ng-template>
             <ng-template contextMenuItem divider="true"></ng-template>
             <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                <i class="fa fa-trash" aria-hidden="true"></i> Delete
             </ng-template>
         </context-menu>
     </mat-card-content>
