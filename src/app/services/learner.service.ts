@@ -80,6 +80,24 @@ export class LearnerService {
     });
   }
 
+  submitExamMarks(data: any): Observable<any> {
+    console.log("submit Marks learners", data);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.post(config.baseApiUrl + "learners/exam", data).subscribe((res: any) => {
+        console.log("Edited Learner : ", res);
+        observer.next(res.data.learner);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
 
   getAllotedLearnerFilesUsingAllotmentId(id) {
     return new Observable<any>((observer) => {

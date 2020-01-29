@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+
+                        <div class="card-title">
+
+                            <div class="row table_search">
+                                <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]">
+                                </mat-paginator>
+                            </div>
+
+                        </div>
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <h1>{{dataSource.length}}</h1>
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="name">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef
+                                            mat-sort-header="name"> Name </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner">
+                                            {{learner.name}} </td>
+                                    </ng-container>
+                                    <!-- Email Column -->
+                                    <ng-container matColumnDef="email">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Email
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;"><span
+                                                class="badge width-150 {{getRandomColorClass(i)}}"> {{learner.email}}
+                                            </span></td>
+                                    </ng-container>
+                                    <!-- Exam1 Columns -->
+
+                                    <ng-container matColumnDef="exam1">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Exam1
+                                            Marks
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;">
+
+                                            <mat-form-field class="example-full-width col-md-6 col-sm-12">
+                                                <input type="number" matInput name="exam1" [(ngModel)]="learner.exam1"
+                                                    placeholder="Exam 1 Marks" required cdkFocusInitial>
+                                                <mat-error>Name is required</mat-error>
+                                            </mat-form-field>
+
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Exam2 Columns -->
+
+                                    <ng-container matColumnDef="exam2">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Exam2
+                                            Marks
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;">
+                                            <mat-form-field class="example-full-width col-md-6 col-sm-12">
+                                                <input type="number" matInput name="exam2" [(ngModel)]="learner.exam2"
+                                                    placeholder="Exam 2 Marks" cdkFocusInitial>
+                                                <mat-error>Name is required</mat-error>
+                                            </mat-form-field>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                class="fa fa-cog fa-spin text-info"></i>
+                        </h3>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
+                        No Learner Added!
+                    </h3>
+
+                    <button mat-flat-button color="primary" (click)="save(learners)" type="submit"
+                        class="mb-3 button_hover_effect col-lg-3">
+                        <i class="fas fa-save fa-fw"></i>
+                        <span> Save</span>
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

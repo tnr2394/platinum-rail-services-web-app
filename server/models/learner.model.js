@@ -29,6 +29,14 @@ const learnerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'allotment'
     }],
+    exam1: {
+        type: Number,
+        default: 0
+    },
+    exam2: {
+        type: Number,
+        default: 0
+    }
 }, {
         timestamps: true
     });

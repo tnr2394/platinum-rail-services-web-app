@@ -40,6 +40,11 @@ router.delete('/allot/files', learnerController.removeFileFromAllotment);
 
 router.get('/assignment/files', learnerController.assignmentFilesUsingAllotmentId);
 
+// Exam Marks
+
+
+router.post('/exam', learnerController.updateExamMarks);
+
 
 
 

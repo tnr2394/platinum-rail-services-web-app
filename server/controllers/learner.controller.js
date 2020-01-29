@@ -481,4 +481,31 @@ learnerController.assignmentFilesUsingAllotmentId = function (req, res, next) {
 }
 
 
+learnerController.updateExamMarks = function (req, res, next) {
+    async.eachSeries(req.body, (learner, cb) => {
+        let updatedLearner = {};
+        if (learner.exam1) updatedLearner['exam1'] = learner.exam1;
+        if (learner.exam2) updatedLearner['exam2'] = learner.exam2;
+        if (learner._id) updatedLearner['_id'] = learner._id;
+        learnerDOA.updateLearner(updatedLearner).then(learner => {
+            cb();
+        }, err => {
+            console.error(err);
+            return res.status(500).send({ err })
+        }).catch(err => {
+            console.error(err);
+        })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: {}, msg: "Marks Updated Successfully" });
+        }
+    })
+}
+
+
+
+
 module.exports = learnerController;

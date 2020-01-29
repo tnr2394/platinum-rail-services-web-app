@@ -95,6 +95,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/delete-confirm-modal.component';
 import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
+import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,6 +159,7 @@ import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component
     DeleteConfirmModalComponent,
     ProfileComponent,
     SideNavFixedComponent,
+    ExamsResultsComponent,
   ],
   imports: [
     BrowserModule,

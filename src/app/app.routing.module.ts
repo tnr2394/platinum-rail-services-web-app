@@ -26,6 +26,7 @@ import { SingleInstructorComponent } from './instructors/single-instructor/singl
 import { MyDocumentsComponent } from './my-documents/my-documents.component';
 import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
 import { ProfileComponent } from './commons/profile/profile.component';
+import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -111,6 +112,11 @@ const routes: Routes = [
 	{
 		path: 'materials/:courseId',
 		component: MaterialsComponent,
+		canActivate: [AuthGuard],
+	},
+	{
+		path: 'exam-result/:jobid',
+		component: ExamsResultsComponent,
 		canActivate: [AuthGuard],
 	},
 	{
