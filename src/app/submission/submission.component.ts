@@ -52,6 +52,9 @@ export class SubmissionComponent implements OnInit {
   filteredLearners = [];
   sepArray = [];
   bgColors = [];
+  justUnit = [];
+  filterAssignment = [];
+  unit = [];
   finalLearner = [];
   lastColor;
   copyLearners;
@@ -174,6 +177,25 @@ export class SubmissionComponent implements OnInit {
     this.updateData(this.learners);
   }
 
+
+  unitNoChanged(event) {
+    console.log('Unit::::::::::::::::::::', event.value);
+    this.selectedUnit = event.value;
+    console.log('this.selectedAssignment', this.selectedUnit);
+    this.learners = this._filter.filter(this.selectedUnit, this.copyLearners, ['assignmentUnit']);
+    this.updateData(this.learners);
+    this.filterAssignmentUsingUnitNumber(this.selectedUnit);
+  }
+
+  filterAssignmentUsingUnitNumber(unitNo) {
+
+    this.unit.forEach((e1) => {
+      if (e1._id == unitNo) {
+        this.assignment = e1.assignment;
+      }
+    })
+  }
+
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
@@ -219,10 +241,14 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
-      this.selectedAssignment = null;
-      this.assignment = data[0].assignment;
-      this.loadingAssignments = false;
-      console.log(' this.assignment length', this.assignment.length, this.assignment);
+
+      console.log('Data:::::::::::::::::::::::::::::::::::::::::::', data);
+      this.unit = data;
+      // this.selectedAssignment = null;
+      // this.assignment = data[0].assignment;
+      // this.loadingAssignments = false;
+      // console.log(' this.assignment length', this.assignment.length, this.assignment);
+
     });
   }
 

@@ -13,8 +13,7 @@
             <!-- Select Job -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
-                    <mat-select placeholder='Job' [(ngModel)]="selectedJob"
-                        (selectionChange)='jobChanged($event)'>
+                    <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>
                             <span>{{job.title}}</span>
                             <span><i class="far fa-life-ring fa-1x" [style.color]=job.color
@@ -24,28 +23,28 @@
                 </mat-form-field>
             </div>
 
-            <!-- Select Assignment Number -->
-            <!-- <div class='col-xl-3 col-md-3'>
+            <!-- Select Unit Number -->
+            <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
-                    <mat-select placeholder="Unit Number" name="selectedAssignment" [(ngModel)]="selectedAssignment"
-                        (selectionChange)='assignmentNoChanged($event)'>
-                        <span *ngFor='let assignment of assignment'>
-                            <mat-option [value]='assignment.assignmentId'>
-                                Unit- {{assignment.assignmentUnit}}
+                    <mat-select placeholder="Unit Number" name="selectedAssignment"
+                        (selectionChange)='unitNoChanged($event)'>
+                        <span *ngFor='let Unit of unit'>
+                            <mat-option [value]='Unit._id'>
+                                Unit- {{Unit._id}}
                             </mat-option>
                         </span>
                     </mat-select>
                 </mat-form-field>
-            </div> -->
+            </div>
 
-            <!-- Select Unit Number -->
+            <!-- Select Assignment Number -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field>
                     <mat-select placeholder="Assignment Number" name="selectedAssignment"
                         [(ngModel)]="selectedAssignment" (selectionChange)='assignmentNoChanged($event)'>
                         <span *ngFor='let assignment of assignment'>
                             <mat-option [value]='assignment.assignmentId'>
-                                Unit- {{assignment.assignmentUnit}} Assignment-{{assignment.assignmentNo}}
+                                Assignment-{{assignment.assignmentNo}}
                             </mat-option>
                         </span>
                     </mat-select>
@@ -55,7 +54,7 @@
 
 
             <!-- Serach Bar -->
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                     <mat-icon matSuffix>search</mat-icon>
@@ -149,8 +148,9 @@
                         <ng-container matColumnDef="View">
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
-                                    tooltipClass="tooltip-class" routerLink="/learnerAllotment/{{learner.allotemntId}}">
+                                <a mat-button target="_blank" class="text-primary bold" placement="bottom"
+                                    ngbTooltip="Details" tooltipClass="tooltip-class"
+                                    routerLink="/learnerAllotment/{{learner.allotemntId}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>
