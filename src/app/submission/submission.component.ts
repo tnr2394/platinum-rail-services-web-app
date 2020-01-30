@@ -12,6 +12,7 @@ import { Router, NavigationExtras } from "@angular/router";
 import { Pipe, PipeTransform } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { isEmpty } from 'rxjs/operators';
+import { NavigationService } from '../services/navigation.service';
 
 
 
@@ -51,6 +52,9 @@ export class SubmissionComponent implements OnInit {
   filteredLearners = [];
   sepArray = [];
   bgColors = [];
+  justUnit = [];
+  filterAssignment = [];
+  unit = [];
   finalLearner = [];
   lastColor;
   copyLearners;
@@ -78,7 +82,7 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private navService: NavigationService, private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
   }
@@ -98,6 +102,7 @@ export class SubmissionComponent implements OnInit {
     this.loadingJobs = true;
     this.getJobs();
     this.defaultJob();
+    this.navService.getPreviousUrl();
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';
     paginatorIntl.previousPageLabel = '';
@@ -172,6 +177,25 @@ export class SubmissionComponent implements OnInit {
     this.updateData(this.learners);
   }
 
+
+  unitNoChanged(event) {
+    console.log('Unit::::::::::::::::::::', event.value);
+    this.selectedUnit = event.value;
+    console.log('this.selectedAssignment', this.selectedUnit);
+    this.learners = this._filter.filter(this.selectedUnit, this.copyLearners, ['assignmentUnit']);
+    this.updateData(this.learners);
+    this.filterAssignmentUsingUnitNumber(this.selectedUnit);
+  }
+
+  filterAssignmentUsingUnitNumber(unitNo) {
+
+    this.unit.forEach((e1) => {
+      if (e1._id == unitNo) {
+        this.assignment = e1.assignment;
+      }
+    })
+  }
+
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
@@ -197,6 +221,8 @@ export class SubmissionComponent implements OnInit {
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
+      this.selectedJob = this.jobs[0];
+      console.log('Selected Job:::::::::::::', this.selectedJob);
     });
   }
 
@@ -215,10 +241,14 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
-      this.selectedAssignment = null;
-      this.assignment = data[0].assignment;
-      this.loadingAssignments = false;
-      console.log(' this.assignment length', this.assignment.length, this.assignment);
+
+      console.log('Data:::::::::::::::::::::::::::::::::::::::::::', data);
+      this.unit = data;
+      // this.selectedAssignment = null;
+      // this.assignment = data[0].assignment;
+      // this.loadingAssignments = false;
+      // console.log(' this.assignment length', this.assignment.length, this.assignment);
+
     });
   }
 

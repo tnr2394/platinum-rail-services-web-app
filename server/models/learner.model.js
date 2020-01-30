@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const cryptoService = require('../services/crypto.service');
 const Schema = mongoose.Schema;
 const learnerSchema = new Schema({
     name: {
@@ -40,6 +41,14 @@ const learnerSchema = new Schema({
 }, {
         timestamps: true
     });
+
+learnerSchema.pre('find', function () {
+    console.log('Hello From Model::::::::');
+});
+
 const learnerModel = mongoose.model('learner', learnerSchema);
+
+
+
 module.exports = learnerModel;
 

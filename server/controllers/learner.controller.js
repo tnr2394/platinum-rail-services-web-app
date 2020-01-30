@@ -5,6 +5,13 @@ const Q = require('q');
 const async = require("async");
 const _ = require('lodash');
 
+var crypto = require('crypto');
+
+//abc
+
+
+
+
 // Service Variables
 
 const mailService = require('../services/mail.service');
@@ -67,12 +74,12 @@ learnerController.getLearner = async function (req, res, next) {
 }
 
 learnerController.addLearner = async function (req, res, next) {
-    console.log("ADD learner", req.body);
+
 
     var newLearner = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: mystr,
         job: req.body.job
     };
 
