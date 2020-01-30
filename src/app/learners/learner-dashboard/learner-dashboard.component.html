@@ -1,8 +1,8 @@
 <div class="row outer_div">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <app-profile [learnerForProfile]="learnerId"></app-profile>
     </div>
-    <div class="col-lg-8 assignment_column">
+    <div class="col-lg-9 assignment_column">
         <div *ngIf="loading">
             <h1 class="text-center text-info mt-5">
                 Loading... <i class="fas fa-refresh fa-spin"></i>
@@ -312,8 +312,8 @@
 
 
         <div class="row assign_row" style="min-width: 100%;">
-            <mat-card style="min-width: 100%;">
-                <div class='row' style="margin-left: -15px; margin-right: -15px;">
+            <mat-card class="single_learner_card" style="min-width: 100%;">
+                <div class='row'>
 
                     <div class="col-md-12">
                         <h3>Assignments</h3>
@@ -329,7 +329,7 @@
                     </div>
 
                     <!-- Pagination-->
-                    <div class="col-6 submission_pagination">
+                    <div class="col-md-6 submission_pagination">
                         <mat-paginator class="text-left float-left" [pageSizeOptions]="[10, 25, 100]">
                         </mat-paginator>
                     </div>
