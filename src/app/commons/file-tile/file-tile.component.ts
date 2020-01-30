@@ -54,7 +54,7 @@ export class FileTileComponent implements OnInit {
     this.openDialog(DeleteConfirmModalComponent).subscribe(confirm=>{
       console.log("CONFIRM", confirm);
       if(confirm == '') return
-      if(confirm == 'yes'){
+      else if(confirm == 'yes'){
         if (this.isSubmission) {
           this._fileService.deleteSubmissionFiles(this.file._id).subscribe(file => {
             console.log("Deleted File. ID = ", this.file._id);

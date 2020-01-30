@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-9">
 <mat-card>
     <div class="row">
         <div class="col-12">
@@ -10,31 +12,24 @@
     <mat-card-content>
         <div class="row">
             <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index' [contextMenu]="basicMenu" [contextMenuSubject]="singleFolder">
-                <mat-card class="p-0 inner-card h-100 text-center">
+                <!-- <button > -->
+                <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)" (dblclick)="doubleClick($event,singleFolder)">
                     <mat-card-content class="material_card p-2">
-                        <a routerLink="/single-folder/{{singleFolder._id}}" class="text-white">
+                        <!-- <a routerLink="/single-folder/{{singleFolder._id}}" class="text-white"> -->
                             <div class="materia_icon_span {{getRandomColorClass(i)}}">
                             <i class="fa fa-folder icon round"></i>
                             </div>
                             <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
-                        </a>
+                        <!-- </a> -->
                     </mat-card-content>
                 </mat-card>
+                <!-- </button> -->
             </div>
         </div>
-        <!-- CONTEXT MENU -->
-        <context-menu [menuClass]="'contextMenu'">
-            <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-                <i class="fa fa-share-alt" aria-hidden="true"></i> Share
-            </ng-template>
-            <ng-template contextMenuItem divider="true"></ng-template>
-            <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-                <i class="fa fa-edit" aria-hidden="true"></i> Edit
-            </ng-template>
-            <ng-template contextMenuItem divider="true"></ng-template>
-            <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-                <i class="fa fa-trash" aria-hidden="true"></i> Delete
-            </ng-template>
-        </context-menu>
     </mat-card-content>
 </mat-card>
+</div>
+<div class="col-3" *ngIf="display">
+    <app-file-details [details]="details"></app-file-details>
+</div>
+</div>

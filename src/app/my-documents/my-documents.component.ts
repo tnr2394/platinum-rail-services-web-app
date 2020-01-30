@@ -11,7 +11,6 @@ import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-m
 export class MyDocumentsComponent implements OnInit {
 
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
-
   ngOnInit() {
   }
 
