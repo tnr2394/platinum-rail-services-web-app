@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JobService } from '../../services/job.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { LearnerService } from 'src/app/services/learner.service';
 import { EditLearnerModalComponent } from 'src/app/learners/edit-learner-modal/edit-learner-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
+import { InstructorService } from 'src/app/services/instructor.service';
+import { EditInstructorModalComponent } from 'src/app/instructors/edit-instructor-modal/edit-instructor-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -24,32 +26,49 @@ export class ProfileComponent implements OnInit {
   mobile: any;
   profilePath;
   view;
+  isLearner: Boolean = false; 
+  isInstructor: Boolean = false;
 
-  constructor(private _jobService: JobService, public _learnerService: LearnerService,
+  @Input('learnerForProfile') learnerId;
+  @Input('instructorForProfile') instructorId;
+  dateOfJoining: Date;
+  constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getLearner()
-    // GETTING LEARNER ID
-    this.activatedRoute.params.subscribe(params => {
-      console.log("ID-----", params['id']);
-      this._learnerService.getLearner(params['id']).subscribe(learner => {
-        this.learner = learner.pop();
-        console.log("learner:::", this.learner);
-        this.name = this.learner.name;
-        this.email = this.learner.email;
-        this.mobile = this.learner.mobile;
-        this.profilePath = this.learner.profilePic;
-        this.getJob(this.learner.job._id);
-      })
-
-    })
-    console.log("The learner is", this.learner);
+    console.log("-----learner-----", this.learnerId);
+    console.log("-----instructor-----", this.instructorId);
+    
+    if(this.learnerId != undefined){
+      this.isLearner = true
+      this.getLearner()
+    }
+    else if (this.instructorId != undefined){
+      this.isInstructor = true;
+      console.log("instructor recieved is", this.instructorId);
+      this.getInstructor();
+    }
+    
   }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log("-----learner-----", this.learnerId);
+  // }
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data });
+    return dialogRef.afterClosed();
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
+  }
+
   getLearner() {
-    this.activatedRoute.params.subscribe(params => {
-      console.log("ID-----", params['id']);
-      this._learnerService.getLearner(params['id']).subscribe(learner => {
+    this._learnerService.getLearner(this.learnerId).subscribe(learner => {
         this.learner = learner.pop();
         console.log("learner:::", this.learner);
         this.name = this.learner.name;
@@ -58,10 +77,35 @@ export class ProfileComponent implements OnInit {
         this.profilePath = this.learner.profilePic;
         this.getJob(this.learner.job._id);
       })
+    // this.activatedRoute.params.subscribe(params => {
+    //   console.log("ID-----", params['id']);
+    //   this._learnerService.getLearner(params['id']).subscribe(learner => {
+    //     this.learner = learner.pop();
+    //     console.log("learner:::", this.learner);
+    //     this.name = this.learner.name;
+    //     this.email = this.learner.email;
+    //     this.mobile = this.learner.mobile;
+    //     this.profilePath = this.learner.profilePic;
+    //     this.getJob(this.learner.job._id);
+    //   })
 
-    })
+    // })
     console.log("The learner is", this.learner);
   }
+
+  getInstructor() {
+    this._instrctorService.getInstructorById(this.instructorId).subscribe((res => {
+      console.log('Get Instructor Detail', res[0]);
+      this.instructor = res[0];
+      console.log("Got inst details", this.instructor);
+      this.name = this.instructor.name;
+      this.profilePath = this.instructor.profilePic;
+      this.mobile = this.instructor.mobile;
+      this.email = this.instructor.email;
+      this.dateOfJoining = new Date(this.instructor.dateOfJoining);
+    }))
+  }
+
 
   getJob(id) {
     this._jobService.getJobById(id).subscribe((jobRecieved) => {
@@ -72,21 +116,6 @@ export class ProfileComponent implements OnInit {
       this.course = this.job.course.title;
       this.instructor = this.job.instructors;
     })
-  }
-  openDialog(someComponent, data = {}): Observable<any> {
-    console.log("OPENDIALOG", "DATA = ", data);
-    const dialogRef = this.dialog.open(someComponent, { data });
-    return dialogRef.afterClosed();
-  }
-
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-  handleSnackBar(data) {
-    this.openSnackBar(data.msg, data.button);
   }
 
   editLearner() {
@@ -114,6 +143,31 @@ export class ProfileComponent implements OnInit {
         this.handleSnackBar({ msg: "Learner deleted successfully.", button: "Ok" });
       }
       // this.updateData(this.learners);
+    });
+  }
+
+  editInstructor(index, data) {
+    data = this.instructor;
+    console.log("DATA", data);
+    
+    this.openDialog(EditInstructorModalComponent, data).subscribe((instructor) => {
+      console.log("DIALOG CLOSED", instructor)
+      // this.getInstructor();
+      // Handle Undefined
+
+      if (!instructor) { return }
+
+      // Handle Error
+
+      if (instructor && instructor.result == "err") return this.openSnackBar("instructor could not be edited", "Ok");
+
+      // EDIT HANDLE
+      if (instructor && instructor.action == 'edit') {
+        console.log("HANDLING EDIT SUCCESS", instructor.data);
+        console.log('This Instructor after update:', this.instructor);
+        this.handleSnackBar({ msg: "Instructor Edited Successfully", button: "Ok" });
+      }
+
     });
   }
 

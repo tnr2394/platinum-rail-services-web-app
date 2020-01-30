@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
 import { CourseService } from '../services/course.service';
 import { Observable } from 'rxjs';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
@@ -49,6 +49,7 @@ export class JobsComponent implements OnInit {
 
   displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
   jobForScheduler: any;
+  displayStatus: boolean = true;
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -64,6 +65,7 @@ export class JobsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  @Input('instructor') instructor;
 
   constructor(private router: Router, public _jobService: JobService, public _courseService: CourseService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.bgColors = ['badge-info', 'badge-success', 'badge-warning', 'badge-primary', 'badge-danger'];
@@ -110,20 +112,38 @@ export class JobsComponent implements OnInit {
 
     return this.bgColors[rand];
   }
+  ngOnChanges(changes: SimpleChanges): void {
+   console.log("CHANGES", changes);
+    if (this.instructor != undefined) {
+      console.log("Instructor found");
+      this.getJobsForInstructor();
+      this.displayStatus = false
+    }
+  }
   ngOnInit() {
+    console.log("on init", this.instructor);
+    this.loading = true;
+    if (this.instructor != undefined){
+      console.log("Instructor found");
+      this.getJobsForInstructor();
+    }
+    else{
+      console.log("Instructor not found so getting all jobs");
+      this.getJobs();
+      this.currentUser = JSON.parse(localStorage.currentUser);
+      if (this.router.url.includes('/dashboard')) {
+        this.view = true;
+        console.log("VIEW VALUE IS", this.view)
+      }
+      const paginatorIntl = this.paginator._intl;
+      paginatorIntl.nextPageLabel = '';
+      paginatorIntl.previousPageLabel = '';
+    }
     console.log("JOBS COMPONENT");
     
-    this.loading = true;
+    
     // this.getCourses();
-    this.getJobs();
-    this.currentUser = JSON.parse(localStorage.currentUser);
-    if (this.router.url.includes('/dashboard')) {
-      this.view = true;
-      console.log("VIEW VALUE IS", this.view)
-    }
-    const paginatorIntl = this.paginator._intl;
-    paginatorIntl.nextPageLabel = '';
-    paginatorIntl.previousPageLabel = '';
+    
     // this.getStatus()
   }
 
@@ -291,6 +311,19 @@ export class JobsComponent implements OnInit {
   getJobs() {
     var that = this;
     this._jobService.getJobs().subscribe((data) => {
+      this.jobs = data;
+      this.loading = false;
+      console.log('Jobs Received : ', this.jobs);
+      this.updateData(this.jobs);
+      this.getStatus(data);
+      this.completionOfJob(this.jobs)
+    })
+  }
+
+  getJobsForInstructor() {
+    console.log("Jobs by instructor id");
+    var that = this;
+    this._jobService.getJobByInstructorId(this.instructor._id).subscribe((data) => {
       this.jobs = data;
       this.loading = false;
       console.log('Jobs Received : ', this.jobs);
