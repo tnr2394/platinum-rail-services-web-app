@@ -18,6 +18,7 @@ export class FilesComponent implements OnInit, OnChanges {
   @Input('materialId') materialId: any;
 
   materials: any;
+  fileCount: number;
   constructor(public _filter: FilterService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
 
@@ -121,6 +122,7 @@ export class FilesComponent implements OnInit, OnChanges {
         this.copyFiles = files;
         this.files = files;
         console.log("Files updated with - ", files);
+        this.fileCount = this.files.length;
       })
   }
 }

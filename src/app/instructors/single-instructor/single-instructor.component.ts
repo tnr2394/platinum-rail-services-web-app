@@ -20,23 +20,23 @@ export class SingleInstructorComponent implements OnInit {
 
   instructor;
   instructorId;
-  dataSource: MatTableDataSource<any>;
+  // dataSource: MatTableDataSource<any>;
   length;
   currentUser;
   jobs;
   job;
-  pageSize = 5;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  sort: MatSort;
-  paginator: MatPaginator;
-  searchText;
+  // pageSize = 5;
+  // pageSizeOptions: number[] = [5, 10, 25, 100];
+  // sort: MatSort;
+  // paginator: MatPaginator;
+  // searchText;
   loading;
   profilePath;
   view;
   mobile;
   email;
   // MatPaginator Output
-  pageEvent: PageEvent;
+  // pageEvent: PageEvent;
 
 
   // displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']

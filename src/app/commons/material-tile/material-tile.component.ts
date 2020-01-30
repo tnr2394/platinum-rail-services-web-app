@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MaterialService } from '../../services/material.service';
 import { from } from 'rxjs';
+import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -87,6 +88,10 @@ export class MaterialTileComponent implements OnInit {
       this.material = this.backupMaterial;
       this.editing = false;
     })
+  }
+
+  UpateData(courses: any) {
+    // throw new Error("Method not implemented.");
   }
 
 }
