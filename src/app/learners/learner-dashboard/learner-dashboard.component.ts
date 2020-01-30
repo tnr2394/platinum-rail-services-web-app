@@ -89,6 +89,7 @@ export class LearnerDashboardComponent implements OnInit {
   displayedColumns: string[] = ['Assignment', 'DueDate', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
+  learnerId: any;
 
   constructor(private filterPipe: FilterPipe, private activatedRoute: ActivatedRoute, public _materialService: MaterialService, public _learnerService: LearnerService, public _jobService: JobService, public _courseService: CourseService, private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
@@ -104,6 +105,8 @@ export class LearnerDashboardComponent implements OnInit {
     this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
+      this.learnerId = params['id'];
+      console.log("++++++++++", this.learnerId);
       this._learnerService.getLearner(params['id']).subscribe(data => {
         console.log("RECEIVED = ", data);
         this.learner = data.pop();

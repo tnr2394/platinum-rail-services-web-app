@@ -1,6 +1,6 @@
 <div class="row outer_div">
     <div class="col-lg-4">
-        <app-profile></app-profile>
+        <app-profile [learnerForProfile]="learnerId"></app-profile>
     </div>
     <div class="col-lg-8 assignment_column">
         <div *ngIf="loading">

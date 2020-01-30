@@ -3,19 +3,12 @@
 </div> -->
 <div class="row">
 
-<div class="col-md-3">
+<div class="col-md-3" *ngIf="displayTitle == true">
   <div class="card" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
     <div class="card-body">
       <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}" dragActiveClass="drag-active">
         {{event.title}}
       </p>
-      <!-- <ul>
-        <li >
-          <a href="#" [style.color]="event.color.primary">
-            {{ event.title }}
-          </a>
-        </li>
-      </ul> -->
     </div>
   </div>
 </div>
