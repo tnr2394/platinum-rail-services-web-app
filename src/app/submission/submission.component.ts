@@ -12,6 +12,7 @@ import { Router, NavigationExtras } from "@angular/router";
 import { Pipe, PipeTransform } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { isEmpty } from 'rxjs/operators';
+import { NavigationService } from '../services/navigation.service';
 
 
 
@@ -78,7 +79,7 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private navService: NavigationService, private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.learners);
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
   }
@@ -98,6 +99,7 @@ export class SubmissionComponent implements OnInit {
     this.loadingJobs = true;
     this.getJobs();
     this.defaultJob();
+    this.navService.getPreviousUrl();
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';
     paginatorIntl.previousPageLabel = '';
@@ -197,6 +199,8 @@ export class SubmissionComponent implements OnInit {
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
+      this.selectedJob = this.jobs[0];
+      console.log('Selected Job:::::::::::::', this.selectedJob);
     });
   }
 

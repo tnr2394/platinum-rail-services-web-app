@@ -2,6 +2,7 @@ import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { LoginService } from './services/login.service';
+import { NavigationService } from './services/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 // import { $ } from 'protractor';
 declare var $: any;
@@ -24,11 +25,15 @@ export class AppComponent {
   disableTooltip;
   disabled: boolean;
 
-  constructor(public cd: ChangeDetectorRef, private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
+  constructor(public routingState: NavigationService, public cd: ChangeDetectorRef, private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
     this._loginService.userRole.subscribe(res => {
       this.loggedInUser = res;
     })
+
+
+    routingState.loadRouting();
+
 
     this._loginService.userProfile.subscribe(res => {
       this.currentUser = res;
@@ -76,15 +81,15 @@ export class AppComponent {
   }
 
   getToolTip() {
-    if ($(".sidebar").hasClass('sidebar--Collapse')){
+    if ($(".sidebar").hasClass('sidebar--Collapse')) {
       this.disabled = true;
     }
-    else{
+    else {
       this.disabled = false;
     }
     return $(".sidebar").hasClass('sidebar--Collapse') ? 'expand' : 'collapse';
   }
-  
+
   close(reason: string) {
     this.sidemenu.close();
   }

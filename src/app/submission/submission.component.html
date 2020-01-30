@@ -13,7 +13,8 @@
             <!-- Select Job -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
-                    <mat-select placeholder='Job' (selectionChange)='jobChanged($event)'>
+                    <mat-select placeholder='Job' [(ngModel)]="selectedJob"
+                        (selectionChange)='jobChanged($event)'>
                         <mat-option *ngFor='let job of jobs' [value]='job'>
                             <span>{{job.title}}</span>
                             <span><i class="far fa-life-ring fa-1x" [style.color]=job.color
