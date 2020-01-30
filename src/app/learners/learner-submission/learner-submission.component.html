@@ -94,17 +94,24 @@
 
                 <div class="col-12 remark_area">
                     <form [formGroup]="remark">
+                        <!-- Remark Section -->
                         <mat-form-field class="example-full-width" *ngIf="assignment && assignment.remark">
                             <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
                                 formControlName="remark" placeholder="Leave a remark"></textarea>
                         </mat-form-field>
+
+                        <!-- Deadline Date Section -->
                         <mat-form-field *ngIf="assignment && assignment.deadlineDate">
                             <input matInput [matDatepicker]="picker" formControlName='deadlineDate'
                                 [(ngModel)]='assignment.deadlineDate' placeholder="Due date">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
+
+
                         <mat-divider></mat-divider>
+
+                        
                         <div class="row">
                             <div class='col-6'>
                                 <div class="justify-content-center">
