@@ -6,6 +6,7 @@ import { FolderService } from '../services/folder.service';
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { ShareFileModalComponent } from './share-file-modal/share-file-modal.component';
 import { ok } from 'assert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-folder',
@@ -17,9 +18,15 @@ export class FolderComponent implements OnInit {
   allFolders = [];
   bgColors;
   lastColor;
+  preventSingleClick = false;
+  timer: any;
+  delay: Number;
+  display = false;
 
   @ViewChild(ContextMenuComponent,{static:false}) public basicMenu: ContextMenuComponent;
-  constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) {
+  details: any;
+ 
+  constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
@@ -70,4 +77,26 @@ export class FolderComponent implements OnInit {
     });
   }
 
+  singleClick(event, singleFolder) {
+    console.log("Single Click Event", event);
+    
+    this.preventSingleClick = false;
+     const delay = 200;
+      this.timer = setTimeout(() => {
+        if (!this.preventSingleClick) {
+          this.details = singleFolder;
+          console.log("singleFolder", this.details);
+          
+          this.display = true;
+        }
+      }, delay);
+  }
+
+  doubleClick(event, singleFolder) {
+      console.log("Double Click Event", event);
+      this.preventSingleClick = true;
+      clearTimeout(this.timer);
+      console.log("Double Click");
+      this.router.navigateByUrl('/single-folder/{{singleFolder._id}}')
+    }
 }
