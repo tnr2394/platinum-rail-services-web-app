@@ -23,7 +23,10 @@ router.get('/client', jobController.getJobUsingClientId);
 
 router.get('/assignment', jobController.assignmentListUsingJobId);
 
-router.get('/assignment/group', jobController.assignmentListUsingJobIdWithoutGroup);
+router.get('/assignment/group', jobController.assignmentListUsingJobId);
+
+
+// assignmentListUsingJobIdWithoutGroup
 
 router.get('/assignment-status', jobController.assignmentStatusWithLearner);
 

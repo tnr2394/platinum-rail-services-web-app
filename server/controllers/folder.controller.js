@@ -17,13 +17,13 @@ async function allfolders(query) {
 
     folderModel.find(query)
         .populate('files')
+        .populate('child')
         .exec((err, folders) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", folders);
             deferred.resolve(folders);
         });
     return deferred.promise;
-
 }
 
 folderController.getFolders = async function (req, res, next) {

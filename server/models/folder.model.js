@@ -9,6 +9,14 @@ const folderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'file'
     }],
+    parent: {
+        type: Schema.Types.ObjectId,
+        ref: 'folder'
+    },
+    child: [{
+        type: Schema.Types.ObjectId,
+        ref: 'folder'
+    }],
     createdBy: {
         type: String,
         required: true

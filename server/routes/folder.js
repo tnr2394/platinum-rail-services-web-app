@@ -10,6 +10,8 @@ router.post('/', jwtService.validateJWT, folderController.createFolder);
 
 router.get('/', folderController.getFolders);
 
+router.put('/', folderController.updateFolder);
+
 
 
 // ADD File

@@ -91,26 +91,46 @@
             </div>
 
             <div class='col-lg-6 col-lg-6 remark_block' *ngIf="currentUser.userRole != 'learner'">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center w-100">
-                        <button [disabled]="loading" mat-raised-button class='btnColorGreen success_hover_effect'
-                            (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span> Mark
-                                Completed</span>
-                        </button>
-                    </div>
-                </div>
+
                 <div class="col-12 remark_area">
                     <form [formGroup]="remark">
+                        <!-- Remark Section -->
                         <mat-form-field class="example-full-width" *ngIf="assignment && assignment.remark">
                             <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
                                 formControlName="remark" placeholder="Leave a remark"></textarea>
                         </mat-form-field>
+
+                        <!-- Deadline Date Section -->
+                        <mat-form-field *ngIf="assignment && assignment.deadlineDate">
+                            <input matInput [matDatepicker]="picker" formControlName='deadlineDate'
+                                [(ngModel)]='assignment.deadlineDate' placeholder="Due date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+
                         <mat-divider></mat-divider>
-                        <div class='mt-3'>
-                            <div class="justify-content-center">
-                                <button [disabled]="loading" mat-raised-button class='btnColorBlue button_hover_effect'
-                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i class='fa fa-bell'></i>
-                                    <span> Request Resubmission</span></button>
+
+                        
+                        <div class="row">
+                            <div class='col-6'>
+                                <div class="justify-content-center">
+                                    <button [disabled]="loading" mat-raised-button
+                                        class='btnColorBlue button_hover_effect'
+                                        (click)="doSubmit(remark,'Requested for Resubmission')"><i
+                                            class='fa fa-bell'></i>
+                                        <span> Request Resubmission</span></button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex justify-content-center align-items-center w-100">
+                                    <button [disabled]="loading" mat-raised-button
+                                        class='btnColorGreen success_hover_effect'
+                                        (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span>
+                                            Mark
+                                            Completed</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>

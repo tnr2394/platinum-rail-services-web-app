@@ -52,6 +52,9 @@ export class SubmissionComponent implements OnInit {
   filteredLearners = [];
   sepArray = [];
   bgColors = [];
+  justUnit = [];
+  filterAssignment = [];
+  unit = [];
   finalLearner = [];
   lastColor;
   copyLearners;
@@ -124,9 +127,10 @@ export class SubmissionComponent implements OnInit {
     console.log('Default Job Selection:::::::');
 
     this._jobService.getJobs().subscribe((data) => {
-
-      console.log('data::::::::::::::', data);
       this.firstJob = data[0];
+      console.log('data::::::::::::::', this.firstJob);
+      this.getAssignmentList(this.firstJob._id);
+      this.getAllAllotedAssignmentsUsingJobId(this.firstJob._id);
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
@@ -174,6 +178,25 @@ export class SubmissionComponent implements OnInit {
     this.updateData(this.learners);
   }
 
+
+  unitNoChanged(event) {
+    console.log('Unit::::::::::::::::::::', event.value);
+    this.selectedUnit = event.value;
+    console.log('this.selectedAssignment', this.selectedUnit);
+    this.learners = this._filter.filter(this.selectedUnit, this.copyLearners, ['assignmentUnit']);
+    this.updateData(this.learners);
+    this.filterAssignmentUsingUnitNumber(this.selectedUnit);
+  }
+
+  filterAssignmentUsingUnitNumber(unitNo) {
+
+    this.unit.forEach((e1) => {
+      if (e1._id == unitNo) {
+        this.assignment = e1.assignment;
+      }
+    })
+  }
+
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
@@ -219,10 +242,14 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
-      this.selectedAssignment = null;
-      this.assignment = data[0].assignment;
-      this.loadingAssignments = false;
-      console.log(' this.assignment length', this.assignment.length, this.assignment);
+
+      console.log('Data:::::::::::::::::::::::::::::::::::::::::::', data);
+      this.unit = data;
+      // this.selectedAssignment = null;
+      // this.assignment = data[0].assignment;
+      // this.loadingAssignments = false;
+      // console.log(' this.assignment length', this.assignment.length, this.assignment);
+
     });
   }
 

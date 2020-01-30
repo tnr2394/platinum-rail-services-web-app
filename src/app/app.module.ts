@@ -96,6 +96,7 @@ import { DeleteConfirmModalComponent } from './commons/delete-confirm-modal/dele
 import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
+import { FileDetailsComponent } from './commons/file-details/file-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +161,7 @@ import { ExamsResultsComponent } from './learners/exams-results/exams-results.co
     ProfileComponent,
     SideNavFixedComponent,
     ExamsResultsComponent,
+    FileDetailsComponent,
   ],
   imports: [
     BrowserModule,

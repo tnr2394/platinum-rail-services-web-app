@@ -34,6 +34,7 @@ export class LearnerSubmissionComponent implements OnInit {
 
   remark = new FormGroup({
     remark: new FormControl(),
+    deadlineDate: new FormControl(),
   });
 
   ngOnInit() {
@@ -69,7 +70,8 @@ export class LearnerSubmissionComponent implements OnInit {
     var Resubmission = {
       allotmentId: this.allotmentId,
       status: assignmentStatus,
-      remark: data.value.remark
+      remark: data.value.remark,
+      deadlineDate: data.value.deadlineDate
     }
 
     this.loading = true;

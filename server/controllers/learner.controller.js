@@ -432,6 +432,7 @@ learnerController.updateAllotment = function (req, res, next) {
 
     if (req.body.status) updateAllotment['status'] = req.body.status;
     if (req.body.remark) updateAllotment['remark'] = req.body.remark;
+    if (req.body.deadlineDate) updateAllotment['deadlineDate'] = req.body.deadlineDate;
 
     const allotmentId = req.body.allotmentId;
 
