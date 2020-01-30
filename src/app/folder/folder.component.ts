@@ -51,15 +51,15 @@ export class FolderComponent implements OnInit {
       duration: 2000,
     });
   }
-  shareWith(singleFolder){
-    console.log("ShareWith", singleFolder);
-    this.openDialog(ShareFileModalComponent).subscribe(users=>{
-      console.log('Users', users);
-      users.file = singleFolder.item;
-      console.log("AFTER ADDING ID", users);
-      this.openSnackBar("Shared Successfully", "ok")
-    })
-  }
+  // shareWith(singleFolder){
+  //   console.log("ShareWith", singleFolder);
+  //   this.openDialog(ShareFileModalComponent).subscribe(users=>{
+  //     console.log('Users', users);
+  //     users.file = singleFolder.item;
+  //     console.log("AFTER ADDING ID", users);
+  //     this.openSnackBar("Shared Successfully", "ok")
+  //   })
+  // }
 
   createFolder() {
     this.openDialog(CreateFolderModalComponent).subscribe(folder => {

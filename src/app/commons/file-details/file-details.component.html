@@ -7,3 +7,6 @@
     <input matInput placeholder="Title" [(ngModel)]="title">
 </mat-form-field>
 <button mat-mini-fab color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i class="fa fa-check-circle"></i></button>
+<br/>
+<button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
+<button mat-stroked-button color="warn">Delete</button>
