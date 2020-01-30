@@ -1,14 +1,54 @@
-<div class="card" [ngClass]="{'active-material' : isSelected}">
-    <div class="container">
+
+<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles()">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        <div class="col-xl-2 col-sm-2 text-center">
+        
+            <span class="btn {{getRandomColorClass()}} text-white fab-item ">
+                <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
+                <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
+                <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard-list icon"></i>
+                <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
+            </span>
+        </div>
+        <div class="col-xl-10 col-sm-10 text-center">
+            <div class="row">
+                <div class="col-12 material_title">
+                    {{material.title}}
+                </div>
+            </div>
+        </div>
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            This is a summary of the content
+        </mat-panel-description> --> 
+    </mat-expansion-panel-header>
+    <!-- <mat-divider></mat-divider> -->
+    <mat-tab-group>
+        <mat-tab label="Files"> 
+            <div class='row'>
+                <div class='col-lg-12'>
+                    <material-files [materialId]="material._id"></material-files>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</mat-expansion-panel>
+
+
+
+
+<!-- <div class="card" [ngClass]="{'active-material' : isSelected}">
+    <div class="container"> -->
         <!-- NOT EDITING -->
-        <div class="row" *ngIf="!editing">
+        <!-- <div class="row" *ngIf="!editing">
             <div class="col-xl-2 col-sm-2 text-center">
 
                 <span class="btn {{getRandomColorClass()}} text-white fab-item ">
-                    <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
-                    <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
-                    <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard-list icon"></i>
-                    <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
+                    <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
+                    <!-- <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
+                    <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard-list icon"></i> -->
+                    <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i>
                 </span> 
             </div>
             <div class="col-xl-10 col-sm-10 text-center">
@@ -26,9 +66,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- EDITING  -->
-        <div *ngIf="editing" class="row">
+        <!-- <div *ngIf="editing" class="row">
             <form>
                 <mat-form-field class="col-12">
                     <input matInput name="material-title" placeholder="Material Title" [(ngModel)]='material.title'
@@ -61,4 +101,4 @@
         </div>
 
     </div>
-</div>
+</div> -->
