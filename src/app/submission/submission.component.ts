@@ -127,9 +127,10 @@ export class SubmissionComponent implements OnInit {
     console.log('Default Job Selection:::::::');
 
     this._jobService.getJobs().subscribe((data) => {
-
-      console.log('data::::::::::::::', data);
       this.firstJob = data[0];
+      console.log('data::::::::::::::', this.firstJob);
+      this.getAssignmentList(this.firstJob._id);
+      this.getAllAllotedAssignmentsUsingJobId(this.firstJob._id);
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
