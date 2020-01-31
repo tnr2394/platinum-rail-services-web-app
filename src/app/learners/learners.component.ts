@@ -40,6 +40,7 @@ export class LearnersComponent implements OnInit {
   @Input('jobId') jobIdFromClient;
   @Output() getLearnersFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() learnerAdded: EventEmitter<any> = new EventEmitter<any>();
+  // @Output() learnersFor: EventEmitter<any> = new EventEmitter<any>();
 
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
@@ -183,6 +184,8 @@ export class LearnersComponent implements OnInit {
     console.log("Getting learners for jobid = ", jobId);
     this._learnerService.getLearnersByJobId(jobId).subscribe((learners) => {
       this.learners = learners;
+      console.log("EVENT EMITTED FROM LEARNER COMP");
+      this.getLearnersFromComponent.emit({ learners })
       this.loading = false;
       console.log("GOT LeARNERS");
       this.updateData(learners)

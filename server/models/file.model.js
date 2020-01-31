@@ -24,7 +24,15 @@ const fileSchema = new Schema({
     },
     uploadedDate: {
         type: Date
-    }
+    },
+    sharedInstructor: [{
+        type: Schema.Types.ObjectId,
+        ref: 'instructor'
+    }],
+    sharedClient: [{
+        type: Schema.Types.ObjectId,
+        ref: 'client'
+    }],
 }, {
         timestamps: true
     });

@@ -83,6 +83,27 @@ export class FolderService {
     });
   }
 
+  shareFolder(data: any): Observable<any> {
+    console.log("Adding Files", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "folder/share", data).subscribe((res: any) => {
+        observer.next(res.data.file);
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+  }
+
+
 
 
 }

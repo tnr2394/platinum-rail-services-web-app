@@ -28,17 +28,20 @@ export class ProfileComponent implements OnInit {
   view;
   isLearner: Boolean = false; 
   isInstructor: Boolean = false;
+  dateOfJoining: Date;
+  isJob: boolean = false;
 
   @Input('learnerForProfile') learnerId;
   @Input('instructorForProfile') instructorId;
-  dateOfJoining: Date;
+  @Input('jobDetailsForProfile') jobDetails;
+  
   constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     console.log("-----learner-----", this.learnerId);
     console.log("-----instructor-----", this.instructorId);
-    
+    console.log("-----job-----", this.jobDetails);
     if(this.learnerId != undefined){
       this.isLearner = true
       this.getLearner()
@@ -47,6 +50,10 @@ export class ProfileComponent implements OnInit {
       this.isInstructor = true;
       console.log("instructor recieved is", this.instructorId);
       this.getInstructor();
+    }
+    else if(this.jobDetails != undefined){
+      this.isJob = true
+      this.getJobValues(this.jobDetails)
     }
     
   }
@@ -111,11 +118,14 @@ export class ProfileComponent implements OnInit {
     this._jobService.getJobById(id).subscribe((jobRecieved) => {
       console.log("Job Recieved", jobRecieved);
       this.job = jobRecieved.pop();
-      this.client = this.job.client.name;
-      this.location = this.job.location.title;
-      this.course = this.job.course.title;
-      this.instructor = this.job.instructors;
+      this.getJobValues(this.job)
     })
+  }
+  getJobValues(job){
+    this.client = job.client.name;
+    this.location = job.location.title;
+    this.course = job.course.title;
+    this.instructor = job.instructors;
   }
 
   editLearner() {

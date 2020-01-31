@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { AddFileModalComponent } from './add-file-modal/add-file-modal.component';
 import { EditFileModalComponent } from './edit-file-modal/edit-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -16,7 +16,7 @@ export class FilesComponent implements OnInit, OnChanges {
   files = [];
   copyFiles;
   @Input('materialId') materialId: any;
-
+  @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
   constructor(public _filter: FilterService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
@@ -54,6 +54,10 @@ export class FilesComponent implements OnInit, OnChanges {
   }
   courses(courses: any) {
     throw new Error("Method not implemented.");
+  }
+  fileDetails(event){
+    console.log("Event in material-files",event);
+    this.getFileDetails.emit(event)
   }
 
   handleSnackBar(data) {
