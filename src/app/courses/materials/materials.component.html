@@ -1,6 +1,11 @@
+<h1>TEST DATA **********</h1>
+<mat-sidenav-container class="example-container" autosize>
+    <!-- <mat-sidenav #sidenav mode="side" position="end">
+                                <app-file-details></app-file-details>
+                            </mat-sidenav> -->
+<mat-sidenav-content>
 <div class="row">
     <div class="col-12">
-
         <h3 class="page-title" *ngIf="course">Course : {{course.title}}</h3>
         <div class="row">
 
@@ -64,9 +69,10 @@
                                         <div class="row material_tile_row">
                                             <div class='materialsDiaplay'>
                                                 <div class="col-11 pl-0">
-                                                    <material-tile [material]="material"
+                                                    <material-tile [material]="material" [learners]="learners"
                                                         [isSelected]="(material._id === selectedMaterial)" [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
+                                                        (fileDetailsComp)="fileDetailsComp($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>
                                                 <div class="col-1" *ngIf="view == false">
@@ -92,8 +98,13 @@
                                     class="fa fa-cog fa-spin text-info"></i>
                             </h3>
                         </div>
-
-
+                        <div class="col-lg-6">
+                            <mat-sidenav #sidenav mode="side" position="end">
+                                <button (click)="sidenav.close()">CLOSE</button>
+                                <app-file-details [details]="file"></app-file-details>
+                            </mat-sidenav>
+                        </div>
+                        
 
 
                         <!--Card content-->
@@ -122,3 +133,6 @@
         </div>
     </div>
 </div>
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>

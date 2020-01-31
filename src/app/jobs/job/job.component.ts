@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, ElementRef } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatSidenavModule, MatSidenav } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../../services/filter.service';
@@ -40,13 +40,16 @@ export class JobComponent implements OnInit, AfterViewInit {
   jobForScheduler;
   completionPercent;
   clientDashboard;
+  displayDetails = false
   sendDataToAllocateModal: { learners: any; materials: number; };
   @Input('jobIdFromClient') jobIdFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
   
-  constructor(private router: Router, public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
+  
+  constructor(private router: Router, 
+    public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
@@ -160,7 +163,10 @@ export class JobComponent implements OnInit, AfterViewInit {
       duration: 2000,
     });
   }
-
+  openSideNav(event){
+    console.log("OPEN SIDE NAV EVENT", event);
+    this.displayDetails = true;
+  }
   getJob(jobId) {
     var that = this;
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
@@ -190,4 +196,11 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.completionPercent = 100;
     }
   }
+  // test(){
+  //   this.mydsidenav.open();
+  // }
+  // sideNav(object){
+  //   console.log("event----------", object);
+    
+  // }
 }
