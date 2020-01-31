@@ -15,7 +15,7 @@
         //  z-index: 2;
          box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.7);
          background: white;
-         object-fit: contain;
+         object-fit: cover;
          @media (max-width:768px){
              width: 170px;
              height: 170px;
