@@ -17,6 +17,7 @@ export class FileTileComponent implements OnInit {
   @Input('file') file: any;
   @Output() deletedFile: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
+  @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();
   loading: boolean;
 
   isSubmission;
@@ -29,7 +30,6 @@ export class FileTileComponent implements OnInit {
       this.isSubmission = false;
     }
   }
-
 
   ngOnInit() {
     console.log("file tile initialized file= ", this.file);
@@ -78,8 +78,11 @@ export class FileTileComponent implements OnInit {
         return
       }
     })
+  }
 
-    
+  fileDetails(){
+    console.log("file tile clicked");
+    this.openSideNav.emit({file:this.file})
   }
 
 }

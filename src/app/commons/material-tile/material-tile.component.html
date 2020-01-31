@@ -1,9 +1,8 @@
 
-<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles()">
+<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles();getLearners()">
     <mat-expansion-panel-header>
         <mat-panel-title>
         <div class="col-xl-2 col-sm-2 text-center">
-        
             <span class="btn {{getRandomColorClass()}} text-white fab-item ">
                 <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
                 <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
@@ -28,9 +27,14 @@
         <mat-tab label="Files"> 
             <div class='row'>
                 <div class='col-lg-12'>
-                    <material-files [materialId]="material._id"></material-files>
+                    <material-files [materialId]="material._id" (getFileDetails)="fileDetails($event)"></material-files>
                 </div>
             </div>
+        </mat-tab>
+        <mat-tab label="Learners">
+            <p *ngFor="let learner of allotedLearners">
+                {{learner.name}}
+            </p>
         </mat-tab>
     </mat-tab-group>
 </mat-expansion-panel>

@@ -202,6 +202,7 @@ export class SchedulerComponent implements OnInit {
     newEnd,
     allDay
   }: CalendarEventTimesChangedEvent): void {
+    console.warn("Event Dropped ",newStart);
     const externalIndex = this.externalEvents.indexOf(event);
     if (typeof allDay !== 'undefined') {
       event.allDay = allDay;
@@ -210,6 +211,8 @@ export class SchedulerComponent implements OnInit {
       this.externalEvents.splice(externalIndex, 1);
       this.events.push(event);
     }
+
+    
     event.start = newStart;
     if (newEnd) {
       event.end = newEnd;
@@ -218,7 +221,12 @@ export class SchedulerComponent implements OnInit {
       this.viewDate = newStart;
       this.activeDayIsOpen = true;
     }
-    this.allevents = [...this.events];
+    // this.allevents.push(this.createEventObject(event));
+    console.log("this.allevents", this.allevents);
+    // this.populateAllJobs(this.events)
+    // this.allevents.push(this.events)
+    // this.refresh.next();
+    this.allevents = [...this.allevents, { event }];
     if(this.externalEvents.length < 1){
       this.createNewJob()
     }
@@ -226,7 +234,7 @@ export class SchedulerComponent implements OnInit {
   
 
   externalDrop(event){
-    console.log("ecternal event dropped");
+    console.log("external event dropped");
     
     if (this.externalEvents.indexOf(event) === -1) {
       this.events = this.events.filter(iEvent => iEvent !== event);
@@ -316,6 +324,13 @@ export class SchedulerComponent implements OnInit {
   // Utility
   createEventObject(obj) {
     console.log("Creating Event object from = ", obj);
+    console.log("Type of Starting Date = ",typeof obj.startingDate);
+    // if (!obj.starting instanceof String){
+    //   var startDate = new Date(obj.startingDate);
+    //   var temp = startDate.getDate() + " - " + startDate.getMonth()+" - "+startDate.getFullYear();
+    //   console.log("Date temp = "+temp);
+    //   obj.staringDate = temp;
+    // }
     var newEvent = {
       start: new Date(obj.startingDate),
       title: obj.title,

@@ -25,12 +25,14 @@ export class FileDetailsComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.displaySaveBtn = false
-    console.log("CHANGES", changes);
-    this.createdAt = changes.recievedFile.currentValue.createdAt;
-    this.totalFiles = changes.recievedFile.currentValue.files.length;
-    this.lastUpdate = changes.recievedFile.currentValue.updatedAt;
-    this.title = changes.recievedFile.currentValue.title;
-    this.id = changes.recievedFile.currentValue._id;
+    console.log("CHANGES",changes);
+    if (changes.recievedFile.currentValue != undefined){
+      this.createdAt = changes.recievedFile.currentValue.createdAt;
+      // this.totalFiles = changes.recievedFile.currentValue.files.length;
+      this.lastUpdate = changes.recievedFile.currentValue.updatedAt;
+      this.title = changes.recievedFile.currentValue.title;
+      this.id = changes.recievedFile.currentValue._id;
+    }
   }
   showSaveBtn() {
     this.displaySaveBtn = true;

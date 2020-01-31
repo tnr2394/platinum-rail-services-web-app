@@ -1,12 +1,23 @@
-<h5>Total Files:</h5><span>{{totalFiles}}</span>
-<h5>Last Updated At:</h5><span>{{lastUpdate | date:'mediumDate'}}</span>
-<h5>Created At:</h5><span>{{createdAt | date:'mediumDate'}}</span>
-<br />
-<mat-form-field class="example-full-width" (click)="showSaveBtn()">
-    <input matInput placeholder="Title" [(ngModel)]="title">
-</mat-form-field>
-<button mat-mini-fab color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
-        class="fa fa-check-circle"></i></button>
-<br />
-<button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
-<button mat-stroked-button color="warn">Delete</button>
+<!-- <p>file-details works!</p> -->
+<!-- <br/> -->
+
+<mat-tab-group>
+    <mat-tab label="Details"> 
+        <h3>Total Files:</h3><span>{{totalFiles}}</span>
+        <h3>Last Updated At:</h3><span>{{lastUpdate | date:'mediumDate'}}</span>
+        <h3>Created At:</h3><span>{{createdAt | date:'mediumDate'}}</span>
+        <br />
+        <mat-form-field class="example-full-width" (click)="showSaveBtn()">
+            <input matInput placeholder="Title" [(ngModel)]="title">
+        </mat-form-field>
+        <button mat-mini-fab color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
+                class="fa fa-check-circle"></i></button>
+    </mat-tab>
+
+    <mat-tab label="Activity"> 
+        <h3>Shared with:</h3>
+        <button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
+        <button mat-stroked-button color="warn">Delete</button>
+    </mat-tab>
+    <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
+</mat-tab-group>

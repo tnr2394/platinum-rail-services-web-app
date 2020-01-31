@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { MaterialService } from '../../services/material.service';
 import { LearnerService } from '../../services/learner.service';
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
+import { MatPaginator, PageEvent, MatDialog, MatSidenav } from '@angular/material';
 import { AddMaterialModalComponent } from './add-material-modal/add-material-modal.component';
 import { EditMaterialModalComponent } from './edit-material-modal/edit-material-modal.component';
 import { FilterService } from "../../services/filter.service";
@@ -20,12 +20,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./materials.component.scss']
 })
 export class MaterialsComponent implements OnInit {
+  file: any;
   clearCheckBox() {
     console.log("CHILD METHOD");
     this.selectedCheckbox = false;
   }
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
+  @Input('learners') learners;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
@@ -74,6 +76,7 @@ export class MaterialsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
 
   constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
@@ -94,7 +97,13 @@ export class MaterialsComponent implements OnInit {
   //   console.log("MATERIAL COMPONENT CHILD METHOD")
   // }
 
-
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Changes in app materials", changes);
+      if (this.learners != undefined) {
+        this.learners = changes.learners.currentValue;
+        console.log("this.learners", this.learners);
+      }
+  }
   ngAfterViewInit() {
     console.log("AfterViewInit this.courseId = ", this.courseId);
     this.dataSource.paginator = this.paginator;
@@ -265,6 +274,11 @@ export class MaterialsComponent implements OnInit {
     this.selectedMaterial = event.materialId;
     console.log("Setting selectedMaterial = ", event.materialId)
     this.files = event.files;
+  }
+  fileDetailsComp(event){
+    this.file = event.file;
+    this.mydsidenav.open();
+    console.log("EVENT OPENING", event.file);
   }
 
   handleSnackBar(data) {
