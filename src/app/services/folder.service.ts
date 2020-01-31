@@ -50,6 +50,20 @@ export class FolderService {
     });
   }
 
+  getSharedFolders(): Observable<any> {
+    console.log("Getting clients");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "folder/shared").subscribe((res: any) => {
+        console.log("Get Folders : ", res);
+        observer.next(res.data.folders);
+        observer.complete();
+      })
+
+    });
+  }
+
   getFolder(id): Observable<any> {
     console.log("Getting clients");
     var that = this;
