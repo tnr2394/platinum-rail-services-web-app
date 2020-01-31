@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ShareFileModalComponent } from 'src/app/folder/share-file-modal/share-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
+import { FolderService } from '../../services/folder.service';
 
 @Component({
   selector: 'app-file-details',
@@ -17,7 +18,7 @@ export class FileDetailsComponent implements OnInit {
   title: any;
   displaySaveBtn: boolean = false;
   id: any;
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
+  constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     console.log(this.recievedFile)
@@ -53,6 +54,9 @@ export class FileDetailsComponent implements OnInit {
       users.file = this.id;
       users.type = 'folder'
       console.log("AFTER ADDING ID", users);
+      this._folderService.shareFolder(users).subscribe(res => {
+
+      })
       this.openSnackBar("Shared Successfully", "ok")
     })
   }

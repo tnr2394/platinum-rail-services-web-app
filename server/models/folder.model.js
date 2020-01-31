@@ -17,6 +17,14 @@ const folderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'folder'
     }],
+    sharedInstructor: [{
+        type: Schema.Types.ObjectId,
+        ref: 'instructor'
+    }],
+    sharedClient: [{
+        type: Schema.Types.ObjectId,
+        ref: 'client'
+    }],
     createdBy: {
         type: String,
         required: true
