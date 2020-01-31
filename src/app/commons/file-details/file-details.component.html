@@ -4,8 +4,8 @@
 <mat-tab-group>
     <mat-tab label="Details"> 
         <h3>Total Files:</h3><span>{{totalFiles}}</span>
-        <h3>Last Updated At:</h3><span>{{lastUpdate}}</span>
-        <h3>Created At:</h3><span>{{createdAt}}</span>
+        <h3>Last Updated At:</h3><span>{{lastUpdate | date:'mediumDate'}}</span>
+        <h3>Created At:</h3><span>{{createdAt | date:'mediumDate'}}</span>
         <br />
         <mat-form-field class="example-full-width" (click)="showSaveBtn()">
             <input matInput placeholder="Title" [(ngModel)]="title">

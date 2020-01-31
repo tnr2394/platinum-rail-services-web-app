@@ -20,6 +20,9 @@ router.post('/files', folderController.addFile);
 
 router.post('/share', folderController.shareFolder);
 
+router.post('/share-file', folderController.shareFile);
+
+
 //  router.get('/files', materialController.getFiles);
 
 
