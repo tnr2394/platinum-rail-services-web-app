@@ -60,7 +60,7 @@
                     
 
 
-                    <div class="row material_tile_table_row" *ngIf="materials.length > 0">
+                    <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
                         <div class="col-lg-7 all_material_tile">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
@@ -81,7 +81,7 @@
                                                          </mat-checkbox>
                                                      </div>
                                                  </div>
-                                                <div class="col-10 pl-0">
+                                                <div class="col-10">
                                                     <material-tile [material]="material" [learners]="learners"
                                                         [isSelected]="(material._id === selectedMaterial)" [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
@@ -104,9 +104,10 @@
                                     class="fa fa-cog fa-spin text-info"></i>
                             </h3>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 expansion_tab">
                             <mat-sidenav #sidenav mode="side" position="end">
-                                <button (click)="sidenav.close()">CLOSE</button>
+                                <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                                        aria-hidden="true"></i></mat-button>
                                 <app-file-details [details]="file"></app-file-details>
                             </mat-sidenav>
                         </div>

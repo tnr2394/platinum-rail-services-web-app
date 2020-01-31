@@ -36,7 +36,10 @@
 .outer_card{
     margin-top: 10px;
     i{
-        font-size: 25px;
+        font-size: 35px;
+        @media (max-width:422px){
+            font-size: 28px;
+        }
     }
     .col-3{
         text-align: center;
@@ -67,4 +70,9 @@
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+.job_card_text{
+    p{
+        margin-bottom: 0 !important;
+    }
 }
