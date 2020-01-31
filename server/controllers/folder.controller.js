@@ -3,6 +3,7 @@
 const Q = require('q');
 const async = require("async");
 const lodash = require('lodash');
+const ObjectId = require('mongodb').ObjectId;
 
 // Static Variables
 
@@ -60,6 +61,7 @@ folderController.createFolder = async function (req, res, next) {
             return res.status(500).send({ err });
         })
 }
+
 
 folderController.deleteFolder = function (req, res, next) {
     const folderId = req.query._id;
@@ -234,6 +236,38 @@ const sharingFile = (file, instructors, clients) => {
                 }
             });
     })
+}
+
+
+folderController.getSharedFolder = function (req, res, next) {
+
+    return new Promise((resolve, reject) => {
+        console.log('Get Shared Folder::::::::', req.user);
+
+        let query = {
+            $and: []
+        }
+
+        if (req.user.userRole == 'instructor') {
+            query['$and'].push({ 'sharedInstructor': ObjectId(req.user._id) })
+        } else if (req.user.userRole == 'client') {
+            query['$and'].push({ 'sharedClient': ObjectId(req.user._id) })
+        }
+
+
+        folderModel.aggregate([
+            {
+                $match: query
+            },
+        ]).exec((err, folders) => {
+            if (err) {
+                reject(err);
+            } else {
+                return res.send({ data: { folders } });
+            }
+        });
+    })
+
 }
 
 

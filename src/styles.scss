@@ -1,6 +1,5 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro&display=swap');
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/fontawesome.min.css");
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "../node_modules/material-colors/dist/colors.css";
@@ -642,12 +641,71 @@ th.mat-header-cell {
 }
 // job tabs
 .job_tab{
-  .mat-tab-label {
+  .mat-tab-label-container{
+    margin-bottom: 20px;
+    padding: 0px 15px;
+    @media (max-width:991px){
+      margin-top: 35px;
+      // padding: 0px;
+    }
+  }
+    .mat-tab-label {
+      background: #E6EBF5;
+      color: #707070;
+      border-radius: 6px;
+      border-top-right-radius: 30px;
+      margin-right: 20px;
+      &:first-child {
+        .mat-tab-label-content {
+          &:before {
+            content: "\f0ae";
+            font-family: FontAwesome;
+          }
+        }
+      }
+      .mat-tab-label-content {
+        &:before {
+          content: "\f0c0";
+          font-family: FontAwesome;
+          margin-right: 12px;
+          padding-right: 20px;
+          border-right: 1px solid #707070;
+          font-size: 22px;
+        }
+      }
+       &:last-child {
+         .mat-tab-label-content {
+           &:before {
+             content: "\f0f6";
+             font-family: FontAwesome;
+           }
+         }
+       }
+  }
+  .mat-tab-header-pagination{
+    margin: 20px 15px;
+  }
+  .mat-tab-header {
+    border-bottom: 0 !important;
+  }
+
+  .mat-tab-nav-bar {
+    border-bottom: 0 !important;
+  }
+  .mat-tab-label-active{
+    background: #4385F4;
+    color: white;
+    border-radius: 6px;
+    border-top-right-radius: 30px;
     .mat-tab-label-content {
       &:before {
-        content: "\f0ae" !important;
-        font-family: FontAwesome !important;
+        border-right: 1px solid white;
       }
     }
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background-color: #4385F4 !important;
+    height: 0px !important;
   }
 }

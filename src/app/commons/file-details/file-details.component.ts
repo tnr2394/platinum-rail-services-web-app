@@ -39,6 +39,7 @@ export class FileDetailsComponent implements OnInit {
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
+    data = this.recievedFile
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
     return dialogRef.afterClosed();
@@ -48,6 +49,9 @@ export class FileDetailsComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  
+
   shareWith() {
     console.log("ShareWith");
     this.openDialog(ShareFileModalComponent).subscribe(users => {
