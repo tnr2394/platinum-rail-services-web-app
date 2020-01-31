@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatDialog, MatSnackBar } from '@angular/material'
+import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material'
 import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-modal.component';
 
 @Component({
@@ -9,7 +9,8 @@ import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-m
   styleUrls: ['./my-documents.component.scss']
 })
 export class MyDocumentsComponent implements OnInit {
-
+  details: any;
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   ngOnInit() {
   }
@@ -24,5 +25,9 @@ export class MyDocumentsComponent implements OnInit {
       duration: 2000,
     });
   }
-
+  openFileDetails(event){
+    console.log("IN MY DOCS", event);
+    this.details = event;
+    this.mydsidenav.open()
+  }
 }

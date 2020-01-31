@@ -12,10 +12,16 @@ var folder = {};
 folder.createFolder = function (obj) {
     var q = Q.defer();
     var newFolder = new folderModel(obj);
-
     newFolder.save((err, newFolder) => {
         if (err) return q.reject(err);
         console.log("New Folder Created Successfully =  ", newFolder);
+        if (obj.parent) {
+            folder.updateChildFolder(obj.parent, newFolder).then((response) => {
+                return q.resolve(newFolder);
+            }).catch((error) => {
+                q.reject(error);
+            })
+        }
         return q.resolve(newFolder);
     });
     return q.promise;
@@ -37,6 +43,24 @@ folder.uploadFileToFolder = function (folderId, obj) {
     }).catch((error) => {
         q.reject(error);
     });
+    return q.promise;
+}
+
+// Update Child of parent folder
+folder.updateChildFolder = function (parentId, folderId, obj) {
+    console.log('File Upload', folderId, obj);
+    var q = Q.defer();
+
+    folderModel.updateOne(
+        { _id: parentId },
+        { $push: { child: folderId } },
+        { new: true, upsert: true },
+        (err, updatedFolder) => {
+            if (err) q.reject(err);
+            else {
+                q.resolve(updatedFolder);
+            }
+        });
     return q.promise;
 }
 

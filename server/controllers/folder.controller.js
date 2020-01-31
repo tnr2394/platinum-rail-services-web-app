@@ -62,6 +62,7 @@ folderController.createFolder = async function (req, res, next) {
         })
 }
 
+
 folderController.deleteFolder = function (req, res, next) {
     const folderId = req.query._id;
 
