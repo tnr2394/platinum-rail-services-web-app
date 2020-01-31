@@ -12,6 +12,7 @@ import { MaterialsComponent } from '../../courses/materials/materials.component'
 import { AssignmentStatusComponent } from '../../clients/assignment-status/assignment-status.component'
 import { LearnersComponent } from '../../learners/learners.component'
 import { SchedulerComponent } from '../../scheduler/scheduler.component'
+declare var $: any;
 
 
 @Component({
@@ -51,7 +52,12 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.learners);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+    // $('#horizontalTab').responsiveTabs({
+    //   startCollapsed: 'accordion'
+    // });
+
     this.currentUser = JSON.parse(localStorage.currentUser);
 
     console.log("this.jobIdFromClient", this.jobIdFromClient);

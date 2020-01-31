@@ -53,7 +53,8 @@ export class AppComponent {
 
     $('.collapseToggle').on('click', function () {
       $(".sidebar").toggleClass('sidebar--Collapse');
-      // $('.main').toggleClass('main--slide'); 
+      $('.main').toggleClass('menu--open');
+      $('body').toggleClass('overflow_hidden');
       $('#toggleIcon').toggleClass('rotate');
       $(".sidebar").hasClass('sidebar--Collapse')
         ? $(".tooltip-class").css({ 'display': 'block' })

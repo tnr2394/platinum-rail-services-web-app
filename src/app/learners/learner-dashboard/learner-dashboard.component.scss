@@ -369,14 +369,14 @@
         height: 125px;
     }
     @media (max-width:767px){
-        width: 245px;
+        width: 228px;
         height: 115px;
     }
     @media (max-width:575px){
         width: 186px;
         height: 100px;
     }
-    @media (max-width:441px){
+    @media (max-width:491px){
         width: 100%;
         margin-left: 0;
         margin-bottom: 15px;
@@ -402,6 +402,9 @@
         @media (max-width:991px){
             font-size: 32px;
         }
+        @media (max-width:575px){
+            font-size: 28px;
+        }
     }
 }
 .fail_card{
@@ -418,14 +421,23 @@
     }
 }
 .assign_row{
-    @media (max-width:575px){
+    @media (max-width:991px){
         padding: 0px 15px;
     }
 }
 .exam_row{
     float: right;
     margin-bottom: 30px;
+    @media (max-width:991px){
+        margin-right: 0 !important;
+    }
     @media (max-width:441px){
         float: none !important;
+    }
+}
+.single_learner_card{
+    @media (max-width:991px){
+        padding-left: 15px !important;
+        padding-right: 15px !important;
     }
 }
