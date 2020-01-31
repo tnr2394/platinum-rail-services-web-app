@@ -22,16 +22,23 @@ export class FolderComponent implements OnInit {
   timer: any;
   delay: Number;
   display = false;
+  currentUser;
 
-  @ViewChild(ContextMenuComponent,{static:false}) public basicMenu: ContextMenuComponent;
+  @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   details: any;
- 
+
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
-    this.getFolders();
+    this.currentUser = JSON.parse(localStorage.currentUser);
+    if (this.currentUser.userRole == 'admin') {
+      this.getFolders();
+    } else {
+      this.getSharedFolders();
+    }
+
   }
 
   getRandomColorClass(i) {
@@ -77,27 +84,35 @@ export class FolderComponent implements OnInit {
     });
   }
 
+  getSharedFolders() {
+    var that = this;
+    this._folderService.getSharedFolders().subscribe((folders) => {
+      console.log('Folders', folders);
+      this.allFolders = folders;
+    });
+  }
+
   singleClick(event, singleFolder) {
     console.log("Single Click Event", event);
-    
+
     this.preventSingleClick = false;
-     const delay = 200;
-      this.timer = setTimeout(() => {
-        if (!this.preventSingleClick) {
-          this.details = singleFolder;
-          console.log("singleFolder", this.details);
-          this.display = true;
-        }
-      }, delay);
+    const delay = 200;
+    this.timer = setTimeout(() => {
+      if (!this.preventSingleClick) {
+        this.details = singleFolder;
+        console.log("singleFolder", this.details);
+        this.display = true;
+      }
+    }, delay);
   }
 
   doubleClick(event, singleFolder) {
-      console.log("Double Click Event", event);
-      this.preventSingleClick = true;
-      clearTimeout(this.timer);
-      console.log("Double Click");
-      console.log("singleFolder", singleFolder);
-      let id = singleFolder._id;
-      this.router.navigate(['/single-folder', singleFolder._id])
-    }
+    console.log("Double Click Event", event);
+    this.preventSingleClick = true;
+    clearTimeout(this.timer);
+    console.log("Double Click");
+    console.log("singleFolder", singleFolder);
+    let id = singleFolder._id;
+    this.router.navigate(['/single-folder', singleFolder._id])
+  }
 }

@@ -23,7 +23,7 @@ router.post('/share', folderController.shareFolder);
 router.post('/share-file', folderController.shareFile);
 
 
-//  router.get('/files', materialController.getFiles);
+router.get('/shared', jwtService.validateJWT, folderController.getSharedFolder);
 
 
 
