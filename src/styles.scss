@@ -709,3 +709,60 @@ th.mat-header-cell {
     height: 0px !important;
   }
 }
+// file tile css
+.expansion_tab{
+  .mat-tab-label-container{
+    margin-bottom: 0px;
+  }
+  .mat-tab-label{
+    background-color: unset !important;
+  }
+  .mat-tab-header {
+    border-bottom: 1px solid #beb6b6 !important;
+  }
+
+  .mat-tab-nav-bar {
+    border-bottom: 1px solid #beb6b6 !important;
+  }
+  .mat-tab-label-active{
+    background: transparent !important;
+    color: #707070;
+  }
+  .mat-tab-label-content {
+    &:before {
+      content: "\f0c0";
+      display: none;
+    }
+  }
+  &:last-child {
+    .mat-tab-label-content {
+      &:before {
+        display: none;
+      }
+    }
+  }
+  &:first-child {
+    .mat-tab-label-content {
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+
+// material-tile css
+.expansion_tab{
+  .mat-expansion-panel-content {
+    border-top: 1px solid #0000002a !important;
+    padding-top: 20px !important;
+  }
+}
+.example-container{
+   .mat-drawer-content {
+     overflow: unset !important;
+    //  display: inline !important;
+   }
+}
+.mat-drawer-container {
+  background-color: unset !important;
+}

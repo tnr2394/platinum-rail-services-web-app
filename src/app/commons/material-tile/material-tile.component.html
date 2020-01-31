@@ -1,7 +1,7 @@
 
-<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles();getLearners()">
+<mat-expansion-panel class="mat-elevation-z0 card expansion_tab" (opened)="getMaterialFiles();getLearners()">
     <mat-expansion-panel-header>
-        <mat-panel-title>
+        <mat-panel-title class="row">
         <div class="col-xl-2 col-sm-2 text-center">
             <span class="btn {{getRandomColorClass()}} text-white fab-item ">
                 <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
@@ -10,12 +10,12 @@
                 <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
             </span>
         </div>
-        <div class="col-xl-10 col-sm-10 text-center">
-            <div class="row">
-                <div class="col-12 material_title">
+        <div class="col-xl-10 col-sm-10 text-center d-flex justify-content-center align-items-center h-100">
+            <!-- <div class="row"> -->
+                <div class="material_title">
                     {{material.title}}
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         </mat-panel-title>
         <!-- <mat-panel-description>
