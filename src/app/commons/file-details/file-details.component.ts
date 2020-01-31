@@ -24,14 +24,14 @@ export class FileDetailsComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.displaySaveBtn = false
-    console.log("CHANGES",changes);
+    console.log("CHANGES", changes);
     this.createdAt = changes.recievedFile.currentValue.createdAt;
     this.totalFiles = changes.recievedFile.currentValue.files.length;
     this.lastUpdate = changes.recievedFile.currentValue.updatedAt;
     this.title = changes.recievedFile.currentValue.title;
     this.id = changes.recievedFile.currentValue._id;
   }
-  showSaveBtn(){
+  showSaveBtn() {
     this.displaySaveBtn = true;
   }
 
@@ -48,7 +48,7 @@ export class FileDetailsComponent implements OnInit {
   shareWith() {
     console.log("ShareWith");
     this.openDialog(ShareFileModalComponent).subscribe(users => {
-      if(users == undefined) return
+      if (users == undefined) return
       console.log('Users', users);
       users.file = this.id;
       users.type = 'folder'
@@ -56,23 +56,23 @@ export class FileDetailsComponent implements OnInit {
       this.openSnackBar("Shared Successfully", "ok")
     })
   }
-  delete(){
-    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm =>{
+  delete() {
+    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
       if (confirm == '') return
-      else if (confirm == 'yes'){
+      else if (confirm == 'yes') {
         console.log("DELETED");
         // API PENDING
       }
     })
   }
 
-  saveFolder(){
+  saveFolder() {
     let update = {
       title: this.title,
-      id : this.id
+      id: this.id
     }
     console.log("UPDATE", update);
-    
+
     // API CALL PENDING FOR SAVING CHANGED FOLDER TITLE
   }
 }

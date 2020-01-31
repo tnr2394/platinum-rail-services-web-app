@@ -1,12 +1,12 @@
-<p>file-details works!</p>
-<h3>Total Files:</h3><span>{{totalFiles}}</span>
-<h3>Last Updated At:</h3><span>{{lastUpdate}}</span>
-<h3>Created At:</h3><span>{{createdAt}}</span>
-<br/>
+<h5>Total Files:</h5><span>{{totalFiles}}</span>
+<h5>Last Updated At:</h5><span>{{lastUpdate | date:'mediumDate'}}</span>
+<h5>Created At:</h5><span>{{createdAt | date:'mediumDate'}}</span>
+<br />
 <mat-form-field class="example-full-width" (click)="showSaveBtn()">
     <input matInput placeholder="Title" [(ngModel)]="title">
 </mat-form-field>
-<button mat-mini-fab color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i class="fa fa-check-circle"></i></button>
-<br/>
+<button mat-mini-fab color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
+        class="fa fa-check-circle"></i></button>
+<br />
 <button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
 <button mat-stroked-button color="warn">Delete</button>
