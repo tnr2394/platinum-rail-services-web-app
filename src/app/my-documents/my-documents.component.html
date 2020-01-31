@@ -1,4 +1,11 @@
 <h3 class="page-title pl-0">
     My Documents
 </h3>
-<app-folder></app-folder>
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav mode="side" position="end">
+                                <app-file-details [details]="details"></app-file-details>
+    </mat-sidenav>
+    <mat-sidenav-content>
+    <app-folder (getFileDetails)="openFileDetails($event)"></app-folder>
+</mat-sidenav-content>
+</mat-sidenav-container>

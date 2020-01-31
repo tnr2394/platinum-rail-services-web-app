@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
 import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
@@ -25,7 +25,7 @@ export class FolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent,{static:false}) public basicMenu: ContextMenuComponent;
   details: any;
- 
+  @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
@@ -76,7 +76,10 @@ export class FolderComponent implements OnInit {
       this.allFolders = folders;
     });
   }
-
+  openFileDetails(file){
+    console.log("Open file details", file);
+    this.getFileDetails.emit(file)
+  }
   singleClick(event, singleFolder) {
     console.log("Single Click Event", event);
     

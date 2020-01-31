@@ -1,19 +1,21 @@
 
-<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles();getLearners()">
+<mat-expansion-panel class="mat-elevation-z0 card" (opened)="getMaterialFiles()">
     <mat-expansion-panel-header>
         <mat-panel-title>
         <div class="col-xl-2 col-sm-2 text-center">
             <span class="btn {{getRandomColorClass()}} text-white fab-item ">
                 <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
-                <i *ngIf="material.type=='Reading'" class="fas fa-book-reader round"></i>
-                <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard-list icon"></i>
+                <i *ngIf="type == 'Reading'" class="fas fa-book-reader round"></i>
+                <i *ngIf="type == 'Assignment'" class="fas fa-clipboard-list icon"></i>
+                <i *ngIf="type == 'folder'" class="fas fa-folder-open icon"></i>
                 <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
             </span>
         </div>
         <div class="col-xl-10 col-sm-10 text-center">
             <div class="row">
                 <div class="col-12 material_title">
-                    {{material.title}}
+                    {{title}}
+                    <!-- {{material.title}} -->
                 </div>
             </div>
         </div>
@@ -27,7 +29,12 @@
         <mat-tab label="Files"> 
             <div class='row'>
                 <div class='col-lg-12'>
-                    <material-files [materialId]="material._id" (getFileDetails)="fileDetails($event)"></material-files>
+                    <material-files *ngIf='material != undefined' [materialId]="material._id" (getFileDetails)="fileDetails($event)"></material-files>
+                    <div *ngIf='material == undefined && folder != undefined'>
+                    <div *ngFor="let file of folder.files">
+                        <file-tile [file]='file' (openSideNav)="fileDetails(file)"></file-tile>
+                    </div>
+                    </div>
                 </div>
             </div>
         </mat-tab>

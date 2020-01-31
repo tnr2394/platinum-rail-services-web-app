@@ -10,22 +10,21 @@
         </div>
     </div>
     <mat-card-content>
-        <div class="row">
+        <div *ngFor='let singleFolder of allFolders; let i = index'>
+            <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)"></material-tile>
+        </div>
+        <!-- <div class="row">
             <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index' [contextMenu]="basicMenu" [contextMenuSubject]="singleFolder">
-                <!-- <button > -->
                 <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)" (dblclick)="doubleClick($event,singleFolder)">
                     <mat-card-content class="material_card p-2">
-                        <!-- <a routerLink="/single-folder/{{singleFolder._id}}" class="text-white"> -->
                             <div class="materia_icon_span {{getRandomColorClass(i)}}">
                             <i class="fa fa-folder icon round"></i>
                             </div>
                             <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
-                        <!-- </a> -->
                     </mat-card-content>
                 </mat-card>
-                <!-- </button> -->
             </div>
-        </div>
+        </div> -->
     </mat-card-content>
 </mat-card>
 </div>

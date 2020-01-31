@@ -12,6 +12,7 @@ export class MaterialTileComponent implements OnInit {
   @Input('isSelected') isSelected: Boolean;
   @Input('index') i : any;
   @Input('learners') learners;
+  @Input('folder') folder: any;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
@@ -25,6 +26,8 @@ export class MaterialTileComponent implements OnInit {
   allotedLearners = [];
   copyLearners: any;
   temp: any;
+  type: 'folder';
+  title: any;
 
 
   constructor(private _materialService: MaterialService) {
@@ -35,11 +38,21 @@ export class MaterialTileComponent implements OnInit {
     // this.material.title
     // this.DeleteMaterial.emit("Hello");
     // console.log("material TAB = ",this.material);
-    this.backupMaterial = JSON.parse(JSON.stringify(this.material));
+    if(this.material != undefined){
+      this.backupMaterial = JSON.parse(JSON.stringify(this.material));
+      this.type = this.material.type;
+      this.title = this.material.title;
+    }
     // console.log("INDEX", this.i);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log("*****Changes in materials tile", changes);
+    console.log("*****Changes in materials tile", changes);
+    if(changes.folder != undefined){
+      if(changes.folder.currentValue != undefined){
+        this.type = 'folder';
+        this.title = this.folder.title;
+      }
+    }
     // if(changes.learners != undefined){
     //   this.learners = changes.learners.currentValue;
     //   console.log("*****", this.learners);
@@ -79,14 +92,19 @@ export class MaterialTileComponent implements OnInit {
   getMaterialFiles() {
     // this.temp = this.copyLearners;
     console.log("Getting Material ID from materialTile component", this.temp);
-    this.getFiles.emit({
-      materialId: this.material._id,
-    });
+    if(this.material != undefined){
+      this.getFiles.emit({
+        materialId: this.material._id,
+      });
+    }
   }
   fileDetails(event){
     this.fileDetailsComp.emit(event)
     console.log("event in material-tile", event);
   }
+  // openFileDetails() {
+  //   this.fileDetailsComp.emit(event)
+  // } 
   getLearners(){
     console.log("this.temp in getLearners", this.temp);
     console.log("GETTING LEARNERS FOR",this.material);
