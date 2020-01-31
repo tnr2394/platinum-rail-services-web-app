@@ -146,16 +146,15 @@
     // height: 100% !important;
     margin: 0 auto !important;
 }
-
-// responsive tabs
-.status_tab{
-    padding: 30px 0px;
-}
-.mat-tab-label {
-    .mat-tab-label-content {
-        &:before{
-            content: "\f0ae" !important;
-            font-family: FontAwesome !important;
-        }
+.responsive-column{
+    @media (max-width:991px){
+        padding: 10px 30px !important;
     }
+}
+// responsive tabs
+.mat-tab-header{
+    border-bottom: 0 !important;
+}
+.mat-tab-nav-bar {
+    border-bottom: 0 !important;
 }
