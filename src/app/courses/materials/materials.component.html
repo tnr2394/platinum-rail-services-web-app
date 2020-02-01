@@ -89,7 +89,7 @@
                                                          </mat-checkbox>
                                                      </div>
                                                  </div>
-                                                <div class="col-lg-8 col-md-12">
+                                                <div class="col-10">
                                                     <material-tile [material]="material" [jobId]="jobId"
                                                         [isSelected]="(material._id === selectedMaterial)" [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
@@ -111,12 +111,13 @@
                             <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
                                     class="fa fa-cog fa-spin text-info"></i>
                             </h3>
+                            </div>
                             <mat-sidenav #sidenav mode="side" position="end">
                                 <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                                         aria-hidden="true"></i></mat-button>
                                 <app-file-details [details]="file"></app-file-details>
                             </mat-sidenav>
-                        </div>
+                        
                         <!-- <div class="col-lg-5 expansion_tab">
                             <mat-sidenav #sidenav mode="side" position="end">
                                 <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"

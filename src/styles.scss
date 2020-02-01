@@ -785,3 +785,10 @@ th.mat-header-cell {
     padding: 20px !important;
   }
 }
+// .material_responsive{
+  .mat-expansion-panel-header {
+    @media (max-width:422px) {
+      padding: 0 8px !important;
+    }
+  }
+// }
