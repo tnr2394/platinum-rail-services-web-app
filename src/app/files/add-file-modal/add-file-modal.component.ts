@@ -149,6 +149,7 @@ export class AddFileModalComponent implements OnInit {
       this._folderService.uploadFileToFolder(formData).subscribe(data => {
         this.data = data;
         this.loading = false;
+        console.log("File add modal data recieved for folder", data);
         this.dialogRef.close(data);
         this.openSnackBar("File Uploaded Successfully", "Ok");
 
@@ -177,6 +178,7 @@ export class AddFileModalComponent implements OnInit {
         this.data = data;
         this.loading = false;
         this.dialogRef.close(data);
+        console.log("File add modal data recieved for material", data)
         this.openSnackBar("File uploaded successfully.", "Ok");
       }, err => {
         alert("Error Uploading Files.")

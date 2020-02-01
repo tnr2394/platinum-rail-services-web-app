@@ -206,7 +206,7 @@ export class SchedulerComponent implements OnInit {
 
     event.start = new Date(newStart)
 
-    if (event.start > new Date()) {
+    // if (event.start > new Date()) {
 
 
       const externalIndex = this.externalEvents.indexOf(event);
@@ -241,10 +241,10 @@ export class SchedulerComponent implements OnInit {
         this.createNewJob()
       }
 
-    }
-    else {
-      alert(" Can't add in this Date ")
-    }
+    // }
+    // else {
+    //   alert(" Can't add in this Date ")
+    // }
   }
 
 

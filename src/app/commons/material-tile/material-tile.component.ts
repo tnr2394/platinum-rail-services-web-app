@@ -30,6 +30,7 @@ export class MaterialTileComponent implements OnInit {
   type: 'folder';
   title: any;
   files: any;
+  materialId: any;
 
 
   constructor(private _materialService: MaterialService, public _filter: FilterService) {
@@ -44,6 +45,7 @@ export class MaterialTileComponent implements OnInit {
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
       this.type = this.material.type;
       this.title = this.material.title;
+      this.materialId = this.material._id;
     }
     // console.log("INDEX", this.i);
   }
@@ -57,28 +59,28 @@ export class MaterialTileComponent implements OnInit {
         this.copyFiles = this.folder.files;
       }
     }
-    if(changes.learners != undefined){
-      this.learners = changes.learners.currentValue;
-      if (changes.learners.currentValue != undefined){
-        if (this.material.type == "Assignment") {
-          this.learners.forEach(learner => {
-            if (learner.allotments.length > 0) {
-              learner.allotments.forEach(allotment => {
-                if (allotment.assignment._id == this.material._id) {
-                  this.allotedLearners.push(learner);
-                }
-              })
-            }
-          })
-        }
-      }
-      else{
-        console.log("changes.learners.currentValue == undefined");
+    // if(changes.learners != undefined){
+    //   this.learners = changes.learners.currentValue;
+    //   if (changes.learners.currentValue != undefined){
+    //     if (this.material.type == "Assignment") {
+    //       this.learners.forEach(learner => {
+    //         if (learner.allotments.length > 0) {
+    //           learner.allotments.forEach(allotment => {
+    //             if (allotment.assignment._id == this.material._id) {
+    //               this.allotedLearners.push(learner);
+    //             }
+    //           })
+    //         }
+    //       })
+    //     }
+    //   }
+    //   else{
+    //     console.log("changes.learners.currentValue == undefined");
         
-      }
+    //   }
       console.log("***this.allocated LEarners", this.allotedLearners);
       
-    }
+    // }
   }
     // this.learners.forEach(learner => {
     //   if (learner.allotments.length > 0) {
