@@ -25,8 +25,8 @@ export class FileDetailsComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.displaySaveBtn = false
-    console.log("CHANGES",changes);
-    if (changes.recievedFile.currentValue != undefined){
+    console.log("CHANGES", changes);
+    if (changes.recievedFile.currentValue != undefined) {
       this.createdAt = changes.recievedFile.currentValue.createdAt;
       // this.totalFiles = changes.recievedFile.currentValue.files.length;
       this.lastUpdate = changes.recievedFile.currentValue.updatedAt;
@@ -50,31 +50,31 @@ export class FileDetailsComponent implements OnInit {
     });
   }
 
-  
+
 
   shareWith() {
     console.log("ShareWith");
     console.log("this.recievedFiles", this.recievedFile);
-    
+
     this.openDialog(ShareFileModalComponent).subscribe(users => {
       if (users == undefined) return
       console.log('Users', users);
       users.file = this.id;
-      // if(this.recievedFile.child == undefined){
-      //   console.log("in if, hence a file");
-        
-      //   this._folderService.shareFile(users).subscribe(res=>{
+      if (this.recievedFile.child == undefined) {
+        console.log("in if, hence a file");
 
-      //   })
-      // }
-      // else{
+        this._folderService.shareFile(users).subscribe(res => {
+
+        })
+      }
+      else {
         console.log("A folder");
-        
+
         console.log("AFTER ADDING ID", users);
         this._folderService.shareFolder(users).subscribe(res => {
 
         })
-      // }
+      }
       this.openSnackBar("Shared Successfully", "ok")
     })
   }
@@ -95,6 +95,10 @@ export class FileDetailsComponent implements OnInit {
     }
     console.log("UPDATE", update);
 
+    this._folderService.editFolder(update).subscribe(res => {
+
+    })
+    this.openSnackBar("Updated Successfully", "ok")
     // API CALL PENDING FOR SAVING CHANGED FOLDER TITLE
   }
 }

@@ -73,7 +73,7 @@ export class ShareFileModalComponent implements OnInit {
 
   filterIns() {
     this.instructors.forEach((e1) => this.dialogdata.sharedInstructor.forEach((e2) => {
-      if (e1._id == e2) {
+      if (e1._id == e2._id) {
         this.selectedInstructors.push(e1);
         e1.checked = true;
       }
@@ -82,7 +82,7 @@ export class ShareFileModalComponent implements OnInit {
 
   filterClient() {
     this.clients.forEach((e1) => this.dialogdata.sharedClient.forEach((e2) => {
-      if (e1._id == e2) {
+      if (e1._id == e2._id) {
         this.selectedClients.push(e1);
         e1.checked = true;
       }
