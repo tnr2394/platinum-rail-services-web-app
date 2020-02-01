@@ -42,3 +42,53 @@
 .fa-clipboard-list{
   font-size: 25px;
 }
+.learner_material_tab{
+  @media (max-width:768px){
+    display: none;
+  }
+  h4{
+    font-size: 14px !important;
+  }
+  p{
+    font-size: 28px;
+  }
+  .col-sm{
+    border-right: 1px solid rgb(190, 180, 180);
+    padding: 8px;
+    margin-bottom: 15px;
+    // height: fit-content;
+    &:last-child{
+      border-right: none;
+    }
+    @media (max-width:575px){
+      // flex-basis: 0;
+      // flex-grow: 1;
+      // max-width: 100%;
+      width: 50% !important;
+    }
+  }
+}
+.list_learners{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  p{
+    // float: left;
+    font-size: 18px;
+  }
+  h4{
+    // float: right;
+    font-size: 16px !important;
+  }
+}
+.responsive_ul{
+  @media (min-width: 768px){
+    display: none;
+  }
+  @media (max-width: 768px) {
+    display: block;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+}

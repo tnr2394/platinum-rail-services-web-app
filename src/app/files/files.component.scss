@@ -10,8 +10,9 @@
     }
 }
 .files_display{
-    max-height: 770px;
-    overflow: auto;
+    max-height: 315px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .file_count{
     width: fit-content;
