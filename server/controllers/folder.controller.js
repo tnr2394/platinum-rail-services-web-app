@@ -154,12 +154,13 @@ folderController.addFile = function (req, res, next) {
 folderController.updateFolder = function (req, res, next) {
     console.log("Update Folder", req.body);
 
+
     var updateFolder = {};
 
     if (req.body.title) updateFolder['title'] = req.body.title;
 
 
-    folderModel.findOneAndUpdate({ _id: req.body._id }, { $set: updateFolder }, { new: true }, (err, folder) => {
+    folderModel.findOneAndUpdate({ _id: req.body.id }, { $set: updateFolder }, { new: true }, (err, folder) => {
         console.log("Updated folder", folder, err);
         if (err) {
             return res.status(500).send({ err })

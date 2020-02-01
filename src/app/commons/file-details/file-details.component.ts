@@ -95,6 +95,10 @@ export class FileDetailsComponent implements OnInit {
     }
     console.log("UPDATE", update);
 
+    this._folderService.editFolder(update).subscribe(res => {
+
+    })
+    this.openSnackBar("Updated Successfully", "ok")
     // API CALL PENDING FOR SAVING CHANGED FOLDER TITLE
   }
 }

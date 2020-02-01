@@ -35,6 +35,28 @@ export class FolderService {
 
   }
 
+  editFolder(data: any): Observable<any> {
+    console.log("create Folder", data);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.put(config.baseApiUrl + "folder", data).subscribe((res: any) => {
+
+        observer.next(res.data.newFolderRes);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+
+  }
+
 
   getFolders(): Observable<any> {
     console.log("Getting clients");
