@@ -48,18 +48,69 @@ async function allfolders(query) {
 
 folderController.getFolders = async function (req, res, next) {
     var query = { isChild: { $ne: true } };
-    // if (req.query) {
-    //     query = req.query;
-    // }
+    if (req.query) {
+        query = req.query;
+    }
     console.log("GET FOLDER query = ", query);
 
-    // return;
-    allfolders(query).then(folders => {
-        console.log("SENDING RESPONSE Folders = ", folders)
-        return res.send({ data: { folders } });
+
+    let previousFolders = []
+
+    getParentFolder(ObjectId(query._id), previousFolders, function (preFolders) {
+        console.log(" Folders at final final ", preFolders)
+
+        if (preFolders && preFolders.length) {
+            allfolders(query).then(folders => {
+                console.log("SENDING RESPONSE Folders = ", folders)
+                return res.send({ data: { folders, preFolders } });
+            })
+        } else {
+            allfolders(query).then(folders => {
+                console.log("SENDING RESPONSE Folders = ", folders)
+                return res.send({ data: { folders  } });
+            })
+        }
     })
+
+    // return;
+    // allfolders(query).then(folders => {
+    //     console.log("SENDING RESPONSE Folders = ", folders)
+    //     return res.send({ data: { folders } });
+    // })
 }
 
+
+function getParentFolder(folderId, previousFolders, callback) {
+    console.log("folder", folderId)
+    folderModel.findOne({ child: folderId }, { _id: 1, title: 1 })
+        .exec((error, folder) => {
+            console.log(error, folder)
+            if (error) {
+
+            }
+            else if (folder) {
+                if(folder._id && previousFolders.indexOf(folder) > -1){
+
+                }
+                else{
+                    previousFolders.push(folder)
+                    // return callback(previousFolders)
+                    getParentFolder(folder._id, previousFolders, function (folders) {
+                        if (folders) {
+                            return callback(folders)
+                        } else {
+                            console.log(" end ")
+                        }
+                    })
+                }
+            }
+            else {
+                console.log(" end 2")
+                return callback(previousFolders)
+            }
+        })
+
+}
 
 
 folderController.createFolder = async function (req, res, next) {
@@ -72,9 +123,9 @@ folderController.createFolder = async function (req, res, next) {
     if (req.user._id) newFolder['createdBy'] = req.user._id;
     if (req.body.parent) newFolder['parent'] = req.body.parent;
     if (req.body.parent) newFolder['isChild'] = true;
+    newFolder['nameSlug'] = slugify(req.body.title);
 
-
-
+    
     console.log('New Folder:::::::', newFolder);
 
     // return;
@@ -321,6 +372,15 @@ folderController.getSharedFile = function (req, res, next) {
             }
         });
     })
+}
+
+const slugify = function (text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
 }
 
 

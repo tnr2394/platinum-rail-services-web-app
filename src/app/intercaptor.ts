@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs/';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar'
 // import 'rxjs/add/operator/do';
 
 @Injectable()
@@ -27,7 +27,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
                     // Cath Error 400 Bad Request
                     catchError((error: HttpErrorResponse) => {
-                        const errorMessage = error.error.message;
+                        // const errorMessage = error.error.message;
+                        const errorMessage = error
+                        console.log("Error::::::::::::", error);
+
                         if (error.status === 400) {
                             console.log('Error Occured Status 400:::::::::::::::', error.error.msg);
                             this.handleSnackBar({ msg: error.error.msg, button: "Ok" });
@@ -44,8 +47,11 @@ export class AuthInterceptor implements HttpInterceptor {
                         return event;
                     }),
                     catchError((error: HttpErrorResponse) => {
-                        let errorMessage = error.error.message;
+                        // let errorMessage = error.error.message;
+                        let errorMessage = error;
+
                         if (error.status === 401) {
+
                             this.router.navigate(['/login/admin']);
                         }
                         return throwError(error);

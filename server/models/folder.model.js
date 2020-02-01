@@ -17,6 +17,10 @@ const folderSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    nameSlug: {
+        type: String,
+        required: true
+    },
     type: {
         type: String,
         required: true,

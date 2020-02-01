@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FolderService } from '../../services/folder.service';
 import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
@@ -25,8 +25,12 @@ export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   filesToDisplay: any;
-  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, 
-    public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) { }
+  constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
   folderId;
   fileList;
   folder;
@@ -34,10 +38,13 @@ export class SingleFolderComponent implements OnInit {
   loadingMaterials;
   searchText;
 
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.folderId = params['id'];
+
+      console.log(' this.folderId', this.folderId);
     });
     this.getFolderFiles();
   }
@@ -65,8 +72,8 @@ export class SingleFolderComponent implements OnInit {
     })
   }
 
-  filter(){
-    if(this.searchText == ''){
+  filter() {
+    if (this.searchText == '') {
       this.filesToDisplay = this.fileList;
     }
     else {
@@ -84,7 +91,9 @@ export class SingleFolderComponent implements OnInit {
     this._folderService.getFolder(this.folderId).subscribe((folder) => {
       console.log('folder:::::::::', folder);
       this.folder = folder[0];
+      // this.fileList = folder[0].files;
       this.fileList = folder[0].files;
+
       this.filesToDisplay = this.fileList;
       console.log("THis.fileList", this.fileList);
     })
