@@ -55,8 +55,11 @@ export class MaterialTileComponent implements OnInit {
 
   }
   ngOnInit() {
+    
     if (this.router.url.includes('/jobs')){
       this.displayLearners = true
+      this.getLearners()
+      this.assignmentStatusWithLearner(this.jobId)
     }
     if(this.material != undefined){
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
@@ -75,12 +78,15 @@ export class MaterialTileComponent implements OnInit {
         this.copyFiles = this.folder.files;
       }
     }
-    if(changes.jobId != undefined){
-      if (changes.jobId.currentValue != undefined) {
-        this.assignmentStatusWithLearner(this.jobId);
-        this.getLearners()
+    if(this.displayLearners == true){
+      if (changes.jobId != undefined) {
+        if (changes.jobId.currentValue != undefined) {
+          this.assignmentStatusWithLearner(this.jobId);
+          this.getLearners()
+        }
       }
     }
+
     if(changes.material != undefined){
       if (changes.material.currentValue != undefined){
         this.materialId = changes.material.currentValue.material_id;
@@ -110,7 +116,9 @@ export class MaterialTileComponent implements OnInit {
       this.getFiles.emit({
         materialId: this.material._id,
       });
-      this.getCount()
+      if(this.learner != undefined){
+        this.getCount()
+      }
     }
     if(this.folder != undefined){
       console.log("folder open");
@@ -190,6 +198,7 @@ export class MaterialTileComponent implements OnInit {
     this.openDialog(CreateFolderModalComponent, this.folder).subscribe(folder => {
       if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
+
       // this.allFolders.push(folder);
     })
   }
@@ -198,14 +207,11 @@ export class MaterialTileComponent implements OnInit {
   }
 // GET LEARNER COUNT
   getCount(){
-    console.log("In get count", this.learner);
+    
     this.learner.forEach(learner=>{
-      console.log("FOR EACH LEARNER");
       learner.assignments.forEach(assignment=>{
-        console.log("FOR EACH ASSIGNMENT");
         if (assignment.assignmentId == this.materialId ){
           this.learnerNames.push(learner.learnerName)
-          console.log("assignment.assignmentId == this.materialId", assignment.assignmentId,this.materialId);
           this.assignedLearner += 1;
           if(assignment.assignmentStatus == 'Pending'){
             this.pendingLearners += 1
@@ -242,7 +248,6 @@ export class MaterialTileComponent implements OnInit {
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
-
       this.learnerLength = data.length;
       console.log('Learner List:::::::::::::::::::::::', data);
     });
