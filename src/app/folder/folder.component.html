@@ -33,6 +33,24 @@
             </mat-card-content>
         </mat-card>
     </div>
+
+    <div class="col-9">
+        <mat-card>
+            <div class="row">
+                <div class="col-12">
+                    <h3>Shared Files</h3>
+                </div>
+            </div>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile"
+                        [contextMenu]="basicMenu" [contextMenuSubject]="file">
+                        <file-tile [file]="file"></file-tile>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
     <div class="col-3" *ngIf="display">
         <app-file-details [details]="details"></app-file-details>
     </div>

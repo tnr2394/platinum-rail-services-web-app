@@ -267,7 +267,36 @@ folderController.getSharedFolder = function (req, res, next) {
             }
         });
     })
+}
 
+
+folderController.getSharedFile = function (req, res, next) {
+
+    return new Promise((resolve, reject) => {
+        console.log('Get Shared Files::::::::', req.user);
+
+        let query = {
+            $and: []
+        }
+
+        if (req.user.userRole == 'instructor') {
+            query['$and'].push({ 'sharedInstructor': ObjectId(req.user._id) })
+        } else if (req.user.userRole == 'client') {
+            query['$and'].push({ 'sharedClient': ObjectId(req.user._id) })
+        }
+
+        fileModel.aggregate([
+            {
+                $match: query
+            },
+        ]).exec((err, files) => {
+            if (err) {
+                reject(err);
+            } else {
+                return res.send({ data: { files } });
+            }
+        });
+    })
 }
 
 
