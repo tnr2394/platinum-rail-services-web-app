@@ -8,6 +8,8 @@ import { LearnerService } from 'src/app/services/learner.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
+import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
+import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -47,6 +49,7 @@ export class MaterialTileComponent implements OnInit {
   unassignedLearners: number;
   learnerNames = [];
   displayLearners: Boolean = false;
+  displaySubFolders: boolean = false;
 
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog, 
@@ -76,6 +79,7 @@ export class MaterialTileComponent implements OnInit {
         this.title = this.folder.title;
         this.files = this.folder.files;
         this.copyFiles = this.folder.files;
+        this.displaySubFolders = true;
       }
     }
     if(this.displayLearners == true){
@@ -152,40 +156,55 @@ export class MaterialTileComponent implements OnInit {
   }
 
   editmaterial() {
-    console.log("Enabling Editing")
-    this.editing = true;
-  }
-
-  updateMaterial() {
-    this.loading = true;
-    this._materialService.editMaterial(this.material).subscribe(updatedmaterial => {
-      this.material = updatedmaterial;
-      this.loading = false;
-      this.editing = false;
-    }, err => {
-      console.error(err);
-      this.loading = false;
-      alert("material couldn't be updated. Please try again later.")
-      this.material = this.backupMaterial;
-      this.editing = false;
+    this.openDialog(AddMaterialModalComponent, {material:this.material}).subscribe(material=>{
+      if(material == undefined) return
+      console.log("MATERIAL%%%", material);
+      this.title = material.title;
     })
-
+    // console.log("Enabling Editing")
+    // this.editing = true;
   }
+
+  // updateMaterial() {
+  //   this.loading = true;
+  //   this._materialService.editMaterial(this.material).subscribe(updatedmaterial => {
+  //     this.material = updatedmaterial;
+  //     this.loading = false;
+  //     this.editing = false;
+  //   }, err => {
+  //     console.error(err);
+  //     this.loading = false;
+  //     alert("material couldn't be updated. Please try again later.")
+  //     this.material = this.backupMaterial;
+  //     this.editing = false;
+  //   })
+
+  // }
 
   deleteMaterial() {
-    this.loading = true;
-    this._materialService.deleteMaterial(this.material._id).subscribe(updatedmaterial => {
-      this.loading = false;
-      this.editing = false;
-      console.log("Deleted material. ID = ", this.material._id);
-      this.DeleteMaterial.emit(this.material);
-    }, err => {
-      console.error(err);
-      this.loading = false;
-      alert("material couldn't be updated. Please try again later.")
-      this.material = this.backupMaterial;
-      this.editing = false;
-    })
+    this.openDialog(DeleteConfirmModalComponent, "Material").subscribe(confirm=>{
+      // if(confirm != undefined) return
+      if(confirm == 'yes'){
+        console.log("CONFIRM", confirm, this.material._id);
+        // this.loading = true;
+        this._materialService.deleteMaterial(this.material._id).subscribe(updatedmaterial => {
+          console.log("MATERIAL SERVICE");
+          
+          this.loading = false;
+          this.editing = false;
+          console.log("Deleted material. ID = ", this.material._id);
+          this.DeleteMaterial.emit(this.material);
+        }, err => {
+          console.error(err);
+          this.loading = false;
+          alert("material couldn't be updated. Please try again later.")
+          this.material = this.backupMaterial;
+          this.editing = false;
+        })
+      }
+      else return
+    })  
+    
   }
 
   UpateData(courses: any) {

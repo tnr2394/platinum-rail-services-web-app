@@ -68,7 +68,9 @@
         </mat-tab>
     </mat-tab-group>
     <mat-action-row>
-        <button mat-button (click)="createFolder()">Create Sub-folder</button>
+        <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button>
+        <button mat-button (click)="editmaterial()" *ngIf="!displaySubFolders">Edit</button>
+        <button mat-button (click)="deleteMaterial()" *ngIf="!displaySubFolders">Delete</button>
     </mat-action-row>
 </mat-expansion-panel>
 
