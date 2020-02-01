@@ -16,6 +16,7 @@ export class FilesComponent implements OnInit, OnChanges {
   files = [];
   copyFiles;
   @Input('materialId') materialId: any;
+  @Input('folder') folder: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
@@ -23,31 +24,47 @@ export class FilesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log("SOMETHING CHANGED!!", this.materialId);
-    this.getFiles();
+    // console.log("SOMETHING CHANGED!!", this.materialId);
+    console.log("SOMETHING CHANGED!!", changes);
+    if(this.materialId != undefined){
+      this.getFiles();
+    }
+    if(this.folder != undefined){
+      this.files = this.folder.files;
+    }
   }
 
   ngOnInit() {
     console.log("Initialized Files component by", this.files, { materialId: this.materialId });
-    this.getFiles();
+    if (this.materialId != undefined) {
+      this.getFiles();
+    }
   }
 
 
   // MODALS
   addFileModal() {
-    var addedCourse = this.openDialog(AddFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
-      if (courses == undefined) return;
-      console.log("Course added in controller = ", courses);
+    if(this.materialId != undefined){
+      var addedCourse = this.openDialog(AddFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
+        if (courses == undefined) return;
+        console.log("Course added in controller = ", courses);
 
-      _.forEach(courses, (data) => {
-        this.files.push(data);
+        _.forEach(courses, (data) => {
+          this.files.push(data);
+        })
+
+        this.openSnackBar("File Uploaded Successfully", "Ok");
+        this.updateData(this.files);
+      }, err => {
+        return this.openSnackBar("Something went wrong", "Ok");
+      });
+    }
+    else if(this.folder != undefined){
+      this.openDialog(AddFileModalComponent, { folderId: this.folder._id}).subscribe(file=>{
+        console.log("file in folder", file);
       })
-
-      this.openSnackBar("File Uploaded Successfully", "Ok");
-      this.updateData(this.files);
-    }, err => {
-      return this.openSnackBar("Something went wrong", "Ok");
-    });
+    }
+    
   }
   updateData(courses: any) {
     // throw new Error("Method not implemented.");

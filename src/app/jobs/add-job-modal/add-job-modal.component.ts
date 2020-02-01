@@ -56,7 +56,7 @@ export class AddJobModalComponent implements OnInit {
   color: any;
   rgba: any;
   always: any;
-  minDate: any;
+  // minDate: any;
   @ViewChild(JobDatesComponent, { static: false }) jobDateComp: JobDatesComponent;
   constructor(public _clientService: ClientService, public _courseService: CourseService, public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router,
@@ -95,7 +95,7 @@ export class AddJobModalComponent implements OnInit {
 
   ngOnInit() {
     console.log("ON INIT", this.data);
-    this.minDate = new Date();
+    // this.minDate = new Date();
     this.createForm();
     this.finalCourseDates = [];
     this.createForm();

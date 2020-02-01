@@ -81,7 +81,7 @@ export class FileTileComponent implements OnInit {
   }
 
   fileDetails(){
-    console.log("file tile clicked");
+    console.log("file tile clicked", event);
     this.openSideNav.emit({file:this.file})
   }
 

@@ -141,6 +141,8 @@ export class FolderService {
       console.log("Observable");
       var that = this;
       this.http.post(config.baseApiUrl + "folder/files", data).subscribe((res: any) => {
+        console.log("in folder service", res);
+        
         observer.next(res.data.file);
       }, err => {
         console.log("ERROR ")
