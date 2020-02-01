@@ -111,7 +111,7 @@ export class FolderService {
   }
 
   shareFolder(data: any): Observable<any> {
-    console.log("Adding Folder", data);
+    console.log("Sharing Folder", data);
 
     return new Observable<any>((observer) => {
       console.log("Observable");
@@ -128,16 +128,14 @@ export class FolderService {
         })
 
     });
-
-    
   }
 
   shareFile(data: any): Observable<any> {
-    console.log("Adding Files", data);
+    console.log("Sharing Files", data);
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl + "folder/share", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "folder/share-file", data).subscribe((res: any) => {
         observer.next(res.data.file);
       }, err => {
         console.log("ERROR ")

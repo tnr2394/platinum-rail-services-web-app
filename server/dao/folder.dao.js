@@ -37,7 +37,7 @@ folder.uploadFileToFolder = function (folderId, obj) {
         folderModel.updateOne({ _id: folderId }, { $addToSet: { files: response._id }, }, { new: true }, (err, updatedFolder) => {
             if (err) q.reject(err);
             else {
-                q.resolve(updatedFolder);
+                q.resolve(response);
             }
         });
     }).catch((error) => {

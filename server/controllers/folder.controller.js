@@ -23,6 +23,20 @@ async function allfolders(query) {
         .populate('child')
         .populate('sharedClient')
         .populate('sharedInstructor')
+        .populate({
+            path: 'files',
+            populate: {
+                path: 'sharedClient',
+                model: 'client'
+            },
+        })
+        .populate({
+            path: 'files',
+            populate: {
+                path: 'sharedInstructor',
+                model: 'instructor'
+            },
+        })
         .exec((err, folders) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", folders);
@@ -262,38 +276,6 @@ folderController.getSharedFolder = function (req, res, next) {
         console.log("SENDING RESPONSE Folders = ", folders)
         return res.send({ data: { folders } });
     })
-
-
-
-    // return new Promise((resolve, reject) => {
-    //     console.log('Get Shared Folder::::::::', req.user);
-
-    //     let query = {
-    //         $and: []
-    //     }
-
-    //     if (req.user.userRole == 'instructor') {
-    //         query['$and'].push({ 'sharedInstructor': ObjectId(req.user._id) })
-    //     } else if (req.user.userRole == 'client') {
-    //         query['$and'].push({ 'sharedClient': ObjectId(req.user._id) })
-    //     }
-
-
-    //     folderModel.aggregate([
-    //         {
-    //             $match: query
-    //         },
-    //         {
-
-    //         }
-    //     ]).exec((err, folders) => {
-    //         if (err) {
-    //             reject(err);
-    //         } else {
-    //             return res.send({ data: { folders } });
-    //         }
-    //     });
-    // })
 }
 
 
