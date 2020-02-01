@@ -79,11 +79,22 @@ export class FileDetailsComponent implements OnInit {
     })
   }
   delete() {
+    let update = {
+      title: this.title,
+      id: this.id
+    }
+
+    console.log('File Delete Here:::', this.id);
+
     this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
       if (confirm == '') return
       else if (confirm == 'yes') {
         console.log("DELETED");
         // API PENDING
+        this._folderService.deleteFolder(this.id).subscribe(res => {
+
+        })
+        this.openSnackBar("Deleted Successfully", "ok")
       }
     })
   }

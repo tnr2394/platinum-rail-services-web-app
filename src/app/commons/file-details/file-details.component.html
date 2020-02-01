@@ -2,7 +2,7 @@
 <!-- <br/> -->
 
 <mat-tab-group>
-    <mat-tab label="Details"> 
+    <mat-tab label="Details">
         <h5>Total Files : <span>{{totalFiles}}</span></h5>
         <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
         <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
@@ -11,16 +11,16 @@
             <input matInput placeholder="Title" [(ngModel)]="title">
         </mat-form-field>
         <div style="position: relative;">
-             <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
-                     class="fa fa-check-circle"></i></button>
+            <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
+                    class="fa fa-check-circle"></i></button>
         </div>
     </mat-tab>
 
-    <mat-tab label="Activity"> 
+    <mat-tab label="Activity">
         <h4>Shared with:</h4>
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
-            <button mat-stroked-button color="warn">Delete</button>
+            <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
             <button mat-stroked-button color="info">Download</button>
         </div>
     </mat-tab>
