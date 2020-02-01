@@ -1,24 +1,23 @@
-<div class="card h-100 mb-3 justify-content-center" (click)="fileDetails()">
+<div class="card h-100 mb-3 justify-content-center px-2 py-1" (click)="fileDetails()">
     <div class="card-block ">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3 col-sm-3">
                 <!-- <img [ngClass]="file.extension" src="assets/pdf-icon-round.png"> -->
                 <div [ngClass]="file.extension"> </div>
             </div>
-            <div class="col-lg-9">
-                <b style="
-                        font-size: 13px;" placement="bottom-left" ngbTooltip="{{file.title}}"
+            <div class="col-lg-9 col-md-9 col-sm-9 text-left p-0">
+                <b style="font-size: 13px;" placement="bottom-left" ngbTooltip="{{file.title}}"
                     tooltipClass="tooltip-class" triggers="hover">{{file.title}}</b>
-                <div class="row text-left pt-3">
-                    <div class="col-xl-12 col-lg-6 col-md-6 file_title">
+                <div class="row text-left pt-1">
+                    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 file_title">
                         
                         <!-- <b>{{file}}</b> -->
-                        <p class="upload_user" style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
+                        <p class="upload_user mb-0" style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
                     </div>
                     <!-- <div class="col-12"> -->
-                    <div class='col-xl-12 col-lg-6 col-md-6'>
+                    <div class='col-xl-5 col-lg-6 col-md-6 col-sm-6'>
 
-                        <span class="date" title="uploaded At" style='font-size: medium;'>
+                        <span class="date" title="uploaded At">
                             {{ file.createdAt | date: 'shortDate' }}</span>
 
                         <!-- <a href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class" download>
