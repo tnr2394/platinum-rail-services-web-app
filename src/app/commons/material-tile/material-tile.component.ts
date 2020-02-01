@@ -55,8 +55,11 @@ export class MaterialTileComponent implements OnInit {
 
   }
   ngOnInit() {
+    
     if (this.router.url.includes('/jobs')){
       this.displayLearners = true
+      this.getLearners()
+      this.assignmentStatusWithLearner(this.jobId)
     }
     if(this.material != undefined){
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
@@ -113,7 +116,9 @@ export class MaterialTileComponent implements OnInit {
       this.getFiles.emit({
         materialId: this.material._id,
       });
-      this.getCount()
+      if(this.learner != undefined){
+        this.getCount()
+      }
     }
     if(this.folder != undefined){
       console.log("folder open");
@@ -243,7 +248,6 @@ export class MaterialTileComponent implements OnInit {
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
-
       this.learnerLength = data.length;
       console.log('Learner List:::::::::::::::::::::::', data);
     });
