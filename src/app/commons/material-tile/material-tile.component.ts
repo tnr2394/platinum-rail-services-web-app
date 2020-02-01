@@ -75,12 +75,15 @@ export class MaterialTileComponent implements OnInit {
         this.copyFiles = this.folder.files;
       }
     }
-    if(changes.jobId != undefined){
-      if (changes.jobId.currentValue != undefined) {
-        this.assignmentStatusWithLearner(this.jobId);
-        this.getLearners()
+    if(this.displayLearners == true){
+      if (changes.jobId != undefined) {
+        if (changes.jobId.currentValue != undefined) {
+          this.assignmentStatusWithLearner(this.jobId);
+          this.getLearners()
+        }
       }
     }
+
     if(changes.material != undefined){
       if (changes.material.currentValue != undefined){
         this.materialId = changes.material.currentValue.material_id;
@@ -190,6 +193,7 @@ export class MaterialTileComponent implements OnInit {
     this.openDialog(CreateFolderModalComponent, this.folder).subscribe(folder => {
       if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
+
       // this.allFolders.push(folder);
     })
   }
@@ -198,14 +202,11 @@ export class MaterialTileComponent implements OnInit {
   }
 // GET LEARNER COUNT
   getCount(){
-    console.log("In get count", this.learner);
+    
     this.learner.forEach(learner=>{
-      console.log("FOR EACH LEARNER");
       learner.assignments.forEach(assignment=>{
-        console.log("FOR EACH ASSIGNMENT");
         if (assignment.assignmentId == this.materialId ){
           this.learnerNames.push(learner.learnerName)
-          console.log("assignment.assignmentId == this.materialId", assignment.assignmentId,this.materialId);
           this.assignedLearner += 1;
           if(assignment.assignmentStatus == 'Pending'){
             this.pendingLearners += 1
