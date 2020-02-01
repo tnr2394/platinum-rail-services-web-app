@@ -106,28 +106,4 @@ export class FolderComponent implements OnInit {
       // this.allFolders = folders;
     });
   }
-
-  singleClick(event, singleFolder) {
-    console.log("Single Click Event", event);
-
-    this.preventSingleClick = false;
-    const delay = 200;
-    this.timer = setTimeout(() => {
-      if (!this.preventSingleClick) {
-        this.details = singleFolder;
-        console.log("singleFolder", this.details);
-        this.display = true;
-      }
-    }, delay);
-  }
-
-  doubleClick(event, singleFolder) {
-    console.log("Double Click Event", event);
-    this.preventSingleClick = true;
-    clearTimeout(this.timer);
-    console.log("Double Click");
-    console.log("singleFolder", singleFolder);
-    let id = singleFolder._id;
-    this.router.navigate(['/single-folder', singleFolder._id])
-  }
 }
