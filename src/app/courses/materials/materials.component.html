@@ -1,4 +1,4 @@
-<h1>TEST DATA **********</h1>
+<!-- <h1>TEST DATA **********</h1> -->
 <mat-sidenav-container class="example-container" autosize>
     <!-- <mat-sidenav #sidenav mode="side" position="end">
                                 <app-file-details></app-file-details>
@@ -36,15 +36,21 @@
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
-                        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
-                        <div class="row mt-1">
-                            <div *ngFor='let status of assignmentStatus;let i = index'>
-                                <div class="col-md-2">
-                                    <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                                        (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
-                                        {{status.display}}
-                                    </mat-checkbox>
+                        <div class="row w-100">
+                            <div class="col-md-6 pl-0">
+                                <div class="row mt-1">
+                                    <div *ngFor='let status of assignmentStatus;let i = index'>
+                                        <div class="col-md-2">
+                                            <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                                                (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                                {{status.display}}
+                                            </mat-checkbox>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6 pr-0">
+                                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
                             </div>
                         </div>
                         </div>
@@ -54,8 +60,8 @@
                     
 
 
-                    <div class="row material_tile_table_row" *ngIf="materials.length > 0">
-                        <div class="col-lg-12 all_material_tile">
+                    <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
+                        <div class="col-lg-7 all_material_tile">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                 <!-- Title Column -->
@@ -67,22 +73,22 @@
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
-                                            <div class='materialsDiaplay'>
-                                                <div class="col-11 pl-0">
+                                            <!-- <div class='materialsDiaplay'> -->
+                                                 <div class="col-1 d-flex justify-content-center align-items-center" *ngIf="view == false">
+                                                     <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                         <mat-checkbox [ngModel]="selectedCheckbox"
+                                                             (change)='onMaterialSelection($event)' [value]='material'>
+                                                         </mat-checkbox>
+                                                     </div>
+                                                 </div>
+                                                <div class="col-10">
                                                     <material-tile [material]="material" [learners]="learners"
                                                         [isSelected]="(material._id === selectedMaterial)" [index]='i'
                                                         (getFiles)="loadMaterialFiles($event)"
                                                         (fileDetailsComp)="fileDetailsComp($event)"
                                                         (DeleteMaterial)="deletedMaterial($event)"></material-tile>
                                                 </div>
-                                                <div class="col-1" *ngIf="view == false">
-                                                    <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                        <mat-checkbox [ngModel]="selectedCheckbox"
-                                                            (change)='onMaterialSelection($event)' [value]='material'>
-                                                        </mat-checkbox>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <!-- </div> -->
                                         </div>
                                     </td>
                                 </ng-container>
@@ -98,9 +104,10 @@
                                     class="fa fa-cog fa-spin text-info"></i>
                             </h3>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-5 expansion_tab">
                             <mat-sidenav #sidenav mode="side" position="end">
-                                <button (click)="sidenav.close()">CLOSE</button>
+                                <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                                        aria-hidden="true"></i></mat-button>
                                 <app-file-details [details]="file"></app-file-details>
                             </mat-sidenav>
                         </div>

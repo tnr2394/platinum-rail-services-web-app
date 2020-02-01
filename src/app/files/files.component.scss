@@ -1,9 +1,9 @@
 .mat-form-field{
     width: 100%;
 }
-.mat-button{
-    padding: 0 !important;
-}
+// .mat-button{
+//     padding: 0 !important;
+// }
 @media (max-width:575px){
     .file {
         font-size: 16px;
@@ -12,4 +12,16 @@
 .files_display{
     max-height: 770px;
     overflow: auto;
+}
+.file_count{
+    width: fit-content;
+    margin: auto;
+    font-size: 25px;
+}
+.upload_filebtn{
+    // background: blue;
+    border: none;
+    margin-top: 20px;
+    // padding: 4px 10px;
+    border-radius: 6px;
 }

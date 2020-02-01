@@ -1,0 +1,34 @@
+h5{
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgrey;
+    font-weight: 700;
+    color: #888888;
+    span{
+        font-size: 16px;
+        color: #979797;
+        display: block;
+        padding-top: 10px;
+    }
+}
+h4{
+    padding: 15px 0px 25px;
+    font-size: 700;
+}
+mat-form-field{
+    width: 100%;
+    color: #979797;
+}
+.mat-form-field-infix{
+    input{
+        color: #979797;
+    }
+}
+.mini_btn{
+    position: absolute;
+    top: -76px;
+    right: 5px;
+}
+.drawer_btn{
+    justify-content: space-between;
+    display: flex;
+}
