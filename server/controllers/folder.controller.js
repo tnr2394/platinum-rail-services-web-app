@@ -65,6 +65,7 @@ folderController.createFolder = async function (req, res, next) {
     var newFolder = {
         title: req.body.title,
         createdBy: req.user._id,
+        parent: req.body.parent,
     };
 
     folderDOA.createFolder(newFolder)

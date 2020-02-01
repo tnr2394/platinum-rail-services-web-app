@@ -57,9 +57,14 @@ export class ProfileComponent implements OnInit {
     }
     
   }
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log("-----learner-----", this.learnerId);
-  // }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes in profile", changes);
+    if (changes.jobDetails != undefined){
+      if (changes.jobDetails.currentValue != undefined){
+        this.getJobValues(changes.jobDetails.currentValue)
+      }
+    }
+  }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data });

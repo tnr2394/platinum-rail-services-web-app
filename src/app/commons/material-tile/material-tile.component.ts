@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MaterialService } from '../../services/material.service';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { JobService } from 'src/app/services/job.service';
 import { LearnerService } from 'src/app/services/learner.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -47,7 +49,8 @@ export class MaterialTileComponent implements OnInit {
   displayLearners: Boolean = false;
 
 
-  constructor(private _materialService: MaterialService, private _learnerService : LearnerService, public router: Router, public _filter: FilterService) {
+  constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog, 
+    public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
     this.bgColors = ["btn-info", "btn-success", "btn-warning", "btn-primary", "btn-danger"];
 
   }
@@ -118,6 +121,9 @@ export class MaterialTileComponent implements OnInit {
     this.fileDetailsComp.emit(event)
     console.log("event in material-tile", event);
   }
+  closeFileDetails(){
+    console.log("Expansion closed^");
+  }
   applyFilter(filterValue: string) {
     console.log("filterValue", filterValue);
     
@@ -126,11 +132,15 @@ export class MaterialTileComponent implements OnInit {
   copyFiles(filterValue: string, copyFiles: any, arg2: string[]): any {
     throw new Error("Method not implemented.");
   }
- 
-  getLearners(){
-    this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners=>{
-      this.allLearners = allLearners.length;
-    })
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    return dialogRef.afterClosed();
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   editmaterial() {
@@ -156,7 +166,6 @@ export class MaterialTileComponent implements OnInit {
 
   deleteMaterial() {
     this.loading = true;
-
     this._materialService.deleteMaterial(this.material._id).subscribe(updatedmaterial => {
       this.loading = false;
       this.editing = false;
@@ -175,14 +184,19 @@ export class MaterialTileComponent implements OnInit {
     // throw new Error("Method not implemented.");
   }
 
-  assignmentStatusWithLearner(jobId) {
-    this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
-      this.learner = data;
-      
-      this.learnerLength = data.length;
-      console.log('Learner List:::::::::::::::::::::::', data);
-    });
+  createFolder() {
+    let currentFolder = this.folder;
+    console.log("currentFolder", this.folder);
+    this.openDialog(CreateFolderModalComponent, this.folder).subscribe(folder => {
+      if (folder == undefined) return
+      console.log("FOLDER NAME RECIEVED", folder);
+      // this.allFolders.push(folder);
+    })
   }
+  subFolder(){
+    console.log("SUB FOLDER CLICKED");
+  }
+// GET LEARNER COUNT
   getCount(){
     console.log("In get count", this.learner);
     this.learner.forEach(learner=>{
@@ -216,4 +230,21 @@ export class MaterialTileComponent implements OnInit {
     console.log("-----this.completedLearners", this.completedLearners);
   }
 
+
+
+  // API
+  getLearners() {
+    this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
+      this.allLearners = allLearners.length;
+    })
+  }
+
+  assignmentStatusWithLearner(jobId) {
+    this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
+      this.learner = data;
+
+      this.learnerLength = data.length;
+      console.log('Learner List:::::::::::::::::::::::', data);
+    });
+  }
 }

@@ -31,6 +31,7 @@ export class FilesComponent implements OnInit, OnChanges {
     }
     if(this.folder != undefined){
       this.files = this.folder.files;
+      this.fileCount = this.files.length
     }
   }
 
@@ -62,6 +63,11 @@ export class FilesComponent implements OnInit, OnChanges {
     else if(this.folder != undefined){
       this.openDialog(AddFileModalComponent, { folderId: this.folder._id}).subscribe(file=>{
         console.log("file in folder", file);
+        if(file == undefined) return
+        _.forEach(file, (data) => {
+          this.files.push(data);
+        })
+        this.fileCount = this.files.length;
       })
     }
     
