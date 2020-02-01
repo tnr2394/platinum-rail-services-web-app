@@ -13,12 +13,12 @@ export class FolderService {
   createFolder(data: any): Observable<any> {
     console.log("create Folder", data);
 
-    let body = { title: data }
+    // let body = { title: data }
 
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl + "folder", body).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "folder", data).subscribe((res: any) => {
 
         observer.next(res.data.newFolderRes);
         // observer.complete();
