@@ -85,7 +85,7 @@ $white : "#ffffff";
             right: 0;
             z-index: 111;
             background-color: rgba(0,0,0,0.5);
-            @media (max-width: 812px) and (orientation : landscape) {
+            @media (max-width: 1024px) {
                 display: block;
             }
             @media(max-width: 599px) {
@@ -93,17 +93,14 @@ $white : "#ffffff";
             }
         }
     }
-    @media (max-width: 812px) and (orientation : landscape) {
-        padding: 70px 15px 20px !important;
-    }
-    @media(max-width: 599px){
+    @media (max-width: 1024px) {
         padding: 70px 15px 20px !important;
     }
 }
 .sidebar {
     width: 210px;
     background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-    z-index: 1;
+    z-index: 5;
     transition: all 0.5s;
     display: block;
     height: auto;
@@ -112,21 +109,15 @@ $white : "#ffffff";
     left: 0;
     bottom: 0;
     padding-top: 64px;
-    @media (max-width: 812px) and (orientation : landscape) {
-        z-index: 999;
-        overflow: auto;
-    }
-    @media(max-width: 599px){
+    box-shadow: 0px 0px 20px -5px #fff;
+    @media (max-width: 1024px) {
         padding-top: 0;
         z-index: 999;
         overflow: auto;
     }
     &.sidebar--Collapse{
         width: 50px;
-        @media (max-width: 812px) and (orientation : landscape) {
-            width: 0;
-        }
-        @media(max-width: 599px) {
+        @media (max-width: 1024px) {
             width: 0;
         }
     }
@@ -140,7 +131,7 @@ $white : "#ffffff";
         line-height: 40px;
         position: absolute;
         bottom: 0;
-        @media (max-width: 812px) and (orientation : landscape) {
+        @media (max-width: 1024px) {
             top: 13px;
             right: 0;
             position: fixed;
@@ -198,13 +189,5 @@ $white : "#ffffff";
                 }
             }
         }
-    }
-}
-.overflow_hidden {
-    @media (max-width: 812px) and (orientation : landscape) {
-        overflow: hidden;
-    }
-    @media(max-width: 599px) {
-        overflow: hidden;
     }
 }

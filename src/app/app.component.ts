@@ -56,9 +56,16 @@ export class AppComponent {
       $('.main').toggleClass('menu--open');
       $('body').toggleClass('overflow_hidden');
       $('#toggleIcon').toggleClass('rotate');
-      $(".sidebar").hasClass('sidebar--Collapse')
-        ? $(".tooltip-class").css({ 'display': 'block' })
-        : $(".tooltip-class").css({ 'display': 'none' });
+      $(".sidebar").hasClass('sidebar--Collapse') ? $(".tooltip-class").css({ 'display': 'block' }) : $(".tooltip-class").css({ 'display': 'none' });
+      $('.sidebar ul li a').click(function(){
+        var windowWidth = $(window).width();
+        if(windowWidth < 1025){
+          $(".sidebar").addClass('sidebar--Collapse');
+          $('.main').removeClass('menu--open');
+          $('body').removeClass('overflow_hidden');
+          $('#toggleIcon').addClass('rotate');
+        }
+      });
     });
     this.sidenavService.setSidenav(this.sidemenu);
 
