@@ -797,3 +797,8 @@ th.mat-header-cell {
     overflow: hidden;
   }
 }
+.tooltip-class {
+  @media (max-width:1024px) {
+    display: none !important;
+  }
+}

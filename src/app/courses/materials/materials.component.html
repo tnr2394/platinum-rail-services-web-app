@@ -45,7 +45,7 @@
                         </mat-form-field>
                         <div class="row w-100">
                             <div class="col-md-6 pl-0">
-                                <div class="row mt-1">
+                                <div class="row mt-1 res-row">
                                     <div *ngFor='let status of assignmentStatus;let i = index'>
                                         <div class="col-md-2">
                                             <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 pr-0">
+                            <div class="col-md-6 p-0 ">
                                 <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
                             </div>
                         </div>
@@ -82,11 +82,14 @@
                                         *matCellDef="let material; let i = index;">
                                         <div class="row material_tile_row">
                                              <!-- <div class='materialsDiaplay'>  -->
-                                                 <div class="col-1 d-flex justify-content-center align-items-center" *ngIf="view == false">
-                                                     <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                         <mat-checkbox [ngModel]="selectedCheckbox"
-                                                             (change)='onMaterialSelection($event)' [value]='material'>
-                                                         </mat-checkbox>
+                                                 <div class="col-1 d-flex justify-content-center align-items-center">
+                                                     <div *ngIf="view == false">
+                                                        <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                            <mat-checkbox [ngModel]="selectedCheckbox"
+                                                                (change)='onMaterialSelection($event)'
+                                                                [value]='material'>
+                                                            </mat-checkbox>
+                                                        </div>
                                                      </div>
                                                  </div>
                                                 <div class="col-10">
