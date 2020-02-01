@@ -792,3 +792,8 @@ th.mat-header-cell {
     }
   }
 // }
+.overflow_hidden {
+  @media (max-width: 1024px) {
+    overflow: hidden;
+  }
+}

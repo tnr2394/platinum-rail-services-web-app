@@ -1,5 +1,5 @@
 
-<mat-expansion-panel class="mat-elevation-z0 card expansion_tab" (opened)="getMaterialFiles();getLearners()">
+<mat-expansion-panel class="mat-elevation-z0 card expansion_tab" (opened)="getMaterialFiles();" (closed)="closeFileDetails()">
     <mat-expansion-panel-header>
         <mat-panel-title class="row">
         <div class="col-xl-2 col-sm-2 text-center">
@@ -31,7 +31,18 @@
                     <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)"></material-files>
                 </div>
             </div>
+            <div *ngIf="folder">
+                <div *ngIf="folder.child != undefined">
+                    <div *ngFor="let child of folder.child; let j = index">
+                        <material-tile [folder]='child' [index]='j' (fileDetailsComp)="subFolder($event)">
+                        </material-tile>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)" -->
         </mat-tab>
+        
         <mat-tab label="Learners" *ngIf="displayLearners">
              <ul class="responsive_ul">
                 <li>
@@ -120,6 +131,11 @@
             <h3 *ngFor="let learner of learnerNames">{{learner}}</h3>
         </mat-tab>
     </mat-tab-group>
+    <mat-action-row>
+        <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button>
+        <button mat-button (click)="editmaterial()" *ngIf="!displaySubFolders">Edit</button>
+        <button mat-button (click)="deleteMaterial()" *ngIf="!displaySubFolders">Delete</button>
+    </mat-action-row>
 </mat-expansion-panel>
 
 

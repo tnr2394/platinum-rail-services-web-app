@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FolderService } from '../../services/folder.service';
 
 @Component({
@@ -10,16 +10,22 @@ import { FolderService } from '../../services/folder.service';
 export class CreateFolderModalComponent implements OnInit {
 
   folderName = '';
-  data;
+  // data;
 
-  constructor(public _folderService: FolderService, public dialogRef: MatDialogRef<CreateFolderModalComponent>) { }
+  constructor(public _folderService: FolderService, public dialogRef: MatDialogRef<CreateFolderModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
   save() {
     console.log('FOLDER NAME IS', this.folderName);
+    let newFolder = {
+      title: this.folderName,
+      parent: this.data._id
+    }
+    console.log("New folder", newFolder);
     if (this.folderName != '') {
-      this._folderService.createFolder(this.folderName).subscribe(data => {
+      this._folderService.createFolder(newFolder).subscribe(data => {
         this.data = data;
         console.log("Create Successfully", data);
         this.dialogRef.close(data);

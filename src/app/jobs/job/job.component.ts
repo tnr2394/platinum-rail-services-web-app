@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, ElementRef, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatSidenavModule, MatSidenav } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,6 +43,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   displayDetails = false
   sendDataToAllocateModal: { learners: any; materials: number; };
   @Input('jobIdFromClient') jobIdFromClient;
+  @Input('jobFromClient') jobFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
@@ -83,6 +84,16 @@ export class JobComponent implements OnInit, AfterViewInit {
       });
 
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Changes in job", changes);
+    if(changes.jobFromClient != undefined){
+      if (changes.jobFromClient.currentValue != undefined){
+        this.job = changes.jobFromClient.currentValue
+      }
+    }
+    
   }
 
   jobChangedByClient(job) {

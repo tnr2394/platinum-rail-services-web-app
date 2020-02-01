@@ -45,12 +45,15 @@ async function allfolders(query) {
     return deferred.promise;
 }
 
+
 folderController.getFolders = async function (req, res, next) {
-    var query = {};
-    if (req.query) {
-        query = req.query;
-    }
+    var query = { isChild: { $ne: true } };
+    // if (req.query) {
+    //     query = req.query;
+    // }
     console.log("GET FOLDER query = ", query);
+
+    // return;
     allfolders(query).then(folders => {
         console.log("SENDING RESPONSE Folders = ", folders)
         return res.send({ data: { folders } });
@@ -62,10 +65,19 @@ folderController.getFolders = async function (req, res, next) {
 folderController.createFolder = async function (req, res, next) {
     console.log("Add Folder", req.body);
 
-    var newFolder = {
-        title: req.body.title,
-        createdBy: req.user._id,
-    };
+
+    var newFolder = {};
+
+    if (req.body.title) newFolder['title'] = req.body.title;
+    if (req.user._id) newFolder['createdBy'] = req.user._id;
+    if (req.body.parent) newFolder['parent'] = req.body.parent;
+    if (req.body.parent) newFolder['isChild'] = true;
+
+
+
+    console.log('New Folder:::::::', newFolder);
+
+    // return;
 
     folderDOA.createFolder(newFolder)
         .then(newFolderRes => {
