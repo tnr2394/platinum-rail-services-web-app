@@ -9,6 +9,7 @@
     background: url('../../../assets/pdf-icon-round.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .ppt{
@@ -17,6 +18,7 @@
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .zip{
@@ -25,6 +27,7 @@
     background: url('../../../assets/zip.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .jpg{
@@ -33,6 +36,7 @@
     background: url('../../../assets/jpg.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .jpeg{
@@ -41,6 +45,7 @@
     background: url('../../../assets/jpg.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .png{
@@ -49,6 +54,7 @@
     background: url('../../../assets/png.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 
@@ -58,6 +64,7 @@
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .mp4{
@@ -66,6 +73,7 @@
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .docx{
@@ -74,6 +82,7 @@
     background: url('../../../assets/icon-docx.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .mp4{
@@ -82,6 +91,7 @@
     background: url('../../../assets/mp4icon.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .xls{
@@ -90,6 +100,7 @@
     background: url('../../../assets/xlsx.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .xlsx{
@@ -98,6 +109,7 @@
     background: url('../../../assets/xlsx.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 .txt{
@@ -106,6 +118,7 @@
     background: url('../../../assets/txt.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 
 
@@ -115,6 +128,7 @@
     background: url('../../../assets/word-doc-icon.png');
     background-size: 40px;
     background-repeat: no-repeat;
+    margin: auto;
 }
 @media (max-width:1199){
     .upload_user {
@@ -143,5 +157,18 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         color: #000;
+    }
+}
+.date{
+    font-style: 14px;
+}
+.col-sm-3{
+    @media (max-width: 575px){
+        width: 25% !important;
+    }
+}
+.col-sm-9 {
+    @media (max-width: 575px) {
+        width: 75% !important;
     }
 }

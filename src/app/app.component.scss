@@ -103,7 +103,7 @@ $white : "#ffffff";
 .sidebar {
     width: 210px;
     background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-    z-index: 1;
+    z-index: 5;
     transition: all 0.5s;
     display: block;
     height: auto;

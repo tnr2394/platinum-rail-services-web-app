@@ -781,4 +781,7 @@ th.mat-header-cell {
 }
 .mat-drawer{
   padding: 20px 30px !important;
+  @media (max-width:575px) {
+    padding: 20px !important;
+  }
 }
