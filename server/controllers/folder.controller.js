@@ -21,6 +21,8 @@ async function allfolders(query) {
     folderModel.find(query)
         .populate('files')
         .populate('child')
+        .populate('sharedClient')
+        .populate('sharedInstructor')
         .exec((err, folders) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", folders);
@@ -83,6 +85,8 @@ folderController.addFile = function (req, res, next) {
 
     let files = [];
 
+    let filesArray = [];
+
     if (Array.isArray(req.files.file)) {
         files = req.files.file
     } else {
@@ -94,18 +98,18 @@ folderController.addFile = function (req, res, next) {
 
         const folderId = req.body.folderId;
 
-        var re = /(?:\.([^.]+))?$/;
-        var ext = re.exec(singleFile.name)[1];
-        var name = singleFile.name.split('.').slice(0, -1).join('.')
+        let re = /(?:\.([^.]+))?$/;
+        let ext = re.exec(singleFile.name)[1];
+        let name = singleFile.name.split('.').slice(0, -1).join('.')
 
-        var newName = name + '-' + Date.now();
+        let newName = name + '-' + Date.now();
 
-        var newFile = {
+        let newFile = {
             title: newName,
-            type: "material",// OR SUBMISSION OR DOCUMENT
+            type: "file",// OR SUBMISSION OR DOCUMENT
             path: "NEWPATH",
             extension: ext,
-            uploadedBy: 'ADMIN',
+            uploadedBy: req.user.name,
             file: singleFile,
             uploadedDate: new Date()
         }
@@ -115,6 +119,7 @@ folderController.addFile = function (req, res, next) {
         folderDOA.uploadFileToFolder(folderId, newFile)
             .then(updated => {
                 console.log("updated ", updated);
+                filesArray.push(updated);
                 innerCallback();
             }, err => {
                 return res.status(500).send({ err })
@@ -124,7 +129,8 @@ folderController.addFile = function (req, res, next) {
             console.log("callbackError ", callbackError);
             return res.status(500).send({ err })
         } else {
-            return res.send({ data: {}, msg: "File Uploaded Successfully" });
+            console.log('Files Array::::::::', filesArray);
+            return res.send({ data: { file: filesArray }, msg: "File Uploaded Successfully" });
         }
     })
 }
@@ -241,8 +247,60 @@ const sharingFile = (file, instructors, clients) => {
 
 folderController.getSharedFolder = function (req, res, next) {
 
+    let query = {
+        $and: []
+    }
+
+    if (req.user.userRole == 'instructor') {
+        query = { 'sharedInstructor': ObjectId(req.user._id) }
+    } else if (req.user.userRole == 'client') {
+        query = { 'sharedClient': ObjectId(req.user._id) }
+    }
+
+
+    allfolders(query).then(folders => {
+        console.log("SENDING RESPONSE Folders = ", folders)
+        return res.send({ data: { folders } });
+    })
+
+
+
+    // return new Promise((resolve, reject) => {
+    //     console.log('Get Shared Folder::::::::', req.user);
+
+    //     let query = {
+    //         $and: []
+    //     }
+
+    //     if (req.user.userRole == 'instructor') {
+    //         query['$and'].push({ 'sharedInstructor': ObjectId(req.user._id) })
+    //     } else if (req.user.userRole == 'client') {
+    //         query['$and'].push({ 'sharedClient': ObjectId(req.user._id) })
+    //     }
+
+
+    //     folderModel.aggregate([
+    //         {
+    //             $match: query
+    //         },
+    //         {
+
+    //         }
+    //     ]).exec((err, folders) => {
+    //         if (err) {
+    //             reject(err);
+    //         } else {
+    //             return res.send({ data: { folders } });
+    //         }
+    //     });
+    // })
+}
+
+
+folderController.getSharedFile = function (req, res, next) {
+
     return new Promise((resolve, reject) => {
-        console.log('Get Shared Folder::::::::', req.user);
+        console.log('Get Shared Files::::::::', req.user);
 
         let query = {
             $and: []
@@ -254,20 +312,18 @@ folderController.getSharedFolder = function (req, res, next) {
             query['$and'].push({ 'sharedClient': ObjectId(req.user._id) })
         }
 
-
-        folderModel.aggregate([
+        fileModel.aggregate([
             {
                 $match: query
             },
-        ]).exec((err, folders) => {
+        ]).exec((err, files) => {
             if (err) {
                 reject(err);
             } else {
-                return res.send({ data: { folders } });
+                return res.send({ data: { files } });
             }
         });
     })
-
 }
 
 

@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class FolderComponent implements OnInit {
 
   allFolders = [];
+  sharedFile = [];
   bgColors;
   lastColor;
   preventSingleClick = false;
@@ -37,6 +38,7 @@ export class FolderComponent implements OnInit {
       this.getFolders();
     } else {
       this.getSharedFolders();
+      this.getSharedFiles();
     }
 
   }
@@ -93,6 +95,15 @@ export class FolderComponent implements OnInit {
     this._folderService.getSharedFolders().subscribe((folders) => {
       console.log('Folders', folders);
       this.allFolders = folders;
+    });
+  }
+
+  getSharedFiles() {
+    var that = this;
+    this._folderService.getSharedFiles().subscribe((files) => {
+      console.log('files List', files);
+      this.sharedFile = files;
+      // this.allFolders = folders;
     });
   }
 

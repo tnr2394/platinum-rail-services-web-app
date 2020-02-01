@@ -13,6 +13,11 @@ const folderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'folder'
     },
+    type: {
+        type: String,
+        required: true,
+        default: 'folder'
+    },
     child: [{
         type: Schema.Types.ObjectId,
         ref: 'folder'
