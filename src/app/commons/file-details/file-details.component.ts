@@ -54,15 +54,27 @@ export class FileDetailsComponent implements OnInit {
 
   shareWith() {
     console.log("ShareWith");
+    console.log("this.recievedFiles", this.recievedFile);
+    
     this.openDialog(ShareFileModalComponent).subscribe(users => {
       if (users == undefined) return
       console.log('Users', users);
       users.file = this.id;
-      users.type = 'folder'
-      console.log("AFTER ADDING ID", users);
-      this._folderService.shareFolder(users).subscribe(res => {
+      // if(this.recievedFile.child == undefined){
+      //   console.log("in if, hence a file");
+        
+      //   this._folderService.shareFile(users).subscribe(res=>{
 
-      })
+      //   })
+      // }
+      // else{
+        console.log("A folder");
+        
+        console.log("AFTER ADDING ID", users);
+        this._folderService.shareFolder(users).subscribe(res => {
+
+        })
+      // }
       this.openSnackBar("Shared Successfully", "ok")
     })
   }

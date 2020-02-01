@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 import { MaterialService } from '../../services/material.service';
 import { from } from 'rxjs';
 import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
+import { FilterService } from 'src/app/services/filter.service';
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -28,9 +29,10 @@ export class MaterialTileComponent implements OnInit {
   temp: any;
   type: 'folder';
   title: any;
+  files: any;
 
 
-  constructor(private _materialService: MaterialService) {
+  constructor(private _materialService: MaterialService, public _filter: FilterService) {
     this.bgColors = ["btn-info", "btn-success", "btn-warning", "btn-primary", "btn-danger"];
 
   }
@@ -51,27 +53,32 @@ export class MaterialTileComponent implements OnInit {
       if(changes.folder.currentValue != undefined){
         this.type = 'folder';
         this.title = this.folder.title;
+        this.files = this.folder.files;
+        this.copyFiles = this.folder.files;
       }
     }
-    // if(changes.learners != undefined){
-    //   this.learners = changes.learners.currentValue;
-    //   console.log("*****", this.learners);
-    //   if (changes.learners.currentValue != undefined){
-    //     if (this.material.type == "Assignment") {
-    //       this.learners.forEach(learner => {
-    //         if (learner.allotments.length > 0) {
-    //           learner.allotments.forEach(allotment => {
-    //             if (allotment.assignment._id == this.material._id) {
-    //               this.allotedLearners.push(learner);
-    //             }
-    //           })
-    //         }
-    //       })
-    //     }
-    //   }
-    //   console.log("this.allocated LEarners", this.allotedLearners);
+    if(changes.learners != undefined){
+      this.learners = changes.learners.currentValue;
+      if (changes.learners.currentValue != undefined){
+        if (this.material.type == "Assignment") {
+          this.learners.forEach(learner => {
+            if (learner.allotments.length > 0) {
+              learner.allotments.forEach(allotment => {
+                if (allotment.assignment._id == this.material._id) {
+                  this.allotedLearners.push(learner);
+                }
+              })
+            }
+          })
+        }
+      }
+      else{
+        console.log("changes.learners.currentValue == undefined");
+        
+      }
+      console.log("***this.allocated LEarners", this.allotedLearners);
       
-    // }
+    }
   }
     // this.learners.forEach(learner => {
     //   if (learner.allotments.length > 0) {
@@ -97,10 +104,21 @@ export class MaterialTileComponent implements OnInit {
         materialId: this.material._id,
       });
     }
+    if(this.folder != undefined){
+      this.fileDetails(this.folder);
+    }
   }
   fileDetails(event){
     this.fileDetailsComp.emit(event)
     console.log("event in material-tile", event);
+  }
+  applyFilter(filterValue: string) {
+    console.log("filterValue", filterValue);
+    
+    this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
+  }
+  copyFiles(filterValue: string, copyFiles: any, arg2: string[]): any {
+    throw new Error("Method not implemented.");
   }
   // openFileDetails() {
   //   this.fileDetailsComp.emit(event)

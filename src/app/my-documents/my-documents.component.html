@@ -3,7 +3,9 @@
 </h3>
 <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav #sidenav mode="side" position="end">
-                                <app-file-details [details]="details"></app-file-details>
+        <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                aria-hidden="true"></i></mat-button>
+        <app-file-details [details]="details"></app-file-details>
     </mat-sidenav>
     <mat-sidenav-content>
     <app-folder (getFileDetails)="openFileDetails($event)"></app-folder>
