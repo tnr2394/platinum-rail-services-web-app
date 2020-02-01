@@ -35,20 +35,21 @@ export class AddMaterialModalComponent  implements OnInit {
         this.dialogRef.close();
       })
     }
+    else{
+      console.log("Submit ", this.data);
+      // Do Submit
+      this.loading = true;
+      this._materialService.addMaterial(this.data).subscribe(data => {
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
 
-    console.log("Submit ",this.data);
-    // Do Submit
-    this.loading = true;    
-    this._materialService.addMaterial(this.data).subscribe(data=>{
-      this.data = data;
-      this.loading = false;
-      this.dialogRef.close(data);
-      
-    },err=>{
-      alert("Error editing Material.")
-      this.loading = false;
-      this.dialogRef.close();
-    });
+      }, err => {
+        alert("Error editing Material.")
+        this.loading = false;
+        this.dialogRef.close();
+      });
+    }
   }
   
   onNoClick(): void {
