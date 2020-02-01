@@ -31,19 +31,19 @@
                     <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)"></material-files>
                 </div>
             </div>
-            <div *ngIf="folder">
+            <!-- <div *ngIf="folder">
                 <div *ngIf="folder.child != undefined">
                     <div *ngFor="let child of folder.child; let j = index">
                         <material-tile [folder]='child' [index]='j' (fileDetailsComp)="subFolder($event)">
                         </material-tile>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
             <!-- [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)" -->
         </mat-tab>
         
-        <mat-tab label="Learners" *ngIf="displayLearners">
+        <mat-tab label="Learners" *ngIf="displayLearners && type == 'Assignment'">
              <ul class="responsive_ul">
                 <li>
                     <div class="list_learners">
