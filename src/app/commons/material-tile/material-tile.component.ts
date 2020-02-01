@@ -107,6 +107,7 @@ export class MaterialTileComponent implements OnInit {
       });
     }
     if(this.folder != undefined){
+      console.log("folder open");
       this.fileDetails(this.folder);
     }
   }

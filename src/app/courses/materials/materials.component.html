@@ -3,6 +3,13 @@
     <!-- <mat-sidenav #sidenav mode="side" position="end">
                                 <app-file-details></app-file-details>
                             </mat-sidenav> -->
+    <!-- <div class="expansion_tab"> -->
+        <!-- <mat-sidenav #sidenav mode="side" position="end">
+            <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                    aria-hidden="true"></i></mat-button>
+            <app-file-details [details]="file"></app-file-details>
+        </mat-sidenav> -->
+    <!-- </div> -->
 <mat-sidenav-content>
 <div class="row">
     <div class="col-12 responsive-row">
@@ -61,6 +68,7 @@
 
 
                     <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
+                        
                         <div class="col-lg-7 all_material_tile">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
@@ -103,14 +111,19 @@
                             <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
                                     class="fa fa-cog fa-spin text-info"></i>
                             </h3>
-                        </div>
-                        <div class="col-lg-5 expansion_tab">
                             <mat-sidenav #sidenav mode="side" position="end">
                                 <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                                         aria-hidden="true"></i></mat-button>
                                 <app-file-details [details]="file"></app-file-details>
                             </mat-sidenav>
                         </div>
+                        <!-- <div class="col-lg-5 expansion_tab">
+                            <mat-sidenav #sidenav mode="side" position="end">
+                                <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                                        aria-hidden="true"></i></mat-button>
+                                <app-file-details [details]="file"></app-file-details>
+                            </mat-sidenav>
+                        </div> -->
                         
 
 

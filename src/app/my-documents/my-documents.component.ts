@@ -27,7 +27,12 @@ export class MyDocumentsComponent implements OnInit {
   }
   openFileDetails(event){
     console.log("IN MY DOCS", event);
-    this.details = event;
+    if(event.file != undefined){
+      this.details = event.file;
+    }
+    else{
+      this.details = event
+    }
     this.mydsidenav.open()
   }
 }
