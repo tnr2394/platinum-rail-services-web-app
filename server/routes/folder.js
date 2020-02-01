@@ -15,7 +15,7 @@ router.put('/', folderController.updateFolder);
 
 
 // ADD File
-router.post('/files', folderController.addFile);
+router.post('/files', jwtService.validateJWT, folderController.addFile);
 
 // SHARE FOLDER
 router.post('/share', folderController.shareFolder);
