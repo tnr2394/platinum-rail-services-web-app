@@ -82,12 +82,14 @@ folderController.createFolder = async function (req, res, next) {
 folderController.deleteFolder = function (req, res, next) {
     const folderId = req.query._id;
 
+    console.log('DELETE Folder:', folderId);
+
     folderModel.remove({ _id: folderId }, (err, deleted) => {
         if (err) {
             return res.status(500).send({ err })
         }
         console.log("Deleted ", deleted);
-        return res.send({ data: {}, msg: "Folder Deleted Successfully" });
+        return res.send({ data: { deleted }, msg: "Folder Deleted Successfully" });
     })
 }
 
