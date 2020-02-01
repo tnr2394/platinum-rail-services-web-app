@@ -29,44 +29,31 @@
             <div class='row m-0'>
                 <div class='col-lg-12'>
                     <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)"></material-files>
-
-                    <!-- folder -->
-                    <!-- <mat-form-field>
-                        <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                    <div *ngIf='material == undefined && folder != undefined'>
-                        <p>{{folder.files.length}}</p>
-                        <p>Total Files</p> -->
-                    <!-- CHILD -->
-                    <!-- <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                TITLE
-                            </mat-panel-title>
-                            <mat-panel-description>
-                    
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                    
-                        <div *ngFor="let file of files">
-                            <file-tile [file]='file' (openSideNav)="fileDetails(file)"></file-tile>
-                        </div>
-                    
-                    </mat-expansion-panel>
-                    <div *ngFor="let file of files">
-                        <file-tile [file]='file' (openSideNav)="fileDetails(file)"></file-tile>
-                    </div>
-
-                    
-                    </div> -->
                 </div>
             </div>
         </mat-tab>
-        <mat-tab label="Learners">
-            <p *ngFor="let learner of allotedLearners">
-                {{learner.name}}
-            </p>
+        <mat-tab label="Learners" *ngIf="displayLearners">
+            <p>{{allLearners}}</p>
+            <h4>Total</h4>
+
+            <p>{{assignedLearner}}</p>
+            <h4>Assigned Learners</h4>
+
+            <p>{{unassignedLearners}}</p>
+            <h4>Unassigned Learners</h4>
+
+            <p>{{pendingLearners}}</p>
+            <h4>Pending Learners</h4>
+
+            <p>{{resubmissionLearners}}</p>
+            <h4>Resubmission Learners</h4>
+
+            <p>{{submittedLearners}}</p>
+            <h4>Submitted Learners</h4>
+
+            <p>{{completedLearners}}</p>
+            <h4>Completed Learners</h4>
+            <h3 *ngFor="let learner of learnerNames">{{learner}}</h3>
         </mat-tab>
     </mat-tab-group>
 </mat-expansion-panel>

@@ -79,7 +79,7 @@ learnerController.addLearner = async function (req, res, next) {
     var newLearner = {
         name: req.body.name,
         email: req.body.email,
-        password: mystr,
+        password: req.body.password,
         job: req.body.job
     };
 

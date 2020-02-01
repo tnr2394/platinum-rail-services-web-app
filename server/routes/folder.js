@@ -12,6 +12,8 @@ router.get('/', folderController.getFolders);
 
 router.put('/', folderController.updateFolder);
 
+router.delete('/', folderController.deleteFolder);
+
 
 
 // ADD File
