@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { Observable } from 'rxjs';
-
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
@@ -27,11 +26,14 @@ export class ClientsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'actions'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
-  sort: MatSort;
-  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
+  // sort: MatSort;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  // @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
+  //   this.sort = ms;
+  //   this.setDataSourceAttributes();
+  // }
   @ViewChild(MatPaginator, { static: true }) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.setDataSourceAttributes();
@@ -70,6 +72,7 @@ export class ClientsComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.getClients();
+    
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';
     paginatorIntl.previousPageLabel = '';
@@ -152,9 +155,6 @@ export class ClientsComponent implements OnInit {
       duration: 2000,
     });
   }
-
-
-
 
   // API CALLS
 
