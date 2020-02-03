@@ -78,6 +78,27 @@ export class FolderService {
     });
 
   }
+  deleteFile(data: any): Observable<any> {
+    console.log("Delete file", data);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.delete(config.baseApiUrl + "folder/files?_id=" + data).subscribe((res: any) => {
+
+        observer.next(res.data.newFolderRes);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+
+  }
 
 
   getFolders(): Observable<any> {
