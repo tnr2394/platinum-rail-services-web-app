@@ -19,9 +19,11 @@ export class CreateFolderModalComponent implements OnInit {
   }
   save() {
     console.log('FOLDER NAME IS', this.folderName);
+
+
     let newFolder = {
       title: this.folderName,
-      parent: this.data._id
+      parent: this.data
     }
     console.log("New folder", newFolder);
     if (this.folderName != '') {

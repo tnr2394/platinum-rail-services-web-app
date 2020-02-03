@@ -32,6 +32,7 @@ export class CoursesComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
+  sortedData: []
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -49,6 +50,8 @@ export class CoursesComponent implements OnInit {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.courses = [];
     this.dataSource = new MatTableDataSource(this.courses);
+    this.sortedData = this.courses.slice();
+
   }
 
   ngAfterViewInit() {
@@ -80,8 +83,6 @@ export class CoursesComponent implements OnInit {
     }
 
   }
-
-
   // UTILITY
 
   updateData(courses) {
@@ -169,6 +170,40 @@ export class CoursesComponent implements OnInit {
       this.courses = courses;
       this.loading = false;
       this.updateData(courses)
+    });
+  }
+
+
+
+  sortData(sort: MatSort) {
+
+    console.log(" Hey ")
+
+    function compare(a: number | string, b: number | string, isAsc: boolean) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
+    const data = this.courses.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource = data;
+      console.log("sortedData", this.sortedData)
+      // this.dataSource = this.sortedData
+      return;
+    }
+
+    this.dataSource = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      console.log(sort.active)
+      console.log(" Hey Yash ", a.title, b.title, isAsc);
+      console.log("compare(a.title, b.title, isAsc)", compare(a.title, b.title, isAsc))
+      switch (sort.active) {
+        case 'title': return compare(a.title, b.title, isAsc);
+        case 'calories': return compare(a.calories, b.calories, isAsc);
+        case 'fat': return compare(a.fat, b.fat, isAsc);
+        case 'carbs': return compare(a.carbs, b.carbs, isAsc);
+        case 'protein': return compare(a.protein, b.protein, isAsc);
+        default: return 0;
+      }
     });
   }
 }
