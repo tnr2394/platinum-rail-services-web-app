@@ -35,10 +35,10 @@
 
                         </div>
                         <!--Text-->
-                        <div *ngIf="dataSource">
+                        <div>
                             <h1>{{dataSource.length}}</h1>
                             <div class="table-responsive" style="height:500px;">
-                                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="table table-borderless">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                     <!-- Title Column -->
                                     <ng-container matColumnDef="title">

@@ -10,14 +10,17 @@ var multerS3 = require('multer-s3')
 
 const s3UploadService = require('../services/upload.service');
 
-var s3 = new aws.S3({ /* ... */ })
+var s3 = new aws.S3({
+    /* ... */ })
 var storage = multer.memoryStorage({
     destination: function (req, file, callback) {
         callback(null, '');
     }
 });
 
-var multipleUpload = multer({ storage: storage }).array('file');
+var multipleUpload = multer({
+    storage: storage
+}).array('file');
 
 
 file.getFiles = async function (query) {
@@ -54,6 +57,7 @@ file.addFile = function (object) {
                 if (uploadRes) {
                     const s3File = {
                         title: object.title,
+                        alias: object.alias,
                         type: object.type,
                         path: uploadRes.Location,
                         extension: object.extension,
@@ -95,7 +99,9 @@ file.updateFile = function (object) {
         path: "NEW PATH",
         uploadedBy: object.uploadedBy
     };
-    fileModel.findByIdAndUpdate(object._id, updatedFile, { new: true }, (err, file) => {
+    fileModel.findByIdAndUpdate(object._id, updatedFile, {
+        new: true
+    }, (err, file) => {
         if (err) q.reject(err);
         else {
             console.log("File Uploaded & Updated Successfully =  ", file);
@@ -112,7 +118,9 @@ file.deleteFile = function (object) {
 
     let fileId = object._id;
     console.log("file to be deleted : ", fileId);
-    fileModel.deleteOne({ _id: fileId }, (err, deleted) => {
+    fileModel.deleteOne({
+        _id: fileId
+    }, (err, deleted) => {
         if (err) q.reject(err);
         console.log("Deleted ", deleted);
         q.resolve(deleted);

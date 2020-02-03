@@ -26,10 +26,16 @@ materialController.getMaterials = async function (req, res, next) {
     materialDOA.getMaterialsByQuery(query)
         .then(material => {
             console.log("Returing material - " + material.length);
-            return res.send({ data: { material } });
+            return res.send({
+                data: {
+                    material
+                }
+            });
         }, err => {
             console.error(err);
-            return res.status(500).send({ err });
+            return res.status(500).send({
+                err
+            });
         })
 }
 
@@ -37,7 +43,11 @@ materialController.getMaterial = async function (req, res, next) {
     console.log("GET client ", req.params.id);
     materialModel.findById(req.param.id, (err, material) => {
         console.log("GET material RES = ", material);
-        return res.send({ data: { material } })
+        return res.send({
+            data: {
+                material
+            }
+        })
     })
 }
 
@@ -59,16 +69,24 @@ materialController.addMaterial = async function (req, res, next) {
         courseDOA.addMaterial(newmaterial.course, newmaterial._id)
             .then(updatedCourse => {
                 console.log("Course added to material and back to controller", updatedCourse);
-                return res.send({ data: { material: newmaterial } })
+                return res.send({
+                    data: {
+                        material: newmaterial
+                    }
+                })
             })
             .catch(err => {
                 console.error(err);
-                return res.status(500).send({ err });
+                return res.status(500).send({
+                    err
+                });
             })
 
         // console.log("Created material",newmaterial);
     }, err => {
-        return res.status(500).send({ err });
+        return res.status(500).send({
+            err
+        });
     });
 }
 
@@ -85,16 +103,22 @@ materialController.updateMaterial = async function (req, res, next) {
     console.log("Update material DOA in material-Controller", updatedMaterial);
 
     materialDOA.updateMaterial(updatedMaterial).then(material => {
-        console.log("Updated material in controller", material);
-        courseDOA.addMaterial(req.body.course, material._id)
-            .then(updatedCourse => {
-                console.log("Material ID added to Course ", updatedCourse);
-                return res.send({ data: { material } });
+            console.log("Updated material in controller", material);
+            courseDOA.addMaterial(req.body.course, material._id)
+                .then(updatedCourse => {
+                    console.log("Material ID added to Course ", updatedCourse);
+                    return res.send({
+                        data: {
+                            material
+                        }
+                    });
+                })
+        }, err => {
+            console.error(err);
+            return res.status(500).send({
+                err
             })
-    }, err => {
-        console.error(err);
-        return res.status(500).send({ err })
-    })
+        })
         .catch(err => {
             console.error(err);
         })
@@ -107,9 +131,14 @@ materialController.deleteMaterial = function (req, res, next) {
     materialDOA.deleteMaterial(materialId)
         .then(deleted => {
             console.log("Deleted ", deleted);
-            return res.send({ data: {}, msg: "Deleted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Deleted Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -137,18 +166,22 @@ materialController.addFile = (req, res, next) => {
     async.eachSeries(files, (singleFile, innerCallback) => {
 
         materialId = req.body.materialId;
-        if (!materialId) return res.status(500).send({ msg: "Material ID not found" });
+        if (!materialId) return res.status(500).send({
+            msg: "Material ID not found"
+        });
 
         var re = /(?:\.([^.]+))?$/;
         var ext = re.exec(singleFile.name)[1];
         var name = singleFile.name.split('.').slice(0, -1).join('.')
+        let newName = name + '-' + Date.now();
 
         var newFile = {
-            title: name,
-            type: "material",// OR SUBMISSION OR DOCUMENT
+            title: newName,
+            alias: name,
+            type: "material", // OR SUBMISSION OR DOCUMENT
             path: "NEWPATH",
             extension: ext,
-            uploadedBy: 'ADMIN',
+            uploadedBy: req.user.name,
             file: singleFile,
             uploadedDate: new Date()
         }
@@ -169,9 +202,16 @@ materialController.addFile = (req, res, next) => {
     }, (callbackError, callbackResponse) => {
         if (callbackError) {
             console.log("callbackError ", callbackError);
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else {
-            return res.send({ data: { file: filesArray }, msg: "Material Uploaded Successfully" });
+            return res.send({
+                data: {
+                    file: filesArray
+                },
+                msg: "Material Uploaded Successfully"
+            });
         }
     })
 }
@@ -190,10 +230,16 @@ materialController.getFiles = function (req, res, next) {
         .then(foundMaterial => {
             console.log("Returing material - " + foundMaterial.files.length);
 
-            return res.send({ data: { files: foundMaterial.files } });
+            return res.send({
+                data: {
+                    files: foundMaterial.files
+                }
+            });
         }, err => {
             console.error(err);
-            return res.status(500).send({ err });
+            return res.status(500).send({
+                err
+            });
         })
 
 };
@@ -211,9 +257,14 @@ materialController.deleteFile = function (req, res, next) {
     materialDOA.removeFile(query)
         .then(deleted => {
             console.log("Deleted ", deleted);
-            return res.send({ data: {}, msg: "Deleted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Deleted Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 };
 
