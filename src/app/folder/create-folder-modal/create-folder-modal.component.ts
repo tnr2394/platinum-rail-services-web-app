@@ -16,6 +16,8 @@ export class CreateFolderModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    console.log("this.data", this.data);
+    
   }
   save() {
     console.log('FOLDER NAME IS', this.folderName);

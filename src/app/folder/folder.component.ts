@@ -109,7 +109,6 @@ export class FolderComponent implements OnInit {
 
   singleClick(event, singleFolder) {
     console.log("Single Click Event", event);
-
     this.preventSingleClick = false;
     const delay = 200;
     this.timer = setTimeout(() => {
@@ -119,6 +118,7 @@ export class FolderComponent implements OnInit {
         this.display = true;
       }
     }, delay);
+    this.getFileDetails.emit(singleFolder)
   }
 
   doubleClick(event, singleFolder) {

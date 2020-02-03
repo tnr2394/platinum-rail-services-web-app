@@ -21,8 +21,7 @@
                     </material-tile>
                 </div> -->
                 <div class="row">
-                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'
-                        [contextMenu]="basicMenu" [contextMenuSubject]="singleFolder">
+                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
                         <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)"
                             (dblclick)="doubleClick($event,singleFolder)">
                             <mat-card-content class="material_card p-2">
@@ -37,7 +36,7 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
+    <!-- <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
         <mat-card>
             <div class="row">
                 <div class="col-12">
@@ -53,8 +52,8 @@
                 </div>
             </mat-card-content>
         </mat-card>
-    </div>
-    <div class="col-3" *ngIf="display">
+    </div> -->
+    <!-- <div class="col-3" *ngIf="display">
         <app-file-details [details]="details"></app-file-details>
-    </div>
+    </div> -->
 </div> 

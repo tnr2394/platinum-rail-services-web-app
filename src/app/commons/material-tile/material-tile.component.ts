@@ -229,7 +229,11 @@ export class MaterialTileComponent implements OnInit {
   }
 // GET LEARNER COUNT
   getCount(){
-    
+    this.assignedLearner = 0
+    this.pendingLearners = 0
+    this.resubmissionLearners = 0
+    this.submittedLearners = 0
+    this.completedLearners = 0
     this.learner.forEach(learner=>{
       learner.assignments.forEach(assignment=>{
         if (assignment.assignmentId == this.materialId ){
@@ -248,7 +252,17 @@ export class MaterialTileComponent implements OnInit {
             this.completedLearners += 1
           }
         }
+
+        console.group(" Chek Counts with type ")
+
+
+        console.log(this.allLearners, typeof this.allLearners, "this.allLearners")
+        console.log(this.assignedLearner, typeof this.assignedLearner, "this.assignedLearner")
+
         this.unassignedLearners = this.allLearners - this.assignedLearner;
+        console.log(this.unassignedLearners, typeof this.unassignedLearners, "this.unassignedLearners")
+        console.groupEnd()
+
       })
     })
     console.log("-----this.assignedLearner", this.assignedLearner);
