@@ -1,9 +1,10 @@
 <!-- <p>Welcome {{clientName}}</p> -->
-<div class="row mb-3">
-    <h3 class="page-title p-0">Jobs</h3>
+<app-single-client></app-single-client>
+<div class="row mb-1">
+    <h3 class="page-title">Jobs</h3>
 </div>
 
-<div class='cards mb-3'>
+<div class='cards'>
     <mat-card class='outer_card'>
         <mat-card class='inner_card card-image-2' *ngFor='let job of jobs' (click)="jobChanged(job);"
             [ngStyle]="{'background-color':(job._id == selectedJob._id) ? '#A3A0FB' : 'white'}">
@@ -18,4 +19,3 @@
 </div>
 <!-- <app-single-client></app-single-client> -->
 <app-job [jobFromClient]='selectedJob'></app-job>
-<app-single-client></app-single-client>

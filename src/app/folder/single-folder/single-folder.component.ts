@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.component';
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { FilterService } from '../../services/filter.service'
+import { CreateFolderModalComponent } from '../create-folder-modal/create-folder-modal.component';
 
 
 
@@ -25,6 +26,8 @@ export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   filesToDisplay: any;
+  allFolders = [];
+  preventSingleClick: boolean;
   constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -37,6 +40,8 @@ export class SingleFolderComponent implements OnInit {
   loading;
   loadingMaterials;
   searchText;
+  timer: any;
+  delay: Number;
 
 
   ngOnInit() {
@@ -129,6 +134,28 @@ export class SingleFolderComponent implements OnInit {
       });
     });
   }
+  createFolder() {
+    this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
+      if (folder == undefined) return
+      console.log("FOLDER NAME RECIEVED", folder);
+      this.allFolders.push(folder);
+    })
+  }
+  showFiles(folderId){
+    console.log("FOLDER", folderId);
+    
+    // this.router.navigate(['/single-folder', folderId])
+  }
+  doubleClick(event, singleFolder) {
+    console.log("Double Click Event", event);
+    this.preventSingleClick = true;
+    clearTimeout(this.timer);
+    console.log("Double Click");
+    console.log("singleFolder", singleFolder);
+    let id = singleFolder._id;
+    this.router.navigate(['/single-folder', singleFolder._id])
+  }
+
 
 
 }

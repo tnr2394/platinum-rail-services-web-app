@@ -58,9 +58,6 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    // $('#horizontalTab').responsiveTabs({
-    //   startCollapsed: 'accordion'
-    // });
 
     this.currentUser = JSON.parse(localStorage.currentUser);
 

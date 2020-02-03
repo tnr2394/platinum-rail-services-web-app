@@ -9,13 +9,33 @@ import { MaterialService } from "../../../services/material.service";
 })
 export class AddMaterialModalComponent  implements OnInit {
   loading: Boolean = false;
+  data: any;
+  isMaterial: Boolean = false;
   ngOnInit() {
+    console.log("ON INIT", this.dialogData);
+    if(this.dialogData.material != undefined){
+      this.data = this.dialogData.material
+      this.isMaterial = true;
+    }
+    else this.data = this.dialogData
   }
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _materialService: MaterialService) {
+  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public dialogData: any, public _materialService: MaterialService) {
     // NO DEFINITION
   }
   
   doSubmit(){
+    if(this.isMaterial == true){
+      this._materialService.editMaterial(this.data).subscribe(data=>{
+        this.data = data;
+        this.loading = false;
+        this.dialogRef.close(data);
+      }, err => {
+        alert("Error editing Material.")
+        this.loading = false;
+        this.dialogRef.close();
+      })
+    }
+
     console.log("Submit ",this.data);
     // Do Submit
     this.loading = true;    
@@ -28,7 +48,6 @@ export class AddMaterialModalComponent  implements OnInit {
       alert("Error editing Material.")
       this.loading = false;
       this.dialogRef.close();
-      
     });
   }
   
