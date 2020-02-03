@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FolderService } from '../../services/folder.service';
 import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.component';
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { FilterService } from '../../services/filter.service'
+import { CreateFolderModalComponent } from '../create-folder-modal/create-folder-modal.component';
 
 
 
@@ -25,19 +26,30 @@ export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   filesToDisplay: any;
-  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute, 
-    public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) { }
+  allFolders = [];
+  preventSingleClick: boolean;
+  constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
   folderId;
   fileList;
   folder;
   loading;
   loadingMaterials;
   searchText;
+  timer: any;
+  delay: Number;
+
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.folderId = params['id'];
+
+      console.log(' this.folderId', this.folderId);
     });
     this.getFolderFiles();
   }
@@ -65,8 +77,8 @@ export class SingleFolderComponent implements OnInit {
     })
   }
 
-  filter(){
-    if(this.searchText == ''){
+  filter() {
+    if (this.searchText == '') {
       this.filesToDisplay = this.fileList;
     }
     else {
@@ -84,7 +96,9 @@ export class SingleFolderComponent implements OnInit {
     this._folderService.getFolder(this.folderId).subscribe((folder) => {
       console.log('folder:::::::::', folder);
       this.folder = folder[0];
+      // this.fileList = folder[0].files;
       this.fileList = folder[0].files;
+
       this.filesToDisplay = this.fileList;
       console.log("THis.fileList", this.fileList);
     })
@@ -120,6 +134,28 @@ export class SingleFolderComponent implements OnInit {
       });
     });
   }
+  createFolder() {
+    this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
+      if (folder == undefined) return
+      console.log("FOLDER NAME RECIEVED", folder);
+      this.allFolders.push(folder);
+    })
+  }
+  showFiles(folderId){
+    console.log("FOLDER", folderId);
+    
+    // this.router.navigate(['/single-folder', folderId])
+  }
+  doubleClick(event, singleFolder) {
+    console.log("Double Click Event", event);
+    this.preventSingleClick = true;
+    clearTimeout(this.timer);
+    console.log("Double Click");
+    console.log("singleFolder", singleFolder);
+    let id = singleFolder._id;
+    this.router.navigate(['/single-folder', singleFolder._id])
+  }
+
 
 
 }

@@ -1,4 +1,5 @@
 <p class="material_main_title" *ngIf="folder">{{folder.title}}</p>
+
 <mat-card class="material_main_card">
     <!-- <mat-card-header> -->
     <div class="w-100 d-inline-block">
@@ -20,8 +21,10 @@
 
     <!-- </mat-card-header> -->
     <div class="row" *ngIf="fileList && fileList.length > 0">
-        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay" [contextMenu]="basicMenu" [contextMenuSubject]="file">
+        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay"
+            [contextMenu]="basicMenu" [contextMenuSubject]="file">
             <file-tile [file]="file"></file-tile>
+            
             <!-- <mat-card class="p-0 all_material_block">
                 <mat-card-content class="material_card">
                     <div [ngClass]="file.extension"> </div>
@@ -34,6 +37,13 @@
                 </div>
             </mat-card> -->
         </div>
+    </div>
+    <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
+        <i class="fas fa-plus fa-fw"></i>
+        <span> Create Folder</span>
+    </button>
+    <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,singleFolder)">
+        {{folder.title}}
     </div>
     <!-- CONTEXT MENU -->
     <!-- <context-menu>

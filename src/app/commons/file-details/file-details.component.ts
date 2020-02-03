@@ -55,7 +55,6 @@ export class FileDetailsComponent implements OnInit {
   shareWith() {
     console.log("ShareWith");
     console.log("this.recievedFiles", this.recievedFile);
-
     this.openDialog(ShareFileModalComponent).subscribe(users => {
       if (users == undefined) return
       console.log('Users', users);

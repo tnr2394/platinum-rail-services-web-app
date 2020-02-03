@@ -11,9 +11,28 @@
                 </div>
             </div>
             <mat-card-content>
-                <div *ngFor='let singleFolder of allFolders; let i = index'>
+                <!-- <div class="folder_tile">
+                <mat-card *ngFor="let singleFolder of allFolders; let i = index" style="width: 30%;" (click)="singleFolder()">
+                    {{singleFolder.title}}
+                </mat-card>
+                </div> -->
+                <!-- <div *ngFor='let singleFolder of allFolders; let i = index'>
                     <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)">
                     </material-tile>
+                </div> -->
+                <div class="row">
+                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'
+                        [contextMenu]="basicMenu" [contextMenuSubject]="singleFolder">
+                        <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)"
+                            (dblclick)="doubleClick($event,singleFolder)">
+                            <mat-card-content class="material_card p-2">
+                                <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                                    <i class="fa fa-folder icon round"></i>
+                                </div>
+                                <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -38,4 +57,4 @@
     <div class="col-3" *ngIf="display">
         <app-file-details [details]="details"></app-file-details>
     </div>
-</div>
+</div> 
