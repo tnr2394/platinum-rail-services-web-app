@@ -42,7 +42,7 @@ export class SubmissionComponent implements OnInit {
   unitList = [];
   selectedUnit;
   selectedAssignment;
-  displayedColumns: string[] = ['Learner', 'Assignment', 'Status', 'View'];
+  displayedColumns: string[] = ['learnerName', 'Assignment', 'Status', 'View'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
@@ -129,8 +129,10 @@ export class SubmissionComponent implements OnInit {
     this._jobService.getJobs().subscribe((data) => {
       this.firstJob = data[0];
       console.log('data::::::::::::::', this.firstJob);
-      this.getAssignmentList(this.firstJob._id);
-      this.getAllAllotedAssignmentsUsingJobId(this.firstJob._id);
+      if (this.firstJob && this.firstJob._id) {
+        this.getAssignmentList(this.firstJob._id);
+        this.getAllAllotedAssignmentsUsingJobId(this.firstJob._id);
+      }
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
