@@ -6,6 +6,10 @@ const fileSchema = new Schema({
         unique: false,
         required: true
     },
+    alias: {
+        type: String,
+        required: true
+    },
     type: {
         type: String,
         required: true
@@ -34,7 +38,7 @@ const fileSchema = new Schema({
         ref: 'client'
     }],
 }, {
-        timestamps: true
-    });
+    timestamps: true
+});
 const fileModel = mongoose.model('file', fileSchema);
 module.exports = fileModel;

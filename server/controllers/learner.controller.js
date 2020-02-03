@@ -58,10 +58,16 @@ learnerController.getLearners = async function (req, res, next) {
     learnerDOA.getLearnersByQuery(query)
         .then(learners => {
             console.log("Returing learners - " + learners.length);
-            return res.send({ data: { learners } });
+            return res.send({
+                data: {
+                    learners
+                }
+            });
         }, err => {
             console.error(err);
-            return res.status(500).send({ err });
+            return res.status(500).send({
+                err
+            });
         })
 }
 
@@ -69,7 +75,11 @@ learnerController.getLearner = async function (req, res, next) {
     console.log("GET client ", req.params.id);
     learnerModel.findById(req.param.id, (err, learner) => {
         console.log("GET learner RES = ", learner);
-        return res.send({ data: { learner } })
+        return res.send({
+            data: {
+                learner
+            }
+        })
     })
 }
 
@@ -86,13 +96,22 @@ learnerController.addLearner = async function (req, res, next) {
     checkLearnerExists(req.body.job, req.body.email).then((response) => {
         console.log('Response:::::::::::', response);
         if (response) {
-            return res.status(400).send({ data: {}, msg: "Learner Already Exists" });
+            return res.status(400).send({
+                data: {},
+                msg: "Learner Already Exists"
+            });
         } else {
             learnerDOA.createLearner(newLearner).then(newLearner => {
                 console.log("Created Learner:::::::::", newLearner);
-                return res.send({ data: { learner: newLearner } })
+                return res.send({
+                    data: {
+                        learner: newLearner
+                    }
+                })
             }, err => {
-                return res.status(500).send({ err });
+                return res.status(500).send({
+                    err
+                });
             });
         }
     }).catch((error) => {
@@ -103,7 +122,10 @@ learnerController.addLearner = async function (req, res, next) {
 const checkLearnerExists = (jobId, email) => {
     return new Promise((resolve, reject) => {
         console.log('Inside Check Learner Function');
-        learnerModel.find({ job: jobId, email: email }, (error, learner) => {
+        learnerModel.find({
+            job: jobId,
+            email: email
+        }, (error, learner) => {
             if (error) {
                 reject(error);
             } else if (learner.length != 0) {
@@ -132,23 +154,37 @@ learnerController.updateLearner = async function (req, res, next) {
             updatedLearner['profilePic'] = profileRes._id;
             learnerDOA.updateLearner(updatedLearner).then(learner => {
                 console.log("Updated learner in controller", learner);
-                return res.send({ data: { learner } });
+                return res.send({
+                    data: {
+                        learner
+                    }
+                });
             }, err => {
                 console.error(err);
-                return res.status(500).send({ err })
+                return res.status(500).send({
+                    err
+                })
             }).catch(err => {
                 console.error(err);
             })
         }).catch((error) => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
     } else {
         learnerDOA.updateLearner(updatedLearner).then(learner => {
             console.log("Updated learner in controller", learner);
-            return res.send({ data: { learner } });
+            return res.send({
+                data: {
+                    learner
+                }
+            });
         }, err => {
             console.error(err);
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         }).catch(err => {
             console.error(err);
         })
@@ -165,6 +201,7 @@ const updateProfilePicture = (profileImg) => {
 
         var newFile = {
             title: name,
+            alias: name,
             type: "Profile",
             path: "NEWPATH",
             extension: ext,
@@ -189,9 +226,14 @@ learnerController.deleteLearner = function (req, res, next) {
     learnerDOA.deleteLearner(learnerId)
         .then(deleted => {
             console.log("Deleted ", deleted);
-            return res.send({ data: {}, msg: "Deleted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Deleted Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -202,9 +244,16 @@ learnerController.getAllotment = function (req, res, next) {
     allotmentDOA.getAllotment(allotmentId)
         .then(allotment => {
             console.log("allotment ", allotment);
-            return res.send({ data: { allotment }, msg: "allotment List fetch Successfully" });
+            return res.send({
+                data: {
+                    allotment
+                },
+                msg: "allotment List fetch Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -216,25 +265,40 @@ learnerController.loginLearner = function (req, res, next) {
     const recaptchaToken = req.body.recaptchaToken;
 
     reCaptchaService.verifyRecaptcha(recaptchaToken).then((response) => {
-        learnerModel.findOne({ email: email }).exec((err, learner) => {
+        learnerModel.findOne({
+            email: email
+        }).exec((err, learner) => {
             if (err) {
-                return res.status(500).send({ err })
+                return res.status(500).send({
+                    err
+                })
             } else if (learner) {
                 if (password == learner.password) {
                     let newLearner = JSON.parse(JSON.stringify(learner));
                     newLearner['userRole'] = 'learner';
                     var token = jwt.sign(newLearner, 'platinum');
                     req.session.currentUser = token;
-                    return res.status(200).json({ message: 'Login Successfully', token: token, userRole: 'learner', profile: newLearner });
+                    return res.status(200).json({
+                        message: 'Login Successfully',
+                        token: token,
+                        userRole: 'learner',
+                        profile: newLearner
+                    });
                 } else {
-                    return res.status(400).json({ message: 'Login failed Invalid password' });
+                    return res.status(400).json({
+                        message: 'Login failed Invalid password'
+                    });
                 }
             } else {
-                return res.status(400).json({ message: 'Login failed Invalid email' });
+                return res.status(400).json({
+                    message: 'Login failed Invalid email'
+                });
             }
         });
     }).catch((error) => {
-        return res.status(400).json({ message: 'Failed captcha verification' });
+        return res.status(400).json({
+            message: 'Failed captcha verification'
+        });
     })
 }
 
@@ -263,20 +327,28 @@ learnerController.allotAssignments = function (req, res, next) {
                     console.log("updatedLearner", updatedLearner);
                     innerCallback();
                 }).catch((updateLearnerErr) => {
-                    return res.status(500).send({ err })
+                    return res.status(500).send({
+                        err
+                    })
                 })
             }).catch((error) => {
-                return res.status(500).send({ err })
+                return res.status(500).send({
+                    err
+                })
             })
         }, (callbackError, callbackResponse) => {
 
             if (callbackError) {
-                return res.status(500).send({ err })
+                return res.status(500).send({
+                    err
+                })
             } else {
 
                 // Send Mail To Learner For Alloted Assignment
 
-                var query = { _id: singleLearner.learner }
+                var query = {
+                    _id: singleLearner.learner
+                }
                 learnerDOA.getLearnersByQuery(query).then(learners => {
 
                     const defaultPasswordEmailoptions = {
@@ -285,26 +357,37 @@ learnerController.allotAssignments = function (req, res, next) {
                         template: 'allotment-learner'
                     };
 
-                    let assignmentData = { assignment: singleLearner }
+                    let assignmentData = {
+                        assignment: singleLearner
+                    }
                     mailService.sendMail(defaultPasswordEmailoptions, assignmentData, null, function (err, mailResult) {
                         if (err) {
-                            return res.status(500).send({ err })
+                            return res.status(500).send({
+                                err
+                            })
                         } else {
                             outerCallback();
                         }
                     });
                 }, err => {
                     console.error(err);
-                    return res.status(500).send({ err });
+                    return res.status(500).send({
+                        err
+                    });
                 })
             }
         })
     }, (callbackError, callbackResponse) => {
         if (callbackError) {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else {
             console.log("Final callback");
-            return res.send({ data: {}, msg: "Assignment Alloted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Assignment Alloted Successfully"
+            });
         }
     })
 
@@ -332,11 +415,12 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         var ext = re.exec(singleFile.name)[1];
         var name = singleFile.name.split('.').slice(0, -1).join('.')
 
-        var newName = name + '-' + req.user._id + '-' + Date.now();
+        var newName = name + '-' + Date.now();
 
         var newFile = {
             title: newName,
-            type: "material",// OR SUBMISSION OR DOCUMENT
+            alias: name,
+            type: "material", // OR SUBMISSION OR DOCUMENT
             path: "NEWPATH",
             extension: ext,
             uploadedBy: req.user.name,
@@ -351,14 +435,21 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
                 console.log("updated ", updated);
                 innerCallback();
             }, err => {
-                return res.status(500).send({ err })
+                return res.status(500).send({
+                    err
+                })
             })
     }, (callbackError, callbackResponse) => {
         if (callbackError) {
             console.log("callbackError ", callbackError);
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else {
-            return res.send({ data: {}, msg: "Assigment Submitted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Assigment Submitted Successfully"
+            });
         }
     })
 }
@@ -369,9 +460,17 @@ learnerController.forgotPassword = function (req, res, next) {
     const email = req.body.email;
     const newPassword = Math.floor(100000 + Math.random() * 9000000000);
 
-    learnerModel.findOneAndUpdate({ email: email }, { $set: { password: newPassword } }, (err, learner) => {
+    learnerModel.findOneAndUpdate({
+        email: email
+    }, {
+        $set: {
+            password: newPassword
+        }
+    }, (err, learner) => {
         if (err) {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else if (learner) {
 
             const defaultPasswordEmailoptions = {
@@ -387,14 +486,20 @@ learnerController.forgotPassword = function (req, res, next) {
 
             mailService.sendMail(defaultPasswordEmailoptions, learnerDetail, null, function (err, mailResult) {
                 if (err) {
-                    return res.status(500).send({ err })
+                    return res.status(500).send({
+                        err
+                    })
                 } else {
-                    return res.status(200).json({ message: 'New Password Send To Email.' });
+                    return res.status(200).json({
+                        message: 'New Password Send To Email.'
+                    });
                 }
             });
 
         } else {
-            return res.status(400).json({ message: 'Email Not Found' });
+            return res.status(400).json({
+                message: 'Email Not Found'
+            });
         }
     });
 }
@@ -406,20 +511,30 @@ learnerController.resetPassword = function (req, res, next) {
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
-    learnerModel.findOne({ _id: learnerId }, (err, learner) => {
+    learnerModel.findOne({
+        _id: learnerId
+    }, (err, learner) => {
         console.log("Updated learner", learner, err);
         if (err) {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else if (learner) {
             if (learner.password == oldPassword) {
                 learner.password = newPassword;
                 learner.save();
-                return res.status(200).json({ message: 'Your password changed successfully' });
+                return res.status(200).json({
+                    message: 'Your password changed successfully'
+                });
             } else {
-                return res.status(500).send({ msg: 'password does not match' })
+                return res.status(500).send({
+                    msg: 'password does not match'
+                })
             }
         } else {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         }
     });
 }
@@ -439,9 +554,14 @@ learnerController.updateAllotment = function (req, res, next) {
     allotmentDOA.updateAllotment(allotmentId, updateAllotment)
         .then(updated => {
             console.log("updated ", updated);
-            return res.send({ data: {}, msg: "Assigment Updated Successfully" });
+            return res.send({
+                data: {},
+                msg: "Assigment Updated Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -451,9 +571,16 @@ learnerController.allotmentUsingAssignmentId = function (req, res, next) {
 
     allotmentDOA.allotmentUsingAssignmentId(assignmentId)
         .then(function (assignment) {
-            return res.send({ data: { assignment }, msg: "Assigment fetched Successfully" });
+            return res.send({
+                data: {
+                    assignment
+                },
+                msg: "Assigment fetched Successfully"
+            });
         }).catch(function (error) {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -470,9 +597,14 @@ learnerController.removeFileFromAllotment = function (req, res, next) {
     allotmentDOA.removeFileFromAllotment(query)
         .then(deleted => {
             console.log("Deleted ", deleted);
-            return res.send({ data: {}, msg: "Deleted Successfully" });
+            return res.send({
+                data: {},
+                msg: "Deleted Successfully"
+            });
         }, err => {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 };
 
@@ -482,9 +614,16 @@ learnerController.assignmentFilesUsingAllotmentId = function (req, res, next) {
 
     allotmentDOA.assignmentFilesUsingAllotmentId(assignmentId)
         .then(function (assignment) {
-            return res.send({ data: { assignment }, msg: "Assigment fetched Successfully" });
+            return res.send({
+                data: {
+                    assignment
+                },
+                msg: "Assigment fetched Successfully"
+            });
         }).catch(function (error) {
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         })
 }
 
@@ -499,16 +638,23 @@ learnerController.updateExamMarks = function (req, res, next) {
             cb();
         }, err => {
             console.error(err);
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         }).catch(err => {
             console.error(err);
         })
     }, (callbackError, callbackResponse) => {
         if (callbackError) {
             console.log("callbackError ", callbackError);
-            return res.status(500).send({ err })
+            return res.status(500).send({
+                err
+            })
         } else {
-            return res.send({ data: {}, msg: "Marks Updated Successfully" });
+            return res.send({
+                data: {},
+                msg: "Marks Updated Successfully"
+            });
         }
     })
 }
