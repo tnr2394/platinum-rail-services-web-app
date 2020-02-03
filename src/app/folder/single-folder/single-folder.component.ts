@@ -170,11 +170,20 @@ export class SingleFolderComponent implements OnInit {
   }
   fileDeleted(event){
     console.log("In singleFolder", event);
-    var index = _.findIndex(this.subFolders, function (o) {
-      console.log("o._id", o, "event.fileId", event.fileId);
-      return o._id == event.fileId.toString();
-    })
-    if (index > -1) this.subFolders.splice(index, 1)
+    if(event.type == 'folder'){
+      var index = _.findIndex(this.subFolders, function (o) {
+        console.log("o._id", o, "event.fileId", event.fileId);
+        return o._id == event.fileId.toString();
+      })
+      if (index > -1) this.subFolders.splice(index, 1)
+    }
+    else if(event.type == 'file'){
+      var index = _.findIndex(this.folder.files, function (o) {
+        console.log("o._id", o, "event.fileId", event.fileId);
+        return o._id == event.fileId.toString();
+      })
+      if (index > -1) this.folder.files.splice(index, 1)
+    }
     // this.subFolders
   }
   getRandomColorClass(i) {

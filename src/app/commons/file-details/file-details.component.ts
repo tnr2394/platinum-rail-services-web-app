@@ -130,12 +130,17 @@ export class FileDetailsComponent implements OnInit {
           console.log("res", res);
         })
         }
-      else if(this.type != 'folder'){
+      else if(this.type == 'material'){
           this._fileService.deleteFiles(this.id).subscribe(res=>{
             console.log("MATERIAL DELETED", res);
           })
       }
-      this.fileDeleted.emit({ fileId: this.id })
+      else if(this.type == 'file'){
+        this._folderService.deleteFile(this.id).subscribe(res=>{
+          console.log("file DELETED", res);
+        })
+      }
+      this.fileDeleted.emit({ fileId: this.id, type:this.type })
       //   console.log("DELETED");
       //   this.openSnackBar("Deleted Successfully", "ok")
       }
