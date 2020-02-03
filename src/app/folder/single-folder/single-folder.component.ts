@@ -56,7 +56,6 @@ export class SingleFolderComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.folderId = params['id'];
-
       console.log(' this.folderId', this.folderId);
     });
     this.getFolderFiles();
@@ -169,6 +168,15 @@ export class SingleFolderComponent implements OnInit {
     }
     this.mydsidenav.open()
   }
+  fileDeleted(event){
+    console.log("In singleFolder", event);
+    var index = _.findIndex(this.subFolders, function (o) {
+      console.log("o._id", o, "event.fileId", event.fileId);
+      return o._id == event.fileId.toString();
+    })
+    if (index > -1) this.subFolders.splice(index, 1)
+    // this.subFolders
+  }
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
@@ -198,7 +206,5 @@ export class SingleFolderComponent implements OnInit {
     }, delay);
     this.openFileDetails(singleFolder)
   }
-
-
 
 }

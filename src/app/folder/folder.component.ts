@@ -51,9 +51,7 @@ export class FolderComponent implements OnInit {
       var index = _.findIndex(this.allFolders, function (o) {
         return o._id.toString() == changes.deletedFile.currentValue.fileId.toString(); 
       })
-
       if(index > -1) this.allFolders.splice(index, 1)
- 
     }    
   }
 

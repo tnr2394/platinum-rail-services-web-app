@@ -37,7 +37,7 @@ export class MyDocumentsComponent implements OnInit {
     this.mydsidenav.open()
   }
   fileDeleted(event){
-    console.log("In My Documents", event);
+    console.log(" TEST ", event);
     this.deletedFile = event;
   }
 }

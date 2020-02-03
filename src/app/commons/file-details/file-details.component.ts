@@ -130,7 +130,7 @@ export class FileDetailsComponent implements OnInit {
           console.log("res", res);
         })
         }
-      else if(this.type == 'material'){
+      else if(this.type != 'folder'){
           this._fileService.deleteFiles(this.id).subscribe(res=>{
             console.log("MATERIAL DELETED", res);
           })
