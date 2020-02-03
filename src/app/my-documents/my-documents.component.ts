@@ -11,6 +11,7 @@ import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-m
 export class MyDocumentsComponent implements OnInit {
   details: any;
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
+  deletedFile: any;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   ngOnInit() {
   }
@@ -34,5 +35,9 @@ export class MyDocumentsComponent implements OnInit {
       this.details = event
     }
     this.mydsidenav.open()
+  }
+  fileDeleted(event){
+    console.log("In My Documents", event);
+    this.deletedFile = event;
   }
 }

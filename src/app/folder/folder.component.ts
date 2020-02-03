@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
 import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
@@ -7,6 +7,7 @@ import { ContextMenuComponent } from "ngx-contextmenu";
 import { ShareFileModalComponent } from './share-file-modal/share-file-modal.component';
 import { ok } from 'assert';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-folder',
@@ -27,6 +28,7 @@ export class FolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   details: any;
+  @Input('deletedFile') deletedFile: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
@@ -41,6 +43,18 @@ export class FolderComponent implements OnInit {
       this.getSharedFiles();
     }
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes", changes)
+    if (changes.deletedFile){
+      var index = _.findIndex(this.allFolders, function (o) {
+        return o._id.toString() == changes.deletedFile.currentValue.fileId.toString(); 
+      })
+
+      if(index > -1) this.allFolders.splice(index, 1)
+ 
+    }    
   }
 
   getRandomColorClass(i) {

@@ -51,7 +51,6 @@ export class MaterialTileComponent implements OnInit {
   displayLearners: Boolean = false;
   displaySubFolders: boolean = false;
 
-
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog, 
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
     this.bgColors = ["btn-info", "btn-success", "btn-warning", "btn-primary", "btn-danger"];
@@ -114,6 +113,8 @@ export class MaterialTileComponent implements OnInit {
   }
 
   getMaterialFiles() {
+    console.log("INDEX IS", this.i);
+    
     // this.temp = this.copyLearners;
     console.log("Getting Material ID from materialTile component", this.temp);
     if(this.material != undefined){
@@ -130,6 +131,7 @@ export class MaterialTileComponent implements OnInit {
     }
   }
   fileDetails(event){
+    event.materialIndex = this.i
     this.fileDetailsComp.emit(event)
     console.log("event in material-tile", event);
   }

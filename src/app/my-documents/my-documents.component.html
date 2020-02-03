@@ -5,9 +5,9 @@
     <mat-sidenav #sidenav mode="side" position="end">
         <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                 aria-hidden="true"></i></mat-button>
-        <app-file-details [details]="details"></app-file-details>
+        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"></app-file-details>
     </mat-sidenav>
     <mat-sidenav-content>
-    <app-folder (getFileDetails)="openFileDetails($event)"></app-folder>
+    <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile"></app-folder>
 </mat-sidenav-content>
 </mat-sidenav-container>

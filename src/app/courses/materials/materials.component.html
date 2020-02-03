@@ -118,7 +118,7 @@
                             <mat-sidenav #sidenav mode="side" position="end">
                                 <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                                         aria-hidden="true"></i></mat-button>
-                                <app-file-details [details]="file"></app-file-details>
+                                <app-file-details [details]="file" (fileDeleted)="deleteFile($event)"></app-file-details>
                             </mat-sidenav>
                         
                         <!-- <div class="col-lg-5 expansion_tab">
