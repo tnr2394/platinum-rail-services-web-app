@@ -34,7 +34,7 @@ export class MaterialTileComponent implements OnInit {
   allotedLearners = [];
   copyLearners: any;
   temp: any;
-  type: 'folder';
+  type: String;
   title: any;
   files: any;
   materialId: any;

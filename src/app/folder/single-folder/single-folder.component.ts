@@ -184,6 +184,7 @@ export class SingleFolderComponent implements OnInit {
       })
       if (index > -1) this.folder.files.splice(index, 1)
     }
+    this.mydsidenav.close();
     // this.subFolders
   }
   getRandomColorClass(i) {
