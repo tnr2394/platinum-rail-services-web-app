@@ -25,9 +25,19 @@
         <h4 mat-dialog-actions class="text-info mt-3 pl-3" align='center' *ngIf="loading">
             Downloading... <i class="fas fa-refresh fa-spin"></i>
         </h4>
-        <mat-form-field>
+        <mat-form-field class="col-offset-2 col-lg-6 col-md-6">
             <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()" value="value">
+            <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
+
+        <!-- <div class="row table_search">
+            <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            
+        </div> -->
+
     </div>
 
     <!-- </mat-card-header> -->
