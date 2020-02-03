@@ -34,6 +34,8 @@ export class FileTileComponent implements OnInit {
   ngOnInit() {
     console.log("file tile initialized file= ", this.file);
 
+    this.file.alias = (this.file.alias && this.file.alias.length > 1) ? this.file.alias : this.file.title
+
     console.log(' this.isSubmission', this.isSubmission);
   }
 
