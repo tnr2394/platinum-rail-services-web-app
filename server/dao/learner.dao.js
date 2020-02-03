@@ -46,12 +46,12 @@ learner.getLearnersByQuery = function (query) {
             q.resolve(learners)
             console.log("SENDING RESPONSE learner =  ", learners);
         })
-    
+
     return q.promise;
 }
-learner.learnersPerJob = function(){
-    map = function () { 
-        emit(this.job, 1) 
+learner.learnersPerJob = function () {
+    map = function () {
+        emit(this.job, 1)
     }
     reduce = function (key, values) {
         return Array.sum(values)
@@ -93,10 +93,10 @@ learner.deleteLearner = function (learnerId) {
     return q.promise;
 }
 
-learner.updateAssignment = function (learnerId, assignment) {
-    console.log("Update Learner in location DAO", learnerId);
+learner.updateAssignment = function (learner, assignment) {
+    console.log("Update Learner in learner DAO", assignment, learner._id);
     var q = Q.defer();
-    learnerModel.findByIdAndUpdate({ _id: learnerId }, { $addToSet: { allotments: assignment } }, { new: true }, (err, learner) => {
+    learnerModel.findByIdAndUpdate({ _id: learner._id }, { $addToSet: { allotments: assignment } }, { new: true }, (err, learner) => {
         if (err) return q.reject(err);
         else {
             console.log("Learner Uploaded & Updated Successfully =  ", learner, q);
