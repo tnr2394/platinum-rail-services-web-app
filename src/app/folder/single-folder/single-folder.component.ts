@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FolderService } from '../../services/folder.service';
@@ -25,6 +25,7 @@ import { CreateFolderModalComponent } from '../create-folder-modal/create-folder
 export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   filesToDisplay: any;
   allFolders = [];
   preventSingleClick: boolean;
@@ -158,6 +159,16 @@ export class SingleFolderComponent implements OnInit {
     
     // this.router.navigate(['/single-folder', folderId])
   }
+  openFileDetails(event) {
+    console.log("IN MY DOCS", event);
+    if (event.file != undefined) {
+      this.details = event.file;
+    }
+    else {
+      this.details = event
+    }
+    this.mydsidenav.open()
+  }
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
     rand = i % 5;
@@ -185,6 +196,7 @@ export class SingleFolderComponent implements OnInit {
         this.display = true;
       }
     }, delay);
+    this.openFileDetails(singleFolder)
   }
 
 

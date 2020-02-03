@@ -1,3 +1,11 @@
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav mode="side" position="end">
+        <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                aria-hidden="true"></i></mat-button>
+        <app-file-details [details]="details"></app-file-details>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
 <p class="material_main_title" *ngIf="folder">{{folder.title}}</p>
 
 <nav aria-label="breadcrumb">
@@ -33,7 +41,7 @@
     <!-- </mat-card-header> -->
     <div class="row" *ngIf="fileList && fileList.length > 0">
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay">
-            <file-tile [file]="file"></file-tile>
+            <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
         </div>
     </div>
     <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
@@ -73,3 +81,5 @@
         </h3>
     </mat-card>
 </mat-card>
+</mat-sidenav-content>
+</mat-sidenav-container>

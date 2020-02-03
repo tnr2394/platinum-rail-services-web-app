@@ -18,20 +18,33 @@ export class FileDetailsComponent implements OnInit {
   title: any;
   displaySaveBtn: boolean = false;
   id: any;
+  sharedClient: any;
+  sharedInstructor: any;
+  isMaterials: Boolean = false;
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     console.log(this.recievedFile)
+    console.log("this.recievedFile in file-details", this.recievedFile);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.displaySaveBtn = false
     console.log("CHANGES", changes);
     if (changes.recievedFile.currentValue != undefined) {
+      if (changes.recievedFile.currentValue.type == 'material'){
+        this.isMaterials == true;
+      }
       this.createdAt = changes.recievedFile.currentValue.createdAt;
       // this.totalFiles = changes.recievedFile.currentValue.files.length;
       this.lastUpdate = changes.recievedFile.currentValue.updatedAt;
       this.title = changes.recievedFile.currentValue.title;
       this.id = changes.recievedFile.currentValue._id;
+      if(changes.recievedFile.currentValue.sharedClient != undefined){
+        this.sharedClient = changes.recievedFile.currentValue.sharedClient;
+      }
+      if (changes.recievedFile.currentValue.sharedInstructor != undefined) {
+        this.sharedInstructor = changes.recievedFile.currentValue.sharedInstructor;
+      }
     }
   }
   showSaveBtn() {
