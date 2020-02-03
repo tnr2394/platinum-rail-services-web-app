@@ -4,6 +4,10 @@ import { ShareFileModalComponent } from 'src/app/folder/share-file-modal/share-f
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import { FolderService } from '../../services/folder.service';
+import * as  JSZip from 'jszip';
+import * as JSZipUtil from 'jszip-utils'
+import { saveAs } from "file-saver";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-file-details',
@@ -18,14 +22,17 @@ export class FileDetailsComponent implements OnInit {
   title: any;
   displaySaveBtn: boolean = false;
   id: any;
+  loading;
+  currentFolder;
   constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    console.log(this.recievedFile)
+    console.log("This.receiver Files::::::::", this.recievedFile)
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.displaySaveBtn = false
     console.log("CHANGES", changes);
+    this.currentFolder = changes.recievedFile.currentValue;
     if (changes.recievedFile.currentValue != undefined) {
       this.createdAt = changes.recievedFile.currentValue.createdAt;
       // this.totalFiles = changes.recievedFile.currentValue.files.length;
@@ -96,6 +103,38 @@ export class FileDetailsComponent implements OnInit {
         this.openSnackBar("Deleted Successfully", "ok")
       }
     })
+  }
+
+  downloadAll() {
+
+    console.log('Download all clicked', this.currentFolder);
+
+    this.loading = true;
+
+    let zip: JSZip = new JSZip();
+    let count = 0;
+
+    var zipFilename = this.currentFolder.title + '.zip';
+
+
+    _.forEach(this.currentFolder.files, (file) => {
+      var filename = file.path.split("/")[3];
+      // loading a file and add it in a zip file
+      JSZipUtil.getBinaryContent(file.path, (err, data) => {
+        if (err) {
+          throw err; // or handle the error
+        }
+        zip.file(filename, data, { binary: true });
+        count++;
+
+        if (count == this.currentFolder.files.length) {
+          zip.generateAsync({ type: 'blob' }).then(function (content) {
+            saveAs(content, zipFilename);
+          });
+          this.loading = false;
+        }
+      });
+    });
   }
 
   saveFolder() {
