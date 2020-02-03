@@ -28,6 +28,7 @@ allotment.createAllotment = function (obj) {
                 console.log('Inside Else If', newAllotment);
                 newAllotment.save((err, newAllotment) => {
                     if (err) {
+                        console.log(err)
                         return q.reject(err);
                     } else {
                         console.log("newAllotment Added Successfully =  ", newAllotment);

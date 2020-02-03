@@ -21,8 +21,7 @@
                     </material-tile>
                 </div> -->
                 <div class="row">
-                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'
-                        [contextMenu]="basicMenu" [contextMenuSubject]="singleFolder">
+                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
                         <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)"
                             (dblclick)="doubleClick($event,singleFolder)">
                             <mat-card-content class="material_card p-2">

@@ -250,9 +250,9 @@ learnerController.allotAssignments = function (req, res, next) {
             console.log('singleAssignment', singleAssignment);
             const newAllotment = {
                 assignment: singleAssignment._id,
-                learner: singleLearner.learner,
+                learner: singleLearner.learner._id,
                 status: 'Pending',
-                deadlineDate: singleLearner.dueDate
+                deadlineDate: singleLearner.learner.duedate
             }
 
             // Create New Allotment With Single Learner

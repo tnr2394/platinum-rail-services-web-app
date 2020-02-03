@@ -2,7 +2,12 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb indigo lighten-4">
-        <li class="breadcrumb-item"><a class="black-text" href="single-folder/{{folder.id}}" *ngFor="let folder of navFolders">{{folder.title}}</a></li>
+        <li class="breadcrumb-item"><a class="black-text" routerLink="/mydocuments" *ngIf="folder">My Documents</a><i class="fas fa-angle-right mx-2" aria-hidden="true"></i></li>
+        <div *ngIf="navArray">
+            <li class="breadcrumb-item"><a class="black-text" routerLink="/single-folder/{{folder._id}}"
+                    *ngFor="let folder of navArray">{{folder.title}}<i class="fas fa-angle-right mx-2" aria-hidden="true"></i></a></li>
+        </div>
+        <li class="breadcrumb-item"><a class="black-text" *ngIf="folder">{{folder.title}}</a></li>
     </ol>
 </nav>
 
@@ -36,9 +41,23 @@
         <span> Create Folder</span>
     </button>
 
-    <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
-        {{folder.title}}
+    <div class="row">
+        <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let childFolder of subFolders;let i = index'>
+            <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,childFolder)"
+                (dblclick)="doubleClick($event,childFolder)">
+                <mat-card-content class="material_card p-2">
+                    <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                        <i class="fa fa-folder icon round"></i>
+                    </div>
+                    <h5 class="materials_title pt-2">{{childFolder.title}}</h5>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
+
+    <!-- <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
+        {{folder.title}}
+    </div> -->
 
     <div class="row" *ngIf="loadingMaterials == false && fileList.length == 0">
         <div class="col-12 materials_box">

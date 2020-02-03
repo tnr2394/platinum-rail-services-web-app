@@ -28,11 +28,18 @@ export class SingleFolderComponent implements OnInit {
   filesToDisplay: any;
   allFolders = [];
   preventSingleClick: boolean;
+  bgColors;
+  lastColor;
+  subFolders: any;
+  details: any;
+  display: boolean;
+  navArray: any;
   constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
   folderId;
   fileList;
@@ -93,14 +100,19 @@ export class SingleFolderComponent implements OnInit {
   }
 
   getFolderFiles() {
-    this._folderService.getFolder(this.folderId).subscribe((folder) => {
-      console.log('folder:::::::::', folder);
-      this.folder = folder[0];
-      // this.fileList = folder[0].files;
-      this.fileList = folder[0].files;
-
+    this._folderService.getFolder(this.folderId).subscribe((data) => {
+      console.log('folder:::::::::', data);
+      this.folder = data.folders[0];
+      this.subFolders = this.folder.child;
+      this.fileList = data.folders[0].files;
       this.filesToDisplay = this.fileList;
-      console.log("THis.fileList", this.fileList);
+      // this.subFolders = this.folder.child
+      if(data.preFolders != undefined){
+        this.navArray = data.preFolders.reverse();
+      }
+      console.log("this.folder.child", this.folder.child.reverse());
+      console.log("this.subFolders.reverse", this.subFolders.reverse());
+      
     })
   }
 
@@ -138,13 +150,19 @@ export class SingleFolderComponent implements OnInit {
     this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
       if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
-      this.allFolders.push(folder);
+      this.subFolders.push(folder);
     })
   }
   showFiles(folderId){
     console.log("FOLDER", folderId);
     
     // this.router.navigate(['/single-folder', folderId])
+  }
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
   }
   doubleClick(event, singleFolder) {
     console.log("Double Click Event", event);
@@ -154,6 +172,19 @@ export class SingleFolderComponent implements OnInit {
     console.log("singleFolder", singleFolder);
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
+  }
+  singleClick(event, singleFolder) {
+    console.log("Single Click Event", event);
+
+    this.preventSingleClick = false;
+    const delay = 200;
+    this.timer = setTimeout(() => {
+      if (!this.preventSingleClick) {
+        this.details = singleFolder;
+        console.log("singleFolder", this.details);
+        this.display = true;
+      }
+    }, delay);
   }
 
 

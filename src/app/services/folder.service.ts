@@ -128,7 +128,7 @@ export class FolderService {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "folder?_id=" + id).subscribe((res: any) => {
         console.log("Get Folders : ", res);
-        observer.next(res.data.folders);
+        observer.next(res.data);
         observer.complete();
       })
     });
