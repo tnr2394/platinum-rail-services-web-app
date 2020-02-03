@@ -47,11 +47,19 @@ async function allfolders(query) {
 
 
 folderController.getFolders = async function (req, res, next) {
-    var query = { isChild: { $ne: true } };
-    if (req.query) {
+
+    console.log("GET FOLDER query = ", req.query);
+
+    var query;
+    if (Object.keys(req.query).length === 0) {
+        console.log('Inside If Cond:::::');
+        query = { isChild: { $ne: true } }
+
+    } else {
+        console.log('Inside If Else:::::');
         query = req.query;
     }
-    console.log("GET FOLDER query = ", query);
+
 
 
     let previousFolders = []
@@ -67,7 +75,7 @@ folderController.getFolders = async function (req, res, next) {
         } else {
             allfolders(query).then(folders => {
                 console.log("SENDING RESPONSE Folders = ", folders)
-                return res.send({ data: { folders  } });
+                return res.send({ data: { folders } });
             })
         }
     })
@@ -89,10 +97,10 @@ function getParentFolder(folderId, previousFolders, callback) {
 
             }
             else if (folder) {
-                if(folder._id && previousFolders.indexOf(folder) > -1){
+                if (folder._id && previousFolders.indexOf(folder) > -1) {
 
                 }
-                else{
+                else {
                     previousFolders.push(folder)
                     // return callback(previousFolders)
                     getParentFolder(folder._id, previousFolders, function (folders) {
@@ -115,17 +123,20 @@ function getParentFolder(folderId, previousFolders, callback) {
 
 folderController.createFolder = async function (req, res, next) {
     console.log("Add Folder", req.body);
+    console.log("req.body.parent", req.body.parent , typeof req.body.parent);
+
+    // return;
 
 
     var newFolder = {};
 
     if (req.body.title) newFolder['title'] = req.body.title;
     if (req.user._id) newFolder['createdBy'] = req.user._id;
-    if (req.body.parent) newFolder['parent'] = req.body.parent;
-    if (req.body.parent) newFolder['isChild'] = true;
+    if (req.body.parent && typeof req.body.parent == 'string') newFolder['parent'] = req.body.parent;
+    newFolder['isChild'] = (req.body.parent && typeof req.body.parent == 'string') ? true : false 
     newFolder['nameSlug'] = slugify(req.body.title);
 
-    
+
     console.log('New Folder:::::::', newFolder);
 
     // return;
