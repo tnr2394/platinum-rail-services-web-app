@@ -9,6 +9,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const folderController = {};
 const folderDOA = require('../dao/folder.dao');
+const fileDOA = require('../dao/file.dao');
 
 const folderModel = require('../models/folder.model');
 const fileModel = require('../models/file.model');
@@ -196,6 +197,33 @@ folderController.deleteFolder = function (req, res, next) {
         });
     })
 }
+
+
+
+folderController.deleteFileFromFolder = function (req, res, next) {
+    let query = {};
+    if (req.query) {
+        query = req.query
+    }
+    if (!query._id) {
+        return res.status(500).send("NO FILES ID FOUND");
+    }
+    console.log("GET Materials query = ", query, "Params = ", req.query);
+
+    folderDOA.removeFile(query)
+        .then(deleted => {
+            console.log("Deleted ", deleted);
+            return res.send({
+                data: {},
+                msg: "Deleted Successfully"
+            });
+        }, err => {
+            return res.status(500).send({
+                err
+            })
+        })
+};
+
 
 /**
  * Add File Inside Folder
