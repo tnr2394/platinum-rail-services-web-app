@@ -40,6 +40,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 // import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
@@ -197,7 +198,8 @@ import { FileDetailsComponent } from './commons/file-details/file-details.compon
     FilterPipeModule,
     ContextMenuModule.forRoot({
       useBootstrap4: true,
-    })
+    }),
+    NgCircleProgressModule.forRoot({})
   ],
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
