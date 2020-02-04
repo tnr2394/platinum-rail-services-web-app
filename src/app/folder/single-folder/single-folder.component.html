@@ -62,10 +62,17 @@
         </div> -->
 
     </div>
-
+    <div>
+        <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)"></app-folder>
+    </div>
+    <div class="row" *ngIf="fileList && fileList.length > 0">
+        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay">
+            <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
+        </div>
+    </div>
     <!-- </mat-card-header> -->
 
-    <div class="row">
+     <!-- <div class="row">
         <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let childFolder of subFolders;let i = index'>
             <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,childFolder)"
                 (dblclick)="doubleClick($event,childFolder)">
@@ -84,9 +91,9 @@
         </div>
     </div>
 
-    <!-- <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
+    <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
         {{folder.title}}
-    </div> -->
+    </div>  -->
 
     <div class="row" *ngIf="loadingMaterials == false && fileList.length == 0">
         <div class="col-12 materials_box">

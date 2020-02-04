@@ -10,6 +10,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
 import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
+import * as _ from 'lodash';
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -50,6 +51,10 @@ export class MaterialTileComponent implements OnInit {
   learnerNames = [];
   displayLearners: Boolean = false;
   displaySubFolders: boolean = false;
+  allocatedLearners = [];
+  allLearnersCount: any;
+  duedate: any;
+  today = new Date()
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog, 
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -130,6 +135,7 @@ export class MaterialTileComponent implements OnInit {
       this.fileDetails(this.folder);
     }
   }
+
   fileDetails(event){
     event.materialIndex = this.i
     this.fileDetailsComp.emit(event)
@@ -254,32 +260,83 @@ export class MaterialTileComponent implements OnInit {
             this.completedLearners += 1
           }
         }
-
-        console.group(" Chek Counts with type ")
-
-
-        console.log(this.allLearners, typeof this.allLearners, "this.allLearners")
-        console.log(this.assignedLearner, typeof this.assignedLearner, "this.assignedLearner")
-
-        this.unassignedLearners = this.allLearners - this.assignedLearner;
-        console.log(this.unassignedLearners, typeof this.unassignedLearners, "this.unassignedLearners")
-        console.groupEnd()
-
+        this.unassignedLearners = this.allLearnersCount - this.assignedLearner;
       })
     })
-    console.log("-----this.assignedLearner", this.assignedLearner);
-    console.log("-----this.pendingLearners", this.pendingLearners);
-    console.log("-----this.resubmissionLearners", this.resubmissionLearners);
-    console.log("-----this.submittedLearners", this.submittedLearners);
-    console.log("-----this.completedLearners", this.completedLearners);
   }
 
+  onSelectChange(event, i) {
+    console.log("EVENT CHANGE", event)
 
+    if (event.checked == true) {
+      this.allocatedLearners.push(event.source.value)
+    }
+    if (event.checked == false) {
+      this.allocatedLearners.forEach((learner) => {
+        if (learner._id == event.source.value._id) {
+          this.allocatedLearners.splice(learner, 1)
+        }
+      })
+    }
+    console.log("allocated learners", this.allocatedLearners);
+  }
+  allocateMaterial(){
+    let learners = [];
+    if (this.allocatedLearners) {
+      if(this.duedate == undefined) this.duedate = this.today
+      this.allocatedLearners.forEach((learner) => {
+        learner.duedate = this.duedate;
+        learners.push({ learner: learner, assignment: this.material });
+      });
+    }
+    this._learnerService.allocateLearner(learners).subscribe(data => {
+      console.log("DATA SENT", learners);
+      console.log("Response", data);
+    });
+  }
+  dueDate(event) {
+    this.duedate = event.value
+    // // this.checkEnable = false;
+    // console.log("Due date", event);
+    // let duedate = event.value;
+    // this.allocatedLearners.forEach(learner => {
+    //   learner.duedate = duedate;
+    //   // Object.assign(learner, {dueDate: this.duedate})
+    // });
+    // console.log("This.allocatedLearners are", this.allocatedLearners);
+    
+  }
+  // getLearnerCheck(event){
+  //   console.log("Getting allocated learner", event);
+  //   if (event.tab.textLabel == "Learners"){
+
+  //     console.log("this.learner", this.learner)
+  //     console.log("this.allLearners", this.allLearners)
+
+  //         this.allLearners.forEach(singleLearner=>{
+
+  //           if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
+  //             var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
+  //             console.log(" index ", index)
+  //             if (index > -1) singleLearner.checked = true
+  //             else singleLearner.checked = false
+  //           }else{
+  //             singleLearner.checked = false
+  //           }
+
+
+  //       })
+  //   }
+  //   console.log("THIS.ALLLEARNERS", this.allLearners);
 
   // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
-      this.allLearners = allLearners.length;
+      this.allLearnersCount = allLearners.length
+      this.allLearners = allLearners;
+      this.allLearners.forEach(learner=>{
+        learner.checked = false
+      })
     })
   }
 

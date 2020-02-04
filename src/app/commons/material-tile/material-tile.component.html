@@ -24,7 +24,7 @@
         </mat-panel-description> --> 
     </mat-expansion-panel-header>
     <!-- <mat-divider></mat-divider> -->
-    <mat-tab-group>
+    <mat-tab-group (selectedTabChange)="getLearnerCheck($event)">
         <mat-tab label="Files"> 
             <div class='row m-0 material_responsive'>
                 <div class='col-lg-12'>
@@ -43,11 +43,11 @@
             <!-- [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)" -->
         </mat-tab>
         
-        <mat-tab label="Learners" *ngIf="displayLearners && type == 'Assignment'">
+        <mat-tab label="Learners" *ngIf="displayLearners && type == 'Assignment'" >
              <ul class="responsive_ul">
                 <li>
                     <div class="list_learners">
-                        <p>{{allLearners}}</p>
+                        <p>{{allLearnersCount}}</p>
                         <h4>Total</h4>
                     </div>
                 </li>
@@ -96,7 +96,7 @@
             </ul>
             <div class="row m-0 py-3 learner_material_tab"> 
                 <div class="col-sm">
-                    <p>{{allLearners}}</p>
+                    <p>{{allLearnersCount}}</p>
                     <h4>Total</h4>
                 </div>
                  <div class="col-sm">
@@ -133,14 +133,44 @@
                 <div class="col-sm-6" *ngFor="let learner of learnerNames">
                     <p>{{learner}}</p>
                 </div>
+                <!-- <div class="col-sm-6"> -->
+                    <!-- <mat-form-field class='min-width'>
+                        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> -->
+                    <!-- <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Due date" [ngModel]="today" (dateChange)="dueDate($event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker" required ></mat-datepicker-toggle>
+                        <mat-datepicker #picker [startAt]="today"></mat-datepicker>
+                        <mat-error *ngIf="duedate == undefined">Please select a Due Date</mat-error>
+                    </mat-form-field> -->
+                    <!-- *ngFor="let learner of learnerNames" -->
+                    <!-- <p>{{learner}}</p> -->
+                    <!-- <mat-grid-list cols="2" rowHeight='30px'>
+                        <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'> -->
+                            <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable" -->
+                            <!-- <mat-checkbox (change)='onSelectChange($event, i)' 
+                                [value]='learner' [checked] = 'learner.checked' >{{learner.name}}</mat-checkbox> -->
+                            <!-- <div *ngIf="learners[i].checked" style="width: 30px;">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Due date"
+                                        (dateChange)="singleDateChange($event,learner)">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker [startAt]="duedate"></mat-datepicker>
+                                </mat-form-field>
+                            </div> -->
+                        <!-- </mat-grid-tile>
+                    </mat-grid-list> -->
+                <!-- </div> -->
             </div>
             <!-- <h3 *ngFor="let learner of learnerNames">{{learner}}</h3> -->
         </mat-tab>
     </mat-tab-group>
     <mat-action-row>
-        <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button>
+        <!-- <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button> -->
         <button mat-button (click)="editmaterial()" *ngIf="!displaySubFolders">Edit</button>
         <button mat-button (click)="deleteMaterial()" *ngIf="!displaySubFolders">Delete</button>
+        <button mat-button (click)="allocateMaterial()" *ngIf="!displaySubFolders">Allocate</button>
     </mat-action-row>
 </mat-expansion-panel>
 

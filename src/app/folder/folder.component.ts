@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges, ɵSWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__ } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
 import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
@@ -6,7 +6,7 @@ import { FolderService } from '../services/folder.service';
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { ShareFileModalComponent } from './share-file-modal/share-file-modal.component';
 import { ok } from 'assert';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 // import { $ } from 'protractor';
 declare var $: any;
@@ -31,20 +31,25 @@ export class FolderComponent implements OnInit {
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   details: any;
   @Input('deletedFile') deletedFile: any;
+  @Input('subFolders') subFolder: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
-  constructor(public _folderService: FolderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
+  showCreateBtn: boolean = false;
+  constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
+    ,public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.currentUser);
-    if (this.currentUser.userRole == 'admin') {
-      this.getFolders();
-    } else {
-      this.getSharedFolders();
-      this.getSharedFiles();
+    if (this.router.url.includes('/mydocuments')){
+      this.showCreateBtn = true
     }
-
+    // this.currentUser = JSON.parse(localStorage.currentUser);
+    // if (this.currentUser.userRole == 'admin') {
+    //   this.getFolders();
+    // } else {
+    //   this.getSharedFolders();
+    //   this.getSharedFiles();
+    // }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,7 +59,15 @@ export class FolderComponent implements OnInit {
         return o._id.toString() == changes.deletedFile.currentValue.fileId.toString(); 
       })
       if(index > -1) this.allFolders.splice(index, 1)
-    }    
+    }
+    if (changes.subFolder){
+      console.log("changes.subFolder.currentValue typeof", typeof changes.subFolder.currentValue);
+      this.allFolders = changes.subFolder.currentValue;
+      console.log("This.allFolders", this.allFolders);
+    }
+    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')){
+      this.getFolders()
+    }
   }
 
   getRandomColorClass(i) {
@@ -85,7 +98,12 @@ export class FolderComponent implements OnInit {
   // }
 
   createFolder() {
-    this.openDialog(CreateFolderModalComponent).subscribe(folder => {
+    let folderId
+    this.activatedRoute.params.subscribe(params => {
+      folderId = params['id'];
+      console.log("Calling getLearners with jobid = ", folderId);
+    });
+    this.openDialog(CreateFolderModalComponent, folderId).subscribe(folder => {
       if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
       this.allFolders.push(folder);

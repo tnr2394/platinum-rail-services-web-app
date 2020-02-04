@@ -1,7 +1,7 @@
 <div class="row m-0">
     <div class="col-12">
-        <mat-card>
-            <div class="row">
+        <!-- <mat-card> -->
+            <div class="row" *ngIf="showCreateBtn">
                 <div class="col-12">
                     <button (click)='createFolder()' mat-flat-button color="primary"
                         class="pull-right button_hover_effect mb-3">
@@ -10,7 +10,7 @@
                     </button>
                 </div>
             </div>
-            <mat-card-content>
+            <!-- <mat-card-content> -->
                 <!-- <div class="folder_tile">
                 <mat-card *ngFor="let singleFolder of allFolders; let i = index" style="width: 30%;" (click)="singleFolder()">
                     {{singleFolder.title}}
@@ -33,8 +33,8 @@
                         </div>
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
+            <!-- </mat-card-content> -->
+        <!-- </mat-card> -->
     </div>
     <!-- <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
         <mat-card>
