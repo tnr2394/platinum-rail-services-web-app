@@ -8,6 +8,8 @@
         <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"></app-file-details>
     </mat-sidenav>
     <mat-sidenav-content>
-    <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile"></app-folder>
+        <mat-card>
+            <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile"></app-folder>
+        </mat-card>
 </mat-sidenav-content>
 </mat-sidenav-container>

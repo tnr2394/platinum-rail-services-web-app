@@ -67,7 +67,7 @@ export class LearnerService {
       console.log("Observable");
       this.http.post(config.baseApiUrl + "learners/allot", data).subscribe((res: any) => {
         console.log("Edited Learner : ", res);
-        observer.next(res.data.learner);
+        observer.next(res);
         // observer.complete();
       }, err => {
         console.log("ERROR ")

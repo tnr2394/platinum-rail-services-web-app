@@ -47,19 +47,21 @@
         </div> -->
 
     </div>
-
+    <div>
+        <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)"></app-folder>
+    </div>
     <!-- </mat-card-header> -->
     <div class="row" *ngIf="fileList && fileList.length > 0">
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay">
             <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
         </div>
     </div>
-    <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
+ <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
         <i class="fas fa-plus fa-fw"></i>
         <span> Create Folder</span>
     </button>
 
-    <div class="row">
+    <!--   <div class="row">
         <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let childFolder of subFolders;let i = index'>
             <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,childFolder)"
                 (dblclick)="doubleClick($event,childFolder)">
@@ -71,7 +73,7 @@
                 </mat-card-content>
             </mat-card>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
         {{folder.title}}
