@@ -1,14 +1,22 @@
 .material_main_title {
     font-size: 28px;
     color: #43425D;
-    font-weight: 300;
+    font-weight: 500;
     margin-bottom: 30px;
+    text-transform: capitalize;
     @media (max-width:575px){
         font-size: 25px;
+    }
+    @media (max-width:422px){
+        font-size: 20px;
+        margin-bottom: 10px !important;
+        float: none !important;
+        text-align: center;
     }
 }
 .material_main_card{
     padding: 30px 30px 15px;
+    margin-bottom: 10px;
 }
 .materials_box{
     margin-bottom: 30px;
@@ -408,4 +416,33 @@ button.uploadBtn {
     outline: none;
     font-size: 35px;
     color: #50b5e5;
+}
+.breadcrumb-item+.breadcrumb-item{
+    &:before{
+        display: none !important;
+    }
+}
+.indigo.lighten-4 {
+    background-color: #eaebf1 !important;
+}
+.breadcrumb-item a{
+    font-size: 18px;
+}
+.create-folder{
+    @media (max-width:422px){
+        float: none !important;
+        width: 100%;
+        margin-bottom: 20px !important;
+    }
+}
+.col-sm-9{
+    @media (max-width:575px){
+        max-width: 75% !important;
+    }
+}
+.col-sm-3 {
+    @media (max-width:575px) {
+        max-width: 25% !important;
+        padding: 0 !important;
+    }
 }

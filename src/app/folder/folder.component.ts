@@ -8,6 +8,8 @@ import { ShareFileModalComponent } from './share-file-modal/share-file-modal.com
 import { ok } from 'assert';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
+// import { $ } from 'protractor';
+declare var $: any;
 
 @Component({
   selector: 'app-folder',
@@ -137,8 +139,10 @@ export class FolderComponent implements OnInit {
     });
   }
 
-  singleClick(event, singleFolder) {
+  singleClick(event, singleFolder,i) {
     console.log("Single Click Event", event);
+    // var id = "#folder_card_" + i;
+    $('.parent_row').addClass('col-width-class');
     this.preventSingleClick = false;
     const delay = 200;
     this.timer = setTimeout(() => {
@@ -149,6 +153,7 @@ export class FolderComponent implements OnInit {
       }
     }, delay);
     this.getFileDetails.emit(singleFolder)
+   
   }
 
   doubleClick(event, singleFolder) {

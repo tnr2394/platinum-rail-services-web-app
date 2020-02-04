@@ -2,7 +2,7 @@
   loading
 </div> -->
 <div class="row">
-<div class="col-12" *ngIf="displayTitle == true">
+<!-- <div class="col-12" *ngIf="displayTitle == true">
   <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
     <div class="">
       <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}" dragActiveClass="drag-active">
@@ -10,12 +10,25 @@
       </p>
     </div>
   </div>
-</div>
+</div> -->
 
   <div class="col-12">
-    <div class="row" *ngIf="displayTitle == true">
-      <h3 class="page-title">Scheduler</h3>
+    <div class="d-inline-block w-100">
+      <div class="float-left" *ngIf="displayTitle == true">
+        <h3 class="page-title">Scheduler</h3>
+      </div>
+      <div class="float-right" *ngIf="displayTitle == true">
+        <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+          <div class="">
+            <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
+              dragActiveClass="drag-active">
+              {{event.title}}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    
     <div class="row">
       <div class="col-12 ">
         <div class="card">

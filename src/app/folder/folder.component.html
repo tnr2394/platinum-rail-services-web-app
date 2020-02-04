@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row m-0">
     <div class="col-12">
         <!-- <mat-card> -->
             <div class="row" *ngIf="showCreateBtn">
@@ -20,9 +20,9 @@
                     <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)">
                     </material-tile>
                 </div> -->
-                <div class="row">
-                    <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
-                        <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder)"
+                <div class="row parent_row">
+                    <div class="col materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
+                        <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}"
                             (dblclick)="doubleClick($event,singleFolder)">
                             <mat-card-content class="material_card p-2">
                                 <div class="materia_icon_span {{getRandomColorClass(i)}}">
@@ -30,7 +30,7 @@
                                 </div>
                                 <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
                             </mat-card-content>
-                        </mat-card>
+                        </div>
                     </div>
                 </div>
             <!-- </mat-card-content> -->
