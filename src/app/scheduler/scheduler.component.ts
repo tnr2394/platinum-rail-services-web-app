@@ -231,7 +231,7 @@ export class SchedulerComponent implements OnInit {
       console.log("this.allevents", JSON.stringify(this.allevents, null, 2));
 
       console.log("this.allevent last", this.allevents[this.allevents.length - 1]);
-
+      event.draggable = false;
       this.allevents = [...this.allevents, event];
 
 
