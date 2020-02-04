@@ -293,42 +293,32 @@ export class MaterialTileComponent implements OnInit {
       console.log("DATA SENT", learners);
       console.log("Response", data);
     });
+    this.openSnackBar("Learners allocated", "OK")
   }
   dueDate(event) {
     this.duedate = event.value
-    // // this.checkEnable = false;
-    // console.log("Due date", event);
-    // let duedate = event.value;
-    // this.allocatedLearners.forEach(learner => {
-    //   learner.duedate = duedate;
-    //   // Object.assign(learner, {dueDate: this.duedate})
-    // });
-    // console.log("This.allocatedLearners are", this.allocatedLearners);
-    
   }
-  // getLearnerCheck(event){
-  //   console.log("Getting allocated learner", event);
-  //   if (event.tab.textLabel == "Learners"){
+  getLearnerCheck(event){
+    console.log("Getting allocated learner", event);
+    if (event.tab.textLabel == "Learners"){
 
-  //     console.log("this.learner", this.learner)
-  //     console.log("this.allLearners", this.allLearners)
+      console.log("this.learner", this.learner)
+      console.log("this.allLearners", this.allLearners)
 
-  //         this.allLearners.forEach(singleLearner=>{
+          this.allLearners.forEach(singleLearner=>{
 
-  //           if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
-  //             var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
-  //             console.log(" index ", index)
-  //             if (index > -1) singleLearner.checked = true
-  //             else singleLearner.checked = false
-  //           }else{
-  //             singleLearner.checked = false
-  //           }
-
-
-  //       })
-  //   }
-  //   console.log("THIS.ALLLEARNERS", this.allLearners);
-
+            if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
+              var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
+              console.log(" index ", index)
+              if (index > -1) singleLearner.checked = true
+              else singleLearner.checked = false
+            }else{
+              singleLearner.checked = false
+            }
+        })
+    }
+    console.log("THIS.ALLLEARNERS", this.allLearners);
+  }
   // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {

@@ -198,15 +198,15 @@ export class SingleFolderComponent implements OnInit {
     this.lastColor = rand;
     return this.bgColors[rand];
   }
-  doubleClick(event, singleFolder) {
-    console.log("Double Click Event", event);
-    this.preventSingleClick = true;
-    clearTimeout(this.timer);
-    console.log("Double Click");
-    console.log("singleFolder", singleFolder);
-    let id = singleFolder._id;
-    this.router.navigate(['/single-folder', singleFolder._id])
-  }
+  // doubleClick(event, singleFolder) {
+  //   console.log("Double Click Event", event);
+  //   this.preventSingleClick = true;
+  //   clearTimeout(this.timer);
+  //   console.log("Double Click");
+  //   console.log("singleFolder", singleFolder);
+  //   let id = singleFolder._id;
+  //   this.router.navigate(['/single-folder', singleFolder._id])
+  // }
   singleClick(event, singleFolder) {
     console.log("Single Click Event", event);
     this.preventSingleClick = false;

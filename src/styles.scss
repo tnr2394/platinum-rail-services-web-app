@@ -776,6 +776,9 @@ th.mat-header-cell {
 .mat-expansion-panel-body{
   padding: 0 !important;
 }
+.mat-drawer.mat-drawer-side {
+    z-index: 12 !important;
+}
 .mat-drawer-side.mat-drawer-end {
   // border-top: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12) !important;
@@ -793,9 +796,15 @@ th.mat-header-cell {
     }
   }
 // }
-.overflow_hidden {
-  @media (max-width: 1024px) {
-    overflow: hidden;
+
+body{
+  .tooltip{
+    position: absolute
+  }
+  &.overflow_hidden {
+    @media (max-width: 1024px) {
+      overflow: hidden;
+    }
   }
 }
 .tooltip-class {
