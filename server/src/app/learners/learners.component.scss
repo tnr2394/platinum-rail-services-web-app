@@ -1,0 +1,16 @@
+.card{
+    margin:15px 0px 15px 0px;
+}
+table {
+    margin: 0;
+    width: 100%;
+
+    @media(max-width: 767px) {
+        min-width: 725px;
+    }
+}
+@media (max-width:575px){
+    .card-title {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,62 @@
+<h1 mat-dialog-title class="text-primary light-underline pb-2">
+    <i class="fas fa-edit fa-fw"></i>
+    Edit Learner
+</h1>
+<form #editCourse (ngSubmit)="doSubmit()">
+    <div mat-dialog-content>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
+                cdkFocusInitial>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone'
+                required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
+                [(ngModel)]='data.password' required>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="password()"></span>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-6 col-sm-12">
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password"
+                [(ngModel)]='data.confirmPassword' required>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
+                (click)="cpassword()"></span>
+        </mat-form-field>
+
+        <label class="input-file-button" for="hello"><span>Profile</span>
+            <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
+                [(ngModel)]="data.profile" required="required" (change)="addProfileImage($event)">
+        </label>
+
+        <div class="col-md-6" *ngIf="url1">
+            <img [src]="url1" height="50px" width="50px">
+        </div>
+
+    </div>
+    <div class="row">
+        <!-- <div class="col-4"></div> -->
+        <div class="col-12 text-center" *ngIf="passwordMismatch">
+            <span class="" style="color:#ff6e40; font-weight: bold;" *ngIf="true">Passwords are different. Please
+                re-enter.</span>
+        </div>
+    </div>
+    <div *ngIf="!loading" class="d-inline-block w-100">
+        <button mat-flat-button color="primary" type="submit" class="text-white pull-left button_hover_effect"><i
+                class="fas fa-save fa-fw"></i><span> Save</span></button>
+        <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
+            (click)="delete()">
+            <i class="fas fa-trash fa-fw"></i>
+            <span> Delete</span>
+        </button>
+
+    </div>
+    <div mat-dialog-actions *ngIf="loading" class="text-center">
+        Working... <i class="fas fa-refresh fa-spin"></i>
+    </div>
+
+</form>

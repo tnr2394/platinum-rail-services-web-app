@@ -1,0 +1,15 @@
+.mat-form-field{
+    width: 100%;
+}
+.mat-button{
+    padding: 0 !important;
+}
+@media (max-width:575px){
+    .file {
+        font-size: 16px;
+    }
+}
+.files_display{
+    max-height: 300px;
+    overflow: auto;
+}

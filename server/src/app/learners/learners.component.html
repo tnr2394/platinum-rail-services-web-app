@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title h5 mb-1 d-inline-block w-100">Learners
+                            <button *ngIf="currentUser.userRole == 'admin' || currentUser.userRole == 'instructor' "
+                                mat-flat-button color="primary" class="pull-right button_hover_effect"
+                                (click)="addLearnerModal()">
+                                <i class="fas fa-plus fa-fw"></i>
+                                <span> Add learners</span>
+                            </button>
+                        </div>
+                        <div class="card-title">
+
+                            <div class="row table_search">
+                                <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                </mat-paginator>
+
+                            </div>
+
+                        </div>
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <h1>{{dataSource.length}}</h1>
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="name">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef
+                                            mat-sort-header="name"> Name </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner">
+                                            {{learner.name}} </td>
+                                    </ng-container>
+                                    <!-- Email Column -->
+                                    <ng-container matColumnDef="email">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Email
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;"><span
+                                                class="badge width-150 {{getRandomColorClass(i)}}"> {{learner.email}}
+                                            </span></td>
+                                    </ng-container>
+                                    <!-- Action Column -->
+                                    <ng-container matColumnDef="actions"> 
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let learner; let i = index;">
+                                            <a *ngIf="currentUser && (currentUser.userRole == 'admin' ||currentUser.userRole == 'instructor') "
+                                                mat-button class="text-success bold"
+                                                (click)="editLearnerModal(i, learner)">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a *ngIf="currentUser && (currentUser.userRole == 'client') " mat-button
+                                                class="text-primary bold" routerLink="/single-learner/{{learner._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a *ngIf="currentUser && (currentUser.userRole !== 'client') " mat-button
+                                                class="text-primary bold" routerLink="/learner/{{learner._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </ng-container>
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                class="fa fa-cog fa-spin text-info"></i>
+                        </h3>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
+                        No Learner Found!
+                    </h3>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

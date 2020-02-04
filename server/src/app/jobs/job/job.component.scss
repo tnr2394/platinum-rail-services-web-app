@@ -1,0 +1,79 @@
+.page-title{
+    font-weight: 400;
+}
+.learner_detail_box{
+    i{
+        font-size: 70px;
+    }
+    p{
+        font-size: 18px;
+        margin-bottom: 0;
+        font-weight: 600;
+        color: #4D4F5C;
+    }
+    .learner_title{
+        font-size: 14px;
+    }
+    @media (max-width:1199px){
+      i {
+          font-size: 58px;
+      }
+
+      p {
+          font-size: 16px;
+      }
+      .learner_title {
+          font-size: 14px;
+      }
+    }
+    @media (max-width:575px){
+         i {
+             font-size: 30px;
+         }
+         p {
+             font-size: 14px;
+         }
+
+         .learner_title {
+             font-size: 12px;
+         }
+    }
+}
+ @media (max-width:575px) {
+    .learner_detail_box{
+        .mat-list-base {
+            .mat-list-item {
+                .mat-list-item-content {
+                    padding: 0 !important;
+                }
+            }
+
+            .mat-list-option {
+                .mat-list-item-content {
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+     .col-sm-6 {
+         width: 50% !important;
+     }
+ }
+ @media (max-width:575px){
+     .page-title {
+         font-size: 22px;
+     }
+ }
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 15px; height: 15px; margin: 2px; }
+/* your colors */
+.legend .unassigned { background-color:#ffeb3b; }
+.legend .pending { background-color:#d01414fa; }
+.legend .submitted { background-color: #3B86FF; }
+.legend .resubmitted { background-color: #acc7ef; }
+.legend .requestforresubmission { background-color: #ff9800c4; }
+.legend .completed { background-color:#64FE00; }
+
+

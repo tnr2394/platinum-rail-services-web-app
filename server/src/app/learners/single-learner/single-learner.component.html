@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="col-12">
+        <h3 class="page-title m-0 px-0" *ngIf="learner">
+            {{learner.name}}
+        </h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <p class="page-title1" *ngIf="learner"><i class="fa fa-envelope" aria-hidden="true"></i>
+                    {{learner.email}}</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+
+            </div>
+            <div class="col-lg-3 col-md-6">
+
+            </div>
+            <div class="col-lg-3 col-md-6">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="page-title px-0">
+                    Assignments
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title">
+                            <div class="row table_search">
+                                <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                </mat-paginator>
+
+                            </div>
+
+                        </div>
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <div class="table-responsive single_learner">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+
+                                    <!-- Unit Column -->
+
+                                    <ng-container matColumnDef="unit">
+                                        <th class="text-center justify-content-center" mat-header-cell
+                                            *matHeaderCellDef mat-sort-header="name">Unit </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner;let i = index">
+                                            <i class="fas fa-file-alt {{getRandomColorClass(i)}}"></i>
+                                            Unit-{{learner.assignment.unitNo}}
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Assignment Column -->
+
+                                    <ng-container matColumnDef="assignment">
+                                        <th class="text-center justify-content-center" mat-header-cell
+                                            *matHeaderCellDef mat-sort-header="assignment"> Assignment </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let assignment">
+                                            Assignment-{{assignment.assignment.assignmentNo}}
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Status Column -->
+
+                                    <ng-container matColumnDef="status">
+                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
+                                            mat-sort-header>
+                                            Status </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let assignment; let i = index;">
+                                            <span class="badge width-150 {{getRandomColorClass(i)}}">
+                                                {{assignment.status}}
+                                            </span></td>
+                                    </ng-container>
+
+                                    <!-- action Column -->
+<!-- 
+                                    <ng-container matColumnDef="actions">
+                                        <th class="text-center justify-content-center" mat-header-cell
+                                            *matHeaderCellDef>View </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let assignment; let i = index;">
+                                            <a class="text-primary bold"
+                                                routerLink="/learner/allotment/{{assignment._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </ng-container> -->
+
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h1 *ngIf="!(learner)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h1 class="text-center text-info" *ngIf="learner.length < 1">
+                        Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                    </h1>
+
+                    <p *ngIf="allotmentsLength < 1" class="text-center">No Assignment Allocated</p>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

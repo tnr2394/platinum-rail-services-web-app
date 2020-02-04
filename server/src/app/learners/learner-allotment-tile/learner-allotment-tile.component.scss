@@ -1,0 +1,284 @@
+.material_main_title {
+    font-size: 28px;
+    color: #43425D;
+    font-weight: 300;
+    margin-bottom: 30px;
+
+    @media (max-width:575px) {
+        font-size: 25px;
+    }
+}
+
+.material_main_card {
+    padding: 30px 30px 0px;
+    margin-bottom: 40px;
+}
+
+.materials_box {
+    margin-bottom: 30px;
+}
+
+.material_card {
+    text-align: center;
+    padding: 16px 16px 0px;
+}
+
+.all_material_block {
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+    width: 100%;
+    height: 100%;
+}
+.file_title {
+    font-size: 15px;
+    margin-top: 20px;
+}
+.download_btn {
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    height: 0px;
+    -webkit-animation: increased 0.2s;
+    -moz-animation: increased 0.2s;
+    -o-animation: increased 0.2s;
+    animation: increased 0.2s;
+    animation-fill-mode: forwards;
+     display: none;
+    // opacity: 0;
+     padding: 10px 10px 0px;
+     width: 100%;
+     text-align: center;
+     background-color: #4D4F5C;
+     background-image: linear-gradient(#4D4F5C, #0F1012);
+
+     a {
+         font-size: 20px;
+        @media (max-width:575px){
+            font-size: 16px;
+        }
+         i {
+             margin-right: 6px;
+         }
+     }
+}
+
+@keyframes increased {
+    0% {
+        height: 0px;
+    }
+
+    30% {
+        height: 7px;
+    }
+
+    50% {
+        height: 15px;
+    }
+
+    70% {
+        height: 25px;
+    }
+    80%{
+        height:35px;
+    }
+    100% {
+        height: 45px;
+    }
+}
+// .material_card:hover {
+//     background: #D9D9D9;
+// }
+.materials_box{
+    &:hover{
+        .download_btn{
+            display: block !important;
+        }
+        .all_material_block{
+            background: #D9D9D9;
+           transition: all .3s;
+           transition-timing-function: cubic-bezier(1, 0.5, 0.255, 0.05);
+        }
+    }
+}
+
+.dwnload_all_btn {
+    border-radius: 20px;
+    color: white;
+    padding: 8px 25px;
+    font-size: 22px;
+    margin-bottom: 30px;
+    box-shadow: 0px 3px 6px #00000066;
+    position: relative;
+    transition: all .35s;
+
+    span {
+        position: relative;
+        z-index: 2;
+    }
+    &:active{
+        outline: none !important;
+    }
+    &:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: #116cb8ee;
+        transition: all .35s; 
+        border-radius: 20px;
+    }
+
+    &:hover {
+        &:after {
+            width: 100%;
+        }
+    }
+
+    i {
+        margin-right: 20px;
+        position: relative;
+        z-index: 2;
+
+        @media (max-width:575px) {
+            margin-right: 12px;
+        }
+    }
+
+    @media (max-width:767px) {
+        font-size: 20px;
+    }
+
+    @media (max-width:575px) {
+        font-size: 18px;
+        padding: 5px 20px;
+    }
+}
+
+.pdf {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/pdf-icon-round.png');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    // background-size:100%;
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.ppt {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/icon-powerpoint.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.pptx {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/icon-powerpoint.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.docx {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/pdf-icon-round.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    //    background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.mp4 {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/mp4icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    //    background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}
+
+.doc {
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/word-doc-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size:100%;
+
+    @media (max-width:767px) {
+        min-width: 135px;
+        min-height: 135px;
+        background-size: contain !important;
+    }
+
+    @media (max-width:575px) {
+        min-width: 120px;
+        min-height: 120px;
+    }
+}

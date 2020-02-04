@@ -1,0 +1,132 @@
+<div *ngIf="!job">
+    <h1 class="text-center text-info mt-5">
+        Loading... <i class="fas fa-refresh fa-spin"></i>
+    </h1>
+</div>
+<div class="row" *ngIf="job">
+    <div class="col-12">
+        <div class="row m-0">
+            <div>
+                <h3 class="page-title pl-0">
+                    Job: {{job.title}}
+                </h3>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <div class="card pl-0">
+                    <div class="card-block">
+                        <div class="row mt-4 mb-2">
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
+                                <!-- <mat-list>
+                                    <mat-list-item><i class="fas text-primary fa-fw fa-building"></i> College :
+                                        {{job.client.name}}</mat-list-item>
+                                    <mat-list-item><i class="fas text-warning fa-fw fa-map-marker"></i> Location :
+                                        {{job.location.title}}</mat-list-item>
+                                    <mat-list-item><i class="fas text-success fa-fw fa-book"></i> Course :
+                                        {{job.course.title}}</mat-list-item>
+ 
+                                </mat-list> -->
+                                <div class="learner_detail_box">
+                                    <mat-list class="" role="list">
+                                        <mat-list-item role="listitem" class="p-0">
+
+                                            <i class="fas text-danger fa-fw fa-user-tie mr-1"></i>
+                                            <div class="learner_title">
+                                                Instructor
+                                                <p *ngFor="let instructor of job.instructors"> {{instructor.name}}</p>
+                                            </div>
+
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-primary fa-fw fa-building"></i>
+                                            <div class="learner_title">
+                                                College
+                                                <p *ngIf="job && job.client"> {{job.client.name}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-warning fa-fw fa-map-marker-alt"></i>
+                                            <div class="learner_title">
+                                                Location
+                                                <p *ngIf="job && job.location"> {{job.location.title}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
+                                <mat-divider [vertical]="true"></mat-divider>
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="fas text-success fa-fw fa-book"></i>
+                                            <div class="learner_title pl-2">
+                                                Course
+                                                <p *ngIf="job && job.course"> {{job.course.title}}</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                                <!-- <h5 class="">
+                                    <img src="../../assets/instructor.png"
+                                        style="float: left; height:50px;position:relative; top:-15px">
+                                    Instructors</h5> -->
+                                <!-- <mat-list class="" role="list">
+                                    <mat-list-item *ngFor="let instructor of job.instructors" role="listitem">
+
+                                        <i class="fas text-primary fa-fw fa-user-tie"></i>
+                                        {{instructor.name}}
+                                    </mat-list-item>
+                                </mat-list> -->
+                            </div>
+                            <div class="col-lg col-md-6 col-sm-6 mb-4 p-0">
+                                <div class="learner_detail_box">
+                                    <mat-list>
+                                        <mat-list-item><i class="far fa-calendar-alt text-warning"></i>
+                                            <div class="learner_title pl-2">
+                                                Dates
+                                                <p> {{startDate | date:'shortDate'}} -
+                                                    {{endDate | date:'shortDate'}}</p>
+                                                <p>{{completionPercent}}%</p>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card py-4">
+            <app-assignment-status [jobId]='job._id'></app-assignment-status>
+        </div>
+        <app-learners (getLearnersFromComponent)="loadLearners($event)" [jobId]='job._id'></app-learners>
+
+        <app-scheduler *ngIf="!clientDashboard" [job]="jobForScheduler"></app-scheduler>
+        <div *ngIf="job && !clientDashboard" class="mt-3">
+            <!-- passing into material =  {{job.course._id}} -->
+            <app-materials *ngIf="job && job.course" [data]="job.course._id"
+                (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()" #material>
+            </app-materials>
+            <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"
+                (click)="allocateLearners()"
+                *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
+                <i class="fas fa-users"></i>
+                <span> Allocate to..</span>
+            </button>
+        </div>
+    </div>
+</div>

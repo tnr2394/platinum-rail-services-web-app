@@ -1,0 +1,196 @@
+.add_job_form {
+    @media(max-width:575px) {
+        .mat-dialog-content {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+            padding: 0 !important;
+        }
+    }
+}
+
+.maxHeight {
+    min-height: 33vh !important;
+    max-height: 33vh !important;
+    overflow: auto;
+}
+
+.datesColor {
+    color: #2196f3;
+    font-weight: 400;
+}
+
+.faiconColor {
+    color: #2196f3;
+    font-size: xx-large;
+    padding: 10px;
+}
+
+.close-color {
+    color: #2196f3 !important;
+}
+
+.submitButton {
+    justify-content: center !important;
+    display: flex !important;
+    width: 100%;
+}
+
+.row {
+    justify-content: space-around;
+}
+
+.top-margin {
+    margin-top: 3%;
+}
+
+.greyBackground {
+    background-color: #F5F6FA;
+    margin-top: 3%;
+}
+
+.center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    // flex-direction: column;
+}
+
+.max-height {
+    display: flex;
+    flex-direction: column;
+    max-height: 20vh;
+    overflow: auto;
+}
+
+.buttonTransparent {
+    background: transparent !important;
+    border: transparent !important;
+    position: absolute !important;
+    right: -14px !important;
+    top: 6px !important;
+}
+
+.checkBox {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.buttonHeight {
+    max-height: 40px !important;
+}
+
+// .width{
+//     .mat-form-field{
+//         min-width: 65%;
+//     }
+// }
+.resetButton {
+    background-color: #FF1D1D;
+    color: white;
+}
+
+.headerColor {
+    color: #2196f3;
+    font-weight: 400;
+}
+
+.position {
+    background-color: #2196f3;
+    color: white;
+    float: right;
+    margin-top: 12px;
+}
+
+.mat-dialog-title {
+    font-size: 18px;
+
+    i {
+        font-size: 25px !important;
+        margin-right: 15px;
+    }
+}
+
+color-picker {
+    @media (max-width:767px) {
+        .color-picker {
+            top: 204.297px !important;
+            left: 0px !important;
+        }
+    }
+}
+
+mat-form-field {
+    width: 100% !important;
+}
+
+.course_select {
+    .ng-pristine {
+        width: 100% !important;
+    }
+}
+
+.instructor_btn {
+    justify-content: flex-end !important;
+
+    @media (max-width:575px) {
+        justify-content: space-around !important;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width:991px) {
+    .col {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    mat-form-field {
+        min-width: 90%;
+        // margin-left: 24px;
+    }
+
+    .mat-form-field-infix {
+        //  width: 250px !important;
+        min-width: 90% !important;
+    }
+
+    // .course_select {
+    //     min-width: 50% !important;
+    // }
+}
+
+.instructor_select {
+    .ng-star-inserted {
+        width: 98% !important;
+    }
+
+    mat-form-field {
+        width: 98% !important;
+    }
+
+    @media (max-width:991px) {
+        // min-width: 50% !important;
+
+        mat-form-field {
+            width: 100% !important;
+        }
+    }
+
+    @media (max-width:575px) {
+        min-width: 100% !important;
+    }
+}
+
+@media (max-width:575px) {
+    .course_select {
+        min-width: 100% !important;
+    }
+
+    mat-form-field {
+        margin-left: 0px !important;
+    }
+}

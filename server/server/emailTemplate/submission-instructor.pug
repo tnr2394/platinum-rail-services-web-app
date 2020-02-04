@@ -1,0 +1,31 @@
+if assignment.assignmentStatus == 'Requested for Resubmission'
+    p You have recieved a request for resubmission of assignment.
+else
+    p Your Assignment is marked as completed.
+
+
+h3 Assignment Detail
+
+p #{assignment.assignmentTitle}
+p Unit : #{assignment.assignmentUnit}
+p Assignment : #{assignment.assignmentNo}
+
+p Status : #{assignment.assignmentStatus}
+
+h3 Remarks
+
+if assignment.assignmentRemark
+    p #{assignment.assignmentRemark}
+else
+    p No Remarks.
+
+h3 Course Detail
+
+p Title : #{course.courseTitle}
+p Duration : #{course.courseDuration} 
+
+h3 Client Detail
+
+p Title : #{client.clientName}
+p Location : #{client.location}
+

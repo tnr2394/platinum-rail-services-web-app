@@ -1,0 +1,34 @@
+p Hello Instructor, you have been assigned to a #{title}. Below are the Job details.
+
+h3 Job Details
+
+p Title : #{title}
+p Location : #{location.title}
+
+
+h3 Instructor Details
+
+each instructor in instructors
+    p Name : #{instructor.name}
+    p Email : #{instructor.email}
+
+h3 Course Details
+
+p Title : #{course.title}
+p Duration : #{course.duration}
+
+h3 Time Frequency
+
+p Start Date : #{prettyDate(startingDate)} with every #{totalDays} 
+
+
+-function prettyDate(dateString){
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return d+' '+m+' '+y;
+-}
+
+

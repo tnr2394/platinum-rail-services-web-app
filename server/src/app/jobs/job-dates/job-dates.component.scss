@@ -1,0 +1,47 @@
+.headerColor {
+    color: #2196f3;
+    font-weight: 400;
+}
+
+.greyBackground {
+    background-color: #F5F6FA;
+    margin-top: 3%;
+    padding: 6px;
+}
+
+.datesColor {
+    color: #2196f3;
+    font-weight: 400;
+}
+
+.faiconColor {
+    color: #2196f3;
+    font-size: xx-large;
+    padding: 10px;
+    @media (max-width:575px){
+        font-size: 25px;
+    }
+}
+
+.maxHeight {
+    min-height: 34vh !important;
+    max-height: 34vh !important;
+    overflow-y: auto;
+}
+
+.checkBox {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+.mat-form-field{
+    width: 100% !important;
+}

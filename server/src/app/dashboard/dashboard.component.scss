@@ -1,0 +1,107 @@
+.card-image-1{
+    background-image: url("../../assets/job.png");
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left;
+}
+.card-image-2{
+    background-image: url("../../assets/instructo3.png");
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left 15px;
+}
+.card-image-3{
+    background-image: url("../../assets/course.png");
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: left;
+}
+.dashBoardSection h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    @media (max-width:767px){
+        font-size: 24px;
+    }
+    @media (max-width:575px){
+        font-size: 20px;
+    }
+}
+.card.table-first-dashboard {
+    padding: 20px;
+}
+.card-content span{
+font-size: 15px;
+color: #43425D;
+}
+.card-content p {
+    font-size: 52px;
+    font-weight: bold;
+    @media (max-width:575px){
+        font-size: 38px;
+    }
+}
+.card{
+    box-shadow: 0 2px 5px 0 rgba(197, 197, 197, 0.16), 0 2px 10px 0 rgba(197, 197, 197, 0.12);
+    height: 155px;
+    min-height: 155px;
+    width: 100%;
+}
+.table th{
+    background-color: #F5F6FA;
+    color: #A3A6B4;
+}
+.table td{
+    color:#4D4F5C;
+}
+.card.table-first-dashboard span.badge-pill {
+    padding: 5px 26px;
+    color: #fff;
+}
+.card.table-first-dashboard td {
+    padding: 24px 0 !important;
+}
+.card.table-first-dashboard input {
+        border-bottom: 0 !important;
+        background-color: #fff;
+        margin-left: 10px;
+        font-size: 16px !important;
+    }
+    .card.table-first-dashboard input:focus{
+        box-shadow: none!important;
+    }
+    .card.table-first-dashboard input::placeholder{
+        color: #C8C8D4;
+    }
+    .search i {
+        color: #BCBCCB;
+    }
+    .table-first-dashboard span {
+        font-size: 22px;
+    }
+    .editIcon i{
+        color: #0FBB1A;
+        height: 23px !important;
+        width: 25px !important;
+    }
+    /* Responsive Css */
+    @media(max-width:1199px){
+        .card{
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .d-inline-block span{
+            width: 100%;
+        }
+    }
+    @media(max-width:991px){
+    }
+    @media (max-width:767px){
+        h1{
+            font-size: 35px;
+        }
+    }
+    @media (max-width:575px){
+        h1{
+            font-size: 30px;
+        }
+    }

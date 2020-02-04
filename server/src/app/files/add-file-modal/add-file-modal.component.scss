@@ -1,0 +1,179 @@
+.my-drop-zone { border: dotted 3px lightgray; }
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+
+    // label.input-file-button {
+    //     background-color: #f84e5c;
+    //     color: white;
+    //     padding: 10px;
+    //     border-radius: 10px;
+    //     cursor: pointer;
+    //   }
+      
+    //   label.input-file-button span {
+    //     cursor: pointer;
+    //   }
+      
+    //   .input-file-button input[type="file"] {
+    //     display: none;
+    //   }
+
+    .file_upload {
+      position: relative;
+      padding: 7px;
+      min-width: 112px;
+      text-align: center;
+      color: #ee3333;
+      line-height: 25px;
+      background: #fff;
+      border: solid 2px #ee3333;
+      font-weight: 600;
+    }
+    
+    a.file_upload {
+      display: inline-block;
+    }
+    
+    .file_upload .btn_lbl {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    .file_upload .btn_colorlayer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .file_upload input[type="file"] {
+      position: absolute;
+      top: 3px;
+      left: -108px;
+      font-weight: 600;
+      margin-left: 100%;
+      color: #ee3333;
+      outline: none;
+    }
+
+
+    .uploadfilecontainer {
+      // background-image: url("../../assets/cloud-2044823_960_720.png");
+      background-color: #F0F2F8 !important;
+      background-repeat: no-repeat;
+      background-size: 100px;
+      background-position: center;
+      height: auto;
+      width: 100%;
+      margin: 20px auto;
+      // border: 2px dashed #1C8ADB;
+      border-radius: 0px;
+      position: relative;
+      transition: all .3s;
+      // &:hover{
+      //    &:after {
+      //      content: "";
+      //      position: absolute;
+      //      top: 0;
+      //      left: 0;
+      //      width: 100%;
+      //      filter: blur(3px);
+      //      opacity: 0.7;
+      //      transition: all .3s;
+      //      transition-timing-function: cubic-bezier(1, 0.5, 0.255, 0.05);
+      //      opacity: 0.8;
+      //    }
+
+      //    .arrow_div {
+      //      opacity: 1;
+      //      filter: none;
+      //      position: relative;
+      //      z-index: 56;
+      //      transition: all .3s;
+      //      color: red;
+      //    }
+      // }
+     
+  }
+  
+  .uploadfilecontainer:hover {
+      cursor: pointer;
+      background-color: #95aec0 !important;
+      // filter: blur(3px);
+      // opacity: 0.7;
+      transition: all .3s;
+      transition-timing-function: cubic-bezier(1, 0.5, 0.255, 0.05);
+      opacity: 0.8;
+      .arrow_div{
+         transform: scale(1.3);
+         transition: all .5s;
+          transition-timing-function: cubic-bezier(1, 0.5, 0.255, 0.05);
+          // color: blue;
+          // border-color: blue;
+      }
+      // .uploadfile_arrow{
+      //   p{
+      //     filter: blur(2px);
+      //   }
+      // }
+  }
+  .uploadfile_arrow {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px;
+    .arrow_div{
+        position: relative;
+        color: #DDDFE7;
+        border:3px solid #DDDFE7;
+        border-radius: 50%;
+        padding: 3px;
+        margin-bottom: 15px;
+       &::before {
+         content: "";
+         position: absolute;
+         top: -7px;
+         left: -7px;
+         right: -7px;
+         bottom: -7px;
+         border-radius: 50%;
+         border: 2px solid #DDDFE7;
+         opacity: 0.7;
+       }
+      i {
+        font-size: 60px;
+        color: #DDDFE7;
+        @media (max-width:575px){
+          font-size: 47px;
+        }
+      }
+    }
+    
+  }
+  .drag_file{
+    font-size: 35px;
+    color: #43425D;
+    font-weight: 400;
+    margin-bottom: 0;
+    @media (max-width:575px){
+      font-size: 21px;
+    }
+  }
+  .files-list{
+    margin-top: 20px;
+  }
+  .delete-file{
+    border: none !important;
+    background: transparent !important;
+  }
+      
+    
+ 

@@ -1,0 +1,174 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <h3 class="page-title pl-0">
+                    Jobs
+                </h3>
+            </div>
+            <div class="col-6">
+                <button *ngIf="!view && currentUser.userRole == 'admin' " mat-flat-button color="primary"
+                    class="pull-right modal_open button_hover_effect" (click)="addJobModal()">
+                    <i class="fas fa-plus fa-fw"></i>
+                    <span> Add Job</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title">
+                            <div class="row table_search">
+                                <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                                    <input matInput placeholder="Search" [(ngModel)]='searchText'
+                                        (ngModelChange)='filter(searchText)'>
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                </mat-paginator>
+                                <!-- <mat-paginator class="col-6" [length]="jobs.length"
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="pageSizeOptions"
+                        (page)="pageEvent = $event">
+                    </mat-paginator> -->
+                            </div>
+
+                        </div>
+                        <!--Text-->
+                        <div class="table-responsive" *ngIf="jobs">
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                <div>
+
+                                    <!-- SR.No -->
+                                    <!-- Only Displays 1-5 for every page -->
+                                    <ng-container matColumnDef="sr.no">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Job Title
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Job Title" mat-cell
+                                            *matCellDef="let job; let i = index;"> <i class="fas fa-dot-circle fa-fw"
+                                                [ngStyle]="{color:job.color }"></i>
+                                            <p *ngIf="job">{{job.title}}</p>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Client Column -->
+                                    <ng-container matColumnDef="client">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Client" mat-cell
+                                            *matCellDef="let job">
+                                            <p *ngIf="job && job.client"> {{job.client.name}}</p>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- location -->
+                                    <ng-container matColumnDef="location">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Location
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Location" mat-cell
+                                            *matCellDef="let job">
+                                            <p *ngIf="job && job.location"> {{job.location.title}}</p>
+
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- instructor Column -->
+                                    <ng-container matColumnDef="instructor">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>
+                                            Instructor </th>
+                                        <td class="mat-table-cell text-center" data-label="Instructor" mat-cell
+                                            *matCellDef="let job">
+                                            <mat-list align='center'>
+                                                <mat-list-item class="text-center"
+                                                    *ngFor='let oneInstructor of job.instructors'>
+                                                    <i class="fas fa-user-tie fa-fw text-primary mr-1"></i> <span
+                                                        *ngIf="job && job.instructors">
+                                                        {{oneInstructor.name}}</span>
+                                                </mat-list-item>
+                                            </mat-list>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- course Column -->
+                                    <ng-container matColumnDef="course">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Course
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Course" mat-cell
+                                            *matCellDef="let job">
+                                            <p *ngIf="job && job.course">{{job.course.title}}</p>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- learners Column -->
+                                    <ng-container matColumnDef="actions">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Action
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Actions" mat-cell
+                                            *matCellDef="let job">
+                                            <a mat-button class="text-primary" title="Job Details"
+                                                routerLink="/jobs/{{job._id}}">
+                                                <!-- <i class="fa fa-users"></i> -->
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <button *ngIf="currentUser.userRole == 'admin'" mat-button
+                                                class="text-success" title="Edit Job" (click)="editJobModal(i, job)"><i
+                                                    class="fa fa-edit"></i></button>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Status Column -->
+                                    <ng-container matColumnDef="status">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Status
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Status" mat-cell
+                                            *matCellDef="let job">
+                                            {{job.status}}</td>
+                                    </ng-container>
+
+                                    <!-- Completion % -->
+                                    <ng-container matColumnDef="completion">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Complition %
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="Status" mat-cell *matCellDef="let job">
+                                            {{job.completion}} %</td>
+                                    </ng-container>
+
+                                    <!-- view Column -->
+                                    <ng-container matColumnDef="view">
+                                        <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> View
+                                        </th>
+                                        <td class="mat-table-cell text-center" data-label="View" mat-cell
+                                            *matCellDef="let job;let i = index;">
+
+                                        </td>
+                                    </ng-container>
+
+                                    <thead class="table_header">
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let job; columns: displayedColumns;"></tr>
+                                    </tbody>
+
+                                </div>
+                            </table>
+                        </div>
+                        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i
+                                class="fa fa-cog fa-spin text-info"></i></h3>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="jobs && jobs.length == 0">
+                        <i class="fas fa-empty-set"></i>
+                        No Jobs Assigned!
+                    </h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

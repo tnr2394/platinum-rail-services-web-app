@@ -1,0 +1,132 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.row{
+  margin: 0;
+}
+// div{
+//   padding: inherit;
+// }
+.learner{
+  i {
+    background-color:#3CC480;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+}
+  span{
+    margin-top: 11px;
+    margin-left: 5px;
+  } 
+
+  .Pending {
+    color: white;
+    background-color: #FF6565;
+    height: 35px;
+    width: 102px;
+    border-radius: 30px;
+    text-transform: capitalize;
+    text-align: center;
+    line-height: 33px;
+    font-size: 11px;
+    font-weight: 400;
+    margin: auto;
+}
+
+.Re-submitted {
+  color: white;
+  background-color:#4D4F5C;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+   margin: auto;
+}
+
+.Submitted {
+  color: white;
+  background-color:#3B86FF;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+  margin: auto;
+}
+
+.Completed {
+  color: white;
+  background-color:#3CC480;
+  height: 35px;
+  width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+  margin: auto;
+}
+
+.Requested{
+  color: white;
+  background-color:#607d8b;
+  height: 35px;
+  // width: 102px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 33px;
+  font-size: 11px;
+  font-weight: 400;
+  margin: auto;
+}
+// td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+//   padding-left: 0px !important;
+// }
+mat-form-field {
+  width: 100% !important;
+}
+table {
+  margin: 0;
+  width: 100%;
+
+  @media(max-width: 767px) {
+    min-width: 725px;
+  }
+}
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type{
+  padding-right: 0 !important;
+}
+@media (max-width:767px){
+  // .col-md-4{
+  //   padding: 0 !important;
+  // }
+  .mat-paginator-container {
+    justify-content: space-between !important;
+    padding: 0px 15px !important;
+  }
+}
+@media (max-width:575px){
+  .msg_text{
+    font-size: 14px;
+  }
+}
+.submission_pagination{
+  padding: 0;
+  @media (max-width:767px){
+    padding:0px 15px;
+  }
+}

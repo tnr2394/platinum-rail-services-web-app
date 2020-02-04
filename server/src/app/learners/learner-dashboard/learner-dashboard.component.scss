@@ -1,0 +1,205 @@
+.material_card{
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+.material_card:hover{
+    background: #D9D9D9;
+    transition: all .3s;
+    transition-timing-function: cubic-bezier(1, 0.5, 0.255, 0.05);
+}
+.icon{
+    min-height: 115px;
+    min-width: 115px;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    @media (max-width:991px){
+        min-height: 100px;
+        min-width: 100px;
+        font-size: 45px;
+    }
+    @media (max-width:767px){
+        min-height: 85px;
+        min-width:85px;
+        font-size: 36px;
+    }
+    // @media (max-width:575px){
+    //     min-height: 120px;
+    //     min-width:120px;
+    //     font-size: 60px;
+    // }
+}
+.materia_icon_span {
+    border-radius: 100%;
+    // padding: 42px 49px;
+}
+.first_card,
+.second_card {
+    margin-bottom: 40px;
+    padding: 30px 30px 0px;
+}
+.job_card{
+    padding: 20px 16px;
+    margin-bottom: 40px;
+    @media (max-width:575px){
+        padding: 0;
+    }
+}
+.inner-card{
+    margin-bottom: 30px;
+}
+.learner_title{
+    font-size: 28px;
+    // margin-bottom: 35px;
+    @media (max-width:575px){
+        font-size: 25px;
+    }
+}
+.materials_title{
+    font-size: 16px;
+    padding: 16px 0px 0px;
+}
+@media (max-width:575px){
+    .learner_card_title{
+        font-size: 22px;
+    }
+}
+
+
+.page-title{
+    font-weight: 400;
+}
+.learner_detail_box{
+    i{
+        font-size: 70px;
+    }
+    p{
+        font-size: 18px;
+        margin-bottom: 0;
+        font-weight: 600;
+        color: #4D4F5C;
+    }
+    .learner_title{
+        font-size: 14px;
+    }
+    @media (max-width:1199px){
+      i {
+          font-size: 58px;
+      }
+
+      p {
+          font-size: 16px;
+      }
+      .learner_title {
+          font-size: 14px;
+      }
+    }
+    @media (max-width:575px){
+         i {
+             font-size: 30px;
+         }
+         p {
+             font-size: 14px;
+         }
+
+         .learner_title {
+             font-size: 12px;
+         }
+    }
+}
+ @media (max-width:575px) {
+    .learner_detail_box{
+        .mat-list-base {
+            .mat-list-item {
+                .mat-list-item-content {
+                    padding: 0 !important;
+                }
+            }
+
+            .mat-list-option {
+                .mat-list-item-content {
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+     .col-sm-6 {
+         width: 50% !important;
+     }
+ }
+ @media (max-width:575px){
+     .page-title {
+         font-size: 22px;
+     }
+ }
+
+ .profile_image{
+    position: relative;
+    object-fit: cover;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    img{
+        border-radius: 50%;
+        position: absolute;
+        width:200px;
+        height: 200px;
+         top: -205px;
+         z-index: 2;
+         box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.7);
+         background: white;
+         @media (max-width:768px){
+             width: 170px;
+             height: 170px;
+             top: -190px;
+         }
+         @media (max-width:575px){
+             width: 140px;
+             height: 140px;
+             top: -165px;
+         }
+         @media (max-width:500px){
+             width: 125px;
+             height: 125px;
+             top: -150px;
+         }
+    }
+}
+.profile_card{
+    margin-top: 130px;
+    margin-bottom: 30px;
+    padding: 100px 15px 30px;
+    @media (max-width:575px){
+        padding: 90px 15px 30px;
+    }
+    // .row{
+    //     justify-content: space-evenly !important;
+    // }
+}
+.instructor_profile_card{
+    h3{
+        @media (max-width:768px){
+            font-size: 24px;
+        }
+        @media (max-width:575px){
+            font-size: 20px;
+        }
+    }
+}
+.materials_box{
+    @media (max-width:575px){
+        width: 50%;
+    }
+    @media (max-width:422px){
+        width: 100%;
+    }
+    margin-bottom: 25px;
+}

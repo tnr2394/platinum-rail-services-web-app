@@ -1,0 +1,12 @@
+$bg-th : #F5F6FA;
+$color-th:  #A3A6B4;
+$header-color: #43425D; 
+
+table {
+    margin: 0;
+    width: 100%;
+
+    @media(max-width: 767px) {
+        min-width: 725px;
+    }
+}

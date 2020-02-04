@@ -1,0 +1,15 @@
+.loaction_btn{
+    text-align: right !important;
+}
+@media (max-width:575px){
+    .page-title{
+        font-size: 25px !important;
+    }
+    .loaction_btn {
+        text-align: center !important;
+    }
+    .client_name {
+        text-align: center !important;
+        margin-bottom: 5px;
+    }
+}

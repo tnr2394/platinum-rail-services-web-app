@@ -1,0 +1,49 @@
+<div>
+    <!-- <div class='assignment_title'>
+        <h4 *ngIf="assignment">Unit- {{assignment.assignment.unitNo}} Assignment- {{assignment.assignment.assignmentNo}}
+        </h4>
+    </div> -->
+    <mat-card>
+        <div class='row pt-0'>
+            <div class='col-xl-6 col-lg-6'>
+                <div class='row p-0 mb-3'>
+                    <div class='col-2 p-0'>
+                        <button [disabled]="isDisabled" class='uploadBtn' (click)="addFileModal()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </button>
+                    </div>
+                    <div class="col-10 p-0">
+                        <h3 class="submission d-flex justify-content-left align-items-center h-100">Submission</h3>
+                    </div>
+                </div>
+                <mat-card *ngIf="files.length > 0">
+                    <file-tile *ngFor="let file of files" (deletedFile)="deletedFile($event)" [file]="file"></file-tile>
+                </mat-card>
+                <mat-card *ngIf="loading == true">
+                    <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
+                </mat-card>
+                <mat-card *ngIf="loading == false && files.length == 0" class="text-info">
+                    NO FILES FOUND
+                </mat-card>
+                <div class="row assignment-status" *ngIf="assignment">
+                    <div class="col-4">
+                        <i class="far fa-clock fa-7x"></i>
+                    </div>
+                    <div class="col-8 p-0">
+                        <h1 class="submitted text-center">{{assignment.status}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class='col-xl-6 col-lg-6 remark_block' *ngIf="assignment">
+                <h3 class="mb-4 remark">Remark by Instructor</h3>
+                <div class='center p-0'>
+                    <p>{{assignment.remark}}</p>
+                    <h5 *ngIf="!assignment.remark">No Remarks</h5>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+    <!-- <div *ngIf='displayData.length == "0"'>
+        {{learner.name}} Does not have any allocated {{material.title}} <i class="fa fa-frown-o"></i>
+    </div> -->

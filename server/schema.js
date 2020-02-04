@@ -27,35 +27,21 @@ learner:{
     _id,
     email,
     password,
-    jobId,
-    allotment:[{
-        assignment_id,
-        status,
-        file,
-        remark,
-    }],
-    assignments:[{
-        _id,
-        title,
-        status,
-        file,
-        remark,
-        lastUpdated
-    }]
+    job
 };
 material:{
     _id,
     type,
     title
 };
-// subission:{
-//     _id,
-//     learnerId,
-//     materialId,
-//     jobId,
-//     file,
-//     remark
-// }
+subission:{
+    _id,
+    learnerId,
+    materialId,
+    jobId,
+    file,
+    remark
+}
 files:{
     _id,
     name,

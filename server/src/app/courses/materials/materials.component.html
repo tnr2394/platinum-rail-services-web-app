@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-12">
+
+        <div class="row">
+
+            <div class="col-12 ">
+                <div class="card">
+                    <div class="row material_row">
+                        <div class="col-lg-7">
+                            <h3 class="card-title h5 mb-1" *ngIf="course">
+                                Materials for :
+                                <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
+                                    matBadgeColor="warn"> {{course.title}}</span> -->
+                                <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
+                                <span class="course_t_span">{{course.title}} </span> <button mat-mini-fab
+                                    disabled>{{materials.length}}</button>
+                            </h3>
+                        </div>
+                        <div class="col-lg-5 material_btn_insmall">
+                            <button mat-flat-button color="primary" class="pull-right button_hover_effect"
+                                (click)="addMaterialModal()">
+                                <i class="fas fa-plus fa-fw"></i>
+                                <span> Add Material</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row table_search">
+                        <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                            <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+
+                    <div class="row material_tile_table_row" *ngIf="materials.length > 0">
+                        <div class="col-lg-6 all_material_tile">
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                <!-- Title Column -->
+                                <ng-container matColumnDef="Materials">
+                                    <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header="title">
+                                        Name
+                                    </th>
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let material; let i = index;">
+                                        <div class="row material_tile_row">
+                                            <div class='materialsDiaplay'>
+                                                <div class="col-11 pl-0">
+                                                    <material-tile [material]="material"
+                                                        [isSelected]="(material._id === selectedMaterial)" [index]='i'
+                                                        (getFiles)="loadMaterialFiles($event)"
+                                                        (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                                </div>
+                                                <div class="col-1" *ngIf="view == false">
+                                                    <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                        <mat-checkbox [ngModel]="selectedCheckbox"
+                                                            (change)='onMaterialSelection($event)' [value]='material'>
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row
+                                        *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
+                            <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                    class="fa fa-cog fa-spin text-info"></i>
+                            </h3>
+                        </div>
+
+
+
+
+                        <!--Card content-->
+
+                        <div class="col-lg-6" *ngIf="selectedMaterial">
+                            <material-files [materialId]="selectedMaterial"></material-files>
+                        </div>
+                        <div class="col-lg-6" *ngIf="!selectedMaterial">
+                            <mat-card class="text-info choose_material">
+                                Choose a Material to view its files.
+                            </mat-card>
+                        </div>
+                    </div>
+                    <mat-card *ngIf="loading == false && materials.length < 1">
+                        <h3 class="m-auto text-center text-info py-2 no_found_msg">
+                            No Materials Found!
+                        </h3>
+                    </mat-card>
+                    <!-- <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
+                </div>
+                <!-- /.Card content -->
+                <h1 class="text-center" *ngIf="!materials">
+                    <i class="fa fa-refresh fa-spin fa-fw"></i>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>

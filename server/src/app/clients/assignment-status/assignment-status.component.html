@@ -1,0 +1,56 @@
+<div class="row">
+    <ul class="legend" *ngIf="assignmentLength != 0 && learnerLength != 0">
+        <li><span class="unassigned"></span>Unassigned</li>
+        <li><span class="pending"></span>Pending</li>
+        <li><span class="submitted"></span>Submitted</li>
+        <li><span class="resubmitted"></span>Re-submitted</li>
+        <li><span class="requestforresubmission"></span>Request for resubmission</li>
+        <li><span class="completed"></span>Completed</li>
+    </ul>
+    <div class="col-12" *ngIf="assignmentLength != 0 && learnerLength != 0">
+        <div class="table-responsive">
+            <table class="float-left">
+                <thead>
+                    <tr>
+                        <th class="table_th">Learners</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let learn of learner">
+                        <td class="learner-name"> {{learn.learnerName}} </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngFor="let unit of unitArray">
+
+                <table class="float-left" border="1">
+                    <thead>
+                        <tr>
+                            <th [attr.colspan]="unit.assignment.length">Unit {{unit._id}}</th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let assignment of unit.assignment">{{assignment.assignmentNo}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let learn of learner">
+                            <td *ngFor="let ass of unit.assignment" class="td-width">
+                                <div title="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
+                                    [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <p class="m-auto text-info" *ngIf="assignmentLength < 1 || learnerLength < 1">No assignments Alloted!</p> -->
+    <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="assignmentLength < 1 || learnerLength < 1">
+        <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
+        No Assignment Alloted!
+    </h3>
+
+</div>
