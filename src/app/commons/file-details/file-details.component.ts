@@ -153,30 +153,79 @@ export class FileDetailsComponent implements OnInit {
 
     this.loading = true;
 
+
+    console.log("this.currentFolder", this.currentFolder._id)
+
+    this._folderService.getFolder(this.currentFolder._id).subscribe(res=>{
+
     let zip: JSZip = new JSZip();
     let count = 0;
 
-    var zipFilename = this.currentFolder.title + '.zip';
+    var zipFilename = res.folders.title + '.zip';
 
+      
+      console.log(res.folders);
 
-    _.forEach(this.currentFolder.files, (file) => {
-      var filename = file.path.split("/")[3];
-      // loading a file and add it in a zip file
-      JSZipUtil.getBinaryContent(file.path, (err, data) => {
-        if (err) {
-          throw err; // or handle the error
-        }
-        zip.file(filename, data, { binary: true });
-        count++;
+      if (res.folders[0].files && res.folders[0].files.length){
+        _.forEach(res.folders[0].files, (file) => {
+        console.log("file.path", file.path, file)
+        var filename = file.path.split("/")[3];
+        // loading a file and add it in a zip file
+        JSZipUtil.getBinaryContent(file.path, (err, data) => {
+          if (err) {
+            throw err; // or handle the error
+          }
+          zip.file(filename, data, { binary: true });
+          count++;
 
-        if (count == this.currentFolder.files.length) {
-          zip.generateAsync({ type: 'blob' }).then(function (content) {
-            saveAs(content, zipFilename);
-          });
-          this.loading = false;
-        }
+          if (count == res.folders[0].files.length) {
+            zip.generateAsync({ type: 'blob' }).then(function (content) {
+              saveAs(content, zipFilename);
+            });
+            this.loading = false;
+          }
+        });
       });
-    });
+    }
+    else{
+        alert("No files contais in this folder")
+    }
+
+    })
+
+
+    
+
+    // console.log("this.currentFolder.files", this.currentFolder.files)
+    // this._folderService.getFolder(this.id).subscribe(res=>{
+
+    // })
+    // if (this.currentFolder.files && this.currentFolder.files.length){
+    //   _.forEach(this.currentFolder.files, (file) => {
+    //     console.log("file.path", file.path, file)
+    //     var filename = file.path.split("/")[3];
+    //     // loading a file and add it in a zip file
+    //     JSZipUtil.getBinaryContent(file.path, (err, data) => {
+    //       if (err) {
+    //         throw err; // or handle the error
+    //       }
+    //       zip.file(filename, data, { binary: true });
+    //       count++;
+
+    //       if (count == this.currentFolder.files.length) {
+    //         zip.generateAsync({ type: 'blob' }).then(function (content) {
+    //           saveAs(content, zipFilename);
+    //         });
+    //         this.loading = false;
+    //       }
+    //     });
+    //   });
+    // }
+    // else{
+
+    // }
+
+
   }
 
   saveFolder() {

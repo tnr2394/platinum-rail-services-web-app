@@ -130,10 +130,10 @@
             </div>
             <mat-divider class="mb-3"></mat-divider>
             <div class="row m-0">
-                <!-- <div class="col-sm-6" *ngFor="let learner of learnerNames">
+                <div class="col-sm-6" *ngFor="let learner of learnerNames">
                     <p>{{learner}}</p>
-                </div> -->
-                <div class="col-sm-6">
+                </div>
+                <!-- <div class="col-sm-6">
                     <mat-form-field class='min-width'>
                         <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
                         <mat-icon matSuffix>search</mat-icon>
@@ -143,17 +143,17 @@
                         <mat-datepicker-toggle matSuffix [for]="picker" required ></mat-datepicker-toggle>
                         <mat-datepicker #picker [startAt]="today"></mat-datepicker>
                         <mat-error *ngIf="duedate == undefined">Please select a Due Date</mat-error>
-                    </mat-form-field>
+                    </mat-form-field> -->
                     <!-- *ngFor="let learner of learnerNames" -->
                     <!-- <p>{{learner}}</p> -->
-                    <mat-grid-list cols="2" rowHeight='30px'>
-                        <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'>
+                    <!-- <mat-grid-list cols="2" rowHeight='30px'>
+                        <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'> -->
                             <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable"-->
-                            <mat-checkbox (change)='onSelectChange($event, i)' 
+                            <!-- <mat-checkbox (change)='onSelectChange($event, i)' 
                                 [value]='learner' [checked] = 'learner.checked' [disabled]="learner.checked">{{learner.name}}</mat-checkbox>
                         </mat-grid-tile>
                     </mat-grid-list>
-                </div>
+                </div> -->
             </div>
             <!-- <h3 *ngFor="let learner of learnerNames">{{learner}}</h3> -->
         </mat-tab>
