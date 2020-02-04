@@ -56,6 +56,7 @@ export class FilesComponent implements OnInit, OnChanges {
 
         this.openSnackBar("File Uploaded Successfully", "Ok");
         this.updateData(this.files);
+        this.fileCount = this.files.length;
       }, err => {
         return this.openSnackBar("Something went wrong", "Ok");
       });

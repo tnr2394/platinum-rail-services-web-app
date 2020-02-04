@@ -222,7 +222,7 @@ export class MaterialsComponent implements OnInit {
     console.log("this.materials", this.materials)
     this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.materials)));
     console.log(" dataSource ", this.dataSource)
-    
+    this.mydsidenav.close()
     // this.dataSource = this.materials;
 
   }
