@@ -697,6 +697,7 @@ th.mat-header-cell {
     color: white;
     border-radius: 6px;
     border-top-right-radius: 30px;
+    opacity: 1 !important;
     .mat-tab-label-content {
       &:before {
         border-right: 1px solid white;
@@ -800,5 +801,12 @@ th.mat-header-cell {
 .tooltip-class {
   @media (max-width:1024px) {
     display: none !important;
+  }
+}
+@media (max-width:1199px) {
+  .folder_sidenav {
+    mat-sidenav-content {
+      margin-right: 0px !important;
+    }
   }
 }

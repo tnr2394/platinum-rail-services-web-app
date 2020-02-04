@@ -11,6 +11,8 @@ import { AddMaterialModalComponent } from './add-material-modal/add-material-mod
 import { EditMaterialModalComponent } from './edit-material-modal/edit-material-modal.component';
 import { FilterService } from "../../services/filter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as _ from 'lodash';
+
 
 
 
@@ -21,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MaterialsComponent implements OnInit {
   file: any;
+  materialIndex: any;
   clearCheckBox() {
     console.log("CHILD METHOD");
     this.selectedCheckbox = false;
@@ -52,7 +55,7 @@ export class MaterialsComponent implements OnInit {
   selectedCheckbox: Boolean;
   view: Boolean = false;
   loading: Boolean;
-
+  panelOpenState: boolean = false;
   typeArray = ['Assignment', 'Reading'];
 
   assignmentStatus = [
@@ -77,25 +80,14 @@ export class MaterialsComponent implements OnInit {
   }
 
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
+  @Input('deletedFile') deletedFile: any;
 
   constructor(public _learnerSerice: LearnerService, public _courseService: CourseService, public _materialService: MaterialService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.materials = [];
     // this.allMaterials = this.materials[];
     this.dataSource = new MatTableDataSource(this.materials);
-
-    // this._learnerSerice.isSelected.subscribe(res => {
-
-    //   console.log('Res received', res);
-    //   this.selectedCheckbox = false;
-
-    // })
-
   }
-
-  // public childMethod(){
-  //   console.log("MATERIAL COMPONENT CHILD METHOD")
-  // }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("Changes in app materials", changes);
@@ -110,7 +102,6 @@ export class MaterialsComponent implements OnInit {
     this.dataSource.sort = this.sort;
     console.log("DATASOURCE", this.dataSource)
     console.log('materialsDiaplay', this.materials);
-
   }
 
   applyFilter(filterValue: string) {
@@ -213,7 +204,28 @@ export class MaterialsComponent implements OnInit {
       this.updateData(finalarray);
     }
   }
+  deleteFile(event){
+    console.log("IN delete function", event);
+    console.log("this.materials[this.materialIndex].files", this.materials[this.materialIndex].files);
+    
+    var index = _.findIndex(this.materials[this.materialIndex].files, function (o) {
+      console.log("o._id", o, "event.fileId", event.fileId); 
+      return o == event.fileId.toString();
+    })
+    if (index > -1) this.materials[this.materialIndex].files.splice(index, 1)
+    console.log("this.materials[this.materialIndex].files", this.materials[this.materialIndex].files);
+    console.log(" dataSource ", this.dataSource)
+    // this.dataSource = [];
+    // this.dataSource = new MatTableDataSource([]);
+    console.log(" dataSource ", this.dataSource)
 
+    console.log("this.materials", this.materials)
+    this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.materials)));
+    console.log(" dataSource ", this.dataSource)
+    this.mydsidenav.close()
+    // this.dataSource = this.materials;
+
+  }
 
 
 
@@ -278,6 +290,8 @@ export class MaterialsComponent implements OnInit {
     this.files = event.files;
   }
   fileDetailsComp(event){
+    console.log("fileDetailsComp", event);
+    this.materialIndex = event.materialIndex
     this.file = event.file;
     this.mydsidenav.open();
     console.log("EVENT OPENING", event.file);

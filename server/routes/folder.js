@@ -19,6 +19,8 @@ router.delete('/', folderController.deleteFolder);
 // ADD File
 router.post('/files', jwtService.validateJWT, folderController.addFile);
 
+router.delete('/files', folderController.deleteFileFromFolder);
+
 // SHARE FOLDER
 router.post('/share', folderController.shareFolder);
 

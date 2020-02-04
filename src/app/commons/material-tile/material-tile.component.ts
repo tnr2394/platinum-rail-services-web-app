@@ -34,7 +34,7 @@ export class MaterialTileComponent implements OnInit {
   allotedLearners = [];
   copyLearners: any;
   temp: any;
-  type: 'folder';
+  type: String;
   title: any;
   files: any;
   materialId: any;
@@ -50,7 +50,6 @@ export class MaterialTileComponent implements OnInit {
   learnerNames = [];
   displayLearners: Boolean = false;
   displaySubFolders: boolean = false;
-
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog, 
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -114,6 +113,8 @@ export class MaterialTileComponent implements OnInit {
   }
 
   getMaterialFiles() {
+    console.log("INDEX IS", this.i);
+    
     // this.temp = this.copyLearners;
     console.log("Getting Material ID from materialTile component", this.temp);
     if(this.material != undefined){
@@ -130,6 +131,7 @@ export class MaterialTileComponent implements OnInit {
     }
   }
   fileDetails(event){
+    event.materialIndex = this.i
     this.fileDetailsComp.emit(event)
     console.log("event in material-tile", event);
   }
@@ -229,7 +231,11 @@ export class MaterialTileComponent implements OnInit {
   }
 // GET LEARNER COUNT
   getCount(){
-    
+    this.assignedLearner = 0
+    this.pendingLearners = 0
+    this.resubmissionLearners = 0
+    this.submittedLearners = 0
+    this.completedLearners = 0
     this.learner.forEach(learner=>{
       learner.assignments.forEach(assignment=>{
         if (assignment.assignmentId == this.materialId ){
@@ -248,7 +254,17 @@ export class MaterialTileComponent implements OnInit {
             this.completedLearners += 1
           }
         }
+
+        console.group(" Chek Counts with type ")
+
+
+        console.log(this.allLearners, typeof this.allLearners, "this.allLearners")
+        console.log(this.assignedLearner, typeof this.assignedLearner, "this.assignedLearner")
+
         this.unassignedLearners = this.allLearners - this.assignedLearner;
+        console.log(this.unassignedLearners, typeof this.unassignedLearners, "this.unassignedLearners")
+        console.groupEnd()
+
       })
     })
     console.log("-----this.assignedLearner", this.assignedLearner);

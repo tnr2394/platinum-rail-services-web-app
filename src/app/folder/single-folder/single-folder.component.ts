@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FolderService } from '../../services/folder.service';
@@ -25,14 +25,22 @@ import { CreateFolderModalComponent } from '../create-folder-modal/create-folder
 export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   filesToDisplay: any;
   allFolders = [];
   preventSingleClick: boolean;
+  bgColors;
+  lastColor;
+  subFolders: any;
+  details: any;
+  display: boolean;
+  navArray: any;
   constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
   folderId;
   fileList;
@@ -48,7 +56,6 @@ export class SingleFolderComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
       this.folderId = params['id'];
-
       console.log(' this.folderId', this.folderId);
     });
     this.getFolderFiles();
@@ -93,14 +100,19 @@ export class SingleFolderComponent implements OnInit {
   }
 
   getFolderFiles() {
-    this._folderService.getFolder(this.folderId).subscribe((folder) => {
-      console.log('folder:::::::::', folder);
-      this.folder = folder[0];
-      // this.fileList = folder[0].files;
-      this.fileList = folder[0].files;
-
+    this._folderService.getFolder(this.folderId).subscribe((data) => {
+      console.log('folder:::::::::', data);
+      this.folder = data.folders[0];
+      this.subFolders = this.folder.child;
+      this.fileList = data.folders[0].files;
       this.filesToDisplay = this.fileList;
-      console.log("THis.fileList", this.fileList);
+      // this.subFolders = this.folder.child
+      if(data.preFolders != undefined){
+        this.navArray = data.preFolders.reverse();
+      }
+      console.log("this.folder.child", this.folder.child.reverse());
+      console.log("this.subFolders.reverse", this.subFolders.reverse());
+      
     })
   }
 
@@ -138,13 +150,48 @@ export class SingleFolderComponent implements OnInit {
     this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
       if (folder == undefined) return
       console.log("FOLDER NAME RECIEVED", folder);
-      this.allFolders.push(folder);
+      this.subFolders.push(folder);
     })
   }
   showFiles(folderId){
     console.log("FOLDER", folderId);
     
     // this.router.navigate(['/single-folder', folderId])
+  }
+  openFileDetails(event) {
+    console.log("IN MY DOCS", event);
+    if (event.file != undefined) {
+      this.details = event.file;
+    }
+    else {
+      this.details = event
+    }
+    this.mydsidenav.open()
+  }
+  fileDeleted(event){
+    console.log("In singleFolder", event);
+    if(event.type == 'folder'){
+      var index = _.findIndex(this.subFolders, function (o) {
+        console.log("o._id", o, "event.fileId", event.fileId);
+        return o._id == event.fileId.toString();
+      })
+      if (index > -1) this.subFolders.splice(index, 1)
+    }
+    else if(event.type == 'file'){
+      var index = _.findIndex(this.folder.files, function (o) {
+        console.log("o._id", o, "event.fileId", event.fileId);
+        return o._id == event.fileId.toString();
+      })
+      if (index > -1) this.folder.files.splice(index, 1)
+    }
+    this.mydsidenav.close();
+    // this.subFolders
+  }
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
   }
   doubleClick(event, singleFolder) {
     console.log("Double Click Event", event);
@@ -155,7 +202,19 @@ export class SingleFolderComponent implements OnInit {
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
   }
+  singleClick(event, singleFolder) {
+    console.log("Single Click Event", event);
 
-
+    this.preventSingleClick = false;
+    const delay = 200;
+    this.timer = setTimeout(() => {
+      if (!this.preventSingleClick) {
+        this.details = singleFolder;
+        console.log("singleFolder", this.details);
+        this.display = true;
+      }
+    }, delay);
+    this.openFileDetails(singleFolder)
+  }
 
 }

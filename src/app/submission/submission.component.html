@@ -95,8 +95,8 @@
 
         <div class='row'>
             <div class="table-responsive">
-                <div *ngIf="dataSource">
-                    <h1>{{dataSource.length}}</h1>
+                <div>
+                    <!-- <h1>{{dataSource.length}}</h1> -->
                     <div *ngIf='selectedJob == undefined && selectedAssignment == undefined'
                         class="msg_text mb-2 text-info text-center">
                         Choose Job to display Assignments!
@@ -112,9 +112,9 @@
 
 
                         <!-- Name Column -->
-                        <ng-container matColumnDef="Learner" class="learner_name_submission">
+                        <ng-container matColumnDef="learnerName" class="learner_name_submission">
                             <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
-                                mat-sort-header="name"> Name
+                                mat-sort-header="learnerName"> Name
                             </th>
                             <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
                                 *matCellDef="let learner;let i = index;">
@@ -126,7 +126,7 @@
 
                         <!--Assignment Column -->
                         <ng-container matColumnDef="Assignment">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment</th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef>Assignment</th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
                                 Unit- {{learner.assignmentUnit}} Assignment-{{learner.assignmentNo}}
                             </td>
@@ -135,7 +135,7 @@
 
                         <!-- Status Column -->
                         <ng-container matColumnDef="Status">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef> Status </th>
                             <td class="mat-table-cell text-center m-0" mat-cell
                                 *matCellDef="let learner; let i = index;">
                                 <div [ngClass]="learner.assignmentStatus" class="text-center">

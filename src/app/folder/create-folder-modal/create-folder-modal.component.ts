@@ -16,12 +16,16 @@ export class CreateFolderModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    console.log("this.data", this.data);
+    
   }
   save() {
     console.log('FOLDER NAME IS', this.folderName);
+
+
     let newFolder = {
       title: this.folderName,
-      parent: this.data._id
+      parent: this.data
     }
     console.log("New folder", newFolder);
     if (this.folderName != '') {

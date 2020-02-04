@@ -1,13 +1,13 @@
-<div class="card h-100 mb-3 justify-content-center px-2 py-1" (click)="fileDetails()">
+<div class="card h-100 mb-3 justify-content-center px-2 py-1" (click)="fileDetails()" style="cursor: pointer;">
     <div class="card-block ">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <!-- <img [ngClass]="file.extension" src="assets/pdf-icon-round.png"> -->
                 <div [ngClass]="file.extension"> </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 text-left p-0">
-                <b style="font-size: 13px; word-break: break-all;" placement="bottom-left" ngbTooltip="{{file.title}}"
-                    tooltipClass="tooltip-class" triggers="hover">{{file.title}}</b>
+            <div class="col-lg-9 col-md-9 col-sm-9 text-left pl-0">
+                <b style="font-size: 13px; word-break: break-all;" placement="bottom-left" ngbTooltip="{{file.alias}}"
+                    tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</b>
                 <div class="row text-left pt-1">
                     <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 file_title">
                         

@@ -11,7 +11,7 @@ export class DeleteConfirmModalComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DeleteConfirmModalComponent>) { }
 
   ngOnInit() {
-    console.log("Data", this.data);
+    console.log("Data", this.data.type);
   }
   confirm(value){
     console.log('value', value);

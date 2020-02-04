@@ -60,6 +60,9 @@ export class SingleInstructorComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.instructorId = params.id;
     });
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
     // this.dataSource = new MatTableDataSource<any>(this.jobs);
   }
 

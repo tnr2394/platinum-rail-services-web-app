@@ -6,22 +6,44 @@
         <!-- <h5>Total Files : <span>{{totalFiles}}</span></h5> -->
         <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
         <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
+        <!-- <h5>isMaterials : {{isMaterials}}</h5> -->
         <br />
         <mat-form-field class="example-full-width" (click)="showSaveBtn()">
-            <input matInput placeholder="Title" [(ngModel)]="title">
+            <input matInput placeholder="Title" readonly="{{readOnlyTitle}}" [(ngModel)]="title">
         </mat-form-field>
         <div style="position: relative;">
             <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
                     class="fa fa-check-circle"></i></button>
         </div>
+
+        <div *ngIf="isMaterials == 'material'">
+            <div class="drawer_btn">
+                <button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
+                <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
+              <div><a href="{{path}}">Download</a></div>
+            </div>
+        </div>
     </mat-tab>
 
-    <mat-tab label="Activity">
+    <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
+
         <h4>Shared with:</h4>
+        <h6><b>Clients</b></h6>
+        <ul>
+            <li *ngFor="let client of sharedClient">
+                {{client.name}}
+            </li>
+        </ul>
+        <h6><b>Instructors</b></h6>
+        <ul>
+            <li *ngFor="let instructor of sharedInstructor">
+                {{instructor.name}}
+            </li>
+        </ul>
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()">Share</button>
             <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
-            <button mat-stroked-button color="info">Download</button>
+            <button mat-stroked-button color="info" (click)="downloadAll()">Download</button>
         </div>
     </mat-tab>
     <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->

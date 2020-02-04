@@ -1,60 +1,92 @@
-<p class="material_main_title" *ngIf="folder">{{folder.title}}</p>
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav mode="side" position="end">
+        <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
+                aria-hidden="true"></i></mat-button>
+        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"></app-file-details>
+    </mat-sidenav>
+    <mat-sidenav-content style="padding: 0 10px;">
 
+<div class="d-inline-block w-100">
+        <p class="material_main_title float-left mb-0" *ngIf="folder">{{folder.title}}</p>
+        <button (click)='createFolder()' mat-flat-button color="primary" class="button_hover_effect mb-0 float-right create-folder">
+            <i class="fas fa-plus fa-fw"></i>
+            <span> Create Folder</span>
+        </button>
+</div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" routerLink="/mydocuments" *ngIf="folder">My Documents</a><i class="fas fa-angle-right mx-2" aria-hidden="true"></i></li>
+        <div *ngIf="navArray">
+            <li class="breadcrumb-item"><a class="black-text" routerLink="/single-folder/{{folder._id}}"
+                    *ngFor="let folder of navArray">{{folder.title}}<i class="fas fa-angle-right mx-2" aria-hidden="true"></i></a></li>
+        </div>
+        <li class="breadcrumb-item"><a class="black-text" *ngIf="folder">{{folder.title}}</a></li>
+    </ol>
+</nav>
 <mat-card class="material_main_card">
     <!-- <mat-card-header> -->
-    <div class="w-100 d-inline-block">
-        <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn float-left"><i
-                class="fas fa-download"></i><span>
-                Download All</span></button>
+    <div class="row">
+        <div class="col-md-4">
+            <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i
+                    class="fas fa-download"></i><span>
+                    Download All</span></button>
 
-        <button class='uploadBtn float-right' (click)="addFileModal()">
-            <i class="fas fa-cloud-upload-alt"></i>
-        </button>
+        </div>
+        <div class="col-md-6 col-sm-9">
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()" value="value">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="col-md-2 col-sm-3 text-right">
+            <button class='uploadBtn' (click)="addFileModal()">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </button>
+        </div>
+        
+        <div class="row justify-content-center">
+             <h4 mat-dialog-actions class="text-info mt-3 pl-3" align='center' *ngIf="loading">
+                 Downloading... <i class="fas fa-refresh fa-spin"></i>
+             </h4>
+        </div>
+       
+        
 
-        <h4 mat-dialog-actions class="text-info mt-3 pl-3" align='center' *ngIf="loading">
-            Downloading... <i class="fas fa-refresh fa-spin"></i>
-        </h4>
-        <mat-form-field>
-            <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()" value="value">
-        </mat-form-field>
+        <!-- <div class="row table_search">
+            <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            
+        </div> -->
+
     </div>
 
     <!-- </mat-card-header> -->
-    <div class="row" *ngIf="fileList && fileList.length > 0">
-        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay"
-            [contextMenu]="basicMenu" [contextMenuSubject]="file">
-            <file-tile [file]="file"></file-tile>
-            
-            <!-- <mat-card class="p-0 all_material_block">
-                <mat-card-content class="material_card">
-                    <div [ngClass]="file.extension"> </div>
-                    <h3 class="file_title">{{file.title}}</h3>
+
+    <div class="row">
+        <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let childFolder of subFolders;let i = index'>
+            <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,childFolder)"
+                (dblclick)="doubleClick($event,childFolder)">
+                <mat-card-content class="material_card p-2">
+                    <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                        <i class="fa fa-folder icon round"></i>
+                    </div>
+                    <h5 class="materials_title pt-2">{{childFolder.title}}</h5>
                 </mat-card-content>
-                <div class="download_btn">
-                    <a href="{{file.path}}" class="text-white">
-                        <i class="fas fa-file-download"></i><span>Download</span>
-                    </a>
-                </div>
-            </mat-card> -->
+            </mat-card>
         </div>
     </div>
-    <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
-        <i class="fas fa-plus fa-fw"></i>
-        <span> Create Folder</span>
-    </button>
-    <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,singleFolder)">
-        {{folder.title}}
+    <div class="row" *ngIf="fileList && fileList.length > 0">
+        <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of filesToDisplay">
+            <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
+        </div>
     </div>
-    <!-- CONTEXT MENU -->
-    <!-- <context-menu>
-        <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-            <i class="fa fa-share-alt" aria-hidden="true"></i> Share
-        </ng-template>
-        <ng-template contextMenuItem divider="true"></ng-template>
-        <ng-template contextMenuItem let-singleFolder (execute)="shareWith($event)">
-            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-        </ng-template>
-    </context-menu> -->
+
+    <!-- <div *ngFor="let folder of allFolders" (click)="showFiles(folder)" (dblclick)="doubleClick($event,folder)">
+        {{folder.title}}
+    </div> -->
 
     <div class="row" *ngIf="loadingMaterials == false && fileList.length == 0">
         <div class="col-12 materials_box">
@@ -69,4 +101,6 @@
         <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
         </h3>
     </mat-card>
-</mat-card>
+</mat-card> 
+</mat-sidenav-content>
+</mat-sidenav-container>

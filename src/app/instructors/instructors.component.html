@@ -32,14 +32,14 @@
                             </div>
                         </div>
                         <!--Text-->
-                        <div *ngIf="dataSource">
+                        <div>
                             <!-- <h1>{{dataSource.length}}</h1> -->
                             <div class="table-responsive" style="height:500px;">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                     <ng-container matColumnDef="name">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="title"> Name </th>
+                                            mat-sort-header="name"> Name </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let instructor">
                                             {{instructor.name}} </td>
                                     </ng-container>
