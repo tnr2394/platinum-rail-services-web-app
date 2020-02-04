@@ -15,9 +15,11 @@
             <!-- </div> -->
         </div>
         <div>
-            <mat-card>
-                <circle-progress [percent]="completionPercent" [radius]="100" [outerStrokeWidth]="6" [innerStrokeWidth]="1" [space]="1" [backgroundGradient]="true" [backgroundOpacity]="0.3" [backgroundColor]="'#b4cef7'"
-                    [outerStrokeColor]="'#4285F4'" [responsive]="true" [innerStrokeColor]="'#88c1f7'" [animation]="true" [showSubtitle]="true" [animationDuration]="300">
+            <mat-card class="text-center">
+                <circle-progress [percent]="completionPercent" [radius]="90" [outerStrokeWidth]="12" [innerStrokeWidth]="1" [space]="5" [backgroundGradient]="true" [backgroundOpacity]="0.3" [backgroundColor]="'#b4cef7'"
+                    [outerStrokeColor]="'#4285F4'" [responsive]="false" [innerStrokeColor]="'#88c1f7'" [animation]="true"
+                    [showSubtitle]="true" [titleFontSize]="30" [unitsFontSize]="20" [titleFontWeight]="600"
+                    [animationDuration]="300">
                 </circle-progress>
             </mat-card>
         </div>

@@ -425,9 +425,6 @@ button.uploadBtn {
 .indigo.lighten-4 {
     background-color: #eaebf1 !important;
 }
-.breadcrumb-item a{
-    font-size: 18px;
-}
 .create-folder{
     @media (max-width:422px){
         float: none !important;
@@ -444,5 +441,52 @@ button.uploadBtn {
     @media (max-width:575px) {
         max-width: 25% !important;
         padding: 0 !important;
+    }
+}
+.expansion-row{
+    .col{
+         min-width: calc(100% / 4);
+         max-width: calc(100% / 4);
+         @media (max-width:1199px){
+            min-width: calc(100% / 3);
+            max-width: calc(100% / 3);
+         }
+         @media (max-width:991px) {
+             min-width: calc(100% / 2);
+             max-width: calc(100% / 2);
+         }
+         @media (max-width: 500px){
+             min-width: 100%;
+             max-width: 100%;
+         }
+    }
+}
+.drawer-col-class {
+    .col {
+        min-width: calc(100% / 3);
+        max-width: calc(100% / 3);
+        @media (max-width:1199px) {
+            min-width: calc(100% / 2);
+            max-width: calc(100% / 2);
+        }
+        @media (max-width:991px) {
+            min-width: calc(100% / 2);
+            max-width: calc(100% / 2);
+        }
+         @media (max-width: 500px) {
+             min-width: 100%;
+             max-width: 100%;
+         }
+    }
+}
+.flex_reverse{
+    flex-direction: column;
+}
+@media (max-width:1024px){
+    .flex_reverse {
+        flex-direction: unset !important;
+    }
+    .col-md-12{
+        max-width: min-content !important;
     }
 }

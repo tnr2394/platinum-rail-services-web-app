@@ -32,6 +32,7 @@ export class FolderComponent implements OnInit {
   details: any;
   @Input('deletedFile') deletedFile: any;
   @Input('subFolders') subFolder: any;
+  @Input('removeCssClass') removeCssClass: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   showCreateBtn: boolean = false;
   constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
@@ -67,6 +68,11 @@ export class FolderComponent implements OnInit {
     }
     if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')){
       this.getFolders()
+    }
+    if (changes.removeCssClass != undefined){
+      if (changes.removeCssClass.currentValue == true){
+        $('.parent_row').removeClass('col-width-class');
+      }
     }
   }
 
@@ -142,6 +148,9 @@ export class FolderComponent implements OnInit {
   singleClick(event, singleFolder,i) {
     console.log("Single Click Event", event);
     // var id = "#folder_card_" + i;
+    this.removeCssClass = false
+    console.log("this.removeCssClss", this.removeCssClass);
+    
     $('.parent_row').addClass('col-width-class');
     this.preventSingleClick = false;
     const delay = 200;
