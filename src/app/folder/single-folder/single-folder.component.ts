@@ -12,6 +12,8 @@ import { ShareFileModalComponent } from '../share-file-modal/share-file-modal.co
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { FilterService } from '../../services/filter.service'
 import { CreateFolderModalComponent } from '../create-folder-modal/create-folder-modal.component';
+// import { $ } from 'protractor';
+declare var $: any;
 
 
 
@@ -160,6 +162,9 @@ export class SingleFolderComponent implements OnInit {
   }
   openFileDetails(event) {
     console.log("IN MY DOCS", event);
+    $('.expansion-row').addClass('drawer-col-class');
+    $('.flex_row').addClass('flex_reverse');
+    $('.col-md-8').addClass('col-md-12');
     if (event.file != undefined) {
       this.details = event.file;
     }
@@ -204,7 +209,6 @@ export class SingleFolderComponent implements OnInit {
   }
   singleClick(event, singleFolder) {
     console.log("Single Click Event", event);
-
     this.preventSingleClick = false;
     const delay = 200;
     this.timer = setTimeout(() => {
@@ -216,5 +220,11 @@ export class SingleFolderComponent implements OnInit {
     }, delay);
     this.openFileDetails(singleFolder)
   }
-
+  closeSidenav() {
+    this.mydsidenav.close()
+    $('.expansion-row').removeClass('drawer-col-class');
+    $('.flex_row').removeClass('flex_reverse');
+    $('.col-md-8').removeClass('col-md-12');
+    $('.parent_row').removeClass('col-width-class');
+  }
 }

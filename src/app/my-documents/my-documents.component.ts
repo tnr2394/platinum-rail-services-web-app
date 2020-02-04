@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material'
 import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-modal.component';
+declare var $: any;
 
 @Component({
   selector: 'app-my-documents',
@@ -12,6 +13,7 @@ export class MyDocumentsComponent implements OnInit {
   details: any;
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   deletedFile: any;
+  removeCssClass: boolean = false;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   ngOnInit() {
   }
@@ -39,5 +41,10 @@ export class MyDocumentsComponent implements OnInit {
   fileDeleted(event){
     console.log(" TEST ", event);
     this.deletedFile = event;
+  }
+  closeSidnav() {
+    this.mydsidenav.close()
+    // this.removeCssClass = true;
+    $('.parent_row').removeClass('col-width-class');
   }
 }

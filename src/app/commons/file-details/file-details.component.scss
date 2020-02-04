@@ -40,4 +40,19 @@ mat-form-field{
 .drawer_btn{
     justify-content: space-between;
     display: flex;
+    @media (max-width:422px){
+        display: inline-block !important;
+        width: 100%;
+        button{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+}
+.download_link{
+    a{
+        color: brown;
+        text-decoration: none;
+    }
+    color: brown;
 }
