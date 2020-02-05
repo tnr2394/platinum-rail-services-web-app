@@ -196,5 +196,13 @@ export class FolderComponent implements OnInit {
   }
   drop(event: CdkDragDrop<string[]>){
     console.log("CARD DROP EVENT", event);
+    console.log("event", event.previousIndex, this.allFolders[event.previousIndex])
+    var temp1 = this.allFolders[event.previousIndex]
+    var temp2 = this.allFolders[event.currentIndex]
+    this.allFolders[event.previousIndex] = temp2
+    this.allFolders[event.currentIndex] = temp1
+
+    console.log("event", event.currentIndex, this.allFolders[event.currentIndex])
+
   }
 }
