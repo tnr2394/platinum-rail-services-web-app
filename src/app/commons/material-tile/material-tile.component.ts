@@ -11,6 +11,8 @@ import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/c
 import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import * as _ from 'lodash';
+// import { $ } from 'protractor';
+declare var $: any;
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -120,8 +122,10 @@ export class MaterialTileComponent implements OnInit {
   }
 
   getMaterialFiles() {
-    console.log("INDEX IS", this.i);
-
+    // console.log("INDEX IS", this.i);
+    var tempId = "#"+ this.materialId
+    $(tempId).addClass('box_shadow_cls')
+    console.log(" Yash ", tempId)
     // this.temp = this.copyLearners;
     console.log("Getting Material ID from materialTile component", this.temp);
     if (this.material != undefined) {
@@ -145,6 +149,9 @@ export class MaterialTileComponent implements OnInit {
   }
   closeFileDetails() {
     console.log("Expansion closed^");
+    var tempId = "#" + this.materialId
+    $(tempId).removeClass('box_shadow_cls')
+    console.log(" Yash ", tempId)
   }
   applyFilter(filterValue: string) {
     console.log("filterValue", filterValue);
