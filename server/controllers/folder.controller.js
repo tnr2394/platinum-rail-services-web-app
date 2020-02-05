@@ -105,11 +105,11 @@ folderController.getFolders = async function (req, res, next) {
 function getParentFolder(folderId, previousFolders, callback) {
     console.log("folder", folderId)
     folderModel.findOne({
-            child: folderId
-        }, {
-            _id: 1,
-            title: 1
-        })
+        child: folderId
+    }, {
+        _id: 1,
+        title: 1
+    })
         .exec((error, folder) => {
             console.log(error, folder)
             if (error) {
@@ -461,6 +461,44 @@ folderController.getSharedFolder = function (req, res, next) {
     })
 }
 
+folderController.changeFolderPosition = function (req, res, next) {
+    return new Promise((resolve, reject) => {
+
+        console.log('Inside Change Folder Function', req.body);
+        const folderId = req.body.folderId;
+        const parentId = req.body.parentId;
+        const childId = req.body.childId;
+
+
+        console.log('Folder Function:::', folderId, parentId, childId);
+
+        if (req.body.folderId && req.body.parentId && req.body.childId) {
+            folderDOA.updateParentFolder(parentId, folderId).then((response) => {
+                console.log('Response::::::', response);
+                console.log('Id Pulled From Parent now push to sub folder', childId, folderId);
+                folderDOA.updateSubFolder(childId, folderId).then((updateResponse) => {
+                    return res.send({ data: { updateResponse } });
+                }).catch((err) => {
+                    console.log('Err===============>>>>', err);
+                    return res.status(500).send({ err })
+                })
+            }).catch((error) => {
+                console.log('Errors::::::::', error)
+                return res.status(500).send({ error })
+            })
+        } else if (!req.body.parentId) {
+            console.log('This Case Has Root Folder So No ParentId');
+            folderDOA.updateSubFolder(childId, folderId).then((updateResponse) => {
+                console.log('After Response::::::::::', updateResponse);
+                return res.send({ data: { updateResponse } });
+            }).catch((err) => {
+                console.log('Err:::::::::::', err);
+                return res.status(500).send({ err })
+            })
+        }
+    })
+}
+
 
 folderController.getSharedFile = function (req, res, next) {
 
@@ -483,7 +521,7 @@ folderController.getSharedFile = function (req, res, next) {
 
         fileModel.aggregate([{
             $match: query
-        }, ]).exec((err, files) => {
+        },]).exec((err, files) => {
             if (err) {
                 reject(err);
             } else {

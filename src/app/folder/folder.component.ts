@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 // import { $ } from 'protractor';
 declare var $: any;
+import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-folder',
@@ -33,8 +34,10 @@ export class FolderComponent implements OnInit {
   @Input('deletedFile') deletedFile: any;
   @Input('subFolders') subFolder: any;
   @Input('removeCssClass') removeCssClass: any;
+  @Input('updatedFolder') updatedFolder: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   showCreateBtn: boolean = false;
+  allFoldersCopy: any[];
   constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
     ,public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
@@ -73,6 +76,22 @@ export class FolderComponent implements OnInit {
       if (changes.removeCssClass.currentValue == true){
         $('.parent_row').removeClass('col-width-class');
       }
+    }
+    if (changes.updatedFolder){
+      var index = _.findIndex(this.allFolders, function (o) {
+        return o._id.toString() == changes.updatedFolder.currentValue._id.toString();
+      })
+      if(index > -1) this.allFolders.splice(index,1,changes.updatedFolder.currentValue)
+
+      else{
+        console.log("this.subFolder", this.subFolder);
+        var index = _.findIndex(this.subFolder, function (o) {
+          return o._id.toString() == changes.updatedFolder.currentValue._id.toString();
+        })
+        console.log("Index", index);
+        if (index > -1) this.subFolder.splice(index, 1, changes.updatedFolder.currentValue)
+      }
+      console.log("this.subFolder", this.subFolder);
     }
   }
 
@@ -121,6 +140,7 @@ export class FolderComponent implements OnInit {
     this._folderService.getFolders().subscribe((folders) => {
       console.log('Folders', folders);
       this.allFolders = folders;
+      this.allFoldersCopy = this.allFolders
     });
   }
   openFileDetails(file){
@@ -173,5 +193,8 @@ export class FolderComponent implements OnInit {
     console.log("singleFolder", singleFolder);
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
+  }
+  drop(event: CdkDragDrop<string[]>){
+    console.log("CARD DROP EVENT", event);
   }
 }

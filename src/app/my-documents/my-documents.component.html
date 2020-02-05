@@ -5,11 +5,14 @@
     <mat-sidenav #sidenav mode="side" position="end">
         <mat-button class="close_btn text-primary" (click)="closeSidnav()"><i class="fa fa-times-circle"
                 aria-hidden="true"></i></mat-button>
-        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"></app-file-details>
+        <span *ngIf="type == 'folder'"><a routerLink="/single-folder/{{fileId}}">
+                <h4>{{fileTitle}}</h4>
+            </a></span>
+        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)" (titleChanged)="folderTitleChenged($event)"></app-file-details>
     </mat-sidenav>
     <mat-sidenav-content style="padding: 0px 10px;">
         <mat-card class="mt-2">
-            <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile" [removeCssClass]="removeCssClass"></app-folder>
+            <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile" [updatedFolder]="updatedFolder" [removeCssClass]="removeCssClass"></app-folder>
         </mat-card>
 </mat-sidenav-content>
 </mat-sidenav-container>

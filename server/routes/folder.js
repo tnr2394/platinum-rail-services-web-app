@@ -5,6 +5,10 @@ const folderController = require('../controllers/folder.controller');
 
 const jwtService = require('../services/jwt.service');
 
+
+router.post('/change-position', folderController.changeFolderPosition);
+
+
 // ADD FOLDER
 router.post('/', jwtService.validateJWT, folderController.createFolder);
 
@@ -32,6 +36,7 @@ router.get('/shared', jwtService.validateJWT, folderController.getSharedFolder);
 
 // GET SHARED FILE
 router.get('/shared-file', jwtService.validateJWT, folderController.getSharedFile);
+
 
 
 // FILE OPERATIONS

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component';
 import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material';
 import { Observable } from 'rxjs';
@@ -28,6 +28,7 @@ export class SingleFolderComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
+  @Output() titleChanged: EventEmitter<any> = new EventEmitter<any>();
   filesToDisplay: any;
   allFolders = [];
   preventSingleClick: boolean;
@@ -37,6 +38,10 @@ export class SingleFolderComponent implements OnInit {
   details: any;
   display: boolean;
   navArray: any;
+  fileTitle: any;
+  fileId: any;
+  type: any;
+  updatedFolder: any;
   constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -167,9 +172,15 @@ export class SingleFolderComponent implements OnInit {
     $('.col-md-8').addClass('col-md-12');
     if (event.file != undefined) {
       this.details = event.file;
+      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+      this.fileId = this.details._id
+      this.type = event.file.type
     }
     else {
       this.details = event
+      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+      this.fileId = this.details._id
+      this.type = event.type
     }
     this.mydsidenav.open()
   }
@@ -191,6 +202,12 @@ export class SingleFolderComponent implements OnInit {
     }
     this.mydsidenav.close();
     // this.subFolders
+  }
+  folderTitleChenged(event){
+    console.log("Title changed event in folder", event);
+    this.fileTitle = event.alias
+    this.updatedFolder = event;
+    // this.titleChanged.emit(event)
   }
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);

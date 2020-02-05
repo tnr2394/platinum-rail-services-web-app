@@ -23,6 +23,8 @@ import * as _ from 'lodash';
 export class FileDetailsComponent implements OnInit {
   @Input('details') recievedFile;
   @Output() fileDeleted: EventEmitter<any> = new EventEmitter<any>();
+  @Output() titleChanged: EventEmitter<any> = new EventEmitter<any>();
+
   createdAt: any;
   totalFiles: any;
   lastUpdate: any;
@@ -66,7 +68,8 @@ export class FileDetailsComponent implements OnInit {
       this.path = changes.recievedFile.currentValue.path;
       
       // TITLE
-      this.title = changes.recievedFile.currentValue.title;
+      (changes.recievedFile.currentValue.alias) ? this.title = changes.recievedFile.currentValue.alias : this.title = changes.recievedFile.currentValue.title
+
       // ID
       this.id = changes.recievedFile.currentValue._id;
 
@@ -101,7 +104,9 @@ export class FileDetailsComponent implements OnInit {
     });
   }
 
+  closeSidenav(){
 
+  }
 
   shareWith() {
     console.log("ShareWith");
@@ -234,11 +239,10 @@ export class FileDetailsComponent implements OnInit {
       id: this.id
     }
     console.log("UPDATE", update);
-
+    this.recievedFile.title = this.title;
     this._folderService.editFolder(update).subscribe(res => {
-
+      this.titleChanged.emit(this.recievedFile)
     })
     this.openSnackBar("Updated Successfully", "ok")
-    // API CALL PENDING FOR SAVING CHANGED FOLDER TITLE
   }
 }

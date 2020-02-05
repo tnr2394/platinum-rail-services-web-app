@@ -27,6 +27,7 @@ export class MaterialTileComponent implements OnInit {
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
+  @Output() assignmentAllocated: EventEmitter<any> = new EventEmitter<any>();
   backupMaterial: any;
   isActive: string;
   editing: boolean;
@@ -288,6 +289,7 @@ export class MaterialTileComponent implements OnInit {
     console.log("allocated learners", this.allocatedLearners);
   }
   allocateMaterial() {
+    this.assignmentAllocated.emit({msg:'assignment allocated from material tile'})
     this.allocatedLearners.forEach(learner=>{
       this.allLearners.forEach(singleLearner=>{
         if (learner._id == singleLearner._id){
@@ -349,15 +351,6 @@ export class MaterialTileComponent implements OnInit {
         else {
           singleLearner.checked = false
         }
-
-
-        // singleLearner.allotments()
-
-        // if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
-        //  
-        // }else{
-        //   singleLearner.checked = false
-        // }
       })
     }
     console.log("THIS.ALLLEARNERS", this.allLearners);
