@@ -63,15 +63,15 @@ folder.updateChildFolder = function (parentId, folderId, obj) {
     var q = Q.defer();
 
     folderModel.updateOne({
-            _id: parentId
-        }, {
-            $push: {
-                child: folderId
-            }
-        }, {
-            new: true,
-            upsert: true
-        },
+        _id: parentId
+    }, {
+        $push: {
+            child: folderId
+        }
+    }, {
+        new: true,
+        upsert: true
+    },
         (err, updatedFolder) => {
             if (err) q.reject(err);
             else {
@@ -117,6 +117,63 @@ folder.removeFile = function (fileId) {
                 msg: "No File found"
             });
         })
+    return q.promise;
+}
+
+folder.updateParentFolder = function (parentId, childId) {
+    console.log('Update Parent Folder::', parentId, childId);
+    const q = Q.defer();
+    folderModel
+        .updateOne({
+            _id: parentId
+        }, {
+            $pull: {
+                child: childId
+            }
+        }, {
+            upsert: true,
+            new: true
+        }, (err, updatedFolder) => {
+            if (err) return q.reject(err);
+            else {
+                console.log("Removed Child From Parent Folder Successfully =  ", updatedFolder);
+                return q.resolve(updatedFolder);
+            }
+        });
+    return q.promise;
+}
+
+folder.updateSubFolder = function (folderId, childId) {
+    console.log("Child Folder Push in Parent Successfully =  ", folderId, childId);
+    const q = Q.defer();
+    folderModel.updateOne({ _id: folderId }, { $push: { child: childId } }, {
+        upsert: true, new: true
+    }, (err, updatedFolder) => {
+        if (err) return q.reject(err);
+        else {
+            folder.makeCurrentFolderChild(childId).then((response) => {
+                console.log("Child Folder Push in Parent Successfully =  ", response);
+                return q.resolve(response);
+            }).catch((err) => {
+                return q.reject(err);
+            })
+        }
+    })
+    return q.promise;
+}
+
+folder.makeCurrentFolderChild = function (folderId) {
+    console.log("Child Folder Push in Parent Successfully =  ", folderId);
+    const q = Q.defer();
+    folderModel.updateOne({ _id: folderId }, { $set: { 'isChild': true } }, {
+        upsert: true, new: true
+    }, (err, updatedFolder) => {
+        if (err) return q.reject(err);
+        else {
+            console.log("Make Child Successfully =  ", updatedFolder);
+            return q.resolve(updatedFolder);
+        }
+    })
     return q.promise;
 }
 
