@@ -95,3 +95,8 @@
 .learners > ::ng-deep figure {
      justify-content: flex-start !important;
  }
+//  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover { background: white; }
+// .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover 
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}

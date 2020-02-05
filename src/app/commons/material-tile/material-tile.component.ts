@@ -55,6 +55,7 @@ export class MaterialTileComponent implements OnInit {
   allLearnersCount: any;
   duedate: any;
   today = new Date()
+  learnerCopy: any;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -267,8 +268,6 @@ export class MaterialTileComponent implements OnInit {
   }
 
   onSelectChange(event, i) {
-    console.log("EVENT CHANGE", event)
-
     if (event.checked == true) {
       this.allocatedLearners.push(event.source.value)
     }
@@ -282,12 +281,19 @@ export class MaterialTileComponent implements OnInit {
     console.log("allocated learners", this.allocatedLearners);
   }
   allocateMaterial() {
+    this.allocatedLearners.forEach(learner=>{
+      this.allLearners.forEach(singleLearner=>{
+        if (learner._id == singleLearner._id){
+          singleLearner.checked = true
+        }
+      })
+    })
     let learners = [];
     if (this.allocatedLearners) {
       if (this.duedate == undefined) this.duedate = this.today
       this.allocatedLearners.forEach((learner) => {
         learner.duedate = this.duedate;
-        learners.push({ learner: learner, assignment: this.material });
+        learners.push({ learner: learner, assignments: [this.material] });
       });
     }
     this._learnerService.allocateLearner(learners).subscribe(data => {
@@ -349,6 +355,10 @@ export class MaterialTileComponent implements OnInit {
     }
     console.log("THIS.ALLLEARNERS", this.allLearners);
   }
+
+  filter(filterValue: string) {
+    this.allLearners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
+  }
   // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
@@ -357,6 +367,7 @@ export class MaterialTileComponent implements OnInit {
       this.allLearners.forEach(learner => {
         learner.checked = false
       })
+      this.learnerCopy = this.allLearners;
     })
   }
 
