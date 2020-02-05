@@ -99,6 +99,8 @@ import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
 import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -168,6 +170,7 @@ import { MaterialElevationDirective } from './commons/material-tile/material-ele
     MaterialElevationDirective
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),

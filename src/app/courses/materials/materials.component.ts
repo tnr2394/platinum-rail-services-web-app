@@ -34,7 +34,7 @@ export class MaterialsComponent implements OnInit {
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
-
+  @Output() assignmentAllocated: EventEmitter<any> = new EventEmitter<any>();
   materials: any = [];
   bgColors: string[];
   lastColor;
@@ -295,6 +295,10 @@ export class MaterialsComponent implements OnInit {
     this.file = event.file;
     this.mydsidenav.open();
     console.log("EVENT OPENING", event.file);
+  }
+  allocatedFromTile(event){
+    console.log("In material", event);
+    this.assignmentAllocated.emit({msg:"assignment allocated from material tile"})
   }
 
   handleSnackBar(data) {

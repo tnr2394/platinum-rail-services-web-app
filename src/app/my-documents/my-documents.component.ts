@@ -14,6 +14,10 @@ export class MyDocumentsComponent implements OnInit {
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   deletedFile: any;
   removeCssClass: boolean = false;
+  fileTitle: any;
+  fileId: any;
+  type: any;
+  updatedFolder: any;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   ngOnInit() {
   }
@@ -32,9 +36,15 @@ export class MyDocumentsComponent implements OnInit {
     console.log("IN MY DOCS", event);
     if(event.file != undefined){
       this.details = event.file;
+      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+      this.fileId = this.details._id
+      this.type = event.file.type
     }
     else{
       this.details = event
+      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+      this.fileId = this.details._id
+      this.type = event.type
     }
     this.mydsidenav.open()
   }
@@ -46,5 +56,11 @@ export class MyDocumentsComponent implements OnInit {
     this.mydsidenav.close()
     // this.removeCssClass = true;
     $('.parent_row').removeClass('col-width-class');
+  }
+  folderTitleChenged(event) {
+    console.log("Title changed event in single-folder", event);
+    this.fileTitle = event.title
+    this.updatedFolder = event;
+    // this.titleChanged.emit(event)
   }
 }

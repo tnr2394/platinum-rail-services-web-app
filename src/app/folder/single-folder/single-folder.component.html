@@ -1,8 +1,10 @@
 <mat-sidenav-container class="example-container folder_sidenav" autosize>
     <mat-sidenav #sidenav mode="side" position="end">
         <mat-button class="close_btn text-primary" (click)="closeSidenav()"><i class="fa fa-times-circle"
-                aria-hidden="true"></i></mat-button>
-        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"></app-file-details>
+                aria-hidden="true"></i></mat-button> 
+        <span *ngIf="type == 'folder'"><a routerLink="/single-folder/{{fileId}}"><h4>{{fileTitle}}</h4></a></span>
+        <span *ngIf="type == 'file'"><h4>{{fileTitle}}</h4></span>
+        <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)" (titleChanged)="folderTitleChenged($event)"></app-file-details>
     </mat-sidenav>
     <mat-sidenav-content style="padding: 0 10px;">
 
@@ -44,7 +46,7 @@
                 </div>
                 <div class="col-md-3 col-sm-3 text-right">
                     <button class='uploadBtn' (click)="addFileModal()">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud-upload-alt" placement="bottom" ngbTooltip="Upload File" tooltipClass="tooltip-class"></i>
                     </button>
                 </div>
             </div>
@@ -69,7 +71,7 @@
 
     </div>
     <div>
-        <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)"></app-folder>
+        <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)" [updatedFolder]="updatedFolder"></app-folder>
     </div>
     <div class="row expansion-row" *ngIf="fileList && fileList.length > 0">
         <div class="col materials_box" *ngFor="let file of filesToDisplay">
