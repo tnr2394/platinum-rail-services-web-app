@@ -1,170 +1,182 @@
-
-<mat-expansion-panel class="mat-elevation-z0 card expansion_tab" [expanded]="isSelected" (opened)="getMaterialFiles();" (closed)="closeFileDetails()">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="row">
-        <div class="col-xl-2 col-sm-2 text-center">
-            <span class="btn {{getRandomColorClass()}} text-white fab-item ">
-                <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
-                <i *ngIf="type && type == 'Reading'" class="fas fa-book-reader round"></i>
-                <i *ngIf="type && type == 'Assignment'" class="fas fa-clipboard-list icon"></i>
-                <i *ngIf="type && type == 'folder'" class="fas fa-folder-open icon"></i>
-                <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
-            </span>
-        </div>
-        <div class="col-xl-10 col-sm-10 text-center d-flex justify-content-center align-items-center h-100">
-            <!-- <div class="row"> -->
-                <div class="material_title">
-                    {{title}}
-                </div>
-            <!-- </div> -->
-        </div>
-        </mat-panel-title>
-        <!-- <mat-panel-description>
-            This is a summary of the content
-        </mat-panel-description> --> 
-    </mat-expansion-panel-header>
-    <!-- <mat-divider></mat-divider> -->
-    <mat-tab-group (selectedTabChange)="getLearnerCheck($event)">
-        <mat-tab label="Files"> 
-            <div class='row m-0 material_responsive'>
-                <div class='col-lg-12'>
-                    <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)"></material-files>
-                </div>
-            </div>
-            <!-- <div *ngIf="folder">
-                <div *ngIf="folder.child != undefined">
-                    <div *ngFor="let child of folder.child; let j = index">
-                        <material-tile [folder]='child' [index]='j' (fileDetailsComp)="subFolder($event)">
-                        </material-tile>
-                    </div>
-                </div>
-            </div> -->
+<!-- <mat-card >
+        <mat-card-header>
+            <mat-card-title>Card Title</mat-card-title>
+        </mat-card-header>
+</mat-card> -->
+<!-- mat-elevation-z0 -->
+<!-- <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="16"> -->
+            <mat-expansion-panel class="mat-elevation-z0 card expansion_tab" [expanded]="isSelected" (opened)="getMaterialFiles();"
+                (closed)="closeFileDetails()">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="row">
+                        <div class="col-xl-2 col-sm-2 text-center">
+                            <span class="btn {{getRandomColorClass()}} text-white fab-item ">
+                                <!-- <i *ngIf="material.type=='Reading'" class="fab fa-readme margin-auto"></i> -->
+                                <i *ngIf="type && type == 'Reading'" class="fas fa-book-reader round"></i>
+                                <i *ngIf="type && type == 'Assignment'" class="fas fa-clipboard-list icon"></i>
+                                <i *ngIf="type && type == 'folder'" class="fas fa-folder-open icon"></i>
+                                <!-- <i *ngIf="material.type != 'Reading'" class="fas fa-clipboard"></i> -->
+                            </span>
+                        </div>
+                        <div class="col-xl-10 col-sm-10 text-center d-flex justify-content-center align-items-center h-100">
+                            <!-- <div class="row"> -->
+                            <div class="material_title">
+                                {{title}}
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </mat-panel-title>
+                    <!-- <mat-panel-description>
+                        This is a summary of the content
+                    </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <!-- <mat-divider></mat-divider> -->
+                <mat-tab-group (selectedTabChange)="getLearnerCheck($event)">
+                    <mat-tab label="Files">
+                        <div class='row m-0 material_responsive'>
+                            <div class='col-lg-12'>
+                                <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)">
+                                </material-files>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="folder">
+                            <div *ngIf="folder.child != undefined">
+                                <div *ngFor="let child of folder.child; let j = index">
+                                    <material-tile [folder]='child' [index]='j' (fileDetailsComp)="subFolder($event)">
+                                    </material-tile>
+                                </div>
+                            </div>
+                        </div> -->
             
-            <!-- [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)" -->
-        </mat-tab>
-        
-        <mat-tab label="Learners" *ngIf="displayLearners && type == 'Assignment'" >
-             <ul class="responsive_ul">
-                <li>
-                    <div class="list_learners">
-                        <p>{{allLearnersCount}}</p>
-                        <h4>Total</h4>
-                    </div>
-                </li>
-                <li>
-                     <div class="list_learners">
-                         <p style="color: #d11919;">{{pendingLearners}}</p>
-                         <h4>Pending Learners</h4>
-                     </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p>{{assignedLearner}}</p>
-                        <h4>Assigned Learners</h4>
-                    </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p style="color: #ffeb3b;">{{unassignedLearners}}</p>
-                        <h4>Unassigned Learners</h4>
-                    </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p style="color: #acc7ef;">{{resubmissionLearners}}</p>
-                        <h4>Resubmission Learners</h4>
-                    </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p style="color: #ffb03b;">N</p>
-                        <h4>Request for Resubmission</h4>
-                    </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p style="color: #3b86ff;">{{submittedLearners}}</p>
-                        <h4>Submitted Learners</h4>
-                    </div>
-                </li>
-                <li>
-                    <div class="list_learners">
-                        <p style="color: #64fe00;">{{completedLearners}}</p>
-                        <h4>Completed Learners</h4>
-                    </div>
-                </li>
-            </ul>
-            <div class="row m-0 py-3 learner_material_tab"> 
-                <div class="col-sm">
-                    <p>{{allLearnersCount}}</p>
-                    <h4>Total</h4>
-                </div>
-                 <div class="col-sm">
-                     <p style="color: #d11919;">{{pendingLearners}}</p>
-                     <h4>Pending Learners</h4>
-                 </div>
-                <div class="col-sm">
-                     <p>{{assignedLearner}}</p>
-                     <h4>Assigned Learners</h4>
-                </div>
-                <div class="col-sm">
-                    <p style="color: #ffeb3b;">{{unassignedLearners}}</p>
-                    <h4>Unassigned Learners</h4>
-                </div>
-                <div class="col-sm">
-                    <p style="color: #acc7ef;">{{resubmissionLearners}}</p>
-                    <h4>Resubmission Learners</h4>
-                </div>
-                <div class="col-sm">
-                    <p style="color: #ffb03b;">N</p>
-                    <h4>Request for Resubmission</h4>
-                </div>
-                <div class="col-sm">
-                    <p style="color: #3b86ff;">{{submittedLearners}}</p>
-                    <h4>Submitted Learners</h4>
-                </div>
-                <div class="col-sm">
-                   <p style="color: #64fe00;">{{completedLearners}}</p>
-                   <h4>Completed Learners</h4>
-                </div>
-            </div>
-            <mat-divider class="mb-3"></mat-divider>
-            <div class="row m-0">
-                <div class="col-sm-6" *ngFor="let learner of learnerNames">
-                    <p>{{learner}}</p>
-                </div>
-                <!-- <div class="col-sm-6">
-                    <mat-form-field class='min-width'>
-                        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Due date" [ngModel]="today" (dateChange)="dueDate($event)">
-                        <mat-datepicker-toggle matSuffix [for]="picker" required ></mat-datepicker-toggle>
-                        <mat-datepicker #picker [startAt]="today"></mat-datepicker>
-                        <mat-error *ngIf="duedate == undefined">Please select a Due Date</mat-error>
-                    </mat-form-field> -->
-                    <!-- *ngFor="let learner of learnerNames" -->
-                    <!-- <p>{{learner}}</p> -->
-                    <!-- <mat-grid-list cols="2" rowHeight='30px'>
-                        <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'> -->
-                            <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable"-->
-                            <!-- <mat-checkbox (change)='onSelectChange($event, i)' 
-                                [value]='learner' [checked] = 'learner.checked' [disabled]="learner.checked">{{learner.name}}</mat-checkbox>
-                        </mat-grid-tile>
-                    </mat-grid-list>
-                </div> -->
-            </div>
-            <!-- <h3 *ngFor="let learner of learnerNames">{{learner}}</h3> -->
-        </mat-tab>
-    </mat-tab-group>
-    <mat-action-row>
-        <!-- <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button> -->
-        <button mat-button (click)="editmaterial()" *ngIf="!displaySubFolders" style="color:#3CC480;">Edit</button>
-        <button mat-button (click)="deleteMaterial()" *ngIf="!displaySubFolders" color="warn">Delete</button>
-        <button mat-button (click)="allocateMaterial()" *ngIf="!displaySubFolders && displayLearners" color="primary">Allocate</button>
-    </mat-action-row>
-</mat-expansion-panel>
+                        <!-- [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)" -->
+                    </mat-tab>
+            
+                    <mat-tab label="Learners" *ngIf="displayLearners && type == 'Assignment'">
+                        <ul class="responsive_ul">
+                            <li>
+                                <div class="list_learners">
+                                    <p>{{allLearnersCount}}</p>
+                                    <h4>Total</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #d11919;">{{pendingLearners}}</p>
+                                    <h4>Pending Learners</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p>{{assignedLearner}}</p>
+                                    <h4>Assigned Learners</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #ffeb3b;">{{unassignedLearners}}</p>
+                                    <h4>Unassigned Learners</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #acc7ef;">{{resubmissionLearners}}</p>
+                                    <h4>Resubmission Learners</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #ffb03b;">N</p>
+                                    <h4>Request for Resubmission</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #3b86ff;">{{submittedLearners}}</p>
+                                    <h4>Submitted Learners</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list_learners">
+                                    <p style="color: #64fe00;">{{completedLearners}}</p>
+                                    <h4>Completed Learners</h4>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="row m-0 py-3 learner_material_tab">
+                            <div class="col-sm">
+                                <p>{{allLearnersCount}}</p>
+                                <h4>Total</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #d11919;">{{pendingLearners}}</p>
+                                <h4>Pending Learners</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p>{{assignedLearner}}</p>
+                                <h4>Assigned Learners</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #ffeb3b;">{{unassignedLearners}}</p>
+                                <h4>Unassigned Learners</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #acc7ef;">{{resubmissionLearners}}</p>
+                                <h4>Resubmission Learners</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #ffb03b;">N</p>
+                                <h4>Request for Resubmission</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #3b86ff;">{{submittedLearners}}</p>
+                                <h4>Submitted Learners</h4>
+                            </div>
+                            <div class="col-sm">
+                                <p style="color: #64fe00;">{{completedLearners}}</p>
+                                <h4>Completed Learners</h4>
+                            </div>
+                        </div>
+                        <mat-divider class="mb-3"></mat-divider>
+                        <div class="row m-0">
+                            <!-- <div class="col-sm-6" *ngFor="let learner of learnerNames">
+                                <p>{{learner}}</p>
+                            </div> -->
+                            <div class="col-sm-6">
+                                <mat-form-field class='min-width'>
+                                    <input matInput placeholder="Search" [(ngModel)]='searchText'
+                                        (ngModelChange)='filter(searchText)'>
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Due date" [ngModel]="today"
+                                        (dateChange)="dueDate($event)">
+                                    <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
+                                    <mat-datepicker #picker [startAt]="today"></mat-datepicker>
+                                    <mat-error *ngIf="duedate == undefined">Please select a Due Date</mat-error>
+                                </mat-form-field>
+                                <!-- *ngFor="let learner of learnerNames" -->
+                                <!-- <p>{{learner}}</p> -->
+                                <mat-grid-list cols="2" rowHeight='30px'>
+                                    <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'>
+                                        <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable" -->
+                                        <mat-checkbox (change)='onSelectChange($event, i)' [value]='learner'
+                                            [checked]='learner.checked' [disabled]="learner.checked">{{learner.name}}</mat-checkbox>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </div>
+                        </div>
+                        <!-- <h3 *ngFor="let learner of learnerNames">{{learner}}</h3> -->
+                    </mat-tab>
+                </mat-tab-group>
+                <mat-action-row>
+                    <!-- <button mat-button (click)="createFolder()" *ngIf="displaySubFolders">Create Sub-folder</button> -->
+                    <button mat-button (click)="editmaterial()" *ngIf="!displaySubFolders" style="color:#3CC480;">Edit</button>
+                    <button mat-button (click)="deleteMaterial()" *ngIf="!displaySubFolders" color="warn">Delete</button>
+                    <button mat-button (click)="allocateMaterial()" *ngIf="!displaySubFolders && displayLearners"
+                        color="primary">Allocate</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+<!-- </mat-card> -->
 
 
 

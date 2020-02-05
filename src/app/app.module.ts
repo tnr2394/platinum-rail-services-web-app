@@ -98,6 +98,8 @@ import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
+import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +165,7 @@ import { FileDetailsComponent } from './commons/file-details/file-details.compon
     SideNavFixedComponent,
     ExamsResultsComponent,
     FileDetailsComponent,
+    MaterialElevationDirective
   ],
   imports: [
     BrowserModule,
