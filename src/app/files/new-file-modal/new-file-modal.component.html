@@ -1,0 +1,81 @@
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files </h1>
+<mat-card>
+    <p>Upload</p>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="well drop-zone" (onFileDropped)="dragQueue($event)" appDragDrop>Files drop zone </div>
+                <div class="single-file">
+                    <h4>Select files</h4>
+                    <input type="file" #fileInput multiple (change)="addToQueue()" />
+                </div>
+            </div>
+
+            <div class="col-md-9" style="margin-bottom: 40px">
+                <h3>Upload queue</h3>
+                <table class="table-headed table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-left" width="50%">Name</th>
+                            <th class="text-right">Size</th>
+                            <th class="text-left">Progress</th>
+                            <th class="text-left">Status</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of queue | async">
+                            <td>{{ item?.file?.name }}</td>
+                            <td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                            <td>
+                                <div class="progress" style="border: 1px solid black;">
+                                    <div class=" progress-bar" role="progressbar"
+                                        [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                </div>
+
+                                <!-- {{ item.progress + ' %' }} -->
+                            </td>
+                            <td>
+                                <span *ngIf="item.isPending()" class="tag tag-default"></span>
+                                <span *ngIf="item.isSuccess()" class="tag tag-success"></span>
+                                <span *ngIf="item.inProgress()" class="tag tag-warning"></span>
+                                <span *ngIf="item.isError()" class="tag tag-danger"></span>
+                            </td>
+                            <td class="text-right">
+                                <button type="button" class="btn btn-success btn-sm action_btns"
+                                    style="margin-right: 5px;" *ngIf="item.isUploadable()" (click)="item.upload()">
+                                    <i class="fa fa-upload"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-warning btn-sm action_btns"
+                                    style="margin-right: 5px;" *ngIf="item.inProgress()" (click)="item.cancel()">
+                                    <i class="fa fa-times-circle"></i>
+                                </button>
+
+
+                                <button type="button" *ngIf="!item.inProgress()"
+                                    class="btn btn-danger btn-sm action_btns" (click)="item.remove()">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+
+                    <button type="button" class="btn btn-success btn-sm" (click)="uploader.uploadAll()">
+                        <i class="fa fa-upload"></i> Upload all {{queue.length}}
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px;"
+                        (click)="uploader.clearQueue()">
+                        <i class="fa fa-trash"></i> Remove all
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </mat-card-content>
+</mat-card>

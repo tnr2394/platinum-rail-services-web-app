@@ -98,6 +98,7 @@ import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
+import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +164,7 @@ import { FileDetailsComponent } from './commons/file-details/file-details.compon
     SideNavFixedComponent,
     ExamsResultsComponent,
     FileDetailsComponent,
+    NewFileModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -201,7 +203,7 @@ import { FileDetailsComponent } from './commons/file-details/file-details.compon
     }),
     NgCircleProgressModule.forRoot({})
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, NewFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

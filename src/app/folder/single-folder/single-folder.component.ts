@@ -14,6 +14,7 @@ import { FilterService } from '../../services/filter.service'
 import { CreateFolderModalComponent } from '../create-folder-modal/create-folder-modal.component';
 // import { $ } from 'protractor';
 declare var $: any;
+import { NewFileModalComponent } from '../../files/new-file-modal/new-file-modal.component'
 
 
 
@@ -64,7 +65,7 @@ export class SingleFolderComponent implements OnInit {
   }
 
   addFileModal() {
-    var addedCourse = this.openDialog(AddFileModalComponent, { folderId: this.folderId }).subscribe((courses) => {
+    var addedCourse = this.openDialog(NewFileModalComponent, { folderId: this.folderId }).subscribe((courses) => {
       this.getFolderFiles();
     }, err => {
     });
@@ -109,12 +110,12 @@ export class SingleFolderComponent implements OnInit {
       this.fileList = data.folders[0].files;
       this.filesToDisplay = this.fileList;
       // this.subFolders = this.folder.child
-      if(data.preFolders != undefined){
+      if (data.preFolders != undefined) {
         this.navArray = data.preFolders.reverse();
       }
       console.log("this.folder.child", this.folder.child.reverse());
       console.log("this.subFolders.reverse", this.subFolders.reverse());
-      
+
     })
   }
 
@@ -155,9 +156,9 @@ export class SingleFolderComponent implements OnInit {
       this.subFolders.push(folder);
     })
   }
-  showFiles(folderId){
+  showFiles(folderId) {
     console.log("FOLDER", folderId);
-    
+
     // this.router.navigate(['/single-folder', folderId])
   }
   openFileDetails(event) {
@@ -173,16 +174,16 @@ export class SingleFolderComponent implements OnInit {
     }
     this.mydsidenav.open()
   }
-  fileDeleted(event){
+  fileDeleted(event) {
     console.log("In singleFolder", event);
-    if(event.type == 'folder'){
+    if (event.type == 'folder') {
       var index = _.findIndex(this.subFolders, function (o) {
         console.log("o._id", o, "event.fileId", event.fileId);
         return o._id == event.fileId.toString();
       })
       if (index > -1) this.subFolders.splice(index, 1)
     }
-    else if(event.type == 'file'){
+    else if (event.type == 'file') {
       var index = _.findIndex(this.folder.files, function (o) {
         console.log("o._id", o, "event.fileId", event.fileId);
         return o._id == event.fileId.toString();

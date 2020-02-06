@@ -6,12 +6,14 @@ import { FileService } from '../services/file.service';
 import { FilterService } from '../services/filter.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
+import { NewFileModalComponent } from './new-file-modal/new-file-modal.component'
 
 @Component({
   selector: 'material-files',
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.scss']
 })
+
 export class FilesComponent implements OnInit, OnChanges {
   files = [];
   copyFiles;
@@ -26,10 +28,10 @@ export class FilesComponent implements OnInit, OnChanges {
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
     // console.log("SOMETHING CHANGED!!", this.materialId);
     console.log("SOMETHING CHANGED!!", changes);
-    if(this.materialId != undefined){
+    if (this.materialId != undefined) {
       this.getFiles();
     }
-    if(this.folder != undefined){
+    if (this.folder != undefined) {
       this.files = this.folder.files;
       this.fileCount = this.files.length
     }
@@ -45,8 +47,8 @@ export class FilesComponent implements OnInit, OnChanges {
 
   // MODALS
   addFileModal() {
-    if(this.materialId != undefined){
-      var addedCourse = this.openDialog(AddFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
+    if (this.materialId != undefined) {
+      var addedCourse = this.openDialog(NewFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
         if (courses == undefined) return;
         console.log("Course added in controller = ", courses);
 
@@ -61,17 +63,17 @@ export class FilesComponent implements OnInit, OnChanges {
         return this.openSnackBar("Something went wrong", "Ok");
       });
     }
-    else if(this.folder != undefined){
-      this.openDialog(AddFileModalComponent, { folderId: this.folder._id}).subscribe(file=>{
+    else if (this.folder != undefined) {
+      this.openDialog(NewFileModalComponent, { folderId: this.folder._id }).subscribe(file => {
         console.log("file in folder", file);
-        if(file == undefined) return
+        if (file == undefined) return
         _.forEach(file, (data) => {
           this.files.push(data);
         })
         this.fileCount = this.files.length;
       })
     }
-    
+
   }
   updateData(courses: any) {
     // throw new Error("Method not implemented.");
@@ -79,8 +81,8 @@ export class FilesComponent implements OnInit, OnChanges {
   courses(courses: any) {
     throw new Error("Method not implemented.");
   }
-  fileDetails(event){
-    console.log("Event in material-files",event);
+  fileDetails(event) {
+    console.log("Event in material-files", event);
     this.getFileDetails.emit(event)
   }
 
