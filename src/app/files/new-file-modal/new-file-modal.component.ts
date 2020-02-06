@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
-
-const URL = 'http://localhost:3000/folder/files';
+import { Component, EventEmitter, OnInit, Inject, Output, ViewChild } from '@angular/core';
+import { FileQueueObject, FileUploaderService } from '../../services/file-uploader.service'
+import { Observable } from 'rxjs';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-new-file-modal',
@@ -10,54 +10,35 @@ const URL = 'http://localhost:3000/folder/files';
 })
 export class NewFileModalComponent implements OnInit {
 
-  uploader: FileUploader;
-  hasBaseDropZoneOver: boolean;
-  hasAnotherDropZoneOver: boolean;
-  response: string;
+  @Output() onCompleteItem = new EventEmitter();
 
+  @ViewChild('fileInput', { static: false }) fileInput;
+  queue: Observable<FileQueueObject[]>;
 
-  constructor() {
-    this.uploader = new FileUploader({
-      url: URL,
-      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      formatDataFunctionIsAsync: true,
-      method: 'POST',
-      formatDataFunction: async (item) => {
-        return new Promise((resolve, reject) => {
-          console.log("resolve", resolve)
-          resolve({
-            name: item._file.name,
-            length: item._file.size,
-            contentType: item._file.type,
-            date: new Date()
-          });
-        });
-      }
-    });
-
-    this.hasBaseDropZoneOver = false;
-    this.hasAnotherDropZoneOver = false;
-
-    this.response = '';
-
-    this.uploader.onBeforeUploadItem = (item) => {
-      item.withCredentials = false;
-    }
-
-    this.uploader.response.subscribe(res => this.response = res);
-  }
+  constructor(public uploader: FileUploaderService, public _snackbar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+
+    console.log("Upload files initialized", this.data);
+
+    this.queue = this.uploader.queue;
+    this.uploader.bodyData = this.data;
+    this.uploader.onCompleteItem = this.completeItem;
   }
 
-
-
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
+  completeItem = (item: FileQueueObject, response: any) => {
+    console.log('Response:::::::::::::', response, item);
+    this.data = response.data.file;
+    this.onCompleteItem.emit({ item, response });
   }
 
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
+  addToQueue() {
+    const fileBrowser = this.fileInput.nativeElement;
+    this.uploader.addToQueue(fileBrowser.files);
+  }
+
+  dragQueue(event) {
+    this.uploader.addToQueue(event);
   }
 
 }

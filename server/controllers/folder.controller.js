@@ -228,10 +228,8 @@ folderController.deleteFileFromFolder = function (req, res, next) {
  * Add File Inside Folder
  */
 folderController.addFile = function (req, res, next) {
-    // console.log("Update Folder", JSON.stringify(req.body, null, 2));
-    console.log(req);
 
-    return res.send(req.file);
+    console.log('Req.body:::::::', req.body, req.files);
 
     let files = [];
 
@@ -260,7 +258,7 @@ folderController.addFile = function (req, res, next) {
             type: "file", // OR SUBMISSION OR DOCUMENT
             path: "NEWPATH",
             extension: ext,
-            uploadedBy: req.user.name,
+            // uploadedBy: req.user.name,
             file: singleFile,
             uploadedDate: new Date()
         }
