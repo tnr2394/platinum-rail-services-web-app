@@ -114,7 +114,11 @@ export class MaterialsComponent implements OnInit {
     console.log("THIS.MATERIALS IS", this.materials);
 
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
+    console.log("this._filter.filter(filterValue, this.copyMaterials, ['title', 'type'])", this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']))
     this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
+    this.dataSource = this.materials
+    console.log("THIS.MATERIALS IS", this.dataSource);
+
     this.dataSource.paginator = this.paginator;
   }
 
