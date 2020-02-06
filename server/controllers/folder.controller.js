@@ -22,8 +22,8 @@ async function allfolders(query) {
     folderModel.find(query)
         .populate('files')
         .populate('child')
-        .populate('sharedClient')
-        .populate('sharedInstructor')
+        .populate('sharedClient', { _id: 1, name: 1 })
+        .populate('sharedInstructor', { _id: 1, name: 1 })
         .populate({
             path: 'files',
             populate: {
@@ -109,30 +109,29 @@ function getParentFolder(folderId, previousFolders, callback) {
     }, {
         _id: 1,
         title: 1
-    })
-        .exec((error, folder) => {
-            console.log(error, folder)
-            if (error) {
+    }).exec((error, folder) => {
+        console.log(error, folder)
+        if (error) {
 
-            } else if (folder) {
-                if (folder._id && previousFolders.indexOf(folder) > -1) {
+        } else if (folder) {
+            if (folder._id && previousFolders.indexOf(folder) > -1) {
 
-                } else {
-                    previousFolders.push(folder)
-                    // return callback(previousFolders)
-                    getParentFolder(folder._id, previousFolders, function (folders) {
-                        if (folders) {
-                            return callback(folders)
-                        } else {
-                            console.log(" end ")
-                        }
-                    })
-                }
             } else {
-                console.log(" end 2")
-                return callback(previousFolders)
+                previousFolders.push(folder)
+                // return callback(previousFolders)
+                getParentFolder(folder._id, previousFolders, function (folders) {
+                    if (folders) {
+                        return callback(folders)
+                    } else {
+                        console.log(" end ")
+                    }
+                })
             }
-        })
+        } else {
+            console.log(" end 2")
+            return callback(previousFolders)
+        }
+    })
 
 }
 
@@ -229,7 +228,10 @@ folderController.deleteFileFromFolder = function (req, res, next) {
  * Add File Inside Folder
  */
 folderController.addFile = function (req, res, next) {
-    console.log("Update Folder", req.body, req.files);
+    // console.log("Update Folder", JSON.stringify(req.body, null, 2));
+    console.log(req);
+
+    return res.send(req.file);
 
     let files = [];
 

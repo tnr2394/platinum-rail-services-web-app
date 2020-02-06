@@ -27,6 +27,7 @@ import { MyDocumentsComponent } from './my-documents/my-documents.component';
 import { SingleFolderComponent } from './folder/single-folder/single-folder.component';
 import { ProfileComponent } from './commons/profile/profile.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
+import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -173,6 +174,10 @@ const routes: Routes = [
 	{
 		path: 'profile',
 		component: ProfileComponent
+	},
+	{
+		path: 'newFile',
+		component: NewFileModalComponent
 	}
 ];
 

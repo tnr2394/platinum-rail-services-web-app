@@ -3,7 +3,7 @@
 import { Directive, Component, Output, OnInit, Inject, ChangeDetectorRef, Input, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
 
-import { FileUploader } from 'ng2-file-upload';
+// import { FileUploader } from 'ng2-file-upload';
 import { post } from 'selenium-webdriver/http';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { LearnerService } from 'src/app/services/learner.service';
 import { FolderService } from '../../services/folder.service';
 import { browser } from 'protractor';
 import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-add-file-modal',

@@ -98,7 +98,8 @@ import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
-import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive'
+import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive';
+import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component'
 
 @NgModule({
   declarations: [
@@ -165,7 +166,8 @@ import { MaterialElevationDirective } from './commons/material-tile/material-ele
     SideNavFixedComponent,
     ExamsResultsComponent,
     FileDetailsComponent,
-    MaterialElevationDirective
+    MaterialElevationDirective,
+    NewFileModalComponent
   ],
   imports: [
     BrowserModule,

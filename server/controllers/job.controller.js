@@ -239,20 +239,19 @@ jobController.getJobUsingClientId = async function (req, res) {
 jobController.addJob = function (req, res) {
     console.log('ADD jobs', req.body);
 
-    var newJob = new jobModel({
-        title: req.body.title,
-        color: req.body.jobColor,
-        client: req.body.client,
-        location: req.body.location,
-        instructors: req.body.instructors,
-        course: req.body.course,
-        startingDate: req.body.startingDate,
-        totalDays: req.body.totalDays,
-        singleJobDate: req.body.singleJobDate
-    });
+    let newJob = {};
 
-    console.log('New Job', newJob)
-    newJob.save((err, job) => {
+    if (req.body.title) newJob['title'] = req.body.title;
+    if (req.body.jobColor) newJob['color'] = req.body.jobColor;
+    if (req.body.client) newJob['client'] = req.body.client;
+    if (req.body.location) newJob['location'] = req.body.location;
+    if (req.body.instructors) newJob['instructors'] = req.body.instructors;
+    if (req.body.course) newJob['course'] = req.body.course;
+    if (req.body.startingDate) newJob['startingDate'] = req.body.startingDate;
+    if (req.body.totalDays) newJob['totalDays'] = req.body.totalDays;
+    if (req.body.singleJobDate) newJob['singleJobDate'] = req.body.singleJobDate;
+
+    jobModel.create(newJob, (err, job) => {
         console.log(err)
         if (err) return res.status(500).send({ err })
         console.log("SENDING RESPONSE Jobs =  ", job)
@@ -272,17 +271,17 @@ jobController.addJob = function (req, res) {
 
 jobController.updateJob = function (req, res) {
     console.log('BODY', req.body)
-    var updatedJob = {
-        title: req.body.title,
-        color: req.body.jobColor,
-        client: req.body.client,
-        location: req.body.location,
-        instructors: req.body.instructor,
-        course: req.body.course,
-        startingDate: req.body.startingDate,
-        totalDays: req.body.totalDays,
-        singleJobDate: req.body.singleJobDate
-    }
+    var updatedJob = {}
+
+    if (req.body.title) updatedJob['title'] = req.body.title;
+    if (req.body.jobColor) updatedJob['color'] = req.body.jobColor;
+    if (req.body.client) updatedJob['client'] = req.body.client;
+    if (req.body.location) updatedJob['location'] = req.body.location;
+    if (req.body.instructors) updatedJob['instructors'] = req.body.instructors;
+    if (req.body.course) updatedJob['course'] = req.body.course;
+    if (req.body.startingDate) updatedJob['startingDate'] = req.body.startingDate;
+    if (req.body.totalDays) updatedJob['totalDays'] = req.body.totalDays;
+    if (req.body.singleJobDate) updatedJob['singleJobDate'] = req.body.singleJobDate;
 
     sendInstructorRemovedMail(req.body.removedInstructor, req.body._id).then((sendMailResponse) => {
         console.log("UPDATEDJOB = ", updatedJob)
