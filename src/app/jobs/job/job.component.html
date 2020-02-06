@@ -48,7 +48,7 @@
                     <div *ngIf="job && !clientDashboard" class="mt-3">
                         <!-- passing into material =  {{job.course._id}} -->
                         <app-materials *ngIf="job && job.course" [data]="job.course._id" [jobId]="job._id"
-                            (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAdded)="assignmentAdded()"
+                            (getMaterialsFromComponent)="loadMaterials($event)" (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()"
                             #material>
                         </app-materials>
                         <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"

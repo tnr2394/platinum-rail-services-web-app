@@ -166,6 +166,11 @@ export class JobComponent implements OnInit, AfterViewInit {
       return this.openSnackBar("Materials could not be allocated", "Ok");
     });
   }
+  allocatedFromMaterialTile(event){
+    console.log("In job", event);
+    
+    this.assignmentStatusComp.ngOnInit();
+  }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,

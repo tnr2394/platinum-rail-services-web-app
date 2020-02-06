@@ -100,6 +100,8 @@ import { ExamsResultsComponent } from './learners/exams-results/exams-results.co
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
 import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -170,6 +172,7 @@ import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.com
     NewFileModalComponent
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),

@@ -761,7 +761,7 @@ th.mat-header-cell {
 .expansion_tab{
   .mat-expansion-panel-content {
     border-top: 1px solid #0000002a !important;
-    padding-top: 20px !important;
+    // padding-top: 20px !important;
   }
 }
 .example-container{
@@ -784,13 +784,21 @@ th.mat-header-cell {
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12) !important;
 }
 .mat-drawer{
-  padding: 20px 30px !important;
+  padding: 20px 10px 20px 30px !important;
   @media (max-width:575px) {
     padding: 20px !important;
   }
 }
+.mat-expansion-panel{
+  padding-top: 10px !important;
+}
 // .material_responsive{
   .mat-expansion-panel-header {
+    padding-top: 15px !important;
+    margin-bottom: 20px !important;
+    &:hover{
+      background-color: transparent !important;
+    }
     @media (max-width:422px) {
       padding: 0 8px !important;
     }

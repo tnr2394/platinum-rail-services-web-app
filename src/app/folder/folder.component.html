@@ -20,16 +20,56 @@
                     <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)">
                     </material-tile>
                 </div> -->
-                <div class="row parent_row">
-                    <div class="col materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
+                <!-- TEST START -->
+               <!-- <div cdkDropList (cdkDropListDropped)="drop($event)" #todoList="cdkDropList"
+                   cdkDropListOrientation="horizontal">
+                  
+                   <span cdkDrag *ngFor="let singleFolder of allFoldersCopy">
+                         <div appMaterialElevation [defaultElevation]="0" raisedElevation="5" style="width: 200px;"> 
+                            <span>
+                                <span class="materia_icon_span {{getRandomColorClass(i)}}">
+                                    <i class="fa fa-folder icon round"></i>
+                                </span>
+                                <h5 >{{singleFolder.title}}</h5>
+                            </span>
+                         </div> 
+                   </span>
+               </div > -->
+                <!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let singleFolder of allFoldersCopy" cdkDrag>{{singleFolder.title}}
+                    </div>
+                </div> -->
+                <!-- <div class="row parent_row" cdkDropList (cdkDropListDropped)="drop($event)">
+                    <div class="col materials_box" *ngFor='let singleFolder of allFoldersCopy;let i = index' class="example-list">
+                        <div class="card p-0 inner-card h-100 text-center" 
+                            id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)" cdkDrag>
+                            <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+                                <mat-card-content class="material_card p-2">
+                                    <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                                        <i class="fa fa-folder icon round"></i>
+                                    </div>
+                                    <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- TEST END -->
+
+                <div class="row parent_row" cdkDropList cdkDropListOrientation="horizontal" class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="materials_box" cdkDrag *ngFor='let singleFolder of allFolders;let i = index'>
                         <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}"
                             (dblclick)="doubleClick($event,singleFolder)">
+                            <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
                             <mat-card-content class="material_card p-2">
                                 <div class="materia_icon_span {{getRandomColorClass(i)}}">
                                     <i class="fa fa-folder icon round"></i>
                                 </div>
                                 <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
                             </mat-card-content>
+                            </mat-card>
                         </div>
                     </div>
                 </div>

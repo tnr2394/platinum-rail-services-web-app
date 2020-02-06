@@ -11,6 +11,8 @@ import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/c
 import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import * as _ from 'lodash';
+// import { $ } from 'protractor';
+declare var $: any;
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -25,6 +27,7 @@ export class MaterialTileComponent implements OnInit {
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
+  @Output() assignmentAllocated: EventEmitter<any> = new EventEmitter<any>();
   backupMaterial: any;
   isActive: string;
   editing: boolean;
@@ -120,8 +123,10 @@ export class MaterialTileComponent implements OnInit {
   }
 
   getMaterialFiles() {
-    console.log("INDEX IS", this.i);
-
+    // console.log("INDEX IS", this.i);
+    var tempId = "#"+ this.materialId
+    $(tempId).addClass('box_shadow_cls')
+    console.log(" Yash ", tempId)
     // this.temp = this.copyLearners;
     console.log("Getting Material ID from materialTile component", this.temp);
     if (this.material != undefined) {
@@ -145,6 +150,9 @@ export class MaterialTileComponent implements OnInit {
   }
   closeFileDetails() {
     console.log("Expansion closed^");
+    var tempId = "#" + this.materialId
+    $(tempId).removeClass('box_shadow_cls')
+    console.log(" Yash ", tempId)
   }
   applyFilter(filterValue: string) {
     console.log("filterValue", filterValue);
@@ -281,6 +289,7 @@ export class MaterialTileComponent implements OnInit {
     console.log("allocated learners", this.allocatedLearners);
   }
   allocateMaterial() {
+    this.assignmentAllocated.emit({msg:'assignment allocated from material tile'})
     this.allocatedLearners.forEach(learner=>{
       this.allLearners.forEach(singleLearner=>{
         if (learner._id == singleLearner._id){
@@ -342,15 +351,6 @@ export class MaterialTileComponent implements OnInit {
         else {
           singleLearner.checked = false
         }
-
-
-        // singleLearner.allotments()
-
-        // if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
-        //  
-        // }else{
-        //   singleLearner.checked = false
-        // }
       })
     }
     console.log("THIS.ALLLEARNERS", this.allLearners);

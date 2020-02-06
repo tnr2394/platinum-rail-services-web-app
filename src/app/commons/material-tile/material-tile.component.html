@@ -5,7 +5,8 @@
 </mat-card> -->
 <!-- mat-elevation-z0 -->
 <!-- <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="16"> -->
-            <mat-expansion-panel class="mat-elevation-z0 card expansion_tab" [expanded]="isSelected" (opened)="getMaterialFiles();"
+            <mat-expansion-panel id="{{materialId}}" class="mat-elevation-z0 expansion_tab" [expanded]="isSelected"
+                (opened)="getMaterialFiles();"
                 (closed)="closeFileDetails()">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="row">
