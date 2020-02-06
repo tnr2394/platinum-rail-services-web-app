@@ -731,9 +731,16 @@ th.mat-header-cell {
     // background-color: #4385F4 !important;
     height: 2px !important;
   }
+  .mat-tab-labels{
+    .mat-ink-bar{
+    height: 2px !important;
+  }
+  }
   .mat-tab-label-active{
     background: transparent !important;
     color: #707070;
+    border-bottom: 2px solid #4385F4;
+    border-radius: 0;
   }
   .mat-tab-label-content {
     &:before {

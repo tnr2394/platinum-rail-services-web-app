@@ -58,11 +58,24 @@ export class CoursesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  //   this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
+  // }
+  filter(searchText) {
+    console.log('FILTER CALLED', searchText);
+    if (searchText === '') {
+      this.dataSource = this.courses;
+      this.dataSource.paginator = this.paginator;
+      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      return;
     }
+    this.dataSource = this._filter.filter(searchText, this.courses, ['title']);
+    this.dataSource.paginator = this.paginator;
+    // this.iterator();
   }
 
   getRandomColorClass(i) {

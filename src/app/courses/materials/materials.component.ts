@@ -107,15 +107,17 @@ export class MaterialsComponent implements OnInit {
   applyFilter(filterValue: string) {
     // console.log("IN APPLY FILTER")
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    // console.log("this.dataSource.filter", this.dataSource.filter)
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    console.log("this.dataSource.paginator", this.dataSource.paginator)
+   
     console.log("THIS.MATERIALS IS", this.materials);
 
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
     this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
+    this.updateData(this.materials) 
     this.dataSource.paginator = this.paginator;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   getRandomColorClass(i) {

@@ -232,11 +232,19 @@ export class JobsComponent implements OnInit {
     if (searchText === '') {
       this.dataSource = this.jobs;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       // this.handlePage({pageIndex:0, pageSize:this.pageSize});
       return;
     }
-    this.dataSource = this._filter.filter(searchText, this.jobs, ['title', 'client']);
+    let tempDataSource =  this._filter.filter(searchText, this.jobs, ['title', 'client']);
+    this.updateData(tempDataSource)
     this.dataSource.paginator = this.paginator;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+
     // this.iterator();
   }
   // MODALS

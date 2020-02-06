@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   @Input('learnerForProfile') learnerId;
   @Input('instructorForProfile') instructorId;
   @Input('jobDetailsForProfile') jobDetails;
-
+  // @Input('job') jobFromLearner;
   constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
       console.log("instructor recieved is", this.instructorId);
       this.getInstructor();
     }
-    else if (this.jobDetails != undefined) {
+    if (this.jobDetails != undefined) {
       this.isJob = true
       this.getJobValues(this.jobDetails)
     }
@@ -64,6 +64,9 @@ export class ProfileComponent implements OnInit {
         this.getJobValues(changes.jobDetails.currentValue)
       }
     }
+    // if (changes.jobFromLearner){
+    //   if (changes.jobFromLearner.currentValue) this.getJobValues(changes.jobFromLearner.currentValue)
+    // }
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
@@ -87,7 +90,10 @@ export class ProfileComponent implements OnInit {
       this.email = this.learner.email;
       this.mobile = this.learner.mobile;
       this.profilePath = this.learner.profilePic;
+      console.log("this.learner.job._id", this.learner.job._id);
+      
       this.getJob(this.learner.job._id);
+      console.log("The learner is", this.learner);
     })
     // this.activatedRoute.params.subscribe(params => {
     //   console.log("ID-----", params['id']);
@@ -102,7 +108,6 @@ export class ProfileComponent implements OnInit {
     //   })
 
     // })
-    console.log("The learner is", this.learner);
   }
 
   getInstructor() {
@@ -120,10 +125,16 @@ export class ProfileComponent implements OnInit {
 
 
   getJob(id) {
-    this._jobService.getJobById(id).subscribe((jobRecieved) => {
-      console.log("Job Recieved", jobRecieved);
-      this.job = jobRecieved.pop();
+    console.log("get bob by id", id);
+      console.group("!!!!!!!!!")
+
+    this._jobService.getJobById(id).subscribe((jobRecieved2) => {
+      console.log("Job Recieved", JSON.parse(JSON.stringify(jobRecieved2)) );
+      this.job = JSON.parse(JSON.stringify(jobRecieved2.pop()));
       this.getJobValues(this.job)
+
+      console.groupEnd()
+
     })
   }
   getJobValues(job) {

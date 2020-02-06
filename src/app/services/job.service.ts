@@ -61,14 +61,14 @@ export class JobService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "jobs").subscribe((res: any) => {
-        console.log("Get Jobs... : ", res);
+        console.log("Get Jobs... :11111111 ", res);
         observer.next(res.data);
         observer.complete();
       })
     });
   }
   getJobById(jobId): Observable<any> {
-    console.log("Getting jobs");
+    console.log("Getting jobs", jobId);
     var that = this;
     return new Observable<any>((observer) => {
       console.log("Observable");

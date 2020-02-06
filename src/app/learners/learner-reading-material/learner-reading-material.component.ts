@@ -22,6 +22,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
   fileList = [];
   fileListLength;
   loading: boolean = false;
+  disableDownloadBtn: boolean;
 
 
   constructor(private _http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private _fileService: FileService) {
@@ -43,6 +44,7 @@ export class LearnerReadingMaterialComponent implements OnInit {
       this.loadingMaterials = false;
       console.log("this.filesList", this.fileList)
       this.fileListLength = this.fileList.length;
+      this.disableDownloadBtn = this.fileListLength > 0 ? false : true; 
       console.log('File List Length:', this.fileListLength);
     })
   }
