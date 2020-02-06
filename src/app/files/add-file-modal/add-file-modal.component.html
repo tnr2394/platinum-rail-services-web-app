@@ -1,12 +1,5 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files </h1>
 <form (ngSubmit)='doSubmit()' [formGroup]="uploadMaterial">
-
-    <!-- <button class="file_upload" type="button">
-        <span class="btn_lbl">Browse</span>
-        <span class="btn_colorlayer"></span>
-        <input type="file" formControlName="materialfile" name="fileupload"
-            (change)="onFileChange($event,'materialfile')" id="file_upload" multiple />
-    </button> -->
     <mat-card>
         <p>Upload</p>
         <mat-card-content>
@@ -26,9 +19,6 @@
 
     <div class="files-list" *ngFor="let file of files;let i= index">
         {{ file }}
-        <!-- <span><button class="delete-file" (click)="deleteAttachment(i)">
-                <i _ngcontent-nga-c17="" class="fas fa-times-circle" style="color:#FF6565;"></i>
-            </button></span> -->
     </div>
 
 
@@ -37,7 +27,6 @@
             <i class="fas fa-save fa-fw"></i>
             <span> Save</span>
         </button>
-        <!-- <button mat-button (click)="onNoClick()">Cancle</button> -->
     </div>
     <div mat-dialog-actions align='center' *ngIf="loading">
         Working... <i class="fas fa-refresh fa-spin"></i>

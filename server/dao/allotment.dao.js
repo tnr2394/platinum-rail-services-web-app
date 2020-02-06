@@ -92,9 +92,9 @@ allotment.getAllotment = function (allotemntId) {
     console.log("Get Allotemnts in allotemnt DAO", allotemntId);
     var q = Q.defer();
     allotmentModel.find({ _id: allotemntId })
-        .populate('assignment')
-        .populate('files')
-        .populate('learner')
+        .populate('assignment', { _id: 1, title: 1, type: 1, unitNo: 1, assignmentNo: 1 })
+        .populate('files', { _id: 1, title: 1, alias: 1, path: 1, extension: 1, uploadBy: 1, createdAt: 1, updatedAt: 1 })
+        .populate('learner', { _id: 1, name: 1, email: 1 })
         .exec((err, allotemnt) => {
             if (err) q.reject(err)
             q.resolve(allotemnt)
