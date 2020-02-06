@@ -212,9 +212,23 @@ export class FolderService {
           console.log("CALL COMPLETED ")
           observer.complete();
         })
-
     });
-
-
+  }
+  changeFolderParent(data: any): Observable<any> {
+    console.log("changeFolderParent", data);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "folder/change-position", data).subscribe((res: any) => {
+        observer.next(res.data.file);
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
   }
 }

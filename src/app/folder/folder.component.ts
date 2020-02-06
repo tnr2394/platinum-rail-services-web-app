@@ -194,15 +194,28 @@ export class FolderComponent implements OnInit {
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
   }
+
   drop(event: CdkDragDrop<string[]>){
     console.log("CARD DROP EVENT", event);
-    console.log("event", event.previousIndex, this.allFolders[event.previousIndex])
-    var temp1 = this.allFolders[event.previousIndex]
-    var temp2 = this.allFolders[event.currentIndex]
-    this.allFolders[event.previousIndex] = temp2
-    this.allFolders[event.currentIndex] = temp1
-
-    console.log("event", event.currentIndex, this.allFolders[event.currentIndex])
-
+    // console.log("event", event.previousIndex, this.allFolders[event.previousIndex])
+    console.log("Previous index", this.allFolders);
+    // var temp1 = this.allFolders[event.previousIndex]
+    // var temp2 = this.allFolders[event.currentIndex]
+    // this.allFolders[event.previousIndex] = temp2
+    // this.allFolders[event.currentIndex] = temp1
+    // console.log("event", event.currentIndex, this.allFolders[event.currentIndex])
+    var childId = this.allFolders[event.currentIndex];
+    var folderId = this.allFolders[event.previousIndex];
+    console.log("parent", childId);
+    console.log("child", folderId);
+    let data = {
+      folderId: folderId._id,
+      childId : childId._id
+    }
+    console.log("New data", data);
+    // this.allFolders.splice(event.previousIndex,1)
+    this._folderService.changeFolderParent(data).subscribe(res=>{
+      console.log("Updated hierarchy", res);
+    })
   }
 }
