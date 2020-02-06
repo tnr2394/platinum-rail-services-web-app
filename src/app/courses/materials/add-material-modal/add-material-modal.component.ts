@@ -11,13 +11,15 @@ export class AddMaterialModalComponent  implements OnInit {
   loading: Boolean = false;
   data: any;
   isMaterial: Boolean = false;
+  disabled: boolean;
   ngOnInit() {
     console.log("ON INIT", this.dialogData);
     if(this.dialogData.material != undefined){
       this.data = this.dialogData.material
       this.isMaterial = true;
+      this.disabled = true;
     }
-    else this.data = this.dialogData
+    else this.data = this.dialogData; this.disabled = false
   }
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public dialogData: any, public _materialService: MaterialService) {
     // NO DEFINITION

@@ -11,6 +11,7 @@ import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/c
 import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import * as _ from 'lodash';
+import $ from "jquery";
 @Component({
   selector: 'material-tile',
   templateUrl: './material-tile.component.html',
@@ -48,6 +49,7 @@ export class MaterialTileComponent implements OnInit {
   completedLearners: number = 0;
   allLearners: any;
   unassignedLearners: number = 0;
+  reSubmittedLearners: number = 0;
   learnerNames = [];
   displayLearners: Boolean = false;
   displaySubFolders: boolean = false;
@@ -55,6 +57,8 @@ export class MaterialTileComponent implements OnInit {
   allLearnersCount: any;
   duedate: any;
   today = new Date()
+  indexForMatTab: number = 1;
+  
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -67,6 +71,10 @@ export class MaterialTileComponent implements OnInit {
       this.displayLearners = true
       this.getLearners()
       this.assignmentStatusWithLearner(this.jobId)
+      this.indexForMatTab = 2;
+      var id = '#' + this.material._id;
+      console.log(id,"click here")
+      $(id).addClass('mat-tab-label-active')
     }
     if (this.material != undefined) {
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
@@ -91,7 +99,7 @@ export class MaterialTileComponent implements OnInit {
         if (changes.jobId.currentValue != undefined) {
           this.assignmentStatusWithLearner(this.jobId);
           this.getLearners()
-          this.getLearnerCheck(null)
+          this.getLearnerCheck()
         }
       }
     }
@@ -104,6 +112,7 @@ export class MaterialTileComponent implements OnInit {
         this.resubmissionLearners = 0
         this.submittedLearners = 0
         this.completedLearners = 0
+        this.reSubmittedLearners = 0;
       }
     }
   }
@@ -129,6 +138,7 @@ export class MaterialTileComponent implements OnInit {
       });
       if (this.learner != undefined) {
         this.getCount()
+        this.getLearnerCheck()
       }
     }
     if (this.folder != undefined) {
@@ -238,11 +248,13 @@ export class MaterialTileComponent implements OnInit {
   }
   // GET LEARNER COUNT
   getCount() {
+    this.learnerNames = [];
     this.assignedLearner = 0
     this.pendingLearners = 0
     this.resubmissionLearners = 0
     this.submittedLearners = 0
     this.completedLearners = 0
+    this.reSubmittedLearners = 0;
     this.learner.forEach(learner => {
       learner.assignments.forEach(assignment => {
         if (assignment.assignmentId == this.materialId) {
@@ -259,6 +271,9 @@ export class MaterialTileComponent implements OnInit {
           }
           else if (assignment.assignmentStatus == 'Completed') {
             this.completedLearners += 1
+          }
+          else if (assignment.assignmentStatus == 'Re-submitted') {
+            this.reSubmittedLearners += 1
           }
         }
         this.unassignedLearners = (this.allLearnersCount - this.assignedLearner > 0) ? this.allLearnersCount - this.assignedLearner : 0;
@@ -299,9 +314,9 @@ export class MaterialTileComponent implements OnInit {
   dueDate(event) {
     this.duedate = event.value
   }
-  getLearnerCheck(event) {
+  getLearnerCheck() {
     console.log("Getting allocated learner", event);
-    if (event.tab.textLabel == "Learners") {
+    // if (event.tab.textLabel == "Learners") {
 
       console.log("this.learner", this.learner)
       console.log("this.allLearners", this.allLearners)
@@ -336,17 +351,8 @@ export class MaterialTileComponent implements OnInit {
         else {
           singleLearner.checked = false
         }
-
-
-        // singleLearner.allotments()
-
-        // if (singleLearner && singleLearner.allotments && singleLearner.allotments.length && singleLearner.allotments[0] &&  singleLearner.allotments[0]._id){
-        //  
-        // }else{
-        //   singleLearner.checked = false
-        // }
       })
-    }
+    // }
     console.log("THIS.ALLLEARNERS", this.allLearners);
   }
   // API

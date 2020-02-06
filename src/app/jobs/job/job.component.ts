@@ -204,6 +204,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.completionPercent = 100;
     }
   }
+  formatSubtitle = (percent: number) => {
+    return "complete"
+  }
   // test(){
   //   this.mydsidenav.open();
   // }
