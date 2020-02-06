@@ -59,6 +59,7 @@ export class MaterialTileComponent implements OnInit {
   duedate: any;
   today = new Date()
   learnerCopy: any;
+  indexForMatTab: number = 1;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -71,6 +72,7 @@ export class MaterialTileComponent implements OnInit {
       this.displayLearners = true
       this.getLearners()
       this.assignmentStatusWithLearner(this.jobId)
+      this.indexForMatTab = 2;
     }
     if (this.material != undefined) {
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
@@ -95,7 +97,7 @@ export class MaterialTileComponent implements OnInit {
         if (changes.jobId.currentValue != undefined) {
           this.assignmentStatusWithLearner(this.jobId);
           this.getLearners()
-          this.getLearnerCheck(null)
+          this.getLearnerCheck()
         }
       }
     }
@@ -135,6 +137,7 @@ export class MaterialTileComponent implements OnInit {
       });
       if (this.learner != undefined) {
         this.getCount()
+        this.getLearnerCheck()
       }
     }
     if (this.folder != undefined) {
@@ -314,9 +317,9 @@ export class MaterialTileComponent implements OnInit {
   dueDate(event) {
     this.duedate = event.value
   }
-  getLearnerCheck(event) {
+  getLearnerCheck() {
     console.log("Getting allocated learner", event);
-    if (event.tab.textLabel == "Learners") {
+    // if (event == null || event.tab.textLabel == "Learners") {
 
       console.log("this.learner", this.learner)
       console.log("this.allLearners", this.allLearners)
@@ -352,7 +355,7 @@ export class MaterialTileComponent implements OnInit {
           singleLearner.checked = false
         }
       })
-    }
+    // }
     console.log("THIS.ALLLEARNERS", this.allLearners);
   }
 
@@ -367,6 +370,7 @@ export class MaterialTileComponent implements OnInit {
       this.allLearners.forEach(learner => {
         learner.checked = false
       })
+      this.getLearnerCheck()
       this.learnerCopy = this.allLearners;
     })
   }

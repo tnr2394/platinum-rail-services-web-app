@@ -32,7 +32,7 @@
                     </mat-panel-description> -->
                 </mat-expansion-panel-header>
                 <!-- <mat-divider></mat-divider> -->
-                <mat-tab-group (selectedTabChange)="getLearnerCheck($event)">
+                <mat-tab-group   [selectedIndex]="indexForMatTab">
                     <mat-tab label="Files">
                         <div class='row m-0 material_responsive'>
                             <div class='col-lg-12'>
