@@ -7,6 +7,7 @@ import { FilterService } from '../services/filter.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { NewFileModalComponent } from './new-file-modal/new-file-modal.component'
+import { FileUploaderService } from '../services/file-uploader.service';
 
 @Component({
   selector: 'material-files',
@@ -22,7 +23,7 @@ export class FilesComponent implements OnInit, OnChanges {
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
-  constructor(public _filter: FilterService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
+  constructor(public _filter: FilterService, public _newFileUploadService: FileUploaderService ,public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
@@ -47,15 +48,16 @@ export class FilesComponent implements OnInit, OnChanges {
 
   // MODALS
   addFileModal() {
+    let tempQue
     if (this.materialId != undefined) {
-      var addedCourse = this.openDialog(NewFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
-        if (courses == undefined) return;
-        console.log("Course added in controller = ", courses);
-
-        _.forEach(courses, (data) => {
-          this.files.push(data);
+      var addedCourse = this.openDialog(NewFileModalComponent, { materialId: this.materialId }).subscribe((fileQueue) => {
+        console.log("The queue recieved is", fileQueue);
+        if (fileQueue == undefined) return;
+        _.forEach(fileQueue, (file) => {
+          this.files.push(file);
         })
-
+      console.log("this.files After push", this.files);
+      
         this.openSnackBar("File Uploaded Successfully", "Ok");
         this.updateData(this.files);
         this.fileCount = this.files.length;
@@ -73,7 +75,10 @@ export class FilesComponent implements OnInit, OnChanges {
         this.fileCount = this.files.length;
       })
     }
-
+    console.log("onCompleteItem from file upload service");
+   
+    
+    // this.getFiles();
   }
   updateData(courses: any) {
     // throw new Error("Method not implemented.");
@@ -98,7 +103,7 @@ export class FilesComponent implements OnInit, OnChanges {
 
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
-    const dialogRef = this.dialog.open(someComponent, { width: "1000px", data });
+    const dialogRef = this.dialog.open(someComponent, { disableClose: true ,width: "1000px", data });
     return dialogRef.afterClosed();
   }
 

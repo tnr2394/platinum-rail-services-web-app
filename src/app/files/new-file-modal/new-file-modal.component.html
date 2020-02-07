@@ -1,4 +1,11 @@
-<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files </h1>
+<div>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files 
+    <button  (click)="close()" class="closeBtn" *ngIf="uploadedFilesCount == queue.source._value.length || uploadedFilesCount == 0 && uploadedFiles.length === 0">
+        <h4 color="warn"><i class="fa fa-times-circle"></i>
+        </h4>
+    </button>
+</h1>
+</div>
 <mat-card>
     <p>Upload</p>
     <mat-card-content>
@@ -54,7 +61,7 @@
 
 
                                 <button type="button" *ngIf="!item.inProgress()"
-                                    class="btn btn-danger btn-sm action_btns" (click)="item.remove()">
+                                    class="btn btn-danger btn-sm action_btns" (click)="item.remove(); uploadedFilesCount = (uploadedFilesCount) ? uploadedFilesCount-1 : 0">
                                     <i class="fa fa-trash"></i>
                                 </button>
 
@@ -63,13 +70,13 @@
                     </tbody>
                 </table>
                 <div>
-
-                    <button type="button" class="btn btn-success btn-sm" (click)="uploader.uploadAll()">
+                        <!-- (click)="uploader.uploadAll() -->
+                    <button type="button" class="btn btn-success btn-sm" (click)="upload()">
                         <i class="fa fa-upload"></i> Upload all {{queue.length}}
                     </button>
 
                     <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px;"
-                        (click)="uploader.clearQueue()">
+                        (click)="uploader.clearQueue(); count = 0">
                         <i class="fa fa-trash"></i> Remove all
                     </button>
 
