@@ -35,6 +35,7 @@ export class FolderComponent implements OnInit {
   @Input('subFolders') subFolder: any;
   @Input('removeCssClass') removeCssClass: any;
   @Input('updatedFolder') updatedFolder: any;
+  @Input('folderIdFromParams') folderIdFromParams: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   showCreateBtn: boolean = false;
   allFoldersCopy: any[];
@@ -204,18 +205,29 @@ export class FolderComponent implements OnInit {
     // this.allFolders[event.previousIndex] = temp2
     // this.allFolders[event.currentIndex] = temp1
     // console.log("event", event.currentIndex, this.allFolders[event.currentIndex])
-    var childId = this.allFolders[event.currentIndex];
-    var folderId = this.allFolders[event.previousIndex];
-    console.log("parent", childId);
-    console.log("child", folderId);
-    let data = {
-      folderId: folderId._id,
-      childId : childId._id
+    if (event.currentIndex == event.previousIndex) return
+    else {
+      var childId = this.allFolders[event.currentIndex];
+      var folderId = this.allFolders[event.previousIndex];
+      console.log("parent", childId);
+      console.log("child", folderId);
+      let data = {
+        folderId: folderId._id,
+        childId: childId._id,
+        parent: this.folderIdFromParams
+      }
+      console.log("New data", data);
+      this.allFolders.splice(event.previousIndex, 1)
+      this._folderService.changeFolderParent(data).subscribe(res => {
+        console.log("Updated hierarchy", res);
+      })
+      if (this.folderIdFromParams) {
+        console.log("this.folderIdFromParams", this.folderIdFromParams);
+        console.log("this.subFolder", this.subFolder);
+        var index = _.findIndex(this.subFolder, function (o) { console.log("o._id", o._id); return o._id == folderId._id })
+        if (index > -1) this.subFolder.splice(index, 1)
+      }
     }
-    console.log("New data", data);
-    // this.allFolders.splice(event.previousIndex,1)
-    this._folderService.changeFolderParent(data).subscribe(res=>{
-      console.log("Updated hierarchy", res);
-    })
+    
   }
 }

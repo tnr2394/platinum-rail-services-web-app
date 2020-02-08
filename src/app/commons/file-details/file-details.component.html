@@ -2,33 +2,40 @@
 <!-- <br/> -->
 <mat-tab-group>
     <mat-tab label="Details">
-        
-        <!-- <h5>Total Files : <span>{{totalFiles}}</span></h5> -->
-        <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
-        <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
-        <!-- <h5>isMaterials : {{isMaterials}}</h5> -->
-        <br />
-        Type:{{type}}
-        
-        <mat-form-field *ngIf="type=='folder'" class="example-full-width" (click)="showSaveBtn()">
-            <input matInput placeholder="Title" readonly="{{readOnlyTitle}}" [(ngModel)]="title">
-        </mat-form-field>
-        <div style="position: relative;">
-            <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
-                    class="fa fa-check-circle"></i></button>
+        <div class="row icon m-0">
+            <h1 *ngIf="type=='folder'"><i class="fa fa-folder-open fa-2x"></i></h1>
+            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> </div>
         </div>
+        <div class="row m-0">
+            <div class="col">
+            <!-- <h5>Total Files : <span>{{totalFiles}}</span></h5> -->
+            <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
+            <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
+            <!-- <h5>isMaterials : {{isMaterials}}</h5> -->
+            <br />
 
-        <div *ngIf="isMaterials == 'material'">
-            <div class="drawer_btn">
-                <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
-                        aria-hidden="true"></i> Share</button>
-                <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
-                        aria-hidden="true"></i> Delete</button>
-                <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i
-                            class="fa fa-download"
-                            aria-hidden="true"></i> Download</a></button>
-                      
+            <!-- Type:{{type}} -->
+            
+            <mat-form-field *ngIf="type=='folder'" class="example-full-width" (click)="showSaveBtn()">
+                <input matInput placeholder="Title" readonly="{{readOnlyTitle}}" [(ngModel)]="title">
+            </mat-form-field>
+            <div style="position: relative;">
+                <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
+                        class="fa fa-check-circle"></i></button>
             </div>
+            
+            <div *ngIf="isMaterials == 'material'">
+                <div class="drawer_btn">
+                    <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
+                            aria-hidden="true"></i> Share</button>
+                    <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i>
+                        Delete</button>
+                    <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i class="fa fa-download"
+                                aria-hidden="true"></i> Download</a></button>
+            
+                </div>
+            </div>
+        </div>
         </div>
     </mat-tab>
 
@@ -41,12 +48,14 @@
                 {{client.name}}
             </li>
         </ul>
+        <div class="w-100 justify-content-center d-flex" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared with any clients!</div>
         <h6><b>Instructors</b></h6>
         <ul>
             <li *ngFor="let instructor of sharedInstructor">
                 {{instructor.name}}
             </li>
         </ul>
+        <div class="w-100 justify-content-center d-flex" *ngIf="sharedInstructor.length < 1" style="color: #2196F3;">Not shared with any instructors!</div>
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>
@@ -58,5 +67,4 @@
                             class="fa fa-download" aria-hidden="true"></i> Download </a></button>
         </div>
     </mat-tab>
-    <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
 </mat-tab-group>

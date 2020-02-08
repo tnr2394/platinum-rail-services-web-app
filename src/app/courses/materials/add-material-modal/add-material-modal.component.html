@@ -5,18 +5,18 @@
                 <input matInput name="material-title" placeholder="Material Title" [(ngModel)]='data.title' required cdkFocusInitial>
         </mat-form-field>
         <mat-form-field class="example-full-width col-xl-6 col-sm-6">
-            <mat-select [(ngModel)]='data.type' name="type" placeholder="Type">
+            <mat-select [(ngModel)]='data.type' [disabled]="disabled" name="type" placeholder="Type">
                     <mat-option value='Assignment'> Assignment</mat-option>
                     <mat-option value='Reading'> Reading Material</mat-option>
                 </mat-select>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
-                <input matInput name='unit' placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
+        <mat-form-field class="example-full-width col-6"  *ngIf='data.type == "Assignment"'>
+                <input matInput name='unit' min="0" oninput="validity.valid||(value='')" placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
         </mat-form-field>
         <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
-                <input matInput name='assignment' placeholder="Enter Assignment Number" type="number" required [(ngModel)]='data.assignmentNo'>
+                <input matInput name='assignment' min="0" oninput="validity.valid||(value='')" placeholder="Enter Assignment Number" type="number" required [(ngModel)]='data.assignmentNo'>
         </mat-form-field>
-        
+        <div *ngIf="isValid == false" class="errorMsg">All fields are required!</div>
   </div>
   <div mat-dialog-actions align="center" *ngIf="!loading"> 
     <button mat-flat-button class="button_hover_effect" color="primary" type="submit">
