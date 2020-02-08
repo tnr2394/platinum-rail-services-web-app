@@ -1,13 +1,16 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files </h1>
 <mat-card>
-    <p>Upload</p>
+    <h5 class="mb-3">Upload</h5>
     <mat-card-content>
         <div class="row">
             <div class="col-md-3">
                 <div class="well drop-zone" (onFileDropped)="dragQueue($event)" appDragDrop>Files drop zone </div>
                 <div class="single-file">
-                    <h4>Select files</h4>
+                    <h5>Select files</h5>
                     <input type="file" #fileInput multiple (change)="addToQueue()" />
+                    <div class="fake_file">
+                        <p class="m-0">Choose file</p>
+                    </div>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ import { from, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+declare var $: any;
 @Component({
   selector: 'file-tile',
   templateUrl: './file-tile.component.html',
@@ -83,6 +84,7 @@ export class FileTileComponent implements OnInit {
   }
 
   fileDetails(){
+    $('.parent_row').addClass('col-width-class');
     console.log("file tile clicked", event);
     this.openSideNav.emit({file:this.file})
   }
