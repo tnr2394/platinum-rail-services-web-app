@@ -1,7 +1,6 @@
 
 // For Local Environment
 
-// const baseUrl = "http://132.146.160.119:3333/";
 // const baseUrl = "http://localhost:3333/";
 
 

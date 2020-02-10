@@ -46,69 +46,73 @@
                                     <span>Save</span></button>
                             </div>
                         </form> -->
-        <div class="row exam-cards m-0">
-            <div class="col-12">
-        <div class=" row exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
-            [@bounce]="{ value: bounce}">
-            <div class="card-block exam_main_card">
-                <div *ngIf="!editing1">
-                    <div class=" text-right card-title h4 mb-0">
-                        <p>{{exam1.display}}</p>
-                        <h1 class="mb-0">{{exam1.status}}</h1>
-                    </div>
-                    <a class="pull-right "><i class="fas fa-edit fa-fw text-white" (click)="editStatus1()"></i></a>
-                </div>
-                <div *ngIf="editing1">
-                    <form>
-                        <mat-form-field class="col-12">
-                            <input matInput name="status" placeholder="Status" [(ngModel)]='exam1.status' required
-                                cdkFocusInitial>
-                            <mat-error>Status is required</mat-error>
-                        </mat-form-field>
-                        <div class="col-12">
-                            <button *ngIf="loading" disabled mat-stroked-button color="primary">
-                                <i class="fas fa-refresh fa-spin fa-fw"></i>
-                            </button>
-                            <button *ngIf="!loading" class="button_hover_effect" mat-stroked-button
-                                (click)="updateStatus1()" color="primary"><i class="fas fa-edit fa-fw"></i>
-                                <span>Save</span></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
-        <div class=" row  exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
-            [@bounce]="{ value: bounce}">
-            <div class="card-block exam_main_card">
-                <div *ngIf="!editing2">
-                    <div class=" text-right card-title h4 mb-0">
-                        <p>{{exam2.display}}</p>
-                        <h1 class="mb-0">{{exam2.status}}</h1>
-                    </div>
-                    <a class="pull-right "><i class="fas fa-edit fa-fw text-white" (click)="editStatus2()"></i></a>
-                </div>
-                <div *ngIf="editing2">
-                    <form>
-                        <mat-form-field class="col-12">
-                            <input matInput name="status" placeholder="Status" [(ngModel)]='exam2.status' required
-                                cdkFocusInitial>
-                            <mat-error>Status is required</mat-error>
-                        </mat-form-field>
-                        <div class="col-12">
-                            <button *ngIf="loading" disabled mat-stroked-button color="primary">
-                                <i class="fas fa-refresh fa-spin fa-fw"></i>
-                            </button>
-                            <button *ngIf="!loading" class="button_hover_effect" mat-stroked-button
-                                (click)="updateStatus2()" color="primary"><i class="fas fa-edit fa-fw"></i>
-                                <span>Save</span></button>
+
+        <!-- <div class="row exam-cards m-0">
+            <div class="col-12">
+                <div class=" row exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
+                    [@bounce]="{ value: bounce}">
+                    <div class="card-block exam_main_card">
+                        <div *ngIf="!editing1">
+                            <div class=" text-right card-title h4 mb-0">
+                                <p>{{exam1.display}}</p>
+                                <h1 class="mb-0">{{exam1.status}}</h1>
+                            </div>
+                            <a class="pull-right "><i class="fas fa-edit fa-fw text-white"
+                                    (click)="editStatus1()"></i></a>
                         </div>
-                    </form>
+                        <div *ngIf="editing1">
+                            <form>
+                                <mat-form-field class="col-12">
+                                    <input matInput name="status" placeholder="Status" [(ngModel)]='exam1.status'
+                                        required cdkFocusInitial>
+                                    <mat-error>Status is required</mat-error>
+                                </mat-form-field>
+                                <div class="col-12">
+                                    <button *ngIf="loading" disabled mat-stroked-button color="primary">
+                                        <i class="fas fa-refresh fa-spin fa-fw"></i>
+                                    </button>
+                                    <button *ngIf="!loading" class="button_hover_effect" mat-stroked-button
+                                        (click)="updateStatus1()" color="primary"><i class="fas fa-edit fa-fw"></i>
+                                        <span>Save</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" row  exam_row  card location-bg exam_card" [ngClass]="{'editing-location': editing}"
+                    [@bounce]="{ value: bounce}">
+                    <div class="card-block exam_main_card">
+                        <div *ngIf="!editing2">
+                            <div class=" text-right card-title h4 mb-0">
+                                <p>{{exam2.display}}</p>
+                                <h1 class="mb-0">{{exam2.status}}</h1>
+                            </div>
+                            <a class="pull-right "><i class="fas fa-edit fa-fw text-white"
+                                    (click)="editStatus2()"></i></a>
+                        </div>
+                        <div *ngIf="editing2">
+                            <form>
+                                <mat-form-field class="col-12">
+                                    <input matInput name="status" placeholder="Status" [(ngModel)]='exam2.status'
+                                        required cdkFocusInitial>
+                                    <mat-error>Status is required</mat-error>
+                                </mat-form-field>
+                                <div class="col-12">
+                                    <button *ngIf="loading" disabled mat-stroked-button color="primary">
+                                        <i class="fas fa-refresh fa-spin fa-fw"></i>
+                                    </button>
+                                    <button *ngIf="!loading" class="button_hover_effect" mat-stroked-button
+                                        (click)="updateStatus2()" color="primary"><i class="fas fa-edit fa-fw"></i>
+                                        <span>Save</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
+        </div> -->
 
 
         <div>
@@ -118,123 +122,122 @@
                         Assignments
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                    <mat-card class="single_learner_card" style="min-width: 100%;">
-                        <div class='row'>
-<!--         
-                            <div class="col-md-12">
-                                <h3>Assignments</h3>
-                            </div> -->
-        
-                            
-                            <!-- Serach Bar -->
-                            <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                                    <mat-icon matSuffix>search</mat-icon>
-                                </mat-form-field>
-                            </div>
-        
-                            <!-- Pagination-->
-                            <div class="col-md-6 submission_pagination">
-                                <mat-paginator class="text-left float-left" [pageSizeOptions]="[10, 25, 100]">
-                                </mat-paginator>
+                <mat-card class="single_learner_card" style="min-width: 100%;">
+                    <div class='row'>
+
+                        <!-- Serach Bar -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Pagination-->
+                        <div class="col-md-6 submission_pagination">
+                            <mat-paginator class="text-left float-left" [pageSizeOptions]="[10, 25, 100]">
+                            </mat-paginator>
+                        </div>
+                    </div>
+
+                    <!-- Select Assignment Status -->
+                    <div class="row justify-content-between w-100">
+                        <div *ngFor='let status of assignmentStatus;let i = index'>
+                            <div class="col-md-2">
+                                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                                    (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                    {{status.display}}
+                                </mat-checkbox>
                             </div>
                         </div>
-        
-                        <!-- Select Assignment Status -->
-                        <div class="row justify-content-between w-100">
-                            <div *ngFor='let status of assignmentStatus;let i = index'>
-                                <div class="col-md-2">
-                                    <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                                        (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">{{status.display}}
-                                    </mat-checkbox>
+                    </div>
+
+                    <div class='row'>
+                        <div class="table-responsive">
+                            <div *ngIf="dataSource">
+                                <!-- <h1>{{dataSource.length}}</h1> -->
+
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                    <!--Assignment Column -->
+                                    <ng-container matColumnDef="Assignment">
+                                        <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                            Assignment
+                                        </th>
+                                        <td class="mat-table-cell text-left" mat-cell
+                                            *matCellDef="let allotment; let i = index;">
+
+                                            <a class="btn {{getRandomColorClass(i)}} text-white fab-item ">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </a>
+                                            Unit- {{allotment.assignment.unitNo}}
+                                            Assignment-{{allotment.assignment.assignmentNo}}
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Due Date Column -->
+
+                                    <ng-container matColumnDef="DueDate">
+                                        <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Due Date
+                                        </th>
+                                        <td class="mat-table-cell text-left" mat-cell
+                                            *matCellDef="let assignment; let i = index;">
+                                            {{assignment.deadlineDate | date:'mediumDate'}}
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Status Column -->
+                                    <ng-container matColumnDef="Status">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                            Status
+                                        </th>
+                                        <td class="mat-table-cell text-center m-0" mat-cell
+                                            *matCellDef="let assignment; let i = index;">
+                                            <div [ngClass]="assignment.status" class="text-center">
+                                                <span>{{assignment.status}}</span>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- View Column -->
+                                    <ng-container matColumnDef="View">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> View
+                                        </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let allotment; let i = index;">
+                                            <a mat-button class="text-primary bold" placement="bottom"
+                                                ngbTooltip="Details" tooltipClass="tooltip-class"
+                                                routerLink="/learnerAllotment/{{allotment._id}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </ng-container>
+
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;">
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-info pt-3 text-center"
+                                    *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
+                                    No Assignment Allocated!
                                 </div>
+                                <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
+                                    class="text-center text-info pt-3">Loading...<i
+                                        class="fa fa-cog fa-spin text-info"></i>
+                                </h3>
                             </div>
                         </div>
-                        
-                        <div class='row'>
-                            <div class="table-responsive">
-                                <div *ngIf="dataSource">
-                                    <!-- <h1>{{dataSource.length}}</h1> -->
-        
-                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-        
-                                        <!--Assignment Column -->
-                                        <ng-container matColumnDef="Assignment">
-                                            <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment
-                                            </th>
-                                            <td class="mat-table-cell text-left" mat-cell
-                                                *matCellDef="let allotment; let i = index;">
-        
-                                                <a class="btn {{getRandomColorClass(i)}} text-white fab-item ">
-                                                    <i class="fas fa-clipboard-list"></i>
-                                                </a>
-                                                Unit- {{allotment.assignment.unitNo}}
-                                                Assignment-{{allotment.assignment.assignmentNo}}
-                                            </td>
-                                        </ng-container>
-        
-                                        <!-- Due Date Column -->
-        
-                                        <ng-container matColumnDef="DueDate">
-                                            <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Due Date
-                                            </th>
-                                            <td class="mat-table-cell text-left" mat-cell
-                                                *matCellDef="let assignment; let i = index;">
-                                                {{assignment.deadlineDate | date:'mediumDate'}}
-                                            </td>
-                                        </ng-container>
-        
-        
-                                        <!-- Status Column -->
-                                        <ng-container matColumnDef="Status">
-                                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Status
-                                            </th>
-                                            <td class="mat-table-cell text-center m-0" mat-cell
-                                                *matCellDef="let assignment; let i = index;">
-                                                <div [ngClass]="assignment.status" class="text-center">
-                                                    <span>{{assignment.status}}</span>
-                                                </div>
-                                            </td>
-                                        </ng-container>
-        
-                                        <!-- View Column -->
-                                        <ng-container matColumnDef="View">
-                                            <th class="text-center" mat-header-cell *matHeaderCellDef> View
-                                            </th>
-                                            <td class="mat-table-cell text-center" mat-cell
-                                                *matCellDef="let allotment; let i = index;">
-                                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
-                                                    tooltipClass="tooltip-class"
-                                                    routerLink="/learnerAllotment/{{allotment._id}}">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                            </td>
-                                        </ng-container>
-        
-                                        <thead>
-                                            <tr style="background:lightgray;" mat-header-row
-                                                *matHeaderRowDef="displayedColumns"></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr mat-row *matRowDef="let learner; columns: displayedColumns;">
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="text-info pt-3 text-center"
-                                        *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
-                                        No Assignment Allocated!
-                                    </div>
-                                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
-                                        class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card>
+                    </div>
+                </mat-card>
             </mat-expansion-panel>
-        
-        
+
+
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -243,7 +246,7 @@
                 </mat-expansion-panel-header>
                 <mat-card class="first_card mb-0">
                     <!-- <h3 class="mb-4 learner_card_title">Reading Materials</h3> -->
-        
+
                     <mat-form-field class="example-full-width col-lg-6 col-md-6">
                         <input matInput placeholder="Search" [(ngModel)]="userFilter.title">
                         <mat-icon matSuffix>search</mat-icon>
@@ -272,7 +275,7 @@
                         </div>
                     </mat-card-content>
                 </mat-card>
-        
+
             </mat-expansion-panel>
         </div>
 
@@ -476,7 +479,7 @@
 </mat-expansion-panel> -->
 
 
-<!-- CHANGE -->
+        <!-- CHANGE -->
         <!-- <div class="row assign_row" style="min-width: 100%;">
             <mat-card class="single_learner_card" style="min-width: 100%;">
                 <div class='row'>
@@ -486,16 +489,16 @@
                     </div> -->
 
 
-                    <!-- Serach Bar -->
-                    <!-- <div class="col-md-6">
+        <!-- Serach Bar -->
+        <!-- <div class="col-md-6">
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
                     </div> -->
 
-                    <!-- Pagination-->
-                    <!-- <div class="col-md-6 submission_pagination">
+        <!-- Pagination-->
+        <!-- <div class="col-md-6 submission_pagination">
                         <mat-paginator class="text-left float-left" [pageSizeOptions]="[10, 25, 100]">
                         </mat-paginator>
                     </div>
@@ -509,8 +512,8 @@
 
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless"> -->
 
-                                <!--Assignment Column -->
-                                <!-- <ng-container matColumnDef="Assignment">
+        <!--Assignment Column -->
+        <!-- <ng-container matColumnDef="Assignment">
                                     <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Assignment
                                     </th>
                                     <td class="mat-table-cell text-left" mat-cell
@@ -524,9 +527,9 @@
                                     </td>
                                 </ng-container>
  -->
-                                <!-- Due Date Column -->
+        <!-- Due Date Column -->
 
-                                <!-- <ng-container matColumnDef="DueDate">
+        <!-- <ng-container matColumnDef="DueDate">
                                     <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Due Date
                                     </th>
                                     <td class="mat-table-cell text-left" mat-cell
@@ -536,8 +539,8 @@
                                 </ng-container>
  -->
 
-                                <!-- Status Column -->
-                                <!-- <ng-container matColumnDef="Status">
+        <!-- Status Column -->
+        <!-- <ng-container matColumnDef="Status">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Status
                                     </th>
                                     <td class="mat-table-cell text-center m-0" mat-cell
@@ -548,8 +551,8 @@
                                     </td>
                                 </ng-container> -->
 
-                                <!-- View Column -->
-                                <!-- <ng-container matColumnDef="View">
+        <!-- View Column -->
+        <!-- <ng-container matColumnDef="View">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> View
                                     </th>
                                     <td class="mat-table-cell text-center" mat-cell
