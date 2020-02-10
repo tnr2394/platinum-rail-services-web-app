@@ -1,6 +1,6 @@
 <div>
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files 
-    <button  (click)="close()" class="closeBtn" *ngIf="uploadedFilesCount == queue.source._value.length || uploadedFilesCount == 0 && uploadedFiles.length === 0">
+    <button  (click)="close()" class="closeBtn" *ngIf="uploadedFilesCount == queueCount || uploadedFilesCount == 0 && uploadedFiles.length === 0">
         <h4 color="warn"><i class="fa fa-times-circle"></i>
         </h4>
     </button>
@@ -72,11 +72,11 @@
                 <div>
                         <!-- (click)="uploader.uploadAll() -->
                     <button type="button" class="btn btn-success btn-sm" (click)="upload()">
-                        <i class="fa fa-upload"></i> Upload all {{queue.length}}
+                        <i class="fa fa-upload"></i> Upload all
                     </button>
 
                     <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px;"
-                        (click)="uploader.clearQueue(); count = 0">
+                        (click)="uploader.clearQueue()">
                         <i class="fa fa-trash"></i> Remove all
                     </button>
 

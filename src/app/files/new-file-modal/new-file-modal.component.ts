@@ -16,6 +16,7 @@ export class NewFileModalComponent implements OnInit {
   queue: Observable<FileQueueObject[]>;
   uploadedFiles = [];
   uploadedFilesCount = 0
+  queueCount = 0
   constructor(public uploader: FileUploaderService, public _snackbar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class NewFileModalComponent implements OnInit {
     console.log("Upload files initialized", this.data);
 
     this.queue = this.uploader.queue;
+    this.queueCount = this.queue.source['_value'].length || 0 
     this.uploader.bodyData = this.data;
     this.uploader.onCompleteItem = this.completeItem;
     this.uploader.clearQueue()
