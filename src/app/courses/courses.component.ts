@@ -64,6 +64,20 @@ export class CoursesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  filter(searchText) {
+    console.log('FILTER CALLED', searchText);
+    if (searchText === '') {
+      // this.dataSource = this.clients;
+      this.dataSource = new MatTableDataSource(this.courses);
+      this.dataSource.paginator = this.paginator;
+      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      return;
+    }
+    let temp = this._filter.filter(searchText, this.courses, ['title']);
+    this.dataSource = new MatTableDataSource(temp);
+    this.dataSource.paginator = this.paginator;
+    // this.filiterator();
+  }
 
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);

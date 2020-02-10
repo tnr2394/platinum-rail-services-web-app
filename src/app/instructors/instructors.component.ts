@@ -72,7 +72,8 @@ export class InstructorsComponent implements OnInit {
       // this.handlePage({pageIndex:0, pageSize:this.pageSize});
       return;
     }
-    this.dataSource = this._filter.filter(searchText, this.instructors, ['name']);
+    let temp = this._filter.filter(searchText, this.instructors, ['name']);
+    this.dataSource = new MatTableDataSource(temp);
     this.dataSource.paginator = this.paginator;
     // this.filiterator();
   }

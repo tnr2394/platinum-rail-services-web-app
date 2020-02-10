@@ -46,8 +46,7 @@ export class JobsComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
 
-
-  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
+  displayedColumns: string[] = ['title', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
   jobForScheduler: any;
   displayStatus: boolean = true;
 
@@ -230,12 +229,14 @@ export class JobsComponent implements OnInit {
   filter(searchText) {
     console.log('FILTER CALLED', searchText);
     if (searchText === '') {
-      this.dataSource = this.jobs;
+      // this.dataSource = this.jobs;
+      this.dataSource = new MatTableDataSource(this.jobs);
       this.dataSource.paginator = this.paginator;
       // this.handlePage({pageIndex:0, pageSize:this.pageSize});
       return;
     }
-    this.dataSource = this._filter.filter(searchText, this.jobs, ['title', 'client']);
+    let temp = this._filter.filter(searchText, this.jobs, ['title', 'client']);
+    this.dataSource = new MatTableDataSource(temp);
     this.dataSource.paginator = this.paginator;
     // this.iterator();
   }

@@ -82,6 +82,7 @@ material.addFile = function (materialId, fileId) {
         if (err) return q.reject(err);
         else {
             console.log("material Updated with new file Successfully =  ", updatedMaterial.files);
+            console.log("In material file preview called");
             return q.resolve(updatedMaterial);
         }
     });

@@ -3,6 +3,7 @@ var courseDOA = require('../dao/course.dao');
 var fileDOA = require('../dao/file.dao');
 var Q = require('q');
 const async = require("async");
+const filePreviewService = require('../services/filepreview')
 
 var materialController = {};
 
@@ -88,6 +89,8 @@ materialController.addMaterial = async function (req, res, next) {
             err
         });
     });
+    
+
 }
 
 

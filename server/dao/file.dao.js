@@ -7,6 +7,7 @@ var multer = require('multer')
 var path = require('path');
 const fs = require('fs-extra');
 var multerS3 = require('multer-s3')
+var filePreviewService = require('../services/filepreview')
 
 const s3UploadService = require('../services/upload.service');
 
@@ -67,6 +68,7 @@ file.addFile = function (object) {
                     console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
                     newFile.save((err, file) => {
                         console.log("File Uploaded Successfully =  ", file, err);
+                        filePreviewService.generatePdf(file.path, file.title);
                         if (err) return reject(err);
                         else return resolve(file);
                     });

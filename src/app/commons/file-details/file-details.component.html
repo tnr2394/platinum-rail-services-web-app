@@ -4,7 +4,9 @@
     <mat-tab label="Details">
         <div class="row icon m-0">
             <h1 *ngIf="type=='folder'"><i class="fa fa-folder-open fa-2x"></i></h1>
-            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> </div>
+            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> 
+            <!-- <img attr.src="./home/heer/Desktop/{{recievedFile.title}}.jpg"> -->
+            </div>
         </div>
         <div class="row m-0">
             <div class="col">
