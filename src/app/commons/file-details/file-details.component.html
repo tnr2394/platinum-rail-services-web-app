@@ -2,11 +2,9 @@
 <!-- <br/> -->
 <mat-tab-group>
     <mat-tab label="Details">
-        <div class="row icon m-0">
-            <h1 *ngIf="type=='folder'"><i class="fa fa-folder-open fa-2x"></i></h1>
-            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> 
-            <!-- <img attr.src="./home/heer/Desktop/{{recievedFile.title}}.jpg"> -->
-            </div>
+        <div class="row icon m-0 py-4">
+            <h1 *ngIf="type=='folder'" class="folder_icon"><i class="fa fa-folder-open text-warning"></i></h1>
+            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> </div>
         </div>
         <div class="row m-0">
             <div class="col">
@@ -43,21 +41,21 @@
 
     <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
 
-        <h4>Shared with:</h4>
+        <h4 class="shared_with">Shared with:</h4>
         <h6><b>Clients</b></h6>
         <ul>
             <li *ngFor="let client of sharedClient">
                 {{client.name}}
             </li>
         </ul>
-        <div class="w-100 justify-content-center d-flex" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared with any clients!</div>
+        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared with any clients!</div>
         <h6><b>Instructors</b></h6>
         <ul>
             <li *ngFor="let instructor of sharedInstructor">
                 {{instructor.name}}
             </li>
         </ul>
-        <div class="w-100 justify-content-center d-flex" *ngIf="sharedInstructor.length < 1" style="color: #2196F3;">Not shared with any instructors!</div>
+        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedInstructor.length < 1" style="color: #2196F3;">Not shared with any instructors!</div>
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>

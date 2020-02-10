@@ -188,10 +188,18 @@ mat-form-field{
     margin: auto;
 }
 
-.image{
-    // height: 40%;
-    // width: 40%;
-}
 .icon{
     height: 50% !important;
+}
+.folder_icon{
+    font-size: 70px;
+    margin-bottom: 0;
+}
+.shared_with{
+    @media (max-width:575px){
+        font-size: 24px;
+    }
+    @media (max-width:422px) {
+        font-size: 20px;
+    }
 }
