@@ -797,7 +797,181 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
-            console.log('assignment', assignment);
+            // console.log('assignment', assignment);
+            return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
+        }
+    });
+}
+
+
+
+
+jobController.filterAssignmentList = function (req, res) {
+    let jobId = req.body.job;
+
+    let filterObject = req.body;
+
+    console.log('Filter Object:::::', filterObject);
+
+    var query = {
+        $and: []
+    }
+
+    let statusList = [];
+
+    if (req.body.assignment) {
+        query['$and'].push({ $eq: ['$assignmentId', ObjectId(req.body.assignment)] })
+    }
+
+    if (req.body.unit) {
+        query['$and'].push({ $eq: ['$assignmentUnit', Number(req.body.unit)] })
+    }
+
+    if (req.body.Completed == 'true') { statusList.push('Completed') }
+
+    if (req.body.Pending == 'true') { statusList.push('Pending') }
+
+    if (req.body.ReSubmitted == 'true') { statusList.push('Re-submitted') }
+
+    if (req.body.Submitted == 'true') { statusList.push('Submitted') }
+
+    if (req.body.ResubmitRequested == 'true') { statusList.push('Requested for Resubmission') }
+
+    if (statusList.length) {
+        query['$and'].push({ $in: ['$assignmentStatus', statusList] })
+    }
+
+    console.log('Query==========>>>>>>>', JSON.stringify(query, null, 2));
+
+
+    console.log('Assignment List Using Job Id:', jobId);
+
+    jobModel.aggregate([
+        {
+            $match:
+            {
+                '_id': ObjectId(jobId)
+            },
+        },
+        {
+            $lookup: {
+                from: 'learners',
+                localField: '_id',
+                foreignField: 'job',
+                as: 'learner',
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                learner: {
+                    $push: '$learner'
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner.allotments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'allotments',
+                localField: 'learner.allotments',
+                foreignField: '_id',
+                as: 'allotment',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                allotment: {
+                    $push: '$allotment'
+                }
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'allotment.assignment',
+                foreignField: '_id',
+                as: 'allotment.assignment',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotment.assignment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'learners',
+                localField: 'allotment.learner',
+                foreignField: '_id',
+                as: 'learner',
+            }
+        },
+        {
+            $unwind: {
+                path: '$learner',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                _id: 1,
+                allotemntId: '$allotment._id',
+                learnerName: '$learner.name',
+                learnerId: '$learner._id',
+                assignmentId: '$allotment.assignment._id',
+                assignmentTitle: '$allotment.assignment.title',
+                assignmentUnit: '$allotment.assignment.unitNo',
+                assignmentNo: '$allotment.assignment.assignmentNo',
+                assignmentStatus: '$allotment.status',
+            }
+
+        },
+        {
+            $redact: {
+                $cond: {
+                    if: query,
+                    then: '$$KEEP',
+                    else: '$$PRUNE'
+                }
+            }
+        }
+    ]).exec((error, assignment) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ error })
+        } else {
+            // console.log('assignment Filtered:::::::::', assignment);
             return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
         }
     });
@@ -811,7 +985,7 @@ jobController.sendMailToClient = (jobId) => {
         console.log('Send Mail To Client For Job Creation', jobId);
 
 
-        let query = { $and: [] }
+        let query = { $and: [{}] }
         query['$and'].push({ '_id': ObjectId(jobId) })
 
 

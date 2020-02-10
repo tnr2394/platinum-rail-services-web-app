@@ -84,7 +84,7 @@ export class JobsComponent implements OnInit {
     // this.dataSource.sort = this.sort;    
   }
   // tslint:disable-next-line: member-ordering
-  
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -113,7 +113,7 @@ export class JobsComponent implements OnInit {
     return this.bgColors[rand];
   }
   ngOnChanges(changes: SimpleChanges): void {
-   console.log("CHANGES", changes);
+    console.log("CHANGES", changes);
     if (this.instructor != undefined) {
       console.log("Instructor found");
       this.getJobsForInstructor();
@@ -123,11 +123,11 @@ export class JobsComponent implements OnInit {
   ngOnInit() {
     console.log("on init", this.instructor);
     this.loading = true;
-    if (this.instructor != undefined){
+    if (this.instructor != undefined) {
       console.log("Instructor found");
       this.getJobsForInstructor();
     }
-    else{
+    else {
       console.log("Instructor not found so getting all jobs");
       this.getJobs();
       this.currentUser = JSON.parse(localStorage.currentUser);
@@ -140,11 +140,6 @@ export class JobsComponent implements OnInit {
       paginatorIntl.previousPageLabel = '';
     }
     console.log("JOBS COMPONENT");
-    
-    
-    // this.getCourses();
-    
-    // this.getStatus()
   }
 
   getStatus(jobs) {
@@ -230,22 +225,11 @@ export class JobsComponent implements OnInit {
   filter(searchText) {
     console.log('FILTER CALLED', searchText);
     if (searchText === '') {
-      this.dataSource = this.jobs;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      this.updateData(this.jobs);
       return;
     }
-    let tempDataSource =  this._filter.filter(searchText, this.jobs, ['title', 'client']);
+    let tempDataSource = this._filter.filter(searchText, this.jobs, ['title', 'client']);
     this.updateData(tempDataSource)
-    this.dataSource.paginator = this.paginator;
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-
-    // this.iterator();
   }
   // MODALS
   addJobModal() {
@@ -341,16 +325,16 @@ export class JobsComponent implements OnInit {
     })
   }
 
-  completionOfJob(jobs){
+  completionOfJob(jobs) {
     let oneJob;
-    this.jobs.forEach((job)=>{
+    this.jobs.forEach((job) => {
       oneJob = job;
       let start = new Date(oneJob.singleJobDate[0]).getTime()
       let end = new Date(oneJob.singleJobDate[oneJob.singleJobDate.length - 1]).getTime()
       let today = new Date().getTime()
       let totalDays = (end - start) / (1000 * 3600 * 24)
       let daysPassed = (today - start) / (1000 * 3600 * 24)
-       this.completionPercent = Math.round((daysPassed / totalDays) * 100);
+      this.completionPercent = Math.round((daysPassed / totalDays) * 100);
       if (this.completionPercent > 100) {
         console.log(job.title, "complete==", this.completionPercent);
         this.completionPercent = 100;
@@ -359,14 +343,14 @@ export class JobsComponent implements OnInit {
         console.log(job.title, "has NOT begun==", this.completionPercent);
         this.completionPercent = 0;
       }
-      else { console.log(job.title, "in progress==", this.completionPercent);}
+      else { console.log(job.title, "in progress==", this.completionPercent); }
       job["completion"] = this.completionPercent;
     })
     this.updateData(this.jobs)
-    console.log("IN COMPLITION FUNCTION", this.jobs); 
+    console.log("IN COMPLITION FUNCTION", this.jobs);
   }
-  
-  
+
+
   // Paginator
   // public handlePage(e: any) {
   //   this.currentPage = e.pageIndex;

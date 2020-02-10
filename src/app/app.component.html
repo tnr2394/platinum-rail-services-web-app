@@ -6,7 +6,7 @@
         tooltipClass="tooltip-class"></span>
     </div>
     <ul class="nav nav-sidebar">
-      <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
+      <!-- <li class="bg-nav-item" *ngIf="currentUser && currentUser.userRole=='admin'">
         <a routerLink="/dashboard">
           <i class="far fa-user"></i>
           <span class="menuText"><strong>{{currentUser.name}}</strong></span>
@@ -29,7 +29,7 @@
           <i class="far fa-user"></i>
           <span class="menuText"><strong>{{currentUser.name}}</strong></span>
         </a>
-      </li>
+      </li> -->
       <li>
         <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/dashboard" routerLinkActive="active-link">
           <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}"

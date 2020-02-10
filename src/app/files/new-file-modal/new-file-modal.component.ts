@@ -29,7 +29,7 @@ export class NewFileModalComponent implements OnInit {
   completeItem = (item: FileQueueObject, response: any) => {
     console.log('Response:::::::::::::', response, item);
     this.data = response.data;
-    this.dialogRef.close(response.data.file);
+    // this.dialogRef.close(response.data.file);
     this.onCompleteItem.emit({ item, response });
   }
 

@@ -56,7 +56,7 @@ function getValidDB(dates) {
         if (dates[i].toISOString().split('T')[0] <= expectedDate.toISOString().split('T')[0]) {
             console.log(true);
             var params = {
-                Bucket: 'rao-database-backup',
+                Bucket: 'platinum-database-backup',
                 Key: fileName[i]
             };
 

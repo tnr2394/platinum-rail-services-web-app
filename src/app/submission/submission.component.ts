@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
@@ -8,11 +8,15 @@ import { LearnerService } from '../services/learner.service';
 import { JobService } from '../services/job.service';
 import { CourseService } from '../services/course.service';
 import { MaterialService } from "../services/material.service";
-import { Router, NavigationExtras } from "@angular/router";
+import { Router, NavigationExtras, ActivatedRoute, PRIMARY_OUTLET } from "@angular/router";
 import { Pipe, PipeTransform } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { isEmpty } from 'rxjs/operators';
 import { NavigationService } from '../services/navigation.service';
+import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { resolve } from 'url';
+import { reject } from 'q';
 
 
 
@@ -60,14 +64,25 @@ export class SubmissionComponent implements OnInit {
   copyLearners;
   firstJob
 
+  selJob;
+  selUnit;
+  selAss;
+  selStatus: any = [];
+
+  queryParamsObj = {}
+
   assignmentStatus = [
     { id: '0', display: 'Completed', status: 'Completed', checked: false },
     { id: '0', display: 'Pending', status: 'Pending', checked: false },
-    { id: '1', display: 'Re-Submitted', status: 'Re-submitted', checked: false },
-    { id: '2', display: 'Resubmit Requestted', status: 'Requested for Resubmission', checked: false },
+    { id: '1', display: 'ReSubmitted', status: 'Re-submitted', checked: false },
+    { id: '2', display: 'ResubmitRequested', status: 'Requested for Resubmission', checked: false },
     { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
   ];
   initialData: any;
+  allLearners: any
+  actualList: [];
+  // filterUnit: []
+
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -82,13 +97,12 @@ export class SubmissionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private navService: NavigationService, private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+  constructor(private change: ChangeDetectorRef, private route: ActivatedRoute, private navService: NavigationService, private router: Router, public _materialService: MaterialService, public _courseService: CourseService, public _learnerService: LearnerService, public _jobService: JobService, public _filter: FilterService, public _snackBar: MatSnackBar) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
     this.dataSource = new MatTableDataSource(this.learners);
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
-  }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -99,69 +113,136 @@ export class SubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // console.group(" Ng On init ")
+
+    this.route.queryParams.subscribe(params => {
+
+      console.log("params", params, typeof (params))
+
+      if (params.Pending && params.Pending == 'true') {
+        this.queryParamsObj['Pending'] = true;
+        this.assignmentStatus.forEach((e2) => {
+          if (e2.display == 'Pending') {
+            e2.checked = true
+          }
+        })
+      }
+
+      if (params.Completed && params.Completed == 'true') {
+        this.queryParamsObj['Completed'] = true;
+        this.assignmentStatus.forEach((e2) => {
+          if (e2.display == 'Completed') {
+            e2.checked = true
+          }
+        })
+      }
+
+      if (params.Submitted && params.Submitted == 'true') {
+        this.queryParamsObj['Submitted'] = true;
+        this.assignmentStatus.forEach((e2) => {
+          if (e2.display == 'Submitted') {
+            e2.checked = true
+          }
+        })
+      }
+
+      if (params.ReSubmitted && params.ReSubmitted == 'true') {
+        this.queryParamsObj['ReSubmitted'] = true;
+        this.assignmentStatus.forEach((e2) => {
+          if (e2.display == 'ReSubmitted') {
+            e2.checked = true
+          }
+        })
+      }
+
+      if (params.ResubmitRequested && params.ResubmitRequested == 'true') {
+        this.queryParamsObj['ResubmitRequested'] = true;
+        this.assignmentStatus.forEach((e2) => {
+          if (e2.display == 'ResubmitRequested') {
+            e2.checked = true
+          }
+        })
+      }
+
+
+      if (params) {
+
+
+        this.selJob = params.job;
+        this.queryParamsObj['job'] = this.selJob;
+
+        const paramsJobId = params.job || null
+        const paramsUnit = params.unit
+        const paramsAssignment = params.assignment
+
+
+        this.serverFilter(params);
+
+        if (paramsJobId != 'undefined' && paramsJobId != 'null' && paramsJobId) {
+          this.getAssignmentList(paramsJobId);
+          this.queryParamsObj['job'] = paramsJobId;
+          this.getAllAllotedAssignmentsUsingJobId(paramsJobId).then((data) => {
+            console.log(" All allLearners data", data)
+            if (data) {
+              this.allLearners = JSON.parse(JSON.stringify(data))
+              this.actualList = JSON.parse(JSON.stringify(data))
+            }
+
+
+            if (paramsUnit != undefined) {
+              this.selUnit = Number(paramsUnit);
+              console.log('this.selUnit :::::::::::::', this.selUnit);
+              this.queryParamsObj['unit'] = this.selUnit;
+              this.filterAssignmentUsingUnitNumber(this.selUnit);
+            }
+
+            if (paramsAssignment != undefined) {
+              this.selAss = paramsAssignment;
+              this.queryParamsObj['assignment'] = this.selAss;
+            }
+
+          }).catch((error) => {
+            console.log(" Error ", error)
+          })
+        }
+        else {
+          console.log(" Without params ")
+          this.getJobs();
+        }
+      } else {
+        console.log(" ELSE ")
+      }
+    })
     this.loadingJobs = true;
     this.getJobs();
-    this.defaultJob();
-    this.navService.getPreviousUrl();
-    const paginatorIntl = this.paginator._intl;
-    paginatorIntl.nextPageLabel = '';
-    paginatorIntl.previousPageLabel = '';
   }
 
   jobChanged(event) {
-    console.log("event details", event)
-    this.loadingAssignments = true;
-    let emptyList = [];
-    this.assignment = [];
-    this.copyLearners = [];
-    this.selectedAssignment = null;
-    console.log('this.assignment::::::::::', this.assignment, this.selectedAssignment);
-    this.updateData(emptyList);
-    this.selectedJob = event.value._id;
-    this.getAssignmentList(this.selectedJob);
-    this.getAllAllotedAssignmentsUsingJobId(this.selectedJob);
+    console.log("event details", event.value)
+    delete this.queryParamsObj['unit'];
+    delete this.queryParamsObj['assignment'];
+    this.queryParamsObj['job'] = event.value;
+    this.changeQuery();
   }
 
-  defaultJob() {
-
-    console.log('Default Job Selection:::::::');
-
-    this._jobService.getJobs().subscribe((data) => {
-      this.firstJob = data[0];
-      console.log('data::::::::::::::', this.firstJob);
-      if (this.firstJob && this.firstJob._id) {
-        this.getAssignmentList(this.firstJob._id);
-        this.getAllAllotedAssignmentsUsingJobId(this.firstJob._id);
-      }
-      this.jobs = data;
-      this.loadingJobs = false;
-      console.log("JOBS ARE", this.jobs)
-    });
-  }
-
-  statusChanged(data) {
-    this.filterUsingStatus(data.source.value);
-  }
-
-  selectedStatus(event, index, status) {
+  selectedStatus(event, index, status, display) {
     console.log("event", event, "index", index, "status", status);
     if (event == true) {
-      this.sepArray.push(status);
+      this.queryParamsObj[display] = true;
+      this.changeQuery();
     }
 
     else if (event == false) {
-      const index = this.sepArray.indexOf(status);
-      if (index > -1) {
-        this.sepArray.splice(index, 1);
-      }
+      this.queryParamsObj[display] = false;
+      this.changeQuery();
+      console.log('Event false Called');
     }
-    this.filterUsingStatus(this.sepArray);
   }
 
 
   filterUsingStatus(assignment) {
     if (!assignment.length) {
-      this.updateData(this.learners);
     } else {
       const finalarray = [];
       this.learners.forEach((e1) => assignment.forEach((e2) => {
@@ -169,35 +250,34 @@ export class SubmissionComponent implements OnInit {
           finalarray.push(e1)
         }
       }));
-      this.updateData(finalarray);
     }
   }
 
+
   assignmentNoChanged(event) {
     this.selectedAssignment = event.value;
-    console.log('this.selectedAssignment', this.selectedAssignment);
-    this.learners = this._filter.filter(this.selectedAssignment, this.copyLearners, ['assignmentId']);
-    this.updateData(this.learners);
+    this.queryParamsObj['assignment'] = this.selectedAssignment;
+    this.changeQuery();
   }
 
 
   unitNoChanged(event) {
-    console.log('Unit::::::::::::::::::::', event.value);
     this.selectedUnit = event.value;
-    console.log('this.selectedAssignment', this.selectedUnit);
-    this.learners = this._filter.filter(this.selectedUnit, this.copyLearners, ['assignmentUnit']);
-    this.updateData(this.learners);
     this.filterAssignmentUsingUnitNumber(this.selectedUnit);
+    this.queryParamsObj['unit'] = this.selectedUnit;
+    delete this.queryParamsObj['assignment'];
+    this.changeQuery();
   }
 
   filterAssignmentUsingUnitNumber(unitNo) {
-
+    console.log('Unit No::::', unitNo);
     this.unit.forEach((e1) => {
       if (e1._id == unitNo) {
         this.assignment = e1.assignment;
       }
     })
   }
+
 
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
@@ -224,8 +304,6 @@ export class SubmissionComponent implements OnInit {
       this.jobs = data;
       this.loadingJobs = false;
       console.log("JOBS ARE", this.jobs)
-      this.selectedJob = this.jobs[0];
-      console.log('Selected Job:::::::::::::', this.selectedJob);
     });
   }
 
@@ -235,7 +313,6 @@ export class SubmissionComponent implements OnInit {
   updateData(learner) {
     console.log("UPDATING DATA = ", learner)
     this.dataSource = new MatTableDataSource(learner);
-    this.finalLearner = learner;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)
@@ -244,48 +321,84 @@ export class SubmissionComponent implements OnInit {
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobIdWithNoGroup(jobId).subscribe((data) => {
-
-      console.log('Data:::::::::::::::::::::::::::::::::::::::::::', data);
       this.unit = data;
-      // this.selectedAssignment = null;
-      // this.assignment = data[0].assignment;
-      // this.loadingAssignments = false;
-      // console.log(' this.assignment length', this.assignment.length, this.assignment);
-
+      this.assignment = data[0].assignment;
     });
   }
 
 
   getAllAllotedAssignmentsUsingJobId(jobId) {
-
-    this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
-
-      var obj = data[0];
-
-      function isEmpty(obj) {
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key))
-            return false;
+    return new Promise((resolve, reject) => {
+      this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
+        var obj = data[0];
+        if (!isEmpty(obj)) {
+          this.learners = data;
+          this.copyLearners = this.learners;
+          this.loadingAssignments = false;
+          return resolve(this.copyLearners);
+        } else {
+          this.copyLearners = [];
+          return resolve(this.copyLearners);
         }
-        return true;
-      }
 
-      if (!isEmpty(obj)) {
-        this.learners = data;
-        this.copyLearners = this.learners;
-        console.log('All Learnes:::::::::::', this.copyLearners);
-        this.updateData(this.learners)
-        this.loadingAssignments = false;
-      }
-    });
+        function isEmpty(obj) {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+              return false;
+          }
+          return true;
+        }
+
+      });
+    })
+
   }
+
+
 
   getAllotmentListUsingAssignmentId(assignmentId) {
     this._learnerService.getAllotmentListUsingAssignmentId(assignmentId).subscribe((data) => {
       this.learners = data;
       this.loadingLearners = false;
-      this.updateData(this.learners);
-      console.log("-----LEARNERS ARE-----", this.learners)
     });
   }
+
+
+
+  // Change query
+  changeQuery() {
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.queryParamsObj });
+  }
+
+
+  serverFilter(paramsData) {
+    return new Promise((resolve, reject) => {
+      this._materialService.filterAllotedAssignment(paramsData).subscribe((data) => {
+
+        var obj = data[0];
+        if (!isEmpty(obj)) {
+          this.learners = data;
+          this.copyLearners = this.learners;
+          this.updateData(this.learners)
+          this.loadingAssignments = false;
+          return resolve(this.copyLearners);
+        } else {
+          this.copyLearners = [];
+          return resolve(this.copyLearners);
+        }
+
+        function isEmpty(obj) {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+              return false;
+          }
+          return true;
+        }
+
+      });
+
+    })
+
+  }
+
 }
