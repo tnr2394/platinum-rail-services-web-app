@@ -38,6 +38,39 @@ export class ProfileComponent implements OnInit {
   constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
+  // ngOnInit() {
+  //   console.log("-----learner-----", this.learnerId);
+  //   console.log("-----instructor-----", this.instructorId);
+  //   console.log("-----job Details-----", this.jobDetails);
+  //   if (this.learnerId != undefined) {
+  //     this.isLearner = true
+  //     this.getLearner()
+  //   }
+  //   else if (this.instructorId != undefined) {
+  //     this.isInstructor = true;
+  //     console.log("instructor recieved is", this.instructorId);
+  //     this.getInstructor();
+  //   }
+  //   if (this.jobDetails != undefined) {
+  //     this.isJob = true
+  //     this.getJobValues(this.jobDetails)
+  //   }
+
+  // }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log("changes in profile", changes);
+  //   if (changes.jobDetails != undefined) {
+  //     if (changes.jobDetails.currentValue != undefined) {
+  //       this.getJobValues(changes.jobDetails.currentValue)
+  //     }
+  //   }
+  //   // if (changes.jobFromLearner){
+  //   //   if (changes.jobFromLearner.currentValue) this.getJobValues(changes.jobFromLearner.currentValue)
+  //   // }
+  // }
+
+
+
   ngOnInit() {
     console.log("-----learner-----", this.learnerId);
     console.log("-----instructor-----", this.instructorId);
@@ -51,12 +84,13 @@ export class ProfileComponent implements OnInit {
       console.log("instructor recieved is", this.instructorId);
       this.getInstructor();
     }
-    if (this.jobDetails != undefined) {
+    else if (this.jobDetails != undefined) {
       this.isJob = true
       this.getJobValues(this.jobDetails)
     }
-
   }
+
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("changes in profile", changes);
     if (changes.jobDetails != undefined) {
@@ -64,10 +98,9 @@ export class ProfileComponent implements OnInit {
         this.getJobValues(changes.jobDetails.currentValue)
       }
     }
-    // if (changes.jobFromLearner){
-    //   if (changes.jobFromLearner.currentValue) this.getJobValues(changes.jobFromLearner.currentValue)
-    // }
   }
+
+
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data });
@@ -91,7 +124,7 @@ export class ProfileComponent implements OnInit {
       this.mobile = this.learner.mobile;
       this.profilePath = this.learner.profilePic;
       console.log("this.learner.job._id", this.learner.job._id);
-      
+
       this.getJob(this.learner.job._id);
       console.log("The learner is", this.learner);
     })
@@ -126,10 +159,10 @@ export class ProfileComponent implements OnInit {
 
   getJob(id) {
     console.log("get bob by id", id);
-      console.group("!!!!!!!!!")
+    console.group("!!!!!!!!!")
 
     this._jobService.getJobById(id).subscribe((jobRecieved2) => {
-      console.log("Job Recieved", JSON.parse(JSON.stringify(jobRecieved2)) );
+      console.log("Job Recieved", JSON.parse(JSON.stringify(jobRecieved2)));
       this.job = JSON.parse(JSON.stringify(jobRecieved2.pop()));
       this.getJobValues(this.job)
 

@@ -34,7 +34,7 @@ export class SingleFolderComponent implements OnInit {
   preventSingleClick: boolean;
   bgColors;
   lastColor;
-  subFolders: any;
+  subFolders = [];
   details: any;
   display: boolean;
   navArray: any;
@@ -107,6 +107,8 @@ export class SingleFolderComponent implements OnInit {
       console.log('folder:::::::::', data);
       this.folder = data.folders[0];
       this.subFolders = this.folder.child;
+
+      console.log('This.SubFolder:::::::::', this.folder.child);
       this.fileList = data.folders[0].files;
       this.filesToDisplay = this.fileList;
       // this.subFolders = this.folder.child

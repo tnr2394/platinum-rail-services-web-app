@@ -6,60 +6,63 @@
     </mat-sidenav>
     <mat-sidenav-content style="padding: 0 10px;">
 
-<div class="d-inline-block w-100">
-        <p class="material_main_title float-left mb-0" *ngIf="folder">{{folder.title}}</p>
-        <button (click)='createFolder()' mat-flat-button color="primary" class="button_hover_effect mb-0 float-right create-folder">
-            <i class="fas fa-plus fa-fw"></i>
-            <span> Create Folder</span>
-        </button>
-</div>
-
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb indigo lighten-4">
-        <li class="breadcrumb-item"><a class="black-text" routerLink="/mydocuments" *ngIf="folder">My Documents</a><i class="fas fa-angle-right mx-2" aria-hidden="true"></i></li>
-        <div *ngIf="navArray">
-            <li class="breadcrumb-item"><a class="black-text" routerLink="/single-folder/{{folder._id}}"
-                    *ngFor="let folder of navArray">{{folder.title}}<i class="fas fa-angle-right mx-2" aria-hidden="true"></i></a></li>
+        <div class="d-inline-block w-100">
+            <p class="material_main_title float-left mb-0" *ngIf="folder">{{folder.title}}</p>
+            <button (click)='createFolder()' mat-flat-button color="primary"
+                class="button_hover_effect mb-0 float-right create-folder">
+                <i class="fas fa-plus fa-fw"></i>
+                <span> Create Folder</span>
+            </button>
         </div>
-        <li class="breadcrumb-item"><a class="black-text" *ngIf="folder">{{folder.title}}</a></li>
-    </ol>
-</nav>
-<mat-card class="material_main_card">
-    <!-- <mat-card-header> -->
-    <div class="row flex_row">
-        <div class="col-md-4">
-            <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i
-                    class="fas fa-download"></i><span>
-                    Download All</span></button>
 
-        </div>
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-9 col-sm-9">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()"
-                            value="value">
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb indigo lighten-4">
+                <li class="breadcrumb-item"><a class="black-text" routerLink="/mydocuments" *ngIf="folder">My
+                        Documents</a><i class="fas fa-angle-right mx-2" aria-hidden="true"></i></li>
+                <div *ngIf="navArray">
+                    <li class="breadcrumb-item"><a class="black-text" routerLink="/single-folder/{{folder._id}}"
+                            *ngFor="let folder of navArray">{{folder.title}}<i class="fas fa-angle-right mx-2"
+                                aria-hidden="true"></i></a></li>
                 </div>
-                <div class="col-md-3 col-sm-3 text-right">
-                    <button class='uploadBtn' (click)="addFileModal()">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        
-        <div class="row text-center m-auto">
-             <h4 mat-dialog-actions class="text-info text-center my-3 pl-3 py-3" align='center' *ngIf="loading">
-                 Downloading... <i class="fas fa-refresh fa-spin"></i>
-             </h4>
-        </div>
-       
-        
+                <li class="breadcrumb-item"><a class="black-text" *ngIf="folder">{{folder.title}}</a></li>
+            </ol>
+        </nav>
+        <mat-card class="material_main_card">
+            <!-- <mat-card-header> -->
+            <div class="row flex_row">
+                <div class="col-md-4">
+                    <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i
+                            class="fas fa-download"></i><span>
+                            Download All</span></button>
 
-        <!-- <div class="row table_search">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9">
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()"
+                                    value="value">
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-3 text-right">
+                            <button class='uploadBtn' (click)="addFileModal()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row text-center m-auto">
+                    <h4 mat-dialog-actions class="text-info text-center my-3 pl-3 py-3" align='center' *ngIf="loading">
+                        Downloading... <i class="fas fa-refresh fa-spin"></i>
+                    </h4>
+                </div>
+
+
+
+                <!-- <div class="row table_search">
             <mat-form-field class="example-full-width col-lg-6 col-md-6">
                 <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                 <mat-icon matSuffix>search</mat-icon>
@@ -67,18 +70,18 @@
             
         </div> -->
 
-    </div>
-    <div>
-        <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)"></app-folder>
-    </div>
-    <div class="row expansion-row" *ngIf="fileList && fileList.length > 0">
-        <div class="col materials_box" *ngFor="let file of filesToDisplay">
-            <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
-        </div>
-    </div>
-    <!-- </mat-card-header> -->
+            </div>
+            <div>
+                <app-folder [subFolders]="subFolders" (getFileDetails)="openFileDetails($event)"></app-folder>
+            </div>
+            <div class="row expansion-row" *ngIf="fileList && fileList.length > 0">
+                <div class="col materials_box" *ngFor="let file of filesToDisplay">
+                    <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
+                </div>
+            </div>
+            <!-- </mat-card-header> -->
 
-     <!-- <div class="row">
+            <!-- <div class="row">
         <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let childFolder of subFolders;let i = index'>
             <mat-card class="p-0 inner-card h-100 text-center" (click)="singleClick($event,childFolder)"
                 (dblclick)="doubleClick($event,childFolder)">
@@ -101,19 +104,19 @@
         {{folder.title}}
     </div>  -->
 
-    <div class="row" *ngIf="loadingMaterials == false && fileList.length == 0">
-        <div class="col-12 materials_box">
-            <mat-card>
-                <mat-card-header>
-                    <h5 class="text-info mb-0">No Files Found!</h5>
-                </mat-card-header>
-            </mat-card>
-        </div>
-    </div>
-    <mat-card *ngIf="loadingMaterials == true" class="mb-3">
-        <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
-        </h3>
-    </mat-card>
-</mat-card> 
-</mat-sidenav-content>
+            <!-- <div class="row" *ngIf="loadingMaterials == false && fileList.length == 0">
+                <div class="col-12 materials_box">
+                    <mat-card>
+                        <mat-card-header>
+                            <h5 class="text-info mb-0">No Files Found!</h5>
+                        </mat-card-header>
+                    </mat-card>
+                </div>
+            </div>
+            <mat-card *ngIf="loadingMaterials == true" class="mb-3">
+                <h3 class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                </h3>
+            </mat-card> -->
+        </mat-card>
+    </mat-sidenav-content>
 </mat-sidenav-container>

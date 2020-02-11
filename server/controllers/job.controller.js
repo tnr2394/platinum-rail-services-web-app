@@ -671,7 +671,7 @@ jobController.assignmentStatusWithLearner = function (req, res) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
-            return res.send({ data: { assignment }, msg: "Deleted Successfully" });
+            return res.send({ data: { assignment }, msg: "Learner Fetch Successfully" });
         }
     });
 }

@@ -11,9 +11,6 @@ var folder = {};
 
 folder.createFolder = function (obj) {
     var q = Q.defer();
-
-    console.log('Obj:::::::::::', obj);
-
     var newFolder = new folderModel(obj);
     newFolder.save((err, newFolder) => {
         if (err) return q.reject(err);
@@ -63,15 +60,15 @@ folder.updateChildFolder = function (parentId, folderId, obj) {
     var q = Q.defer();
 
     folderModel.updateOne({
-            _id: parentId
-        }, {
-            $push: {
-                child: folderId
-            }
-        }, {
-            new: true,
-            upsert: true
-        },
+        _id: parentId
+    }, {
+        $push: {
+            child: folderId
+        }
+    }, {
+        new: true,
+        upsert: true
+    },
         (err, updatedFolder) => {
             if (err) q.reject(err);
             else {

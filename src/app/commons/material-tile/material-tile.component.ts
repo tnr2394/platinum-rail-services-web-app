@@ -58,7 +58,7 @@ export class MaterialTileComponent implements OnInit {
   duedate: any;
   today = new Date()
   indexForMatTab: number = 1;
-  
+
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -73,7 +73,7 @@ export class MaterialTileComponent implements OnInit {
       this.assignmentStatusWithLearner(this.jobId)
       this.indexForMatTab = 2;
       var id = '#' + this.material._id;
-      console.log(id,"click here")
+      console.log(id, "click here")
       $(id).addClass('mat-tab-label-active')
     }
     if (this.material != undefined) {
@@ -318,40 +318,40 @@ export class MaterialTileComponent implements OnInit {
     console.log("Getting allocated learner", event);
     // if (event.tab.textLabel == "Learners") {
 
-      console.log("this.learner", this.learner)
-      console.log("this.allLearners", this.allLearners)
+    console.log("this.learner", this.learner)
+    console.log("this.allLearners", this.allLearners)
 
-      this.allLearners.forEach(singleLearner => {
+    this.allLearners.forEach(singleLearner => {
 
-        console.log("this.material._id", this.material._id)
-        var temp = JSON.parse(JSON.stringify(this.material._id)) || null
-        if (temp) {
-          // console.log("singleLearner", singleLearner.allotments)
+      console.log("this.material._id", this.material._id)
+      var temp = JSON.parse(JSON.stringify(this.material._id)) || null
+      if (temp) {
+        // console.log("singleLearner", singleLearner.allotments)
 
-          var index1 = _.findIndex(singleLearner.allotments, function (o) { 
-            if (o.assignment && o.assignment._id){
-              console.log("o.assignment._id", o.assignment._id)
-              console.log("this.material._id", temp)
-              return o.assignment._id == temp; 
-            } 
-          });
-
-          if (index1 > -1) {
-            var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
-            // console.log(" index ", index)
-            if (index > -1) singleLearner.checked = true
-            else singleLearner.checked = false
-          } else {
-            singleLearner.checked = false
-
+        var index1 = _.findIndex(singleLearner.allotments, function (o) {
+          if (o.assignment && o.assignment._id) {
+            console.log("o.assignment._id", o.assignment._id)
+            console.log("this.material._id", temp)
+            return o.assignment._id == temp;
           }
+        });
 
-
-        }
-        else {
+        if (index1 > -1) {
+          var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
+          // console.log(" index ", index)
+          if (index > -1) singleLearner.checked = true
+          else singleLearner.checked = false
+        } else {
           singleLearner.checked = false
+
         }
-      })
+
+
+      }
+      else {
+        singleLearner.checked = false
+      }
+    })
     // }
     console.log("THIS.ALLLEARNERS", this.allLearners);
   }
@@ -370,7 +370,6 @@ export class MaterialTileComponent implements OnInit {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
       this.learnerLength = data.length;
-      console.log('Learner List:::::::::::::::::::::::', data);
     });
   }
 }

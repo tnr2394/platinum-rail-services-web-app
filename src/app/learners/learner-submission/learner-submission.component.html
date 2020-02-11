@@ -95,7 +95,7 @@
                 <div class="col-12 remark_area">
                     <form [formGroup]="remark">
                         <!-- Remark Section -->
-                        <mat-form-field class="example-full-width" *ngIf="assignment && assignment.remark">
+                        <mat-form-field class="example-full-width" *ngIf="assignment">
                             <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
                                 formControlName="remark" placeholder="Leave a remark"></textarea>
                         </mat-form-field>
@@ -111,7 +111,7 @@
 
                         <mat-divider></mat-divider>
 
-                        
+
                         <div class="row mt-4 mx-0">
                             <div class='col-6'>
                                 <div class="justify-content-center">

@@ -36,15 +36,17 @@ export class FolderComponent implements OnInit {
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   showCreateBtn: boolean = false;
   constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
-    ,public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
+    , public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
-    if (this.router.url.includes('/mydocuments')){
+    if (this.router.url.includes('/mydocuments')) {
       this.showCreateBtn = true
     }
     // this.currentUser = JSON.parse(localStorage.currentUser);
+    // console.log("this.currentUser-----", this.currentUser);
+    
     // if (this.currentUser.userRole == 'admin') {
     //   this.getFolders();
     // } else {
@@ -54,23 +56,28 @@ export class FolderComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.currentUser = JSON.parse(localStorage.currentUser);
     console.log("changes", changes)
-    if (changes.deletedFile){
+    if (changes.deletedFile) {
       var index = _.findIndex(this.allFolders, function (o) {
-        return o._id.toString() == changes.deletedFile.currentValue.fileId.toString(); 
+        return o._id.toString() == changes.deletedFile.currentValue.fileId.toString();
       })
-      if(index > -1) this.allFolders.splice(index, 1)
+      if (index > -1) this.allFolders.splice(index, 1)
     }
-    if (changes.subFolder){
+    if (changes.subFolder) {
       console.log("changes.subFolder.currentValue typeof", typeof changes.subFolder.currentValue);
       this.allFolders = changes.subFolder.currentValue;
       console.log("This.allFolders", this.allFolders);
     }
-    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')){
+    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole == 'admin') {
       this.getFolders()
     }
-    if (changes.removeCssClass != undefined){
-      if (changes.removeCssClass.currentValue == true){
+    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole != 'admin') {
+      this.getSharedFolders();
+      this.getSharedFiles();
+    }
+    if (changes.removeCssClass != undefined) {
+      if (changes.removeCssClass.currentValue == true) {
         $('.parent_row').removeClass('col-width-class');
       }
     }
@@ -119,11 +126,11 @@ export class FolderComponent implements OnInit {
   getFolders() {
     var that = this;
     this._folderService.getFolders().subscribe((folders) => {
-      console.log('Folders', folders);
+      console.log('Folders:::::::::', folders);
       this.allFolders = folders;
     });
   }
-  openFileDetails(file){
+  openFileDetails(file) {
     console.log("Open file details", file);
     this.getFileDetails.emit(file)
   }
@@ -141,16 +148,15 @@ export class FolderComponent implements OnInit {
     this._folderService.getSharedFiles().subscribe((files) => {
       console.log('files List', files);
       this.sharedFile = files;
-      // this.allFolders = folders;
     });
   }
 
-  singleClick(event, singleFolder,i) {
+  singleClick(event, singleFolder, i) {
     console.log("Single Click Event", event);
     // var id = "#folder_card_" + i;
     this.removeCssClass = false
     console.log("this.removeCssClss", this.removeCssClass);
-    
+
     $('.parent_row').addClass('col-width-class');
     this.preventSingleClick = false;
     const delay = 200;
@@ -162,7 +168,7 @@ export class FolderComponent implements OnInit {
       }
     }, delay);
     this.getFileDetails.emit(singleFolder)
-   
+
   }
 
   doubleClick(event, singleFolder) {
@@ -174,4 +180,17 @@ export class FolderComponent implements OnInit {
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
   }
+  // openFile(event) {
+  //   console.log("IN MY DOCS", event);
+  //   $('.expansion-row').addClass('drawer-col-class');
+  //   $('.flex_row').addClass('flex_reverse');
+  //   $('.col-md-8').addClass('col-md-12');
+  //   if (event.file != undefined) {
+  //     this.details = event.file;
+  //   }
+  //   else {
+  //     this.details = event
+  //   }
+  //   this.mydsidenav.open()
+  // }
 }
