@@ -105,11 +105,11 @@ folderController.getFolders = async function (req, res, next) {
 function getParentFolder(folderId, previousFolders, callback) {
     console.log("folder", folderId)
     folderModel.findOne({
-            child: folderId
-        }, {
-            _id: 1,
-            title: 1
-        })
+        child: folderId
+    }, {
+        _id: 1,
+        title: 1
+    })
         .exec((error, folder) => {
             console.log(error, folder)
             if (error) {
@@ -230,6 +230,8 @@ folderController.deleteFileFromFolder = function (req, res, next) {
  */
 folderController.addFile = function (req, res, next) {
     console.log("Update Folder", req.body, req.files);
+
+
 
     let files = [];
 
@@ -433,7 +435,6 @@ const sharingFile = (file, instructors, clients) => {
     })
 }
 
-
 folderController.getSharedFolder = function (req, res, next) {
 
     let query = {
@@ -483,7 +484,7 @@ folderController.getSharedFile = function (req, res, next) {
 
         fileModel.aggregate([{
             $match: query
-        }, ]).exec((err, files) => {
+        },]).exec((err, files) => {
             if (err) {
                 reject(err);
             } else {
