@@ -4,14 +4,17 @@
     <mat-tab label="Details">
         <div class="row icon m-0 py-4">
             <h1 *ngIf="type=='folder'" class="folder_icon"><i class="fa fa-folder-open text-warning"></i></h1>
-            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"> </div>
+            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div>
+            <div *ngIf="type == 'file' || type == 'material' " >
+                <img src="{{recievedFile.thumbNail}}" height="300px" width="200px">
+            </div>
         </div>
         <div class="row m-0">
             <div class="col">
             <!-- <h5>Total Files : <span>{{totalFiles}}</span></h5> -->
             <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
             <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
-            <!-- <h5>isMaterials : {{isMaterials}}</h5> -->
+            <!-- <h5>Type : <span>{{recievedFile.extension}}</span></h5> -->
             <br />
 
             <!-- Type:{{type}} -->

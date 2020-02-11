@@ -1,27 +1,90 @@
-<mat-card appMaterialElevation [defaultElevation]="1" raisedElevation="5">
-<div class="h-100 mb-3 justify-content-center px-2 py-1" (click)="fileDetails()" style="cursor: pointer;">
+<mat-card appMaterialElevation [defaultElevation]="1" raisedElevation="5" class="fileView">
+    <div class="h-100 justify-content-center px-2 py-1" (click)="fileDetails()" style="cursor: pointer;">
+        <div class="card-block ">
+            <div class="row">
+                <div class="col-12 preview">
+                    <img src="{{file.thumbNail}}">
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <img [ngClass]="file.extension" src="assets/pdf-icon-round.png">
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 text-left pt-2">
+                    <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
+                        tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+
+
+
+
+<mat-card appMaterialElevation [defaultElevation]="1" raisedElevation="5" class="fileView">
+    <div class="h-100 justify-content-center px-2 py-1" (click)="fileDetails()" style="cursor: pointer;">
+        <div class="card-block ">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 pl-1">
+                    <img src="{{file.thumbNail}}" height="80" width="80">
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 text-left pl-1">
+                    <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
+                        tooltipClass="tooltip-class" triggers="hover">
+                        {{file.alias}}
+                    </p>
+                </div>
+                <a href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom"
+                    ngbTooltip="Download" tooltipClass="tooltip-class" download>
+                    <i class="fas fa-cloud-download-alt"
+                        style="font-size: large;color:#3CC480;height:21px;width:30px;"></i>
+                </a>
+
+                <button (click)="delete()" placement="bottom" ngbTooltip="Delete" tooltipClass="tooltip-class"
+                    style='background-color: transparent; border: transparent;'>
+                    <i class="fas fa-trash" style='color:#FF6565;'></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+
+
+<!-- <mat-card appMaterialElevation [defaultElevation]="1" raisedElevation="5">
+<div class="h-100 justify-content-center px-2 py-1" (click)="fileDetails()" style="cursor: pointer;">
     <div class="card-block ">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 pl-1">
-                <!-- <img [ngClass]="file.extension" src="assets/pdf-icon-round.png"> -->
-                <div [ngClass]="file.extension"> </div>
+            <div class="col-12 preview">
+                <img src="../../../assets/{{file.title}}.jpg" >
+                <mat-divider></mat-divider>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 text-left pl-1">
-                <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
+            <div class="col-lg-3 col-md-3 col-sm-3 pl-1"> -->
+<!-- <img [ngClass]="file.extension" src="assets/pdf-icon-round.png"> -->
+<!-- <div [ngClass]="file.extension"> </div> -->
+
+<!-- </div> -->
+
+<!-- <div class="col-lg-12 col-md-12 col-sm-12 text-left pt-2"> -->
+<!-- <div class="col-lg-9 col-md-9 col-sm-9 text-left pl-1"> -->
+<!-- <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
                     tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</p>
                 <div class="row text-left pt-1">
                     <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 file_title">
-                        
-                        <!-- <b>{{file}}</b> -->
-                        <p class="upload_user mb-0" style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
-                    </div>
-                    <!-- <div class="col-12"> -->
-                    <div class='col-xl-5 col-lg-6 col-md-6 col-sm-6'>
+                         -->
+<!-- <b>{{file}}</b> -->
+<!-- <p class="upload_user mb-0" style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
+                    </div> -->
+<!-- <div class="col-12"> -->
+<!-- <div class='col-xl-5 col-lg-6 col-md-6 col-sm-6'> -->
 
-                        <span class="date" title="uploaded At">
-                            {{ file.createdAt | date: 'shortDate' }}</span>
+<!-- <span class="date" title="uploaded At">
+                            {{ file.createdAt | date: 'shortDate' }}</span> -->
 
-                        <!-- <a href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class" download>
+<!-- <a href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class" download>
                             <i class="fas fa-cloud-download-alt"
                                 style="font-size: large;color:#3CC480;height:21px;width:30px;"></i>
                         </a>
@@ -30,10 +93,10 @@
                             style='background-color: transparent; border: transparent;'>
                             <i class="fas fa-trash" style='color:#FF6565;'></i>
                         </button> -->
-                    </div>
+<!-- </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</mat-card>
+</mat-card> -->

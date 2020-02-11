@@ -3,7 +3,7 @@ import { MatDialog, MatSnackBar } from '@angular/material'
 import { Observable } from 'rxjs';
 import { CreateFolderModalComponent } from './create-folder-modal/create-folder-modal.component';
 import { FolderService } from '../services/folder.service';
-import { ContextMenuComponent } from "ngx-contextmenu";
+// import { ContextMenuComponent } from "ngx-contextmenu";
 import { ShareFileModalComponent } from './share-file-modal/share-file-modal.component';
 import { ok } from 'assert';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,7 +29,7 @@ export class FolderComponent implements OnInit {
   display = false;
   currentUser;
 
-  @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+  // @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   details: any;
   @Input('deletedFile') deletedFile: any;
   @Input('subFolders') subFolder: any;
@@ -48,13 +48,13 @@ export class FolderComponent implements OnInit {
     if (this.router.url.includes('/mydocuments')){
       this.showCreateBtn = true
     }
-    // this.currentUser = JSON.parse(localStorage.currentUser);
-    // if (this.currentUser.userRole == 'admin') {
-    //   this.getFolders();
-    // } else {
-    //   this.getSharedFolders();
-    //   this.getSharedFiles();
-    // }
+    this.currentUser = JSON.parse(localStorage.currentUser);
+    if (this.currentUser.userRole == 'admin') {
+      this.getFolders();
+    } else {
+      this.getSharedFolders();
+      this.getSharedFiles();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

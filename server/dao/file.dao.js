@@ -12,7 +12,8 @@ var filePreviewService = require('../services/filepreview')
 const s3UploadService = require('../services/upload.service');
 
 var s3 = new aws.S3({
-    /* ... */ })
+    /* ... */
+})
 var storage = multer.memoryStorage({
     destination: function (req, file, callback) {
         callback(null, '');
@@ -52,7 +53,7 @@ file.addFile = function (object) {
     var q = Q.defer();
 
     return new Promise((resolve, reject) => {
-        s3UploadService.s3UploadFile(object.file, null, null)
+        s3UploadService.s3UploadFile(object.file, null, null, false)
             .then((uploadRes) => {
                 console.log('File Upload uploadRes:', uploadRes);
                 if (uploadRes) {
@@ -64,14 +65,19 @@ file.addFile = function (object) {
                         extension: object.extension,
                         uploadedBy: object.uploadedBy,
                     }
-                    var newFile = new fileModel(s3File);
-                    console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
-                    newFile.save((err, file) => {
-                        console.log("File Uploaded Successfully =  ", file, err);
-                        filePreviewService.generatePdf(file.path, file.title);
-                        if (err) return reject(err);
-                        else return resolve(file);
-                    });
+                    filePreviewService.generatePdf(uploadRes.Location, object.title).then((response) => {
+                        console.log("response with thumbnail path",  response.Location);
+                        s3File.thumbNail = response.Location;
+                        var newFile = new fileModel(s3File);
+                        console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
+                        newFile.save((err, file) => {
+                            console.log("File Uploaded Successfully =  ", file, err);
+                            if (err) return reject(err);
+                            else return resolve(file);
+                        });
+                    }).catch((error) => {
+
+                    })
                 } else {
                     console.log("File Resposnse not comes");
                 }

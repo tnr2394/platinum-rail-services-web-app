@@ -1,6 +1,7 @@
 <div class="row m-0">
     <div class="col-12 p-0">
         <!-- <mat-card> -->
+            <div *ngIf="currentUser.userRole == 'admin'">
             <div class="row" *ngIf="showCreateBtn">
                 <div class="col-12">
                     <button (click)='createFolder()' mat-flat-button color="primary"
@@ -9,6 +10,7 @@
                         <span> Create Folder</span>
                     </button>
                 </div>
+            </div>
             </div>
             <!-- <mat-card-content> -->
                 <!-- <div class="folder_tile">
@@ -77,7 +79,7 @@
             <!-- </mat-card-content> -->
         <!-- </mat-card> -->
     </div>
-    <!-- <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
+    <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
         <mat-card>
             <div class="row">
                 <div class="col-12">
@@ -86,14 +88,13 @@
             </div>
             <mat-card-content>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile"
-                        [contextMenu]="basicMenu" [contextMenuSubject]="file">
-                        <file-tile [file]="file"></file-tile>
+                    <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile">
+                        <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
                     </div>
                 </div>
             </mat-card-content>
         </mat-card>
-    </div> -->
+    </div>
     <!-- <div class="col-3" *ngIf="display">
         <app-file-details [details]="details"></app-file-details>
     </div> -->

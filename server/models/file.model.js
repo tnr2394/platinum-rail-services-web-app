@@ -19,6 +19,10 @@ const fileSchema = new Schema({
         type: String,
         required: false
     },
+    thumbNail: {
+        type: String,
+        required: false
+    },
     extension: {
         type: String,
         required: true

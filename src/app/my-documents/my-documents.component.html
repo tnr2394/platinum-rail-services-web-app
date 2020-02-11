@@ -9,6 +9,9 @@
                     <p>{{fileTitle}}</p>
                 </a>
             </div>
+            <div *ngIf="type != 'folder'" class="float-left title_display">
+                    <p>{{fileTitle}}</p>
+            </div>
             <mat-button class="close_btn text-primary float-right" (click)="closeSidnav()"><i class="fa fa-times-circle"
                     aria-hidden="true"></i>
             </mat-button>
