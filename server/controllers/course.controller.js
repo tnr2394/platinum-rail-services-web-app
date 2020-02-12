@@ -43,6 +43,8 @@ courseController.addCourse = function (req, res, next) {
     })
 }
 
+
+
 courseController.updateCourse = function (req, res, next) {
     console.log("Update COURSES", req.body);
 
