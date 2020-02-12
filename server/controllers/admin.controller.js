@@ -1,6 +1,6 @@
 //Npm Modules
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Q = require('q');
 

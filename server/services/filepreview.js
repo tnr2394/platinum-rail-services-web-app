@@ -2,6 +2,7 @@ var child_process = require('child_process');
 const s3UploadService = require('../services/upload.service');
 var fs = require('fs')
 // Change tempPath 
+// var tempPath = '/home/rao/Desktop/thumbnail/'
 var tempPath = '/home/heer/Desktop/'
 function generatePdf(filePath, fileTitle) {
     let name = slugify(fileTitle);

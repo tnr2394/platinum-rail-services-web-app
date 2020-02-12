@@ -1,13 +1,15 @@
 <h1 mat-dialog-title class="mat-dialog-title light-underline pb-2"><i class="fas fa-plus-circle"></i> Create Folder</h1>
 
-<mat-form-field class="full-width-field">
-    <input matInput name="learner-name" placeholder="Folder Name" [(ngModel)]='folderName' required cdkFocusInitial>
-    <mat-error>Folder name is required</mat-error>
-</mat-form-field>
+<form (ngSubmit)='save()'>
+    <mat-form-field class="full-width-field">
+        <input matInput name="learner-name" placeholder="Folder Name" [(ngModel)]='folderName' required cdkFocusInitial>
+        <mat-error>Folder name is required</mat-error>
+    </mat-form-field>
 
-<div mat-dialog-actions align="center">
-    <button mat-flat-button color="primary" (click)='save()' class="mb-3 button_hover_effect">
-        <i class="fas fa-save fa-fw"></i>
-        <span> Save</span>
-    </button>
-</div>
+    <div mat-dialog-actions align="center">
+        <button mat-flat-button color="primary" type="submit" class="mb-3 button_hover_effect">
+            <i class="fas fa-save fa-fw"></i>
+            <span> Save</span>
+        </button>
+    </div>
+</form>

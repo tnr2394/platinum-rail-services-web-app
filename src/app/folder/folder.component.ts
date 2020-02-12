@@ -40,51 +40,60 @@ export class FolderComponent implements OnInit {
   showCreateBtn: boolean = false;
   allFoldersCopy: any[];
   constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
-    ,public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
+    , public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
   }
 
   ngOnInit() {
-    if (this.router.url.includes('/mydocuments')){
+    if (this.router.url.includes('/mydocuments')) {
       this.showCreateBtn = true
     }
     this.currentUser = JSON.parse(localStorage.currentUser);
-    if (this.currentUser.userRole == 'admin') {
-      this.getFolders();
-    } else {
-      this.getSharedFolders();
-      this.getSharedFiles();
-    }
+    // if (this.currentUser.userRole == 'admin') {
+    //   this.getFolders();
+    // } else {
+    //   this.getSharedFolders();
+    //   this.getSharedFiles();
+    // }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.currentUser = JSON.parse(localStorage.currentUser);
+
     console.log("changes", changes)
-    if (changes.deletedFile){
+    if (changes.deletedFile) {
       var index = _.findIndex(this.allFolders, function (o) {
-        return o._id.toString() == changes.deletedFile.currentValue.fileId.toString(); 
+        return o._id.toString() == changes.deletedFile.currentValue.fileId.toString();
       })
-      if(index > -1) this.allFolders.splice(index, 1)
+      if (index > -1) this.allFolders.splice(index, 1)
     }
-    if (changes.subFolder){
+    if (changes.subFolder) {
       console.log("changes.subFolder.currentValue typeof", typeof changes.subFolder.currentValue);
       this.allFolders = changes.subFolder.currentValue;
       console.log("This.allFolders", this.allFolders);
     }
-    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')){
+    // if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')) {
+    //   this.getFolders()
+    // }
+    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole == 'admin') {
       this.getFolders()
     }
-    if (changes.removeCssClass != undefined){
-      if (changes.removeCssClass.currentValue == true){
+    if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole != 'admin') {
+      this.getSharedFolders();
+      this.getSharedFiles();
+    }
+    if (changes.removeCssClass != undefined) {
+      if (changes.removeCssClass.currentValue == true) {
         $('.parent_row').removeClass('col-width-class');
       }
     }
-    if (changes.updatedFolder){
+    if (changes.updatedFolder) {
       var index = _.findIndex(this.allFolders, function (o) {
         return o._id.toString() == changes.updatedFolder.currentValue._id.toString();
       })
-      if(index > -1) this.allFolders.splice(index,1,changes.updatedFolder.currentValue)
+      if (index > -1) this.allFolders.splice(index, 1, changes.updatedFolder.currentValue)
 
-      else{
+      else {
         console.log("this.subFolder", this.subFolder);
         var index = _.findIndex(this.subFolder, function (o) {
           return o._id.toString() == changes.updatedFolder.currentValue._id.toString();
@@ -144,7 +153,7 @@ export class FolderComponent implements OnInit {
       this.allFoldersCopy = this.allFolders
     });
   }
-  openFileDetails(file){
+  openFileDetails(file) {
     console.log("Open file details", file);
     this.getFileDetails.emit(file)
   }
@@ -166,12 +175,12 @@ export class FolderComponent implements OnInit {
     });
   }
 
-  singleClick(event, singleFolder,i) {
+  singleClick(event, singleFolder, i) {
     console.log("Single Click Event", event);
     // var id = "#folder_card_" + i;
     this.removeCssClass = false
     console.log("this.removeCssClss", this.removeCssClass);
-    
+
     $('.parent_row').addClass('col-width-class');
     this.preventSingleClick = false;
     const delay = 200;
@@ -183,7 +192,7 @@ export class FolderComponent implements OnInit {
       }
     }, delay);
     this.getFileDetails.emit(singleFolder)
-   
+
   }
 
   doubleClick(event, singleFolder) {
@@ -196,7 +205,7 @@ export class FolderComponent implements OnInit {
     this.router.navigate(['/single-folder', singleFolder._id])
   }
 
-  drop(event: CdkDragDrop<string[]>){
+  drop(event: CdkDragDrop<string[]>) {
     console.log("CARD DROP EVENT", event);
     // console.log("event", event.previousIndex, this.allFolders[event.previousIndex])
     console.log("Previous index", this.allFolders);
@@ -228,6 +237,6 @@ export class FolderComponent implements OnInit {
         if (index > -1) this.subFolder.splice(index, 1)
       }
     }
-    
+
   }
 }
