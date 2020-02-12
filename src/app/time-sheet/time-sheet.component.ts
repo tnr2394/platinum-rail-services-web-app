@@ -49,7 +49,8 @@ let recievedArray = [
       date: "2020-01-16T18:30:00.000Z",
       in: {
         hours: "8",
-        minutes: "05"
+        minutes: "05",
+        type: 'AM'
       },
       lunchStart: {
         hours: "2",
@@ -62,7 +63,8 @@ let recievedArray = [
       out: {
         hours: "10",
         minutes: "30"
-      }
+      },
+      _id: "5e43f1c1e3164d08d18e3ba1"
     }
   },
   {
@@ -70,7 +72,8 @@ let recievedArray = [
       date: "2020-02-16T20:30:00.000Z",
       in: {
         hours: "8",
-        minutes: "05"
+        minutes: "05",
+        type: "AM"
       },
       lunchStart: {
         hours: "2",
@@ -83,7 +86,8 @@ let recievedArray = [
       out: {
         hours: "10",
         minutes: "30"
-      }
+      },
+      _id: "5e43f1c1e3164d08d18e3ba1"
     }
   }
 ]
@@ -177,16 +181,6 @@ export class TimeSheetComponent implements OnInit {
       duration: 2000,
     });
   }
-  // createEventObject(obj){
-  //   var newEvent = {
-  //     start: new Date(obj.date),
-  //     title: 'Time Log',
-  //     allDay: true,
-  //     // logId: obj._id
-  //   }
-  //   console.log("Event object created = ", newEvent);
-  //   return newEvent;
-  // }
 
   makeEventsArrayForTimeLog(obj){
     console.log("makeEventsArrayForTimeLog", obj);
@@ -194,7 +188,12 @@ export class TimeSheetComponent implements OnInit {
     var newObj = {
       start: new Date(obj.date),
       title : "Time Log",
-      allDay : true
+      allDay : true,
+      logId : obj._id,
+      lunchStart : obj.lunchStart,
+      lunchEnd: obj.lunchEnd,
+      timeIn: obj.in,
+      timeOut: obj.out
     }
     // events.push(newObj);
     this.refresh.next();
@@ -263,50 +262,24 @@ export class TimeSheetComponent implements OnInit {
     this.events = [...this.events];
   }
 
+  // tempClick(){
+  //   this.openDialog(AddTimelogModalComponent, null).subscribe(event => {
+  //     console.log("data from modal", event);
+  //   })
+  // }
+
   externalDrop(event: CalendarEvent) {
     // if (this.externalEvents.indexOf(event) === -1) {
     //   this.events = this.events.filter(iEvent => iEvent !== event);
     //   this.externalEvents.push(event);
     // }
   }
-  // DATE
-  // dateSelected(event){
-  //   console.log("dateSelected event", event.value);
-  //   this.date = event.value
-  // }
+  
 
-  // timeChanged(event){
-  //   console.log("event in time-sheet", event);
-  //   if (event.logFor == 'timeIn') this.timeIn = this.getTime(event.time);
-  //   else if (event.logFor == 'timeOut') this.timeOut = this.getTime(event.time)
-  //   else if (event.logFor == 'lunchStart') this.lunchStart = this.getTime(event.time)
-  //   else if (event.logFor == 'lunchEnd') this.lunchEnd = this.getTime(event.time)
-  //  }
-  // getTime(time){
-  //   var temp = time.split(':')
-  //   this.hours = temp[0]
-  //   this.minutes = temp[1].split(' ')[0]
-  //   console.log("hours", this.hours );
-  //   console.log("minutes", this.minutes);
-  //   return ({hours: this.hours, minutes: this.minutes})
-  // }
-
-  // add(){
-  //   let timeLog = {
-  //     date: this.date,
-  //     in : this.timeIn,
-  //     lunchStart : this.lunchStart,
-  //     lunchEnd : this.lunchEnd,
-  //     out : this.timeOut,
-  //   }
-  //   let data = {
-  //     timeLog : timeLog,
-  //     instructorId : this.instructorId
-  //   }
-  //   console.log("Data to send", data);
-  //   // this._timeSheetService.addTime(data).subscribe(res=>{
-
-  //   // })
-  // }
+  // API
+// getAllLogs(){
+//   this._timeSheetService.getTimeLog().subscribe(res => {
+//     console.log("res", res);
+//   })}
 
 }

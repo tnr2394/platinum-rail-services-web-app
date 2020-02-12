@@ -17,7 +17,7 @@ export class TimeSheetService {
       var that = this;
       this.http.post(config.baseApiUrl + "time-log", data).subscribe((res: any) => {
 
-        observer.next(res.data.timeLog);
+        observer.next(res.data);
         console.log("response from service", res);
         
         // observer.complete();
@@ -39,7 +39,7 @@ export class TimeSheetService {
       console.log("Observable");
       var that = this;
       this.http.put(config.baseApiUrl + "time-log", data).subscribe((res: any) => {
-        observer.next(res.data.timeLog);
+        observer.next(res.data );
         console.log("response from service", res);
         // observer.complete();
       }, err => {

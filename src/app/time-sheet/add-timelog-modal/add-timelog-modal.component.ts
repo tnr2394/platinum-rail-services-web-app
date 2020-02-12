@@ -14,18 +14,24 @@ export class AddTimelogModalComponent implements OnInit {
   timeOut;
   hours;
   minutes;
-  instructorId;
-  date;
-  defaultTimeIn: any;
+  instructorId = "5e3bca2d84e1d3313c6b8ad7";
+  date = new Date();
+  defaultTimeIn = "00:00 AM";
+  type: any;
 
 
   constructor(private _timeSheetService: TimeSheetService, @Inject(MAT_DIALOG_DATA) public data: any,
    public dialogRef: MatDialogRef<AddTimelogModalComponent>) { }
 
   ngOnInit() {
-    console.log("data from component", this.data.start);
-    this.date = this.data.start;
-    this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    console.log("this.data", this.data)
+    if(this.data != null){
+      this.date = this.data.start;
+      this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
+      // this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    else this.date = new Date()
+    
   }
 
   dateSelected(event) {
@@ -44,9 +50,10 @@ export class AddTimelogModalComponent implements OnInit {
     var temp = time.split(':')
     this.hours = temp[0]
     this.minutes = temp[1].split(' ')[0]
+    this.type = temp[1].split(' ')[1]
     console.log("hours", this.hours);
     console.log("minutes", this.minutes);
-    return ({ hours: this.hours, minutes: this.minutes })
+    return ({ hours: this.hours, minutes: this.minutes, type: this.type })
   }
 
   add() {
@@ -64,10 +71,17 @@ export class AddTimelogModalComponent implements OnInit {
     }
     console.log("Data to send", data);
     this.dialogRef.close(data)
-    // API CALL PENDING
-    // this._timeSheetService.addTime(data).subscribe(res=>{
-
-    // })
+    
+    if(this.data == null){
+      this._timeSheetService.addTime(data).subscribe(res => {
+        console.log("res", res);
+      })
+    }
+    else{
+      this._timeSheetService.editTime(data).subscribe(res => {
+        console.log("res", res);
+      })
+    }
   }
 
 }
