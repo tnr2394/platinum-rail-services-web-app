@@ -6,6 +6,9 @@ var tempPath = '/home/heer/Desktop/'
 function generatePdf(filePath, fileTitle, isPdf) {
     console.log("----------isPdf", isPdf);
     
+// var tempPath = '/home/rao/Desktop/thumbnail/'
+// // var tempPath = '/home/heer/Desktop/'
+// function generatePdf(filePath, fileTitle) {
     let name = slugify(fileTitle);
     console.log("----------name", name);
 

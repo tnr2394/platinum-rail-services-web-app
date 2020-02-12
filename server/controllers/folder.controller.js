@@ -450,7 +450,6 @@ folderController.getSharedFolder = function (req, res, next) {
         }
     }
 
-
     allfolders(query).then(folders => {
         console.log("SENDING RESPONSE Folders = ", folders)
         return res.send({
@@ -466,7 +465,7 @@ folderController.changeFolderPosition = function (req, res, next) {
 
         console.log('Inside Change Folder Function', req.body);
         const folderId = req.body.folderId;
-        const parentId = req.body.parentId;
+        const parentId = req.body.parent;
         const childId = req.body.childId;
 
 

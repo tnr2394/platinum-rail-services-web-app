@@ -6,16 +6,58 @@ var Q = require('q');
 
 var material = {};
 material.createMaterial = function (obj) {
-    var q = Q.defer();
-    var newMaterial = new materialModel(obj);
+    return new Promise((resolve, reject) => {
+        if (obj.unitNo && obj.assignmentNo) {
+            checkMaterialExist(obj.course, obj.unitNo, obj.assignmentNo).then((response) => {
+                if (response) {
+                    return reject('This Material Already Exists');
+                } else {
+                    var newMaterial = new materialModel(obj);
+                    newMaterial.save((err, newMaterial) => {
+                        if (err) reject(err);
+                        console.log("newMaterial Uploaded Successfully =  ", newMaterial);
+                        resolve(newMaterial);
+                    });
+                }
+            }).catch((error) => {
+                reject(error);
+            })
+        } else {
+            var newMaterial = new materialModel(obj);
+            newMaterial.save((err, newMaterial) => {
+                if (err) reject(err);
+                console.log("newMaterial Uploaded Successfully =  ", newMaterial);
+                resolve(newMaterial);
+            });
+        }
 
-    newMaterial.save((err, newMaterial) => {
-        if (err) return q.reject(err);
-        console.log("newMaterial Uploaded Successfully =  ", newMaterial);
-        return q.resolve(newMaterial);
-    });
-    return q.promise;
+    })
 }
+
+// Checking Same Material Exists or Not
+const checkMaterialExist = (course, unitNo, assignmentNo) => {
+    console.log('Inside Check Material');
+    return new Promise((resolve, reject) => {
+
+        materialModel.findOne(
+            {
+                course: course,
+                unitNo: unitNo,
+                assignmentNo: assignmentNo
+            }).exec((error, course) => {
+                if (error) {
+                    console.log('Error While Find', error)
+                    reject(error)
+                } else if (course) {
+                    console.log('Course:::', course);
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            })
+    })
+}
+
 
 material.getMaterialsByQuery = function (query) {
     var q = Q.defer();
