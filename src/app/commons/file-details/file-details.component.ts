@@ -39,14 +39,17 @@ export class FileDetailsComponent implements OnInit {
   path: any;
   readOnlyTitle: boolean = true;
   type: any;
+  currentUser: any;
   constructor(public _folderService: FolderService, public _fileService : FileService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log(this.recievedFile)
     console.log("this.recievedFile in file-details", this.recievedFile);
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   ngOnChanges(changes: SimpleChanges): void {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.sharedClient = []
     this.sharedInstructor = []
     

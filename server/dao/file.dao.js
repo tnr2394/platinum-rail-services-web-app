@@ -65,7 +65,8 @@ file.addFile = function (object) {
                         extension: object.extension,
                         uploadedBy: object.uploadedBy,
                     }
-                    filePreviewService.generatePdf(uploadRes.Location, object.title).then((response) => {
+                    if (object.extension == 'pdf') isPdf = true; else isPdf = false
+                    filePreviewService.generatePdf(uploadRes.Location, object.title, isPdf).then((response) => {
                         console.log("response with thumbnail path",  response.Location);
                         s3File.thumbNail = response.Location;
                         var newFile = new fileModel(s3File);

@@ -1,0 +1,36 @@
+<mat-card>
+    <div class="row">
+        <div class="col-3">
+            <h5 class="labelColor">Choose a date</h5>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker"
+                    placeholder="{{date.getDate()}}/{{date.getMonth()+1}}/{{date.getFullYear()}}"
+                    (dateChange)="dateSelected($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker [startAt]="date"></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <h5 class="labelColor">Time In</h5>
+            <app-time-picker [logFor]="'timeIn'" [defaultTime]='defaultTimeIn' (timeFor)="timeChanged($event)"></app-time-picker>
+        </div>
+
+        <div class="col-3">
+            <h5 class="labelColor">Time Out</h5>
+            <app-time-picker [logFor]="'timeOut'" (timeFor)="timeChanged($event)"></app-time-picker>
+        </div>
+
+        <div class="col-3">
+            <h5 class="labelColor">Lunch Start</h5>
+            <app-time-picker [logFor]="'lunchStart'" (timeFor)="timeChanged($event)"></app-time-picker>
+        </div>
+
+        <div class="col-3">
+            <h5 class="labelColor">Lunch End</h5>
+            <app-time-picker [logFor]="'lunchEnd'" (timeFor)="timeChanged($event)"></app-time-picker>
+        </div>
+    </div>
+    <button mat-flat-button color="primary" (click)='add()'>Save</button>
+</mat-card>
