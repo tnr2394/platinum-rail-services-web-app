@@ -123,51 +123,45 @@ function getInstructorWiseTimeLog(instructorId){
                     out: '$time.out'
                 },     
                 logInTime: { 
-                    $concat: ['$time.in.hours', ':' ,'$time.in.minutes' ] 
+                    $concat: ['$time.in.hours', ':' ,'$time.in.minutes', ' ', '$time.in.type' ] 
                 },
                 lunchStartTime: { 
-                    $concat: ['$time.lunchStart.hours', ':' ,'$time.lunchStart.minutes' ] 
+                    $concat: ['$time.lunchStart.hours', ':' ,'$time.lunchStart.minutes', ' ' , '$time.lunchStart.type' ] 
                 },
-                                lunchEndTime: { 
-                    $concat: ['$time.lunchEnd.hours', ':' ,'$time.lunchEnd.minutes' ] 
+                lunchEndTime: { 
+                    $concat: ['$time.lunchEnd.hours', ':' ,'$time.lunchEnd.minutes' , ' ', '$time.lunchEnd.minutes' ] 
                 },
-                                logOutTime: { 
-                    $concat: ['$time.out.hours', ':' ,'$time.out.minutes' ] 
+                logOutTime: { 
+                    $concat: ['$time.out.hours', ':' ,'$time.out.minutes', ' ', '$time.out.type' ] 
                 },
-                // diffBtwLunchStartToIn: {
-
-                // },
-                // diffBtwOutToLunchEnd:{
-
-                // } 
               }
             }
           ],
           as: 'timeLogs'
         }
       },
-      // {
-      //           $unwind: '$timeLogs'
-      //       },
-// {
-//         $lookup: {
-//           from: 'instructors',
-//           localField: 'instructorId',
-//           foreignField: '_id',
-//           as: 'instructor'
-//         }
-//       },
-//       {
-//           $group: {
-//             _id: '$_id',
-//             instructor: {
-//               $first: '$instructor'
-//             },
-//             dateWiseTimeLogs: {
-//               $push: '$timeLogs'
-//             },
-//           }
-//       }
+      {
+                $unwind: '$timeLogs'
+            },
+{
+        $lookup: {
+          from: 'instructors',
+          localField: 'instructorId',
+          foreignField: '_id',
+          as: 'instructor'
+        }
+      },
+      {
+          $group: {
+            _id: '$_id',
+            instructor: {
+              $first: '$instructor'
+            },
+            dateWiseTimeLogs: {
+              $push: '$timeLogs'
+            },
+          }
+      }
       ])
             .exec((error, data)=>{
                 if(error) return reject(error)
