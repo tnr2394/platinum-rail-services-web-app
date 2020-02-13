@@ -19,6 +19,7 @@ const debugLog = console.debug
 
 module.exports.addTimeLog = addTimeLog
 module.exports.addTimeLogInInstructor = addTimeLogInInstructor
+module.exports.getInstructorWiseTimeLog = getInstructorWiseTimeLog
 
 function addTimeLog(data){
     return new Promise((resolve, reject)=>{
@@ -72,4 +73,106 @@ function findInInstructorTimeLogs(data){
                 else return resolve()
             })
     })
+}
+
+
+function getInstructorWiseTimeLog(instructorId){
+
+    return new Promise((resolve, reject)=>{
+
+        successLog("instructorId", instructorId)
+
+
+        InstructorTimeLog
+            .aggregate([
+            {
+                $match: {
+                    'instructorId': ObjectId(instructorId)                
+                }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    instructorId: 1,
+                    logs: 1,
+                }
+            },
+            {
+                $unwind: '$logs'
+            },
+            {
+                $lookup: {
+                    from: 'timelogs',
+          let: { logsId: '$logs' },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: ['$_id', '$$logsId']
+                }
+              }
+            },
+            {
+              $project: {
+                _id: 1,
+                date: 1,
+                timeLog: {
+                    in: '$time.in',
+                    lunchStart: '$time.lunchStart',
+                    lunchEnd: '$time.lunchEnd',
+                    out: '$time.out'
+                },     
+                logInTime: { 
+                    $concat: ['$time.in.hours', ':' ,'$time.in.minutes' ] 
+                },
+                lunchStartTime: { 
+                    $concat: ['$time.lunchStart.hours', ':' ,'$time.lunchStart.minutes' ] 
+                },
+                                lunchEndTime: { 
+                    $concat: ['$time.lunchEnd.hours', ':' ,'$time.lunchEnd.minutes' ] 
+                },
+                                logOutTime: { 
+                    $concat: ['$time.out.hours', ':' ,'$time.out.minutes' ] 
+                },
+                // diffBtwLunchStartToIn: {
+
+                // },
+                // diffBtwOutToLunchEnd:{
+
+                // } 
+              }
+            }
+          ],
+          as: 'timeLogs'
+        }
+      },
+      // {
+      //           $unwind: '$timeLogs'
+      //       },
+// {
+//         $lookup: {
+//           from: 'instructors',
+//           localField: 'instructorId',
+//           foreignField: '_id',
+//           as: 'instructor'
+//         }
+//       },
+//       {
+//           $group: {
+//             _id: '$_id',
+//             instructor: {
+//               $first: '$instructor'
+//             },
+//             dateWiseTimeLogs: {
+//               $push: '$timeLogs'
+//             },
+//           }
+//       }
+      ])
+            .exec((error, data)=>{
+                if(error) return reject(error)
+                else return resolve(data)
+            })
+    })
+
 }
