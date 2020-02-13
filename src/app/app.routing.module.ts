@@ -165,11 +165,15 @@ const routes: Routes = [
 	},
 	{
 		path: 'mydocuments',
-		component: MyDocumentsComponent
+		component: MyDocumentsComponent,
+		canActivate: [AuthGuard],
+		data: { roles: [Role.Admin, Role.Instructor, Role.Client] }
 	},
 	{
 		path: 'single-folder/:id',
-		component: SingleFolderComponent
+		component: SingleFolderComponent,
+		canActivate: [AuthGuard],
+		data: { roles: [Role.Admin, Role.Instructor, Role.Client] }
 	},
 	{
 		path: 'profile',
