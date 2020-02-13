@@ -7,7 +7,7 @@ const timeLogController = require('../controllers/timeLog.controller')
 console.log(" ---------- Hey Time Log Router Call ---------- ")
 
 /* GET timeLog listing. */
-router.get('/learner/', timeLogController.getTimeLog);
+router.get('/instructor/', timeLogController.getTimeLog);
 
 // Add Time Log by instructor
 router.post('/', timeLogController.addTimeLog);

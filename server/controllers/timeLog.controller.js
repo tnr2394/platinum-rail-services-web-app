@@ -29,9 +29,9 @@ module.exports.getTimeLog = (req, res) => {
 
 	const instructorId = ObjectId("5e352cb9390acb3ff3a0e1f3")
 
-	timeLogServices.getLearnerWiseTimeLog()
-	.then((resolve)=>{
-
+	timeLogServices.getInstructorWiseTimeLog(instructorId)
+	.then((result)=>{
+		return res.status(200).json({ result })
 	})
 	.catch((error)=>{
 
@@ -49,20 +49,25 @@ module.exports.addTimeLog = (req, res) => {
 		date: (req.body.timeLog && req.body.timeLog.date) ? new Date(req.body.timeLog.date) : new Date(),
 		time: {
 			in: {
-				hours: (req.body.timeLog.in && req.body.timeLog.in.hours) ? req.body.timeLog.in.hours : '-',
-				minutes: (req.body.timeLog.in && req.body.timeLog.in.minutes) ? req.body.timeLog.in.minutes : '-'
+				hours: (req.body.timeLog.in && req.body.timeLog.in.hours != undefined && req.body.timeLog.in.hours != null) ? req.body.timeLog.in.hours : '-',
+				minutes: (req.body.timeLog.in && req.body.timeLog.in.minutes != undefined && req.body.timeLog.in.minutes != null) ? req.body.timeLog.in.minutes : '-',
+				type: (req.body.timeLog.in && req.body.timeLog.in.type != undefined && req.body.timeLog.in.type != null) ? req.body.timeLog.in.type : '-' 
 			},
 			lunchStart: {
-				hours: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.hours) ? req.body.timeLog.lunchStart.hours : '-',
-				minutes: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.minutes) ? req.body.timeLog.lunchStart.minutes : '-'	
+				hours: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.hours != undefined && req.body.timeLog.lunchStart.hours != null) ? req.body.timeLog.lunchStart.hours : '-',
+				minutes: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.minutes != undefined && req.body.timeLog.lunchStart.minutes != null) ? req.body.timeLog.lunchStart.minutes : '-',	
+				type: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.type != undefined && req.body.timeLog.lunchStart.type != null) ? req.body.timeLog.lunchStart.type : '-'
 			},
         	lunchEnd:{
             	hours: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.hours) ? req.body.timeLog.lunchEnd.hours : '-',
             	minutes: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.minutes) || '-',
+				type: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.type != undefined && req.body.timeLog.lunchEnd.type != null) ? req.body.timeLog.lunchEnd.type : '-'    
         	},
         	out:{
             	hours: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.hours) ? req.body.timeLog.timeOut.hours : '-',
             	minutes: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.minutes)? req.body.timeLog.timeOut.minutes : '-',
+				type: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.type != undefined && req.body.timeLog.timeOut.type != null) ? req.body.timeLog.lunchStart.type : '-'
+    
         	},
     	},
 	}
