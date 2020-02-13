@@ -1,6 +1,7 @@
 .file-type{
     height: 40px;
     width:40px;
+    border: none;
 }
 
 .pdf{
@@ -10,6 +11,7 @@
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
+    // border-style: none;
 }
 
 .ppt{
@@ -130,6 +132,14 @@
     background-repeat: no-repeat;
     margin: auto;
 }
+.odt{
+    height: 40px;
+    width: 40px;
+    background: url('../../../assets/odt.svg');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    margin: auto;
+}
 @media (max-width:1199){
     .upload_user {
         margin-bottom: 0 !important;
@@ -189,6 +199,15 @@
     }
 }
 .fileView{
-    max-width: 250px !important;
+    // max-width: 250px !important;
     height: auto;
+    padding: 0 !important;
+}
+.thumbnail_preview{
+    img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+}
 }

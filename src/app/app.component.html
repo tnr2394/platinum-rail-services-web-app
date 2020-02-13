@@ -92,6 +92,14 @@
         </a>
       </li>
       <li>
+        <a *ngIf="currentUser && (currentUser.userRole=='admin' || currentUser.userRole=='instructor')"
+          routerLink="/time-sheet" routerLinkActive="active-link">
+          <i class="fa fa-list-alt" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Time-sheet' : ''}}"
+            tooltipClass="tooltip-sidebar-class"></i>
+          <span class="menuText">Time-Sheet</span>
+        </a>
+      </li>
+      <li>
         <a *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'" routerLink="{{learnerRouteName}}"
           routerLinkActive="active-link">
           <i class="fas fa-fw fa-chalkboard"></i>

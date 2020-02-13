@@ -1,0 +1,85 @@
+<!-- <mat-card>
+    <div class="row">
+        <div class="col-6">
+            <h3>Instructor</h3>
+            <mat-divider></mat-divider>
+            Test name
+            test@gmail.com
+        </div>
+
+        <div class="col-6">
+            <h3>Total work week hours</h3>
+            <mat-divider></mat-divider>
+            ####
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            Admin
+        <mat-divider></mat-divider>
+        Alex 
+        </div>
+    </div>
+</mat-card> -->
+<!-- <button (click)="tempClick()">ADD</button> -->
+<div class="col-12">
+    <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+        <div class="">
+            <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
+                dragActiveClass="drag-active">
+                {{event.title}}
+            </p>
+        </div>
+    </div>
+</div> 
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="btn-group">
+            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                Previous
+            </div>
+            <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                Today
+            </div>
+            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                Next
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    </div>
+    <div class="col-md-4">
+        <div class="btn-group">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
+                Month
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week">
+                Week
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                Day
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+        [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+        [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventDropped($event)">
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
+    </mwl-calendar-day-view>
+</div>
+

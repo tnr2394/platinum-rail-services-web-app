@@ -28,6 +28,7 @@ import { SingleFolderComponent } from './folder/single-folder/single-folder.comp
 import { ProfileComponent } from './commons/profile/profile.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
+import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -182,6 +183,10 @@ const routes: Routes = [
 	{
 		path: 'newFile',
 		component: NewFileModalComponent
+	},
+	{
+		path: 'time-sheet',
+		component: TimeSheetComponent
 	}
 ];
 
