@@ -200,40 +200,6 @@ export class FileDetailsComponent implements OnInit {
     }
 
     })
-
-
-    
-
-    // console.log("this.currentFolder.files", this.currentFolder.files)
-    // this._folderService.getFolder(this.id).subscribe(res=>{
-
-    // })
-    // if (this.currentFolder.files && this.currentFolder.files.length){
-    //   _.forEach(this.currentFolder.files, (file) => {
-    //     console.log("file.path", file.path, file)
-    //     var filename = file.path.split("/")[3];
-    //     // loading a file and add it in a zip file
-    //     JSZipUtil.getBinaryContent(file.path, (err, data) => {
-    //       if (err) {
-    //         throw err; // or handle the error
-    //       }
-    //       zip.file(filename, data, { binary: true });
-    //       count++;
-
-    //       if (count == this.currentFolder.files.length) {
-    //         zip.generateAsync({ type: 'blob' }).then(function (content) {
-    //           saveAs(content, zipFilename);
-    //         });
-    //         this.loading = false;
-    //       }
-    //     });
-    //   });
-    // }
-    // else{
-
-    // }
-
-
   }
 
   saveFolder() {

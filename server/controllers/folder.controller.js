@@ -328,10 +328,38 @@ folderController.updateFolder = function (req, res, next) {
 
 
 folderController.shareFolder = function (req, res, next) {
-    console.log("Sharing Folder", req.body.file);
+    console.log("Sharing Folder========>>>>>>", req.body);
+
+
     const sharedFolder = req.body.file;
     let instructorList = [];
     let clientList = [];
+    let emailArrayIns = [];
+    let emailArrayClient = [];
+    let finalEmail = [];
+
+
+
+    if (req.body.selectedInstructors && req.body.alreadySharedInstructor) {
+        emailArrayIns = req.body.selectedInstructors.filter(o => !req.body.alreadySharedInstructor.find(o2 => o._id === o2._id))
+    }
+
+    if (req.body.selectedClients && req.body.alreadySharedClient) {
+        emailArrayClient = req.body.selectedClients.filter(o => !req.body.alreadySharedClient.find(o2 => o._id === o2._id))
+    }
+
+    if (emailArrayIns.length) {
+        lodash.forEach(emailArrayIns, function (singleIns) {
+            finalEmail.push(singleIns.email);
+        })
+    }
+
+    if (emailArrayClient.length) {
+        lodash.forEach(emailArrayClient, function (singleClie) {
+            finalEmail.push(singleClie.email);
+        })
+    }
+
 
     if (req.body.selectedInstructors) {
         lodash.forEach(req.body.selectedInstructors, function (singleIns) {
@@ -345,7 +373,10 @@ folderController.shareFolder = function (req, res, next) {
         })
     }
 
-    sharingFolder(sharedFolder, instructorList, clientList).then((folder) => {
+
+    console.log('Final Email Array::::::', finalEmail);
+
+    sharingFolder(sharedFolder, finalEmail, instructorList, clientList).then((folder) => {
         return res.send({
             data: {
                 folder
@@ -358,7 +389,7 @@ folderController.shareFolder = function (req, res, next) {
     })
 }
 
-const sharingFolder = (folder, instructors, clients) => {
+const sharingFolder = (folder, emailArray, instructors, clients) => {
     return new Promise((resolve, reject) => {
         folderModel.updateOne({
             _id: folder
@@ -374,7 +405,11 @@ const sharingFolder = (folder, instructors, clients) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(updatedFolder);
+                folderDOA.sendShareFolderMail(emailArray, folder).then((mailResponse) => {
+                    resolve(updatedFolder);
+                }).catch((mailError) => {
+                    reject(mailError)
+                })
             }
         });
     })
@@ -385,6 +420,31 @@ folderController.shareFile = function (req, res, next) {
     const sharedFolder = req.body.file;
     let instructorList = [];
     let clientList = [];
+    let emailArrayIns = [];
+    let emailArrayClient = [];
+    let finalEmail = [];
+
+
+    if (req.body.selectedInstructors && req.body.alreadySharedInstructor) {
+        emailArrayIns = req.body.selectedInstructors.filter(o => !req.body.alreadySharedInstructor.find(o2 => o._id === o2._id))
+    }
+
+    if (req.body.selectedClients && req.body.alreadySharedClient) {
+        emailArrayClient = req.body.selectedClients.filter(o => !req.body.alreadySharedClient.find(o2 => o._id === o2._id))
+    }
+
+    if (emailArrayIns.length) {
+        lodash.forEach(emailArrayIns, function (singleIns) {
+            finalEmail.push(singleIns.email);
+        })
+    }
+
+    if (emailArrayClient.length) {
+        lodash.forEach(emailArrayClient, function (singleClie) {
+            finalEmail.push(singleClie.email);
+        })
+    }
+
 
     if (req.body.selectedInstructors) {
         lodash.forEach(req.body.selectedInstructors, function (singleIns) {
@@ -398,7 +458,23 @@ folderController.shareFile = function (req, res, next) {
         })
     }
 
-    sharingFile(sharedFolder, instructorList, clientList).then((file) => {
+    if (req.body.selectedInstructors) {
+        lodash.forEach(req.body.selectedInstructors, function (singleIns) {
+            instructorList.push(singleIns._id);
+        })
+    }
+
+    if (req.body.selectedClients) {
+        lodash.forEach(req.body.selectedClients, function (singleClient) {
+            clientList.push(singleClient._id);
+        })
+    }
+
+
+    console.log('Email Array:::', finalEmail);
+
+
+    sharingFile(sharedFolder, finalEmail, instructorList, clientList).then((file) => {
         return res.send({
             data: {
                 file
@@ -411,10 +487,14 @@ folderController.shareFile = function (req, res, next) {
     })
 }
 
-const sharingFile = (file, instructors, clients) => {
+const sharingFile = (file, emailArray, instructors, clients) => {
     return new Promise((resolve, reject) => {
+
+        console.log('Email Array file', emailArray, file);
+
+
         fileModel.updateOne({
-            _id: file
+            _id: file._id
         }, {
             $set: {
                 sharedInstructor: instructors,
@@ -427,7 +507,11 @@ const sharingFile = (file, instructors, clients) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(updatedFile);
+                folderDOA.sendShareFileMail(emailArray, file).then((mailResponse) => {
+                    resolve(updatedFile);
+                }).catch((mailError) => {
+                    reject(mailError)
+                })
             }
         });
     })
@@ -473,25 +557,20 @@ folderController.changeFolderPosition = function (req, res, next) {
 
         if (req.body.folderId && req.body.parentId && req.body.childId) {
             folderDOA.updateParentFolder(parentId, folderId).then((response) => {
-                console.log('Response::::::', response);
                 console.log('Id Pulled From Parent now push to sub folder', childId, folderId);
                 folderDOA.updateSubFolder(childId, folderId).then((updateResponse) => {
                     return res.send({ data: { updateResponse } });
                 }).catch((err) => {
-                    console.log('Err===============>>>>', err);
                     return res.status(500).send({ err })
                 })
             }).catch((error) => {
-                console.log('Errors::::::::', error)
                 return res.status(500).send({ error })
             })
         } else if (!req.body.parentId) {
             console.log('This Case Has Root Folder So No ParentId');
             folderDOA.updateSubFolder(childId, folderId).then((updateResponse) => {
-                console.log('After Response::::::::::', updateResponse);
                 return res.send({ data: { updateResponse } });
             }).catch((err) => {
-                console.log('Err:::::::::::', err);
                 return res.status(500).send({ err })
             })
         }
