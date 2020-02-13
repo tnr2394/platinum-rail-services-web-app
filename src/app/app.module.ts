@@ -104,8 +104,7 @@ import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TimePickerComponent } from './commons/time-picker/time-picker.component';
 import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
-
-
+import { Select2Module } from 'ng2-select2';
 @NgModule({
   declarations: [
     AppComponent,
@@ -178,6 +177,7 @@ import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-tim
     AddTimelogModalComponent
   ],
   imports: [
+    Select2Module,
     NgxMaterialTimepickerModule,
     DragDropModule,
     BrowserModule,

@@ -1,38 +1,28 @@
-<!-- <mat-card>
-    <div class="row">
-        <div class="col-6">
-            <h3>Instructor</h3>
-            <mat-divider></mat-divider>
-            Test name
-            test@gmail.com
-        </div>
+<div class="row">
+    <h3 class="page-title">Time Sheet</h3>
+</div>
 
-        <div class="col-6">
-            <h3>Total work week hours</h3>
-            <mat-divider></mat-divider>
-            ####
-        </div>
+<div *ngIf="currentUser.userRole == 'admin'">
+    <div *ngIf="allInstructors.length != 0">
+    <select2 [data]="instToDisplay" [cssImport]=true [options]="options"
+         [value]="value"
+         (valueChanged)="changed($event)"></select2>
     </div>
-
-    <div class="row">
-        <div class="col-6">
-            Admin
-        <mat-divider></mat-divider>
-        Alex 
-        </div>
-    </div>
-</mat-card> -->
+</div>
+<mat-card class="mt-4">
 <!-- <button (click)="tempClick()">ADD</button> -->
-<div class="col-12">
-    <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
-        <div class="">
-            <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
-                dragActiveClass="drag-active">
-                {{event.title}}
-            </p>
+<div class="row" *ngIf="currentUser.userRole == 'instructor'">
+    <div class="col-12">
+        <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+            <div class="">
+                <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
+                    dragActiveClass="drag-active">
+                    {{event.title}}
+                </p>
+            </div>
         </div>
     </div>
-</div> 
+</div>
 <div class="row text-center">
     <div class="col-md-4">
         <div class="btn-group">
@@ -82,4 +72,5 @@
         (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
     </mwl-calendar-day-view>
 </div>
-
+</mat-card>
+<!-- </div> -->

@@ -14,24 +14,37 @@ export class AddTimelogModalComponent implements OnInit {
   timeOut;
   hours;
   minutes;
-  instructorId = "5e3bca2d84e1d3313c6b8ad7";
+  instructorId;
   date = new Date();
-  defaultTimeIn = "00:00 AM";
+  defaultTimeIn = "";
   type: any;
+  defaultTimeOut = "";
+  defaultLunchStart = "";
+  defaultLunchEnd = "";
+  currentUser: any;
+  disabled: boolean = false;
+  currentLogId: any;
 
 
   constructor(private _timeSheetService: TimeSheetService, @Inject(MAT_DIALOG_DATA) public data: any,
    public dialogRef: MatDialogRef<AddTimelogModalComponent>) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.userRole == 'instructor') this.instructorId = this.currentUser._id;
     console.log("this.data", this.data)
     if(this.data != null){
       this.date = this.data.start;
-      this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
+      if(this.data.logId) this.currentLogId = this.data.logId
+      this.disabled = true;
+      if (this.data.timeIn) this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
+      if (this.data.timeOut) this.defaultTimeOut = this.data.timeOut.hours + ":" + this.data.timeOut.minutes + " " + this.data.timeOut.type
+      if (this.data.lunchStart) this.defaultLunchStart = this.data.lunchStart.hours + ":" + this.data.lunchStart.minutes + " " + this.data.lunchStart.type
+      if (this.data.lunchEnd) this.defaultLunchEnd = this.data.lunchEnd.hours + ":" + this.data.lunchEnd.minutes + " " + this.data.lunchEnd.type
+
       // this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
     else this.date = new Date()
-    
   }
 
   dateSelected(event) {
@@ -47,17 +60,23 @@ export class AddTimelogModalComponent implements OnInit {
     else if (event.logFor == 'lunchEnd') this.lunchEnd = this.getTime(event.time)
   }
   getTime(time) {
-    var temp = time.split(':')
-    this.hours = temp[0]
-    this.minutes = temp[1].split(' ')[0]
-    this.type = temp[1].split(' ')[1]
-    console.log("hours", this.hours);
-    console.log("minutes", this.minutes);
-    return ({ hours: this.hours, minutes: this.minutes, type: this.type })
+    if(time){
+      var temp = time.split(':')
+      this.hours = temp[0]
+      this.minutes = temp[1].split(' ')[0]
+      this.type = temp[1].split(' ')[1]
+      console.log("hours", this.hours);
+      console.log("minutes", this.minutes);
+      console.log("type", this.type);
+      return ({ hours: this.hours, minutes: this.minutes, type: this.type })
+    }
   }
 
   add() {
     if (this.timeIn == undefined) this.timeIn = this.getTime(this.defaultTimeIn)
+    else if (this.timeOut == undefined) this.timeOut = this.getTime(this.defaultTimeOut)
+    else if (this.lunchStart == undefined) this.lunchStart = this.getTime(this.defaultLunchStart)
+    else if (this.lunchEnd == undefined) this.lunchEnd = this.getTime(this.defaultLunchEnd)
     let timeLog = {
       date: this.date,
       in: this.timeIn,
@@ -67,20 +86,25 @@ export class AddTimelogModalComponent implements OnInit {
     }
     let data = {
       timeLog: timeLog,
-      instructorId: this.instructorId
+      instructorId: this.instructorId,
     }
     console.log("Data to send", data);
-    this.dialogRef.close(data)
+    // this.dialogRef.close(data)
     
-    if(this.data == null){
-      this._timeSheetService.addTime(data).subscribe(res => {
+    if (this.currentLogId){
+      console.log("this.curremtLogId", this.currentLogId);
+      this._timeSheetService.editTime(data).subscribe(res => {
+        data['logId'] = this.currentLogId
         console.log("res", res);
+        this.dialogRef.close({ data: data, action: 'edited' })
       })
     }
     else{
-      this._timeSheetService.editTime(data).subscribe(res => {
+      console.log("this.curremtLogId", this.currentLogId);
+      this._timeSheetService.addTime(data).subscribe(res => {
         console.log("res", res);
-      })
+        this.dialogRef.close({ data: data, action: 'added' })
+      }) 
     }
   }
 

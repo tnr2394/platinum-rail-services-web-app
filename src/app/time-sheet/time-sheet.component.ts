@@ -2,6 +2,9 @@ import { getTime } from 'date-fns';
 import { TimeSheetService } from '../services/time-sheet.service';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { Select2OptionData } from 'ng2-select2';
+import * as _ from 'lodash';
+
 import {
   Component,
   OnInit,
@@ -28,6 +31,8 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { AddTimelogModalComponent } from './add-timelog-modal/add-timelog-modal.component';
+import { InstructorService } from '../services/instructor.service';
+import { FilterService } from '../services/filter.service';
 
 const colors: any = {
   red: {
@@ -43,49 +48,56 @@ const colors: any = {
     secondary: '#FDF1BA'
   }
 };
+
 let recievedArray = [
   {
     timeLog: {
       date: "2020-01-16T18:30:00.000Z",
       in: {
         hours: "8",
-        minutes: "05",
+        minutes: "00",
         type: 'AM'
       },
       lunchStart: {
-        hours: "2",
-        minutes: "10"
+        hours: "1",
+        minutes: "00",
+        type: 'PM'
       },
       lunchEnd: {
-        hours: "3",
-        minutes: "20"
+        hours: "2",
+        minutes: "00",
+        type: 'PM'
       },
       out: {
         hours: "10",
-        minutes: "30"
+        minutes: "30",
+        type: 'PM'
       },
-      _id: "5e43f1c1e3164d08d18e3ba1"
+      _id: "5e43f1c1e3164d08d18e3ba2"
     }
   },
   {
     timeLog: {
       date: "2020-02-16T20:30:00.000Z",
       in: {
-        hours: "8",
-        minutes: "05",
+        hours: "7",
+        minutes: "00",
         type: "AM"
       },
       lunchStart: {
         hours: "2",
-        minutes: "10"
+        minutes: "00",
+        type: 'PM'
       },
       lunchEnd: {
         hours: "3",
-        minutes: "20"
+        minutes: "00",
+        type: 'PM'
       },
       out: {
         hours: "10",
-        minutes: "30"
+        minutes: "30",
+        type: 'PM'
       },
       _id: "5e43f1c1e3164d08d18e3ba1"
     }
@@ -99,6 +111,9 @@ let recievedArray = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeSheetComponent implements OnInit {
+  public instToDisplay: Array<Select2OptionData>;
+  public options: Select2Options;
+  public current: string;
   lunchEnd;
   timeIn;
   lunchStart;
@@ -106,6 +121,7 @@ export class TimeSheetComponent implements OnInit {
   hours;
   minutes;
   instructorId;
+  searchText;
   date = new Date();
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
@@ -155,19 +171,32 @@ export class TimeSheetComponent implements OnInit {
   //     draggable: true
   //   }
   // ];
-  externalEvents: CalendarEvent[] = [
-    {
-      start: new Date(),
-      title: 'Log time',
-      allDay: true
-    }
-  ]
+  externalEvents: CalendarEvent[] = []
   
   events = [];
-  constructor(private _timeSheetService: TimeSheetService, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
+  allInstructors: any;
+  currentUser: any;
+  filteredInstructors: any;
+  allInstructorsCopy: any;
+  // instToDisplay: Observable<Array<Select2OptionData>> = [
+  //   {
+  //     id: "",
+  //     text : ""
+  //   }
+  // ]
+  constructor(private _timeSheetService: TimeSheetService, private _instructorService: InstructorService, public _filter: FilterService,
+    public dialog: MatDialog, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.instToDisplay = [];
     this.populateAllLogs(recievedArray)
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.currentUser.userRole == 'admin') this.getInstructorList();
+    if (this.currentUser.userRole == 'instructor')this.createNewExternalEvent();
+    this.options = {
+      multiple: true,
+      placeholder: "Choose instructors"
+    }
   }
   // CUSTOM METHODS
   openDialog(someComponent, data = {}): Observable<any> {
@@ -209,7 +238,29 @@ export class TimeSheetComponent implements OnInit {
       this.events.push(events)
     }
     console.log("After populate ", temp);
-    
+  }
+  changed(data: { value: string[] }) {
+    console.log("change", data);
+    this.current = data.value.join(' | ');
+    console.log("this.current", this.current);
+  }
+  // filter(searchText) {
+  //   console.log('FILTER CALLED', searchText);
+  //   if (searchText === '') {
+  //     return this.allInstructorsCopy = this.allInstructors;
+  //   }
+  //   let temp = this._filter.filter(searchText, this.allInstructors, ['name']);
+  //   this.allInstructorsCopy = temp;
+  // }
+
+  createNewExternalEvent(){
+   let tempExternalEvent =  {
+      start: new Date(),
+      title: 'Log time',
+      allDay: true
+    }
+    this.externalEvents.push(tempExternalEvent)
+    console.log("this.externalEvents", this.externalEvents);
   }
   // ANGULAR CALENDAR METHODS
 
@@ -220,6 +271,7 @@ export class TimeSheetComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log("Day clicked", "--date--", date , "--events--", events);
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -233,8 +285,13 @@ export class TimeSheetComponent implements OnInit {
     }
   }
   handleEvent(action: string, event: CalendarEvent): void {
-    this.openDialog(AddTimelogModalComponent,event).subscribe(event=>{
-      console.log("data from modal", event);
+    this.openDialog(AddTimelogModalComponent,event).subscribe(recievedEvent=>{
+      if (recievedEvent == undefined) return
+      console.log("data from modal", recievedEvent);
+      var index = _.findIndex(this.events, function (o) { return o.logId == recievedEvent.data.logId})
+      // this.events[index] = recievedEvent
+      console.log("index is", index);
+      console.log("this.events", this.events);
     })
   }
   eventDropped({
@@ -247,19 +304,31 @@ export class TimeSheetComponent implements OnInit {
     if (typeof allDay !== 'undefined') {
       event.allDay = allDay;
     }
-    if (externalIndex > -1) {
-      this.externalEvents.splice(externalIndex, 1);
-      this.events.push(event);
-    }
     event.start = newStart;
     if (newEnd) {
       event.end = newEnd;
     }
-    if (this.view === 'month') {
-      this.viewDate = newStart;
-      this.activeDayIsOpen = true;
+    let x = this.events.every(function (temp){
+      if (temp.start.getDate() === newStart.getDate() && temp.start.getDay() === newStart.getDay() && temp.start.getMonth() === newStart.getMonth()){
+        return false
+      }
+      else return true
+    })
+
+    if(x == true){
+      console.log("in x == true");
+      this.events = [...this.events, event];
+      if (this.view === 'month') {
+        this.viewDate = newStart;
+        this.activeDayIsOpen = true;
+      }
+      if (externalIndex > -1) {
+        this.externalEvents.splice(externalIndex, 1);
+        this.createNewExternalEvent()
+      }
+      console.log("this.externalEvents", this.externalEvents);
     }
-    this.events = [...this.events];
+    console.log("this.events", this.events);
   }
 
   // tempClick(){
@@ -282,4 +351,46 @@ export class TimeSheetComponent implements OnInit {
 //     console.log("res", res);
 //   })}
 
+  getInstructorList(){
+    this._instructorService.getInstructors().subscribe(data=>{
+      this.allInstructors = data;
+      this.allInstructors.forEach(inst=>{
+        let temp = {
+          id: inst._id,
+          text : inst.name
+        }
+        this.instToDisplay.push(temp)
+        console.log("temp==", temp);
+      })
+      this.allInstructorsCopy = this.allInstructors;
+      console.log("this.instToDisplay", this.instToDisplay);
+    })
+  }
+
 }
+
+// recievedArray.forEach(event => {
+    //   console.log("for Each", event);
+    //   return new Promise((resolve,reject)=>{
+    //     let timeIn24 = this.convertTo24(event.timeLog.in)
+    //     let lunchStart24 = this.convertTo24(event.timeLog.lunchStart)
+    //     let lunchEnd24 = this.convertTo24(event.timeLog.lunchEnd)
+    //     let timeOut24 = this.convertTo24(event.timeLog.out)
+    //     let time24 = {timeIn24: timeIn24, lunchStart24: lunchStart24, lunchEnd24: lunchEnd24, timeOut24: timeOut24 }
+    //     resolve({ time24: time24})
+    //   }).then(time => {
+    //     console.log("time in 'then'", time);
+    //     // let totalHours = (time.lunchStart24) 
+    //   })
+    // })
+// convertTo24(obj){
+//   console.log("obj recieved", obj);
+//   if (obj.type == 'PM' && obj.hours < 12) {
+//     obj.hours = parseInt(obj.hours) + 12;
+//     console.log("hours", obj.hours);
+//   }
+//   else if (obj.hours == 12 && obj.type == 'AM') {
+//     obj.hours == '00'
+//   }
+//   return obj
+// }

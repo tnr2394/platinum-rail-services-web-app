@@ -838,3 +838,14 @@ body{
 .timepicker-backdrop-overlay {
     z-index: 10000000 !important;
 }
+.choose-date{
+  .mat-form-field-infix {
+    border-top: none !important;
+}
+}
+.select2-container{
+    min-width: 100% !important;
+    .select2-search__field{
+    width: 100% !important;
+}
+}
