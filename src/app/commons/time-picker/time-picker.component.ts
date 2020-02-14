@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 export class TimePickerComponent implements OnInit {
 
   @Input('logFor') logFor: String; //logFor = 'timeIn', 'timeOut', 'lunchStart', 'lunchEnd'
-  @Input('defaultTime') defaultTime = '00:00 AM';
+  @Input('defaultTime') defaultTime;
   @Output('timeFor') timeFor: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }

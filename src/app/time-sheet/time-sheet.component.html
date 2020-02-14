@@ -1,5 +1,6 @@
 <div class="row">
     <h3 class="page-title">Time Sheet</h3>
+    <button mat-flat-button (click)="changeQuery()">GO</button>
 </div>
 
 <div *ngIf="currentUser.userRole == 'admin'">
@@ -15,7 +16,7 @@
     <div class="col-12">
         <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
             <div class="">
-                <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
+                <p *ngFor="let event of externalEvents" mwlDraggable  [dropData]="{event: event}"
                     dragActiveClass="drag-active">
                     {{event.title}}
                 </p>
@@ -44,10 +45,10 @@
     </div>
     <div class="col-md-4">
         <div class="btn-group">
-            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+            <!-- <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
                 [class.active]="view === CalendarView.Month">
                 Month
-            </div>
+            </div> -->
             <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
                 [class.active]="view === CalendarView.Week">
                 Week
@@ -60,16 +61,16 @@
 </div>
 <br />
 <div [ngSwitch]="view">
-    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+    <!-- <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
         [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
         (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
-    </mwl-calendar-month-view>
+    </mwl-calendar-month-view> -->
     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
         [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventDropped($event)">
+        (eventTimesChanged)="eventDropped($event);eventTimesChanged($event)" [hourSegments]="6">
     </mwl-calendar-week-view>
     <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-        (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
+        (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)" [hourSegments]="6">
     </mwl-calendar-day-view>
 </div>
 </mat-card>

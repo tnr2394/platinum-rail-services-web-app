@@ -34,15 +34,22 @@ export class AddTimelogModalComponent implements OnInit {
     if(this.currentUser.userRole == 'instructor') this.instructorId = this.currentUser._id;
     console.log("this.data", this.data)
     if(this.data != null){
-      this.date = this.data.start;
+      
+      this.date = this.data.date ? new Date(this.data.date) : this.data.start;
       if(this.data.logId) this.currentLogId = this.data.logId
       this.disabled = true;
-      if (this.data.timeIn) this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
+
+      // this.defaultTimeIn = this.data.logInTime 
+      // this.defaultTimeOut = this.data.logOutTime
+      // this.defaultLunchEnd = this.data.lunchEndTime
+      // this.defaultLunchStart = this.data.lunchStartTime
+      this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' })
+      // if (this.data.timeIn) this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
       if (this.data.timeOut) this.defaultTimeOut = this.data.timeOut.hours + ":" + this.data.timeOut.minutes + " " + this.data.timeOut.type
       if (this.data.lunchStart) this.defaultLunchStart = this.data.lunchStart.hours + ":" + this.data.lunchStart.minutes + " " + this.data.lunchStart.type
       if (this.data.lunchEnd) this.defaultLunchEnd = this.data.lunchEnd.hours + ":" + this.data.lunchEnd.minutes + " " + this.data.lunchEnd.type
 
-      // this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    //   // this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
     else this.date = new Date()
   }
@@ -63,8 +70,8 @@ export class AddTimelogModalComponent implements OnInit {
     if(time){
       var temp = time.split(':')
       this.hours = temp[0]
-      this.minutes = temp[1].split(' ')[0]
-      this.type = temp[1].split(' ')[1]
+      this.minutes = temp[1]
+      // this.type = temp[1].split(' ')[1]
       console.log("hours", this.hours);
       console.log("minutes", this.minutes);
       console.log("type", this.type);
@@ -103,7 +110,7 @@ export class AddTimelogModalComponent implements OnInit {
       console.log("this.curremtLogId", this.currentLogId);
       this._timeSheetService.addTime(data).subscribe(res => {
         console.log("res", res);
-        this.dialogRef.close({ data: data, action: 'added' })
+        this.dialogRef.close({ data: res, action: 'added' })
       }) 
     }
   }

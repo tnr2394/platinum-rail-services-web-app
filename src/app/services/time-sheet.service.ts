@@ -75,13 +75,13 @@ export class TimeSheetService {
     });
   }
 
-  getTimeLog(id: any): Observable<any> {
+  getInstructorTimeLog(id: any): Observable<any> {
     console.log("get time log", id);
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.get(config.baseApiUrl + "time-log?_id=" + id).subscribe((res: any) => {
-        observer.next(res.data.timeLog);
+      this.http.get(config.baseApiUrl + "time-log/instructor?_id=" + id).subscribe((res: any) => {
+        observer.next(res.result);
         console.log("response from service", res);
         // observer.complete();
       }, err => {
