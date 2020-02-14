@@ -300,6 +300,18 @@ instructorController.checkForQualificationCronJob = () => {
     })
 }
 
+instructorController.instructorEmailList = () => {
+    return new Promise((resolve, reject) => {
+        instructorModel.find({}, (err, response) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(response)
+            }
+        })
+    })
+}
+
 const sendQualificationExpireMailToAdmin = (instructorDetail) => {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Admin Function');
