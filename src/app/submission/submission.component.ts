@@ -30,7 +30,7 @@ export class SubmissionComponent implements OnInit {
   loadingJobs: Boolean;
   loadingAssignments: Boolean
   loadingLearners: Boolean
-  learners;
+  learners: any = [];
   jobs = [];
   courses;
   selectedJob;
@@ -184,7 +184,7 @@ export class SubmissionComponent implements OnInit {
           this.queryParamsObj['job'] = paramsJobId;
           this.getAllAllotedAssignmentsUsingJobId(paramsJobId).then((data) => {
             console.log(" All allLearners data", data)
-            if (data) {
+            if (data != null && data != undefined) {
               this.allLearners = JSON.parse(JSON.stringify(data))
               this.actualList = JSON.parse(JSON.stringify(data))
             }
@@ -308,8 +308,7 @@ export class SubmissionComponent implements OnInit {
   }
 
 
-  // UTILITY
-
+  // UTILITY UPDATE DATA
   updateData(learner) {
     console.log("UPDATING DATA = ", learner)
     this.dataSource = new MatTableDataSource(learner);
@@ -330,24 +329,40 @@ export class SubmissionComponent implements OnInit {
   getAllAllotedAssignmentsUsingJobId(jobId) {
     return new Promise((resolve, reject) => {
       this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
-        var obj = data[0];
-        if (!isEmpty(obj)) {
+
+        console.log('data===========>>>>>>>.', data)
+        if (data.length) {
+          console.log('Inside IF');
           this.learners = data;
           this.copyLearners = this.learners;
           this.loadingAssignments = false;
           return resolve(this.copyLearners);
         } else {
-          this.copyLearners = [];
+          console.log('Inside Else');
+          this.copyLearners = null;
           return resolve(this.copyLearners);
         }
 
-        function isEmpty(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key))
-              return false;
-          }
-          return true;
-        }
+
+        // console.log('Data=========>>>>>>>>>>>>>>', data);
+        // var obj = data[0];
+        // if (!isEmpty(obj)) {
+        //   this.learners = data;
+        //   this.copyLearners = this.learners;
+        //   this.loadingAssignments = false;
+        //   return resolve(this.copyLearners);
+        // } else {
+        //   this.copyLearners = [];
+        //   return resolve(this.copyLearners);
+        // }
+
+        // function isEmpty(obj) {
+        //   for (var key in obj) {
+        //     if (obj.hasOwnProperty(key))
+        //       return false;
+        //   }
+        //   return true;
+        // }
 
       });
     })

@@ -700,7 +700,7 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
         {
             $unwind: {
                 path: '$learner',
-                preserveNullAndEmptyArrays: true
+                // preserveNullAndEmptyArrays: true
             }
         },
         {
@@ -797,7 +797,6 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
-            // console.log('assignment', assignment);
             return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
         }
     });
@@ -864,7 +863,7 @@ jobController.filterAssignmentList = function (req, res) {
         {
             $unwind: {
                 path: '$learner',
-                preserveNullAndEmptyArrays: true
+                // preserveNullAndEmptyArrays: true
             }
         },
         {

@@ -22,7 +22,7 @@ async function allInstructors(query) {
 
     instructorModel.find(query)
         .populate("file")
-        .populate("profilePic")
+        .populate("profilePic", { path: 1 })
         .exec((err, instructors) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", instructors);
@@ -197,12 +197,12 @@ instructorController.updateInstructor = function (req, res, next) {
 const updateInstructorDetail = (updatedInstructor, instructorId) => {
     return new Promise((resolve, reject) => {
         instructorModel.findOneAndUpdate({
-                _id: instructorId
-            }, {
-                $set: updatedInstructor
-            }, {
-                new: true
-            },
+            _id: instructorId
+        }, {
+            $set: updatedInstructor
+        }, {
+            new: true
+        },
             (err, instructor) => {
                 console.log("Updated instructor", instructor, err);
                 if (err) {

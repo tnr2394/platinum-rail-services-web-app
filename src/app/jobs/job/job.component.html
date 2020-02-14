@@ -1,7 +1,11 @@
-<!-- <button mat-button (click)="test()">SIDE NAV</button> -->
-<div *ngIf="!job">
+<div *ngIf="loading">
     <h1 class="text-center text-info mt-5">
         Loading... <i class="fas fa-refresh fa-spin"></i>
+    </h1>
+</div>
+<div *ngIf="!job">
+    <h1 class="text-center text-info mt-5">
+        No Jobs Found!
     </h1>
 </div>
 <div class="row" *ngIf="job">
@@ -16,30 +20,13 @@
         </div>
         <div>
             <mat-card class="text-center">
-                <circle-progress
-                    [percent]="completionPercent"
-                    [radius]="90"
-                    [outerStrokeWidth]="12"
-                    [innerStrokeWidth]="1"
-                    [space]="1"
-                    [backgroundGradient]="false"
-                    [backgroundOpacity]="1"
-                    [backgroundColor]="'#ffffff'"
-                    [backgroundGradientStopColor]="'#6DD5FA'"
-                    [responsive]="false"
-                    [animation]="true"
-                    [subtitleFormat]="formatSubtitle"
-                    [showSubtitle]="true"
-                    [titleFontSize]="30"
-                    [unitsFontSize]="20"
-                    [subtitleFontSize]="15"
-                    [subtitleColor]="'#000000'"
-                    [titleFontWeight]="600"
-                    [outerStrokeGradient]="false"
-                    [outerStrokeGradientStopColor]="'#0049c3'"
-                    [outerStrokeColor]="'#4c8fff'"
-                    [innerStrokeColor]="'#4285f4'"
-                    [animationDuration]="300">
+                <circle-progress [percent]="completionPercent" [radius]="90" [outerStrokeWidth]="12"
+                    [innerStrokeWidth]="1" [space]="1" [backgroundGradient]="false" [backgroundOpacity]="1"
+                    [backgroundColor]="'#ffffff'" [backgroundGradientStopColor]="'#6DD5FA'" [responsive]="false"
+                    [animation]="true" [subtitleFormat]="formatSubtitle" [showSubtitle]="true" [titleFontSize]="30"
+                    [unitsFontSize]="20" [subtitleFontSize]="15" [subtitleColor]="'#000000'" [titleFontWeight]="600"
+                    [outerStrokeGradient]="false" [outerStrokeGradientStopColor]="'#0049c3'"
+                    [outerStrokeColor]="'#4c8fff'" [innerStrokeColor]="'#4285f4'" [animationDuration]="300">
                 </circle-progress>
             </mat-card>
         </div>
