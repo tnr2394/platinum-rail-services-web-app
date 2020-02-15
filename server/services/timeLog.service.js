@@ -69,7 +69,7 @@ function addTimeLogInInstructor(data) {
     })
 }
 
-function updateTimeLog(timeLogId,logData) {
+function updateTimeLog(timeLogId, logData) {
     return new Promise((resolve, reject) => {
         TimeLog.findOneAndUpdate({ _id: timeLogId }, { $set: { logData } }, (error, successData) => {
             if (successData) return resolve(successData)
@@ -92,93 +92,101 @@ function findInInstructorTimeLogs(data) {
 }
 
 
-function getInstructorWiseTimeLog(instructorId) {
+function getInstructorWiseTimeLog(instructorId, date) {
 
     return new Promise((resolve, reject) => {
 
         successLog("instructorId", instructorId)
 
+        // let query = {};
 
-        InstructorTimeLog
-            .aggregate([
-                {
-                    $match: {
-                        'instructorId': ObjectId(instructorId)
-                    }
-                },
-                {
-                    $project: {
-                        _id: 1,
-                        instructorId: 1,
-                        logs: 1,
-                    }
-                },
-                {
-                    $unwind: '$logs'
-                },
-                {
-                    $lookup: {
-                        from: 'timelogs',
-                        let: { logsId: '$logs' },
-                        pipeline: [
-                            {
-                                $match: {
-                                    $expr: {
-                                        $eq: ['$_id', '$$logsId']
-                                    }
-                                }
-                            },
-                            {
-                                $project: {
-                                    _id: 1,
-                                    date: 1,
-                                    travel: 1,
-                                    time: 1,
-                                    logInTime: {
-                                        $concat: ['$time.in.hours', ':', '$time.in.minutes', ':00']
-                                    },
-                                    lunchStartTime: {
-                                        $concat: ['$time.lunchStart.hours', ':', '$time.lunchStart.minutes', ':00']
-                                    },
-                                    lunchEndTime: {
-                                        $concat: ['$time.lunchEnd.hours', ':', '$time.lunchEnd.minutes', ':00']
-                                    },
-                                    logOutTime: {
-                                        $concat: ['$time.out.hours', ':', '$time.out.minutes', ':00']
-                                    },
+        // if (instructorId) {
+        //     query['$and'].push({ 'instructorId': ObjectId(instructorId) })
+        // }
+
+        // if (date) {
+        //     //date wise filter condition
+        // }
+
+
+        InstructorTimeLog.aggregate([
+            {
+                $match:{ 'instructorId': ObjectId(instructorId) }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    instructorId: 1,
+                    logs: 1,
+                }
+            },
+            {
+                $unwind: '$logs'
+            },
+            {
+                $lookup: {
+                    from: 'timelogs',
+                    let: { logsId: '$logs' },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: {
+                                    $eq: ['$_id', '$$logsId']
                                 }
                             }
-                        ],
-                        as: 'timeLogs'
-                    }
-                },
-                {
-                    $unwind: '$timeLogs'
-                },
-                {
-                    $lookup: {
-                        from: 'instructors',
-                        localField: 'instructorId',
-                        foreignField: '_id',
-                        as: 'instructor'
-                    }
-                },
-                {
-                    $group: {
-                        _id: '$_id',
-                        instructor: {
-                            $first: '$instructor'
                         },
-                        dateWiseTimeLogs: {
-                            $push: '$timeLogs'
-                        },
-                    }
+                        {
+                            $project: {
+                                _id: 1,
+                                date: 1,
+                                travel: 1,
+                                time: 1,
+                                logInTime: {
+                                    $concat: ['$time.in.hours', ':', '$time.in.minutes', ':00']
+                                },
+                                lunchStartTime: {
+                                    $concat: ['$time.lunchStart.hours', ':', '$time.lunchStart.minutes', ':00']
+                                },
+                                lunchEndTime: {
+                                    $concat: ['$time.lunchEnd.hours', ':', '$time.lunchEnd.minutes', ':00']
+                                },
+                                logOutTime: {
+                                    $concat: ['$time.out.hours', ':', '$time.out.minutes', ':00']
+                                },
+                            }
+                        }
+                    ],
+                    as: 'timeLogs'
                 }
-            ]).exec((error, data) => {
-                console.log(data.length)
-                if (error) return reject(error)
-                else return resolve(data)
-            })
+            },
+            {
+                $unwind: '$timeLogs'
+            },
+            {
+                $lookup: {
+                    from: 'instructors',
+                    localField: 'instructorId',
+                    foreignField: '_id',
+                    as: 'instructor'
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    instructor: {
+                        $first: '$instructor'
+                    },
+                    dateWiseTimeLogs: {
+                        $push: '$timeLogs'
+                    },
+                }
+            }
+        ]).exec((error, data) => {
+            console.log(data.length)
+            console.log('Error=>>>>>>>>>>>>>>>>>>>>>>>>>',error);
+            if (error) return reject(error)
+            else return resolve(data)
+        })
     })
 
 }
@@ -200,7 +208,7 @@ function sendSheetCompleteMailToInstructors(data) {
                 };
                 mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
                     if (err) {
-                        console.log('Error While Sending Mails',err);
+                        console.log('Error While Sending Mails', err);
                         reject(err);
                     } else {
                         resolve('Mail Send Successfully.....!!');
@@ -210,7 +218,7 @@ function sendSheetCompleteMailToInstructors(data) {
                 resolve('No Instructor Found....!!');
             }
         }).catch((error) => {
-            console.log('Error While Fetching Instructor',error);
+            console.log('Error While Fetching Instructor', error);
             reject(error);
         })
     })
