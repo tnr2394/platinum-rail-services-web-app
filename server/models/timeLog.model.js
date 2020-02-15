@@ -1,5 +1,3 @@
-console.log(" ************* Time Log Mongoose Model Call ************* ")
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

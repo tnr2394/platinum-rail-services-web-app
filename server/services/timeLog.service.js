@@ -22,6 +22,7 @@ const debugLog = console.debug
 
 
 module.exports.addTimeLog = addTimeLog
+module.exports.updateTimeLog = updateTimeLog
 module.exports.addTimeLogInInstructor = addTimeLogInInstructor
 module.exports.getInstructorWiseTimeLog = getInstructorWiseTimeLog
 module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstructors
@@ -65,6 +66,16 @@ function addTimeLogInInstructor(data) {
             .catch((error) => {
                 return reject(error)
             })
+    })
+}
+
+function updateTimeLog(timeLogId,logData) {
+    return new Promise((resolve, reject) => {
+        TimeLog.findOneAndUpdate({ _id: timeLogId }, { $set: { logData } }, (error, successData) => {
+            if (successData) return resolve(successData)
+            else if (error) return reject(error)
+            else return resolve()
+        })
     })
 }
 
@@ -175,28 +186,32 @@ function getInstructorWiseTimeLog(instructorId) {
 function sendSheetCompleteMailToInstructors(data) {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Instructors Every Friday');
+        let emailArray = [];
 
-        instructorController.instructorEmailList().then((Response) => {
-            console.log('Response::::::::::', Response);
-        }).catch((error) => {
-            console.log('Error::::::::::::::', error);
-        })
-        const defaultPasswordEmailoptions = {
-            to: email,
-            subject: `Complete Time Sheet`,
-            template: 'timeSheetComplete'
-        };
-
-        mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
-            if (err) {
-                return res.status(500).send({
-                    err
+        instructorController.instructorEmailList().then((res) => {
+            if (res.length) {
+                lodash.forEach((res), (single) => {
+                    emailArray.push(single.email)
                 })
-            } else {
-                return res.status(200).json({
-                    message: 'New Password Send To Email.'
+                const defaultPasswordEmailoptions = {
+                    to: emailArray,
+                    subject: `Complete Time Sheet`,
+                    template: 'timeSheetComplete'
+                };
+                mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
+                    if (err) {
+                        console.log('Error While Sending Mails',err);
+                        reject(err);
+                    } else {
+                        resolve('Mail Send Successfully.....!!');
+                    }
                 });
+            } else {
+                resolve('No Instructor Found....!!');
             }
-        });
+        }).catch((error) => {
+            console.log('Error While Fetching Instructor',error);
+            reject(error);
+        })
     })
 }
