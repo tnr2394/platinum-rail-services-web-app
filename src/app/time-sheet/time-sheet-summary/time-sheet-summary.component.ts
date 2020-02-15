@@ -48,7 +48,7 @@ export class TimeSheetSummaryComponent implements OnInit {
   getInstructorTimeLogs() {
     this._timeSheetService.getInstructorTimeLog(this.instructorId).subscribe(res => {
       console.log('Res========>>>>>', res);
-      this.updateData(res.dateWiseTimeLogs)
+      this.updateData(res[0].dateWiseTimeLogs)
     }, err => {
 
     })

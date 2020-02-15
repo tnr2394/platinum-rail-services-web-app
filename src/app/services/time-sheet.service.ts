@@ -19,7 +19,7 @@ export class TimeSheetService {
 
         observer.next(res.data);
         console.log("response from service", res);
-        
+
         // observer.complete();
       }, err => {
         console.log("ERROR ")
@@ -39,7 +39,7 @@ export class TimeSheetService {
       console.log("Observable");
       var that = this;
       this.http.put(config.baseApiUrl + "time-log", data).subscribe((res: any) => {
-        observer.next(res.data );
+        observer.next(res.data);
         console.log("response from service", res);
         // observer.complete();
       }, err => {
@@ -82,26 +82,6 @@ export class TimeSheetService {
       var that = this;
       this.http.get(config.baseApiUrl + "time-log/instructor?_id=" + id).subscribe((res: any) => {
         observer.next(res.result);
-        console.log("response from service", res);
-        // observer.complete();
-      }, err => {
-        console.log("ERROR ")
-        observer.error(err);
-      },
-        () => {
-          console.log("CALL COMPLETED ")
-          observer.complete();
-        })
-    });
-  }
-
-  getInstructorTimeLog(id: any): Observable<any> {
-    console.log("get time log", id);
-    return new Observable<any>((observer) => {
-      console.log("Observable");
-      var that = this;
-      this.http.get(config.baseApiUrl + "time-log/instructor?_id=" + id).subscribe((res: any) => {
-        observer.next(res.result[0]);
         console.log("response from service", res);
         // observer.complete();
       }, err => {

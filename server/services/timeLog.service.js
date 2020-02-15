@@ -71,7 +71,7 @@ function addTimeLogInInstructor(data) {
 
 function updateTimeLog(timeLogId, logData) {
     return new Promise((resolve, reject) => {
-        TimeLog.findOneAndUpdate({ _id: timeLogId }, { $set: { logData } }, (error, successData) => {
+        TimeLog.updateOne({ _id: timeLogId }, { $set: logData  }, { upsert: true, new: true }, (error, successData) => {
             if (successData) return resolve(successData)
             else if (error) return reject(error)
             else return resolve()
@@ -111,7 +111,7 @@ function getInstructorWiseTimeLog(instructorId, date) {
 
         InstructorTimeLog.aggregate([
             {
-                $match:{ 'instructorId': ObjectId(instructorId) }
+                $match: { 'instructorId': ObjectId(instructorId) }
             },
             {
                 $project: {
@@ -183,7 +183,7 @@ function getInstructorWiseTimeLog(instructorId, date) {
             }
         ]).exec((error, data) => {
             console.log(data.length)
-            console.log('Error=>>>>>>>>>>>>>>>>>>>>>>>>>',error);
+            console.log('Error=>>>>>>>>>>>>>>>>>>>>>>>>>', error);
             if (error) return reject(error)
             else return resolve(data)
         })

@@ -173,6 +173,8 @@ module.exports.updateTimeLog = (req, res) => {
 		},
 	}
 
+	console.log('logData=========>>>>>>', logData);
+
 	timeLogServices.updateTimeLog(timeLogId, logData).then((response) => {
 		return res.status(200).json({ message: 'Time Logs Update Successfully ', response })
 	}).catch((error) => {
