@@ -16,14 +16,17 @@ export class AddTimelogModalComponent implements OnInit {
   minutes;
   instructorId;
   date = new Date();
-  defaultTimeIn = "";
+  defaultTimeIn;
   type: any;
-  defaultTimeOut = "";
-  defaultLunchStart = "";
-  defaultLunchEnd = "";
+  defaultTimeOut;
+  defaultLunchStart;
+  defaultLunchEnd;
   currentUser: any;
   disabled: boolean = false;
   currentLogId: any;
+  minLunchEnd;
+  minLunchStart: any;
+  minTimeOut: any;
 
 
   constructor(private _timeSheetService: TimeSheetService, @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,21 +37,35 @@ export class AddTimelogModalComponent implements OnInit {
     if(this.currentUser.userRole == 'instructor') this.instructorId = this.currentUser._id;
     console.log("this.data", this.data)
     if(this.data != null){
-      
+    
       this.date = this.data.date ? new Date(this.data.date) : this.data.start;
       if(this.data.logId) this.currentLogId = this.data.logId
       this.disabled = true;
+      // if(this.data.end) 
+
+      if (this.data.title == 'Slot-1'){
+         this.defaultTimeIn = this.data.start.getHours() + ":" + this.data.start.getMinutes()
+        this.defaultLunchStart = this.data.end ? this.data.end.getHours() + ":" + this.data.end.getMinutes() : "--:--"
+      }
 
       // this.defaultTimeIn = this.data.logInTime 
       // this.defaultTimeOut = this.data.logOutTime
       // this.defaultLunchEnd = this.data.lunchEndTime
       // this.defaultLunchStart = this.data.lunchStartTime
-      this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' })
-      // if (this.data.timeIn) this.defaultTimeIn = this.data.timeIn.hours + ":" + this.data.timeIn.minutes + " " + this.data.timeIn.type
-      if (this.data.timeOut) this.defaultTimeOut = this.data.timeOut.hours + ":" + this.data.timeOut.minutes + " " + this.data.timeOut.type
-      if (this.data.lunchStart) this.defaultLunchStart = this.data.lunchStart.hours + ":" + this.data.lunchStart.minutes + " " + this.data.lunchStart.type
-      if (this.data.lunchEnd) this.defaultLunchEnd = this.data.lunchEnd.hours + ":" + this.data.lunchEnd.minutes + " " + this.data.lunchEnd.type
 
+      // this.defaultLunchEnd = (this.data && this.data.title == "Slot-2") ? this.defaultLunchEnd = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' }) : this.data.lunchEndTime
+      // this.defaultTimeIn = (this.data && this.data.title == "Slot-1") ? this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' }) : this.data.logInTime
+      console.log("this.defaultTimeIn", this.defaultTimeIn);
+      this.minLunchEnd = this.data.lunchStartTime
+      this.minLunchStart = this.data.logInTime ? this.data.logInTime : this.defaultTimeIn
+      this.minTimeOut = this.data.lunchEndTime
+      
+      if(this.data.time){
+        if (this.data.time.in) this.defaultTimeIn = this.data.time.in.hours + ":" + this.data.time.in.minutes
+        if (this.data.time.out) this.defaultTimeOut = this.data.time.out.hours + ":" + this.data.time.out.minutes
+        if (this.data.time.lunchStart) this.defaultLunchStart = this.data.time.lunchStart.hours + ":" + this.data.time.lunchStart.minutes
+        if (this.data.time.lunchEnd) this.defaultLunchEnd = this.data.time.lunchEnd.hours + ":" + this.data.time.lunchEnd.minutes
+      }
     //   // this.defaultTimeIn = this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
     else this.date = new Date()
@@ -68,22 +85,28 @@ export class AddTimelogModalComponent implements OnInit {
   }
   getTime(time) {
     if(time){
+      console.log("getTime", time);
       var temp = time.split(':')
+      console.log("temp", temp);
+      
       this.hours = temp[0]
       this.minutes = temp[1]
-      // this.type = temp[1].split(' ')[1]
       console.log("hours", this.hours);
       console.log("minutes", this.minutes);
-      console.log("type", this.type);
-      return ({ hours: this.hours, minutes: this.minutes, type: this.type })
+      return ({ hours: this.hours, minutes: this.minutes })
     }
   }
 
   add() {
-    if (this.timeIn == undefined) this.timeIn = this.getTime(this.defaultTimeIn)
-    else if (this.timeOut == undefined) this.timeOut = this.getTime(this.defaultTimeOut)
-    else if (this.lunchStart == undefined) this.lunchStart = this.getTime(this.defaultLunchStart)
-    else if (this.lunchEnd == undefined) this.lunchEnd = this.getTime(this.defaultLunchEnd)
+    this.timeIn = (this.timeIn == undefined) ? this.getTime(this.defaultTimeIn) : this.timeIn
+    this.timeOut = (this.timeOut == undefined) ? this.getTime(this.defaultTimeOut) : this.timeOut
+    this.lunchStart = (this.lunchStart == undefined) ? this.getTime(this.defaultLunchStart) : this.lunchStart
+    this.lunchEnd = (this.lunchEnd == undefined) ? this.getTime(this.defaultLunchEnd) : this.lunchEnd
+    // this.timeIn = (this.timeIn == undefined && this.data.time) ? this.data.time.in : this.timeIn
+    // this.timeOut = (this.timeOut == undefined && this.data.time) ? this.data.time.out : this.timeOut
+    // this.lunchStart = (this.lunchStart == undefined && this.data.time) ? this.data.time.lunchStart : this.lunchStart
+    // this.lunchEnd = (this.lunchEnd == undefined && this.data.time) ? this.data.time.lunchEnd : this.lunchEnd
+    
     let timeLog = {
       date: this.date,
       in: this.timeIn,
@@ -100,18 +123,18 @@ export class AddTimelogModalComponent implements OnInit {
     
     if (this.currentLogId){
       console.log("this.curremtLogId", this.currentLogId);
-      this._timeSheetService.editTime(data).subscribe(res => {
-        data['logId'] = this.currentLogId
-        console.log("res", res);
-        this.dialogRef.close({ data: data, action: 'edited' })
-      })
+      // this._timeSheetService.editTime(data).subscribe(res => {
+      //   data['logId'] = this.currentLogId
+      //   console.log("res", res);
+      //   this.dialogRef.close({ data: data, action: 'edited' })
+      // })
     }
     else{
       console.log("this.curremtLogId", this.currentLogId);
-      this._timeSheetService.addTime(data).subscribe(res => {
-        console.log("res", res);
-        this.dialogRef.close({ data: res, action: 'added' })
-      }) 
+      // this._timeSheetService.addTime(data).subscribe(res => {
+      //   console.log("res", res);
+      //   this.dialogRef.close({ data: res, action: 'added' })
+      // }) 
     }
   }
 

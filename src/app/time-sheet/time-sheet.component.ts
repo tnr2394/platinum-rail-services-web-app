@@ -272,24 +272,24 @@ export class TimeSheetComponent implements OnInit {
   }
 
   makeEventsArrayForTimeLog(obj) {
-    obj.timeLog.lunchStart.hours == '-' ? obj.timeLog.lunchStart.hours = 0 : obj.timeLog.lunchStart.hours
-    obj.timeLog.lunchStart.minutes == '-' ? obj.timeLog.lunchStart.minutes = 0 : obj.timeLog.lunchStart.minutes
-    obj.timeLog.lunchEnd.hours == '-' ? obj.timeLog.lunchEnd.hours = 0 : obj.timeLog.lunchEnd.hours
-    obj.timeLog.lunchEnd.minutes == '-' ? obj.timeLog.lunchEnd.minutes = 0 : obj.timeLog.lunchEnd.minutes
-    obj.timeLog.out.hours == '-' ? obj.timeLog.out.hours = 0 : obj.timeLog.out.hours
-    obj.timeLog.out.minutes == '-' ? obj.timeLog.out.minutes = 0 : obj.timeLog.out.minutes
+    obj.time.lunchStart.hours == '-' ? obj.time.lunchStart.hours = 0 : obj.time.lunchStart.hours
+    obj.time.lunchStart.minutes == '-' ? obj.time.lunchStart.minutes = 0 : obj.time.lunchStart.minutes
+    obj.time.lunchEnd.hours == '-' ? obj.time.lunchEnd.hours = 0 : obj.time.lunchEnd.hours
+    obj.time.lunchEnd.minutes == '-' ? obj.time.lunchEnd.minutes = 0 : obj.time.lunchEnd.minutes
+    obj.time.out.hours == '-' ? obj.time.out.hours = 0 : obj.time.out.hours
+    obj.time.out.minutes == '-' ? obj.time.out.minutes = 0 : obj.time.out.minutes
     // var events = [];
     var eventSlot1 = {
       start: new Date(obj.date),
-      end: new Date((new Date(obj.date)).setHours(obj.timeLog.lunchStart.hours, obj.timeLog.lunchStart.minutes)),
+      end: new Date((new Date(obj.date)).setHours(obj.time.lunchStart.hours, obj.time.lunchStart.minutes)),
       title: "Slot-1",
       logId: obj._id,
       lunchStart: obj.lunchStartTime,
-      timeIn: obj.logInTime,
+      timeIn: obj.logInTime
     }
     var eventSlot2 = {
-      start: new Date((new Date(obj.date)).setHours(obj.timeLog.lunchEnd.hours, obj.timeLog.lunchEnd.minutes)),
-      end: new Date((new Date(obj.date)).setHours(obj.timeLog.out.hours, obj.timeLog.out.minutes)),
+      start: new Date((new Date(obj.date)).setHours(obj.time.lunchEnd.hours, obj.time.lunchEnd.minutes)),
+      end: new Date((new Date(obj.date)).setHours(obj.time.out.hours, obj.time.out.minutes)),
       title: "Slot-2",
       color: colors.red,
       logId: obj._id,
@@ -394,6 +394,9 @@ export class TimeSheetComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     console.log("ON DROP", event);
     const externalIndex = this.externalEvents.indexOf(event);
+    // if(this.events){
+    //   this.events.every()
+    // }
     if (typeof allDay !== 'undefined') {
       event.allDay = allDay;
     }
@@ -402,21 +405,21 @@ export class TimeSheetComponent implements OnInit {
     // if (newEnd) {
     //   event.end = newEnd;
     // }
-    // let x = this.events.every(function (temp) {
-    //   if (temp.start.getDate() === newStart.getDate() && temp.start.getDay() === newStart.getDay() && temp.start.getMonth() === newStart.getMonth() && temp.title == event.title) {
-    //     return false
-    //   }
-    //   else {
-    //     if (event.title == 'Slot-2') {
-    //       let lunchEndMilliSeconds = ((temp.lunchEnd.hours * 60 * 60 + temp.lunchEnd.minutes * 60) * 1000)
-    //       console.log("templunchEndDate", lunchEndMilliSeconds);
-    //       if (lunchEndMilliSeconds <= event.start.getMilliseconds()) return false
-    //     }
-    //     else return true
-    //   }
-    // })
-    // console.log("x-----", x);
-    let x = true
+    let x = this.events.every(function (temp) {
+      if (temp.start.getDate() === newStart.getDate() && temp.start.getDay() === newStart.getDay() && temp.start.getMonth() === newStart.getMonth() && temp.title == event.title) {
+        return false
+      }
+      else {
+        if (event.title == 'Slot-2') {
+          let lunchEndMilliSeconds = ((temp.lunchEnd.hours * 60 * 60 + temp.lunchEnd.minutes * 60) * 1000)
+          console.log("templunchEndDate", lunchEndMilliSeconds);
+          if (lunchEndMilliSeconds <= event.start.getMilliseconds()) return false
+        }
+        else return true
+      }
+    })
+    console.log("x-----", x);
+    // let x = true
     if (x == true) {
       console.log("in x == true");
       this.events = [...this.events, event];

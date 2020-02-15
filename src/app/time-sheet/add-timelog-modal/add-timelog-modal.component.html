@@ -21,26 +21,29 @@
         </mat-card>
     </div>
     <div class="col-6">
-        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="3">
-            <h5 class="labelColor">Time Out</h5>
-            <app-time-picker [logFor]="'timeOut'" [defaultTime]='defaultTimeOut' (timeFor)="timeChanged($event)">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+            <h5 class="labelColor">Lunch Start</h5>
+            <app-time-picker [logFor]="'lunchStart'" [min]='minLunchStart' [defaultTime]='defaultLunchStart'
+                (timeFor)="timeChanged($event)">
             </app-time-picker>
         </mat-card>
     </div>
 </div>
 <div class="row">
-    <div class="col-6">
-        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
-            <h5 class="labelColor">Lunch Start</h5>
-            <app-time-picker [logFor]="'lunchStart'" [defaultTime]='defaultLunchStart' (timeFor)="timeChanged($event)">
-            </app-time-picker>
-        </mat-card>
-    </div>
 
     <div class="col-6">
         <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
             <h5 class="labelColor">Lunch End</h5>
-            <app-time-picker [logFor]="'lunchEnd'" [defaultTime]='defaultLunchEnd' (timeFor)="timeChanged($event)">
+            <mat-label>Lunch End</mat-label>
+            <app-time-picker [logFor]="'lunchEnd'" [min]='minLunchEnd' [defaultTime]='defaultLunchEnd' (timeFor)="timeChanged($event)">
+            </app-time-picker>
+        </mat-card>
+    </div>
+    <div class="col-6">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="3">
+            <h5 class="labelColor">Time Out</h5>
+            <app-time-picker [logFor]="'timeOut'" [min]="minTimeOut" [defaultTime]='defaultTimeOut'
+                (timeFor)="timeChanged($event)">
             </app-time-picker>
         </mat-card>
     </div>
