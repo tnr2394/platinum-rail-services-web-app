@@ -379,9 +379,28 @@ export class TimeSheetComponent implements OnInit {
     this.openDialog(AddTimelogModalComponent, data).subscribe(recievedEvent => {
       if (recievedEvent == undefined) return
       console.log("data from modal", recievedEvent);
-      var index = _.findIndex(this.events, function (o) { return o.logId == recievedEvent.data.logId })
-      this.events[index] = recievedEvent
-      // this.populateAllLogs(recievedEvent)
+      let tempEvent = {
+        date : recievedEvent.data.date,
+        time : recievedEvent.data.time,
+        logInTime: recievedEvent.data.time.in.hours + ":" + recievedEvent.data.time.in.minutes,
+        logOutTime: recievedEvent.data.time.out.hours + ":" + recievedEvent.data.time.out.minutes,
+        lunchEndTime: recievedEvent.data.time.lunchEnd.hours + ":" + recievedEvent.data.time.lunchEnd.minutes,
+        lunchStartTime: recievedEvent.data.time.lunchStart.hours + ":" + recievedEvent.data.time.lunchStart.minutes,
+        _id: recievedEvent.data.logId
+      }
+      if (recievedEvent.action == 'edited'){
+        var index = _.findIndex(this.events, function (o) { return o.logId == recievedEvent.data.logId })
+        if (index > -1) this.events.splice(index, 1)
+      }
+      console.log("tempEvent" ,tempEvent);
+      let newObj = this.makeEventsArrayForTimeLog(tempEvent)
+      console.log("newObj", newObj);
+      this.events.pop()
+      this.events.push(newObj.event1, newObj.event2)
+      this.refresh.next();
+      // this.populateAllLogs(tempEvent)
+      // if (index > -1) this.events[index] = tempEvent
+      // this.populateAllLogs(tempEvent)
       console.log("index is", index);
       console.log("this.events", this.events);
     })
@@ -410,12 +429,19 @@ export class TimeSheetComponent implements OnInit {
         return false
       }
       else {
-        if (event.title == 'Slot-2') {
-          let lunchEndMilliSeconds = ((temp.lunchEnd.hours * 60 * 60 + temp.lunchEnd.minutes * 60) * 1000)
-          console.log("templunchEndDate", lunchEndMilliSeconds);
-          if (lunchEndMilliSeconds <= event.start.getMilliseconds()) return false
-        }
-        else return true
+        console.log("firs else");
+        // if (event.title == 'Slot-2') {
+          // console.log("event.title == 'Slot-2'");
+          // console.log("temp.lunchEnd", temp.lunchEnd);
+          // if(temp.lunchEnd != undefined && temp.lunchEnd.hours != "--:--"){
+          //   console.log("temp.lunchEnd", temp.lunchEnd, temp.lunchEnd.hours);
+          //   let lunchEndMilliSeconds = ((temp.lunchEnd.hours * 60 * 60 + temp.lunchEnd.minutes * 60) * 1000)
+          //   console.log("templunchEndDate", lunchEndMilliSeconds);
+          //   if (lunchEndMilliSeconds <= event.start.getMilliseconds()) return false; else return true
+          // }
+          return true
+        // }
+        // else return true
       }
     })
     console.log("x-----", x);

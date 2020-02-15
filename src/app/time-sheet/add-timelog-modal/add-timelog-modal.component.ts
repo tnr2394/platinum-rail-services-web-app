@@ -39,13 +39,17 @@ export class AddTimelogModalComponent implements OnInit {
     if(this.data != null){
     
       this.date = this.data.date ? new Date(this.data.date) : this.data.start;
-      if(this.data.logId) this.currentLogId = this.data.logId
+      if(this.data._id) this.currentLogId = this.data._id
       this.disabled = true;
       // if(this.data.end) 
 
       if (this.data.title == 'Slot-1'){
          this.defaultTimeIn = this.data.start.getHours() + ":" + this.data.start.getMinutes()
         this.defaultLunchStart = this.data.end ? this.data.end.getHours() + ":" + this.data.end.getMinutes() : "--:--"
+      }
+      else if (this.data.title == 'Slot-2') {
+        this.defaultLunchEnd = this.data.start.getHours() + ":" + this.data.start.getMinutes()
+        this.defaultTimeOut = this.data.end ? this.data.end.getHours() + ":" + this.data.end.getMinutes() : "--:--"
       }
 
       // this.defaultTimeIn = this.data.logInTime 
@@ -115,26 +119,42 @@ export class AddTimelogModalComponent implements OnInit {
       out: this.timeOut,
     }
     let data = {
-      timeLog: timeLog,
+      timeLog : timeLog,
       instructorId: this.instructorId,
     }
     console.log("Data to send", data);
     // this.dialogRef.close(data)
     
     if (this.currentLogId){
+      data['timeLogId'] = this.currentLogId
+      console.log("data after log id", data);
       console.log("this.curremtLogId", this.currentLogId);
-      // this._timeSheetService.editTime(data).subscribe(res => {
-      //   data['logId'] = this.currentLogId
-      //   console.log("res", res);
-      //   this.dialogRef.close({ data: data, action: 'edited' })
-      // })
+      this._timeSheetService.editTime(data).subscribe(res => {
+        let dataForModal = {
+          date: this.date,
+          time: timeLog,
+          instructorId: this.instructorId,
+          logId: this.currentLogId
+        }
+        this.dialogRef.close({ data: dataForModal, action: 'edited' })
+      })
     }
+//     date: "2020-02-11T01:30:00.000Z"
+//     logInTime: "7:00:00"
+//     logOutTime: "21:30:00"
+//     lunchEndTime: "14:00:00"
+//     lunchStartTime: "13:15:00"
+//     time:
+// in: { hours: "7", minutes: "00" }
+//     lunchEnd: { hours: "14", minutes: "00" }
+//     lunchStart: { hours: "13", minutes: "15" }
+//     out: { hours: "21", minutes: "30" }
     else{
       console.log("this.curremtLogId", this.currentLogId);
-      // this._timeSheetService.addTime(data).subscribe(res => {
-      //   console.log("res", res);
-      //   this.dialogRef.close({ data: res, action: 'added' })
-      // }) 
+      this._timeSheetService.addTime(data).subscribe(res => {
+        console.log("res", res);
+        this.dialogRef.close({ data: res, action: 'added' })
+      }) 
     }
   }
 
