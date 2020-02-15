@@ -1,0 +1,143 @@
+<h1>Single Week Entry</h1>
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <!--Text-->
+                        <div *ngIf="dataSource">
+                            <h1>{{dataSource.length}}</h1>
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                    <!-- Date Column -->
+                                    <ng-container matColumnDef="date">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                            {{days.date}} </td>
+                                    </ng-container>
+                                    <!-- Login Column -->
+
+                                    <ng-container matColumnDef="logIn">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn Time </th>
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days;let i=index">
+                                            <mat-form-field>
+                                                <div class="clock">
+                                                    <div>
+                                                        <input matInput type="time" [ngxTimepicker]="min" [format]="24"
+                                                            [(ngModel)]='defaultTime' [min]="minimunTime" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <ngx-material-timepicker-toggle [for]="min">
+                                                        </ngx-material-timepicker-toggle>
+                                                        <ngx-material-timepicker #min
+                                                            (timeChanged)="timeChanged($event,i)">
+                                                        </ngx-material-timepicker>
+                                                    </div>
+                                                </div>
+                                            </mat-form-field>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="lunchStart">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch Start </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                            <mat-form-field>
+                                                <div class="clock">
+                                                    <div>
+                                                        <input matInput type="time" [ngxTimepicker]="min" [format]="24"
+                                                            [(ngModel)]='defaultTime' [min]="minimunTime" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <ngx-material-timepicker-toggle [for]="min">
+                                                        </ngx-material-timepicker-toggle>
+                                                        <ngx-material-timepicker #min
+                                                            (timeChanged)="timeChanged($event,i)">
+                                                        </ngx-material-timepicker>
+                                                    </div>
+                                                </div>
+                                            </mat-form-field>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="lunchEnd">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                            <mat-form-field>
+                                                <div class="clock">
+                                                    <div>
+                                                        <input matInput type="time" [ngxTimepicker]="min" [format]="24"
+                                                            [(ngModel)]='defaultTime' [min]="minimunTime" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <ngx-material-timepicker-toggle [for]="min">
+                                                        </ngx-material-timepicker-toggle>
+                                                        <ngx-material-timepicker #min
+                                                            (timeChanged)="timeChanged($event,i)">
+                                                        </ngx-material-timepicker>
+                                                    </div>
+                                                </div>
+                                            </mat-form-field>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="logOut">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                            <mat-form-field>
+                                                <div class="clock">
+                                                    <div>
+                                                        <input matInput type="time" [ngxTimepicker]="min" [format]="24"
+                                                            [(ngModel)]='defaultTime' [min]="minimunTime" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <ngx-material-timepicker-toggle [for]="min">
+                                                        </ngx-material-timepicker-toggle>
+                                                        <ngx-material-timepicker (timeSet)="timeChanged($event,i)" #min>
+                                                        </ngx-material-timepicker>
+                                                    </div>
+                                                </div>
+                                            </mat-form-field>
+                                        </td>
+                                    </ng-container>
+
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                class="fa fa-cog fa-spin text-info"></i>
+                        </h3>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
+                        No Learner Added!
+                    </h3>
+
+                    <button mat-flat-button color="primary" (click)="save(learners)" type="submit"
+                        class="mb-3 button_hover_effect col-lg-3">
+                        <i class="fas fa-save fa-fw"></i>
+                        <span> Save</span>
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

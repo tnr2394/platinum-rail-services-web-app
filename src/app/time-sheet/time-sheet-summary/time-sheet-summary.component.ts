@@ -50,7 +50,6 @@ export class TimeSheetSummaryComponent implements OnInit {
       console.log('Res========>>>>>', res);
       this.updateData(res[0].dateWiseTimeLogs)
     }, err => {
-
     })
   }
 
