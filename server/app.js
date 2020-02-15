@@ -147,7 +147,7 @@ if (config.env.name === 'production') {
 // dbBackupCronJob.start();
 
 
-// const completeTimeSheetCronJob = cron.schedule('1 * * * * *', () => {
+// const completeTimeSheetCronJob = cron.schedule('0 0 * * FRI', () => {
 
 //   console.log('Complete Time Sheet is Running Now');
 //   timeLogService.sendSheetCompleteMailToInstructors();

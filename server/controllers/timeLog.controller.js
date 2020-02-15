@@ -103,7 +103,6 @@ module.exports.addTimeLog = (req, res) => {
 
 	successLog(" ***************************** ", instructorId)
 
-
 	timeLogServices.addTimeLog(newLog)
 		.then((data) => {
 			if (data && data._id && instructorId) {
@@ -124,10 +123,7 @@ module.exports.addTimeLog = (req, res) => {
 			else {
 				successLog(" Time Log is not added ")
 			}
-
-
-		})
-		.catch((error) => {
+		}).catch((error) => {
 			errorLog(" Return befor erro  ", error)
 			return res.status(500).json({ message: ' Error in: Add Time Logs ', error })
 		})
@@ -144,6 +140,11 @@ const calculateDiff = (date, startTime, endTime) => {
 }
 
 module.exports.updateTimeLog = (req, res) => {
-	successLog(" Update Time Logs ")
+	successLog(" Update Time Logs ", req.body);
+	timeLogServices.updateTimeLog().then((response) => {
+
+	}).catch((error) => {
+
+	})
 	return res.status(200).json({ message: ' Update Time Logs ' })
 }
