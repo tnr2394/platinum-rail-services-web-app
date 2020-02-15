@@ -28,8 +28,9 @@ const timeLogServices = require('../services/timeLog.service')
 
 module.exports.getTimeLog = (req, res) => {
 
-	const instructorId = ObjectId("5e2ee7acb3c6121d2b51988f")
+	console.log('Req.query::::::::::', req.query._id);
 
+	const instructorId = ObjectId(req.query._id)
 	timeLogServices.getInstructorWiseTimeLog(instructorId)
 		.then((result) => {
 			async.eachSeries(result[0].dateWiseTimeLogs, function (single, cb) {

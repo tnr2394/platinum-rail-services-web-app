@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row mb-3">
+            <div class="col-6">
+                <h3 class="page-title p-0">
+                    Week Summary
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <div class="card-title">
+                            <div class="row table_search">
+                                <mat-form-field class="example-full-width col-lg-6 col-md-6">
+                                    <input matInput placeholder="Search" (keyup)="filter($event.target.value)">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                                <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
+                                </mat-paginator>
+
+                            </div>
+
+                        </div>
+                        <!--Text-->
+                        <div>
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                    <!-- Date Column -->
+                                    <ng-container matColumnDef="Date">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef
+                                            mat-sort-header="Date"> Date </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let ins">
+                                            <span> {{ins.date|date:'shortDate'}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Login Column -->
+                                    <ng-container matColumnDef="In">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> logIn </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let ins">
+                                            <span> {{ins.logInTime}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Lunch Start Column -->
+                                    <ng-container matColumnDef="lunchStart">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> lunchStart </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.lunchStartTime}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Lunch End Column -->
+                                    <ng-container matColumnDef="lunchEnd">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> lunchEnd </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.lunchEndTime}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <!-- Log Out Column -->
+                                    <ng-container matColumnDef="Out">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> logOut </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.logOutTime}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="workingHours">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> working
+                                            Hours </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.totalWorkLog.hours}} : {{ins.totalWorkLog.minutes}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+
+
+                                    <thead>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                class="fa fa-cog fa-spin text-info"></i></h3>
+                    </div>
+                    <!--/.Card content-->
+
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && clients.length < 1">
+                        <!-- <i class="fa fa-refresh fa-spin fa-fw"></i> -->
+                        No Client Found!
+                    </h3>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

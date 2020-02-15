@@ -105,6 +105,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TimePickerComponent } from './commons/time-picker/time-picker.component';
 import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
 import { Select2Module } from 'ng2-select2';
+import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-sheet-summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -174,7 +175,8 @@ import { Select2Module } from 'ng2-select2';
     NewFileModalComponent,
     TimeSheetComponent,
     TimePickerComponent,
-    AddTimelogModalComponent
+    AddTimelogModalComponent,
+    TimeSheetSummaryComponent
   ],
   imports: [
     Select2Module,
