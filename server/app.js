@@ -38,6 +38,7 @@ const timeLogRouter = require('./routes/timeLog');
 
 const instructorController = require('./controllers/instructor.controller');
 const dbBackupService = require('./services/dbbackup.service');
+const timeLogService = require('./services/timeLog.service');
 
 // Make the settings in the environment config global available
 global.settings = config.env.settings;
@@ -143,8 +144,18 @@ if (config.env.name === 'production') {
 //     scheduled: true,
 //   });
 
-
 // dbBackupCronJob.start();
+
+
+// const completeTimeSheetCronJob = cron.schedule('1 * * * * *', () => {
+
+//   console.log('Complete Time Sheet is Running Now');
+//   timeLogService.sendSheetCompleteMailToInstructors();
+// }, {
+//   scheduled: true,
+// });
+
+// completeTimeSheetCronJob.start();
 
 
 app.use('/', indexRouter);

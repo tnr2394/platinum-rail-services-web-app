@@ -19,13 +19,9 @@ const timeLogSchema = new Schema({
                 type: String,
                 default: '-'
             },
-            type: {
-              type: String, // AM.PM 
-              default: '-'  
-            }
         },
         // Day Log Start Time
-        lunchStart:{
+        lunchStart: {
             hours: {
                 type: String,
                 default: '-'
@@ -34,13 +30,9 @@ const timeLogSchema = new Schema({
                 type: String,
                 default: '-'
             },
-                        type: {
-              type: String, // AM.PM 
-              default: '-'  
-            }
         },
         // Lunch Start Time
-        lunchEnd:{
+        lunchEnd: {
             hours: {
                 type: String,
                 default: '-'
@@ -49,13 +41,9 @@ const timeLogSchema = new Schema({
                 type: String,
                 default: '-'
             },
-            type: {
-              type: String, // AM.PM 
-              default: '-'  
-            }
         },
         // Lunch End Time
-        out:{
+        out: {
             hours: {
                 type: String,
                 default: '-'
@@ -64,15 +52,11 @@ const timeLogSchema = new Schema({
                 type: String,
                 default: '-'
             },
-                        type: {
-              type: String, // AM.PM 
-              default: '-'  
-            }
         },
         // Day log out time
     },
     travel: {
-        hours: 
+        hours:
         {
             type: String,
             default: '-'
