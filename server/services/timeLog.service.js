@@ -69,9 +69,9 @@ function addTimeLogInInstructor(data) {
     })
 }
 
-function updateTimeLog(timeLogId, data) {
+function updateTimeLog(timeLogId,logData) {
     return new Promise((resolve, reject) => {
-        TimeLog.findOneAndUpdate({ _id: timeLogId }, { $set: { data } }, (error, successData) => {
+        TimeLog.findOneAndUpdate({ _id: timeLogId }, { $set: { logData } }, (error, successData) => {
             if (successData) return resolve(successData)
             else if (error) return reject(error)
             else return resolve()

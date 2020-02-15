@@ -141,10 +141,38 @@ const calculateDiff = (date, startTime, endTime) => {
 
 module.exports.updateTimeLog = (req, res) => {
 	successLog(" Update Time Logs ", req.body);
-	timeLogServices.updateTimeLog().then((response) => {
 
+	if (req.body.timeLogId == undefined || req.body.timeLogId == null) {
+		return res.status(400).json(badData)
+	}
+
+	const timeLogId = ObjectId(req.body.timeLogId)
+
+	let logData = {
+		date: (req.body.timeLog && req.body.timeLog.date) ? new Date(req.body.timeLog.date) : new Date(),
+		time: {
+			in: {
+				hours: (req.body.timeLog.in && req.body.timeLog.in.hours != undefined && req.body.timeLog.in.hours != null) ? req.body.timeLog.in.hours : '-',
+				minutes: (req.body.timeLog.in && req.body.timeLog.in.minutes != undefined && req.body.timeLog.in.minutes != null) ? req.body.timeLog.in.minutes : '-',
+			},
+			lunchStart: {
+				hours: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.hours != undefined && req.body.timeLog.lunchStart.hours != null) ? req.body.timeLog.lunchStart.hours : '-',
+				minutes: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.minutes != undefined && req.body.timeLog.lunchStart.minutes != null) ? req.body.timeLog.lunchStart.minutes : '-',
+			},
+			lunchEnd: {
+				hours: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.hours) ? req.body.timeLog.lunchEnd.hours : '-',
+				minutes: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.minutes) || '-',
+			},
+			out: {
+				hours: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.hours) ? req.body.timeLog.timeOut.hours : '-',
+				minutes: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.minutes) ? req.body.timeLog.timeOut.minutes : '-',
+			},
+		},
+	}
+
+	timeLogServices.updateTimeLog(timeLogId, logData).then((response) => {
+		return res.status(200).json({ message: 'Time Logs Update Successfully ', response })
 	}).catch((error) => {
-
+		return res.status(500).json({ message: ' Error in: Update Time Logs ', error })
 	})
-	return res.status(200).json({ message: ' Update Time Logs ' })
 }
