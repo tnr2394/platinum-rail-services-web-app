@@ -31,6 +31,7 @@ import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.com
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 
+import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -193,6 +194,10 @@ const routes: Routes = [
 	{
 		path: 'week-list',
 		component: WeekListComponent
+	},
+	{
+		path: 'single-week',
+		component: SingleWeekComponent
 	}
 ];
 
