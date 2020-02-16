@@ -106,6 +106,7 @@ import { TimePickerComponent } from './commons/time-picker/time-picker.component
 import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
 import { Select2Module } from 'ng2-select2';
 import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-sheet-summary.component';
+import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -176,7 +177,8 @@ import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-
     TimeSheetComponent,
     TimePickerComponent,
     AddTimelogModalComponent,
-    TimeSheetSummaryComponent
+    TimeSheetSummaryComponent,
+    WeekListComponent
   ],
   imports: [
     Select2Module,

@@ -1,0 +1,8 @@
+<div *ngFor="let month of months; let i = index">
+    <mat-card (click)="showWeeks(month.id , i)">
+        {{month.name}}
+    </mat-card>
+    <!-- <div [@slideInOut]="animationState">
+        TEST ANIMATION
+    </div> -->
+</div>

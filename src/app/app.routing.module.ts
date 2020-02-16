@@ -29,6 +29,8 @@ import { ProfileComponent } from './commons/profile/profile.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
+import { WeekListComponent } from './time-sheet/week-list/week-list.component';
+
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -187,6 +189,10 @@ const routes: Routes = [
 	{
 		path: 'time-sheet',
 		component: TimeSheetComponent
+	},
+	{
+		path: 'week-list',
+		component: WeekListComponent
 	}
 ];
 
