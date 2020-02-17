@@ -40,6 +40,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChartsModule } from 'ng2-charts';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { Select2Module } from 'ng2-select2';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+
 // import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
@@ -99,15 +105,14 @@ import { ExamsResultsComponent } from './learners/exams-results/exams-results.co
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
 import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component'
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TimePickerComponent } from './commons/time-picker/time-picker.component';
 import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
-import { Select2Module } from 'ng2-select2';
 import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-sheet-summary.component';
 import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
+import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -180,9 +185,11 @@ import { SingleWeekComponent } from './time-sheet/single-week/single-week.compon
     AddTimelogModalComponent,
     TimeSheetSummaryComponent,
     WeekListComponent,
-    SingleWeekComponent
+    SingleWeekComponent,
+    AdminTimeSheetComponent
   ],
   imports: [
+    ChartsModule,
     Select2Module,
     NgxMaterialTimepickerModule,
     DragDropModule,

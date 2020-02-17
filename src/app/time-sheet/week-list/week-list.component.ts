@@ -16,7 +16,7 @@ const moment = extendMoment(Moment);
 })
 export class WeekListComponent implements OnInit {
 
-  months = [{ id: '0', name: 'January' }, { id: '1', name: 'February' }, { id: '2', name: 'March' }, { id: '3', name: 'April' }, { id: '4', name: 'May' }, { id: '5', name: 'Jun' },
+  months = [{ id: '0', name: 'January' }, { id: '1', name: 'February' }, { id: '2', name: 'March' }, { id: '3', name: 'April' }, { id: '4', name: 'May' }, { id: '5', name: 'June' },
   { id: '6', name: 'July' }, { id: '7', name: 'August' }, { id: '8', name: 'September' }, { id: '9', name: 'October' }, { id: '10', name: 'November' }, { id: '11', name: 'December' }]
 
   animationState = 'out';
@@ -26,16 +26,23 @@ export class WeekListComponent implements OnInit {
   dateOfWeek = [];
   allWeeks = [];
   hideme = [];
+  lastColor: number;
+  bgColors: string[];
+  panelOpenState = false;
+  step: number;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
+   }
 
   ngOnInit() {
 
   }
 
   showWeeks(month, i) {
-    this.hideme[i]
+    this.step = i;
     // this.index = i;
+
     this.allWeeks = [];
     let year = moment().year()
     let startDate = moment.utc([year, month])
@@ -69,12 +76,23 @@ export class WeekListComponent implements OnInit {
     // dates.push(week.weekStartDate)
     while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
       console.log(week.weekStartDate.toDate());
-      // dates.push(week.weekStartDate.clone().toDate());
       dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
     }
     console.log("dates:", dates);
     // this.router.navigate(['action-selection'], { state: { example: 'bar' } });
     this.router.navigate(['single-week'], { state: { datesOfTheWeek: dates } })
   }
+  getRandomColorClass(i) {
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    return this.bgColors[rand];
+  }
+  panelClosed(event) {
+    console.log("event", event);
+  }
+  // setStep(index: number) {
+  //   this.step = index;
+  // }
 
 }

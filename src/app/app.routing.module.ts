@@ -30,6 +30,7 @@ import { ExamsResultsComponent } from './learners/exams-results/exams-results.co
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { WeekListComponent } from './time-sheet/week-list/week-list.component';
+import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
 
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AuthGuard } from './auth.guard';
@@ -198,6 +199,10 @@ const routes: Routes = [
 	{
 		path: 'single-week',
 		component: SingleWeekComponent
+	},
+	{
+		path: 'admin-time-sheet',
+		component: AdminTimeSheetComponent
 	}
 ];
 
