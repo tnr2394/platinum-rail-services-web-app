@@ -28,7 +28,8 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn Time </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let days;let i=index">
-                                            <mat-form-field>
+                                            <app-time-picker [defaultTime]="defaultTime" (timeFor)="eventFromTimePicker($event)"></app-time-picker>
+                                            <!-- <mat-form-field>
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -42,7 +43,7 @@
                                                         </ngx-material-timepicker>
                                                     </div>
                                                 </div>
-                                            </mat-form-field>
+                                            </mat-form-field> -->
                                         </td>
                                     </ng-container>
 

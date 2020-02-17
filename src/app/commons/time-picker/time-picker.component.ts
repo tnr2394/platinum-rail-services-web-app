@@ -28,7 +28,12 @@ export class TimePickerComponent implements OnInit {
 
   timeChanged(event){
     console.log("Time changed", event);
-    this.timeFor.emit({logFor: this.logFor, time:event})
+    this.timeChanged = event;
+    // this.timeFor.emit({logFor: this.logFor, time:event})
+  }
+  closed(){
+    console.log("CLOED CLICKED");
+    this.timeFor.emit({logFor: this.logFor, time:this.timeChanged})
   }
 
 }

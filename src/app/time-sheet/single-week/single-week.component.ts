@@ -56,5 +56,8 @@ export class SingleWeekComponent implements OnInit {
     console.log('Function Closed');
     console.log('Event::::::::::', event, index);
   }
+  eventFromTimePicker(event){
+    console.log("eventFromTimePicker($event)", event);
+  }
 
 }
