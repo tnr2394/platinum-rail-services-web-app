@@ -1,108 +1,93 @@
-<!-- <div class="row">
-<div class="col-4" *ngFor="let month of months; let i = index">
-<mat-card class="mb-3" appMaterialElevation [defaultElevation]="2" raisedElevation="8">
-    <mat-card-header (click)="showWeeks(month.id , i);hideme[i] = !hideme[i]">
-        <div class="col-3">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        </div>
-        <div class="col-9">
-         <h4>{{month.name}}</h4>
-        </div>
-    </mat-card-header>
-    <mat-card-content>
-    <div [hidden]="!hideme[i]" class="pt-3">
-        <mat-divider></mat-divider>
-        <mat-card class="mt-2" appMaterialElevation [defaultElevation]="0" raisedElevation="2" *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
-            <b>Week Number : {{week.weekNumber}}</b>
-            Start : {{week.weekStartDate | date:shortDate}}
-            End : {{week.weekEndDate | date:shortDate}}
-        </mat-card>
+<div class="row">
+    <div class="col-6">
+        <h3 class="page-title">
+            Time Sheet
+        </h3>
     </div>
-    </mat-card-content>
-</mat-card>
 </div>
-</div> -->
 <div class="row">
     <div class="col-4">
         <div *ngFor="let month of months;let i = index">
-            <div *ngIf="i == 0 || i == 3 || i == 6 || i == 9">
-            <mat-card class="mb-3" appMaterialElevation [defaultElevation]="2" raisedElevation="8">
-                <mat-card-header (click)="showWeeks(month.id, i); hideme[i] = !hideme[i]">
-                    <div class="col-3">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-9">
-                        <h4>{{month.name}}</h4>
-                    </div>
-                </mat-card-header>
-                <mat-card-content>
-                    <div [hidden]="!hideme[i]" class="pt-3">
-                        <mat-divider></mat-divider>
-                        <mat-card class="mt-2" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                            *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
-                            <p><b>Week Number : {{week.weekNumber}}</b></p>
-                            <b>From</b> : {{week.weekStartDate | date:shortDate}} 
-                            - <b>To</b> : {{week.weekEndDate | date:shortDate}}
-                        </mat-card>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div *ngFor="let month of months;let i = index">
-            <div *ngIf="i == 1 || i == 4 || i == 7 || i == 10">
-                <mat-card class="mb-3" appMaterialElevation [defaultElevation]="2" raisedElevation="8">
-                    <mat-card-header (click)="showWeeks(month.id , i);hideme[i] = !hideme[i]">
+            <mat-expansion-panel class="mb-4" *ngIf="i == 0 || i == 3 || i == 6 || i == 9"
+                (opened)="showWeeks(month.id, i) " [expanded]="step === i">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
                         <div class="col-3">
-                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <i class="fa fa-calendar-o iconCalendar {{getRandomColorClass(i)}}" aria-hidden="true"></i>
                         </div>
-                        <div class="col-9">
-                            <h4>{{month.name}}</h4>
+                        <div class="col-9 d-flex justify-content-start align-items-center">
+                            <h5 class="mb-0">{{month.name}}</h5>
                         </div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div [hidden]="!hideme[i]" class="pt-3">
-                            <mat-divider></mat-divider>
-                            <mat-card class="mt-2" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                                *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
-                                <b>Week Number : {{week.weekNumber}}</b>
-                                Start : {{week.weekStartDate | date:shortDate}}
-                                End : {{week.weekEndDate | date:shortDate}}
-                            </mat-card>
-                        </div>
-                    </mat-card-content>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
+                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                    <div>
+                        {{week.weekStartDate | date:shortDate}} - 
+                        {{week.weekEndDate | date:shortDate}}
+                    </div>
+                    <div>
+                        [STATUS STATUS]
+                    </div>
                 </mat-card>
-            </div>
+            </mat-expansion-panel>
         </div>
     </div>
     <div class="col-4">
         <div *ngFor="let month of months;let i = index">
-            <div *ngIf="i == 2 || i == 5 || i == 8 || i == 11">
-            <mat-card class="mb-3" appMaterialElevation [defaultElevation]="2" raisedElevation="8">
-                <mat-card-header (click)="showWeeks(month.id , i);hideme[i] = !hideme[i]">
-                    <div class="col-3">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-9">
-                        <h4>{{month.name}}</h4>
-                    </div>
-                </mat-card-header>
-                <mat-card-content>
-                    <div [hidden]="!hideme[i]" class="pt-3">
-                        <mat-divider></mat-divider>
-                        <mat-card class="mt-2" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                            *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
-                            <b>Week Number : {{week.weekNumber}}</b>
-                            Start : {{week.weekStartDate | date:shortDate}}
-                            End : {{week.weekEndDate | date:shortDate}}
-                        </mat-card>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-            </div>
+            <mat-expansion-panel class="mb-4" *ngIf="i == 1 || i == 4 || i == 7 || i == 10"
+                (opened)="showWeeks(month.id, i)" [expanded]="step === i">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o iconCalendar {{getRandomColorClass(i)}}" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-9 d-flex justify-content-start align-items-center">
+                            <h5 class="mb-0">{{month.name}}</h5>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
+                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                <div>
+                    {{week.weekStartDate | date:shortDate}} - 
+                    {{week.weekEndDate | date:shortDate}}
+                </div>
+                <div>
+                    [STATUS STATUS]
+                </div>
+                </mat-card>
+            </mat-expansion-panel>
         </div>
     </div>
-
+    <div class="col-4">
+        <div *ngFor="let month of months;let i = index">
+            <mat-expansion-panel class="mb-4" *ngIf="i == 2 || i == 5 || i == 8 || i == 11"
+                (opened)="showWeeks(month.id, i);" [expanded]="step === i">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o iconCalendar {{getRandomColorClass(i)}}" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-9 d-flex justify-content-start align-items-center">
+                            <h5 class="mb-0">{{month.name}}</h5>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
+                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                    <div>
+                        {{week.weekStartDate | date:shortDate}} - 
+                        {{week.weekEndDate | date:shortDate}}
+                    </div>
+                    <div>
+                        [STATUS STATUS]
+                    </div>
+                </mat-card>
+            </mat-expansion-panel>
+        </div>
+    </div>
 </div>
