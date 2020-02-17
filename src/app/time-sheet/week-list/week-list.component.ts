@@ -26,11 +26,11 @@ export class WeekListComponent implements OnInit {
   dateOfWeek = [];
   allWeeks = [];
   hideme = [];
-  
+
   constructor(private router: Router) { }
 
   ngOnInit() {
-    
+
   }
 
   showWeeks(month, i) {
@@ -47,7 +47,7 @@ export class WeekListComponent implements OnInit {
     console.log("monthStartWeekNumber", monthStartWeekNumber, "monthEndWeekNumber", monthEndWeekNumber);
     if (monthEndWeekNumber == 1) monthEndWeekNumber = 52
 
-    for (let i = monthStartWeekNumber; i <= monthEndWeekNumber; i++){
+    for (let i = monthStartWeekNumber; i <= monthEndWeekNumber; i++) {
       console.log("in loop", i);
 
       let weekStartDate = moment().startOf('isoWeek').isoWeek(i);
@@ -56,24 +56,25 @@ export class WeekListComponent implements OnInit {
       let weekEndDate = moment().endOf('isoWeek').isoWeek(i);
       console.log("weekEndDate", weekEndDate.date(), weekEndDate.month());
       if (weekEndDate > moment().endOf('year')) {
-          console.log("weekEndDate > moment().endOf('year')", weekEndDate , moment().endOf('year'));
-         weekEndDate = moment().endOf('year')
-        }
-      this.allWeeks.push({ weekNumber: i,weekStartDate: weekStartDate, weekEndDate: weekEndDate})
+        console.log("weekEndDate > moment().endOf('year')", weekEndDate, moment().endOf('year'));
+        weekEndDate = moment().endOf('year')
+      }
+      this.allWeeks.push({ weekNumber: i, weekStartDate: weekStartDate, weekEndDate: weekEndDate })
     }
     this.show = true;
     console.log("allWeeks", this.allWeeks);
-    }
-  getWeekDates(week){
+  }
+  getWeekDates(week) {
     let dates = []
     // dates.push(week.weekStartDate)
     while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
       console.log(week.weekStartDate.toDate());
-      dates.push(week.weekStartDate.clone().toDate());
+      // dates.push(week.weekStartDate.clone().toDate());
+      dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
     }
     console.log("dates:", dates);
     // this.router.navigate(['action-selection'], { state: { example: 'bar' } });
-    this.router.navigate(['single-week'],{state:{datesOfTheWeek : dates}})
+    this.router.navigate(['single-week'], { state: { datesOfTheWeek: dates } })
   }
 
 }

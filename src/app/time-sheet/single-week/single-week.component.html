@@ -1,5 +1,12 @@
 <h1>Single Week Entry</h1>
 
+<div>
+    Total Working Hours:
+    <span *ngIf="totalHoursWorked">
+        {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
+    </span>
+</div>
+
 
 <div class="row">
     <div class="col-12">
@@ -24,12 +31,16 @@
                                     </ng-container>
                                     <!-- Login Column -->
 
+
+
+
                                     <ng-container matColumnDef="logIn">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn Time </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn</th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let days;let i=index">
-                                            <app-time-picker [defaultTime]="defaultTime" (timeFor)="eventFromTimePicker($event)"></app-time-picker>
-                                            <!-- <mat-form-field>
+                                            <!-- <app-time-picker [defaultTime]="defaultTime"
+                                                (timeFor)="eventFromTimePicker($event)"></app-time-picker> -->
+                                            <mat-form-field>
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -38,12 +49,12 @@
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
                                                         </ngx-material-timepicker-toggle>
-                                                        <ngx-material-timepicker #min (closed)="closed()"
+                                                        <ngx-material-timepicker #min (closed)="closed(i)"
                                                             (timeChanged)="timeChanged($event,i)">
                                                         </ngx-material-timepicker>
                                                     </div>
                                                 </div>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
                                         </td>
                                     </ng-container>
 
@@ -60,7 +71,7 @@
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
                                                         </ngx-material-timepicker-toggle>
-                                                        <ngx-material-timepicker #min
+                                                        <ngx-material-timepicker #min (closed)="closed(i)"
                                                             (timeChanged)="timeChanged($event,i)">
                                                         </ngx-material-timepicker>
                                                     </div>
@@ -82,7 +93,7 @@
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
                                                         </ngx-material-timepicker-toggle>
-                                                        <ngx-material-timepicker #min
+                                                        <ngx-material-timepicker #min (closed)="closed(i)"
                                                             (timeChanged)="timeChanged($event,i)">
                                                         </ngx-material-timepicker>
                                                     </div>
@@ -92,7 +103,7 @@
                                     </ng-container>
 
                                     <ng-container matColumnDef="logOut">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Log Out </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let days;let i=index">
                                             <mat-form-field>
@@ -104,7 +115,8 @@
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
                                                         </ngx-material-timepicker-toggle>
-                                                        <ngx-material-timepicker (timeSet)="timeChanged($event,i)" #min>
+                                                        <ngx-material-timepicker (closed)="closed(i)"
+                                                            (timeSet)="timeChanged($event,i)" #min>
                                                         </ngx-material-timepicker>
                                                     </div>
                                                 </div>
@@ -112,16 +124,25 @@
                                         </td>
                                     </ng-container>
 
+                                    <ng-container matColumnDef="travelHours">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Travel Hours </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                            <input matInput type="time" [(ngModel)]='days.travelHours'>
+                                        </td>
+                                    </ng-container>
+
+
+
                                     <ng-container matColumnDef="hoursWorked">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Hours Worked </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
-                                            <mat-form-field>
-
-                                                <input matInput type="text" [(ngModel)]='days.workingHours' readonly>
-
-                                            </mat-form-field>
+                                            <span>
+                                                {{days.workingHours.hours | number:'2.0'}}:{{days.workingHours.minutes | number:'2.0'}}
+                                            </span>
                                         </td>
                                     </ng-container>
+
+
 
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row
@@ -144,13 +165,11 @@
                         No Learner Added!
                     </h3>
 
-                    <button mat-flat-button color="primary" (click)="save(learners)" type="submit"
+                    <button mat-flat-button color="primary" (click)="submitDetail(days)" type="submit"
                         class="mb-3 button_hover_effect col-lg-3">
                         <i class="fas fa-save fa-fw"></i>
                         <span> Save</span>
                     </button>
-
-
                 </div>
             </div>
         </div>
