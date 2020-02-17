@@ -106,6 +106,7 @@ import { TimePickerComponent } from './commons/time-picker/time-picker.component
 import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
 import { Select2Module } from 'ng2-select2';
 import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-sheet-summary.component';
+import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 @NgModule({
   declarations: [
@@ -178,6 +179,7 @@ import { SingleWeekComponent } from './time-sheet/single-week/single-week.compon
     TimePickerComponent,
     AddTimelogModalComponent,
     TimeSheetSummaryComponent,
+    WeekListComponent,
     SingleWeekComponent
   ],
   imports: [

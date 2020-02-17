@@ -50,6 +50,7 @@
     "material-colors": "^1.2.6",
     "material-community-components": "^5.0.1",
     "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
     "ng-animate": "^0.3.4",
     "ng-circle-progress": "^1.5.1",
     "ng-recaptcha": "^5.0.0",
