@@ -179,7 +179,7 @@ import { SingleWeekComponent } from './time-sheet/single-week/single-week.compon
     TimePickerComponent,
     AddTimelogModalComponent,
     TimeSheetSummaryComponent,
-    WeekListComponent
+    WeekListComponent,
     SingleWeekComponent
   ],
   imports: [

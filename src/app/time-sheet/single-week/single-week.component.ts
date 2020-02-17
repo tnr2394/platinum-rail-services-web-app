@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -31,7 +31,9 @@ export class SingleWeekComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private router: Router) { 
+    console.log(this.router.getCurrentNavigation().extras.state.datesOfTheWeek);
+  }
 
   ngOnInit() {
     this.getDays();
