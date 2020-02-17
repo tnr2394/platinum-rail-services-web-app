@@ -75,8 +75,8 @@ export class WeekListComponent implements OnInit {
     let dates = []
     // dates.push(week.weekStartDate)
     while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
-      console.log(week.weekStartDate.toDate());
-      dates.push(week.weekStartDate.clone().toDate());
+      console.log(week.weekStartDate);
+      dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
     }
     console.log("dates:", dates);
     // this.router.navigate(['action-selection'], { state: { example: 'bar' } });
