@@ -4,8 +4,26 @@
     12 x 6 = 72 hrs a week
     72 x 4 = 288 hrs a month
 </p>
-<div style="display: block;">
+<button mat-flat-button (click)="viewType('Year')">Year</button>
+<button mat-flat-button (click)="viewType('Month')">Month</button>
+<button mat-flat-button (click)="viewType('Week')">Week</button>
+<div *ngIf="allInstructors && allInstructors.length != 0">
+    <button mat-flat-button (click)="changeQuery()">GO</button>
+    <select2 [data]="instToDisplay" [cssImport]=true [options]="options" [value]="value"
+        (valueChanged)="instructorChanged($event)"></select2>
+</div>
+<div style="display: block;" *ngIf="view == 'Year'">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
         [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+    </canvas>
+</div>
+<div style="display: block;" *ngIf="view == 'Month'">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+    </canvas>
+</div>
+<div style="display: block;" *ngIf="view == 'Week'">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event,)">
     </canvas>
 </div>
