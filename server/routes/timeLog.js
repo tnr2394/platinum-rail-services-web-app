@@ -15,5 +15,7 @@ router.post('/', timeLogController.addTimeLog);
 // Update Time Log by instructor
 router.put('/', timeLogController.updateTimeLog);
 
+router.post('/ins', timeLogController.getInstructorTimeLog);
+
 
 module.exports = router;

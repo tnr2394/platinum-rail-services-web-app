@@ -27,7 +27,7 @@ const timeLogServices = require('../services/timeLog.service')
 // All Functions calls form the router
 
 module.exports.getTimeLog = (req, res) => {
-	const instructorId = ObjectId(req.query._id)
+	const instructorId = ObjectId('5e45310bbb516d2ee082f58d')
 	timeLogServices.getInstructorWiseTimeLog(instructorId)
 		.then((result) => {
 			async.eachSeries(result[0].dateWiseTimeLogs, function (single, cb) {
@@ -73,60 +73,52 @@ module.exports.getTimeLog = (req, res) => {
 }
 
 module.exports.addTimeLog = (req, res) => {
+	const instructorId = ObjectId('5e45310bbb516d2ee082f58d')
+	console.log('Req.body=======>>>>.', req.body);
 
-	if (!(req && req.body && req.body.timeLog && req.body.instructorId)) return res.status(400).json(badData)
+	async.eachSeries(req.body, (singleRecord, innerCallback) => {
+		console.log('singleRecord', singleRecord);
 
-	const instructorId = ObjectId(req.body.instructorId)
+		if (singleRecord._id == 'new') {
+			delete singleRecord._id;
+			timeLogServices.addTimeLog(singleRecord)
+				.then((data) => {
+					console.log('Data after add', data);
+					if (data && data._id && instructorId) {
 
-	let newLog = {
-		// date: req.body.timeLog.date,
-		date: (req.body.timeLog && req.body.timeLog.date) ? new Date(req.body.timeLog.date) : new Date(),
-		time: {
-			in: {
-				hours: (req.body.timeLog.in && req.body.timeLog.in.hours != undefined && req.body.timeLog.in.hours != null) ? req.body.timeLog.in.hours : '-',
-				minutes: (req.body.timeLog.in && req.body.timeLog.in.minutes != undefined && req.body.timeLog.in.minutes != null) ? req.body.timeLog.in.minutes : '-',
-			},
-			lunchStart: {
-				hours: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.hours != undefined && req.body.timeLog.lunchStart.hours != null) ? req.body.timeLog.lunchStart.hours : '-',
-				minutes: (req.body.timeLog.lunchStart && req.body.timeLog.lunchStart.minutes != undefined && req.body.timeLog.lunchStart.minutes != null) ? req.body.timeLog.lunchStart.minutes : '-',
-			},
-			lunchEnd: {
-				hours: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.hours) ? req.body.timeLog.lunchEnd.hours : '-',
-				minutes: (req.body.timeLog.lunchEnd && req.body.timeLog.lunchEnd.minutes) || '-',
-			},
-			out: {
-				hours: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.hours) ? req.body.timeLog.timeOut.hours : '-',
-				minutes: (req.body.timeLog.timeOut && req.body.timeLog.timeOut.minutes) ? req.body.timeLog.timeOut.minutes : '-',
-			},
-		},
-	}
+						let newData = {
+							instructorId: instructorId,
+							logId: data._id
+						}
 
-	successLog(" ***************************** ", instructorId)
-
-	timeLogServices.addTimeLog(newLog)
-		.then((data) => {
-			if (data && data._id && instructorId) {
-
-				let newData = {
-					instructorId: instructorId,
-					logId: data._id
-				}
-
-				timeLogServices.addTimeLogInInstructor(newData)
-					.then((result) => {
-						return res.status(200).json({ message: ' Add Time Logs ', data })
-					})
-					.catch((error) => {
-						errorLog(" Error ", error)
-					})
-			}
-			else {
-				successLog(" Time Log is not added ")
-			}
-		}).catch((error) => {
-			errorLog(" Return befor erro  ", error)
-			return res.status(500).json({ message: ' Error in: Add Time Logs ', error })
-		})
+						timeLogServices.addTimeLogInInstructor(newData).then((result) => {
+							innerCallback();
+						}).catch((error) => {
+							errorLog(" Error ", error)
+						})
+					}
+					else {
+						successLog(" Time Log is not added ")
+					}
+				}).catch((error) => {
+					errorLog(" Return befor erro  ", error)
+					return res.status(500).json({ message: ' Error in: Add Time Logs ', error })
+				})
+		} else {
+			timeLogServices.updateTimeLog(singleRecord._id, singleRecord).then((response) => {
+				innerCallback();
+			}).catch((error) => {
+				return res.status(500).json({ message: ' Error in: Update Time Logs ', error })
+			})
+		}
+	}, (callbackError, callbackResponse) => {
+		if (callbackError) {
+			console.log("callbackError ", callbackError);
+			return res.status(500).send({ callbackError })
+		} else {
+			return res.status(200).json({ message: ' Add Time Logs ', callbackResponse })
+		}
+	})
 }
 
 
@@ -178,3 +170,20 @@ module.exports.updateTimeLog = (req, res) => {
 		return res.status(500).json({ message: ' Error in: Update Time Logs ', error })
 	})
 }
+
+module.exports.getInstructorTimeLog = (req, res) => {
+
+	console.log('Req.body======>>>>>', req.body);
+
+	const datesArray = req.body;
+
+	const instructorId = ObjectId('5e45310bbb516d2ee082f58d');
+	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
+		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
+	}).catch((error) => {
+		return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+	})
+}
+
+
+

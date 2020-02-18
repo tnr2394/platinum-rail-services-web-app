@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { TimeSheetService } from '../../services/time-sheet.service';
+import { single } from 'rxjs/operators';
 
 
 
@@ -24,27 +26,33 @@ export class SingleWeekComponent implements OnInit {
   currentTime;
   totalHours = 0;
   totalMinutes = 0;
+  datesOfWeek;
+  Days: any = [];
+
+  arrayFromDb: any = [];
+  arrayFromParam: any = [];
 
 
 
 
-  Days = [
-    { id: '0', date: '02/11/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Sunday', checked: false },
-    { id: '1', date: '02/12/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Monday', checked: false },
-    { id: '2', date: '02/13/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Tuesday', checked: false },
-    { id: '3', date: '02/14/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Wednesday', checked: false },
-    { id: '4', date: '02/15/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Thursday', checked: false },
-    { id: '5', date: '02/16/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Friday', checked: false },
-  ];
+  // Days = [
+  //   { id: '0', date: '02/11/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Sunday', checked: false },
+  //   { id: '1', date: '02/12/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Monday', checked: false },
+  //   { id: '2', date: '02/13/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Tuesday', checked: false },
+  //   { id: '3', date: '02/14/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Wednesday', checked: false },
+  //   { id: '4', date: '02/15/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Thursday', checked: false },
+  //   { id: '5', date: '02/16/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Friday', checked: false },
+  // ];
 
 
 
-  constructor(private router: Router) {
-    // console.log(this.router.getCurrentNavigation().extras.state.datesOfTheWeek);
+  constructor(private router: Router, public _timeSheetService: TimeSheetService) {
+    this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
   }
 
   ngOnInit() {
     this.getDays();
+    this.getValuesUsingDates();
   }
 
   getDays() {
@@ -63,7 +71,6 @@ export class SingleWeekComponent implements OnInit {
   timeChanged(event, index) {
     console.log('Event::::::::::', event, index);
     this.currentTime = event;
-    // this.calculateWorkHours(index);
   }
   eventFromTimePicker(event) {
     console.log("eventFromTimePicker($event)", event);
@@ -179,10 +186,48 @@ export class SingleWeekComponent implements OnInit {
 
   getValuesUsingDates() {
     console.log('Get Values Using Dates');
+    this._timeSheetService.getTimeLogUsingDates(this.datesOfWeek).subscribe(res => {
+      console.log('Inside Res=======>>>>', res);
+      this.arrayFromDb = res;
+      console.log('Arrayform db', this.arrayFromDb);
+      this.mergeAndCompareBothArrays();
+    }, error => {
+
+    })
+  }
+
+  mergeAndCompareBothArrays() {
+    var filterDates;
+    filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
+    console.log('Fiter Dates===>>>>', filterDates);
+    _.forEach((filterDates), (singleDate, index) => {
+      let newObj;
+      newObj = {
+        date: singleDate,
+        _id: 'new',
+        logIn: '00:00',
+        lunchStart: '00:00',
+        lunchEnd: '00:00',
+        logOut: '00:00',
+        workingHours: {
+          hours: 0,
+          minutes: 0,
+        },
+        travel: '00:00'
+      }
+      this.arrayFromDb.push(newObj);
+    })
+
+    this.Days = this.arrayFromDb;
+    this.updateData(this.Days);
   }
 
   submitDetail() {
     console.log('Submit Weekly Logs Detail', this.Days);
+    this._timeSheetService.addTime(this.Days).subscribe((res) => {
+    }, err => {
+
+    })
   }
 
 }
