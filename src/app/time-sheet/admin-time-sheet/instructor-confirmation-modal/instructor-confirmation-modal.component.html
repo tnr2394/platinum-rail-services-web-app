@@ -1,0 +1,12 @@
+<h1 mat-dialog-title><i class="fas fa-check-circle"></i> Choose Instructor</h1>
+<mat-divider></mat-divider>
+<div class="row">
+    <mat-radio-group [(ngModel)]="instructorChosen" class="example-radio-group" #radioGroup="matRadioGroup">
+        <mat-radio-button class="example-radio-button" *ngFor="let instructor of data" [value]="instructor">
+            {{instructor.name}}
+        </mat-radio-button>
+    </mat-radio-group>
+</div>
+<mat-dialog-action>
+    <button mat-flat-button (click)="search()">GO</button>
+</mat-dialog-action>

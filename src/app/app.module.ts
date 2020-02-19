@@ -29,6 +29,7 @@ import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -112,6 +113,7 @@ import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-
 import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
+import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sheet/instructor-confirmation-modal/instructor-confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -186,7 +188,8 @@ import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-tim
     TimeSheetSummaryComponent,
     WeekListComponent,
     SingleWeekComponent,
-    AdminTimeSheetComponent
+    AdminTimeSheetComponent,
+    InstructorConfirmationModalComponent
   ],
   imports: [
     ChartsModule,
@@ -217,6 +220,7 @@ import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-tim
     MatSortModule,
     CdkTableModule,
     MatSnackBarModule,
+    MatRadioModule,
     ColorPickerModule,
     MatExpansionModule,
     ImageCropperModule,
@@ -229,7 +233,7 @@ import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-tim
     }),
     NgCircleProgressModule.forRoot({})
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

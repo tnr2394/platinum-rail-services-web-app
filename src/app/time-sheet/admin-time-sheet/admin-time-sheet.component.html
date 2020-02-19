@@ -24,6 +24,6 @@
 </div>
 <div style="display: block;" *ngIf="view == 'Week'">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event,)">
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event)">
     </canvas>
 </div>

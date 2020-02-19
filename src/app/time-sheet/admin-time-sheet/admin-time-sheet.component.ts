@@ -5,6 +5,9 @@ import { InstructorService } from 'src/app/services/instructor.service';
 import { Select2OptionData } from 'ng2-select2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TimeSheetService } from 'src/app/services/time-sheet.service';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
+import { InstructorConfirmationModalComponent } from './instructor-confirmation-modal/instructor-confirmation-modal.component';
 
 @Component({
   selector: 'app-admin-time-sheet',
@@ -15,19 +18,33 @@ import { TimeSheetService } from 'src/app/services/time-sheet.service';
 
 export class AdminTimeSheetComponent implements OnInit {
   public barChartOptions: ChartOptions = {
-    responsive: true
+    responsive: true,
+    // legend: {
+    //   display: true,
+    //   labels: {
+    //     fontColor: 'rgb(255, 99, 132)'
+    //   },
+    //   onClick: function newLegendFunction(event, legendItem) {
+    //     console.log("event", event, "legendItem", legendItem);
+    //     this.findInstructor(legendItem.datasetIndex)
+    //     // console.log("this.allInstructors", this.allInstructors);
+    //     // let instructor = this.allInstructors[legendItem.datasetIndex]
+    //     // this.router.navigate(['week-list'], { state: { instructor: instructor } })
+    //   }
+    // }
   };
-  public barChartLabels: Label[] = ['11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday'];
+  public barChartLabels: Label[] = ['11/11,Monday', '11/11,Tuesday', '11/11,Wednesday', '11/11,Thursday', '11/11,Friday', '11/11,Saturday', '11/11,Monday'];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartPlugins = [];
 
-  public barChartData: ChartDataSets[] = [
-    { data: [12, 10, 20, 30, 11, 15, 19, 8, 5, 0, 0, 10], label: 'Intructor A', backgroundColor: "rgba(255,175,211,0.1)" },
-    { data: [8, 10, 17, 12, 3, 9, 15, 6, 2, 1, 0, 1], label: 'Intructor B', backgroundColor: "rgba(175,211,56,0.1)" }
-  ];
+  public barChartData: ChartDataSets[] = [{ data: [], label: '' }];
+  // = [ 
+  //   { data: [12, 10, 20, 30, 11, 15, 19, 8, 5, 0, 0, 10], label: 'Intructor A', backgroundColor: "rgba(255,175,211,0.1)" },
+  //   { data: [8, 10, 17, 12, 3, 9, 15, 6, 2, 1, 0, 1], label: 'Intructor B', backgroundColor: "rgba(175,211,56,0.1)" }
+  // ];
   
-    // = [{ data: [], label: '' }];
+  
   
   allInstructors = [];
   public instToDisplay: Array<Select2OptionData> = [];
@@ -41,7 +58,7 @@ export class AdminTimeSheetComponent implements OnInit {
 
 
   constructor(private _instructorService: InstructorService, private _timeSheetService: TimeSheetService,
-    private route: ActivatedRoute, private router: Router) { 
+    private route: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -62,27 +79,51 @@ export class AdminTimeSheetComponent implements OnInit {
     });
     this.getInstructorList();
   }
+  findInstructor(index){
+    let instructor = this.allInstructors[index]
+    console.log("instructor", instructor);
+    
+  }
   public chartClicked(e: any): void {
+    console.log("THE DATA IS", this.barChartData);
     console.log("e in chart clicked",e);
     let instructorName;
-    if (e.active.length > 0) {
+    if (e.active[0]){
       const chart = e.active[0]._chart;
       const activePoints = chart.getElementAtEvent(e.event);
       if (activePoints.length > 0) {
         console.log("activePoints",activePoints)
         console.log("chart.data", chart.data);
-        // get the internal index of slice in pie chart
         const datasetIndex = activePoints[0]._datasetIndex;
         const clickedElementIndex = activePoints[0]._index;
         const label = chart.data.labels[clickedElementIndex];
-        // get value by index
         const value = chart.data.datasets[datasetIndex].data[clickedElementIndex];
         console.log("datasetIndex", datasetIndex);
         console.log("clickedElementIndex", clickedElementIndex, "label", label, value)
-        instructorName = this.allInstructors[datasetIndex-1].name
+        this.getActualData(value, clickedElementIndex)
+        // instructorName = this.allInstructors[datasetIndex-1].name
         // this.router.navigate(['week-list'], { state: { instructor: instructorName } })
+      // }
       }
     }
+  }
+  getActualData(value,index){
+    const actualData = []
+      this.barChartData.forEach((chartData, i) => {
+        if (chartData.data[index] == value) actualData.push(this.allInstructors[i])
+        else console.log("Not Same at", chartData.label);
+    })
+    console.log("actualData", actualData);
+    if(actualData.length > 1) {
+      console.log("Open PopUp")
+      this.openDialog(InstructorConfirmationModalComponent, actualData).subscribe(instChosen=>{
+        if(instChosen == undefined) return
+        else{
+          this.router.navigate(['week-list'], { state: { instructor: instChosen } })
+        }
+      })
+    }
+    else this.router.navigate(['week-list'], { state: { instructor: actualData } })
   }
   instructorChanged(data: { value: string[] }) {
     console.log("change", data.value);
@@ -118,6 +159,17 @@ export class AdminTimeSheetComponent implements OnInit {
     const b = Math.floor(Math.random() * 256);
     return "rgba(" + r + "," + g + "," + b + ",0.1)"
   }
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log('OPENDIALOG', 'DATA = ', data)
+    const dialogRef = this.dialog.open(someComponent, { data });
+
+    return dialogRef.afterClosed();
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   // API 
   getInstructorList() {
     this._instructorService.getInstructors().subscribe(data => {
@@ -138,6 +190,7 @@ export class AdminTimeSheetComponent implements OnInit {
         this.instToDisplay.push(temp)
         console.log("temp==", temp);
       })
+      this.barChartData.splice(0,1)
       // this.allInstructorsCopy = this.allInstructors;
       console.log("this.instToDisplay", this.instToDisplay);
     })
