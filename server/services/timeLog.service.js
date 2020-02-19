@@ -211,7 +211,7 @@ function getInstructorTimeLog(instructorId, datesArray) {
             },
             {
                 $project: {
-                    _id: 0,
+                    _id: '$logs._id',
                     workingHours: '$logs.workingHours',
                     logIn: '$logs.logIn',
                     lunchStart: '$logs.lunchStart',
