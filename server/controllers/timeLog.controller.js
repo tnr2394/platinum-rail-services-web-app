@@ -73,7 +73,7 @@ module.exports.getTimeLog = (req, res) => {
 }
 
 module.exports.addTimeLog = (req, res) => {
-	const instructorId = ObjectId('5e45310bbb516d2ee082f58d')
+	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5')
 	console.log('Req.body=======>>>>.', req.body);
 
 	async.eachSeries(req.body, (singleRecord, innerCallback) => {
@@ -126,8 +126,9 @@ const calculateDiff = (date, startTime, endTime) => {
 	var time1 = new Date(date + ' ' + startTime + ':00 GMT+0000');
 	var time2 = new Date(date + ' ' + endTime + ':00 GMT+0000');
 	var difference = (time2 - time1) / 60000;
-	var minutes = difference % 60;
-	var hours = (difference - minutes) / 60;
+	var minutes = Math.abs(difference % 60);
+	var hours = Math.abs((difference - minutes) / 60)
+	// var hours = Math.abs(Math.floor((difference - minutes) / 60));
 	return ({ hours: hours, minutes: minutes })
 }
 
@@ -177,7 +178,7 @@ module.exports.getInstructorTimeLog = (req, res) => {
 
 	const datesArray = req.body;
 
-	const instructorId = ObjectId('5e2ee7acb3c6121d2b51988f');
+	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
 		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
 	}).catch((error) => {
@@ -187,12 +188,43 @@ module.exports.getInstructorTimeLog = (req, res) => {
 
 module.exports.getWeeklylog = (req,res) => {
 	console.log("*****req.body in", req.body);
-	const datesArray = req.body.dates
-	console.log("datesArray", req.body.dates);
+	const datesArray = req.body.date
+	console.log("datesArray", req.body.array);
 	
-	const instructorId = ObjectId("5e2ee7acb3c6121d2b51988f")
+	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response)=>{
-		return res.status(200).json({ message: 'Time Logs for a week are ', response })
+		console.log("response", response);
+
+		let tempWeeklyHours = 0; //Hours per week
+		let tempWeeklyMinutes = 0; //Hours per week
+		console.log("here");
+
+		for(var i = 0; i < response.length; i++){
+			console.log("in for loop");
+			tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
+			tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
+			console.log("time done");
+			
+			if (i < response.length - 1) { //Break between turns
+				var tempDate2 = moment(i.date).format('MM/DD/YYYY');
+				console.log("loop", i);
+				var diff = calculateDiff(tempDate2, response[i].logOut, response[i+1].logIn);
+				console.log("DIFFERENCE iS", diff);
+				if(diff.hours >= 12 && diff.minutes > 00){
+					console.log("Not satisfied");
+				}
+				else console.log("SATISFIED");
+			}
+		}
+		if (tempWeeklyMinutes > 60) { //Hours per week
+			console.log("tempWeeklyMinutes before conversion", tempWeeklyMinutes);
+			tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes/60)
+			tempWeeklyMinutes = tempWeeklyMinutes%60
+		}
+		if (tempWeeklyHours > 70) console.log("Not satisfied"); //Hours per week
+		console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes);
+		
+
 	}).catch((error) => {
 		return res.status(500).json({ message: ' Error in getting weekly time log ', error })
 	})	

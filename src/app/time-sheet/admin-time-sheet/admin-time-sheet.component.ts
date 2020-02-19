@@ -8,6 +8,7 @@ import { TimeSheetService } from 'src/app/services/time-sheet.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { InstructorConfirmationModalComponent } from './instructor-confirmation-modal/instructor-confirmation-modal.component';
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-admin-time-sheet',
@@ -19,32 +20,14 @@ import { InstructorConfirmationModalComponent } from './instructor-confirmation-
 export class AdminTimeSheetComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // legend: {
-    //   display: true,
-    //   labels: {
-    //     fontColor: 'rgb(255, 99, 132)'
-    //   },
-    //   onClick: function newLegendFunction(event, legendItem) {
-    //     console.log("event", event, "legendItem", legendItem);
-    //     this.findInstructor(legendItem.datasetIndex)
-    //     // console.log("this.allInstructors", this.allInstructors);
-    //     // let instructor = this.allInstructors[legendItem.datasetIndex]
-    //     // this.router.navigate(['week-list'], { state: { instructor: instructor } })
-    //   }
-    // }
   };
-  public barChartLabels: Label[] = ['11/11,Monday', '11/11,Tuesday', '11/11,Wednesday', '11/11,Thursday', '11/11,Friday', '11/11,Saturday', '11/11,Monday'];
+  public barChartLabels: Label[]
+    // = ['11/11,Monday', '11/11,Tuesday', '11/11,Wednesday', '11/11,Thursday', '11/11,Friday', '11/11,Saturday', '11/11,Monday'];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [{ data: [], label: '' }];
-  // = [ 
-  //   { data: [12, 10, 20, 30, 11, 15, 19, 8, 5, 0, 0, 10], label: 'Intructor A', backgroundColor: "rgba(255,175,211,0.1)" },
-  //   { data: [8, 10, 17, 12, 3, 9, 15, 6, 2, 1, 0, 1], label: 'Intructor B', backgroundColor: "rgba(175,211,56,0.1)" }
-  // ];
-  
-  
   
   allInstructors = [];
   public instToDisplay: Array<Select2OptionData> = [];
@@ -146,12 +129,11 @@ export class AdminTimeSheetComponent implements OnInit {
     // else if(value == 'Month'){
     //   this.barChartLabels = ['Week 1', 'Week 2', 'Week 4', 'Week 5'];
     // }
-    // else if(value == 'Week'){
-    //   this.barChartLabels = ['11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday'];
-    // }
   }
   getChartLabels(view){
-
+    if (view == 'Week') {
+      this.barChartLabels = ['11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday'];
+    }
   }
   colorGen() {
     const r = Math.floor(Math.random() * 256);
@@ -170,6 +152,20 @@ export class AdminTimeSheetComponent implements OnInit {
       duration: 2000,
     });
   }
+  getWeekDates(week) {
+    // var currentDate = moment();
+
+    // var weekStart = currentDate.clone().startOf('isoWeek');
+    // var weekEnd = currentDate.clone().endOf('isoWeek');
+
+    let dates = []
+    // dates.push(week.weekStartDate)
+    while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
+      console.log(week.weekStartDate.toDate());
+      dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
+    }
+    console.log("dates:", dates);
+  }
   // API 
   getInstructorList() {
     this._instructorService.getInstructors().subscribe(data => {
@@ -181,12 +177,6 @@ export class AdminTimeSheetComponent implements OnInit {
           id: inst._id,
           text: inst.name
         }
-        let dataForChart = {
-          label: inst.name,
-          data: [12,6,1,20],
-          backgroundColor: backGroundColor
-        }
-        this.barChartData.push(dataForChart)
         this.instToDisplay.push(temp)
         console.log("temp==", temp);
       })
@@ -196,12 +186,21 @@ export class AdminTimeSheetComponent implements OnInit {
     })
   }
   getInstructorLogs(id) {
-    this._timeSheetService.getInstructorTimeLog(id).subscribe(logs => {
+    let data = {
+      instructorId: "5e293b0fa452624cba0dcfd5",
+
+    }
+    this._timeSheetService.getTimeLogUsingDates(id).subscribe(logs => {
       console.log("logs", logs);
-      // FOR SINGLE INSRUCTOR
-      // logs[0].dateWiseTimeLogs.forEach(log => {
-        
-      // })
+      // if (inst._id == "5e293b0fa452624cba0dcfd5") {
+      //   let dataForChart = {
+      //     label: inst.name,
+      //     data: [12, 6, 1, 20],
+      //     backgroundColor: backGroundColor
+      //   }
+      //   this.barChartData.push(dataForChart)
+      // }
+      
     })
   }
 

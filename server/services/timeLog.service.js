@@ -170,15 +170,16 @@ function getInstructorTimeLog(instructorId, datesArray) {
         var query = {
             $and: []
         }
-        console.log('Query:::', query);
+        console.log("***");
+        
 
-        if (datesArray.length) {
+        if (datesArray.length != 0) {
             console.log('Inside IF');
             console.log("{ $in: ['$date', datesArray] }", { $in: ['$date', datesArray] });
             
             query['$and'].push({ $in: ['$date', datesArray] })
         }
-
+        console.log('Query:::', query);
         successLog("instructorId", instructorId, datesArray)
 
         InstructorTimeLog.aggregate([
