@@ -25,6 +25,7 @@ module.exports.addTimeLog = addTimeLog
 module.exports.updateTimeLog = updateTimeLog
 module.exports.addTimeLogInInstructor = addTimeLogInInstructor
 module.exports.getInstructorWiseTimeLog = getInstructorWiseTimeLog
+module.exports.getWeeklyTimeLog = getWeeklyTimeLog;
 module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstructors
 
 function addTimeLog(data) {
@@ -166,8 +167,6 @@ function getInstructorTimeLog(instructorId, datesArray) {
 
     return new Promise((resolve, reject) => {
 
-
-
         var query = {
             $and: []
         }
@@ -175,6 +174,8 @@ function getInstructorTimeLog(instructorId, datesArray) {
 
         if (datesArray.length) {
             console.log('Inside IF');
+            console.log("{ $in: ['$date', datesArray] }", { $in: ['$date', datesArray] });
+            
             query['$and'].push({ $in: ['$date', datesArray] })
         }
 
@@ -235,6 +236,73 @@ function getInstructorTimeLog(instructorId, datesArray) {
             if (error) {
                 return reject(error)
             } else {
+                return resolve(data)
+            }
+        })
+    })
+
+}
+
+function getWeeklyTimeLog(instructorId) {
+    console.log("in service", instructorId);
+    return new Promise((resolve,reject)=>{
+        InstructorTimeLog.aggregate([
+            {
+                $match: { 'instructorId': ObjectId(instructorId) }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    instructorId: 1,
+                    logs: 1,
+                }
+            }
+            ,
+            {
+                $unwind: '$logs'
+            },
+            {
+             $lookup: {
+                from: 'timelogs',
+                let: { logsId: '$logs' },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: {
+                                $eq: ['$_id', '$$logsId']
+                            }
+                        }
+                    },
+                    {
+                        $project: {
+                            _id: 1,
+                            date: 1,
+                            travel: 1,
+                            time: 1,
+                            logInTime: {
+                                $concat: ['$time.in.hours', ':', '$time.in.minutes', ':00']
+                            },
+                            lunchStartTime: {
+                                $concat: ['$time.lunchStart.hours', ':', '$time.lunchStart.minutes', ':00']
+                            },
+                            lunchEndTime: {
+                                $concat: ['$time.lunchEnd.hours', ':', '$time.lunchEnd.minutes', ':00']
+                            },
+                            logOutTime: {
+                                $concat: ['$time.out.hours', ':', '$time.out.minutes', ':00']
+                            },
+                        }
+                    }
+                ],
+                as: 'timeLogs'
+            }
+            },
+        ]).exec((error, data) => {
+            if (error) {
+                console.log("Error", error);
+                return reject(error)
+            } else {
+                console.log("Data", data);
                 return resolve(data)
             }
         })

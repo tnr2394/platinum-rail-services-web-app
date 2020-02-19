@@ -177,7 +177,7 @@ module.exports.getInstructorTimeLog = (req, res) => {
 
 	const datesArray = req.body;
 
-	const instructorId = ObjectId('5e45310bbb516d2ee082f58d');
+	const instructorId = ObjectId('5e2ee7acb3c6121d2b51988f');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
 		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
 	}).catch((error) => {
@@ -185,5 +185,15 @@ module.exports.getInstructorTimeLog = (req, res) => {
 	})
 }
 
-
-
+module.exports.getWeeklylog = (req,res) => {
+	console.log("*****req.body in", req.body);
+	const datesArray = req.body.dates
+	console.log("datesArray", req.body.dates);
+	
+	const instructorId = ObjectId("5e2ee7acb3c6121d2b51988f")
+	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response)=>{
+		return res.status(200).json({ message: 'Time Logs for a week are ', response })
+	}).catch((error) => {
+		return res.status(500).json({ message: ' Error in getting weekly time log ', error })
+	})	
+}

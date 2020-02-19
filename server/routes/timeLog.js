@@ -9,6 +9,8 @@ console.log(" ---------- Hey Time Log Router Call ---------- ")
 /* GET timeLog listing. */
 router.get('/instructor', timeLogController.getTimeLog);
 
+router.get('/instructor/week', timeLogController.getWeeklylog)
+
 // Add Time Log by instructor
 router.post('/', timeLogController.addTimeLog);
 
