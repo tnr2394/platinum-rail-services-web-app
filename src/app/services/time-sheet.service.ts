@@ -96,11 +96,12 @@ export class TimeSheetService {
   }
 
   getTimeLogUsingDates(data: any): Observable<any> {
-    console.log("get time log", data);
+    const obj = { date: data }
+    console.log("get time log", obj);
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl + "time-log/ins", data).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "time-log/ins", obj).subscribe((res: any) => {
         observer.next(res.response);
         console.log("response from service", res);
         // observer.complete();
