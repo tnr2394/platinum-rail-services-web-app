@@ -69,7 +69,6 @@ export class SingleWeekComponent implements OnInit {
 
 
   timeChanged(event, index) {
-    console.log('Event::::::::::', event, index);
     this.currentTime = event;
   }
   eventFromTimePicker(event) {
@@ -136,47 +135,47 @@ export class SingleWeekComponent implements OnInit {
   }
 
   travelPlusWork(index) {
-    let travel,totalHr,totalMin;
+    let travel, totalHr, totalMin;
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-      if (totalMin > 59) {
-        totalMin = totalMin - 60;
-        totalHr = totalHr + 1
-        this.Days[index].totalHours.hours = totalHr;
-        this.Days[index].totalHours.minutes = totalMin;
-      } else {
-         this.Days[index].totalHours.hours = totalHr;
-        this.Days[index].totalHours.minutes = totalMin;
-      }
-     }
-
-  calculateTravelPlusWorkHours(index){
-    let travel,totalHr,totalMin;
-    travel = this.Days[index].travel.split(":")
-    totalHr = this.Days[index].workingHours.hours + Number(travel[0])
-    totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-      if (totalMin > 59) {
-        totalMin = totalMin - 60;
-        totalHr = totalHr + 1
-        return totalHr;
-      } else {
-      return totalHr;
-        }
+    if (totalMin > 59) {
+      totalMin = totalMin - 60;
+      totalHr = totalHr + 1
+      this.Days[index].totalHours.hours = totalHr;
+      this.Days[index].totalHours.minutes = totalMin;
+    } else {
+      this.Days[index].totalHours.hours = totalHr;
+      this.Days[index].totalHours.minutes = totalMin;
+    }
   }
 
-  calculateTravelPlusWorkMinutes(index){
-    let travel,totalHr,totalMin;
+  calculateTravelPlusWorkHours(index) {
+    let travel, totalHr, totalMin;
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-      if (totalMin > 59) {
-        totalMin = totalMin - 60;
-        totalHr = totalHr + 1
-        return totalMin;
-      } else {
+    if (totalMin > 59) {
+      totalMin = totalMin - 60;
+      totalHr = totalHr + 1
+      return totalHr;
+    } else {
+      return totalHr;
+    }
+  }
+
+  calculateTravelPlusWorkMinutes(index) {
+    let travel, totalHr, totalMin;
+    travel = this.Days[index].travel.split(":")
+    totalHr = this.Days[index].workingHours.hours + Number(travel[0])
+    totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
+    if (totalMin > 59) {
+      totalMin = totalMin - 60;
+      totalHr = totalHr + 1
       return totalMin;
-        }
+    } else {
+      return totalMin;
+    }
   }
 
   totalWorkingHours() {
@@ -292,15 +291,24 @@ export class SingleWeekComponent implements OnInit {
 
   checkTravelPlusWorkHour(index) {
 
-    let travel,totalHr,totalMin;
+    let travel, totalHr, totalMin;
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-      if (totalHr < 14) {
-        return 'ok';
-      } else {
+    if (totalHr < 14) {
+      return 'ok';
+    } else {
       return 'break';
-        }
+    }
+  }
+
+  checkTotalWorkingHours(hours) {
+    console.log('Check Total Working Hours===>>>', hours);
+    if (hours > 72) {
+      return 'break';
+    } else {
+      return 'ok';
+    }
   }
 
 }
