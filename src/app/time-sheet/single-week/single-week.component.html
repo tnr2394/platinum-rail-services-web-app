@@ -127,8 +127,8 @@
                                     <ng-container matColumnDef="travelHours">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Travel Hours </th>
                                         <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let days;let i=index">
-                                            <input matInput type="time" (onchange)="travelPlusWork(index)"
+                                            *matCellDef="let days;let i = index">
+                                            <input matInput type="time" (change)="travelPlusWork(i)"
                                                 [(ngModel)]='days.travel'>
                                         </td>
                                     </ng-container>
@@ -143,6 +143,16 @@
                                             </span>
                                         </td>
                                     </ng-container>
+
+                                    <ng-container matColumnDef="totalHours">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Travel + Working</th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                            <span [ngClass]="checkTravelPlusWorkHour(i)" >
+                                                 {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
 
 
 

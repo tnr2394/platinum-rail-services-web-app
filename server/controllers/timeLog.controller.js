@@ -174,9 +174,9 @@ module.exports.updateTimeLog = (req, res) => {
 
 module.exports.getInstructorTimeLog = (req, res) => {
 
-	console.log('Req.body======>>>>>', req.body);
+	console.log('Req.body======>>>>>', req.body.date);
 
-	const datesArray = req.body;
+	const datesArray = req.body.date;
 
 	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {

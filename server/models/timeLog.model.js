@@ -101,6 +101,16 @@ const timeLogSchema = new Schema({
             default: 0
         }
     },
+    totalHours: {
+        hours: {
+            type: Number,
+            default: 0
+        },
+        minutes: {
+            type: Number,
+            default: 0
+        }
+    },
     travel: {
         type: String,
         default: '00:00'

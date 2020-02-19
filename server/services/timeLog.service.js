@@ -165,22 +165,15 @@ function getInstructorWiseTimeLog(instructorId, date) {
 
 function getInstructorTimeLog(instructorId, datesArray) {
 
+    successLog("instructorId", instructorId, datesArray)
+
     return new Promise((resolve, reject) => {
 
-        var query = {
-            $and: []
-        }
-        console.log("***");
-        
+        var query = { $and: [] }
 
         if (datesArray.length != 0) {
-            console.log('Inside IF');
-            console.log("{ $in: ['$date', datesArray] }", { $in: ['$date', datesArray] });
-            
             query['$and'].push({ $in: ['$date', datesArray] })
         }
-        console.log('Query:::', query);
-        successLog("instructorId", instructorId, datesArray)
 
         InstructorTimeLog.aggregate([
             {
@@ -214,6 +207,7 @@ function getInstructorTimeLog(instructorId, datesArray) {
                 $project: {
                     _id: '$logs._id',
                     workingHours: '$logs.workingHours',
+                    totalHours: '$logs.totalHours',
                     logIn: '$logs.logIn',
                     lunchStart: '$logs.lunchStart',
                     lunchEnd: '$logs.lunchEnd',
