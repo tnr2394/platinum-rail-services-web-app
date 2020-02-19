@@ -2,7 +2,7 @@
 
 <div>
     Total Working Hours:
-    <span *ngIf="totalHoursWorked">
+    <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
         {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
     </span>
 </div>
