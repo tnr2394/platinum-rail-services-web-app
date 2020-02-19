@@ -4,7 +4,7 @@ import { from, Observable } from 'rxjs';
 import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { JobService } from 'src/app/services/job.service';
-import { LearnerService } from 'src/app/services/learner.service';
+import { LearnerService } from 'src/app/services/learner.service'; 
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';

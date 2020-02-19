@@ -126,8 +126,8 @@ const calculateDiff = (date, startTime, endTime) => {
 	var time1 = new Date(date + ' ' + startTime + ':00 GMT+0000');
 	var time2 = new Date(date + ' ' + endTime + ':00 GMT+0000');
 	var difference = (time2 - time1) / 60000;
-	var minutes = Math.abs(difference % 60);
-	var hours = Math.abs((difference - minutes) / 60)
+	var minutes = (difference % 60);
+	var hours = ((difference - minutes) / 60)
 	// var hours = Math.abs(Math.floor((difference - minutes) / 60));
 	return ({ hours: hours, minutes: minutes })
 }
@@ -193,39 +193,92 @@ module.exports.getWeeklylog = (req,res) => {
 	
 	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response)=>{
+		// false => not satisfied
+		// true => satisfied
 		console.log("response", response);
 
 		let tempWeeklyHours = 0; //Hours per week
 		let tempWeeklyMinutes = 0; //Hours per week
+		let satisfied = true;
 		console.log("here");
 
 		for(var i = 0; i < response.length; i++){
-			console.log("in for loop");
+			console.log("in for loop", "SATISFIED at", i, satisfied);
 			tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
 			tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
 			console.log("time done");
-			
-			if (i < response.length - 1) { //Break between turns
-				var tempDate2 = moment(i.date).format('MM/DD/YYYY');
+			if (i < response.length - 1 && satisfied == true) {
+				var time1 = new Date(response[i].date + ' ' + response[i].logOut + ':00 GMT+0000');
+				var time2 = new Date(response[i + 1].date + ' ' + response[i + 1].logIn + ':00 GMT+0000');
+				console.log("time1", time1, "time2", time2);
+				
+				var difference = (time2 - time1) / 60000;
+				var minutes = (difference % 60);
+				var hours = ((difference - minutes) / 60)
 				console.log("loop", i);
-				var diff = calculateDiff(tempDate2, response[i].logOut, response[i+1].logIn);
-				console.log("DIFFERENCE iS", diff);
-				if(diff.hours >= 12 && diff.minutes > 00){
-					console.log("Not satisfied");
-				}
-				else console.log("SATISFIED");
+				console.log("DIFFERENCE iS", hours, minutes);
+				if (hours < 12) satisfied = false;
+				else satisfied = true
 			}
+			// let req = date
+			let x = this.numberOfTurns(req, res, response[i].date)
+			console.log("SATISFIED at", i, satisfied, "STATUS",x);
 		}
 		if (tempWeeklyMinutes > 60) { //Hours per week
 			console.log("tempWeeklyMinutes before conversion", tempWeeklyMinutes);
 			tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes/60)
 			tempWeeklyMinutes = tempWeeklyMinutes%60
 		}
-		if (tempWeeklyHours > 70) console.log("Not satisfied"); //Hours per week
-		console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes);
+		if (tempWeeklyHours > 72) satisfied = false; //Hours per week
+		
+		//Break between turns
+		console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes, "satisfied", satisfied, "x", x);
 		
 
 	}).catch((error) => {
 		return res.status(500).json({ message: ' Error in getting weekly time log ', error })
 	})	
+}
+
+module.exports.numberOfTurns = (req, res, dateRecieved) => {
+	console.log("numberOfTurns called", dateRecieved);
+	let date;
+	if (dateRecieved) date = dateRecieved; else date = req.body.date
+	let datesArray
+	let status;
+	return new Promise((resolve, reject)=>{
+		datesArray = calculateLast13Days(date) 	
+		resolve(datesArray)
+	}).then(datesArray=>{
+		const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
+			if(response.length == 13) status = "satisfied"; else status = "Not satisfied"
+			return res.status(200).json({ message: 'Status sent ', status })
+		}).catch((error) => {
+			return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+		})
+	})
+}
+
+const calculateLast13Days = (date) => {
+	console.log("numberOfShifts",date);
+	
+	// let date = '02/06/2020'
+	// console.log(req.date);
+	var result = [];
+	for (var i = 1; i <= 13; i++) {
+		var d = new Date(date);
+		d.setDate(d.getDate() - i);
+		result.push(formatDate(d))
+	}
+	return (result);
+}
+function formatDate(date) {
+	var dd = date.getDate();
+	var mm = date.getMonth() + 1;
+	var yyyy = date.getFullYear();
+	if (dd < 10) { dd = '0' + dd }
+	if (mm < 10) { mm = '0' + mm }
+	date = mm + '/' + dd + '/' + yyyy;
+	return date
 }
