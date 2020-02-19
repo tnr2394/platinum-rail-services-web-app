@@ -28,6 +28,7 @@ export class SingleWeekComponent implements OnInit {
   totalMinutes = 0;
   datesOfWeek;
   Days: any = [];
+  finalArray: any = [];
 
   arrayFromDb: any = [];
   arrayFromParam: any = [];
@@ -58,7 +59,6 @@ export class SingleWeekComponent implements OnInit {
   getDays() {
     this.updateData(this.Days);
   }
-
 
   updateData(weekDays) {
     console.log("UPDATING DATA = ", weekDays)
@@ -134,6 +134,10 @@ export class SingleWeekComponent implements OnInit {
     console.log('Calculating Total Week Hours');
   }
 
+  travelPlusWork(index) {
+    console.log('Index', index);
+  }
+
   totalWorkingHours() {
     var totalH = 0;
     var totalM = 0;
@@ -152,11 +156,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   calculateWorkHours(index) {
-    console.log('Calculate DayWise Working Hours');
-    console.log('Single Day Details===>>>>', this.Days[index]);
     var date2 = moment(this.Days[index].date).format('MM/DD/YYYY');
-
-    console.log('Date==========>>>>>', date2);
   }
 
   calculateDiff1 = (index) => {
@@ -220,14 +220,30 @@ export class SingleWeekComponent implements OnInit {
 
     this.Days = this.arrayFromDb;
     this.updateData(this.Days);
+    this.totalWorkingHours();
   }
 
   submitDetail() {
     console.log('Submit Weekly Logs Detail', this.Days);
-    this._timeSheetService.addTime(this.Days).subscribe((res) => {
+    _.forEach((this.Days), (singleDate, index) => {
+      if ((singleDate.logIn != '00:00' && singleDate.lunchStart != '00:00') || (singleDate.lunchEnd != '00:00' && singleDate.logOut != '00:00')) {
+        this.finalArray.push(singleDate);
+      }
+    })
+
+    console.log('finalArray===========>>>>>>', this.finalArray);
+    this._timeSheetService.addTime(this.finalArray).subscribe((res) => {
     }, err => {
 
     })
+  }
+
+  checkTotalWorkHour(hours) {
+    if (hours > 12) {
+      return 'break';
+    } else {
+      return 'ok';
+    }
   }
 
 }

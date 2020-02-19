@@ -33,7 +33,7 @@ export class WeekListComponent implements OnInit {
 
   constructor(private router: Router) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
-    if (this.router.getCurrentNavigation().extras.state.instructor) console.log(this.router.getCurrentNavigation().extras.state.instructor);
+    // if (this.router.getCurrentNavigation().extras.state.instructor) console.log(this.router.getCurrentNavigation().extras.state.instructor);
    }
 
   ngOnInit() {
