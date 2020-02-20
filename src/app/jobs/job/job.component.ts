@@ -43,6 +43,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   clientDashboard;
   displayDetails = false
   sendDataToAllocateModal: { learners: any; materials: number; };
+  learnersAlloted = false;
   @Input('jobIdFromClient') jobIdFromClient;
   @Input('jobFromClient') jobFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
@@ -151,6 +152,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
 
   allocateLearners() {
+    this.learnersAlloted = false
     this.openDialog(AllocateLearnerModalComponent, this.sendDataToAllocateModal).subscribe((allocatedLearners) => {
       if (allocatedLearners == undefined) return
       let learners = [];
@@ -161,6 +163,8 @@ export class JobComponent implements OnInit, AfterViewInit {
       }
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT", learners);
+        this.learnersAlloted = true
+        console.log("*****this.learnersAlloted", this.learnersAlloted);
         this.assignmentStatusComp.ngOnInit();
       });
       this.materialsComp.clearCheckBox();

@@ -71,13 +71,13 @@
                 </li>
                 <li>
                     <div class="list_learners">
-                        <p style="color: #acc7ef;">{{resubmissionLearners}}</p>
+                        <p style="color: #acc7ef;">{{reSubmittedLearners}}</p>
                         <h4>Resubmission Learners</h4>
                     </div>
                 </li>
                 <li>
                     <div class="list_learners">
-                        <p style="color: #ffb03b;">N</p>
+                        <p style="color: #ffb03b;">{{resubmissionLearners}}</p>
                         <h4>Request for Resubmission</h4>
                     </div>
                 </li>
@@ -130,8 +130,8 @@
             </div>
             <mat-divider class="mb-3"></mat-divider>
             <div class="row m-0">
-                <div class="col-sm-6" *ngFor="let learner of learnerNames">
-                    <p>{{learner}}</p>
+                <div class="col-sm-6" *ngFor="let x of learnerNames">
+                    <p>{{x}}</p>
                 </div>
                 <!-- <div class="col-sm-6">
                     <mat-form-field class='min-width'>

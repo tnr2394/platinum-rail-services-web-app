@@ -31,6 +31,7 @@ export class MaterialsComponent implements OnInit {
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Input('jobId') jobId;
+  @Input('learnersAllotedFromJob') learnersAlloted = false;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
@@ -91,8 +92,8 @@ export class MaterialsComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Changes in app materials", changes);
-    if (this.jobId != undefined) {
+    console.log("*****Changes in app materials");
+    if (this.jobId != undefined && changes.jobId) {
       this.jobId = changes.jobId.currentValue;
       console.log("this.learners", this.jobId);
     }
