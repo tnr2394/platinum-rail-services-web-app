@@ -1,6 +1,6 @@
 // Npm Modules
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Q = require('q');
 fileDAO = require('../dao/file.dao');
@@ -222,6 +222,8 @@ const updateProfilePicture = (profileImg) => {
         var ext = re.exec(profileImg.name)[1];
         var name = profileImg.name.split('.').slice(0, -1).join('.')
         var newName = name + '-' + '-' + Date.now();
+
+        profileImg.name = newName + '.' + ext;
 
         var newFile = {
             title: newName,

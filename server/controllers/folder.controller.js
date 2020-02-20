@@ -254,6 +254,10 @@ folderController.addFile = function (req, res, next) {
 
         let newName = name + '-' + Date.now();
 
+        singleFile.name = newName + '.' + ext;
+
+
+
         let newFile = {
             title: newName,
             alias: name,

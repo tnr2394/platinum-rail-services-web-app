@@ -34,40 +34,41 @@
                 <!--Submission Files Section -->
                 <div class='row all_file_tile_row' *ngIf="files.length > 0">
                     <div class="table-responsive">
-                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless mb-0 submission_table">
-                        <ng-container matColumnDef="Materials">
-                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
-                                mat-sort-header="title">
-                                NAME
-                            </th>
+                        <table mat-table [dataSource]="dataSource" matSort
+                            class="table table-borderless mb-0 submission_table">
+                            <ng-container matColumnDef="Materials">
+                                <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                    mat-sort-header="title">
+                                    NAME
+                                </th>
 
-                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let file">
-                                <div class="row material_tile_row m-0">
-                                    <div class='materialsDiaplay w-100'>
-                                        <div class="col-12 px-3">
-                                            <file-tile (deletedFile)="deletedFile($event)" [file]="file">
-                                            </file-tile>
+                                <td class="mat-table-cell text-center" mat-cell *matCellDef="let file">
+                                    <div class="row material_tile_row m-0">
+                                        <div class='materialsDiaplay w-100'>
+                                            <div class="col-12 px-3">
+                                                <file-tile (deletedFile)="deletedFile($event)" [file]="file">
+                                                </file-tile>
+                                            </div>
+                                        </div>
+                                        <div class='row' *ngIf="files.length == 0">
+                                            <div class="col-12 p-0">
+                                                <mat-card class="text-info">
+                                                    No Files Found!
+                                                </mat-card>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class='row' *ngIf="files.length == 0">
-                                        <div class="col-12 p-0">
-                                            <mat-card class="text-info">
-                                                No Files Found!
-                                            </mat-card>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </ng-container>
-                        <thead>
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns">
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </td>
+                            </ng-container>
+                            <thead>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns">
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="row assignment-status" *ngIf="assignment">
                     <div class="col-4">
@@ -87,8 +88,8 @@
             <div class='col-xl-6 col-lg-6 remark_block' *ngIf="currentUser.userRole == 'learner'">
                 <h3 class="mb-4 remark">Remark by Instructor</h3>
                 <div class='center p-0'>
-                    <p>{{assignment.remark}}</p>
-                    <h5 *ngIf="!assignment.remark">No Remarks</h5>
+                    <p *ngIf="assignment && assignment.remark">{{assignment.remark}}</p>
+                    <h5 *ngIf="assignment && !assignment.remark">No Remarks</h5>
                 </div>
             </div>
 
