@@ -101,7 +101,7 @@ if (config.env.name === 'production') {
     cert: fs.readFileSync('/var/www/html/platinumTesting/ssl/fullchain1.pem')
   };
 
-  var server = http.createServer(credentials, app);
+  var server = https.createServer(credentials, app);
   server.listen(config.env.port);
   server.on('error', onError);
   server.on('listening', onListen);
