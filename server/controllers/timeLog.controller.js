@@ -186,99 +186,204 @@ module.exports.getInstructorTimeLog = (req, res) => {
 	})
 }
 
-module.exports.getWeeklylog = (req,res) => {
+module.exports.getWeeklylog = (req, res) => {
 	console.log("*****req.body in", req.body);
 	const datesArray = req.body.date
-	console.log("datesArray", req.body.array);
-	
 	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
-	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response)=>{
-		// false => not satisfied
-		// true => satisfied
-		console.log("response", response);
-
-		let tempWeeklyHours = 0; //Hours per week
-		let tempWeeklyMinutes = 0; //Hours per week
-		let satisfied = true;
-		console.log("here");
-
-		for(var i = 0; i < response.length; i++){
-			console.log("in for loop", "SATISFIED at", i, satisfied);
-			tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
-			tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
-			console.log("time done");
-			if (i < response.length - 1 && satisfied == true) {
-				var time1 = new Date(response[i].date + ' ' + response[i].logOut + ':00 GMT+0000');
-				var time2 = new Date(response[i + 1].date + ' ' + response[i + 1].logIn + ':00 GMT+0000');
-				console.log("time1", time1, "time2", time2);
-				
-				var difference = (time2 - time1) / 60000;
-				var minutes = (difference % 60);
-				var hours = ((difference - minutes) / 60)
-				console.log("loop", i);
-				console.log("DIFFERENCE iS", hours, minutes);
-				if (hours < 12) satisfied = false;
-				else satisfied = true
+	console.log("datesArray", req.body.array);
+	Promise.all([
+		getLast13Logs(datesArray),
+		weeklyLogsWithOtherRules(instructorId, datesArray)
+	]).then((response) => {
+		console.log("---RESPONSE AFTER ALL PROMISE---", response[0], response[1].weeklyLogs);
+		let last13daysLogs = response[0].logs
+		let dates = response[0].dates
+		let weekLogs = response[1].weeklyLogs
+		let countForEachDay = [];
+		let sortedDates = (dates.sort(function (a, b) {
+			return new Date(b + ' ' + '00:00' + ':00 GMT+0000') - new Date(a + ' ' + '00:00' + ':00 GMT+0000');
+		})).reverse();
+		console.log("sortedDates", sortedDates);
+		if (weekLogs.length > 0) {
+			for (var i = 0; i < weekLogs.length; i++) {
+				count = 0;
+				console.log("weekLogs of", i, weekLogs[i].date);
+				for (d = i; d <= i + 12; d++) {
+					console.log("DATE COMPARED IS",dates[d])
+					var index = lodash.findIndex(last13daysLogs, (o) => { 
+						console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
+						return o.date == sortedDates[d] 
+					})
+					if (index > -1) count = count + 1;
+				}
+				countForEachDay.push(count)
+				console.log("COUNT FOR i", i, count);
 			}
-			// let req = date
-			let x = this.numberOfTurns(req, res, response[i].date)
-			console.log("SATISFIED at", i, satisfied, "STATUS",x);
+			console.log("countForEachDay", countForEachDay);
+			let x = countForEachDay.every(isGreaterThan13)
+			status = (x == false) ? 'not satisfied' : status
+			console.log("status", status);
 		}
-		if (tempWeeklyMinutes > 60) { //Hours per week
-			console.log("tempWeeklyMinutes before conversion", tempWeeklyMinutes);
-			tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes/60)
-			tempWeeklyMinutes = tempWeeklyMinutes%60
-		}
-		if (tempWeeklyHours > 72) satisfied = false; //Hours per week
-		
-		//Break between turns
-		console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes, "satisfied", satisfied, "x", x);
-		
-
 	}).catch((error) => {
-		return res.status(500).json({ message: ' Error in getting weekly time log ', error })
-	})	
+		console.log('Inside Error=====>>>', error);
+	})
+
+}
+function isGreaterThan13(count) {
+	console.log("CoUnT", count);
+	return count == 13;
 }
 
-module.exports.numberOfTurns = (req, res, dateRecieved) => {
-	console.log("numberOfTurns called", dateRecieved);
-	let date;
-	if (dateRecieved) date = dateRecieved; else date = req.body.date
-	let datesArray
-	let status;
-	return new Promise((resolve, reject)=>{
-		datesArray = calculateLast13Days(date) 	
-		resolve(datesArray)
-	}).then(datesArray=>{
-		const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
+	return new Promise((resolve, reject) => {
 		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
-			if(response.length == 13) status = "satisfied"; else status = "Not satisfied"
-			return res.status(200).json({ message: 'Status sent ', status })
+			// false => not satisfied
+			// true => satisfied
+			let status;
+			console.log("response", response);
+
+			let tempWeeklyHours = 0; //Hours per week
+			let tempWeeklyMinutes = 0; //Hours per week
+			let satisfied = true;
+			status = 'satisfied'
+			console.log("here");
+
+			for (var i = 0; i < response.length; i++) {
+				console.log("in for loop", "SATISFIED at", i, status);
+				tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
+				tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
+				console.log("time done");
+				if (i < response.length - 1 && status == 'satisfied') {
+					var time1 = new Date(response[i].date + ' ' + response[i].logOut + ':00 GMT+0000');
+					var time2 = new Date(response[i + 1].date + ' ' + response[i + 1].logIn + ':00 GMT+0000');
+					console.log("time1", time1, "time2", time2);
+
+					var difference = (time2 - time1) / 60000;
+					var minutes = (difference % 60);
+					var hours = ((difference - minutes) / 60)
+					console.log("loop", i);
+					console.log("DIFFERENCE iS", hours, minutes);
+					if (hours < 12) status = 'not satisfied';
+					else status = 'satisfied'
+				}
+			}
+			if (tempWeeklyMinutes > 60) { //Hours per week
+				console.log("tempWeeklyMinutes before conversion", tempWeeklyMinutes);
+				tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes / 60)
+				tempWeeklyMinutes = tempWeeklyMinutes % 60
+			}
+			if (tempWeeklyHours > 72) status = 'not satisfied'; //Hours per week
+			//Break between turns
+			console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes, "status", status);
+			let weeklyResponse = {
+				weeklyLogs: response,
+				status: status
+			}
+			resolve(weeklyResponse)
 		}).catch((error) => {
-			return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+			return res.status(500).json({ message: ' Error in getting weekly time log ', error })
+		})
+	})
+}
+const getLast13Logs = (datesArray) => {
+	console.log("getLast13Logs", datesArray);
+
+	return new Promise((resolve, reject) => {
+		numberOfTurns(datesArray).then((response) => {
+			// console.log("response ++++++++", response)
+			return resolve(response)
+		}).catch((error) => {
+			console.error("Error", error)
+			return reject(error)
 		})
 	})
 }
 
+// module.exports.numberOfTurns = (req, res, dateRecieved) => {
+// 	console.log("numberOfTurns called", dateRecieved);
+// 	let date;
+// 	if (dateRecieved) date = dateRecieved; else date = req.body.date
+// 	let datesArray
+// 	let status;
+// 	return new Promise((resolve, reject)=>{
+// 		datesArray = calculateLast13Days(date) 	
+// 		resolve(datesArray)
+// 	}).then(datesArray=>{
+// 		const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+// 		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
+// 			if(response.length == 13) status = "satisfied"; else status = "Not satisfied"
+// 			return res.status(200).json({ message: 'Status sent ', status })
+// 		}).catch((error) => {
+// 			return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+// 		})
+// 	})
+// }
+
+const numberOfTurns = (weekDates) => {
+	console.log("----------numberOfTurns called---------");
+	return new Promise((resolve, reject) => {
+		let datesArray = weekDates
+		calculateLast13Days(weekDates[0]).then((data) => {
+			datesArray.push(...data)
+			console.log("----------datesArray after 13 days are added----------", datesArray);
+			const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+			timeLogServices.getInstructorTimeLog(instructorId, datesArray)
+				.then((response) => {
+					console.log("All the dates are", response);
+					let logsToReturn = {
+						logs: response,
+						dates: datesArray
+					}
+					return resolve(logsToReturn)
+				})
+				.catch(() => {
+
+				})
+		})
+			.catch(() => {
+
+			})
+		// return resolve(datesArray)
+
+	})
+}
+
+
 const calculateLast13Days = (date) => {
-	console.log("numberOfShifts",date);
-	
+	console.log("numberOfShifts", date);
 	// let date = '02/06/2020'
 	// console.log(req.date);
-	var result = [];
-	for (var i = 1; i <= 13; i++) {
-		var d = new Date(date);
-		d.setDate(d.getDate() - i);
-		result.push(formatDate(d))
-	}
-	return (result);
+
+	return new Promise((resolve, reject) => {
+		var result = [];
+		for (var i = 1; i <= 13; i++) {
+			var d = new Date(date);
+			d.setDate(d.getDate() - i);
+			formatDate(d).then((response) => {
+				console.log("----------response----------", response);
+
+				result.push(response)
+			}).catch((error) => {
+
+			})
+		}
+		console.log('Result inside in 13Dyas', result);
+		resolve(result)
+	})
+
 }
 function formatDate(date) {
-	var dd = date.getDate();
-	var mm = date.getMonth() + 1;
-	var yyyy = date.getFullYear();
-	if (dd < 10) { dd = '0' + dd }
-	if (mm < 10) { mm = '0' + mm }
-	date = mm + '/' + dd + '/' + yyyy;
-	return date
+	return new Promise((resolve, reject) => {
+		var dd = date.getDate();
+		var mm = date.getMonth() + 1;
+		var yyyy = date.getFullYear();
+		if (dd < 10) { dd = '0' + dd }
+		if (mm < 10) { mm = '0' + mm }
+		date = mm + '/' + dd + '/' + yyyy;
+		console.log("formatDate", date);
+		resolve(date)
+	})
 }
+
+// let x = this.numberOfTurns(req, res, response[i].date)
+// console.log("SATISFIED at", i, satisfied, "STATUS", x);
