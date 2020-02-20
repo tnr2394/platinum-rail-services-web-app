@@ -199,6 +199,7 @@ const updateProfilePicture = (profileImg) => {
         var ext = re.exec(profileImg.name)[1];
         var name = profileImg.name.split('.').slice(0, -1).join('.')
 
+
         var newFile = {
             title: name,
             alias: name,
@@ -416,6 +417,9 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         var name = singleFile.name.split('.').slice(0, -1).join('.')
 
         var newName = name + '-' + Date.now();
+
+        singleFile.name = newName + '.' + ext;
+
 
         var newFile = {
             title: newName,
