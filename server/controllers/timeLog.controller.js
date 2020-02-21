@@ -190,39 +190,58 @@ module.exports.getWeeklylog = (req, res) => {
 	console.log("*****req.body in", req.body);
 	const datesArray = req.body.date
 	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
-	console.log("datesArray", req.body.array);
 	Promise.all([
 		getLast13Logs(datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
 	]).then((response) => {
+		let finalStatus;
 		// console.log("---RESPONSE AFTER ALL PROMISE---", response[0], response[1].weeklyLogs);
 		let last13daysLogs = response[0].logs
 		let dates = response[0].dates
 		let weekLogs = response[1].weeklyLogs
+		let status = response[1].status
+		// console.log("***weekLogs***", response[1]);
 		let countForEachDay = [];
 		let sortedDates = (dates.sort(function (a, b) {
 			return new Date(b + ' ' + '00:00' + ':00 GMT+0000') - new Date(a + ' ' + '00:00' + ':00 GMT+0000');
 		})).reverse();
-		console.log("sortedDates", sortedDates);
+		// console.log("***sortedDates", sortedDates);
+		// console.log("******WeekLogs.length******", weekLogs);
 		if (weekLogs.length > 0) {
+			console.log("---IN IF---");
 			for (var i = 0; i < weekLogs.length; i++) {
 				count = 0;
-				// console.log("weekLogs of", i, weekLogs[i].date);
-				for (d = i; d <= i + 12; d++) {
+				console.log("weekLogs of", i, weekLogs[i].date);
+				for (d = i; d <= i + 13; d++) {
 					// console.log("DATE COMPARED IS",dates[d])
 					var index = lodash.findIndex(last13daysLogs, (o) => { 
-						console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
+						// console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
 						return o.date == sortedDates[d] 
 					})
 					if (index > -1) count = count + 1;
 				}
 				countForEachDay.push(count)
-				// console.log("COUNT FOR i", i, count);
+				console.log("COUNT FOR i", i, count);
 			}
 			let x = countForEachDay.every(isEqualThan13)
-			if (x == false) countForEachDay.every(isGreaterThan13)
-			status = (x == false) ? 'not satisfied' : status
-			return res.status(200).json({ message: 'Status sent ', status })
+			if (x == false) {
+				x = countForEachDay.every(isGreaterThan13)
+				if (x == false) status.push("Less than Regulation used"); 
+				else status.push("Regulation exceeded")
+			}
+			else status.push("Regulation Achieved")
+			let tempFinalStatus = status.every(isAchieved)
+			if (tempFinalStatus == false){
+				let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used"})
+				if (matchIndex > -1) finalStatus = "Less than Regulation used"
+				else {
+					let matchIndexAgain = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
+					if (matchIndexAgain > -1) finalStatus = "Regulation exceeded"
+				}
+			}
+			else finalStatus = "Regulation Achieved"
+			// status = (x == false) ? 'not satisfied' : status
+			return res.status(200).json({ message: 'Status sent ', finalStatus })
 		}
 	}).catch((error) => {
 		console.log('Inside Error=====>>>', error);
@@ -230,19 +249,26 @@ module.exports.getWeeklylog = (req, res) => {
 
 }
 function isEqualThan13(count) {
-	console.log("CoUnT", count);
+	// console.log("CoUnT", count);
 	return count == 13;
 }
 function isGreaterThan13(count) {
-	console.log("CoUnT", count);
+	// console.log("CoUnT", count);
 	return count > 13;
+}
+function isAchieved(status){
+	return status == "Regulation Achieved"
 }
 
 const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
+	// console.log("weeklyLogsWithOtherRules", datesArray);
+	
 	return new Promise((resolve, reject) => {
-		let status;
+		let status = [];
 		// status = 'satisfied'
 		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
+			// console.log("***getInstructorTimeLog***", response);
+			
 			
 			let tempWeeklyHours = 0; //Hours per week
 			let tempWeeklyMinutes = 0; //Hours per week
@@ -251,22 +277,26 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 			for (var i = 0; i < response.length; i++) {
 				// Working hours
 				if ((response[i].workingHours.hours == 12 && response[i].workingHours.minutes == 00)){
-					status = "Regulation achieved"
+					// status = "Regulation achieved"
+					status.push("Regulation achieved")
 				} 
-				else if (response[i].workingHours.hours < 12) status = "Less than Regulation used"
-				else status = "Regulation exceeded"
+				else if (response[i].workingHours.hours < 12) status.push("Less than Regulation used")  //status = "Less than Regulation used"
+				else status.push("Regulation exceeded") //status = "Regulation exceeded"
 				
 				// traver + work
 				if (response[i].totalHours && (response[i].totalHours.hours == 14 && response[i].workingHours.minutes == 00)) {
-					status = "Regulation achieved"
-				} else if (response[i].totalHours.hours < 14) status = "Less than Regulation used"
-				else status = "Regulation exceeded"
-
+					status.push("Regulation achieved") // status = "Regulation achieved"
+				} else if (response[i].totalHours && response[i].totalHours.hours < 14) status.push("Less than Regulation used") //status = "Less than Regulation used"
+				else status.push("Regulation exceeded") //status = "Regulation exceeded"
+				
+				console.log("tempWeeklyMinutes:", tempWeeklyMinutes, "tempWeeklyHours", tempWeeklyHours);
 				console.log("in for loop", "SATISFIED at", i, status);
 				tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
+				console.log("tempWeeklyHours =>", tempWeeklyHours, "+", response[i].workingHours.hours,"=" ,tempWeeklyHours + response[i].workingHours.hours);
 				tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
+				console.log("tempWeeklyMinutes =>", tempWeeklyMinutes, "+", response[i].workingHours.minutes,"=" ,tempWeeklyMinutes + response[i].workingHours.minutes);
 				console.log("time done");
-				if (i < response.length - 1 && status == 'Regulation achieved') {//Break between turns
+				if (i < response.length - 1) { //Break between turns
 					var time1 = new Date(response[i].date + ' ' + response[i].logOut + ':00 GMT+0000');
 					var time2 = new Date(response[i + 1].date + ' ' + response[i + 1].logIn + ':00 GMT+0000');
 					// console.log("time1", time1, "time2", time2);
@@ -275,9 +305,9 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 					var hours = ((difference - minutes) / 60)
 					// console.log("loop", i);
 					// console.log("DIFFERENCE iS", hours, minutes);
-					if (hours < 12) status = 'Less than Regulation used';
-					else if (hours == 12 && minutes == 00) status = 'Regulation achieved'
-					else status = "Regulation exceeded"
+					if (hours < 12) status.push("Less than Regulation used") //status = 'Less than Regulation used';
+					else if (hours == 12 && minutes == 00) status.push("Regulation achieved") //status = 'Regulation achieved'
+					else status.push("Regulation exceeded") //status = "Regulation exceeded"
 				}
 			}
 			if (tempWeeklyMinutes > 60) { //Hours per week
@@ -285,9 +315,13 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 				tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes / 60)
 				tempWeeklyMinutes = tempWeeklyMinutes % 60
 			}
-			if (tempWeeklyHours == 72) status = "Regulation Achieved";
-			else if (tempWeeklyHours > 72) status = "Regulation Exceeded" 
-			else status = 'Less than Regulation used' //Hours per week
+			else if (tempWeeklyMinutes == 60){
+				tempWeeklyHours = tempWeeklyHours + 1
+				tempWeeklyMinutes = tempWeeklyMinutes - 60
+			}
+			if (tempWeeklyHours == 72) status.push("Regulation Achieved") //status = "Regulation Achieved";
+			else if (tempWeeklyHours > 72) status.push("Regulation Exceeded") //status = "Regulation Exceeded" 
+			else status.push("Less than Regulation used") //status = 'Less than Regulation used' //Hours per week
 			//Break between turns
 			console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes, "status", status);
 			let weeklyResponse = {
@@ -303,7 +337,6 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 }
 const getLast13Logs = (datesArray) => {
 	console.log("getLast13Logs", datesArray);
-
 	return new Promise((resolve, reject) => {
 		numberOfTurns(datesArray).then((response) => {
 			// console.log("response ++++++++", response)
@@ -341,11 +374,11 @@ const numberOfTurns = (weekDates) => {
 		let datesArray = weekDates
 		calculateLast13Days(weekDates[0]).then((data) => {
 			datesArray.push(...data)
-			console.log("----------datesArray after 13 days are added----------", datesArray);
+			console.log("----------datesArray after 13 days are added----------");
 			const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 			timeLogServices.getInstructorTimeLog(instructorId, datesArray)
 				.then((response) => {
-					console.log("All the dates are", response);
+					// console.log("All the dates are", response);
 					let logsToReturn = {
 						logs: response,
 						dates: datesArray
@@ -372,7 +405,7 @@ const calculateLast13Days = (date) => {
 
 	return new Promise((resolve, reject) => {
 		var result = [];
-		for (var i = 1; i <= 13; i++) {
+		for (var i = 1; i <= 14; i++) {
 			var d = new Date(date);
 			d.setDate(d.getDate() - i);
 			formatDate(d).then((response) => {

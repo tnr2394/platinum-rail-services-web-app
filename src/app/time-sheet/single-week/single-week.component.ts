@@ -77,19 +77,30 @@ export class SingleWeekComponent implements OnInit {
 
   closed(index) {
     console.log('Closed Function', this.Days[index]);
-
-
     if (this.Days[index].logIn != '00:00' && this.Days[index].lunchStart != '00:00' && this.Days[index].lunchEnd != '00:00' && this.Days[index].logOut != '00:00') {
       var diff1 = this.calculateDiff1(index)
       var diff2 = this.calculateDiff2(index)
       let hoursWorking = diff1.hours + diff2.hours
-      let totalMinute = diff1.minutes + diff1.minutes
-      if (totalMinute > 59) {
-        totalMinute = totalMinute - 60;
-        hoursWorking = hoursWorking + 1
+      console.log("-----hoursWorking-----", hoursWorking);
+      let totalMinute = diff1.minutes + diff2.minutes
+      console.log("-----totalMinute-----", totalMinute);
+      if (totalMinute > 60) {
+        // tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes / 60)
+        // tempWeeklyMinutes = tempWeeklyMinutes % 60
+        totalMinute = totalMinute % 60;
+        console.log("-----total Minutes----", totalMinute);
+        console.log("-----total Minutes/60----", totalMinute/60);
+        console.log("--IN IF--totalMinute", totalMinute);
+        hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+        console.log("--IN IF--hoursWorking", hoursWorking);
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
-      } else {
+      }
+      else if (totalMinute == 60){
+        this.Days[index].workingHours.hours = hoursWorking + 1;
+        this.Days[index].workingHours.minutes = totalMinute - 60;
+      } 
+      else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
       }
@@ -99,13 +110,23 @@ export class SingleWeekComponent implements OnInit {
       var diff1 = this.calculateDiff1(index)
       let hoursWorking = diff1.hours
       let totalMinute = diff1.minutes
-      console.log(" hoursWorking else ", diff1)
+      console.log("hoursWorking else ", diff1)
       if (totalMinute > 59) {
-        totalMinute = totalMinute - 60;
-        hoursWorking = hoursWorking + 1
+        // totalMinute = totalMinute - 60;
+        // hoursWorking = hoursWorking + 1
+        totalMinute = totalMinute % 60;
+        console.log("--IN ELSE IF--totalMinute", totalMinute);
+        hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+        console.log("--IN ELSE IF--hoursWorking", hoursWorking);
+
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
-      } else {
+      }
+      else if (totalMinute == 60) {
+        this.Days[index].workingHours.hours = hoursWorking + 1;
+        this.Days[index].workingHours.minutes = totalMinute - 60;
+      }  
+      else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
       }
@@ -117,12 +138,21 @@ export class SingleWeekComponent implements OnInit {
       let totalMinute = diff2.minutes
       console.log(" hoursWorking else ", hoursWorking)
       if (totalMinute > 59) {
-        totalMinute = totalMinute - 60;
-        hoursWorking = hoursWorking + 1
+        // totalMinute = totalMinute - 60;
+        // hoursWorking = hoursWorking + 1
+        totalMinute = totalMinute % 60;
+        console.log("**IN else IF**totalMinute", totalMinute);
+        hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+        console.log("**IN else IF**hoursWorking", hoursWorking);
+
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
 
-      } else {
+      } else if (totalMinute == 60) {
+        this.Days[index].workingHours.hours = hoursWorking + 1;
+        this.Days[index].workingHours.minutes = totalMinute - 60;
+      }  
+      else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
       }
@@ -140,11 +170,22 @@ export class SingleWeekComponent implements OnInit {
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
     if (totalMin > 59) {
-      totalMin = totalMin - 60;
-      totalHr = totalHr + 1
+      // totalMinute = totalMinute % 60;
+      // console.log("--IN ELSE IF--totalMinute", totalMinute);
+      // hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+      // console.log("--IN ELSE IF--hoursWorking", hoursWorking);
+      // totalMin = totalMin - 60;
+      // totalHr = totalHr + 1
+      totalHr = totalHr + Math.floor(totalMin / 60)
+      totalMin = totalMin % 60
       this.Days[index].totalHours.hours = totalHr;
       this.Days[index].totalHours.minutes = totalMin;
-    } else {
+    }
+    else if (totalMin == 60) {
+      this.Days[index].workingHours.hours = totalHr + 1;
+      this.Days[index].workingHours.minutes = totalMin - 60;
+    }  
+    else {
       this.Days[index].totalHours.hours = totalHr;
       this.Days[index].totalHours.minutes = totalMin;
     }
@@ -156,10 +197,17 @@ export class SingleWeekComponent implements OnInit {
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
     if (totalMin > 59) {
-      totalMin = totalMin - 60;
-      totalHr = totalHr + 1
+      // totalMin = totalMin - 60;
+      // totalHr = totalHr + 1
+      totalHr = totalHr + Math.floor(totalMin / 60)
+      totalMin = totalMin % 60
       return totalHr;
-    } else {
+    }else if(totalMin == 60){
+      totalHr = totalHr + 1
+      totalMin = totalMin - 60
+      return totalHr;
+    } 
+    else {
       return totalHr;
     }
   }
@@ -170,10 +218,18 @@ export class SingleWeekComponent implements OnInit {
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
     if (totalMin > 59) {
-      totalMin = totalMin - 60;
-      totalHr = totalHr + 1
+      // totalMin = totalMin - 60;
+      // totalHr = totalHr + 1
+      totalHr = totalHr + Math.floor(totalMin / 60)
+      totalMin = totalMin % 60
       return totalMin;
-    } else {
+    }
+    else if (totalMin == 60) {
+      totalHr = totalHr + 1
+      totalMin = totalMin - 60
+      return totalMin;
+    }  
+    else {
       return totalMin;
     }
   }
@@ -183,12 +239,20 @@ export class SingleWeekComponent implements OnInit {
     var totalM = 0;
     _.forEach(this.Days, (day) => {
       totalH = totalH + day.workingHours.hours;
+      console.log("totalH", totalH);
       totalM = totalM + day.workingHours.minutes;
+      console.log("totalM", totalM);
     })
     if (totalM > 59) {
+      totalH = totalH + Math.floor(totalM / 60)
+      totalM = totalM % 60
+      this.totalHoursWorked.hours = totalH;
+      this.totalHoursWorked.minutes = totalM;
+    }else if(totalM == 60){
       this.totalHoursWorked.hours = totalH + 1;
-      this.totalHoursWorked.minutes = totalM - 60;
-    } else {
+      this.totalHoursWorked.minutes = totalM - 60
+    } 
+    else {
       this.totalHoursWorked.hours = totalH;
       this.totalHoursWorked.minutes = totalM;
     }
@@ -200,26 +264,43 @@ export class SingleWeekComponent implements OnInit {
   }
 
   calculateDiff1 = (index) => {
+    console.log("CalculateDiff 1");
     var startTime = this.Days[index].logIn;
+    var startHours = startTime.split(":")[0]
+    var startMinutes = startTime.split(":")[1]
     var endTime = this.Days[index].lunchStart;
-    var date = moment(this.Days[index].date).format('MM/DD/YYYY');
-    var time1: any = new Date(date + ' ' + startTime + ':00 GMT+0000');
-    var time2: any = new Date(date + ' ' + endTime + ':00 GMT+0000');
+    var endHours = endTime.split(":")[0]
+    var endMinutes = endTime.split(":")[1]
+    var date = moment(this.Days[index].date);
+    var time1: any = new Date(date.toDate().setHours(startHours, startMinutes)) //new Date(date + ' ' + startTime + ':00 GMT+0000');
+    var time2: any = new Date(date.toDate().setHours(endHours, endMinutes))//new Date(date + ' ' + endTime + ':00 GMT+0000');
     var difference = (time2 - time1) / 60000;
+    console.log("Difference", difference);
     var minutes = difference % 60;
+    console.log("minutes", minutes);
     var hours = (difference - minutes) / 60;
+    console.log("hours", hours);
     return ({ hours: hours, minutes: minutes })
   }
 
   calculateDiff2 = (index) => {
+    console.log("CalculateDiff 2");
     var startTime = this.Days[index].lunchEnd;
+    var startHours = startTime.split(":")[0]
+    var startMinutes = startTime.split(":")[1]
     var endTime = this.Days[index].logOut;
-    var date = moment(this.Days[index].date).format('MM/DD/YYYY');
-    var time1: any = new Date(date + ' ' + startTime + ':00 GMT+0000');
-    var time2: any = new Date(date + ' ' + endTime + ':00 GMT+0000');
+    var endHours = endTime.split(":")[0]
+    var endMinutes = endTime.split(":")[1]
+    var date = moment(this.Days[index].date);
+    var time1: any = new Date(date.toDate().setHours(startHours, startMinutes));
+    console.log("--time 1--", time1);
+    var time2: any = new Date(date.toDate().setHours(endHours, endMinutes));
+    console.log("--time 2--", time2);
     var difference = (time2 - time1) / 60000;
     var minutes = difference % 60;
+    console.log("minutes", minutes);
     var hours = (difference - minutes) / 60;
+    console.log("hours", hours);
     return ({ hours: hours, minutes: minutes })
   }
 

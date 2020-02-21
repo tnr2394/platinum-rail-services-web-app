@@ -227,6 +227,11 @@ function getInstructorTimeLog(instructorId, datesArray) {
                     }
                 }
             },
+            {
+                $sort: {
+                    date: 1
+                }
+            }
         ]).exec((error, data) => {
             if (error) {
                 return reject(error)
@@ -240,7 +245,7 @@ function getInstructorTimeLog(instructorId, datesArray) {
 
 function getWeeklyTimeLog(instructorId) {
     console.log("in service", instructorId);
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
         InstructorTimeLog.aggregate([
             {
                 $match: { 'instructorId': ObjectId(instructorId) }
@@ -257,40 +262,40 @@ function getWeeklyTimeLog(instructorId) {
                 $unwind: '$logs'
             },
             {
-             $lookup: {
-                from: 'timelogs',
-                let: { logsId: '$logs' },
-                pipeline: [
-                    {
-                        $match: {
-                            $expr: {
-                                $eq: ['$_id', '$$logsId']
+                $lookup: {
+                    from: 'timelogs',
+                    let: { logsId: '$logs' },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: {
+                                    $eq: ['$_id', '$$logsId']
+                                }
+                            }
+                        },
+                        {
+                            $project: {
+                                _id: 1,
+                                date: 1,
+                                travel: 1,
+                                time: 1,
+                                logInTime: {
+                                    $concat: ['$time.in.hours', ':', '$time.in.minutes', ':00']
+                                },
+                                lunchStartTime: {
+                                    $concat: ['$time.lunchStart.hours', ':', '$time.lunchStart.minutes', ':00']
+                                },
+                                lunchEndTime: {
+                                    $concat: ['$time.lunchEnd.hours', ':', '$time.lunchEnd.minutes', ':00']
+                                },
+                                logOutTime: {
+                                    $concat: ['$time.out.hours', ':', '$time.out.minutes', ':00']
+                                },
                             }
                         }
-                    },
-                    {
-                        $project: {
-                            _id: 1,
-                            date: 1,
-                            travel: 1,
-                            time: 1,
-                            logInTime: {
-                                $concat: ['$time.in.hours', ':', '$time.in.minutes', ':00']
-                            },
-                            lunchStartTime: {
-                                $concat: ['$time.lunchStart.hours', ':', '$time.lunchStart.minutes', ':00']
-                            },
-                            lunchEndTime: {
-                                $concat: ['$time.lunchEnd.hours', ':', '$time.lunchEnd.minutes', ':00']
-                            },
-                            logOutTime: {
-                                $concat: ['$time.out.hours', ':', '$time.out.minutes', ':00']
-                            },
-                        }
-                    }
-                ],
-                as: 'timeLogs'
-            }
+                    ],
+                    as: 'timeLogs'
+                }
             },
         ]).exec((error, data) => {
             if (error) {
