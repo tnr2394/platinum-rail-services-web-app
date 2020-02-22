@@ -177,8 +177,8 @@ module.exports.getInstructorTimeLog = (req, res) => {
 	console.log('Req.body======>>>>>', req.body.date);
 
 	const datesArray = req.body.date;
-
-	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+	const instructorId = req.body.instructorId
+	// const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 	timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
 		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
 	}).catch((error) => {
@@ -189,7 +189,7 @@ module.exports.getInstructorTimeLog = (req, res) => {
 module.exports.getWeeklylog = (req, res) => {
 	console.log("*****req.body in", req.body);
 	const datesArray = req.body.date
-	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+	const instructorId = req.body.instructorId;
 	Promise.all([
 		getLast13Logs(datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
@@ -207,7 +207,7 @@ module.exports.getWeeklylog = (req, res) => {
 		})).reverse();
 		// console.log("***sortedDates", sortedDates);
 		// console.log("******WeekLogs.length******", weekLogs);
-		if (weekLogs.length > 0) {
+		if (weekLogs.length > 0 && last13daysLogs.length > 0) {
 			console.log("---IN IF---");
 			for (var i = 0; i < weekLogs.length; i++) {
 				count = 0;
@@ -243,6 +243,7 @@ module.exports.getWeeklylog = (req, res) => {
 			// status = (x == false) ? 'not satisfied' : status
 			return res.status(200).json({ message: 'Status sent ', finalStatus })
 		}
+		else return res.status(200).json({ message: 'Status sent ', finalStatus:'Not enough data' })
 	}).catch((error) => {
 		console.log('Inside Error=====>>>', error);
 	})

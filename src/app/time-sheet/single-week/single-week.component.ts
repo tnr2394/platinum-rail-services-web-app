@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -32,6 +32,8 @@ export class SingleWeekComponent implements OnInit {
 
   arrayFromDb: any = [];
   arrayFromParam: any = [];
+  queryParamsObj: Params;
+  instructorId: any;
 
 
 
@@ -47,11 +49,15 @@ export class SingleWeekComponent implements OnInit {
 
 
 
-  constructor(private router: Router, public _timeSheetService: TimeSheetService) {
+  constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService) {
     this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
+    this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
   }
 
   ngOnInit() {
+    // this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.datesOfWeek });
+    console.log("---this.datesOfWeek---", this.datesOfWeek);
+    
     this.getDays();
     this.getValuesUsingDates();
   }
@@ -307,7 +313,11 @@ export class SingleWeekComponent implements OnInit {
 
   getValuesUsingDates() {
     console.log('Get Values Using Dates');
-    this._timeSheetService.getTimeLogUsingDates(this.datesOfWeek).subscribe(res => {
+    let data = {
+      date: this.datesOfWeek,
+      instructorId : this.instructorId
+    }
+    this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
       console.log('Inside Res=======>>>>', res);
       this.arrayFromDb = res;
       console.log('Arrayform db', this.arrayFromDb);

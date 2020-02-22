@@ -96,12 +96,12 @@ export class TimeSheetService {
   }
 
   getTimeLogUsingDates(data: any): Observable<any> {
-    const obj = { date: data }
-    console.log("get time log", obj);
+    // const obj = { date: data }
+    console.log("get time log", data);
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.post(config.baseApiUrl + "time-log/ins", obj).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "time-log/ins", data).subscribe((res: any) => {
         observer.next(res.response);
         console.log("response from service", res);
         // observer.complete();
@@ -115,5 +115,26 @@ export class TimeSheetService {
         })
     });
   }
+  getWeeklyStatus(data: any): Observable<any> {
+    // const obj = { date: data }
+    // console.log("get time log", obj);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "time-log/instructor/week", data).subscribe((res: any) => {
+        observer.next(res);
+        console.log("response from service", res);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
+
 
 }

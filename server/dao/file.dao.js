@@ -66,19 +66,25 @@ file.addFile = function (object) {
                         uploadedBy: object.uploadedBy,
                     }
                     if (object.extension == 'pdf') isPdf = true; else isPdf = false
-                    filePreviewService.generatePdf(uploadRes.Location, object.title, isPdf).then((response) => {
-                        console.log("response with thumbnail path",  response.Location);
-                        s3File.thumbNail = response.Location;
-                        var newFile = new fileModel(s3File);
-                        console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
-                        newFile.save((err, file) => {
-                            console.log("File Uploaded Successfully =  ", file, err);
-                            if (err) return reject(err);
-                            else return resolve(file);
-                        });
-                    }).catch((error) => {
+                    var newFile = new fileModel(s3File);
+                    newFile.save((err, file) => {
+                        console.log("File Uploaded Successfully =  ", file, err);
+                        if (err) return reject(err);
+                        else return resolve(file);
+                    });
+                    // filePreviewService.generatePdf(uploadRes.Location, object.title, isPdf).then((response) => {
+                    //     console.log("response with thumbnail path",  response.Location);
+                    //     s3File.thumbNail = response.Location;
+                    //     var newFile = new fileModel(s3File);
+                    //     console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
+                    //     newFile.save((err, file) => {
+                    //         console.log("File Uploaded Successfully =  ", file, err);
+                    //         if (err) return reject(err);
+                    //         else return resolve(file);
+                    //     });
+                    // }).catch((error) => {
 
-                    })
+                    // })
                 } else {
                     console.log("File Resposnse not comes");
                 }

@@ -9,6 +9,10 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { InstructorConfirmationModalComponent } from './instructor-confirmation-modal/instructor-confirmation-modal.component';
 import * as Moment from 'moment';
+import { extendMoment } from 'moment-range';
+const moment = extendMoment(Moment);
+import * as _ from 'lodash'
+
 
 @Component({
   selector: 'app-admin-time-sheet',
@@ -36,6 +40,8 @@ export class AdminTimeSheetComponent implements OnInit {
   queryParamsObj = {};
   value: string[];
   view: string;
+  selectedInstructorId: string[];
+  displayMessage = false;
   
   // instructors = [{name:'Inst '}]
 
@@ -48,8 +54,12 @@ export class AdminTimeSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.options = { multiple: true }
+    this.options = { multiple: false }
     this.view = "Week"
+    this.getCurrentWeekDates().then((resolvedDates:any)=>{
+      this.barChartLabels = resolvedDates
+      this.getInstructorLogs(this.selectedInstructorId)
+    })
     this.route.queryParams.subscribe(params => {
       console.log("params", params, typeof (params));
       if (params.instructorId) {
@@ -65,7 +75,28 @@ export class AdminTimeSheetComponent implements OnInit {
   findInstructor(index){
     let instructor = this.allInstructors[index]
     console.log("instructor", instructor);
+  }
+  getCurrentWeekDates(){
+    return new Promise((resolve,reject)=>{
+      let today = moment()
+      let currentWeek = moment().week()
+      let weekStartDate = moment().startOf('isoWeek').isoWeek(currentWeek);
+      if (weekStartDate < moment().startOf('year')) weekStartDate = moment().startOf('year');
+      let weekEndDate = moment().endOf('isoWeek').isoWeek(currentWeek);
+      if (weekEndDate > moment().endOf('year')) {
+        weekEndDate = moment().endOf('year')
+      }
+      let dates = []
+      dates.push(weekStartDate.format('MM/DD/YYYY'))
+      while (weekStartDate.add(1, 'days').diff(weekEndDate) < 0) {
+        console.log(weekStartDate.toDate());
+        dates.push(weekStartDate.clone().format('MM/DD/YYYY'));
+      }
+      resolve(dates)
+    })
     
+    // console.log("*****dates:", dates);
+    // console.log("---CURRENT WEEK-----", currentWeek);
   }
   public chartClicked(e: any): void {
     console.log("THE DATA IS", this.barChartData);
@@ -102,15 +133,24 @@ export class AdminTimeSheetComponent implements OnInit {
       this.openDialog(InstructorConfirmationModalComponent, actualData).subscribe(instChosen=>{
         if(instChosen == undefined) return
         else{
-          this.router.navigate(['week-list'], { state: { instructor: instChosen } })
+          // this.router.navigate(['week-list'], { state: { instructor: instChosen } })
         }
       })
     }
-    else this.router.navigate(['week-list'], { state: { instructor: actualData } })
+    else {
+      console.log("ELSE", this.selectedInstructorId)
+      this.router.navigate(['week-list'], { state: { instructor: this.selectedInstructorId } })
+    };
+    
+    // else this.router.navigate(['week-list'], { state: { instructor: actualData } })
   }
   instructorChanged(data: { value: string[] }) {
+    this.barChartData = []
+    this.displayMessage = false
     console.log("change", data.value);
-    this.current = data.value.join('|');
+    this.selectedInstructorId = data.value
+    this.getInstructorLogs(data.value)
+    // this.current = data.value.join('|');
     this.queryParamsObj['instructorId'] = this.current;
     console.log("this.current", this.current);
   }
@@ -178,7 +218,7 @@ export class AdminTimeSheetComponent implements OnInit {
           text: inst.name
         }
         this.instToDisplay.push(temp)
-        console.log("temp==", temp);
+        // console.log("temp==", temp);
       })
       this.barChartData.splice(0,1)
       // this.allInstructorsCopy = this.allInstructors;
@@ -187,11 +227,27 @@ export class AdminTimeSheetComponent implements OnInit {
   }
   getInstructorLogs(id) {
     let data = {
-      instructorId: "5e293b0fa452624cba0dcfd5",
-
+      instructorId: id,
+      date : this.barChartLabels
     }
-    this._timeSheetService.getTimeLogUsingDates(id).subscribe(logs => {
+    let instructorName;
+    var index = _.findIndex(this.allInstructors, function(o){return o._id == id})
+    if(index > -1) instructorName = this.allInstructors[index].name
+    this._timeSheetService.getTimeLogUsingDates(data).subscribe(logs => {
       console.log("logs", logs);
+      if(logs.length > 0){
+        let finaldata = []
+        logs.forEach((singleLog) => {
+          let dataSet = singleLog.totalHours.hours + (singleLog.totalHours.minutes * 0.017)
+          finaldata.push(dataSet)
+        })
+        this.barChartData = [{ data: finaldata, label: instructorName }]
+      }
+      else this.displayMessage = true;
+      // console.log("finaldata", finaldata);
+      // console.log("this.barChartData", this.barChartData);
+      
+      // this.barChartData = finaldata
       // if (inst._id == "5e293b0fa452624cba0dcfd5") {
       //   let dataForChart = {
       //     label: inst.name,

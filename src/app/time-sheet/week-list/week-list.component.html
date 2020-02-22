@@ -22,13 +22,13 @@
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
                 <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                     <div>
-                        {{week.weekStartDate | date:shortDate}} - 
-                        {{week.weekEndDate | date:shortDate}}
+                        {{week.weekStart | date:shortDate}} - 
+                        {{week.weekEnd | date:shortDate}}
                     </div>
                     <div>
-                        [STATUS STATUS]
+                       {{week.status}}
                     </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -50,13 +50,13 @@
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
                 <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                 <div>
-                    {{week.weekStartDate | date:shortDate}} - 
-                    {{week.weekEndDate | date:shortDate}}
+                    {{week.weekStart | date:shortDate}} - 
+                    {{week.weekEnd | date:shortDate}}
                 </div>
                 <div>
-                    [STATUS STATUS]
+                    {{week.status}}
                 </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -78,13 +78,13 @@
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
                 <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="getWeekDates(week)">
+                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                     <div>
-                        {{week.weekStartDate | date:shortDate}} - 
-                        {{week.weekEndDate | date:shortDate}}
+                        {{week.weekStart | date:shortDate}} - 
+                        {{week.weekEnd | date:shortDate}}
                     </div>
                     <div>
-                        [STATUS STATUS]
+                        {{week.status}}
                     </div>
                 </mat-card>
             </mat-expansion-panel>
