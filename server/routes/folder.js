@@ -4,6 +4,7 @@ const router = express.Router();
 const folderController = require('../controllers/folder.controller');
 
 const jwtService = require('../services/jwt.service');
+const multerService = require('../services/multer.service');
 
 // ADD FOLDER
 router.post('/', jwtService.validateJWT, folderController.createFolder);

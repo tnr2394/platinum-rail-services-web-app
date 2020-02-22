@@ -11,7 +11,8 @@ var multerS3 = require('multer-s3')
 const s3UploadService = require('../services/upload.service');
 
 var s3 = new aws.S3({
-    /* ... */ })
+    /* ... */
+})
 var storage = multer.memoryStorage({
     destination: function (req, file, callback) {
         callback(null, '');
@@ -81,6 +82,27 @@ file.addFile = function (object) {
             })
     })
 
+}
+
+
+file.addNewFile = function (object) {
+    return new Promise((resolve, reject) => {
+        const s3File = {
+            title: object.title,
+            alias: object.alias,
+            type: object.type,
+            path: object.path,
+            extension: object.extension,
+            uploadedBy: object.uploadedBy,
+        }
+        var newFile = new fileModel(s3File);
+        console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
+        newFile.save((err, file) => {
+            console.log("File Uploaded Successfully =  ", file, err);
+            if (err) return reject(err);
+            else return resolve(file);
+        });
+    })
 }
 
 

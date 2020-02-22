@@ -229,9 +229,45 @@ folderController.deleteFileFromFolder = function (req, res, next) {
  * Add File Inside Folder
  */
 folderController.addFile = function (req, res, next) {
-    console.log("Update Folder", req.body, req.files);
+    console.log("Update Folder", req.body);
 
 
+    const folderId = req.body.myId;
+    let re = /(?:\.([^.]+))?$/;
+    let extension = re.exec(req.body.Key)[1];
+
+
+
+    let newFile = {
+        title: req.body.Key,
+        alias: req.body.Key,
+        type: "file",
+        path: req.body.Location,
+        extension: extension,
+        uploadedBy: req.user.name,
+        uploadedDate: new Date()
+    }
+
+    console.log('New File Obj::::', newFile);
+
+    folderDOA.uploadFileToFolder(folderId, newFile)
+        .then(updated => {
+            console.log("updated ", updated);
+            return res.send({
+                data: {
+                    file: updated
+                },
+                msg: "File Uploaded Successfully"
+            });
+        }, err => {
+            return res.status(500).send({
+                err
+            })
+        })
+
+
+
+    return;
 
     let files = [];
 

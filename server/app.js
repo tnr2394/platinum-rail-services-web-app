@@ -19,6 +19,7 @@ var debug = require('debug')('http');
 config = {}
 config.env = require('./config/env.config')
 
+
 // Set up database connection to use throughout the application
 config.db = require(path.join(__dirname, 'config', 'database'));
 

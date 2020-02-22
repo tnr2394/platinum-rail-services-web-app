@@ -120,7 +120,7 @@ allotment.deleteAllotment = function (allotemntId) {
 allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj) {
     console.log('Assignment Submission', allotemntId, obj);
     var q = Q.defer();
-    fileDAO.addFile(obj).then((response) => {
+    fileDAO.addNewFile(obj).then((response) => {
         console.log('File added now update allotment file array', response._id);
         allotmentModel.updateOne({ _id: allotemntId },
             {
