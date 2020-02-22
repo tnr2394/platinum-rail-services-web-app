@@ -6,7 +6,7 @@
 
 // For Ip Environement
 
-const baseUrl = "http://192.168.1.112:3000/";
+const baseUrl = "http://13.233.225.185:9000/";
 
 
 // For Live Environment
