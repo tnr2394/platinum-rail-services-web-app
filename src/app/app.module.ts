@@ -45,6 +45,8 @@ import { ChartsModule } from 'ng2-charts';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { Select2Module } from 'ng2-select2';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+
 
 
 // import { TagInputModule } from 'ngx-chips';
@@ -114,6 +116,8 @@ import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
 import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sheet/instructor-confirmation-modal/instructor-confirmation-modal.component';
+import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
+import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 
 @NgModule({
   declarations: [
@@ -189,9 +193,12 @@ import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sh
     WeekListComponent,
     SingleWeekComponent,
     AdminTimeSheetComponent,
-    InstructorConfirmationModalComponent
+    InstructorConfirmationModalComponent,
+    AdminReportAComponent,
+    AdminReportBComponent
   ],
   imports: [
+    NgxDaterangepickerMd.forRoot(),
     ChartsModule,
     Select2Module,
     NgxMaterialTimepickerModule,

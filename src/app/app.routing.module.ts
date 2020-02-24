@@ -31,6 +31,8 @@ import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.com
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
+import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
+import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AuthGuard } from './auth.guard';
@@ -203,6 +205,14 @@ const routes: Routes = [
 	{
 		path: 'admin-time-sheet',
 		component: AdminTimeSheetComponent
+	},
+	{
+		path: 'admin-report-a',
+		component: AdminReportAComponent
+	},
+	{
+		path: 'admin-report-b',
+		component: AdminReportBComponent
 	}
 ];
 
