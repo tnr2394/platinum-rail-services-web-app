@@ -459,5 +459,22 @@ module.exports.instructorsTimeLogDetails = (req, res) => {
 	})
 }
 
+
+module.exports.secondReportLogsDetails = (req, res) => {
+	console.log('Instructor Time Log Details', req.body.date);
+
+	const date = req.body.date;
+	const instructorId = req.body.instructorId;
+
+	timeLogServices.secondReportLogsDetails(instructorId, date).then((response) => {
+		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
+	}).catch((error) => {
+		return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+	})
+}
+
+
+
+
 // let x = this.numberOfTurns(req, res, response[i].date)
 // console.log("SATISFIED at", i, satisfied, "STATUS", x);
