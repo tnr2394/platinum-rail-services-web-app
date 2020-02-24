@@ -60,49 +60,12 @@ export class SingleWeekComponent implements OnInit {
     });
   }
 
-  // ngOnInit() {
-  //   // this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.datesOfWeek });
-  //   console.log("---this.datesOfWeek---", this.datesOfWeek);
-
-  //   if (this.router.getCurrentNavigation().extras) {
-  //     this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
-  //     this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
-  //   }
-  //   // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-  //   //   return false;
-  //   // };
-  // }
-
   ngOnInit() {
     console.log("**ON INIT**", this.datesOfWeek)
-    // this.queryParamsObj['datesArray'] = this.datesOfWeek
-    // this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.queryParamsObj });
-    // console.log("---this.datesOfWeek---", this.datesOfWeek);
     this.getDays();
     this.getValuesUsingDates();
-    this.changeQuery();
-    this.route.queryParams.subscribe(params => {
-      console.log("params", params, typeof (params));
-      if (params.dates) {
-        console.log("---params.dates---", params.dates);
-        // this.value = [(params.instructorId)];
-        // console.log("value", this.value);
-        // let tempArray = params.instructorId.split('|')
-        // tempArray.forEach(id => { this.value.push(id) })
-        // this.value = tempArray.forEach(value=>{ if(value) value = value.trim()})
-      }
-      else {
-        console.log("ELSE");
-        // this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.queryParamsObj })
-      };
-    });
   }
-  changeQuery() {
-    this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.queryParamsObj });
-    //  this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
-  }
+
 
   getDays() {
     this.updateData(this.Days);
