@@ -32,3 +32,11 @@ tr.mat-header-row{
     height: inherit;
     justify-content: center !important;
 }
+table {
+    margin: 0;
+    width: 100%;
+
+    @media(max-width: 991px) {
+        min-width: 950px;
+    }
+}

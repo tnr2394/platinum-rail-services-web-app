@@ -352,7 +352,7 @@ function sendSheetCompleteMailToInstructors(data) {
 
 
 /**
- * Return Single Dates Multiple Time Logs With Instructor Details
+ * Return First Logs Report Details
  * @param {String} date 
  */
 function getInstructorsTimeLogDetails(date) {

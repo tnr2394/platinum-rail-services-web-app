@@ -3,20 +3,20 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker [startAt]="today"></mat-datepicker>
 </mat-form-field>
-<div class="row">
-    <mat-form-field class="example-full-width col-lg-6 col-md-6">
+<div class="row m-0">
+    <mat-form-field class="example-full-width col-lg-6 col-md-6 p-0">
         <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]">
+    <mat-paginator class="col-lg-6 col-md-6 p-0" [pageSizeOptions]="[10, 25, 100]">
     </mat-paginator>
 </div>
 
-<div class="row">
+<div class="row m-0">
     <div class="col-12">
 
-        <div class="row">
-            <div class="col-12 ">
+        <div class="row 0">
+            <div class="col-12 p-0">
                 <div class="card">
                     <!--Card content-->
                     <div class="card-block">
