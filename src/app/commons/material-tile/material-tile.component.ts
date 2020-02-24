@@ -24,6 +24,7 @@ export class MaterialTileComponent implements OnInit {
   @Input('index') i: any;
   @Input('jobId') jobId;
   @Input('folder') folder: any;
+  @Input('learnersAllotedFromJob') learnersAlloted;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
@@ -51,6 +52,7 @@ export class MaterialTileComponent implements OnInit {
   completedLearners: number = 0;
   allLearners: any;
   unassignedLearners: number = 0;
+  reSubmittedLearners: number = 0;
   learnerNames = [];
   displayLearners: Boolean = false;
   displaySubFolders: boolean = false;
@@ -67,12 +69,18 @@ export class MaterialTileComponent implements OnInit {
 
   }
   ngOnInit() {
-
+    console.log("learnersAlloted", this.learnersAlloted);
+    console.log("learnersAllotedFromJob");
+    
+    
     if (this.router.url.includes('/jobs')) {
       this.displayLearners = true
       this.getLearners()
-      this.assignmentStatusWithLearner(this.jobId)
+      this.assignmentStatusWithLearner(this.jobId,"true")
       this.indexForMatTab = 2;
+      var id = '#' + this.material._id;
+      // console.log(id, "click here")
+      $(id).addClass('mat-tab-label-active')
     }
     if (this.material != undefined) {
       this.backupMaterial = JSON.parse(JSON.stringify(this.material));
@@ -82,7 +90,7 @@ export class MaterialTileComponent implements OnInit {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("*****Changes in materials tile", changes);
+    console.log("*****Changes in materials tile", changes, changes.learnersAlloted);
     if (changes.folder != undefined) {
       if (changes.folder.currentValue != undefined) {
         this.type = 'folder';
@@ -95,7 +103,7 @@ export class MaterialTileComponent implements OnInit {
     if (this.displayLearners == true) {
       if (changes.jobId != undefined) {
         if (changes.jobId.currentValue != undefined) {
-          this.assignmentStatusWithLearner(this.jobId);
+          this.assignmentStatusWithLearner(this.jobId, "true");
           this.getLearners()
           this.getLearnerCheck()
         }
@@ -110,7 +118,12 @@ export class MaterialTileComponent implements OnInit {
         this.resubmissionLearners = 0
         this.submittedLearners = 0
         this.completedLearners = 0
+        this.reSubmittedLearners = 0;
       }
+    }
+    if (changes.learnersAlloted && changes.learnersAlloted.currentValue == true){ 
+      this.assignmentStatusWithLearner(this.jobId, "true")
+      // this.isSelected = false;
     }
   }
 
@@ -130,7 +143,7 @@ export class MaterialTileComponent implements OnInit {
     $(tempId).addClass('box_shadow_cls')
     console.log(" Yash ", tempId)
     // this.temp = this.copyLearners;
-    console.log("Getting Material ID from materialTile component", this.temp);
+    // console.log("Getting Material ID from materialTile component", this.temp);
     if (this.material != undefined) {
       this.getFiles.emit({
         materialId: this.material._id,
@@ -141,7 +154,7 @@ export class MaterialTileComponent implements OnInit {
       }
     }
     if (this.folder != undefined) {
-      console.log("folder open");
+      // console.log("folder open");
       this.fileDetails(this.folder);
     }
   }
@@ -149,7 +162,7 @@ export class MaterialTileComponent implements OnInit {
   fileDetails(event) {
     event.materialIndex = this.i
     this.fileDetailsComp.emit(event)
-    console.log("event in material-tile", event);
+    // console.log("event in material-tile", event);
   }
   closeFileDetails() {
     console.log("Expansion closed^");
@@ -158,7 +171,7 @@ export class MaterialTileComponent implements OnInit {
     console.log(" Yash ", tempId)
   }
   applyFilter(filterValue: string) {
-    console.log("filterValue", filterValue);
+    // console.log("filterValue", filterValue);
 
     this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
   }
@@ -166,7 +179,7 @@ export class MaterialTileComponent implements OnInit {
     throw new Error("Method not implemented.");
   }
   openDialog(someComponent, data = {}): Observable<any> {
-    console.log("OPENDIALOG", "DATA = ", data);
+    // console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
     return dialogRef.afterClosed();
   }
@@ -234,27 +247,29 @@ export class MaterialTileComponent implements OnInit {
 
   createFolder() {
     let currentFolder = this.folder;
-    console.log("currentFolder", this.folder);
+    // console.log("currentFolder", this.folder);
     this.openDialog(CreateFolderModalComponent, this.folder).subscribe(folder => {
       if (folder == undefined) return
-      console.log("FOLDER NAME RECIEVED", folder);
+      // console.log("FOLDER NAME RECIEVED", folder);
 
       // this.allFolders.push(folder);
     }, error => {
-      console.log("ERROE$$$");
+      // console.log("ERROE$$$");
 
     })
   }
   subFolder() {
-    console.log("SUB FOLDER CLICKED");
+    // console.log("SUB FOLDER CLICKED");
   }
   // GET LEARNER COUNT
   getCount() {
+    this.learnerNames = [];
     this.assignedLearner = 0
     this.pendingLearners = 0
     this.resubmissionLearners = 0
     this.submittedLearners = 0
     this.completedLearners = 0
+    this.reSubmittedLearners = 0;
     this.learner.forEach(learner => {
       learner.assignments.forEach(assignment => {
         if (assignment.assignmentId == this.materialId) {
@@ -272,6 +287,9 @@ export class MaterialTileComponent implements OnInit {
           else if (assignment.assignmentStatus == 'Completed') {
             this.completedLearners += 1
           }
+          else if (assignment.assignmentStatus == 'Re-submitted') {
+            this.reSubmittedLearners += 1
+          }
         }
         this.unassignedLearners = (this.allLearnersCount - this.assignedLearner > 0) ? this.allLearnersCount - this.assignedLearner : 0;
       })
@@ -279,6 +297,8 @@ export class MaterialTileComponent implements OnInit {
   }
 
   onSelectChange(event, i) {
+    // console.log("EVENT CHANGE", event)
+
     if (event.checked == true) {
       this.allocatedLearners.push(event.source.value)
     }
@@ -289,7 +309,7 @@ export class MaterialTileComponent implements OnInit {
         }
       })
     }
-    console.log("allocated learners", this.allocatedLearners);
+    // console.log("allocated learners", this.allocatedLearners);
   }
   allocateMaterial() {
     this.assignmentAllocated.emit({ msg: 'assignment allocated from material tile' })
@@ -309,54 +329,64 @@ export class MaterialTileComponent implements OnInit {
       });
     }
     this._learnerService.allocateLearner(learners).subscribe(data => {
-      console.log("DATA SENT", learners);
-      console.log("Response", data);
+      // console.log("DATA SENT", learners);
+      // console.log("Response", data);
     });
     this.openSnackBar("Learners allocated", "OK")
   }
   dueDate(event) {
     this.duedate = event.value
   }
+
   getLearnerCheck() {
-    console.log("Getting allocated learner", event);
-    // if (event == null || event.tab.textLabel == "Learners") {
+    // console.log("Getting allocated learner", event);
+    // if (event.tab.textLabel == "Learners") {
 
+    // console.log("this.learner", this.learner)
+    // console.log("this.allLearners", this.allLearners)
+    if (this.allLearners) {
+      this.allLearners.forEach(singleLearner => {
 
-    this.allLearners.forEach(singleLearner => {
+        // console.log("this.material._id", this.material._id)
+        var temp = JSON.parse(JSON.stringify(this.material._id)) || null
+        if (temp) {
+          // console.log("singleLearner", singleLearner.allotments)
 
-      var temp = JSON.parse(JSON.stringify(this.material._id)) || null
-      if (temp) {
-        // console.log("singleLearner", singleLearner.allotments)
+          var index1 = _.findIndex(singleLearner.allotments, function (o) {
+            if (o.assignment && o.assignment._id) {
+              // console.log("o.assignment._id", o.assignment._id)
+              // console.log("this.material._id", temp)
+              return o.assignment._id == temp;
+            }
+          });
 
-        var index1 = _.findIndex(singleLearner.allotments, function (o) {
-          if (o.assignment && o.assignment._id) {
-            return o.assignment._id == temp;
+          if (index1 > -1) {
+            var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
+            // console.log(" index ", index)
+            if (index > -1) singleLearner.checked = true
+            else singleLearner.checked = false
+          } else {
+            singleLearner.checked = false
+
           }
-        });
 
-        if (index1 > -1) {
-          var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
-          // console.log(" index ", index)
-          if (index > -1) singleLearner.checked = true
-          else singleLearner.checked = false
-        } else {
-          singleLearner.checked = false
 
         }
-
-
-      }
-      else {
-        singleLearner.checked = false
-      }
-    })
-    // }
+        else {
+          singleLearner.checked = false
+        }
+      })
+      // }
+      // console.log("THIS.ALLLEARNERS", this.allLearners);
+    }
   }
-
   filter(filterValue: string) {
     this.allLearners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
-  }
-  // API
+      }
+      // }
+      // console.log("THIS.ALLLEARNERS", this.allLearners);
+
+      // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
       this.allLearnersCount = allLearners.length || 0
@@ -369,9 +399,12 @@ export class MaterialTileComponent implements OnInit {
     })
   }
 
-  assignmentStatusWithLearner(jobId) {
+  assignmentStatusWithLearner(jobId, doGetCount) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
-      this.learner = data;
+      this.learner = JSON.parse(JSON.stringify(data)) ;
+      console.log("*****assignmentStatusWithLearner have to display this all",this.learner);
+      
+      if (doGetCount == "true") this.getCount()
       this.learnerLength = data.length;
     });
   }

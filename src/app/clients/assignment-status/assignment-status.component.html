@@ -43,15 +43,15 @@
                                         <td *ngFor="let ass of unit.assignment" class="td-width">
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'"
                                                 routerLink="/learnerAllotment/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
-                                                <div placement="bottom"
+                                                <div placement="top"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
-                                                    tooltipClass="tooltip-class"
+                                                    tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
-                                                <div placement="bottom"
+                                                <div placement="top"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
-                                                    tooltipClass="tooltip-class"
+                                                    tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
                                         </td>

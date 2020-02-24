@@ -22,15 +22,16 @@ const allotmentSchema = new Schema({
         ref: 'file'
     }],
     remark: {
-        type: String
+        type: String,
+        default: 'No Remarks'
     },
     deadlineDate: {
         type: Date,
         required: true
     },
 }, {
-        timestamps: true
-    });
+    timestamps: true
+});
 const allotmentModel = mongoose.model('allotment', allotmentSchema);
 module.exports = allotmentModel;
 

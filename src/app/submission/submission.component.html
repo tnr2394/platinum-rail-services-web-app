@@ -13,8 +13,8 @@
             <!-- Select Job -->
             <div class='col-xl-3 col-md-3'>
                 <mat-form-field class="job_select_submission">
-                    <mat-select placeholder='Job' [(ngModel)]='firstJob' (selectionChange)='jobChanged($event)'>
-                        <mat-option *ngFor='let job of jobs' [value]='job'>
+                    <mat-select placeholder='Job' [(ngModel)]='selJob' (selectionChange)='jobChanged($event)'>
+                        <mat-option *ngFor='let job of jobs' [value]='job._id'>
                             <span>{{job.title}}</span>
                             <span><i class="far fa-life-ring fa-1x" [style.color]=job.color
                                     style="float:right"></i></span>
@@ -22,11 +22,10 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-
-            <!-- Select Unit Number -->
             <div class='col-xl-3 col-md-3'>
+                <!-- <h1>{{selUnit}}</h1> -->
                 <mat-form-field>
-                    <mat-select placeholder="Unit Number" name="selectedAssignment"
+                    <mat-select placeholder="Unit Number" [(ngModel)]='selUnit'
                         (selectionChange)='unitNoChanged($event)'>
                         <span *ngFor='let Unit of unit'>
                             <mat-option [value]='Unit._id'>
@@ -37,14 +36,17 @@
                 </mat-form-field>
             </div>
 
+            <!-- Select Unit Number -->
+
             <!-- Select Assignment Number -->
             <div class='col-xl-3 col-md-3'>
+                <!-- <h1>{{selAss}}</h1> -->
                 <mat-form-field>
-                    <mat-select placeholder="Assignment Number" name="selectedAssignment"
-                        [(ngModel)]="selectedAssignment" (selectionChange)='assignmentNoChanged($event)'>
-                        <span *ngFor='let assignment of assignment'>
-                            <mat-option [value]='assignment.assignmentId'>
-                                Assignment-{{assignment.assignmentNo}}
+                    <mat-select placeholder="Assignment Number" name="selectedAssignment" [(ngModel)]="selAss"
+                        (selectionChange)='assignmentNoChanged($event)'>
+                        <span *ngFor='let assi of assignment'>
+                            <mat-option [value]='assi.assignmentId'>
+                                Assignment-{{assi.assignmentNo}}
                             </mat-option>
                         </span>
                     </mat-select>
@@ -70,7 +72,8 @@
                 <div *ngFor='let status of assignmentStatus;let i = index'>
                     <div class="col-md-2">
                         <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                            (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">{{status.display}}
+                            (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status,assignmentStatus[i].display)">
+                            {{status.display}}
                         </mat-checkbox>
                     </div>
                 </div>
@@ -96,11 +99,13 @@
         <div class='row'>
             <div class="table-responsive">
                 <div>
-                    <!-- <h1>{{dataSource.length}}</h1> -->
-                    <div *ngIf='selectedJob == undefined && selectedAssignment == undefined'
+                    <div *ngIf='selJob == undefined && selectedAssignment == undefined'
                         class="msg_text mb-2 text-info text-center">
                         Choose Job to display Assignments!
                     </div>
+
+
+
                     <!-- 
                     <div *ngIf='assignment && assignment.length == "0"' class="msg_text mb-2 text-info text-center">
                         No Assignments In This Job!
@@ -148,9 +153,8 @@
                         <ng-container matColumnDef="View">
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                <a mat-button target="_blank" class="text-primary bold" placement="bottom"
-                                    ngbTooltip="Details" tooltipClass="tooltip-class"
-                                    routerLink="/learnerAllotment/{{learner.allotemntId}}">
+                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
+                                    tooltipClass="tooltip-class" routerLink="/learnerAllotment/{{learner.allotemntId}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>
@@ -163,12 +167,13 @@
                             <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
                         </tbody>
                     </table>
-                    <div class="text-info pt-3 text-center" *ngIf="finalLearner.length == 0">
-                        No Learners Found!
-                    </div>
+
                     <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h3>
+                    <div class="text-info pt-3 text-center" *ngIf="learners && learners.length == 0">
+                        No Learners Found!
+                    </div>
                 </div>
             </div>
         </div>

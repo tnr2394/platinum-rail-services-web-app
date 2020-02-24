@@ -24,7 +24,7 @@ export class FileTileComponent implements OnInit {
   isSubmission;
 
   constructor(public _fileService: FileService, private route: ActivatedRoute, public router: Router,
-     public dialog: MatDialog, public _snackBar: MatSnackBar) {
+    public dialog: MatDialog, public _snackBar: MatSnackBar) {
     if (this.router.url.includes('submission') || this.router.url.includes('learnerAllotment')) {
       this.isSubmission = true;
     } else {
@@ -42,7 +42,7 @@ export class FileTileComponent implements OnInit {
 
   openDialog(someComponent, data = {}): Observable<any> {
     console.log('OPENDIALOG', 'DATA = ', data)
-    const dialogRef = this.dialog.open(someComponent, { data: 'file'});
+    const dialogRef = this.dialog.open(someComponent, { data: 'file' });
 
     return dialogRef.afterClosed();
   }
@@ -54,10 +54,10 @@ export class FileTileComponent implements OnInit {
 
 
   delete() {
-    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm=>{
+    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
       console.log("CONFIRM", confirm);
-      if(confirm == '') return
-      else if(confirm == 'yes'){
+      if (confirm == '') return
+      else if (confirm == 'yes') {
         if (this.isSubmission) {
           this._fileService.deleteSubmissionFiles(this.file._id).subscribe(file => {
             console.log("Deleted File. ID = ", this.file._id);
@@ -77,16 +77,20 @@ export class FileTileComponent implements OnInit {
           });
         }
       }
-      else{
+      else {
         return
       }
     })
   }
 
+<<<<<<< HEAD
   fileDetails(){
     $('.parent_row').addClass('col-width-class');
+=======
+  fileDetails() {
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     console.log("file tile clicked", event);
-    this.openSideNav.emit({file:this.file})
+    this.openSideNav.emit({ file: this.file })
   }
 
 }

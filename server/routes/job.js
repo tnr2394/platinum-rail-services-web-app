@@ -32,5 +32,7 @@ router.get('/assignment-status', jobController.assignmentStatusWithLearner);
 
 router.get('/all-assignment', jobController.allotedAssignmentListUsingJobId);
 
+router.post('/filter-assignment', jobController.filterAssignmentList);
+
 
 module.exports = router;

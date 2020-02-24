@@ -32,7 +32,7 @@ export class ClientDashboardComponent implements OnInit {
     });
     this.currentUser = JSON.parse(localStorage.currentUser);
     this.clientName = this.currentUser.name;
-    this.getJobs();
+    // this.getJobs();
   }
   setColor(value, i) {
     this.isSelected = value;
@@ -47,22 +47,23 @@ export class ClientDashboardComponent implements OnInit {
     this.jobComp.jobChangedByClient(job);
   }
 
-  getJobs() {
-    this._jobService.getJobs().subscribe(jobs => {
-      console.log("JOBS RECIEVED", jobs);
-      this.jobs = jobs; this.displayJobs(this.jobs)
-      // this.selectedJob = jobs[0]
-      // let firstJob = jobs[0]
-      // console.log("FIRST JOB", firstJob);
-      // this.jobComp.job = firstJob;
-      // this.jobComp.jobIdFromClient = firstJob._id;
-      // this.jobComp.completionPercentage(firstJob)
-      // // this.jobComp.job = jobs[0];
-      // this.jobToPass = jobs[0];
-      // console.log("this.jobToPass", this.jobToPass);
+  // getJobs() {
+  //   this._jobService.getJobs().subscribe(jobs => {
+  //     console.log("JOBS RECIEVED", jobs);
+  //     this.jobs = jobs;
+  //     this.displayJobs(this.jobs)
+  //     // this.selectedJob = jobs[0]
+  //     // let firstJob = jobs[0]
+  //     // console.log("FIRST JOB", firstJob);
+  //     // this.jobComp.job = firstJob;
+  //     // this.jobComp.jobIdFromClient = firstJob._id;
+  //     // this.jobComp.completionPercentage(firstJob)
+  //     // // this.jobComp.job = jobs[0];
+  //     // this.jobToPass = jobs[0];
+  //     // console.log("this.jobToPass", this.jobToPass);
 
-    })
-  }
+  //   })
+  // }
 
   getJobsByClientId() {
     this._jobService.getJobByClientId(this.clientId).subscribe(jobs => {
@@ -79,8 +80,8 @@ export class ClientDashboardComponent implements OnInit {
     this.jobComp.job = firstJob;
     if (firstJob && firstJob._id) {
       this.jobComp.jobIdFromClient = firstJob._id;
+      this.jobComp.completionPercentage(firstJob)
     }
-    this.jobComp.completionPercentage(firstJob)
     // this.jobComp.job = jobs[0];
     this.jobToPass = jobs[0];
     console.log("this.jobToPass", this.jobToPass);

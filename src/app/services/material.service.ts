@@ -151,7 +151,6 @@ export class MaterialService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "jobs/assignment-status?_id=" + jobId).subscribe((res: any) => {
-        console.log("Get materials : ", res);
         observer.next(res.data.assignment);
         observer.complete();
       })
@@ -173,5 +172,17 @@ export class MaterialService {
     });
   }
 
+  filterAllotedAssignment(body): Observable<any> {
+    console.log("Getting materials");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.post(config.baseApiUrl + "jobs/filter-assignment", body).subscribe((res: any) => {
+        console.log("Get materials : ", res);
+        observer.next(res.data.assignment);
+        observer.complete();
+      })
 
+    });
+  }
 }

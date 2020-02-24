@@ -231,6 +231,8 @@ folderController.addFile = function (req, res, next) {
 
     console.log('Req.body:::::::', req.body, req.files);
 
+
+
     let files = [];
 
     let filesArray = [];
@@ -251,6 +253,10 @@ folderController.addFile = function (req, res, next) {
         let name = singleFile.name.split('.').slice(0, -1).join('.')
 
         let newName = name + '-' + Date.now();
+
+        singleFile.name = newName + '.' + ext;
+
+
 
         let newFile = {
             title: newName,
@@ -516,7 +522,6 @@ const sharingFile = (file, emailArray, instructors, clients) => {
         });
     })
 }
-
 
 folderController.getSharedFolder = function (req, res, next) {
 

@@ -34,9 +34,10 @@ export class ProfileComponent implements OnInit {
   @Input('learnerForProfile') learnerId;
   @Input('instructorForProfile') instructorId;
   @Input('jobDetailsForProfile') jobDetails;
-
+  // @Input('job') jobFromLearner;
   constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
+
 
   ngOnInit() {
     console.log("-----learner-----", this.learnerId);
@@ -55,8 +56,9 @@ export class ProfileComponent implements OnInit {
       this.isJob = true
       this.getJobValues(this.jobDetails)
     }
-
   }
+
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("changes in profile", changes);
     if (changes.jobDetails != undefined) {
@@ -71,6 +73,8 @@ export class ProfileComponent implements OnInit {
       }
     }
   }
+
+
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data });
@@ -93,22 +97,11 @@ export class ProfileComponent implements OnInit {
       this.email = this.learner.email;
       this.mobile = this.learner.mobile;
       this.profilePath = this.learner.profilePic;
-      this.getJob(this.learner.job._id);
-    })
-    // this.activatedRoute.params.subscribe(params => {
-    //   console.log("ID-----", params['id']);
-    //   this._learnerService.getLearner(params['id']).subscribe(learner => {
-    //     this.learner = learner.pop();
-    //     console.log("learner:::", this.learner);
-    //     this.name = this.learner.name;
-    //     this.email = this.learner.email;
-    //     this.mobile = this.learner.mobile;
-    //     this.profilePath = this.learner.profilePic;
-    //     this.getJob(this.learner.job._id);
-    //   })
+      console.log("this.learner.job._id", this.learner.job._id);
 
-    // })
-    console.log("The learner is", this.learner);
+      this.getJob(this.learner.job._id);
+      console.log("The learner is", this.learner);
+    })
   }
 
   getInstructor() {
@@ -126,10 +119,16 @@ export class ProfileComponent implements OnInit {
 
 
   getJob(id) {
-    this._jobService.getJobById(id).subscribe((jobRecieved) => {
-      console.log("Job Recieved", jobRecieved);
-      this.job = jobRecieved.pop();
+    console.log("get bob by id", id);
+    console.group("!!!!!!!!!")
+
+    this._jobService.getJobById(id).subscribe((jobRecieved2) => {
+      console.log("Job Recieved", JSON.parse(JSON.stringify(jobRecieved2)));
+      this.job = JSON.parse(JSON.stringify(jobRecieved2.pop()));
       this.getJobValues(this.job)
+
+      console.groupEnd()
+
     })
   }
   getJobValues(job) {
@@ -173,7 +172,7 @@ export class ProfileComponent implements OnInit {
 
     this.openDialog(EditInstructorModalComponent, data).subscribe((instructor) => {
       console.log("DIALOG CLOSED", instructor)
-      // this.getInstructor();
+      this.getInstructor();
       // Handle Undefined
 
       if (!instructor) { return }

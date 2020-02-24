@@ -18,6 +18,7 @@
             <!-- <h5>Type : <span>{{recievedFile.extension}}</span></h5> -->
             <br />
 
+<<<<<<< HEAD
             <!-- Type:{{type}} -->
             
             <mat-form-field *ngIf="type=='folder'" class="example-full-width" (click)="showSaveBtn()">
@@ -38,6 +39,17 @@
                                 aria-hidden="true"></i> Download</a></button>
             
                 </div>
+=======
+        <div *ngIf="isMaterials == 'material'">
+            <div class="drawer_btn">
+                <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
+                        aria-hidden="true"></i> Share</button>
+                <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
+                        aria-hidden="true"></i> Delete</button>
+                <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i
+                            class="fa fa-download" aria-hidden="true"></i> Download</a></button>
+
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
             </div>
         </div>
         </div>
@@ -45,15 +57,30 @@
 
     <!-- <div *ngIf="currentUser.userRole == admin"> -->
     <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
+<<<<<<< HEAD
         <h4 class="shared_with">Shared with:</h4>
         <h6><b>Clients</b></h6>
+=======
+
+        <h4>Shared with:</h4>
+        <h6 *ngIf="sharedClient.length == 0"><b>No Client</b></h6>
+        <h6 *ngIf="sharedClient.length != 0"><b>Clients</b></h6>
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
         <ul>
             <li *ngFor="let client of sharedClient">
                 {{client.name}}
             </li>
         </ul>
+<<<<<<< HEAD
         <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared with any clients!</div>
         <h6><b>Instructors</b></h6>
+=======
+
+        <h6 *ngIf="sharedInstructor.length == 0"><b>No Instructors</b></h6>
+
+        <h6 *ngIf="sharedInstructor.length != 0"><b>Instructors</b></h6>
+
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
         <ul>
             <li *ngFor="let instructor of sharedInstructor">
                 {{instructor.name}}
@@ -63,12 +90,12 @@
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>
-            <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
-                    aria-hidden="true"></i> Delete</button>
-            <button mat-stroked-button style="color: brown;"  *ngIf="type == 'folder'"  (click)="downloadAll()"><i class="fa fa-download"
-                    aria-hidden="true"></i> Download</button>
-                    <button mat-stroked-button style="color: brown;" *ngIf="type == 'file'"><a href="{{path}}"><i
-                            class="fa fa-download" aria-hidden="true"></i> Download </a></button>
+            <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i>
+                Delete</button>
+            <button mat-stroked-button style="color: brown;" *ngIf="type == 'folder'" (click)="downloadAll()"><i
+                    class="fa fa-download" aria-hidden="true"></i> Download</button>
+            <button mat-stroked-button style="color: brown;" *ngIf="type == 'file'"><a href="{{path}}"><i
+                        class="fa fa-download" aria-hidden="true"></i> Download </a></button>
         </div>
     </mat-tab>
     <!-- </div> -->
