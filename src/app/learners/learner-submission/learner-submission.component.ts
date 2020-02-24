@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { LearnerService } from '../../services/learner.service';
 import { FilterService } from '../../services/filter.service';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { NewFileModalComponent } from '../../files/new-file-modal/new-file-modal.component';
 
 @Component({
   selector: 'app-learner-submission',
@@ -57,7 +58,7 @@ export class LearnerSubmissionComponent implements OnInit {
   }
 
   addFileModal() {
-    var addedCourse = this.openDialog(AddFileModalComponent, { allotmentId: this.allotmentId, status: this.statusToChange }).subscribe((courses) => {
+    var addedCourse = this.openDialog(NewFileModalComponent, { allotmentId: this.allotmentId, status: this.statusToChange }).subscribe((courses) => {
       console.log("Course added in controller = ", courses);
       this.getAllotments(this.allotmentId)
     }, err => {

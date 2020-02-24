@@ -106,6 +106,7 @@ import { ProfileComponent } from './commons/profile/profile.component';
 import { SideNavFixedComponent } from './side-nav-fixed/side-nav-fixed.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
+<<<<<<< HEAD
 import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component'
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
@@ -119,6 +120,9 @@ import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sh
 import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
 import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 
+=======
+import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
 @NgModule({
   declarations: [
     AppComponent,
@@ -184,6 +188,7 @@ import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-
     SideNavFixedComponent,
     ExamsResultsComponent,
     FileDetailsComponent,
+<<<<<<< HEAD
     MaterialElevationDirective,
     NewFileModalComponent,
     TimeSheetComponent,
@@ -196,6 +201,9 @@ import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-
     InstructorConfirmationModalComponent,
     AdminReportAComponent,
     AdminReportBComponent
+=======
+    NewFileModalComponent,
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
   ],
   imports: [
     NgxDaterangepickerMd.forRoot(),
@@ -240,7 +248,11 @@ import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-
     }),
     NgCircleProgressModule.forRoot({})
   ],
+<<<<<<< HEAD
   entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent],
+=======
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, NewFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

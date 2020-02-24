@@ -1,38 +1,33 @@
-<!-- <div class="row"> -->
-    <!-- <div class="col-12"> -->
-        <div class="row mx-0 my-2">
-            <div class="col-sm-6 client_name p-0">
-                <h3 class="page-title p-0" *ngIf="client">
-                    {{client.name}}
-                </h3>
-            </div>
-            <div class="col-sm-6 loaction_btn">
-                <button mat-flat-button color="primary" class="modal_open button_hover_effect"
-                    (click)="addLocationModal()">
-                    <i class="fas fa-plus fa-fw"></i>
-                    <span> Add Location</span>
-                </button>
-            </div>
-        </div>
-    <!-- </div> -->
-<!-- </div>     -->
+<div class="row mx-0 my-2">
+
+    <!-- Client Name Section -->
+    <div class="col-sm-6 client_name p-0">
+        <h3 class="page-title p-0" *ngIf="client">
+            {{client.name}}
+        </h3>
+    </div>
+
+    <!-- Add Location Button -->
+    <div class="col-sm-6 loaction_btn">
+        <button mat-flat-button color="primary" class="modal_open button_hover_effect" (click)="addLocationModal()">
+            <i class="fas fa-plus fa-fw"></i>
+            <span> Add Location</span>
+        </button>
+    </div>
+
+</div>
+
+<!-- Location Cards Section -->
 <div class="row border-red-200 mb-4">
     <div class="col-12 ">
         <div class="row" *ngIf="client" [@listAnimation]>
-            <div *ngIf="client.locations.length == 0"><h4 class="text-info" style="padding: 20px 30px;">No Locations</h4></div>
-            <div class="col-lg-4 col-md-4" *ngFor="let location of client.locations"  >
-                <location-tab class="locationtab"   [isActive]="false" [(location)]="location" (onDeleted)="deletedLocation($event)"></location-tab>
+            <div *ngIf="client.locations.length == 0">
+                <h4 class="text-info" style="padding: 20px 30px;">No Locations</h4>
+            </div>
+            <div class="col-lg-4 col-md-4" *ngFor="let location of client.locations">
+                <location-tab class="locationtab" [isActive]="false" [(location)]="location"
+                    (onDeleted)="deletedLocation($event)"></location-tab>
             </div>
         </div>
-        
-        <!-- <div style="padding:15px " class="col-12 col-md-12">
-            <div class="card">
-                <div class="card-block">
-                    <div class="card-title">
-                        Learners
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
-    
+</div>

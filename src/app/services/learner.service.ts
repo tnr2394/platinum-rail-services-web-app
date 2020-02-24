@@ -174,7 +174,6 @@ export class LearnerService {
     return new Observable<any>((observer) => {
       console.log("Observable");
       this.http.get(config.baseApiUrl + "learners?job=" + jobId).subscribe((res: any) => {
-        console.log("Get learners : ", res);
         observer.next(res.data.learners);
         observer.complete();
       })

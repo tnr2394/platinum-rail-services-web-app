@@ -43,8 +43,8 @@ const folderSchema = new Schema({
         required: true
     }
 }, {
-        timestamps: true
-    });
+    timestamps: true
+});
 const folderModel = mongoose.model('folder', folderSchema);
 module.exports = folderModel;
 

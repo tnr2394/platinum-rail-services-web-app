@@ -20,7 +20,7 @@ export class AddMaterialModalComponent  implements OnInit {
       this.isMaterial = true;
       this.disabled = true
     }
-    else this.data = this.dialogData
+    else this.data = this.dialogData; this.disabled = false
   }
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public dialogData: any, public _materialService: MaterialService) {
     // NO DEFINITION

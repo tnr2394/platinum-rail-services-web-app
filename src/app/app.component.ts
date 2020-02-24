@@ -25,6 +25,9 @@ export class AppComponent {
   disableTooltip;
   disabled: boolean;
 
+  public onlineOffline: boolean = navigator.onLine;
+
+
   constructor(public routingState: NavigationService, public cd: ChangeDetectorRef, private router: Router, public route: ActivatedRoute, private sidenavService: SideNavServiceService, private _loginService: LoginService) {
     console.log("Child SideBar", this.sidemenu)
     this._loginService.userRole.subscribe(res => {
@@ -51,15 +54,18 @@ export class AppComponent {
 
   ngOnInit(): void {
 
+    console.log('onlineOffline:::::::::::', this.onlineOffline);
+
+
     $('.collapseToggle').on('click', function () {
       $(".sidebar").toggleClass('sidebar--Collapse');
       $('.main').toggleClass('menu--open');
       $('body').toggleClass('overflow_hidden');
       $('#toggleIcon').toggleClass('rotate');
       $(".sidebar").hasClass('sidebar--Collapse') ? $(".tooltip-class").css({ 'display': 'block' }) : $(".tooltip-class").css({ 'display': 'none' });
-      $('.sidebar ul li a').click(function(){
+      $('.sidebar ul li a').click(function () {
         var windowWidth = $(window).width();
-        if(windowWidth < 1025){
+        if (windowWidth < 1025) {
           $(".sidebar").addClass('sidebar--Collapse');
           $('.main').removeClass('menu--open');
           $('body').removeClass('overflow_hidden');

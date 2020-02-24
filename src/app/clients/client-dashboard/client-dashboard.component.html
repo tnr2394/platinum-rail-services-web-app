@@ -1,9 +1,11 @@
-<!-- <p>Welcome {{clientName}}</p> -->
+<!-- Single Client Component -->
 <app-single-client></app-single-client>
+
 <div class="row mb-1">
     <h3 class="page-title">Jobs</h3>
 </div>
 
+<!-- Job Selection Cards Section -->
 <div class='cards'>
     <mat-card class='outer_card'>
         <mat-card class='inner_card card-image-2' *ngFor='let job of jobs' (click)="jobChanged(job);"
@@ -17,5 +19,6 @@
         </mat-card>
     </mat-card>
 </div>
-<!-- <app-single-client></app-single-client> -->
+
+<!-- Job Detail Component -->
 <app-job [jobFromClient]='selectedJob'></app-job>

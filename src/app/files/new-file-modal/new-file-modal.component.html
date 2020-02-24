@@ -1,16 +1,37 @@
+<<<<<<< HEAD
 <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files </h1>
 <mat-card>
     <h5 class="mb-3">Upload</h5>
+=======
+<div>
+    <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files
+        <button (click)="close()" class="closeBtn"
+            *ngIf="uploadedFilesCount == queueCount || uploadedFilesCount == 0 && uploadedFiles.length === 0">
+            <h4 color="warn"><i class="fa fa-times-circle"></i>
+            </h4>
+        </button>
+    </h1>
+</div>
+<mat-card>
+    <p>Upload</p>
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     <mat-card-content>
         <div class="row">
             <div class="col-md-3">
                 <div class="well drop-zone" (onFileDropped)="dragQueue($event)" appDragDrop>Files drop zone </div>
                 <div class="single-file">
+<<<<<<< HEAD
                     <h5>Select files</h5>
                     <input type="file" #fileInput multiple (change)="addToQueue()" />
                     <div class="fake_file">
                         <p class="m-0">Choose file</p>
                     </div>
+=======
+                    <h4>Select files</h4>
+                    <input type="file"
+                        accept=".pdf, .ppt,.pptx, .doc, .docx ,.mp4,.jpg,.jpeg,.png,.zip,.csv,.mov,.mkv,.txt,.xls,.xlsx,.xlsm"
+                        #fileInput multiple (change)="addToQueue()" />
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                 </div>
             </div>
 
@@ -30,7 +51,18 @@
                         <tr *ngFor="let item of queue | async">
                             <td>{{ item?.file?.name }}</td>
                             <td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+<<<<<<< HEAD
                             <td>{{ item.progress + ' %' }}</td>
+=======
+                            <td>
+                                <div class="progress" style="border: 1px solid black;">
+                                    <div class=" progress-bar" role="progressbar"
+                                        [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                </div>
+
+                                <!-- {{ item.progress + ' %' }} -->
+                            </td>
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                             <td>
                                 <span *ngIf="item.isPending()" class="tag tag-default"></span>
                                 <span *ngIf="item.isSuccess()" class="tag tag-success"></span>
@@ -38,6 +70,7 @@
                                 <span *ngIf="item.isError()" class="tag tag-danger"></span>
                             </td>
                             <td class="text-right">
+<<<<<<< HEAD
                                 <button type="button" class="btn btn-success btn-xs" *ngIf="item.isUploadable()"
                                     (click)="item.upload()">
                                     <i class="fa fa-upload"></i> Upload
@@ -52,6 +85,23 @@
                                 <button type="button" *ngIf="!item.inProgress()" class="btn btn-danger btn-xs"
                                     (click)="item.remove()">
                                     <i class="fa fa-trash"></i> Remove
+=======
+                                <button type="button" class="btn btn-success btn-sm action_btns"
+                                    style="margin-right: 5px;" *ngIf="item.isUploadable()" (click)="item.upload()">
+                                    <i class="fa fa-upload"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-warning btn-sm action_btns"
+                                    style="margin-right: 5px;" *ngIf="item.inProgress()" (click)="item.cancel()">
+                                    <i class="fa fa-times-circle"></i>
+                                </button>
+
+
+                                <button type="button" *ngIf="!item.inProgress()"
+                                    class="btn btn-danger btn-sm action_btns"
+                                    (click)="item.remove(); uploadedFilesCount = (uploadedFilesCount) ? uploadedFilesCount-1 : 0">
+                                    <i class="fa fa-trash"></i>
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                                 </button>
 
                             </td>
@@ -59,6 +109,7 @@
                     </tbody>
                 </table>
                 <div>
+<<<<<<< HEAD
                     <!-- <a class="button" (click)="uploader.clearQueue()">Clear queue</a>
             <a class="button button-primary" (click)="uploader.uploadAll()">Upload all</a> -->
 
@@ -67,6 +118,15 @@
                     </button>
 
                     <button type="button" class="btn btn-danger btn-s" (click)="uploader.clearQueue()">
+=======
+                    <!-- (click)="uploader.uploadAll() -->
+                    <button type="button" class="btn btn-success btn-sm" (click)="upload()">
+                        <i class="fa fa-upload"></i> Upload all
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px;"
+                        (click)="uploader.clearQueue()">
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                         <i class="fa fa-trash"></i> Remove all
                     </button>
 

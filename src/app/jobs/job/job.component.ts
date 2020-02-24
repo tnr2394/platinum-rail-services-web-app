@@ -37,19 +37,21 @@ export class JobComponent implements OnInit, AfterViewInit {
   currentUser;
   startDate;
   endDate;
+  loading: boolean = false;
   jobForScheduler;
   completionPercent;
   clientDashboard;
   displayDetails = false
   sendDataToAllocateModal: { learners: any; materials: number; };
+  learnersAlloted = false;
   @Input('jobIdFromClient') jobIdFromClient;
   @Input('jobFromClient') jobFromClient;
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
-  
-  
-  constructor(private router: Router, 
+
+
+  constructor(private router: Router,
     public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
@@ -77,7 +79,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.activatedRoute.params.subscribe(params => {
         this.jobId = params['jobid'];
         console.log("Calling getLearners with jobid = ", this.jobId);
-        this.getJob(this.job);
+        if (this.jobId != undefined) {
+          this.getJob(this.job);
+        }
       });
 
     }
@@ -85,12 +89,12 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("Changes in job", changes);
-    if(changes.jobFromClient != undefined){
-      if (changes.jobFromClient.currentValue != undefined){
+    if (changes.jobFromClient != undefined) {
+      if (changes.jobFromClient.currentValue != undefined) {
         this.job = changes.jobFromClient.currentValue
       }
     }
-    
+
   }
 
   jobChangedByClient(job) {
@@ -117,7 +121,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.learners = object.learners;
     console.log("Learners loaded by event = ", object.learners);
   }
-  addedLearner(object){
+  addedLearner(object) {
     console.log("Object in addedLearner", object);
     this.assignmentStatusComp.ngOnInit();
   }
@@ -136,7 +140,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   scheduler(job) {
     console.log("JOB found in scheculer", job);
     this.jobForScheduler = job;
-    let dialogRefScheduler = this.dialog.open(SchedulerComponent,{
+    let dialogRefScheduler = this.dialog.open(SchedulerComponent, {
       data: [this.jobForScheduler],
       // minWidth: '100vw',
       // height: '100vh'
@@ -148,6 +152,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
 
   allocateLearners() {
+    this.learnersAlloted = false
     this.openDialog(AllocateLearnerModalComponent, this.sendDataToAllocateModal).subscribe((allocatedLearners) => {
       if (allocatedLearners == undefined) return
       let learners = [];
@@ -158,6 +163,8 @@ export class JobComponent implements OnInit, AfterViewInit {
       }
       this._learnerService.allocateLearner(learners).subscribe(data => {
         console.log("DATA SENT", learners);
+        this.learnersAlloted = true
+        console.log("*****this.learnersAlloted", this.learnersAlloted);
         this.assignmentStatusComp.ngOnInit();
       });
       this.materialsComp.clearCheckBox();
@@ -176,23 +183,24 @@ export class JobComponent implements OnInit, AfterViewInit {
       duration: 2000,
     });
   }
-  openSideNav(event){
+  openSideNav(event) {
     console.log("OPEN SIDE NAV EVENT", event);
     this.displayDetails = true;
   }
   getJob(jobId) {
     var that = this;
+    this.loading = true;
     this._jobService.getJobById(this.jobId).subscribe((jobs) => {
       console.log("GETTING SINGLE JOB", jobs);
       this.jobForScheduler = jobs[0];
       this.job = jobs.pop();
       this.completionPercentage(this.job)
       console.log("Setting job = ", { job: this.job });
+      this.loading = false;
     });
   }
 
   completionPercentage(job) {
-
     this.startDate = new Date(job.singleJobDate[0]);
     this.endDate = new Date(job.singleJobDate[job.singleJobDate.length - 1])
     let start = new Date(job.singleJobDate[0]).getTime()
@@ -209,11 +217,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.completionPercent = 100;
     }
   }
-  // test(){
-  //   this.mydsidenav.open();
-  // }
-  // sideNav(object){
-  //   console.log("event----------", object);
-    
-  // }
+  formatSubtitle = (percent: number) => {
+    return "complete"
+  }
 }

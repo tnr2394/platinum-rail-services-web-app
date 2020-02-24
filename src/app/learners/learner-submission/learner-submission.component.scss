@@ -154,3 +154,13 @@ mat-form-field{
     font-size: 18px;
   }
 }
+.submission_table{
+  background: #d9d9d9 !important;
+}
+table {
+  margin: 0;
+  width: 100%;
+  @media(max-width: 991px){
+      min-width: 450px;
+  }
+}

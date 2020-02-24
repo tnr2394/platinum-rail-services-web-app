@@ -106,22 +106,22 @@ materialController.updateMaterial = async function (req, res, next) {
     console.log("Update material DOA in material-Controller", updatedMaterial);
 
     materialDOA.updateMaterial(updatedMaterial).then(material => {
-            console.log("Updated material in controller", material);
-            courseDOA.addMaterial(req.body.course, material._id)
-                .then(updatedCourse => {
-                    console.log("Material ID added to Course ", updatedCourse);
-                    return res.send({
-                        data: {
-                            material
-                        }
-                    });
-                })
-        }, err => {
-            console.error(err);
-            return res.status(500).send({
-                err
+        console.log("Updated material in controller", material);
+        courseDOA.addMaterial(req.body.course, material._id)
+            .then(updatedCourse => {
+                console.log("Material ID added to Course ", updatedCourse);
+                return res.send({
+                    data: {
+                        material
+                    }
+                });
             })
+    }, err => {
+        console.error(err);
+        return res.status(500).send({
+            err
         })
+    })
         .catch(err => {
             console.error(err);
         })
@@ -177,6 +177,8 @@ materialController.addFile = (req, res, next) => {
         var ext = re.exec(singleFile.name)[1];
         var name = singleFile.name.split('.').slice(0, -1).join('.')
         let newName = name + '-' + Date.now();
+
+        singleFile.name = newName + '.' + ext;
 
         var newFile = {
             title: newName,

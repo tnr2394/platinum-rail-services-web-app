@@ -31,6 +31,7 @@ export class MaterialsComponent implements OnInit {
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Input('jobId') jobId;
+  @Input('learnersAllotedFromJob') learnersAlloted = false;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
@@ -56,6 +57,7 @@ export class MaterialsComponent implements OnInit {
   view: Boolean = false;
   loading: Boolean;
   panelOpenState: boolean = false;
+  selectedCopy;
   typeArray = ['Assignment', 'Reading'];
 
   assignmentStatus = [
@@ -90,11 +92,11 @@ export class MaterialsComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Changes in app materials", changes);
-      if (this.jobId != undefined) {
-        this.jobId = changes.jobId.currentValue;
-        console.log("this.learners", this.jobId);
-      }
+    console.log("*****Changes in app materials");
+    if (this.jobId != undefined && changes.jobId) {
+      this.jobId = changes.jobId.currentValue;
+      console.log("this.learners", this.jobId);
+    }
   }
   ngAfterViewInit() {
     console.log("AfterViewInit this.courseId = ", this.courseId);
@@ -107,20 +109,26 @@ export class MaterialsComponent implements OnInit {
   applyFilter(filterValue: string) {
     // console.log("IN APPLY FILTER")
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    // console.log("this.dataSource.filter", this.dataSource.filter)
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    console.log("this.dataSource.paginator", this.dataSource.paginator)
+
     console.log("THIS.MATERIALS IS", this.materials);
 
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
+<<<<<<< HEAD
     console.log("this._filter.filter(filterValue, this.copyMaterials, ['title', 'type'])", this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']))
     this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
     this.dataSource = new MatTableDataSource(this.materials);
     // this.dataSource = this.materials
     console.log("THIS.MATERIALS IS", this.dataSource);
 
+=======
+    this.materials = this._filter.filter(filterValue, this.selectedCopy, ['title', 'type']);
+    this.updateData(this.materials)
+>>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     this.dataSource.paginator = this.paginator;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   getRandomColorClass(i) {
@@ -153,16 +161,24 @@ export class MaterialsComponent implements OnInit {
     paginatorIntl.previousPageLabel = '';
   }
   onMaterialSelection(event) {
+    console.log("event", event);
+    console.log("this.selectedMaterials", this.selectedMaterials);
+
     if (event.checked == true) {
       this.selectedMaterials.push(event.source.value)
     }
     if (event.checked == false) {
-      this.selectedMaterials.forEach((material) => {
-        console.log('MATERIAL', material)
-        if (material._id == event.source.value._id) {
-          this.selectedMaterials.splice(material, 1)
-        }
-      })
+      var index = _.findIndex(this.selectedMaterials, function (o) { return o._id == event.source.value._id })
+      console.log("index", index);
+      if (index > -1) {
+        this.selectedMaterials.splice(index, 1)
+      }
+      // this.selectedMaterials.forEach((material) => {
+      //   console.log('MATERIAL', material)
+      //   if (material._id == event.source.value._id) {
+      //     this.selectedMaterials.splice(material, 1)
+      //   }
+      // })
     }
     console.log("MATERIALS ARRAY IS", this.selectedMaterials)
     this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
@@ -201,20 +217,22 @@ export class MaterialsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.materials);
     } else {
       const finalarray = [];
-      this.materials.forEach((e1) => assignment.forEach((e2) => {
+      this.copyMaterials.forEach((e1) => assignment.forEach((e2) => {
         if (e1.type == e2) {
           finalarray.push(e1)
         }
       }));
-      this.updateData(finalarray);
+      console.log('Selected Copy::::', this.selectedCopy);
+      this.selectedCopy = finalarray;
+      this.updateData(this.selectedCopy);
     }
   }
-  deleteFile(event){
+  deleteFile(event) {
     console.log("IN delete function", event);
     console.log("this.materials[this.materialIndex].files", this.materials[this.materialIndex].files);
-    
+
     var index = _.findIndex(this.materials[this.materialIndex].files, function (o) {
-      console.log("o._id", o, "event.fileId", event.fileId); 
+      console.log("o._id", o, "event.fileId", event.fileId);
       return o == event.fileId.toString();
     })
     if (index > -1) this.materials[this.materialIndex].files.splice(index, 1)
@@ -243,7 +261,7 @@ export class MaterialsComponent implements OnInit {
       this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
       this.updateData(this.materials);
-      this.assignmentStatus.forEach(status=>{
+      this.assignmentStatus.forEach(status => {
         status.checked = true
       })
       if (materials.type == "Assignment") {
@@ -284,7 +302,7 @@ export class MaterialsComponent implements OnInit {
     this.materials.splice(this.materials.findIndex(function (i) {
       return i._id === event._id;
     }), 1);
-    console.log("material deleted",this.materials);
+    console.log("material deleted", this.materials);
     this.updateData(this.materials)
   }
 
@@ -294,7 +312,7 @@ export class MaterialsComponent implements OnInit {
     console.log("Setting selectedMaterial = ", event.materialId)
     this.files = event.files;
   }
-  fileDetailsComp(event){
+  fileDetailsComp(event) {
     console.log("fileDetailsComp", event);
     this.materialIndex = event.materialIndex
     this.file = event.file;

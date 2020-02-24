@@ -56,11 +56,23 @@ export class ClientsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+  filter(searchText) {
+    console.log('FILTER CALLED', searchText);
+    if (searchText === '') {
+      this.dataSource = this.clients;
+      this.dataSource.paginator = this.paginator;
+      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+      return;
     }
+    this.dataSource = this._filter.filter(searchText, this.clients, ['name']);
+    this.dataSource.paginator = this.paginator;
+    // this.iterator();
   }
   filter(searchText) {
     console.log('FILTER CALLED', searchText);

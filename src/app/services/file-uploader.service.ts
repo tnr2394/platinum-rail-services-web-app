@@ -65,8 +65,8 @@ export class FileUploaderService {
   }
 
   // public events
-  public onCompleteItem(queueObj: FileQueueObject, response: any): any {
-    return { queueObj, response };
+  public onCompleteItem(queueObj: FileQueueObject, response: any, status:any): any {
+    return { queueObj, response, status };
   }
 
   // public functions
@@ -87,6 +87,7 @@ export class FileUploaderService {
   }
 
   public uploadAll() {
+    console.log("on uploadAll() the queue is", this._files);
     // upload all except already successfull or in progress
     _.each(this._files, (queueObj: FileQueueObject) => {
       if (queueObj.isUploadable()) {
@@ -110,6 +111,7 @@ export class FileUploaderService {
   }
 
   private _removeFromQueue(queueObj: FileQueueObject) {
+    console.log("File removed so the queue is", this._files);
     _.remove(this._files, queueObj);
   }
 
@@ -190,7 +192,9 @@ export class FileUploaderService {
     queueObj.status = FileQueueStatus.Success;
     queueObj.response = response;
     this._queue.next(this._files);
-    this.onCompleteItem(queueObj, response.body);
+    console.log("_uploadComplete", this._queue.value.length);
+    if (this._queue.next(this._files) == undefined) this.onCompleteItem(queueObj, response.body, 'finished')
+    else this.onCompleteItem(queueObj, response.body, 'inprogress')
   }
 
   private _uploadFailed(queueObj: FileQueueObject, response: HttpErrorResponse) {
