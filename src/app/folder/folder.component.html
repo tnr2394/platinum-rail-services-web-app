@@ -1,7 +1,6 @@
 <div class="row m-0">
     <div class="col-12 p-0">
         <!-- <mat-card> -->
-<<<<<<< HEAD
             <div *ngIf="currentUser.userRole == 'admin'">
             <div class="row" *ngIf="showCreateBtn">
                 <div class="col-12">
@@ -15,19 +14,6 @@
             </div>
             <!-- <mat-card-content> -->
                 <!-- <div class="folder_tile">
-=======
-        <div class="row" *ngIf="showCreateBtn">
-            <div class="col-12">
-                <button (click)='createFolder()' mat-flat-button color="primary"
-                    class="pull-right button_hover_effect mb-3">
-                    <i class="fas fa-plus fa-fw"></i>
-                    <span> Create Folder</span>
-                </button>
-            </div>
-        </div>
-        <!-- <mat-card-content> -->
-        <!-- <div class="folder_tile">
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                 <mat-card *ngFor="let singleFolder of allFolders; let i = index" style="width: 30%;" (click)="singleFolder()">
                     {{singleFolder.title}}
                 </mat-card>
@@ -36,7 +22,6 @@
                     <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)">
                     </material-tile>
                 </div> -->
-<<<<<<< HEAD
                 <!-- TEST START -->
                <!-- <div cdkDropList (cdkDropListDropped)="drop($event)" #todoList="cdkDropList"
                    cdkDropListOrientation="horizontal">
@@ -88,15 +73,6 @@
                                     <h5 class="materials_title pt-2 pb-2">{{singleFolder.title}}</h5>
                                 </mat-card-content>
                             </mat-card>
-=======
-        <div class="row parent_row">
-            <div class="col materials_box" *ngFor='let singleFolder of allFolders;let i = index'>
-                <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)"
-                    id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
-                    <mat-card-content class="material_card p-2">
-                        <div class="materia_icon_span {{getRandomColorClass(i)}}">
-                            <i class="fa fa-folder icon round"></i>
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                         </div>
                         <h5 class="materials_title pt-2">{{singleFolder.title}}</h5>
                     </mat-card-content>
@@ -121,12 +97,7 @@
             </div>
             <mat-card-content>
                 <div class="row">
-<<<<<<< HEAD
                     <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile">
-=======
-                    <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile"
-                        [contextMenu]="basicMenu" [contextMenuSubject]="file">
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
                         <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
                     </div>
                 </div>

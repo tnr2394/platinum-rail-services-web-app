@@ -83,12 +83,8 @@ export class FileTileComponent implements OnInit {
     })
   }
 
-<<<<<<< HEAD
   fileDetails(){
     $('.parent_row').addClass('col-width-class');
-=======
-  fileDetails() {
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     console.log("file tile clicked", event);
     this.openSideNav.emit({ file: this.file })
   }

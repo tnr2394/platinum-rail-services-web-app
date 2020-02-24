@@ -114,17 +114,8 @@ export class MaterialsComponent implements OnInit {
     console.log("THIS.MATERIALS IS", this.materials);
 
     // this.dataSource = this._filter.filter(filterValue, this.materials, ['title','type']);
-<<<<<<< HEAD
-    console.log("this._filter.filter(filterValue, this.copyMaterials, ['title', 'type'])", this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']))
-    this.materials = this._filter.filter(filterValue, this.copyMaterials, ['title', 'type']);
-    this.dataSource = new MatTableDataSource(this.materials);
-    // this.dataSource = this.materials
-    console.log("THIS.MATERIALS IS", this.dataSource);
-
-=======
     this.materials = this._filter.filter(filterValue, this.selectedCopy, ['title', 'type']);
     this.updateData(this.materials)
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     this.dataSource.paginator = this.paginator;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();

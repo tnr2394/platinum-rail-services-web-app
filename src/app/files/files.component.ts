@@ -6,12 +6,8 @@ import { FileService } from '../services/file.service';
 import { FilterService } from '../services/filter.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
-<<<<<<< HEAD
-import { NewFileModalComponent } from '../files/new-file-modal/new-file-modal.component'
-=======
 import { NewFileModalComponent } from './new-file-modal/new-file-modal.component'
 import { FileUploaderService } from '../services/file-uploader.service';
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
 
 @Component({
   selector: 'material-files',
@@ -60,15 +56,6 @@ export class FilesComponent implements OnInit, OnChanges {
 
   // MODALS
   addFileModal() {
-<<<<<<< HEAD
-    if (this.materialId != undefined) {
-      var addedCourse = this.openDialog(NewFileModalComponent, { materialId: this.materialId }).subscribe((courses) => {
-        if (courses == undefined) return;
-        console.log("Course added in controller = ", courses);
-
-        _.forEach(courses, (data) => {
-          this.files.push(data);
-=======
     let tempQue
     if (this.materialId != undefined) {
       var addedCourse = this.openDialog(NewFileModalComponent, { materialId: this.materialId }).subscribe((fileQueue) => {
@@ -76,7 +63,6 @@ export class FilesComponent implements OnInit, OnChanges {
         if (fileQueue == undefined) return;
         _.forEach(fileQueue, (file) => {
           this.files.push(file);
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
         })
       console.log("this.files After push", this.files);
       
@@ -97,14 +83,10 @@ export class FilesComponent implements OnInit, OnChanges {
         this.fileCount = this.files.length;
       })
     }
-<<<<<<< HEAD
-
-=======
     console.log("onCompleteItem from file upload service");
    
     
     // this.getFiles();
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
   }
   updateData(courses: any) {
     // throw new Error("Method not implemented.");

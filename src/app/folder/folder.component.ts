@@ -48,13 +48,7 @@ export class FolderComponent implements OnInit {
     if (this.router.url.includes('/mydocuments')) {
       this.showCreateBtn = true
     }
-<<<<<<< HEAD
     this.currentUser = JSON.parse(localStorage.currentUser);
-=======
-    // this.currentUser = JSON.parse(localStorage.currentUser);
-    // console.log("this.currentUser-----", this.currentUser);
-    
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     // if (this.currentUser.userRole == 'admin') {
     //   this.getFolders();
     // } else {
@@ -65,10 +59,6 @@ export class FolderComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.currentUser = JSON.parse(localStorage.currentUser);
-<<<<<<< HEAD
-
-=======
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     console.log("changes", changes)
     if (changes.deletedFile) {
       var index = _.findIndex(this.allFolders, function (o) {
@@ -81,12 +71,9 @@ export class FolderComponent implements OnInit {
       this.allFolders = changes.subFolder.currentValue;
       console.log("This.allFolders", this.allFolders);
     }
-<<<<<<< HEAD
     // if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')) {
     //   this.getFolders()
     // }
-=======
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
     if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole == 'admin') {
       this.getFolders()
     }
@@ -215,7 +202,6 @@ export class FolderComponent implements OnInit {
     let id = singleFolder._id;
     this.router.navigate(['/single-folder', singleFolder._id])
   }
-<<<<<<< HEAD
 
   drop(event: CdkDragDrop<string[]>) {
     console.log("CARD DROP EVENT", event);
@@ -251,19 +237,4 @@ export class FolderComponent implements OnInit {
     }
 
   }
-=======
-  // openFile(event) {
-  //   console.log("IN MY DOCS", event);
-  //   $('.expansion-row').addClass('drawer-col-class');
-  //   $('.flex_row').addClass('flex_reverse');
-  //   $('.col-md-8').addClass('col-md-12');
-  //   if (event.file != undefined) {
-  //     this.details = event.file;
-  //   }
-  //   else {
-  //     this.details = event
-  //   }
-  //   this.mydsidenav.open()
-  // }
->>>>>>> ca6017af50d08dd34597cabd01303e1f3fd5a727
 }
