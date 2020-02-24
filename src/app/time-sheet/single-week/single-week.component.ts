@@ -50,14 +50,20 @@ export class SingleWeekComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService) {
-    this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
-    this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
+    // this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
+    // this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
+
+    this.route.queryParams.subscribe(params => {
+      console.log('Query Params=>', params);
+      this.datesOfWeek = params.datesOfTheWeek;
+      this.instructorId = params.instructorId;
+    });
   }
 
   ngOnInit() {
     // this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.datesOfWeek });
     console.log("---this.datesOfWeek---", this.datesOfWeek);
-    
+
     this.getDays();
     this.getValuesUsingDates();
   }
@@ -95,17 +101,17 @@ export class SingleWeekComponent implements OnInit {
         // tempWeeklyMinutes = tempWeeklyMinutes % 60
         totalMinute = totalMinute % 60;
         console.log("-----total Minutes----", totalMinute);
-        console.log("-----total Minutes/60----", totalMinute/60);
+        console.log("-----total Minutes/60----", totalMinute / 60);
         console.log("--IN IF--totalMinute", totalMinute);
         hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
         console.log("--IN IF--hoursWorking", hoursWorking);
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
       }
-      else if (totalMinute == 60){
+      else if (totalMinute == 60) {
         this.Days[index].workingHours.hours = hoursWorking + 1;
         this.Days[index].workingHours.minutes = totalMinute - 60;
-      } 
+      }
       else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
@@ -131,7 +137,7 @@ export class SingleWeekComponent implements OnInit {
       else if (totalMinute == 60) {
         this.Days[index].workingHours.hours = hoursWorking + 1;
         this.Days[index].workingHours.minutes = totalMinute - 60;
-      }  
+      }
       else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
@@ -157,7 +163,7 @@ export class SingleWeekComponent implements OnInit {
       } else if (totalMinute == 60) {
         this.Days[index].workingHours.hours = hoursWorking + 1;
         this.Days[index].workingHours.minutes = totalMinute - 60;
-      }  
+      }
       else {
         this.Days[index].workingHours.hours = hoursWorking;
         this.Days[index].workingHours.minutes = totalMinute;
@@ -190,7 +196,7 @@ export class SingleWeekComponent implements OnInit {
     else if (totalMin == 60) {
       this.Days[index].workingHours.hours = totalHr + 1;
       this.Days[index].workingHours.minutes = totalMin - 60;
-    }  
+    }
     else {
       this.Days[index].totalHours.hours = totalHr;
       this.Days[index].totalHours.minutes = totalMin;
@@ -208,11 +214,11 @@ export class SingleWeekComponent implements OnInit {
       totalHr = totalHr + Math.floor(totalMin / 60)
       totalMin = totalMin % 60
       return totalHr;
-    }else if(totalMin == 60){
+    } else if (totalMin == 60) {
       totalHr = totalHr + 1
       totalMin = totalMin - 60
       return totalHr;
-    } 
+    }
     else {
       return totalHr;
     }
@@ -234,7 +240,7 @@ export class SingleWeekComponent implements OnInit {
       totalHr = totalHr + 1
       totalMin = totalMin - 60
       return totalMin;
-    }  
+    }
     else {
       return totalMin;
     }
@@ -254,10 +260,10 @@ export class SingleWeekComponent implements OnInit {
       totalM = totalM % 60
       this.totalHoursWorked.hours = totalH;
       this.totalHoursWorked.minutes = totalM;
-    }else if(totalM == 60){
+    } else if (totalM == 60) {
       this.totalHoursWorked.hours = totalH + 1;
       this.totalHoursWorked.minutes = totalM - 60
-    } 
+    }
     else {
       this.totalHoursWorked.hours = totalH;
       this.totalHoursWorked.minutes = totalM;
@@ -315,7 +321,7 @@ export class SingleWeekComponent implements OnInit {
     console.log('Get Values Using Dates');
     let data = {
       date: this.datesOfWeek,
-      instructorId : this.instructorId
+      instructorId: this.instructorId
     }
     this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
       console.log('Inside Res=======>>>>', res);
