@@ -35,14 +35,14 @@ export class WeekListComponent implements OnInit {
   instructorId;
   instByAdmin: any;
 
-  constructor(private router: Router, private _timeSheetService: TimeSheetService ) {
+  constructor(private router: Router, private _timeSheetService: TimeSheetService) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
     if (this.router.getCurrentNavigation().extras.state) this.instByAdmin = this.router.getCurrentNavigation().extras.state.instructor;
     // if (this.router.getCurrentNavigation().extras.state.instructor) console.log(this.router.getCurrentNavigation().extras.state.instructor);
-   }
+  }
 
   ngOnInit() {
-    if(this.instByAdmin != undefined){
+    if (this.instByAdmin != undefined) {
       this.instructorId = this.instByAdmin
       console.log("this.instructorId", this.instructorId);
     }
@@ -52,7 +52,7 @@ export class WeekListComponent implements OnInit {
 
   showWeeks(month, i) {
     this.step = i;
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       this.allWeeks = [];
       let year = moment().year()
       let startDate = moment.utc([year, month])
@@ -81,7 +81,7 @@ export class WeekListComponent implements OnInit {
       this.show = true;
       console.log("$$allWeeks", this.allWeeks);
       resolve(this.allWeeks)
-    }).then((resolvedAllWeeks)=>{
+    }).then((resolvedAllWeeks) => {
       console.log("---resolvedAllWeeks-- in AFTER FOR LOOP", resolvedAllWeeks);
       this.getStatus(resolvedAllWeeks).then((resolvedWeeks) => {
         console.log("$$resolvedWeeks-----", resolvedWeeks);
@@ -93,47 +93,47 @@ export class WeekListComponent implements OnInit {
     console.log("-----getWeekDates-----", week);
     let dates = []
     // return new Promise((resolve,reject)=>{
-      dates.push(week.weekStartDate.format('MM/DD/YYYY'))
-      return new Promise((resolve,reject)=>{
-        while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
-          console.log("In while loop");
-          console.log(week.weekStartDate.toDate());
-          dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
-        }
-        resolve(dates)
-      })
-      console.log(" AFTER WHILE **dates", dates);
-      // resolve(dates)
+    dates.push(week.weekStartDate.format('MM/DD/YYYY'))
+    return new Promise((resolve, reject) => {
+      while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
+        console.log("In while loop");
+        console.log(week.weekStartDate.toDate());
+        dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
+      }
+      resolve(dates)
+    })
+    console.log(" AFTER WHILE **dates", dates);
+    // resolve(dates)
     // })
     // console.log("*****dates:", dates);
     // this.router.navigate(['action-selection'], { state: { example: 'bar' } });
     // this.router.navigate(['single-week'], { state: { datesOfTheWeek: dates } })
   }
-  getStatus(weeks){
+  getStatus(weeks) {
     console.log("-----getStatus-----", weeks);
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       let tempdatesArrayResolved = []
       weeks.forEach((singleWeek) => {
         console.log("singleWeek", singleWeek);
-        this.getWeekDates(singleWeek).then((datesArrayResolved:any) => {
+        this.getWeekDates(singleWeek).then((datesArrayResolved: any) => {
           // tempdatesArrayResolved = datesArrayResolved
           console.log("datesArrayResolved", datesArrayResolved);
           // console.log("-------datesArrayResolved---------", datesArrayResolved);
           singleWeek['datesOfTheWeek'] = datesArrayResolved;
           singleWeek.weekStart = datesArrayResolved[0]
           singleWeek.weekEnd = datesArrayResolved[datesArrayResolved.length - 1]
-    //       console.log("datesOfTheWeek", singleWeek.datesOfTheWeek);
-        
+          //       console.log("datesOfTheWeek", singleWeek.datesOfTheWeek);
+
           this._timeSheetService.getWeeklyStatus({ date: datesArrayResolved, instructorId: this.instructorId }).subscribe((statusResponse) => {
-          //   console.log("-----statusResponse-----",statusResponse.finalStatus );
+            //   console.log("-----statusResponse-----",statusResponse.finalStatus );
             singleWeek['status'] = statusResponse.finalStatus;
-          //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
+            //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
           })
         })
-      resolve(weeks)
+        resolve(weeks)
       })
-    //   console.log("after API call", weeks);
-      
+      //   console.log("after API call", weeks);
+
     })
   }
   singleWeek(week) {
@@ -146,8 +146,13 @@ export class WeekListComponent implements OnInit {
     // console.log("*****dates:", dates);
     // this.router.navigate(['action-selection'], { state: { example: 'bar' } });
     console.log("ALL DATES ARRAY", week.datesOfTheWeek);
-    
-    this.router.navigate(['single-week'], { state: { datesOfTheWeek: week.datesOfTheWeek, instructorId: this.instructorId } })
+
+    console.log("this.instructorId====>>>>>", this.instructorId);
+
+    // this.router.navigate(['single-week'], { state: { datesOfTheWeek: week.datesOfTheWeek, instructorId: this.instructorId } })
+
+    this.router.navigate(['single-week'], { queryParams: { datesOfTheWeek: week.datesOfTheWeek, instructorId: this.instructorId } })
+
   }
   getRandomColorClass(i) {
     var rand = Math.floor(Math.random() * this.bgColors.length);
