@@ -191,7 +191,7 @@ module.exports.getWeeklylog = (req, res) => {
 	const datesArray = req.body.date
 	const instructorId = req.body.instructorId;
 	Promise.all([
-		getLast13Logs(datesArray),
+		getLast13Logs(instructorId,datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
 	]).then((response) => {
 		let finalStatus;
@@ -336,10 +336,10 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 		})
 	})
 }
-const getLast13Logs = (datesArray) => {
+const getLast13Logs = (instructorId, datesArray) => {
 	console.log("getLast13Logs", datesArray);
 	return new Promise((resolve, reject) => {
-		numberOfTurns(datesArray).then((response) => {
+		numberOfTurns(instructorId, datesArray).then((response) => {
 			// console.log("response ++++++++", response)
 			return resolve(response)
 		}).catch((error) => {
@@ -369,14 +369,14 @@ const getLast13Logs = (datesArray) => {
 // 	})
 // }
 
-const numberOfTurns = (weekDates) => {
+const numberOfTurns = (instructorId,weekDates) => {
 	console.log("----------numberOfTurns called---------");
 	return new Promise((resolve, reject) => {
 		let datesArray = weekDates
 		calculateLast13Days(weekDates[0]).then((data) => {
 			datesArray.push(...data)
 			console.log("----------datesArray after 13 days are added----------");
-			const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
+			// const instructorId = ObjectId('5e293b0fa452624cba0dcfd5');
 			timeLogServices.getInstructorTimeLog(instructorId, datesArray)
 				.then((response) => {
 					// console.log("All the dates are", response);

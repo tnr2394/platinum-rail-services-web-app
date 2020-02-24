@@ -64,6 +64,12 @@ export class ProfileComponent implements OnInit {
         this.getJobValues(changes.jobDetails.currentValue)
       }
     }
+    if (changes.instructorId){
+      if (changes.instructorId.currentValue){
+        this.instructorId = changes.instructorId.currentValue;
+        this.getInstructor()
+      }
+    }
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);

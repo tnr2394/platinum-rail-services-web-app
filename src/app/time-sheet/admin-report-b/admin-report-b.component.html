@@ -1,0 +1,129 @@
+<!-- <div class="row d-flex">
+<div class="col-6">
+<div *ngIf="allInstructors && allInstructors.length != 0">
+    <select2 [data]="instToDisplay" [cssImport]=true [options]="options"
+        (valueChanged)="instructorChanged($event)">
+    </select2>
+</div>
+</div>
+<div class="col-6">
+    <input type="text" ngxDaterangepickerMd placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
+</div>
+</div> -->
+
+<div class="row mt-2">
+<div class="col-lg-3">
+    <app-profile [instructorForProfile]="selectedInstructorId"></app-profile>
+</div>
+<div class="col-lg-9">
+    <div class="row select">
+        <div class="col-6">
+            <div *ngIf="allInstructors && allInstructors.length != 0">
+                <select2 [data]="instToDisplay" [cssImport]=true [options]="options"
+                    (valueChanged)="instructorChanged($event)">
+                </select2>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+            <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)"
+                class="form-control dates-chosen" />
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center total">
+        <!-- <div class="row"> -->
+            <div class="col-6 text-center">
+                <h2 style="color: #3b86ff;">00</h2>
+                <p>Total Hours</p>
+            </div>
+            <div class="col-6 text-center">
+                <h2>0</h2>
+                <p>Over time Hours</p>
+            </div>
+    </div>
+    <div class="row">
+        <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[10, 25, 100]">
+        </mat-paginator>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="card">
+                        <!--Card content-->
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+    
+                                    <!-- Date Column -->
+                                    <ng-container matColumnDef="Date">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                           {{log.date}}
+                                        </td>
+                                    </ng-container>
+    
+                                    <!-- LogIn Column -->
+                                    <ng-container matColumnDef="LogIn">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> LogIn </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logIn}} </td>
+                                    </ng-container>
+    
+                                    <!-- LunchStart Column -->
+                                    <ng-container matColumnDef="LunchStart">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> LunchStart </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchStart}} </td>
+                                    </ng-container>
+    
+                                    <!-- LunchEnd Column -->
+                                    <ng-container matColumnDef="LunchEnd">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> LunchEnd </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchEnd}} </td>
+                                    </ng-container>
+
+                                    <!-- LogOut Column -->
+                                    <ng-container matColumnDef="LogOut">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> LogOut </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logOut}} </td>
+                                    </ng-container>
+                                    
+                                    <!-- WorkHours Column -->
+                                    <ng-container matColumnDef="WorkHours">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> WorkHours </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> 
+                                            {{log.workingHours.hours}}:{{log.workingHours.minutes}} </td>
+                                    </ng-container>
+
+                                    <!-- TravelHours Column -->
+                                    <ng-container matColumnDef="TravelHours">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> TravelHours </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.travel}} </td>
+                                    </ng-container>
+                                    <!-- Total -->
+                                    <ng-container matColumnDef="Total">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Total </th>
+                                        <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> 
+                                            {{log.totalHours.hours}}:{{log.totalHours.minutes}}
+                                        </td>
+                                    </ng-container>
+    
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    
+                                </table>
+                                <div *ngIf="display" class="msg">
+                                   <h3> Please choose a date range to display Time Logs! </h3>
+                                </div>
+                                <div *ngIf="displayMsg" class="msg">
+                                    <h3> No Logs Entry Found! </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

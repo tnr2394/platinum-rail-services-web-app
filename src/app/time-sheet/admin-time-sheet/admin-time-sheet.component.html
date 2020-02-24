@@ -11,8 +11,7 @@
 <!-- <button mat-flat-button (click)="viewType('Year')">Year</button>
 <button mat-flat-button (click)="viewType('Month')">Month</button>
 <button mat-flat-button (click)="viewType('Week')">Week</button> -->
-<div *ngIf="allInstructors && allInstructors.length != 0">
-    <!-- <button mat-flat-button (click)="changeQuery()">GO</button> -->
+<!-- <div *ngIf="allInstructors && allInstructors.length != 0">
     <select2 [data]="instToDisplay" [cssImport]=true [options]="options" [value]="value"
         (valueChanged)="instructorChanged($event)"></select2>
 </div>
@@ -39,4 +38,24 @@
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
         [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event)">
     </canvas>
+</div> -->
+
+<div>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                 Report 1
+            </ng-template>
+            <app-admin-report-a></app-admin-report-a>
+        </mat-tab>
+    
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                 Report 2
+            </ng-template>
+            <app-admin-report-b></app-admin-report-b>
+        </mat-tab>
+    </mat-tab-group>
 </div>

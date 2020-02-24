@@ -135,6 +135,24 @@ export class TimeSheetService {
         })
     });
   }
-
-
+  getMultipleInstructorTime(data): Observable<any> {
+    // const obj = { date: data }
+    // console.log("get time log", obj);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "time-log/ins-time", data).subscribe((res: any) => {
+        observer.next(res);
+        console.log("response from service", res);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
 }
