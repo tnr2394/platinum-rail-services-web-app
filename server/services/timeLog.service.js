@@ -27,6 +27,7 @@ module.exports.addTimeLogInInstructor = addTimeLogInInstructor
 module.exports.getInstructorWiseTimeLog = getInstructorWiseTimeLog
 module.exports.getWeeklyTimeLog = getWeeklyTimeLog;
 module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstructors
+module.exports.getInstructorsTimeLogDetails = getInstructorsTimeLogDetails
 
 function addTimeLog(data) {
     return new Promise((resolve, reject) => {
@@ -341,6 +342,69 @@ function sendSheetCompleteMailToInstructors(data) {
         }).catch((error) => {
             console.log('Error While Fetching Instructor', error);
             reject(error);
+        })
+    })
+}
+
+
+function getInstructorsTimeLogDetails(date) {
+
+    successLog("InstructorArray Inside Time Log Details", date);
+
+    return new Promise((resolve, reject) => {
+
+        TimeLog.aggregate([
+            {
+                $match: { 'date': date }
+            },
+            {
+                $lookup: {
+                    from: 'instructortimelogs',
+                    localField: '_id',
+                    foreignField: 'logs',
+                    as: 'logsDetail',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$logsDetail',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'instructors',
+                    localField: 'logsDetail.instructorId',
+                    foreignField: '_id',
+                    as: 'instructor',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$instructor',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $project: {
+                    instructor: 1,
+                    workingHours: 1,
+                    totalHours: 1,
+                    logIn: 1,
+                    lunchStart: 1,
+                    lunchEnd: 1,
+                    logOut: 1,
+                    travel: 1,
+                    date: 1,
+                }
+            }
+        ]).exec((error, data) => {
+            if (error) {
+                console.log('Errors=====>>>>', error);
+                return reject(error)
+            } else {
+                return resolve(data)
+            }
         })
     })
 }

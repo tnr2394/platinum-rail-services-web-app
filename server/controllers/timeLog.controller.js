@@ -214,9 +214,9 @@ module.exports.getWeeklylog = (req, res) => {
 				console.log("weekLogs of", i, weekLogs[i].date);
 				for (d = i; d <= i + 13; d++) {
 					// console.log("DATE COMPARED IS",dates[d])
-					var index = lodash.findIndex(last13daysLogs, (o) => { 
+					var index = lodash.findIndex(last13daysLogs, (o) => {
 						// console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
-						return o.date == sortedDates[d] 
+						return o.date == sortedDates[d]
 					})
 					if (index > -1) count = count + 1;
 				}
@@ -226,13 +226,13 @@ module.exports.getWeeklylog = (req, res) => {
 			let x = countForEachDay.every(isEqualThan13)
 			if (x == false) {
 				x = countForEachDay.every(isGreaterThan13)
-				if (x == false) status.push("Less than Regulation used"); 
+				if (x == false) status.push("Less than Regulation used");
 				else status.push("Regulation exceeded")
 			}
 			else status.push("Regulation Achieved")
 			let tempFinalStatus = status.every(isAchieved)
-			if (tempFinalStatus == false){
-				let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used"})
+			if (tempFinalStatus == false) {
+				let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
 				if (matchIndex > -1) finalStatus = "Less than Regulation used"
 				else {
 					let matchIndexAgain = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
@@ -243,7 +243,7 @@ module.exports.getWeeklylog = (req, res) => {
 			// status = (x == false) ? 'not satisfied' : status
 			return res.status(200).json({ message: 'Status sent ', finalStatus })
 		}
-		else return res.status(200).json({ message: 'Status sent ', finalStatus:'Not enough data' })
+		else return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
 	}).catch((error) => {
 		console.log('Inside Error=====>>>', error);
 	})
@@ -257,45 +257,45 @@ function isGreaterThan13(count) {
 	// console.log("CoUnT", count);
 	return count > 13;
 }
-function isAchieved(status){
+function isAchieved(status) {
 	return status == "Regulation Achieved"
 }
 
 const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 	// console.log("weeklyLogsWithOtherRules", datesArray);
-	
+
 	return new Promise((resolve, reject) => {
 		let status = [];
 		// status = 'satisfied'
 		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
 			// console.log("***getInstructorTimeLog***", response);
-			
-			
+
+
 			let tempWeeklyHours = 0; //Hours per week
 			let tempWeeklyMinutes = 0; //Hours per week
 			console.log("here");
 
 			for (var i = 0; i < response.length; i++) {
 				// Working hours
-				if ((response[i].workingHours.hours == 12 && response[i].workingHours.minutes == 00)){
+				if ((response[i].workingHours.hours == 12 && response[i].workingHours.minutes == 00)) {
 					// status = "Regulation achieved"
 					status.push("Regulation achieved")
-				} 
+				}
 				else if (response[i].workingHours.hours < 12) status.push("Less than Regulation used")  //status = "Less than Regulation used"
 				else status.push("Regulation exceeded") //status = "Regulation exceeded"
-				
+
 				// traver + work
 				if (response[i].totalHours && (response[i].totalHours.hours == 14 && response[i].workingHours.minutes == 00)) {
 					status.push("Regulation achieved") // status = "Regulation achieved"
 				} else if (response[i].totalHours && response[i].totalHours.hours < 14) status.push("Less than Regulation used") //status = "Less than Regulation used"
 				else status.push("Regulation exceeded") //status = "Regulation exceeded"
-				
+
 				console.log("tempWeeklyMinutes:", tempWeeklyMinutes, "tempWeeklyHours", tempWeeklyHours);
 				console.log("in for loop", "SATISFIED at", i, status);
 				tempWeeklyHours = tempWeeklyHours + response[i].workingHours.hours //Hours per week
-				console.log("tempWeeklyHours =>", tempWeeklyHours, "+", response[i].workingHours.hours,"=" ,tempWeeklyHours + response[i].workingHours.hours);
+				console.log("tempWeeklyHours =>", tempWeeklyHours, "+", response[i].workingHours.hours, "=", tempWeeklyHours + response[i].workingHours.hours);
 				tempWeeklyMinutes = tempWeeklyMinutes + response[i].workingHours.minutes //Hours per week
-				console.log("tempWeeklyMinutes =>", tempWeeklyMinutes, "+", response[i].workingHours.minutes,"=" ,tempWeeklyMinutes + response[i].workingHours.minutes);
+				console.log("tempWeeklyMinutes =>", tempWeeklyMinutes, "+", response[i].workingHours.minutes, "=", tempWeeklyMinutes + response[i].workingHours.minutes);
 				console.log("time done");
 				if (i < response.length - 1) { //Break between turns
 					var time1 = new Date(response[i].date + ' ' + response[i].logOut + ':00 GMT+0000');
@@ -316,7 +316,7 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 				tempWeeklyHours = tempWeeklyHours + Math.floor(tempWeeklyMinutes / 60)
 				tempWeeklyMinutes = tempWeeklyMinutes % 60
 			}
-			else if (tempWeeklyMinutes == 60){
+			else if (tempWeeklyMinutes == 60) {
 				tempWeeklyHours = tempWeeklyHours + 1
 				tempWeeklyMinutes = tempWeeklyMinutes - 60
 			}
@@ -331,7 +331,7 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 			}
 			resolve(weeklyResponse)
 		}).catch((error) => {
-			console.log("error",error);
+			console.log("error", error);
 			// return res.status(500).json({ message: ' Error in getting weekly time log ', error })
 		})
 	})
@@ -432,6 +432,30 @@ function formatDate(date) {
 		date = mm + '/' + dd + '/' + yyyy;
 		console.log("formatDate", date);
 		resolve(date)
+	})
+}
+
+
+
+module.exports.instructorsTimeLogDetails = (req, res) => {
+	console.log('Instructor Time Log Details', req.body.date);
+
+	const date = req.body.date;
+
+	// let instructorList = [];
+
+	// lodash.forEach(req.body.instructor, (singleIns) => {
+	// 	console.log('Single Ins', singleIns);
+	// 	instructorList.push(ObjectId(singleIns))
+	// })
+
+	// console.log('Instructor Time Log Details', instructorList);
+
+
+	timeLogServices.getInstructorsTimeLogDetails(date).then((response) => {
+		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
+	}).catch((error) => {
+		return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
 	})
 }
 

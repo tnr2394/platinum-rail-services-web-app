@@ -20,5 +20,7 @@ router.put('/', timeLogController.updateTimeLog);
 
 router.post('/ins', timeLogController.getInstructorTimeLog);
 
+router.post('/ins-time', timeLogController.instructorsTimeLogDetails);
+
 
 module.exports = router;
