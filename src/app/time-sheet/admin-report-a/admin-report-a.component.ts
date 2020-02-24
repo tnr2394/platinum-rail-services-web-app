@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { InstructorService } from 'src/app/services/instructor.service';
 import { FilterService } from 'src/app/services/filter.service';
+import { TimeSheetService } from 'src/app/services/time-sheet.service';
+import * as Moment from 'moment';
+import { extendMoment } from 'moment-range';
+const moment = extendMoment(Moment);
 
 @Component({
   selector: 'app-admin-report-a',
@@ -16,7 +20,7 @@ export class AdminReportAComponent implements OnInit {
   searchText;
 
   displayedColumns: string[] = ['Instructor', 'LogIn', 'LunchStart', 'LunchEnd', 'LogOut', 'WorkHours', 'TravelHours', 'Total'];
-  allInstrutors: any;
+  allInstrutorsLogs: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -30,26 +34,29 @@ export class AdminReportAComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  constructor(private _instructorService: InstructorService, public _filter: FilterService) {
+  constructor(private _instructorService: InstructorService, public _filter: FilterService, public _timeSheetService: TimeSheetService) {
     this.dataSource = new MatTableDataSource<any>();
    }
 
   ngOnInit() {
-    this.getAllInstructors()
+    this.selectedDate = moment().format("MM/DD/YYYY")
+    this.getInstructorTime(this.selectedDate)
+    // this.getAllInstructors()
   }
   dateChanged(event){
     console.log("event", event);
-    this.selectedDate = event.value;
+    this.selectedDate = moment(event.value).format("MM/DD/YYYY");
     console.log("this.selectedDate", this.selectedDate);
+    this.getInstructorTime(this.selectedDate)
   }
   filter(searchText) {
     console.log('FILTER CALLED', searchText);
     if (searchText === '') {
-      this.dataSource = new MatTableDataSource(this.allInstrutors);
+      this.dataSource = new MatTableDataSource(this.allInstrutorsLogs);
       this.dataSource.paginator = this.paginator;
       return;
     }
-    let temp = this._filter.filter(searchText, this.allInstrutors, ['name']);
+    let temp = this._filter.filter(searchText, this.allInstrutorsLogs, ['name']);
     this.updateData(temp)
   }
   updateData(logs) {
@@ -62,11 +69,21 @@ export class AdminReportAComponent implements OnInit {
   }
 
   // API
-  getAllInstructors(){
-    this._instructorService.getInstructors().subscribe(instructorsResponse=>{
-      console.log("instructorsResponse", instructorsResponse)
-      this.allInstrutors = instructorsResponse;
-      // this.dataSource = new MatTableDataSource<any>(this.allInstrutors)
+  // getAllInstructors(){
+  //   this._instructorService.getInstructors().subscribe(instructorsResponse=>{
+  //     console.log("instructorsResponse", instructorsResponse)
+  //     this.allInstrutors = instructorsResponse;
+  //     // this.dataSource = new MatTableDataSource<any>(this.allInstrutors)
+  //   })
+  // }
+  getInstructorTime(date){
+    let data = {
+      date: date
+    }
+    this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs=>{
+      this.allInstrutorsLogs = instLogs;
+      console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);
+      if (this.allInstrutorsLogs.length > 0) this.updateData(this.allInstrutorsLogs)
     })
   }
 }

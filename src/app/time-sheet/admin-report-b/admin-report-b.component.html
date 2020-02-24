@@ -10,12 +10,9 @@
     <input type="text" ngxDaterangepickerMd placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
 </div>
 </div> -->
-
-<div class="row mt-2">
-<div class="col-lg-3">
-    <app-profile [instructorForProfile]="selectedInstructorId"></app-profile>
-</div>
-<div class="col-lg-9">
+<div class="row">
+<div class="col-3"></div>
+<div class="col-9">
     <div class="row select">
         <div class="col-6">
             <div *ngIf="allInstructors && allInstructors.length != 0">
@@ -26,11 +23,20 @@
         </div>
         <div class="col-6">
             <div class="row">
-            <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)"
-                class="form-control dates-chosen" />
+                <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
+                    (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
             </div>
         </div>
     </div>
+</div>
+</div>
+
+<div class="row mt-2">
+<div class="col-lg-3">
+    <app-profile [instructorForProfile]="selectedInstructorId"></app-profile>
+</div>
+<div class="col-lg-9">
+   
     <div class="row align-items-center total">
         <!-- <div class="row"> -->
             <div class="col-6 text-center">
