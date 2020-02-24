@@ -831,3 +831,39 @@ body{
     height: auto !important;
     overflow: auto;
 }
+.timepicker-overlay {
+    z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+    z-index: 10000000 !important;
+}
+.choose-date{
+  .mat-form-field-infix {
+    border-top: none !important;
+}
+}
+.select2-container{
+    min-width: 100% !important;
+    .select2-search__field{
+    width: 100% !important;
+}
+
+.select2-selection--single {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  height: 37px !important;
+}
+.select2-selection__rendered {
+    color: #444;
+    line-height: 36px !important;
+}
+.select2-selection__arrow {
+    height: 36px !important;
+}
+// .select2-selection__rendered {
+//     color: #444;
+//     line-height: 36px;
+// }
+}

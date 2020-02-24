@@ -1,7 +1,12 @@
 var courseDAO = require('./course.dao');
+const async = require("async");
 
 const folderModel = require('../models/folder.model');
 const fileDAO = require('../dao/file.dao');
+const mailService = require('../services/mail.service');
+
+const instructorController = require('../controllers/instructor.controller');
+const clientController = require('../controllers/client.controller');
 
 var Q = require('q');
 
@@ -176,6 +181,48 @@ folder.makeCurrentFolderChild = function (folderId) {
     })
     return q.promise;
 }
+
+folder.sendShareFolderMail = (userList, folderDetail) => {
+    return new Promise((resolve, reject) => {
+        console.log('Inside Send Mail Folder Share', userList, folderDetail);
+
+        // return;
+
+        const defaultPasswordEmailoptions = {
+            to: userList,
+            subject: folderDetail.title + `- Invitation to view`,
+            template: 'share-folder'
+        };
+
+        mailService.sendMail(defaultPasswordEmailoptions, folderDetail, null, function (err, mailResult) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(mailResult)
+            }
+        });
+    })
+}
+
+
+folder.sendShareFileMail = (userList, fileDetail) => {
+    return new Promise((resolve, reject) => {
+        console.log('Inside Send Mail File Share', userList, fileDetail);
+        const defaultPasswordEmailoptions = {
+            to: userList,
+            subject: 'Shared File',
+            template: 'share-file'
+        };
+        mailService.sendMail(defaultPasswordEmailoptions, fileDetail, null, function (err, mailResult) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(mailResult)
+            }
+        });
+    });
+}
+
 
 
 

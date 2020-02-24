@@ -1,0 +1,56 @@
+<h1 mat-dialog-title><i class="fa fa-plus-circle"></i> Add Time Log</h1>
+<mat-divider></mat-divider>
+<div class="row">
+    <div class="col-4 mt-3 ml-3">
+        <h5 class="labelColor">Choose a date</h5>
+        <mat-form-field class="choose-date">
+            <input matInput [matDatepicker]="picker" [disabled]="disabled"
+                placeholder="{{date.getDate()}}/{{date.getMonth()+1}}/{{date.getFullYear()}}"
+                (dateChange)="dateSelected($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker [startAt]="date"></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-6">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+            <h5 class="labelColor">Time In</h5>
+            <app-time-picker [logFor]="'timeIn'" [defaultTime]='defaultTimeIn' (timeFor)="timeChanged($event)">
+            </app-time-picker>
+        </mat-card>
+    </div>
+    <div class="col-6">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+            <h5 class="labelColor">Lunch Start</h5>
+            <app-time-picker [logFor]="'lunchStart'" [min]='minLunchStart' [defaultTime]='defaultLunchStart'
+                (timeFor)="timeChanged($event)">
+            </app-time-picker>
+        </mat-card>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-6">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+            <h5 class="labelColor">Lunch End</h5>
+            <mat-label>Lunch End</mat-label>
+            <app-time-picker [logFor]="'lunchEnd'" [min]='minLunchEnd' [defaultTime]='defaultLunchEnd' (timeFor)="timeChanged($event)">
+            </app-time-picker>
+        </mat-card>
+    </div>
+    <div class="col-6">
+        <mat-card appMaterialElevation [defaultElevation]="0" raisedElevation="3">
+            <h5 class="labelColor">Time Out</h5>
+            <app-time-picker [logFor]="'timeOut'" [min]="minTimeOut" [defaultTime]='defaultTimeOut'
+                (timeFor)="timeChanged($event)">
+            </app-time-picker>
+        </mat-card>
+    </div>
+</div>
+<div mat-dialog-actions class="saveBtn mt-2">
+    <button mat-flat-button color="primary" (click)='add()'>
+        <i class="fas fa-plus fa-fw"></i>
+        <span> Save</span>
+    </button>
+</div>

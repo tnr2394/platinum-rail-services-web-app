@@ -1,0 +1,104 @@
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChanged($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<div class="row m-0">
+    <mat-form-field class="example-full-width col-lg-6 col-md-6 p-0">
+        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-paginator class="col-lg-6 col-md-6 p-0" [pageSizeOptions]="[10, 25, 100]">
+    </mat-paginator>
+</div>
+
+<div class="row m-0">
+    <div class="col-12">
+
+        <div class="row 0">
+            <div class="col-12 p-0">
+                <div class="card">
+                    <!--Card content-->
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                <!-- Instructor Column -->
+                                <ng-container matColumnDef="Instructor">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef> Instructor </th>
+                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let instuctor"> 
+                                        <mat-list align='center'>
+                                            <!-- //*ngFor='let oneInstructor of job.instructors' -->
+                                            <mat-list-item class="text-center"> 
+                                                <!-- *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path" -->
+                                                <div class="inst_pic" *ngIf="instuctor && instuctor.profilePic && instuctor.profilePic.path">
+                                                    <img src="{{instuctor.profilePic.path}}">
+                                                </div>
+                                                <!-- *ngIf="oneInstructor && !oneInstructor.profilePic" -->
+                                                <div class="inst_pic" *ngIf="instuctor && !instuctor.profilePic">
+                                                    <img src="../../assets/Avatar.png">
+                                                </div>
+
+                                                <a routerLink="/instructors/{{instuctor._id}}">
+                                                    <span >
+                                                        {{instuctor.name}}</span>
+                                                </a>
+                                            </mat-list-item>
+                                        </mat-list>
+                                    </td>
+                                </ng-container>
+
+                            <!-- LogIn Column -->
+                            <ng-container matColumnDef="LogIn">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> LogIn </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logIn}} </td>
+                            </ng-container>
+                            
+                            <!-- LunchStart Column -->
+                            <ng-container matColumnDef="LunchStart">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> LunchStart </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchStart}} </td>
+                            </ng-container>
+                            
+                            <!-- LunchEnd Column -->
+                            <ng-container matColumnDef="LunchEnd">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> LunchEnd </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchEnd}} </td>
+                            </ng-container>
+                            
+                            <!-- LogOut Column -->
+                            <ng-container matColumnDef="LogOut">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> LogOut </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logOut}} </td>
+                            </ng-container>
+                            
+                            <!-- WorkHours Column -->
+                            <ng-container matColumnDef="WorkHours">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> WorkHours </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                    {{log.workingHours.hours}}:{{log.workingHours.minutes}} </td>
+                            </ng-container>
+                            
+                            <!-- TravelHours Column -->
+                            <ng-container matColumnDef="TravelHours">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> TravelHours </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.travel}} </td>
+                            </ng-container>
+                            <!-- Total -->
+                            <ng-container matColumnDef="Total">
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> Total </th>
+                                <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                    {{log.totalHours.hours}}:{{log.totalHours.minutes}}
+                                </td>
+                            </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -34,9 +34,11 @@ const learnersRouter = require('./routes/learner');
 const materialsRouter = require('./routes/materials');
 const adminRouter = require('./routes/admin');
 const folderRouter = require('./routes/folder');
+const timeLogRouter = require('./routes/timeLog');
 
 const instructorController = require('./controllers/instructor.controller');
 const dbBackupService = require('./services/dbbackup.service');
+const timeLogService = require('./services/timeLog.service');
 
 // Make the settings in the environment config global available
 global.settings = config.env.settings;
@@ -142,8 +144,18 @@ if (config.env.name === 'production') {
 //     scheduled: true,
 //   });
 
-
 // dbBackupCronJob.start();
+
+
+// const completeTimeSheetCronJob = cron.schedule('0 0 * * FRI', () => {
+
+//   console.log('Complete Time Sheet is Running Now');
+//   timeLogService.sendSheetCompleteMailToInstructors();
+// }, {
+//   scheduled: true,
+// });
+
+// completeTimeSheetCronJob.start();
 
 
 app.use('/', indexRouter);
@@ -156,7 +168,7 @@ app.use('/learners', learnersRouter);
 app.use('/materials', materialsRouter);
 app.use('/admin', adminRouter);
 app.use('/folder', folderRouter);
-
+app.use('/time-log', timeLogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

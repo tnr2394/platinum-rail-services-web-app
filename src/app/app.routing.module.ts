@@ -28,6 +28,13 @@ import { SingleFolderComponent } from './folder/single-folder/single-folder.comp
 import { ProfileComponent } from './commons/profile/profile.component';
 import { ExamsResultsComponent } from './learners/exams-results/exams-results.component';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component';
+import { TimeSheetComponent } from './time-sheet/time-sheet.component';
+import { WeekListComponent } from './time-sheet/week-list/week-list.component';
+import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
+import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
+import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
+
+import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -165,11 +172,15 @@ const routes: Routes = [
 	},
 	{
 		path: 'mydocuments',
-		component: MyDocumentsComponent
+		component: MyDocumentsComponent,
+		canActivate: [AuthGuard],
+		data: { roles: [Role.Admin, Role.Instructor, Role.Client] }
 	},
 	{
 		path: 'single-folder/:id',
-		component: SingleFolderComponent
+		component: SingleFolderComponent,
+		canActivate: [AuthGuard],
+		data: { roles: [Role.Admin, Role.Instructor, Role.Client] }
 	},
 	{
 		path: 'profile',
@@ -178,6 +189,30 @@ const routes: Routes = [
 	{
 		path: 'newFile',
 		component: NewFileModalComponent
+	},
+	{
+		path: 'time-sheet',
+		component: TimeSheetComponent
+	},
+	{
+		path: 'week-list',
+		component: WeekListComponent
+	},
+	{
+		path: 'single-week',
+		component: SingleWeekComponent
+	},
+	{
+		path: 'admin-time-sheet',
+		component: AdminTimeSheetComponent
+	},
+	{
+		path: 'admin-report-a',
+		component: AdminReportAComponent
+	},
+	{
+		path: 'admin-report-b',
+		component: AdminReportBComponent
 	}
 ];
 

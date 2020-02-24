@@ -29,6 +29,7 @@ import { InstructorsComponent } from './instructors/instructors.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -40,6 +41,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChartsModule } from 'ng2-charts';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { Select2Module } from 'ng2-select2';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+
+
+
 // import { TagInputModule } from 'ngx-chips';
 
 import { AddCourseModalComponent } from './courses/add-course-modal/add-course-modal.component';
@@ -99,8 +108,16 @@ import { ExamsResultsComponent } from './learners/exams-results/exams-results.co
 import { FileDetailsComponent } from './commons/file-details/file-details.component';
 import { MaterialElevationDirective } from './commons/material-tile/material-elevation.directive';
 import { NewFileModalComponent } from './files/new-file-modal/new-file-modal.component'
-import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { TimeSheetComponent } from './time-sheet/time-sheet.component';
+import { TimePickerComponent } from './commons/time-picker/time-picker.component';
+import { AddTimelogModalComponent } from './time-sheet/add-timelog-modal/add-timelog-modal.component';
+import { TimeSheetSummaryComponent } from './time-sheet/time-sheet-summary/time-sheet-summary.component';
+import { WeekListComponent } from './time-sheet/week-list/week-list.component';
+import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
+import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
+import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sheet/instructor-confirmation-modal/instructor-confirmation-modal.component';
+import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
+import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 
 @NgModule({
   declarations: [
@@ -168,9 +185,23 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ExamsResultsComponent,
     FileDetailsComponent,
     MaterialElevationDirective,
-    NewFileModalComponent
+    NewFileModalComponent,
+    TimeSheetComponent,
+    TimePickerComponent,
+    AddTimelogModalComponent,
+    TimeSheetSummaryComponent,
+    WeekListComponent,
+    SingleWeekComponent,
+    AdminTimeSheetComponent,
+    InstructorConfirmationModalComponent,
+    AdminReportAComponent,
+    AdminReportBComponent
   ],
   imports: [
+    NgxDaterangepickerMd.forRoot(),
+    ChartsModule,
+    Select2Module,
+    NgxMaterialTimepickerModule,
     DragDropModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -196,6 +227,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSortModule,
     CdkTableModule,
     MatSnackBarModule,
+    MatRadioModule,
     ColorPickerModule,
     MatExpansionModule,
     ImageCropperModule,
@@ -208,7 +240,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     }),
     NgCircleProgressModule.forRoot({})
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

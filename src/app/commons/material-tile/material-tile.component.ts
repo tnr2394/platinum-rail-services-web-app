@@ -4,7 +4,7 @@ import { from, Observable } from 'rxjs';
 import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { JobService } from 'src/app/services/job.service';
-import { LearnerService } from 'src/app/services/learner.service';
+import { LearnerService } from 'src/app/services/learner.service'; 
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
@@ -126,7 +126,7 @@ export class MaterialTileComponent implements OnInit {
 
   getMaterialFiles() {
     // console.log("INDEX IS", this.i);
-    var tempId = "#"+ this.materialId
+    var tempId = "#" + this.materialId
     $(tempId).addClass('box_shadow_cls')
     console.log(" Yash ", tempId)
     // this.temp = this.copyLearners;
@@ -292,10 +292,10 @@ export class MaterialTileComponent implements OnInit {
     console.log("allocated learners", this.allocatedLearners);
   }
   allocateMaterial() {
-    this.assignmentAllocated.emit({msg:'assignment allocated from material tile'})
-    this.allocatedLearners.forEach(learner=>{
-      this.allLearners.forEach(singleLearner=>{
-        if (learner._id == singleLearner._id){
+    this.assignmentAllocated.emit({ msg: 'assignment allocated from material tile' })
+    this.allocatedLearners.forEach(learner => {
+      this.allLearners.forEach(singleLearner => {
+        if (learner._id == singleLearner._id) {
           singleLearner.checked = true
         }
       })
@@ -321,42 +321,36 @@ export class MaterialTileComponent implements OnInit {
     console.log("Getting allocated learner", event);
     // if (event == null || event.tab.textLabel == "Learners") {
 
-      console.log("this.learner", this.learner)
-      console.log("this.allLearners", this.allLearners)
 
-      this.allLearners.forEach(singleLearner => {
+    this.allLearners.forEach(singleLearner => {
 
-        console.log("this.material._id", this.material._id)
-        var temp = JSON.parse(JSON.stringify(this.material._id)) || null
-        if (temp) {
-          // console.log("singleLearner", singleLearner.allotments)
+      var temp = JSON.parse(JSON.stringify(this.material._id)) || null
+      if (temp) {
+        // console.log("singleLearner", singleLearner.allotments)
 
-          var index1 = _.findIndex(singleLearner.allotments, function (o) { 
-            if (o.assignment && o.assignment._id){
-              console.log("o.assignment._id", o.assignment._id)
-              console.log("this.material._id", temp)
-              return o.assignment._id == temp; 
-            } 
-          });
-
-          if (index1 > -1) {
-            var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
-            // console.log(" index ", index)
-            if (index > -1) singleLearner.checked = true
-            else singleLearner.checked = false
-          } else {
-            singleLearner.checked = false
-
+        var index1 = _.findIndex(singleLearner.allotments, function (o) {
+          if (o.assignment && o.assignment._id) {
+            return o.assignment._id == temp;
           }
+        });
 
-
-        }
-        else {
+        if (index1 > -1) {
+          var index = _.findIndex(this.learner, function (o) { return o._id.toString() == singleLearner._id.toString(); });
+          // console.log(" index ", index)
+          if (index > -1) singleLearner.checked = true
+          else singleLearner.checked = false
+        } else {
           singleLearner.checked = false
+
         }
-      })
+
+
+      }
+      else {
+        singleLearner.checked = false
+      }
+    })
     // }
-    console.log("THIS.ALLLEARNERS", this.allLearners);
   }
 
   filter(filterValue: string) {
@@ -379,7 +373,6 @@ export class MaterialTileComponent implements OnInit {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
       this.learnerLength = data.length;
-      console.log('Learner List:::::::::::::::::::::::', data);
     });
   }
 }

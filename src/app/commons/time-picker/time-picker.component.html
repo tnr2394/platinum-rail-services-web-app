@@ -1,0 +1,21 @@
+<div class="ngx-timepicker-field-example">
+    <!-- <input placeholder="Max time 06:18 pm" [format]="24" [ngxTimepicker]="min" min="'06:18 pm'">
+        <ngx-material-timepicker #min></ngx-material-timepicker> -->
+    <mat-form-field>
+        <div class="clock">
+            <div>
+                <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='defaultTime'
+                    [min]="minimunTime" readonly>
+            </div>
+            <div>
+                <ngx-material-timepicker-toggle [for]="min"></ngx-material-timepicker-toggle>
+                <ngx-material-timepicker #min (closed)="closed($event)" (timeChanged)="timeChanged($event)"></ngx-material-timepicker>
+            </div>
+        </div>
+    </mat-form-field>
+    <!-- <input [ngxTimepicker]="toggleTimepicker" [disableClick]="true" readonly>
+        <ngx-material-timepicker-toggle [for]="toggleTimepicker"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker #toggleTimepicker></ngx-material-timepicker> -->
+    <!-- <ngx-timepicker-field  min="'1:15 PM'" [format]="24" (timeChanged)="timeChanged($event)">
+    </ngx-timepicker-field> -->
+</div>

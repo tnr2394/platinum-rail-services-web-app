@@ -4,9 +4,10 @@
     <mat-tab label="Details">
         <div class="row icon m-0 py-4">
             <h1 *ngIf="type=='folder'" class="folder_icon"><i class="fa fa-folder-open text-warning"></i></h1>
-            <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div>
-            <div *ngIf="type == 'file' || type == 'material' " >
-                <img src="{{recievedFile.thumbNail}}" height="300px" width="200px">
+            <!-- <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div> -->
+            <div *ngIf="type == 'file' || type == 'material' " class="detail_file_preview" >
+                <!-- <img src="{{recievedFile.tumbNail}}"> -->
+            <img src="../../../assets/google-docs.png">
             </div>
         </div>
         <div class="row m-0">
@@ -42,8 +43,8 @@
         </div>
     </mat-tab>
 
+    <!-- <div *ngIf="currentUser.userRole == admin"> -->
     <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
-
         <h4 class="shared_with">Shared with:</h4>
         <h6><b>Clients</b></h6>
         <ul>
@@ -70,4 +71,5 @@
                             class="fa fa-download" aria-hidden="true"></i> Download </a></button>
         </div>
     </mat-tab>
+    <!-- </div> -->
 </mat-tab-group>

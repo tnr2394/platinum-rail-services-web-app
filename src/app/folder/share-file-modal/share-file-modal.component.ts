@@ -15,7 +15,7 @@ import { FolderService } from 'src/app/services/folder.service';
 export class ShareFileModalComponent implements OnInit {
   @Input('details') recievedFile;
 
-  constructor(public _instructorService: InstructorService, public _clientService: ClientService, public _folderService : FolderService,
+  constructor(public _instructorService: InstructorService, public _clientService: ClientService, public _folderService: FolderService,
     public dialogRef: MatDialogRef<ShareFileModalComponent>, @Inject(MAT_DIALOG_DATA) public dialogdata: any) { }
 
   instructors;
@@ -24,12 +24,17 @@ export class ShareFileModalComponent implements OnInit {
   selectedInstructors = [];
   selectedClients = [];
   selInstructor = [];
+  alreadySharedInstructor = [];
+  alreadySharedClient = [];
   loading;
   filter;
   data;
 
   ngOnInit() {
     console.log("DATA IN Share File::::::::: = ", this.dialogdata);
+    this.alreadySharedInstructor = this.dialogdata.sharedInstructor;
+    this.alreadySharedClient = this.dialogdata.sharedClient;
+    console.log('Already Exists::::', this.alreadySharedClient, this.alreadySharedInstructor)
     this.getInstructors();
     this.getClients();
   }
@@ -65,13 +70,16 @@ export class ShareFileModalComponent implements OnInit {
   share() {
     console.log("SELECTED INSTRUCTORS", this.selectedInstructors);
     console.log("SELECTED Clients", this.selectedClients);
+    console.log('dialogdata:::::::::::', this.dialogdata);
     let selectedUsers = {
       selectedInstructors: this.selectedInstructors,
       selectedClients: this.selectedClients,
-      file: this.dialogdata._id
+      alreadySharedInstructor: this.alreadySharedInstructor,
+      alreadySharedClient: this.alreadySharedClient,
+      file: this.dialogdata
     };
-    if (this.dialogdata.type == 'folder'){
-      this._folderService.shareFolder(selectedUsers).subscribe(res=>{
+    if (this.dialogdata.type == 'folder') {
+      this._folderService.shareFolder(selectedUsers).subscribe(res => {
         console.log("RES", res);
       })
     }

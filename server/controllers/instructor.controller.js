@@ -1,6 +1,5 @@
 // Npm Modules
 
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Q = require('q');
 fileDAO = require('../dao/file.dao');
@@ -197,12 +196,12 @@ instructorController.updateInstructor = function (req, res, next) {
 const updateInstructorDetail = (updatedInstructor, instructorId) => {
     return new Promise((resolve, reject) => {
         instructorModel.findOneAndUpdate({
-                _id: instructorId
-            }, {
-                $set: updatedInstructor
-            }, {
-                new: true
-            },
+            _id: instructorId
+        }, {
+            $set: updatedInstructor
+        }, {
+            new: true
+        },
             (err, instructor) => {
                 console.log("Updated instructor", instructor, err);
                 if (err) {
@@ -298,6 +297,18 @@ instructorController.checkForQualificationCronJob = () => {
                 }
             })
         }
+    })
+}
+
+instructorController.instructorEmailList = () => {
+    return new Promise((resolve, reject) => {
+        instructorModel.find({}, (err, response) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(response)
+            }
+        })
     })
 }
 

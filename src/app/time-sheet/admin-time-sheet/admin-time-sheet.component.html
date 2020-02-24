@@ -1,0 +1,61 @@
+<div class="row">
+    <h3 class="page-title">
+        Timesheet summary 
+    </h3>
+</div>
+<!-- <p>
+    12 hrs a day 
+    12 x 6 = 72 hrs a week
+    72 x 4 = 288 hrs a month
+</p> -->
+<!-- <button mat-flat-button (click)="viewType('Year')">Year</button>
+<button mat-flat-button (click)="viewType('Month')">Month</button>
+<button mat-flat-button (click)="viewType('Week')">Week</button> -->
+<!-- <div *ngIf="allInstructors && allInstructors.length != 0">
+    <select2 [data]="instToDisplay" [cssImport]=true [options]="options" [value]="value"
+        (valueChanged)="instructorChanged($event)"></select2>
+</div>
+<div style="display: block;" *ngIf="view == 'Year'">
+    <div class="row d-flex justify-content-center align-items-center" *ngIf="displayMessage"> 
+        <h4 color="primary">No data found!</h4>
+    </div>
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+    </canvas>
+</div>
+<div style="display: block;" *ngIf="view == 'Month'">
+    <div class="row d-flex justify-content-center align-items-center" *ngIf="displayMessage">
+        <h4 color="primary">No data found!</h4>
+    </div>
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+    </canvas>
+</div>
+<div style="display: block;" *ngIf="view == 'Week'">
+    <div class="row d-flex justify-content-center align-items-center" *ngIf="displayMessage">
+        <h4 color="primary">No data found!</h4>
+    </div>
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event)">
+    </canvas>
+</div> -->
+
+<div>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                 Report 1
+            </ng-template>
+            <app-admin-report-a></app-admin-report-a>
+        </mat-tab>
+    
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                 Report 2
+            </ng-template>
+            <app-admin-report-b></app-admin-report-b>
+        </mat-tab>
+    </mat-tab-group>
+</div>
