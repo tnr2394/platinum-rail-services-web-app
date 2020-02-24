@@ -28,6 +28,7 @@ module.exports.getInstructorWiseTimeLog = getInstructorWiseTimeLog
 module.exports.getWeeklyTimeLog = getWeeklyTimeLog;
 module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstructors
 module.exports.getInstructorsTimeLogDetails = getInstructorsTimeLogDetails
+module.exports.secondReportLogsDetails = secondReportLogsDetails
 
 function addTimeLog(data) {
     return new Promise((resolve, reject) => {
@@ -313,11 +314,14 @@ function getWeeklyTimeLog(instructorId) {
 
 
 
+/**
+ * Send Sheet Complete Mail To Instructor Every Friday
+ * @param {Object} data 
+ */
 function sendSheetCompleteMailToInstructors(data) {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Instructors Every Friday');
         let emailArray = [];
-
         instructorController.instructorEmailList().then((res) => {
             if (res.length) {
                 lodash.forEach((res), (single) => {
@@ -347,12 +351,13 @@ function sendSheetCompleteMailToInstructors(data) {
 }
 
 
+/**
+ * Return Single Dates Multiple Time Logs With Instructor Details
+ * @param {String} date 
+ */
 function getInstructorsTimeLogDetails(date) {
-
     successLog("InstructorArray Inside Time Log Details", date);
-
     return new Promise((resolve, reject) => {
-
         TimeLog.aggregate([
             {
                 $match: { 'date': date }
@@ -400,7 +405,87 @@ function getInstructorsTimeLogDetails(date) {
             }
         ]).exec((error, data) => {
             if (error) {
-                console.log('Errors=====>>>>', error);
+                console.log('Errors=>', error);
+                return reject(error)
+            } else {
+                console.log('Response=>', data);
+                return resolve(data)
+            }
+        })
+    })
+}
+
+
+/**
+ * Return Second Logs Report Details
+ * @param {String} instructorId 
+ * @param {Array} datesArray 
+ */
+function secondReportLogsDetails(instructorId, datesArray) {
+
+    successLog("second Report LogsDetails", instructorId, datesArray)
+
+    return new Promise((resolve, reject) => {
+
+        var query = { $and: [] }
+
+        if (datesArray.length != 0) {
+            query['$and'].push({ $in: ['$logs.date', datesArray] })
+        }
+
+        InstructorTimeLog.aggregate([
+            {
+                $match: { 'instructorId': ObjectId(instructorId) }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    instructorId: 1,
+                    logs: 1,
+                }
+            },
+            {
+                $unwind: '$logs'
+            },
+            {
+                $lookup: {
+                    from: 'timelogs',
+                    localField: 'logs',
+                    foreignField: '_id',
+                    as: 'logs'
+                }
+            },
+            {
+                $unwind: {
+                    path: '$logs',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $redact: {
+                    $cond: {
+                        if: query,
+                        then: '$$KEEP',
+                        else: '$$PRUNE'
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: '$instructorId',
+                    logs: {
+                        $push: '$logs'
+                    },
+                    totalWorkingHours: {
+                        $sum: '$logs.workingHours.hours'
+                    },
+                    totalWorkingMinutes: {
+                        $sum: '$logs.workingHours.minutes'
+                    }
+                }
+            },
+        ]).exec((error, data) => {
+            if (error) {
                 return reject(error)
             } else {
                 return resolve(data)

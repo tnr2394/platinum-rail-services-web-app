@@ -22,5 +22,6 @@ router.post('/ins', timeLogController.getInstructorTimeLog);
 
 router.post('/ins-time', timeLogController.instructorsTimeLogDetails);
 
+router.post('/secondReport', timeLogController.secondReportLogsDetails);
 
 module.exports = router;
