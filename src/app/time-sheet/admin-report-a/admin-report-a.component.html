@@ -1,7 +1,7 @@
 <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChanged($event)">
+    <input matInput [matDatepicker]="picker" placeholder="Change date" (dateChange)="dateChanged($event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker #picker [startAt]="today"></mat-datepicker>
 </mat-form-field>
 <div class="row">
     <mat-form-field class="example-full-width col-lg-6 col-md-6">
@@ -26,23 +26,24 @@
                                 <!-- Instructor Column -->
                                 <ng-container matColumnDef="Instructor">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> Instructor </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let instuctor"> 
-                                        <mat-list align='center'>
-                                            <!-- //*ngFor='let oneInstructor of job.instructors' -->
-                                            <mat-list-item class="text-center"> 
-                                                <!-- *ngIf="oneInstructor && oneInstructor.profilePic && oneInstructor.profilePic.path" -->
-                                                <div class="inst_pic" *ngIf="instuctor && instuctor.profilePic && instuctor.profilePic.path">
-                                                    <img src="{{instuctor.profilePic.path}}">
+                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> 
+                                        <mat-list align='center' class="instructorName_report_a">
+                                            
+                                            <mat-list-item class="text-center" *ngIf="log && log.instructor && log.instructor._id"> 
+                                                <!-- <div> -->
+                                                <div class="inst_pic" *ngIf="log && log.instructor && log.instructor.profilePic && log.instructor.profilePic.path">
+                                                    <img src="{{log.instructor.profilePic.path}}">
                                                 </div>
-                                                <!-- *ngIf="oneInstructor && !oneInstructor.profilePic" -->
-                                                <div class="inst_pic" *ngIf="instuctor && !instuctor.profilePic">
+                                    
+                                                <div class="inst_pic" *ngIf="log && log.instructor && !log.instructor.profilePic">
                                                     <img src="../../assets/Avatar.png">
                                                 </div>
 
-                                                <a routerLink="/instructors/{{instuctor._id}}">
+                                                <a routerLink="/instructors/{{log.instructor._id}}" >
                                                     <span >
-                                                        {{instuctor.name}}</span>
+                                                        {{log.instructor.name}}</span>
                                                 </a>
+                                                <!-- </div> -->
                                             </mat-list-item>
                                         </mat-list>
                                     </td>

@@ -4,11 +4,15 @@
     </div>
     <div class='col-lg-9'>
         <div class="row">
-            <div class="col-12 ">
-                <app-jobs [instructor]="instructor"></app-jobs>
-            </div>
             <div class="col-12">
-                <app-time-sheet-summary></app-time-sheet-summary>
+                <mat-tab-group>
+                    <mat-tab label="Jobs"> 
+                        <app-jobs [instructor]="instructor"></app-jobs>
+                    </mat-tab>
+                    <mat-tab label="Week Summary"> 
+                        <app-time-sheet-summary></app-time-sheet-summary> 
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
     </div>

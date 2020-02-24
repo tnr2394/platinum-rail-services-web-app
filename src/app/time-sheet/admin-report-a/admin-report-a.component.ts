@@ -81,7 +81,7 @@ export class AdminReportAComponent implements OnInit {
       date: date
     }
     this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs=>{
-      this.allInstrutorsLogs = instLogs;
+      this.allInstrutorsLogs = instLogs.response;
       console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);
       if (this.allInstrutorsLogs.length > 0) this.updateData(this.allInstrutorsLogs)
     })

@@ -40,11 +40,13 @@
     <div class="row align-items-center total">
         <!-- <div class="row"> -->
             <div class="col-6 text-center">
-                <h2 style="color: #3b86ff;">00</h2>
+                <h2 style="color: #3b86ff;" *ngIf="totalHours">{{totalHours}}:{{totalMinutes}}</h2>
+                <h2 style="color: #3b86ff;" *ngIf="!totalHours">00</h2>
                 <p>Total Hours</p>
             </div>
             <div class="col-6 text-center">
-                <h2>0</h2>
+                <h2 style="color:red;" *ngIf="overTimeHours">{{overTimeHours}}</h2>
+                <h2 style="color:red;" *ngIf="!overTimeHours">0</h2>
                 <p>Over time Hours</p>
             </div>
     </div>

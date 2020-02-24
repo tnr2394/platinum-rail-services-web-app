@@ -75,12 +75,12 @@ export class TimeSheetService {
     });
   }
 
-  getInstructorTimeLog(id: any): Observable<any> {
-    console.log("get time log", id);
+  getInstructorTimeLog(data): Observable<any> {
+    // console.log("get time log", id);
     return new Observable<any>((observer) => {
       console.log("Observable");
       var that = this;
-      this.http.get(config.baseApiUrl + "time-log/instructor?_id=" + id).subscribe((res: any) => {
+      this.http.get(config.baseApiUrl + "time-log/instructor?_id=" + data).subscribe((res: any) => {
         observer.next(res.result);
         console.log("response from service", res);
         // observer.complete();
@@ -154,5 +154,25 @@ export class TimeSheetService {
           observer.complete();
         })
     });
-  }
+  } 
+  getSecondReportDetails(data): Observable<any> {
+    // const obj = { date: data }
+    // console.log("get time log", obj);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.post(config.baseApiUrl + "time-log/secondReport", data).subscribe((res: any) => {
+        observer.next(res);
+        console.log("response from service", res);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  } 
 }

@@ -22,3 +22,13 @@ tr.mat-header-row{
         object-fit: cover;
     }
 }
+.mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+    position: relative;
+    height: inherit;
+    justify-content: center !important;
+}

@@ -14,7 +14,7 @@
                     <div class="card-block">
                         <!--Title-->
                         <div class="card-title">
-                            <div class="row table_search">
+                            <!-- <div class="row table_search">
                                 <mat-form-field class="example-full-width col-lg-6 col-md-6">
                                     <input matInput placeholder="Search" (keyup)="filter($event.target.value)">
                                     <mat-icon matSuffix>search</mat-icon>
@@ -22,7 +22,7 @@
                                 <mat-paginator class="col-lg-6 col-md-6" [pageSizeOptions]="[5, 10, 25, 100]">
                                 </mat-paginator>
 
-                            </div>
+                            </div> -->
 
                         </div>
                         <!--Text-->
@@ -35,7 +35,7 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef
                                             mat-sort-header="Date"> Date </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let ins">
-                                            <span> {{ins.date|date:'shortDate'}}
+                                            <span> {{ins.date}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -45,7 +45,7 @@
                                     <ng-container matColumnDef="In">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> logIn </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let ins">
-                                            <span> {{ins.logInTime}}
+                                            <span> {{ins.logIn}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -54,7 +54,7 @@
                                     <ng-container matColumnDef="lunchStart">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> lunchStart </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
-                                                {{ins.lunchStartTime}}
+                                                {{ins.lunchStart}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -63,7 +63,7 @@
                                     <ng-container matColumnDef="lunchEnd">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> lunchEnd </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
-                                                {{ins.lunchEndTime}}
+                                                {{ins.lunchEnd}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -73,7 +73,7 @@
                                     <ng-container matColumnDef="Out">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> logOut </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
-                                                {{ins.logOutTime}}
+                                                {{ins.logOut}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -82,11 +82,26 @@
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> working
                                             Hours </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
-                                                {{ins.totalWorkLog.hours}} : {{ins.totalWorkLog.minutes}}
+                                                {{ins.workingHours.hours}} : {{ins.workingHours.minutes}}
                                             </span>
                                         </td>
                                     </ng-container>
-
+                                    <ng-container matColumnDef="travelHours">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Travel
+                                            Hours </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.travel}} 
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="totalHours">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total
+                                            Hours </th>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
+                                                {{ins.totalHours.hours}} : {{ins.totalHours.minutes}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
 
 
                                     <thead>

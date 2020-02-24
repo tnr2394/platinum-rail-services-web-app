@@ -30,6 +30,7 @@ export class AdminReportBComponent implements OnInit {
   totalMinutes: any;
   display: boolean = true;
   displayMsg: boolean;
+  datesArray: any[];
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -63,8 +64,11 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   instructorChanged(data: { value: string[] }) {
+    this.totalHours = 0;
+    this.dataSource = new MatTableDataSource<any>();
     console.log("---Inst changed---", data);
     this.selectedInstructorId = data.value;
+    if(this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
   }
   datesSelected(event){
     this.display = false;
@@ -84,7 +88,8 @@ export class AdminReportBComponent implements OnInit {
         dates.push(selectedDatesRange.startDate.clone().format('MM/DD/YYYY'));
       }
       console.log(" AFTER WHILE **dates", dates);
-      resolve(dates)
+      this.datesArray = dates;
+        resolve(this.datesArray)
     }).then((resolvedDatesArray)=>{
       this.getTimeLog(resolvedDatesArray)
     })
@@ -127,14 +132,27 @@ export class AdminReportBComponent implements OnInit {
       date: datesArray,
       instructorId : this.selectedInstructorId
     }
-    this._timeSheetService.getTimeLogUsingDates(data).subscribe((responseLogs)=>{
-      console.log("---Got time logs---", responseLogs);
-      if (responseLogs.length == 0) this.displayMsg = true; else this.displayMsg = false;
-      this.timeLogs = responseLogs
-      responseLogs.forEach(log=>{
-        this.totalHours = this.totalHours + log.totalHours.hours
-        this.totalMinutes = this.totalHours + log.totalHours.minutes
-      })
+    this._timeSheetService.getSecondReportDetails(data).subscribe((responseLogs)=>{
+      console.log("---Got time logs---", responseLogs.response[0]);
+      if (responseLogs.response && responseLogs.response.length == 0) {
+        this.displayMsg = true;
+        return
+      } 
+      else this.displayMsg = false;
+      this.timeLogs = responseLogs.response[0].logs
+      this.totalHours = responseLogs.response[0].totalWorkingHours
+      this.totalMinutes = responseLogs.response[0].totalWorkingMinutes
+      if(this.totalMinutes == 60){
+        this.totalHours = this.totalHours + 1
+        this.totalMinutes = this.totalMinutes - 60
+      }
+      else if(this.totalMinutes > 60){
+        this.totalHours = this.totalHours + Math.floor(this.totalMinutes / 60)
+        this.totalMinutes = this.totalMinutes % 60
+      }
+      let tempTotalHours = (this.timeLogs.length) * 12
+      this.overTimeHours = this.totalHours <= tempTotalHours ? 0 : (this.totalHours - tempTotalHours + ":" + this.totalMinutes)
+      console.log("---tempTotalHours---", tempTotalHours);
       console.log("this.totalHours", this.totalHours, "this.totalMinutes", this.totalMinutes);
       this.updateData(this.timeLogs)
       // this.dataSource = new MatTableDataSource<any>(this.timeLogs);

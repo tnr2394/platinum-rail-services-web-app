@@ -471,6 +471,11 @@ function secondReportLogsDetails(instructorId, datesArray) {
                 }
             },
             {
+                $sort: {
+                    'logs.date': 1
+                }
+            },
+            {
                 $group: {
                     _id: '$instructorId',
                     logs: {
@@ -484,6 +489,7 @@ function secondReportLogsDetails(instructorId, datesArray) {
                     }
                 }
             },
+
         ]).exec((error, data) => {
             if (error) {
                 return reject(error)

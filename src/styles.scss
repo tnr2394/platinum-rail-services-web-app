@@ -323,6 +323,19 @@ th.mat-header-cell:first-of-type {
     }
   }
 }
+.instructorName_report_a {
+    .mat-list-item {
+      .mat-list-item-content {
+        justify-content: center !important;
+      }
+    }
+
+    .mat-list-option {
+      .mat-list-item-content {
+        justify-content: center !important;
+      }
+    }
+}
 @media (max-width: 767px) {
   .mat-paginator-container {
     justify-content: space-between !important;
