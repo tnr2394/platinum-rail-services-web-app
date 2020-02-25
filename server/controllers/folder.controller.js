@@ -236,6 +236,7 @@ folderController.addFile = function (req, res, next) {
     let extension = re.exec(req.body.Key)[1];
 
 
+    console.log(" req.user.name ", req.user)
 
     let newFile = {
         title: req.body.Key,
@@ -243,11 +244,10 @@ folderController.addFile = function (req, res, next) {
         type: "file",
         path: req.body.Location,
         extension: extension,
-        uploadedBy: req.user.name,
+        uploadedBy: (req.user && req.user.name) ? req.user.name : 'admin',
         uploadedDate: new Date()
     }
 
-    console.log('New File Obj::::', newFile);
 
     folderDOA.uploadFileToFolder(folderId, newFile)
         .then(updated => {
@@ -266,72 +266,72 @@ folderController.addFile = function (req, res, next) {
 
 
 
-    return;
+    // return;
 
-    let files = [];
+    // let files = [];
 
-    let filesArray = [];
+    // let filesArray = [];
 
-    if (Array.isArray(req.files.file)) {
-        files = req.files.file
-    } else {
-        files[0] = req.files.file;
-    }
+    // if (Array.isArray(req.files.file)) {
+    //     files = req.files.file
+    // } else {
+    //     files[0] = req.files.file;
+    // }
 
-    async.eachSeries(files, (singleFile, innerCallback) => {
-        console.log('singleFile', singleFile);
+    // async.eachSeries(files, (singleFile, innerCallback) => {
+    //     console.log('singleFile', singleFile);
 
-        const folderId = req.body.folderId;
+    //     const folderId = req.body.folderId;
 
-        let re = /(?:\.([^.]+))?$/;
-        let ext = re.exec(singleFile.name)[1];
-        let name = singleFile.name.split('.').slice(0, -1).join('.')
+    //     let re = /(?:\.([^.]+))?$/;
+    //     let ext = re.exec(singleFile.name)[1];
+    //     let name = singleFile.name.split('.').slice(0, -1).join('.')
 
-        let newName = name + '-' + Date.now();
+    //     let newName = name + '-' + Date.now();
 
-        singleFile.name = newName + '.' + ext;
+    //     singleFile.name = newName + '.' + ext;
 
 
 
-        let newFile = {
-            title: newName,
-            alias: name,
-            type: "file", // OR SUBMISSION OR DOCUMENT
-            path: "NEWPATH",
-            extension: ext,
-            // uploadedBy: req.user.name,
-            file: singleFile,
-            uploadedDate: new Date()
-        }
+    //     let newFile = {
+    //         title: newName,
+    //         alias: name,
+    //         type: "file", // OR SUBMISSION OR DOCUMENT
+    //         path: "NEWPATH",
+    //         extension: ext,
+    //         // uploadedBy: req.user.name,
+    //         file: singleFile,
+    //         uploadedDate: new Date()
+    //     }
 
-        console.log('new file object', newFile, folderId);
+    //     console.log('new file object', newFile, folderId);
 
-        folderDOA.uploadFileToFolder(folderId, newFile)
-            .then(updated => {
-                console.log("updated ", updated);
-                filesArray.push(updated);
-                innerCallback();
-            }, err => {
-                return res.status(500).send({
-                    err
-                })
-            })
-    }, (callbackError, callbackResponse) => {
-        if (callbackError) {
-            console.log("callbackError ", callbackError);
-            return res.status(500).send({
-                err
-            })
-        } else {
-            console.log('Files Array::::::::', filesArray);
-            return res.send({
-                data: {
-                    file: filesArray
-                },
-                msg: "File Uploaded Successfully"
-            });
-        }
-    })
+    //     folderDOA.uploadFileToFolder(folderId, newFile)
+    //         .then(updated => {
+    //             console.log("updated ", updated);
+    //             filesArray.push(updated);
+    //             innerCallback();
+    //         }, err => {
+    //             return res.status(500).send({
+    //                 err
+    //             })
+    //         })
+    // }, (callbackError, callbackResponse) => {
+    //     if (callbackError) {
+    //         console.log("callbackError ", callbackError);
+    //         return res.status(500).send({
+    //             err
+    //         })
+    //     } else {
+    //         console.log('Files Array::::::::', filesArray);
+    //         return res.send({
+    //             data: {
+    //                 file: filesArray
+    //             },
+    //             msg: "File Uploaded Successfully"
+    //         });
+    //     }
+    // })
 }
 
 // Update folder details
