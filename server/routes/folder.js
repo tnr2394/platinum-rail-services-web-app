@@ -4,6 +4,7 @@ const router = express.Router();
 const folderController = require('../controllers/folder.controller');
 
 const jwtService = require('../services/jwt.service');
+const multerService = require('../services/multer.service');
 
 
 router.post('/change-position', folderController.changeFolderPosition);

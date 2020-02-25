@@ -150,75 +150,105 @@ materialController.deleteMaterial = function (req, res, next) {
 materialController.addFile = (req, res, next) => {
     // Add File in File DAO.
     // Add file id in Material DAO.
-    console.log("ADD FILES REACHED");
-    console.log("FILES=", req.files);
-    console.log("body=", req.body);
+    // console.log("ADD FILES REACHED");
+    // console.log("FILES=", req.files);
+    // console.log("body=", req.body);
 
-    let files = [];
+    // let files = [];
+
+    // let filesArray = [];
+
+    // if (Array.isArray(req.files.file)) {
+    //     files = req.files.file
+    // } else {
+    //     files[0] = req.files.file;
+
+    const materialId = req.body.myId;
+    let re = /(?:\.([^.]+))?$/;
+    let extension = re.exec(req.body.Key)[1];
+
+
+
+    let newFile = {
+        title: req.body.Key,
+        alias: req.body.Key,
+        type: "material",
+        path: req.body.Location,
+        extension: extension,
+        uploadedBy: req.user.name,
+        uploadedDate: new Date()
+    }
+    // }
 
     let filesArray = [];
 
-    if (Array.isArray(req.files.file)) {
-        files = req.files.file
-    } else {
-        files[0] = req.files.file;
-    }
-
-
-
-    async.eachSeries(files, (singleFile, innerCallback) => {
-
-        materialId = req.body.materialId;
-        if (!materialId) return res.status(500).send({
-            msg: "Material ID not found"
-        });
-
-        var re = /(?:\.([^.]+))?$/;
-        var ext = re.exec(singleFile.name)[1];
-        var name = singleFile.name.split('.').slice(0, -1).join('.')
-        let newName = name + '-' + Date.now();
-
-        singleFile.name = newName + '.' + ext;
-
-        var newFile = {
-            title: newName,
-            alias: name,
-            type: "material", // OR SUBMISSION OR DOCUMENT
-            path: "NEWPATH",
-            extension: ext,
-            uploadedBy: req.user.name,
-            file: singleFile,
-            uploadedDate: new Date()
-        }
-
-
-        fileDOA.addFile(newFile).then((addedFile) => {
-            console.log("File added in collection. now adding it to materials.", addedFile);
-            materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
-                console.log("material Updated", updatedMaterial);
-                filesArray.push(addedFile);
-                innerCallback();
-            }).catch(err => {
-                console.error(err);
-            })
-        }).catch((err) => {
-            console.error(err);
-        })
-    }, (callbackError, callbackResponse) => {
-        if (callbackError) {
-            console.log("callbackError ", callbackError);
-            return res.status(500).send({
-                err
-            })
-        } else {
+    fileDOA.addNewFile(newFile).then((addedFile) => {
+        console.log("File added in collection. now adding it to materials.", addedFile);
+        materialDOA.addFile(materialId, addedFile._id).then((updatedMaterial) => {
+            console.log("material Updated", updatedMaterial);
+            filesArray.push(addedFile);
             return res.send({
                 data: {
                     file: filesArray
                 },
                 msg: "Material Uploaded Successfully"
             });
-        }
+        }).catch(err => {
+            return res.status(500).send({
+                err
+            })
+        })
+    }).catch((err) => {
+        console.error(err);
+        return res.status(500).send({
+            err
+        })
     })
+
+
+
+    // async.eachSeries(files, (singleFile, innerCallback) => {
+
+    //     materialId = req.body.materialId;
+    //     if (!materialId) return res.status(500).send({
+    //         msg: "Material ID not found"
+    //     });
+
+    //     var re = /(?:\.([^.]+))?$/;
+    //     var ext = re.exec(singleFile.name)[1];
+    //     var name = singleFile.name.split('.').slice(0, -1).join('.')
+    //     let newName = name + '-' + Date.now();
+
+    //     singleFile.name = newName + '.' + ext;
+
+    //     var newFile = {
+    //         title: newName,
+    //         alias: name,
+    //         type: "material", // OR SUBMISSION OR DOCUMENT
+    //         path: "NEWPATH",
+    //         extension: ext,
+    //         uploadedBy: req.user.name,
+    //         file: singleFile,
+    //         uploadedDate: new Date()
+    //     }
+
+
+
+    // }, (callbackError, callbackResponse) => {
+    //     if (callbackError) {
+    //         console.log("callbackError ", callbackError);
+    //         return res.status(500).send({
+    //             err
+    //         })
+    //     } else {
+    //         return res.send({
+    //             data: {
+    //                 file: filesArray
+    //             },
+    //             msg: "Material Uploaded Successfully"
+    //         });
+    //     }
+    // })
 }
 
 materialController.getFiles = function (req, res, next) {

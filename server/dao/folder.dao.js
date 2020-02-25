@@ -37,7 +37,7 @@ folder.createFolder = function (obj) {
 folder.uploadFileToFolder = function (folderId, obj) {
     console.log('File Upload', folderId, obj);
     var q = Q.defer();
-    fileDAO.addFile(obj).then((response) => {
+    fileDAO.addNewFile(obj).then((response) => {
         console.log('File added now update Folder', response._id);
         folderModel.updateOne({
             _id: folderId

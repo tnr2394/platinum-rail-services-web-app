@@ -19,6 +19,7 @@ var debug = require('debug')('http');
 config = {}
 config.env = require('./config/env.config')
 
+
 // Set up database connection to use throughout the application
 config.db = require(path.join(__dirname, 'config', 'database'));
 
@@ -103,7 +104,7 @@ if (config.env.name === 'production') {
     cert: fs.readFileSync('/var/www/html/platinumTesting/ssl/fullchain1.pem')
   };
 
-  var server = http.createServer(credentials, app);
+  var server = https.createServer(credentials, app);
   server.listen(config.env.port);
   server.on('error', onError);
   server.on('listening', onListen);

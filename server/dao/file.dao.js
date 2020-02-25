@@ -99,6 +99,27 @@ file.addFile = function (object) {
 }
 
 
+file.addNewFile = function (object) {
+    return new Promise((resolve, reject) => {
+        const s3File = {
+            title: object.title,
+            alias: object.alias,
+            type: object.type,
+            path: object.path,
+            extension: object.extension,
+            uploadedBy: object.uploadedBy,
+        }
+        var newFile = new fileModel(s3File);
+        console.log("NEW FILE TO BE ADDED IN MODEL =", newFile);
+        newFile.save((err, file) => {
+            console.log("File Uploaded Successfully =  ", file, err);
+            if (err) return reject(err);
+            else return resolve(file);
+        });
+    })
+}
+
+
 
 
 file.updateFile = function (object) {

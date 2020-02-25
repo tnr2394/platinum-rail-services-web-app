@@ -6,6 +6,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 
 import { FolderService } from './folder.service'
+import { S3UploadService } from './s3-upload.service'
 import { config } from '../config';
 
 export enum FileQueueStatus {
@@ -50,12 +51,13 @@ export class FileUploaderService {
 
 
   public url: string;
+  public myId: string;
 
   private _queue: BehaviorSubject<FileQueueObject[]>;
   private _files: FileQueueObject[] = [];
   private _data: any;
 
-  constructor(private http: HttpClient, public _folderService: FolderService) {
+  constructor(public _s3UplodService: S3UploadService, private http: HttpClient, public _folderService: FolderService) {
     this._queue = <BehaviorSubject<FileQueueObject[]>>new BehaviorSubject(this._files);
   }
 
@@ -65,7 +67,7 @@ export class FileUploaderService {
   }
 
   // public events
-  public onCompleteItem(queueObj: FileQueueObject, response: any, status:any): any {
+  public onCompleteItem(queueObj: FileQueueObject, response: any, status: any): any {
     return { queueObj, response, status };
   }
 
@@ -124,50 +126,63 @@ export class FileUploaderService {
 
     // If Folder File
     if (this.bodyData.folderId) {
-      formData.set('folderId', this.bodyData.folderId);
+      // formData.set('folderId', this.bodyData.folderId);
       this.url = config.baseApiUrl + "folder/files"
+      this.myId = this.bodyData.folderId;
     } else if (this.bodyData.allotmentId) {
-      formData.set('allotmentId', this.bodyData.allotmentId);
-      formData.set('status', this.bodyData.status);
+      // formData.set('allotmentId', this.bodyData.allotmentId);
+      // formData.set('status', this.bodyData.status);
       this.url = config.baseApiUrl + "learners/submission"
+      this.myId = this.bodyData.allotmentId;
     } else {
-      formData.set('materialId', this.bodyData.materialId);
+      // formData.set('materialId', this.bodyData.materialId);
       this.url = config.baseApiUrl + "materials/files"
+      this.myId = this.bodyData.materialId;
     }
 
 
     // create form data for file
 
+
     formData.append('file', queueObj.file, queueObj.file.name);
 
-    // upload file and report progress
-    const req = new HttpRequest('POST', this.url, formData, {
-      reportProgress: true,
-    });
-
-    // upload file and report progress
-    queueObj.request = this.http.request(req).subscribe(
-      (event: any) => {
-
-        console.log('event::::::::::::::::::::::::', event);
-        if (event.type === HttpEventType.UploadProgress) {
-          this._uploadProgress(queueObj, event);
-        } else if (event instanceof HttpResponse) {
-          this._uploadComplete(queueObj, event);
-        }
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          this._uploadFailed(queueObj, err);
-        } else {
-          // The backend returned an unsuccessful response code.
-          this._uploadFailed(queueObj, err);
-        }
+    this._s3UplodService.uploadFile(queueObj.file, queueObj.file.name).subscribe((event) => {
+      console.log('Event In fileUpload service', event);
+      if (event.type === 'progress') {
+        this._uploadProgress(queueObj, event);
       }
-    );
 
-    return queueObj;
+      if (event.part) {
+        this._partProgress(queueObj, event);
+      }
+
+      if (event.Location) {
+        event.myId = this.myId;
+        if (this.bodyData.status) { event.status = this.bodyData.status }
+        const req = new HttpRequest('POST', this.url, event, {
+          reportProgress: true,
+        });
+
+        // Node Server File Upload progress
+        queueObj.request = this.http.request(req).subscribe(
+          (event: any) => {
+            if (event instanceof HttpResponse) {
+              this._uploadComplete(queueObj, event);
+            }
+          })
+      }
+    }, err => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        this._uploadFailed(queueObj, err);
+      } else {
+        // The backend returned an unsuccessful response code.
+        this._uploadFailed(queueObj, err);
+      }
+    })
+
+    // upload file and report progress
+
   }
 
   private _cancel(queueObj: FileQueueObject) {
@@ -180,6 +195,7 @@ export class FileUploaderService {
 
   private _uploadProgress(queueObj: FileQueueObject, event: any) {
     // update the FileQueueObject with the current progress
+    console.log('Inside Upload Progress', event);
     const progress = Math.round(100 * event.loaded / event.total);
     queueObj.progress = progress;
     queueObj.status = FileQueueStatus.Progress;
@@ -202,6 +218,15 @@ export class FileUploaderService {
     queueObj.progress = 0;
     queueObj.status = FileQueueStatus.Error;
     queueObj.response = response;
+    this._queue.next(this._files);
+  }
+
+  private _partProgress(queueObj: FileQueueObject, event: any) {
+    // update the FileQueueObject with the current progress
+    console.log('Inside Upload Progress', event);
+    const progress = 68;
+    queueObj.progress = progress;
+    queueObj.status = FileQueueStatus.Progress;
     this._queue.next(this._files);
   }
 
