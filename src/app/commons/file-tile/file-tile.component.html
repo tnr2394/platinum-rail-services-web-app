@@ -2,7 +2,7 @@
     <div class="h-100 justify-content-center" (click)="fileDetails()" style="cursor: pointer;">
         <div class="card-block ">
             <div class="row m-0">
-                <div class="col-12 preview p-0">
+                <div class="col-12 preview p-0" *ngIf="!isSubmission">
                     <!-- <img src="{{file.thumbNail}}"> -->
                     <img src="../../../assets/google-docs.png">
                     <mat-divider></mat-divider>

@@ -65,18 +65,18 @@ export class CoursesComponent implements OnInit {
   //   }
   //   this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
   // }
-  filter(searchText) {
-    console.log('FILTER CALLED', searchText);
-    if (searchText === '') {
-      this.dataSource = this.courses;
-      this.dataSource.paginator = this.paginator;
-      // this.handlePage({pageIndex:0, pageSize:this.pageSize});
-      return;
-    }
-    this.dataSource = this._filter.filter(searchText, this.courses, ['title']);
-    this.dataSource.paginator = this.paginator;
-    // this.iterator();
-  }
+  // filter(searchText) {
+  //   console.log('FILTER CALLED', searchText);
+  //   if (searchText === '') {
+  //     this.dataSource = this.courses;
+  //     this.dataSource.paginator = this.paginator;
+  //     // this.handlePage({pageIndex:0, pageSize:this.pageSize});
+  //     return;
+  //   }
+  //   this.dataSource = this._filter.filter(searchText, this.courses, ['title']);
+  //   this.dataSource.paginator = this.paginator;
+  //   // this.iterator();
+  // }
   filter(searchText) {
     console.log('FILTER CALLED', searchText);
     if (searchText === '') {
