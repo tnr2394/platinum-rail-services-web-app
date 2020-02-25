@@ -47,17 +47,16 @@
     <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
 
         <h4>Shared with:</h4>
-        <h6 *ngIf="sharedClient.length == 0"><b>No Client</b></h6>
-        <h6 *ngIf="sharedClient.length != 0"><b>Clients</b></h6>
+        <h6><b>Clients</b></h6>
         <ul>
             <li *ngFor="let client of sharedClient">
                 {{client.name}}
             </li>
         </ul>
+        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared
+            with any clients!</div>
 
-        <h6 *ngIf="sharedInstructor.length == 0"><b>No Instructors</b></h6>
-
-        <h6 *ngIf="sharedInstructor.length != 0"><b>Instructors</b></h6>
+        <h6><b>Instructors</b></h6>
 
         <ul>
             <li *ngFor="let instructor of sharedInstructor">
