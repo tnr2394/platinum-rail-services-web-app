@@ -21,6 +21,7 @@ export class AdminReportAComponent implements OnInit {
 
   displayedColumns: string[] = ['Instructor', 'LogIn', 'LunchStart', 'LunchEnd', 'LogOut', 'WorkHours', 'TravelHours', 'Total'];
   allInstrutorsLogs: any;
+  displayMsg: boolean;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -39,6 +40,7 @@ export class AdminReportAComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.displayMsg = false
     this.selectedDate = moment().format("MM/DD/YYYY")
     this.getInstructorTime(this.selectedDate)
     // this.getAllInstructors()
@@ -82,6 +84,7 @@ export class AdminReportAComponent implements OnInit {
     }
     this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs=>{
       this.allInstrutorsLogs = instLogs.response;
+      if (this.allInstrutorsLogs.length == 0){ this.displayMsg = true; return;}
       console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);
       if (this.allInstrutorsLogs.length > 0) this.updateData(this.allInstrutorsLogs)
     })

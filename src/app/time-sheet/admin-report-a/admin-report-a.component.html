@@ -96,6 +96,9 @@
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                             </table>
+                            <div *ngIf="displayMsg" class="msg">
+                                <h3> No Logs Entry Found! </h3>
+                            </div>
                         </div>
                     </div>
                 </div>
