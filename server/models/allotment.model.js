@@ -24,7 +24,6 @@ const allotmentSchema = new Schema({
     remark: [{
         text: {
             type: String,
-            default: 'No Remarks'
         },
         date: {
             type: Date,

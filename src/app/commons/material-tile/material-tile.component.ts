@@ -4,7 +4,7 @@ import { from, Observable } from 'rxjs';
 import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-modal.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { JobService } from 'src/app/services/job.service';
-import { LearnerService } from 'src/app/services/learner.service'; 
+import { LearnerService } from 'src/app/services/learner.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
@@ -71,12 +71,12 @@ export class MaterialTileComponent implements OnInit {
   ngOnInit() {
     console.log("learnersAlloted", this.learnersAlloted);
     console.log("learnersAllotedFromJob");
-    
-    
+
+
     if (this.router.url.includes('/jobs')) {
       this.displayLearners = true
       this.getLearners()
-      this.assignmentStatusWithLearner(this.jobId,"true")
+      this.assignmentStatusWithLearner(this.jobId, "true")
       this.indexForMatTab = 2;
       var id = '#' + this.material._id;
       // console.log(id, "click here")
@@ -121,7 +121,7 @@ export class MaterialTileComponent implements OnInit {
         this.reSubmittedLearners = 0;
       }
     }
-    if (changes.learnersAlloted && changes.learnersAlloted.currentValue == true){ 
+    if (changes.learnersAlloted && changes.learnersAlloted.currentValue == true) {
       this.assignmentStatusWithLearner(this.jobId, "true")
       // this.isSelected = false;
     }
@@ -382,15 +382,15 @@ export class MaterialTileComponent implements OnInit {
   }
   filter(filterValue: string) {
     this.allLearners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
-      }
-  getToolTipData(i){
+  }
+  getToolTipData(i) {
     let tempLearner = this.allLearners[i]
     let materialId = this.materialId
     // return i
-    if (this.allLearners && this.learner){
+    if (this.allLearners && this.learner) {
       var index = _.findIndex(this.learner, function (o) { return o._id == tempLearner._id })
       if (index > -1) {
-        var index2 = _.findIndex(this.learner[index].assignments, function (o) { return o.assignmentId == materialId})
+        var index2 = _.findIndex(this.learner[index].assignments, function (o) { return o.assignmentId == materialId })
         if (index2 > -1) return this.learner[index].assignments[index2].assignmentStatus
         else return 'Unassigned'
       }
@@ -398,10 +398,10 @@ export class MaterialTileComponent implements OnInit {
     }
     else return 'Unassigned'
   }
-      // }
-      // console.log("THIS.ALLLEARNERS", this.allLearners);
+  // }
+  // console.log("THIS.ALLLEARNERS", this.allLearners);
 
-      // API
+  // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
       console.log("**allLearners", allLearners);
@@ -417,9 +417,9 @@ export class MaterialTileComponent implements OnInit {
 
   assignmentStatusWithLearner(jobId, doGetCount) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
-      this.learner = JSON.parse(JSON.stringify(data)) ;
-      console.log("*****assignmentStatusWithLearner have to display this all",this.learner);
-      
+      this.learner = JSON.parse(JSON.stringify(data));
+      console.log("*****assignmentStatusWithLearner have to display this all", this.learner);
+
       if (doGetCount == "true") this.getCount()
       this.learnerLength = data.length;
     });
