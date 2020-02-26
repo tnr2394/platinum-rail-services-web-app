@@ -42,12 +42,14 @@ allotment.createAllotment = function (obj) {
 
 
 allotment.updateAllotment = function (allotmentId, updateAllotment, remark) {
-    console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment);
+    console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment, remark);
     const q = Q.defer();
 
-    if (remark) {
+    // if (remark) {
         const remarkDetail = { text: remark }
-    }
+    console.log("remarkDetail", remarkDetail);
+        
+    // }
     allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment, $push: { remark: remarkDetail } }, { upsert: true, new: true }, (err, allotment) => {
         if (err) return q.reject(err);
         else {

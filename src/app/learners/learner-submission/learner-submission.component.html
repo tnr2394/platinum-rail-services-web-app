@@ -98,8 +98,8 @@
                     <h4>Activity Logs</h4>
                     <mat-card-content *ngIf="olderRemarks.length > 0">
                         <div *ngFor="let remark of olderRemarks">
-                            <h5>{{remark.date}}</h5>
-                            {{remark.text}}
+                            {{remark.date | date:shortDate}}
+                            <h5>{{remark.text}}</h5>
                             <mat-divider></mat-divider>
                         </div>
                     </mat-card-content>
@@ -108,7 +108,7 @@
                     </div>
                 </mat-card>
 
-                <div class="col-12 remark_area">                  
+                <div class="col-12 remark_area mt-2">                  
                     <!-- <form [formGroup]="remark"> -->
                         <!-- Remark Section -->
                         <div class="row">

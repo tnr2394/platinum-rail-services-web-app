@@ -18,6 +18,7 @@ export class LearnerSubmissionComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['Materials'];
+  disable: boolean;
 
   constructor(public _filter: FilterService, public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.files);
@@ -118,17 +119,23 @@ export class LearnerSubmissionComponent implements OnInit {
       remark: this.remark,
       deadlineDate: this.deadlineDate
     }
-    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(data).subscribe(data => {
-      this.getAllotments(this.allotmentId)
-      if (this.statusByInstructor == 'Completed') {
-        this.openSnackBar("Assignment marked as completed.", "Ok");
-      } else {
-        this.openSnackBar("Assignment requested for resubmission.", "Ok");
-      }
-      this.loading = false;
-    }, err => {
-      this.openSnackBar("Something Went Wrong", "Ok");
-    })
+    if(this.statusByInstructor){
+      this.loading = true;
+      this._learnerService.updateAssignmentAllotmentUsingAllotmentId(data).subscribe(data => {
+        this.getAllotments(this.allotmentId)
+        if (this.statusByInstructor == 'Completed') {
+          this.openSnackBar("Assignment marked as completed.", "Ok");
+        } else {
+          this.openSnackBar("Assignment requested for resubmission.", "Ok");
+        }
+        this.loading = false;
+      }, err => {
+        this.openSnackBar("Something Went Wrong", "Ok");
+      })
+    }
+    else {
+      this.openSnackBar("Please select a Status", "Ok");
+    }
     
     
   }
@@ -141,6 +148,7 @@ export class LearnerSubmissionComponent implements OnInit {
       this.loading = false;
       this.learner = data[0].learner;
       console.log('this.assignment----------', this.assignment);
+      this.olderRemarks = this.assignment.remark
       this.deadlineDate = this.assignment.deadlineDate
       // if (this.assignment.remark) {
 
