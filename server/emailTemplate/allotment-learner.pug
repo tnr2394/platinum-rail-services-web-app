@@ -1,10 +1,28 @@
-p Hello you have been Alloted Assignment.Below are the Assignment Detail. 
-
-h4 Assignment Details
-
-hr
-each Assignment in assignment.assignments
-    p Title : #{Assignment.title}
-    p Unit No : #{Assignment.unitNo}
-    p Assignment No : #{Assignment.assignmentNo}
-    hr
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+    body
+        div(style='background: #f5f5f5;display: table;margin: auto;max-width: 100%; box-sizing: border-box;')
+            div(style='background: white;margin: 0;margin:20px; padding: 20px; width: 380px; max-width: 100%;')
+                img(style='max-width: 130px;' src='https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png')
+                h3(style="font-family:'Segoe UI';") #{learner.name}, You have a new assignment!
+                p(style="font-family:'Sf UI';") We've attached the link to assignment allocated to you by instructor #{allotedBy}.
+                div(style="text-decoration: none; list-style-type: none;font-family: 'Segoe UI';")
+                    h5(style='margin: 5px 0px;')
+                        | Assignment No.:   
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.unitNo}
+                    h5(style='margin: 5px 0px;')
+                        | Assignment Title: 
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.title}
+                    h5(style='margin: 5px 0px;')
+                        | Deadline:         
+                        span(style='color:#d9a34a; font-size: 12px;') #{learner.duedate}
+                a(href=allotmentUrl style='display: flex; background-color: #007AC2; color: #fff; padding: 10px 0; text-decoration: none; padding-left: 45%; border: none; outline: none; cursor: pointer;') Visit
+            div(style="text-align:center; font-family: 'Segoe UI';")
+                p(style='font-size: 12px;')
+                    | Copyright 
+                    span ©
+                    | 2018 
+                    b Platinum Rail Services. All Rights Reserved.
+                p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353

@@ -21,10 +21,16 @@ const allotmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'file'
     }],
-    remark: {
-        type: String,
-        default: 'No Remarks'
-    },
+    remark: [{
+        text: {
+            type: String,
+            default: 'No Remarks'
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     deadlineDate: {
         type: Date,
         required: true

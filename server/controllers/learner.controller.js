@@ -308,6 +308,13 @@ learnerController.allotAssignments = function (req, res, next) {
 
     console.log('Allot Assignment', req.body);
 
+    const allotedBy = req.user.name;
+
+
+    console.log('Alloted By======>>>>', allotedBy);
+
+    console.log('Allotment Url====>>>>>>', config.env.url);
+
     async.eachSeries(req.body, (singleLearner, outerCallback) => {
         console.log('Single learner', singleLearner);
         // assignmentAllotmentMailDataLearner(singleLearner.assignments)
@@ -326,16 +333,16 @@ learnerController.allotAssignments = function (req, res, next) {
                 console.log('Allotment Added now update learner');
                 learnerDOA.updateAssignment(singleLearner.learner, response._id).then((updatedLearner) => {
                     console.log("updatedLearner", updatedLearner);
-                    innerCallback();
-                }).catch((updateLearnerErr) => {
-                    return res.status(500).send({
-                        err
+                    sendAssignmentAllotmentMail(singleLearner.learner, singleAssignment, allotedBy, response._id).then((mailRes) => {
+                        innerCallback();
+                    }).catch((error) => {
+                        return res.status(500).send({ error })
                     })
+                }).catch((updateLearnerErr) => {
+                    return res.status(500).send({ err })
                 })
             }).catch((error) => {
-                return res.status(500).send({
-                    err
-                })
+                return res.status(500).send({ err })
             })
         }, (callbackError, callbackResponse) => {
 
@@ -344,38 +351,7 @@ learnerController.allotAssignments = function (req, res, next) {
                     err
                 })
             } else {
-
-                // Send Mail To Learner For Alloted Assignment
-
-                var query = {
-                    _id: singleLearner.learner
-                }
-                learnerDOA.getLearnersByQuery(query).then(learners => {
-
-                    const defaultPasswordEmailoptions = {
-                        to: learners[0].email,
-                        subject: `Assignments Alloted`,
-                        template: 'allotment-learner'
-                    };
-
-                    let assignmentData = {
-                        assignment: singleLearner
-                    }
-                    mailService.sendMail(defaultPasswordEmailoptions, assignmentData, null, function (err, mailResult) {
-                        if (err) {
-                            return res.status(500).send({
-                                err
-                            })
-                        } else {
-                            outerCallback();
-                        }
-                    });
-                }, err => {
-                    console.error(err);
-                    return res.status(500).send({
-                        err
-                    });
-                })
+                outerCallback();
             }
         })
     }, (callbackError, callbackResponse) => {
@@ -395,11 +371,37 @@ learnerController.allotAssignments = function (req, res, next) {
 }
 
 
+const sendAssignmentAllotmentMail = (learnerDetail, assignment, allotedBy, allotmentId) => {
+    return new Promise((resolve, reject) => {
+        let allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId;
+
+        let mailData = {
+            learner: learnerDetail,
+            assignment: assignment,
+            allotedBy: allotedBy,
+            allotmentUrl: allotmentUrl
+        }
+        const defaultPasswordEmailoptions = {
+            to: mailData.learner.email,
+            subject: `Assignments Alloted`,
+            template: 'allotment-learner'
+        };
+        mailService.sendMail(defaultPasswordEmailoptions, mailData, null, function (err, mailResult) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(mailResult);
+            }
+        });
+    })
+}
+
+
 learnerController.assignmentSubmisssion = function (req, res, next) {
 
 
     const allotmentId = req.body.myId;
-    const assignmentStatus = req.body.sta
+    const assignmentStatus = req.body.status
     let re = /(?:\.([^.]+))?$/;
     let extension = re.exec(req.body.Key)[1];
 
@@ -584,14 +586,15 @@ learnerController.updateAllotment = function (req, res, next) {
     console.log('Update Allotment By Instructor', req.body);
 
     const updateAllotment = {};
+    const remark = req.body.remark;
 
     if (req.body.status) updateAllotment['status'] = req.body.status;
-    if (req.body.remark) updateAllotment['remark'] = req.body.remark;
+    // if (req.body.remark) updateAllotment['remark'] = req.body.remark;
     if (req.body.deadlineDate) updateAllotment['deadlineDate'] = req.body.deadlineDate;
 
     const allotmentId = req.body.allotmentId;
 
-    allotmentDOA.updateAllotment(allotmentId, updateAllotment)
+    allotmentDOA.updateAllotment(allotmentId, updateAllotment, remark)
         .then(updated => {
             console.log("updated ", updated);
             return res.send({
