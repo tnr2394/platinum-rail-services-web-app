@@ -32,11 +32,25 @@ export class LearnerSubmissionComponent implements OnInit {
   statusToChange;
   currentUser;
   isDisabled = true;
+  statusByInstructor;
+  remark;
+  deadlineDate;
 
-  remark = new FormGroup({
-    remark: new FormControl(),
-    deadlineDate: new FormControl(),
-  });
+  // remark = new FormGroup({
+  //   remark: new FormControl(),
+  //   deadlineDate: new FormControl(),
+  //   status: new FormControl()
+  // });
+
+  allStatus = [
+    { id: 1, name: 'Requested for Resubmission'},
+    { id: 1, name: 'Completed' }
+  ]
+  olderRemarks = [
+    // {date:'01/02/2020',text: 'This is a demo remark'},
+    // { date: '10/03/2020', text: 'This is a demo remark which is longer than the last remark' },
+    // { date: '15/03/2020', text: 'This is a remark' }
+  ]
 
   ngOnInit() {
     this.loading = true;
@@ -66,21 +80,47 @@ export class LearnerSubmissionComponent implements OnInit {
     });
   }
 
-  doSubmit(data, assignmentStatus) {
+  // doSubmit(data, assignmentStatus) {
 
-    var Resubmission = {
+  //   var Resubmission = {
+  //     allotmentId: this.allotmentId,
+  //     status: assignmentStatus,
+  //     remark: data.value.remark,
+  //     deadlineDate: data.value.deadlineDate
+  //   }
+
+    // console.log("this.form", this.remark.controls);
+    
+    // this.loading = true;
+
+    // this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
+    //   this.getAllotments(this.allotmentId)
+    //   this.remark.reset();
+    //   if (assignmentStatus == 'Completed') {
+    //     this.openSnackBar("Assignment marked as completed.", "Ok");
+    //   } else {
+    //     this.openSnackBar("Assignment requested for resubmission.", "Ok");
+    //   }
+    //   this.loading = false;
+    // }, err => {
+    //   this.openSnackBar("Something Went Wrong", "Ok");
+    // })
+  // }
+
+  submit(){
+    console.log('this.statusByInstructor', this.statusByInstructor);
+    console.log('this.remark', this.remark);
+    console.log('allotmentId', this.allotmentId);
+    console.log('deadlineDate', this.deadlineDate );
+    var data = {
       allotmentId: this.allotmentId,
-      status: assignmentStatus,
-      remark: data.value.remark,
-      deadlineDate: data.value.deadlineDate
+      status: this.statusByInstructor,
+      remark: this.remark,
+      deadlineDate: this.deadlineDate
     }
-
-    this.loading = true;
-
-    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(Resubmission).subscribe(data => {
+    this._learnerService.updateAssignmentAllotmentUsingAllotmentId(data).subscribe(data => {
       this.getAllotments(this.allotmentId)
-      this.remark.reset();
-      if (assignmentStatus == 'Completed') {
+      if (this.statusByInstructor == 'Completed') {
         this.openSnackBar("Assignment marked as completed.", "Ok");
       } else {
         this.openSnackBar("Assignment requested for resubmission.", "Ok");
@@ -89,6 +129,8 @@ export class LearnerSubmissionComponent implements OnInit {
     }, err => {
       this.openSnackBar("Something Went Wrong", "Ok");
     })
+    
+    
   }
 
 
@@ -99,12 +141,12 @@ export class LearnerSubmissionComponent implements OnInit {
       this.loading = false;
       this.learner = data[0].learner;
       console.log('this.assignment----------', this.assignment);
+      this.deadlineDate = this.assignment.deadlineDate
+      // if (this.assignment.remark) {
 
-      if (this.assignment.remark) {
-
-      } else {
-        this.assignment.remark = 'No Remarks'
-      }
+      // } else {
+      //   this.assignment.remark = 'No Remarks'
+      // }
 
       if (this.assignment.status == 'Pending') {
         this.statusToChange = 'Submitted'
