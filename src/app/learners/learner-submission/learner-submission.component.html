@@ -94,29 +94,57 @@
             </div>
 
             <div class='col-lg-6 col-lg-6 remark_block' *ngIf="currentUser.userRole != 'learner'">
+                <mat-card>
+                    <h4>Activity Logs</h4>
+                    <mat-card-content *ngIf="olderRemarks.length > 0">
+                        <div *ngFor="let remark of olderRemarks">
+                            {{remark.date | date:shortDate}}
+                            <h5>{{remark.text}}</h5>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </mat-card-content>
+                    <div *ngIf="olderRemarks.length == 0">
+                        No previous remarks found! 
+                    </div>
+                </mat-card>
 
-                <div class="col-12 remark_area">
-                    <form [formGroup]="remark">
+                <div class="col-12 remark_area mt-2">                  
+                    <!-- <form [formGroup]="remark"> -->
                         <!-- Remark Section -->
+                        <div class="row">
                         <mat-form-field class="example-full-width" *ngIf="assignment">
-                            <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
-                                formControlName="remark" placeholder="Leave a remark"></textarea>
+                            <textarea rows="4" cols="100" [(ngModel)]='remark' matInput
+                                 placeholder="Leave a remark"></textarea>
                         </mat-form-field>
-
+                        </div>
+                        <div class="row">
+                        <div class="col-6 pr-2">
                         <!-- Deadline Date Section -->
                         <mat-form-field *ngIf="assignment && assignment.deadlineDate">
-                            <input matInput [matDatepicker]="picker" formControlName='deadlineDate'
-                                [(ngModel)]='assignment.deadlineDate' placeholder="Due date">
+                            <input matInput [matDatepicker]="picker" 
+                                [(ngModel)]='deadlineDate' placeholder="Due date">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-datepicker #picker [startAt]="deadlineDate"></mat-datepicker>
                         </mat-form-field>
-
+                        </div>
+                        <div class="col-6 pl-2">
+                        <!-- Status -->
+                        <mat-form-field>
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="statusByInstructor">
+                                <mat-option *ngFor="let status of allStatus" [value]="status.name">
+                                    {{status.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        </div>
+                        </div>
 
                         <mat-divider></mat-divider>
 
 
                         <div class="row mt-4 mx-0">
-                            <div class='col-6'>
+                            <!-- <div class='col-6'>
                                 <div class="justify-content-center">
                                     <button [disabled]="loading" mat-raised-button
                                         class='btnColorBlue button_hover_effect'
@@ -124,19 +152,18 @@
                                             class='fa fa-bell'></i>
                                         <span> Request Resubmission</span></button>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-6">
                                 <div class="d-flex justify-content-end">
                                     <button [disabled]="loading" mat-raised-button
                                         class='btnColorGreen success_hover_effect'
-                                        (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span>
-                                            Mark
-                                            Completed</span>
+                                        (click)="submit()"><i class="fas fa-check-double"></i><span>
+                                            Submit</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
         </div>

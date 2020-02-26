@@ -10,7 +10,10 @@
             </div>
             <div class="row m-0 py-3">
                 <div class="col-3">
-                    <img [ngClass]="file.extension" style="border-style: none;">
+                    <div class="excxtnsion_img">
+                        <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" 
+                        [ngClass]="file.extension">
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 text-left">
                     <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
