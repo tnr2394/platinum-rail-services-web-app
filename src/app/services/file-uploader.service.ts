@@ -186,6 +186,7 @@ export class FileUploaderService {
   }
 
   private _cancel(queueObj: FileQueueObject) {
+    console.log("-----queueObj-----", queueObj, queueObj.request);
     // update the FileQueueObject as cancelled
     queueObj.request.unsubscribe();
     queueObj.progress = 0;

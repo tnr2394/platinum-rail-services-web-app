@@ -5,3 +5,15 @@
 .ok {
   color: green !important;
 }
+.labelColor{
+    color: #2196f3;
+}
+.clock{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+mat-form-field{
+  max-width: 100px;
+  margin: 2px 0px;
+}

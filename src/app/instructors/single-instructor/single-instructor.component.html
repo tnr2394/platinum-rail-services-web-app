@@ -3,14 +3,15 @@
         <app-profile [instructorForProfile]="instructorId"></app-profile>
     </div>
     <div class='col-lg-9'>
-        <div class="row">
+        <div class="row mx-0">
             <div class="col-12">
                 <mat-tab-group>
                     <mat-tab label="Jobs"> 
                         <app-jobs [instructor]="instructor"></app-jobs>
                     </mat-tab>
-                    <mat-tab label="Week Summary"> 
-                        <app-time-sheet-summary></app-time-sheet-summary> 
+                    <mat-tab  label="Week Summary"> 
+                        <!-- <app-time-sheet-summary></app-time-sheet-summary>  -->
+                        <app-single-week [instFromAdminReport]="instructorId" [calWeekDates]="true"></app-single-week>
                     </mat-tab>
                 </mat-tab-group>
             </div>

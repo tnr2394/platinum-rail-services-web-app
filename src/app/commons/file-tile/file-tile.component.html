@@ -2,7 +2,7 @@
     <div class="h-100 justify-content-center" (click)="fileDetails()" style="cursor: pointer;">
         <div class="card-block ">
             <div class="row m-0">
-                <div class="col-12 preview p-0" *ngIf="!isSubmission">
+                <div class="col-12 preview p-0" *ngIf="!isSubmission && ismyDocs">
                     <!-- <img src="{{file.thumbNail}}"> -->
                     <img src="../../../assets/google-docs.png">
                     <mat-divider></mat-divider>
@@ -12,14 +12,15 @@
                 <div class="col-3">
                     <img [ngClass]="file.extension" style="border-style: none;">
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 text-left pt-2 px-2">
+                <div class="col-lg-9 col-md-9 col-sm-9 text-left">
                     <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
                         tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</p>
-                        <div class="row text-left pt-1 align-items-center">
+                        <div class="row text-left align-items-center">
                             <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 file_title">
         
                                 <!-- <b>{{file}}</b> -->
-                                <p class="upload_user mb-0" style="font-size: small;">uploaded By:{{file.uploadedBy}}</p>
+                                <p class="upload_user mb-0" style="font-size: small;" *ngIf="file.uploadedBy">uploaded By:{{file.uploadedBy}}</p>
+                                <p class="upload_user mb-0" style="font-size: small;" *ngIf="!file.uploadedBy">uploaded By:ADMIN</p>
                             </div>
                             <!-- <div class="col-12"> -->
                             <div class='col-xl-5 col-lg-6 col-md-6 col-sm-6'>

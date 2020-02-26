@@ -383,12 +383,28 @@ export class MaterialTileComponent implements OnInit {
   filter(filterValue: string) {
     this.allLearners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
       }
+  getToolTipData(i){
+    let tempLearner = this.allLearners[i]
+    let materialId = this.materialId
+    // return i
+    if (this.allLearners && this.learner){
+      var index = _.findIndex(this.learner, function (o) { return o._id == tempLearner._id })
+      if (index > -1) {
+        var index2 = _.findIndex(this.learner[index].assignments, function (o) { return o.assignmentId == materialId})
+        if (index2 > -1) return this.learner[index].assignments[index2].assignmentStatus
+        else return 'Unassigned'
+      }
+      // return this.learner[index].assignments[0].assignmentStatus
+    }
+    else return 'Unassigned'
+  }
       // }
       // console.log("THIS.ALLLEARNERS", this.allLearners);
 
       // API
   getLearners() {
     this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
+      console.log("**allLearners", allLearners);
       this.allLearnersCount = allLearners.length || 0
       this.allLearners = allLearners
       this.allLearners.forEach(learner => {

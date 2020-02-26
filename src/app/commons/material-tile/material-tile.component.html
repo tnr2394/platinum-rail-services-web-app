@@ -152,11 +152,11 @@
                     <!-- *ngFor="let learner of learnerNames" -->
                     <!-- <p>{{learner}}</p> -->
                     <div class="col-12">
-                     <mat-grid-list cols="2" rowHeight='30px'>
+                     <mat-grid-list cols="2" rowHeight='40px'>
                         <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'> 
-                            <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable"-->
-                             <mat-checkbox (change)='onSelectChange($event, i)' 
-                                [value]='learner' [checked] = 'learner.checked' [disabled]="learner.checked">{{learner.name}}</mat-checkbox>
+                            <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable"{{getToolTipData(i)}} -->
+                             <mat-checkbox (change)='onSelectChange($event, i)' placement="right" ngbTooltip="{{getToolTipData(i)}}" tooltipClass="tooltip-sidebar-class"
+                                [value]='learner' [checked] = 'learner.checked' [disabled]="learner.checked"><a routerLink="/learner/{{learner._id}}">{{learner.name}}</a></mat-checkbox>
                         </mat-grid-tile>
                     </mat-grid-list>
                 </div> 

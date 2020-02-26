@@ -118,8 +118,13 @@
                             </h3>
                             </div>
                             <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
-                                <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle"
+                                <div class="d-inline-block w-100">
+                                    <div class="float-left title_display" *ngIf="file">
+                                    {{file.title}}
+                                    </div>
+                                <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
                                         aria-hidden="true"></i></mat-button>
+                                </div>
                                 <app-file-details [details]="file" (fileDeleted)="deleteFile($event)"></app-file-details>
                             </mat-sidenav>
                         

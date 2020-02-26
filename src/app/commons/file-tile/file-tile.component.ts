@@ -22,14 +22,20 @@ export class FileTileComponent implements OnInit {
   loading: boolean;
 
   isSubmission;
+  ismyDocs: boolean;
 
   constructor(public _fileService: FileService, private route: ActivatedRoute, public router: Router,
-    public dialog: MatDialog, public _snackBar: MatSnackBar) {
+    public dialog: MatDialog, public _snackBar: MatSnackBar) { //|| this.router.url.includes('single-folder')
     if (this.router.url.includes('submission') || this.router.url.includes('learnerAllotment')) {
       this.isSubmission = true;
     } else {
       this.isSubmission = false;
     }
+    if (this.router.url.includes('jobs') || this.router.url.includes('materials')){
+      this.ismyDocs = false
+    }
+    else this.ismyDocs = true;
+    // if ()
   }
 
   ngOnInit() {
