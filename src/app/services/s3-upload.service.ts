@@ -24,8 +24,8 @@ export class S3UploadService {
 
     const bucket = new S3(
       {
-        accessKeyId: '',
-        secretAccessKey: '',
+        accessKeyId: '--',
+        secretAccessKey: '--',
         region: 'ap-south-1'
       }
     );

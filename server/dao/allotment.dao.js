@@ -46,9 +46,9 @@ allotment.updateAllotment = function (allotmentId, updateAllotment, remark) {
     const q = Q.defer();
 
     // if (remark) {
-        const remarkDetail = { text: remark }
+    const remarkDetail = { text: remark }
     console.log("remarkDetail", remarkDetail);
-        
+
     // }
     allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment, $push: { remark: remarkDetail } }, { upsert: true, new: true }, (err, allotment) => {
         if (err) return q.reject(err);
@@ -153,7 +153,7 @@ allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj)
                     mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
                         if (err) {
                             console.log('error:', err);
-                            return res.status(500).send({ err })
+                            q.reject(err);
                         } else {
                             q.resolve(updatedAllotment);
                         }
