@@ -18,10 +18,12 @@ export class AdminReportAComponent implements OnInit {
   paginator: MatPaginator;
   dataSource: MatTableDataSource<any>;
   searchText;
+  today = new Date()
 
   displayedColumns: string[] = ['Instructor', 'LogIn', 'LunchStart', 'LunchEnd', 'LogOut', 'WorkHours', 'TravelHours', 'Total'];
   allInstrutorsLogs: any;
   displayMsg: boolean;
+  loading: boolean;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -40,12 +42,14 @@ export class AdminReportAComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loading = true;
     this.displayMsg = false
     this.selectedDate = moment().format("MM/DD/YYYY")
     this.getInstructorTime(this.selectedDate)
     // this.getAllInstructors()
   }
   dateChanged(event){
+    this.dataSource = new MatTableDataSource()
     console.log("event", event);
     this.selectedDate = moment(event.value).format("MM/DD/YYYY");
     console.log("this.selectedDate", this.selectedDate);
@@ -83,6 +87,7 @@ export class AdminReportAComponent implements OnInit {
       date: date
     }
     this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs=>{
+      this.loading = false;
       this.allInstrutorsLogs = instLogs.response;
       if (this.allInstrutorsLogs.length == 0){ this.displayMsg = true; return;}
       console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);

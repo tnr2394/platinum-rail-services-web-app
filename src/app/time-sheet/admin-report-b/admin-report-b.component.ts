@@ -31,6 +31,7 @@ export class AdminReportBComponent implements OnInit {
   display: boolean = true;
   displayMsg: boolean;
   datesArray: any[];
+  dataForSingleWeek;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -49,9 +50,9 @@ export class AdminReportBComponent implements OnInit {
   }
 
   ngOnInit() {
-    const paginatorIntl = this.paginator._intl;
-    paginatorIntl.nextPageLabel = '';
-    paginatorIntl.previousPageLabel = '';
+    // const paginatorIntl = this.paginator._intl;
+    // paginatorIntl.nextPageLabel = '';
+    // paginatorIntl.previousPageLabel = '';
     this.display = true;
     this.options = {
       multiple: false,
@@ -135,10 +136,12 @@ export class AdminReportBComponent implements OnInit {
     this._timeSheetService.getSecondReportDetails(data).subscribe((responseLogs)=>{
       console.log("---Got time logs---", responseLogs.response[0]);
       if (responseLogs.response && responseLogs.response.length == 0) {
+        this.dataForSingleWeek = 'noData'
         this.displayMsg = true;
         return
       } 
       else this.displayMsg = false;
+      this.dataForSingleWeek = responseLogs.response[0].logs
       this.timeLogs = responseLogs.response[0].logs
       this.totalHours = responseLogs.response[0].totalWorkingHours
       this.totalMinutes = responseLogs.response[0].totalWorkingMinutes

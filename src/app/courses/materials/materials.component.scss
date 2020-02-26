@@ -121,11 +121,24 @@ mat-form-field{
 //         padding: 0 !important;
 //     }
 // }
-.close_btn{
-    padding: 10px;
-    color: grey;
-    font-size: 25px;
+.title_display{
+    @media (max-width:575px){
+        min-width: 230px;
+        max-width: 230px;
+    }
+    p{
+        font-size: 20px;
+        max-width: 300px;
+    }
 }
+.close_btn{
+    cursor: pointer;
+    font-size: 28px;
+    @media (max-width:575px){
+        font-size: 22px;
+    }
+}
+
 @media (max-width:575px){
     .col-10{
         padding: 0 !important;

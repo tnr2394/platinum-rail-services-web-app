@@ -1,10 +1,13 @@
 <div>
     <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files
         <button (click)="close()" class="closeBtn"
-            *ngIf="uploadedFilesCount == queueCount || uploadedFilesCount == 0 && uploadedFiles.length === 0">
+            *ngIf="uploadedFilesCount == queueCount || queueCount <= uploadedFiles.length || queueCount == 0 ||uploadedFilesCount == 0 && uploadedFiles.length === 0">
             <h4 color="warn"><i class="fa fa-times-circle"></i>
             </h4>
         </button>
+        uploadedFilesCount-----{{uploadedFilesCount}}
+        queueCount-----{{queueCount}}
+        uploadedFiles.length-----{{uploadedFiles.length}}
     </h1>
 </div>
 <mat-card>
@@ -18,6 +21,10 @@
                     <input type="file"
                         accept=".pdf, .ppt,.pptx, .doc, .docx ,.mp4,.jpg,.jpeg,.png,.zip,.csv,.mov,.mkv,.txt,.xls,.xlsx,.xlsm"
                         #fileInput multiple (change)="addToQueue()" />
+                    <div class="fake_file">
+                        <p class="m-0">Choose file</p>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -65,7 +72,7 @@
 
                                 <button type="button" *ngIf="!item.inProgress()"
                                     class="btn btn-danger btn-sm action_btns"
-                                    (click)="item.remove(); uploadedFilesCount = (uploadedFilesCount) ? uploadedFilesCount-1 : 0">
+                                    (click)="item.remove();">
                                     <i class="fa fa-trash"></i>
                                 </button>
 

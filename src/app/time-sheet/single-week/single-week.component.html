@@ -1,10 +1,19 @@
-<h3>Single Week Entry</h3>
+<h3 *ngIf="displayTitle">Single Week Entry</h3>
 
-<div>
-    Total Working Hours:
+<div class="row justify-content-around">
+    <div>
+    <h3>Total Working Hours:
     <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
         {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
     </span>
+    </h3>
+    </div>
+    <div>
+        <h3>Over Time Hours:
+            <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span>
+            <span *ngIf="!overTimeHours">00:00</span>
+        </h3>
+    </div>
 </div>
 
 
@@ -16,10 +25,14 @@
                 <div class="card">
                     <!--Card content-->
                     <div class="card-block">
+                        <div class="row justify-content-center m-0">
+                            <mat-paginator [pageSizeOptions]="[10, 25, 100]">
+                            </mat-paginator>
+                        </div>
                         <!--Title-->
                         <!--Text-->
-                        <div *ngIf="dataSource">
-                            <h1>{{dataSource.length}}</h1>
+                        <div>
+                            <!-- <h1>{{dataSource.length}}</h1> -->
                             <div class="table-responsive">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
@@ -128,8 +141,22 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Travel Hours </th>
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let days;let i = index">
-                                            <input matInput type="time" (change)="travelPlusWork(i)"
-                                                [(ngModel)]='days.travel'>
+                                            <!-- <input matInput type="time" (change)="travelPlusWork(i)"
+                                                [(ngModel)]='days.travel' *ngIf="days && days.travel"> -->
+                                                <mat-form-field>
+                                                    <div class="clock">
+                                                        <div>
+                                                            <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.travel'
+                                                                [min]="minimunTime" readonly>
+                                                        </div>
+                                                        <div>
+                                                            <ngx-material-timepicker-toggle [for]="min">
+                                                            </ngx-material-timepicker-toggle>
+                                                            <ngx-material-timepicker (closed)="closed(i)" (timeSet)="travelPlusWork($event,i)" #min>
+                                                            </ngx-material-timepicker>
+                                                        </div>
+                                                    </div>
+                                                </mat-form-field>
                                         </td>
                                     </ng-container>
 
@@ -167,21 +194,25 @@
                             </div>
 
                         </div>
-                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                        <h3 *ngIf="loading && !displayMsg" class="text-center text-info pt-3">Loading...<i
                                 class="fa fa-cog fa-spin text-info"></i>
+                        </h3>
+                    
+                        <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayMsg">
+                            Please choose dates to display Time Logs!
+                        </h3>
+                        <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayNoDataMsg && !loading">
+                            No Logs Found!
                         </h3>
                     </div>
                     <!--/.Card content-->
-
-                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && learners.length < 1">
-                        No Learner Added!
-                    </h3>
-
+                    <div class="row justify-content-center">
                     <button mat-flat-button color="primary" (click)="submitDetail(days)" type="submit"
-                        class="mb-3 button_hover_effect col-lg-3">
+                        class="mb-3 button_hover_effect col-lg-3" *ngIf="!displayNoDataMsg && !displayMsg">
                         <i class="fas fa-save fa-fw"></i>
                         <span> Save</span>
                     </button>
+                    </div>
                 </div>
             </div>
         </div>

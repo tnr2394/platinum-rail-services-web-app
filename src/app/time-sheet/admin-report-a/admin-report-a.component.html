@@ -1,5 +1,5 @@
 <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Change date" (dateChange)="dateChanged($event)">
+    <input matInput [matDatepicker]="picker" placeholder="Change date" [ngModel]="today" (dateChange)="dateChanged($event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker [startAt]="today"></mat-datepicker>
 </mat-form-field>
@@ -96,8 +96,11 @@
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                             </table>
-                            <div *ngIf="displayMsg" class="msg">
-                                <h3> No Logs Entry Found! </h3>
+                            <h3 *ngIf="loading" class="text-center text-info pt-3">Loading...<i
+                                    class="fa fa-cog fa-spin text-info"></i>
+                            </h3>
+                            <div *ngIf="displayMsg && !loading" >
+                                <h3 class="text-center text-info pt-3 no_found_msg"> No Logs Found! </h3>
                             </div>
                         </div>
                     </div>

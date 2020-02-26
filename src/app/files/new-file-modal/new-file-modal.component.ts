@@ -22,10 +22,11 @@ export class NewFileModalComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("Upload files initialized", this.data);
+    console.log("Upload files initialized", this.queue);
 
     this.queue = this.uploader.queue;
-    this.queueCount = this.queue.source['_value'].length || 0
+    this.queueCount = 0;
+    // this.queueCount = this.queue.source['_value'].length || 0
     this.uploader.bodyData = this.data;
     this.uploader.onCompleteItem = this.completeItem;
     this.uploader.clearQueue()
@@ -54,6 +55,8 @@ export class NewFileModalComponent implements OnInit {
     const fileBrowser = this.fileInput.nativeElement;
     this.uploader.addToQueue(fileBrowser.files);
     console.log("que", this.queue)
+    this.queueCount = this.queue.source['_value'].length
+
     // this.dialogRef.close(this.queue)
   }
 

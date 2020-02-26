@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,6 +17,11 @@ import { single } from 'rxjs/operators';
 })
 export class SingleWeekComponent implements OnInit {
 
+  @Input('instFromAdminReport') instFromAdminReport;
+  @Input('calWeekDates') doGetWeekDates;
+  @Input('logsFromAdmin') logsFromAdmin;
+  @Input('overTimeHours') overTimeHours;
+
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
@@ -34,6 +39,11 @@ export class SingleWeekComponent implements OnInit {
   arrayFromParam: any = [];
   queryParamsObj = {};
   instructorId: any;
+  displayMsg: boolean = false;
+  displayNoDataMsg: boolean;
+  loading: boolean;
+  currentUser: any;
+  displayTitle: boolean = true;
 
 
 
@@ -47,11 +57,20 @@ export class SingleWeekComponent implements OnInit {
   //   { id: '5', date: '02/16/2020', logIn: '00:00', lunchStart: '00:00', lunchEnd: '00:00', logOut: '00:00', workingHours: { hours: 0, minutes: 0 }, travelHours: '00:00', day: 'Friday', checked: false },
   // ];
 
+  @ViewChild(MatPaginator, { static: true }) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService) {
     // this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
     // this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
+    this.dataSource = new MatTableDataSource<any>();
 
     this.route.queryParams.subscribe(params => {
       console.log('Query Params=>', params);
@@ -61,11 +80,77 @@ export class SingleWeekComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.userRole == 'admin') this.displayTitle = false;
+    // this.loading = true;
+    this.displayMsg = true;
     console.log("**ON INIT**", this.datesOfWeek)
-    this.getDays();
-    this.getValuesUsingDates();
+    if (this.datesOfWeek){
+      this.getDays();
+      this.getValuesUsingDates();
+    }
+    else if(this.doGetWeekDates) {
+      console.log("**On init this.instructorId", this.instructorId);
+      this.instructorId = this.instFromAdminReport;
+      // this.selectedDate = moment().format("MM/DD/YYYY")
+      this.getWeekDates();
+    }
+    else {
+      console.log("-----CALLED FROM ADMIN REPORT-----");
+    }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading = true
+    console.log("Something changed", changes);
+    console.log("Something changed ADMINlOGS", changes.logsFromAdmin);
+    if (changes.instFromAdminReport) {
+      this.instructorId = changes.instFromAdminReport.currentValue
+      this.dataSource = new MatTableDataSource()
+      // this.loading = true;
+      this.getValuesUsingDates()
+    }
+    else if (changes.logsFromAdmin && changes.logsFromAdmin.currentValue != 'noData'){
+      this.displayMsg = false
+      this.displayNoDataMsg = false
+      this.Days = changes.logsFromAdmin.currentValue
+      this.updateData(changes.logsFromAdmin.currentValue)
+    }
+    else if (changes.logsFromAdmin && changes.logsFromAdmin.currentValue == 'noData') {
+      this.loading = false
+      this.displayNoDataMsg = true
+      this.displayMsg = false;
+    };
+    if (changes.overTimeHours) this.overTimeHours = changes.overTimeHours.currentValue;
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
+
+  getWeekDates() {
+    console.log("-----getWeekDates-----", moment().startOf('week'), moment().endOf('week'));
+    let weekStartDate = moment().startOf('week')
+    let weekEndDate = moment().endOf('week')
+    let dates = []
+    // // return new Promise((resolve,reject)=>{
+    dates.push(weekStartDate.format('MM/DD/YYYY'))
+    return new Promise((resolve, reject) => {
+      while (weekStartDate.add(1, 'days').diff(weekEndDate) < 0) {
+        console.log("In while loop");
+        console.log(weekStartDate.toDate());
+        dates.push(weekStartDate.clone().format('MM/DD/YYYY'));
+      }
+      resolve(dates)
+      this.datesOfWeek = dates;
+      
+      console.log(" AFTER WHILE **dates", dates);
+    // })
+    }).then((resolvedArray) => {
+      this.getValuesUsingDates()
+    })
+
+  }
 
   getDays() {
     this.updateData(this.Days);
@@ -76,6 +161,7 @@ export class SingleWeekComponent implements OnInit {
     this.dataSource = new MatTableDataSource(weekDays);
     this.dataSource.paginator = this.paginator;
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
+    this.loading = false
   }
 
 
@@ -175,7 +261,9 @@ export class SingleWeekComponent implements OnInit {
     console.log('Calculating Total Week Hours');
   }
 
-  travelPlusWork(index) {
+  travelPlusWork(event,index) {
+    console.log("index",index, "event", event);
+    console.log("this.Days[index]", this.Days[index]);
     let travel, totalHr, totalMin;
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
@@ -322,20 +410,22 @@ export class SingleWeekComponent implements OnInit {
       date: this.datesOfWeek,
       instructorId: this.instructorId
     }
-    this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
-      console.log('Inside Res=======>>>>', res);
-      this.arrayFromDb = res;
-      console.log('Arrayform db', this.arrayFromDb);
-      this.mergeAndCompareBothArrays();
-    }, error => {
+    if(data.date && data.instructorId){
+      this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
+        console.log('Inside Res=======>>>>', res);
+        this.arrayFromDb = res;
+        // console.log('Arrayform db', this.arrayFromDb);
+        this.mergeAndCompareBothArrays();
+      }, error => {
 
-    })
+      })
+    }
   }
 
   mergeAndCompareBothArrays() {
     var filterDates;
     filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
-    console.log('Fiter Dates===>>>>', filterDates);
+    // console.log('Fiter Dates===>>>>', filterDates);
     _.forEach((filterDates), (singleDate, index) => {
       let newObj;
       newObj = {
@@ -370,7 +460,7 @@ export class SingleWeekComponent implements OnInit {
       }
     })
 
-    console.log('finalArray===========>>>>>>', this.finalArray);
+    // console.log('finalArray===========>>>>>>', this.finalArray);
     this._timeSheetService.addTime(this.finalArray).subscribe((res) => {
     }, err => {
 
@@ -399,12 +489,28 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkingHours(hours) {
-    console.log('Check Total Working Hours===>>>', hours);
+    // console.log('Check Total Working Hours===>>>', hours);
     if (hours > 72) {
       return 'break';
     } else {
       return 'ok';
     }
+  }
+
+  getInstructorTimeLogs(datesArray, instructorId) {
+    let data = {
+      date: datesArray,
+      instructorId: instructorId
+    }
+    console.log("****data", data);
+    if (data.date) {
+      console.log("data.date is found", data.date);
+      this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
+        console.log('Res========>>>>>', res);
+        this.updateData(res)
+      }, err => {
+      })}
+    
   }
 
 }
