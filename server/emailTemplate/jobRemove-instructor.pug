@@ -1,8 +1,26 @@
-h3 Hello #{instructor.name}
-
-p This mail confirms you remove from the job #{job.title}
-
-h3 Client Detail
-
-p Title : #{job.client.name}
-p Location : #{job.location.title}
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+    body
+        div(style='background: #f5f5f5;display: table;margin: auto;max-width: 100%; box-sizing: border-box;')
+            div(style='background: white;margin: 0;margin:20px; padding: 20px; width: 380px; max-width: 100%;')
+                img(style='max-width: 130px;' src='https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png')
+                h4(style="font-family:'Sf UI'; margin-bottom: 0px") Hello #{instructor.name}
+                p(style='margin-top: 4px;') This mail confirms you removed from the job #{job.title}
+                div(style="font-family: 'Segoe UI';")
+                    h4(style='margin-bottom: 2px;')
+                        b Clint Detail
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Title :   
+                        span(style='color:#d9a34a; font-size: 12px;') #{job.client.name}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Location: 
+                        span(style='color:#d9a34a; font-size: 12px;') #{job.location.title}
+            div(style="text-align:center; font-family: 'Segoe UI';")
+                p(style='font-size: 12px;')
+                    | Copyright 
+                    span ©
+                    | 2018 
+                    b Platinum Rail Services. All Rights Reserved.
+                p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353

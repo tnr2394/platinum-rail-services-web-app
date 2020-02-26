@@ -18,11 +18,11 @@ router.post('/login', learnerController.loginLearner);
 
 // Allot Assignments
 
-router.post('/allot', learnerController.allotAssignments);
+router.post('/allot', jwtService.validateJWT, learnerController.allotAssignments);
 
 router.get('/allot', learnerController.getAllotment);
 
-router.put('/allot', learnerController.updateAllotment);
+router.put('/allot', jwtService.validateJWT, learnerController.updateAllotment);
 
 // Submission Assignment
 

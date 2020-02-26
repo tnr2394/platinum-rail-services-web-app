@@ -1,19 +1,28 @@
-p Hello #{learner.name},
-
-p Greetings of the day !!!
-
-p You have been enrolled to #{jobDetail.course.title} at #{jobDetail.location.title}.
-
-p Here is the link where you can login to start with the course.
-
-p Your username is : #{learner.email}
-
-p Your password is : #{learner.password}
-
-p You will be able to view the assignments and materials assigned to you in this portal. You will also be submitting your assignments here.
-
-p In case of any questions regarding the portal, you can reach out to your instructor.
-
-p All the best !!! 
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+    body
+        div(style='background: #f5f5f5;display: table;margin: auto;max-width: 100%; box-sizing: border-box;')
+            div(style='background: white;margin: 0;margin:20px; padding: 20px; width: 380px; max-width: 100%;')
+                img(style='max-width: 130px;' src='https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png')
+                p Hello #{learner.name},
+                p Greetings of the day !!!
+                p You have been enrolled to #{jobDetail.course.title} at #{jobDetail.location.title}.
+                p Here is the link where you can login to start with the course
+                p Your username is :  #{learner.email}
+                p Your password is :  #{learner.password}
+                p
+                    | You will be able to view the assignments and materials assigned to you in this portal. You will also be submitting your assignments here.
+                p
+                    | In case of any questions regarding the portal, you can reach out to your instructor.
+                h6 All the best !!!
+            div(style="text-align:center; font-family: 'Segoe UI';")
+                p(style='font-size: 12px;')
+                    | Copyright 
+                    span ©
+                    | 2018 
+                    b Platinum Rail Services. All Rights Reserved.
+                p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353
 
 

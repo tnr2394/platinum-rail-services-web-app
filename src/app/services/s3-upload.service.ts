@@ -22,11 +22,10 @@ export class S3UploadService {
     let name = file.name.split('.').slice(0, -1).join('.')
     let newName = name + '-' + Date.now() + '.' + ext;
 
-
     const bucket = new S3(
       {
-        accessKeyId: 'YOUR ACCESS',
-        secretAccessKey: 'YOUR SECRET',
+        accessKeyId: '---',
+        secretAccessKey: '---',
         region: 'ap-south-1'
       }
     );

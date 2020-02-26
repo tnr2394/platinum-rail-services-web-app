@@ -41,10 +41,14 @@ allotment.createAllotment = function (obj) {
 }
 
 
-allotment.updateAllotment = function (allotmentId, updateAllotment) {
+allotment.updateAllotment = function (allotmentId, updateAllotment, remark) {
     console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment);
-    var q = Q.defer();
-    allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment }, (err, allotment) => {
+    const q = Q.defer();
+
+    if (remark) {
+        const remarkDetail = { text: remark }
+    }
+    allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment, $push: { remark: remarkDetail } }, { upsert: true, new: true }, (err, allotment) => {
         if (err) return q.reject(err);
         else {
             console.log("Allotment Updated Successfully =  ", allotment, q);
@@ -62,9 +66,6 @@ allotment.updateAllotment = function (allotmentId, updateAllotment) {
                 lodash.forEach(res.instructors, function (single) {
                     emailArrays.push(single.email);
                 })
-
-
-                console.log('Final Email Arrays::::::::::', emailArrays);
 
                 const defaultPasswordEmailoptions = {
                     to: emailArrays,
@@ -93,7 +94,7 @@ allotment.getAllotment = function (allotemntId) {
     var q = Q.defer();
     allotmentModel.find({ _id: allotemntId })
         .populate('assignment', { _id: 1, title: 1, type: 1, unitNo: 1, assignmentNo: 1 })
-        .populate('files', { _id: 1, title: 1, alias: 1, path: 1, extension: 1, uploadBy: 1, createdAt: 1, updatedAt: 1 })
+        .populate('files', { _id: 1, title: 1, alias: 1, path: 1, extension: 1, uploadedBy: 1, createdAt: 1, updatedAt: 1 })
         .populate('learner', { _id: 1, name: 1, email: 1 })
         .exec((err, allotemnt) => {
             if (err) q.reject(err)
