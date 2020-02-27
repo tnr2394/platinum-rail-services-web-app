@@ -49,6 +49,7 @@ export class AdminReportAComponent implements OnInit {
     // this.getAllInstructors()
   }
   dateChanged(event){
+    this.displayMsg = false
     this.dataSource = new MatTableDataSource()
     console.log("event", event);
     this.selectedDate = moment(event.value).format("MM/DD/YYYY");

@@ -28,6 +28,7 @@ export class FolderComponent implements OnInit {
   delay: Number;
   display = false;
   currentUser;
+  loading;
 
   // @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   details: any;
@@ -45,6 +46,7 @@ export class FolderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     if (this.router.url.includes('/mydocuments')) {
       this.showCreateBtn = true
     }
@@ -150,6 +152,7 @@ export class FolderComponent implements OnInit {
       console.log('Folders:::::::::', folders);
       this.allFolders = folders;
       this.allFoldersCopy = this.allFolders
+      this.loading = false
     });
   }
   openFileDetails(file) {
@@ -162,6 +165,7 @@ export class FolderComponent implements OnInit {
     this._folderService.getSharedFolders().subscribe((folders) => {
       console.log('Folders', folders);
       this.allFolders = folders;
+      this.loading = false
     });
   }
 

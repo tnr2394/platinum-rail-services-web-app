@@ -18,6 +18,8 @@ export class MyDocumentsComponent implements OnInit {
   fileId: any;
   type: any;
   updatedFolder: any;
+  
+  
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) { }
   ngOnInit() {
   }

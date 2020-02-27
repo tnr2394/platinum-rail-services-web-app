@@ -32,7 +32,10 @@
                         <i class="fas fa-user-tie fa-fw text-primary mr-1"></i>
                     </div>
                     <div class="col-9 pl-1 personal_info">
-                        {{name}}
+                    <a routerLink="/instructors/{{instructor._id}}" *ngIf="instructor && instructor._id">
+                        <span>
+                            {{name}}</span>
+                    </a>
                     </div>
                 </div>
 
