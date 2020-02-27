@@ -74,10 +74,11 @@ module.exports.getTimeLog = (req, res) => {
 }
 
 module.exports.addTimeLog = (req, res) => {
-	const instructorId = ObjectId('5e293b0fa452624cba0dcfd5')
+	const instructorId = req.body.instructorId;
+	const dateArray = req.body.date;
 	console.log('Req.body=======>>>>.', req.body);
 
-	async.eachSeries(req.body, (singleRecord, innerCallback) => {
+	async.eachSeries(dateArray, (singleRecord, innerCallback) => {
 		console.log('singleRecord', singleRecord);
 
 		if (singleRecord._id == 'new') {
@@ -192,7 +193,7 @@ module.exports.getWeeklylog = (req, res) => {
 	const datesArray = req.body.date
 	const instructorId = req.body.instructorId;
 	Promise.all([
-		getLast13Logs(instructorId,datesArray),
+		getLast13Logs(instructorId, datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
 	]).then((response) => {
 		let finalStatus;
@@ -370,7 +371,7 @@ const getLast13Logs = (instructorId, datesArray) => {
 // 	})
 // }
 
-const numberOfTurns = (instructorId,weekDates) => {
+const numberOfTurns = (instructorId, weekDates) => {
 	console.log("----------numberOfTurns called---------");
 	return new Promise((resolve, reject) => {
 		let datesArray = weekDates
