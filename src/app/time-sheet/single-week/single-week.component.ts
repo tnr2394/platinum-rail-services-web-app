@@ -81,16 +81,16 @@ export class SingleWeekComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if(this.currentUser.userRole == 'admin') this.displayTitle = false;
+    if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
 
     // this.loading = true;
     console.log("**ON INIT**", this.datesOfWeek)
-    if (this.datesOfWeek){
+    if (this.datesOfWeek) {
       this.getDays();
       this.getValuesUsingDates();
     }
-    else if(this.doGetWeekDates) {
+    else if (this.doGetWeekDates) {
       console.log("**On init this.instructorId", this.instructorId);
       this.instructorId = this.instFromAdminReport;
       this.displayMsg = false;
@@ -100,6 +100,7 @@ export class SingleWeekComponent implements OnInit {
     else {
       console.log("-----CALLED FROM ADMIN REPORT-----");
     }
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -112,11 +113,12 @@ export class SingleWeekComponent implements OnInit {
       // this.loading = true;
       this.getValuesUsingDates()
     }
-    else if (changes.logsFromAdmin && changes.logsFromAdmin.currentValue != 'noData'){
+    else if (changes.logsFromAdmin && changes.logsFromAdmin.currentValue != 'noData') {
       this.displayMsg = false
       this.displayNoDataMsg = false
       this.Days = changes.logsFromAdmin.currentValue
       this.updateData(changes.logsFromAdmin.currentValue)
+      this.totalWorkingHours();
     }
     else if (changes.logsFromAdmin && changes.logsFromAdmin.currentValue == 'noData') {
       this.loading = false
@@ -145,9 +147,9 @@ export class SingleWeekComponent implements OnInit {
       }
       resolve(dates)
       this.datesOfWeek = dates;
-      
+
       console.log(" AFTER WHILE **dates", dates);
-    // })
+      // })
     }).then((resolvedArray) => {
       this.getValuesUsingDates()
     })
@@ -263,33 +265,34 @@ export class SingleWeekComponent implements OnInit {
     console.log('Calculating Total Week Hours');
   }
 
-  travelPlusWork(event,index) {
-    console.log("index",index, "event", event);
-    console.log("this.Days[index]", this.Days[index]);
-    let travel, totalHr, totalMin;
-    travel = this.Days[index].travel.split(":")
-    totalHr = this.Days[index].workingHours.hours + Number(travel[0])
-    totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalMin > 59) {
-      // totalMinute = totalMinute % 60;
-      // console.log("--IN ELSE IF--totalMinute", totalMinute);
-      // hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
-      // console.log("--IN ELSE IF--hoursWorking", hoursWorking);
-      // totalMin = totalMin - 60;
-      // totalHr = totalHr + 1
-      totalHr = totalHr + Math.floor(totalMin / 60)
-      totalMin = totalMin % 60
-      this.Days[index].totalHours.hours = totalHr;
-      this.Days[index].totalHours.minutes = totalMin;
-    }
-    else if (totalMin == 60) {
-      this.Days[index].workingHours.hours = totalHr + 1;
-      this.Days[index].workingHours.minutes = totalMin - 60;
-    }
-    else {
-      this.Days[index].totalHours.hours = totalHr;
-      this.Days[index].totalHours.minutes = totalMin;
-    }
+  travelPlusWork(event, index) {
+    // console.log("index", index, "event", event);
+    // console.log("this.Days[index]", this.Days[index]);
+    // let travel, totalHr, totalMin;
+    // travel = this.Days[index].travel.split(":")
+    // totalHr = this.Days[index].workingHours.hours + Number(travel[0])
+    // totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
+    // if (totalMin > 60) {
+    //   // totalMinute = totalMinute % 60;
+    //   // console.log("--IN ELSE IF--totalMinute", totalMinute);
+    //   // hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+    //   // console.log("--IN ELSE IF--hoursWorking", hoursWorking);
+    //   // totalMin = totalMin - 60;
+    //   // totalHr = totalHr + 1
+    //   totalHr = totalHr + Math.floor(totalMin / 60)
+    //   totalMin = totalMin % 60
+    //   this.Days[index].totalHours.hours = totalHr;
+    //   this.Days[index].totalHours.minutes = totalMin;
+    // }
+    // else if (totalMin == 60) {
+    //   this.Days[index].totalHours.hours = totalHr + 1;
+    //   this.Days[index].totalHours.minutes = totalMin - 60;
+    // }
+    // else {
+    //   this.Days[index].totalHours.hours = totalHr;
+    //   this.Days[index].totalHours.minutes = totalMin;
+    // }
+    // console.log("this.Days[index]", this.Days[index]);
   }
 
   calculateTravelPlusWorkHours(index) {
@@ -302,13 +305,16 @@ export class SingleWeekComponent implements OnInit {
       // totalHr = totalHr + 1
       totalHr = totalHr + Math.floor(totalMin / 60)
       totalMin = totalMin % 60
+      this.Days[index].totalHours.hours = totalHr;
       return totalHr;
     } else if (totalMin == 60) {
       totalHr = totalHr + 1
       totalMin = totalMin - 60
+      this.Days[index].totalHours.hours = totalHr;
       return totalHr;
     }
     else {
+      this.Days[index].totalHours.hours = totalHr;
       return totalHr;
     }
   }
@@ -323,19 +329,23 @@ export class SingleWeekComponent implements OnInit {
       // totalHr = totalHr + 1
       totalHr = totalHr + Math.floor(totalMin / 60)
       totalMin = totalMin % 60
+      this.Days[index].totalHours.minutes = totalMin;
       return totalMin;
     }
     else if (totalMin == 60) {
       totalHr = totalHr + 1
       totalMin = totalMin - 60
+      this.Days[index].totalHours.minutes = totalMin;
       return totalMin;
     }
     else {
+      this.Days[index].totalHours.minutes = totalMin;
       return totalMin;
     }
   }
 
   totalWorkingHours() {
+    console.log('call After Api call');
     var totalH = 0;
     var totalM = 0;
     _.forEach(this.Days, (day) => {
@@ -405,11 +415,11 @@ export class SingleWeekComponent implements OnInit {
     return ({ hours: hours, minutes: minutes })
   }
 
-  copyPreviousLogs(i){
+  copyPreviousLogs(i) {
     console.log("**this.dataSource", this.dataSource.data[i])
     console.log("**this.Days", this.Days[i]);
     let newData = this.Days[i]
-    let previousData = this.Days[i-1]
+    let previousData = this.Days[i - 1]
     newData.logIn = previousData.logIn
     newData.logOut = previousData.logOut
     newData.lunchEnd = previousData.lunchEnd
@@ -417,6 +427,7 @@ export class SingleWeekComponent implements OnInit {
     newData.totalHours = previousData.totalHours
     newData.travel = previousData.travel
     newData.workingHours = previousData.workingHours
+    this.totalWorkingHours();
     this.updateData(this.Days)
     // this.dataSource
     // logIn: "08:00"
@@ -435,7 +446,7 @@ export class SingleWeekComponent implements OnInit {
       date: this.datesOfWeek,
       instructorId: this.instructorId
     }
-    if(data.date && data.instructorId){
+    if (data.date && data.instructorId) {
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Inside Res=======>>>>', res);
         this.arrayFromDb = res;
@@ -484,7 +495,7 @@ export class SingleWeekComponent implements OnInit {
         this.finalArray.push(singleDate);
       }
     })
-    let data ={
+    let data = {
       date: this.finalArray,
       instructorId: this.instructorId
     }
@@ -537,8 +548,9 @@ export class SingleWeekComponent implements OnInit {
         console.log('Res========>>>>>', res);
         this.updateData(res)
       }, err => {
-      })}
-    
+      })
+    }
+
   }
 
 }

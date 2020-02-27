@@ -101,7 +101,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     console.log("in jobChangedByClient");
     this.learnersComp.jobIdFromClient = job._id;
     this.learnersComp.getLearners(job._id);
-    this.assignmentStatusComp.assignmentStatusWithLearner(job._id)
+    this.assignmentStatusComp.assignmentStatusWithLearner()
   }
   ngAfterViewInit(): void {
 
@@ -173,9 +173,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       return this.openSnackBar("Materials could not be allocated", "Ok");
     });
   }
-  allocatedFromMaterialTile(event){
+  allocatedFromMaterialTile(event) {
     console.log("In job", event);
-    
+
     this.assignmentStatusComp.ngOnInit();
   }
   openSnackBar(message: string, action: string) {

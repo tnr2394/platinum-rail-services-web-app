@@ -26,9 +26,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   public optionsForUnits: Select2Options;
   public currentUnit: string;
   unitArrayCopy: any;
-  
+
   ngOnChanges(changes) {
-    console.log("IN ON CHANGES",changes);
+    console.log("IN ON CHANGES", changes);
     // changes.prop contains the old and the new value...
   }
   assignment;
@@ -55,7 +55,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   // public test() {
   //   console.log("CALLED FROM MATERIALS");
   // }
-  
+
   ngOnInit() {
     this.optionsForlearners = {
       multiple: true,
@@ -96,10 +96,10 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     console.log("this.current", this.currentUnit);
   }
 
-  getFilteredData(){
+  getFilteredData() {
     console.log("**this.currentLearner", this.currentLearner);
     console.log("**this.currentUnit", this.currentUnit);
-    if (this.currentUnit){
+    if (this.currentUnit) {
       this.unitArray = []
       this.currentUnit.split(',').forEach(unit => {
         var index = _.findIndex(this.unitArrayCopy, function (o) { return o._id == unit })
@@ -125,8 +125,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       this.unitArray = data;
       console.log("**this.unitArray", this.unitArray);
       this.unitArrayCopy = data
-      data.forEach(value=>{
-        if (value._id != null){
+      data.forEach(value => {
+        if (value._id != null) {
           let temp = {
             id: value._id,
             text: "Unit - " + value._id
@@ -147,9 +147,15 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   }
 
   checkArray(assignmentArray, assignment) {
-    let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
-    if (index >= 0) {
-      return assignmentArray[index].assignmentStatus;
+    // console.log('assignmentArray::::::::', assignmentArray);
+
+    if (assignmentArray.length != 0) {
+      let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
+      if (index >= 0) {
+        return assignmentArray[index].assignmentStatus;
+      } else {
+        return 'Unassigned';
+      }
     } else {
       return 'Unassigned';
     }
@@ -186,17 +192,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       unitNo: unitNo
     }
     this._materialService.assignmentStatusWithLearner(data).subscribe((data) => {
-      this.learner = data;
-      data.forEach(value=>{
-        let temp = {
-          id: value._id,
-          text: value.learnerName
-        }
-        this.learnerToDisplay.push(temp)
-      })
-      // console.log("**learnerToDisplay", this.learnerToDisplay);
-      this.learnerLength = this.learner.length;
-      // console.log('Learner List:::::::::::::::::::::::', this.learner);
+      if (data.length == 0) {
+        return;
+      } else {
+        this.learner = data;
+        console.log('this.learner======~~~~~', this.learner);
+        data.forEach(value => {
+          let temp = {
+            id: value._id,
+            text: value.learnerName
+          }
+          this.learnerToDisplay.push(temp)
+        })
+        console.log("**learnerToDisplay", this.learnerToDisplay);
+        this.learnerLength = this.learner.length;
+      }
     });
   }
 }

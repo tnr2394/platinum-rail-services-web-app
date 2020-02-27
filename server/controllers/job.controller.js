@@ -651,9 +651,9 @@ jobController.assignmentStatusWithLearner = function (req, res) {
     })
     console.log("Assignment List With Learner", jobId, learnerArray, unitArray);
 
-    if (newUnitArray.length) {
-        query['$and'].push({ $in: ['$assignment.assignmentUnit', newUnitArray] })
-    }
+    // if (newUnitArray.length) {
+    //     query['$and'].push({ $in: ['$assignment.assignmentUnit', newUnitArray] })
+    // }
 
     if (newLearnerArray.length) {
         query['$and'].push({ $in: ['$learnerId', newLearnerArray] })

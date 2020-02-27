@@ -150,7 +150,7 @@ export class MaterialService {
 
 
   assignmentStatusWithLearner(data): Observable<any> {
-    console.log("Getting materials");
+    console.log("Getting materials========>>>>>>>", data);
     var that = this;
     // var obj = {
     //   _id: jobId
