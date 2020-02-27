@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component ,OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileService } from 'src/app/services/file.service';
 import { from, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 declare var $: any;
+
 @Component({
   selector: 'file-tile',
   templateUrl: './file-tile.component.html',

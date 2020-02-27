@@ -1,4 +1,21 @@
-<div class="row m-0">
+<!-- <div class="row m-0">
+    <div *ngIf="learner && learner.length != 0">
+        <select2 [data]="learnerToDisplay" [cssImport]=true [options]="options" [value]="value"
+            (valueChanged)="changed($event)"></select2>
+    </div>
+</div> -->
+<div class="row m-0 align-items-center">
+    <div class="col" *ngIf="learner && learnerLength != 0">
+        <select2 [data]="learnerToDisplay" [cssImport]=true [options]="optionsForlearners" [value]="value"
+            (valueChanged)="changedLearner($event)"></select2>
+    </div>
+    <div class="col" *ngIf="unitArray && unitArray.length != 0">
+        <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
+            (valueChanged)="changedUnit($event)"></select2>
+    </div>
+    <div class="col-1" style="margin-top: 15px;">
+        <button mat-mini-fab color="primary" (click)="getFilteredData()">GO</button>
+    </div>
     <div class="col-12 responsive-row">
         <div class="card">
             <div class="row">

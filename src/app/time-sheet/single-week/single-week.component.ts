@@ -82,8 +82,9 @@ export class SingleWeekComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if(this.currentUser.userRole == 'admin') this.displayTitle = false;
+    if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
+
     // this.loading = true;
-    this.displayMsg = true;
     console.log("**ON INIT**", this.datesOfWeek)
     if (this.datesOfWeek){
       this.getDays();
@@ -92,6 +93,7 @@ export class SingleWeekComponent implements OnInit {
     else if(this.doGetWeekDates) {
       console.log("**On init this.instructorId", this.instructorId);
       this.instructorId = this.instFromAdminReport;
+      this.displayMsg = false;
       // this.selectedDate = moment().format("MM/DD/YYYY")
       this.getWeekDates();
     }
@@ -403,6 +405,29 @@ export class SingleWeekComponent implements OnInit {
     return ({ hours: hours, minutes: minutes })
   }
 
+  copyPreviousLogs(i){
+    console.log("**this.dataSource", this.dataSource.data[i])
+    console.log("**this.Days", this.Days[i]);
+    let newData = this.Days[i]
+    let previousData = this.Days[i-1]
+    newData.logIn = previousData.logIn
+    newData.logOut = previousData.logOut
+    newData.lunchEnd = previousData.lunchEnd
+    newData.lunchStart = previousData.lunchStart
+    newData.totalHours = previousData.totalHours
+    newData.travel = previousData.travel
+    newData.workingHours = previousData.workingHours
+    this.updateData(this.Days)
+    // this.dataSource
+    // logIn: "08:00"
+    // logOut: "21:00"
+    // lunchEnd: "14:30"
+    // lunchStart: "13:30"
+    // totalHours: { hours: 14, minutes: 0 }
+    // travel: "02:00"
+    // updatedAt: "2020-02-21T08:00:05.324Z"
+    // workingHours: { hours: 12, minutes: 0 }
+  }
 
   getValuesUsingDates() {
     console.log('Get Values Using Dates');
@@ -459,9 +484,12 @@ export class SingleWeekComponent implements OnInit {
         this.finalArray.push(singleDate);
       }
     })
-
+    let data ={
+      date: this.finalArray,
+      instructorId: this.instructorId
+    }
     // console.log('finalArray===========>>>>>>', this.finalArray);
-    this._timeSheetService.addTime(this.finalArray).subscribe((res) => {
+    this._timeSheetService.addTime(data).subscribe((res) => {
     }, err => {
 
     })

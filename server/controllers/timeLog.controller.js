@@ -74,11 +74,11 @@ module.exports.getTimeLog = (req, res) => {
 }
 
 module.exports.addTimeLog = (req, res) => {
-	const instructorId = req.body.instructorId;
-	const dateArray = req.body.date;
+	const instructorId = req.body.instructorId
+	const datesArray = req.body.date
 	console.log('Req.body=======>>>>.', req.body);
 
-	async.eachSeries(dateArray, (singleRecord, innerCallback) => {
+	async.eachSeries(datesArray, (singleRecord, innerCallback) => {
 		console.log('singleRecord', singleRecord);
 
 		if (singleRecord._id == 'new') {

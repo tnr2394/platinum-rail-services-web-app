@@ -149,15 +149,15 @@ export class MaterialService {
   }
 
 
-  assignmentStatusWithLearner(jobId): Observable<any> {
+  assignmentStatusWithLearner(data): Observable<any> {
     console.log("Getting materials");
     var that = this;
-    var obj = {
-      _id: jobId
-    }
+    // var obj = {
+    //   _id: jobId
+    // }
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.post(config.baseApiUrl + "jobs/assignment-status", obj).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "jobs/assignment-status", data).subscribe((res: any) => {
         observer.next(res.data.assignment);
         observer.complete();
       })

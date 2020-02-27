@@ -4,7 +4,7 @@
             <div class="row m-0">
                 <div class="col-12 preview p-0" *ngIf="!isSubmission && ismyDocs">
                     <!-- <img src="{{file.thumbNail}}"> -->
-                    <img src="../../../assets/google-docs.png">
+                    <img src="../../../assets/google-docs.png" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" /> 
                     <mat-divider></mat-divider>
                 </div>
             </div>
@@ -12,6 +12,7 @@
                 <div class="col-3">
                     <div class="excxtnsion_img">
                         <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" 
+                        onerror="this.src='../../../assets/iconFallBack.png';" alt="Missing Image"
                         [ngClass]="file.extension">
                     </div>
                 </div>
