@@ -18,7 +18,14 @@ mat-form-field{
   margin: 2px 0px;
 }
 .copyArrow{
-    height: 20px;
-    width: 20px;
-    margin-left: 20px;
+    background: transparent;
+    color: #2196f3;
+    font-size: 20px;
+}
+table {
+    margin: 0;
+    width: 100%;
+    @media(max-width: 1199px){
+        min-width: 950px;
+    }
 }

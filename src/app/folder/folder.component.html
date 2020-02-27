@@ -78,6 +78,7 @@
                     <!-- </mat-card-content> -->
                 </div>
             </div>
+            <div *ngIf="loading">Loading...<i class="fa fa-spinner"></i></div>
         </div>
 
         <div class="row no-folder text-center justify-content-center" *ngIf="allFolders && allFolders.length == 0">
