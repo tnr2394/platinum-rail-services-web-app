@@ -91,9 +91,12 @@ export class MaterialService {
   getMaterialUsingJobId(id): Observable<any> {
     console.log("Getting materials");
     var that = this;
+    var obj = {
+      _id: id
+    }
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get(config.baseApiUrl + "jobs/assignment?_id=" + id).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "jobs/assignment", obj).subscribe((res: any) => {
         console.log("Get materials : ", res);
         observer.next(res.data.assignment);
         observer.complete();
@@ -105,9 +108,10 @@ export class MaterialService {
   getMaterialUsingJobIdWithNoGroup(id): Observable<any> {
     console.log("Getting materials");
     var that = this;
+    var obj = { _id: id }
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get(config.baseApiUrl + "jobs/assignment/group?_id=" + id).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "jobs/assignment/group", obj).subscribe((res: any) => {
         console.log("Get materials : ", res);
         observer.next(res.data.assignment);
         observer.complete();
@@ -148,9 +152,12 @@ export class MaterialService {
   assignmentStatusWithLearner(jobId): Observable<any> {
     console.log("Getting materials");
     var that = this;
+    var obj = {
+      _id: jobId
+    }
     return new Observable<any>((observer) => {
       console.log("Observable");
-      this.http.get(config.baseApiUrl + "jobs/assignment-status?_id=" + jobId).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "jobs/assignment-status", obj).subscribe((res: any) => {
         observer.next(res.data.assignment);
         observer.complete();
       })

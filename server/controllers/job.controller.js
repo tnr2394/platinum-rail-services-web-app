@@ -400,9 +400,24 @@ const getEmailOfInstructor = (instructorId) => {
  * Assignment List Using JobId With Group By Unit Number
  */
 jobController.assignmentListUsingJobId = function (req, res) {
-    let jobId = req.query._id;
+    // let jobId = req.query._id;
 
-    console.log('Assignment List Using Job Id:', jobId);
+    let jobId = req.body._id;
+
+    var query = {
+        $and: []
+    }
+    let unitArray = req.body.unitNo;
+    let newUnitArray = [];
+    lodash.forEach(unitArray, (single) => {
+        newUnitArray.push(Number(single))
+    })
+
+    if (newUnitArray.length) {
+        query['$and'].push({ $in: ['$assignment.assignmentUnit', newUnitArray] })
+    }
+
+    console.log('Assignment List Using Job Id:', jobId, newUnitArray);
 
     jobModel.aggregate([
         {
@@ -457,6 +472,15 @@ jobController.assignmentListUsingJobId = function (req, res) {
             }
         },
         {
+            $redact: {
+                $cond: {
+                    if: query,
+                    then: '$$KEEP',
+                    else: '$$PRUNE'
+                }
+            }
+        },
+        {
             $group: {
                 _id: '$_id',
                 assignment: {
@@ -501,7 +525,6 @@ jobController.assignmentListUsingJobId = function (req, res) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
-            console.log('assignment', assignment);
             return res.send({ data: { assignment }, msg: "Deleted Successfully" });
         }
     });
@@ -612,8 +635,31 @@ jobController.assignmentListUsingJobIdWithoutGroup = function (req, res) {
  * Function Returns Learner List With Allotment Arrays
  */
 jobController.assignmentStatusWithLearner = function (req, res) {
-    let jobId = req.query._id;
-    console.log("Assignment List With Learner", jobId);
+    let jobId = req.body._id;
+    let learnerArray = req.body.learner;
+    let unitArray = req.body.unitNo;
+    let newUnitArray = [];
+    let newLearnerArray = [];
+    const query = { $and: [] }
+    lodash.forEach(unitArray, (single) => {
+        console.log('Single:', single);
+        newUnitArray.push(Number(single))
+    })
+    lodash.forEach(learnerArray, (single) => {
+        console.log('Single:', single);
+        newLearnerArray.push(ObjectId(single))
+    })
+    console.log("Assignment List With Learner", jobId, learnerArray, unitArray);
+
+    if (newUnitArray.length) {
+        query['$and'].push({ $in: ['$assignment.assignmentUnit', newUnitArray] })
+    }
+
+    if (newLearnerArray.length) {
+        query['$and'].push({ $in: ['$learnerId', newLearnerArray] })
+    }
+
+
     learnersModel.aggregate([
         {
             $match:
@@ -642,11 +688,28 @@ jobController.assignmentStatusWithLearner = function (req, res) {
             }
         },
         {
+            $lookup: {
+                from: 'materials',
+                localField: 'allotments.assignment',
+                foreignField: '_id',
+                as: 'allotments.assignment',
+            }
+        },
+        {
+            $unwind: {
+                path: '$allotments.assignment',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
             $project: {
                 learnerName: '$name',
+                learnerId: '$_id',
                 assignment: {
                     allotmentId: '$allotments._id',
-                    assignmentId: '$allotments.assignment',
+                    assignmentId: '$allotments.assignment._id',
+                    assignmentUnit: '$allotments.assignment.unitNo',
+                    assignmentNo: '$allotments.assignment.assignmentNo',
                     assignmentStatus: '$allotments.status',
                     allotedAt: '$allotments.createdAt',
                     updatedAt: '$allotments.updatedAt',
@@ -655,8 +718,44 @@ jobController.assignmentStatusWithLearner = function (req, res) {
             }
         },
         {
+            $redact: {
+                $cond: {
+                    if: query,
+                    then: '$$KEEP',
+                    else: '$$PRUNE'
+                }
+            }
+        },
+        // {
+        //     $redact: {
+        //         $cond: {
+        //             if:
+        //                 { $in: ['$assignment.assignmentUnit', newUnitArray] },
+        //             then: '$$KEEP',
+        //             else: '$$PRUNE'
+        //         }
+        //     }
+        // },
+        // {
+        //     $redact: {
+        //         $cond: {
+        //             if: {
+        //                 $and: [
+        //                     { $in: ['$learnerId', learnerArray.map(el => ObjectId(el))] },
+        //                     { $in: ['$assignment.assignmentUnit', newUnitArray] },
+        //                 ]
+        //             },
+        //             then: '$$KEEP',
+        //             else: '$$PRUNE'
+        //         }
+        //     }
+        // },
+        {
             $group: {
                 _id: '$_id',
+                learnerId: {
+                    $first: '$learnerId',
+                },
                 learnerName: {
                     $first: '$learnerName',
                 },
@@ -664,7 +763,8 @@ jobController.assignmentStatusWithLearner = function (req, res) {
                     $push: '$assignment'
                 }
             }
-        }
+        },
+
     ]).exec((error, assignment) => {
         if (error) {
             console.log('Error:', error);

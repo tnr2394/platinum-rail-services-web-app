@@ -21,14 +21,14 @@ router.get('/instructor', jobController.getJobUsingInstructorId);
 
 router.get('/client', jobController.getJobUsingClientId);
 
-router.get('/assignment', jobController.assignmentListUsingJobId);
+router.post('/assignment', jobController.assignmentListUsingJobId);
 
-router.get('/assignment/group', jobController.assignmentListUsingJobId);
+router.post('/assignment/group', jobController.assignmentListUsingJobId);
 
 
 // assignmentListUsingJobIdWithoutGroup
 
-router.get('/assignment-status', jobController.assignmentStatusWithLearner);
+router.post('/assignment-status', jobController.assignmentStatusWithLearner);
 
 router.get('/all-assignment', jobController.allotedAssignmentListUsingJobId);
 

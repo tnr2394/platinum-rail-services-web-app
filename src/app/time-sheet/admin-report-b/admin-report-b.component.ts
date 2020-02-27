@@ -24,6 +24,7 @@ export class AdminReportBComponent implements OnInit {
   sort: MatSort;
   paginator: MatPaginator;
   dataSource: MatTableDataSource<any>;
+  down;
 
   displayedColumns: string[] = ['Date', 'LogIn', 'LunchStart', 'LunchEnd', 'LogOut', 'WorkHours', 'TravelHours', 'Total'];
   timeLogs: any;
@@ -45,7 +46,7 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private _instructorService: InstructorService, public _timeSheetService: TimeSheetService) { 
+  constructor(private _instructorService: InstructorService, public _timeSheetService: TimeSheetService) {
     this.dataSource = new MatTableDataSource<any>();
   }
 
@@ -69,37 +70,37 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource = new MatTableDataSource<any>();
     console.log("---Inst changed---", data);
     this.selectedInstructorId = data.value;
-    if(this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
+    if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
   }
-  datesSelected(event){
+  datesSelected(event) {
     this.display = false;
     this.selectedDatesRange = event;
     console.log("---datesSelected---", event);
     this.getWeekDates(this.selectedDatesRange)
   }
   getWeekDates(selectedDatesRange) {
-    if (selectedDatesRange.startDate && selectedDatesRange.endDate){
+    if (selectedDatesRange.startDate && selectedDatesRange.endDate) {
       console.log("-----getWeekDates-----", selectedDatesRange);
       let dates = []
       dates.push(selectedDatesRange.startDate.format('MM/DD/YYYY'))
       return new Promise((resolve, reject) => {
         while (selectedDatesRange.startDate.add(1, 'days').diff(selectedDatesRange.endDate) < 0) {
-        console.log("In while loop");
-        console.log(selectedDatesRange.startDate.toDate());
-        dates.push(selectedDatesRange.startDate.clone().format('MM/DD/YYYY'));
-      }
-      console.log(" AFTER WHILE **dates", dates);
-      this.datesArray = dates;
+          console.log("In while loop");
+          console.log(selectedDatesRange.startDate.toDate());
+          dates.push(selectedDatesRange.startDate.clone().format('MM/DD/YYYY'));
+        }
+        console.log(" AFTER WHILE **dates", dates);
+        this.datesArray = dates;
         resolve(this.datesArray)
-    }).then((resolvedDatesArray)=>{
-      this.getTimeLog(resolvedDatesArray)
-    })
+      }).then((resolvedDatesArray) => {
+        this.getTimeLog(resolvedDatesArray)
+      })
     }
-    
+
     // return new Promise((resolve,reject)=>{
     // dates.push(selectedDatesRange.startDate.format('MM/DD/YYYY'))
     // console.log("");
-    
+
   }
   updateData(logs) {
     console.log('UPDATING DATA = ', logs)
@@ -115,9 +116,9 @@ export class AdminReportBComponent implements OnInit {
     this._instructorService.getInstructors().subscribe(instructorsResponse => {
       console.log("instructorsResponse", instructorsResponse)
       this.allInstructors = instructorsResponse;
-      
+
       this.selectedInstructorId = instructorsResponse[0]._id
-      instructorsResponse.forEach(inst=>{
+      instructorsResponse.forEach(inst => {
         let temp = {
           id: inst._id,
           text: inst.name
@@ -128,28 +129,28 @@ export class AdminReportBComponent implements OnInit {
       // this.dataSource = new MatTableDataSource<any>(instructorsResponse)
     })
   }
-  getTimeLog(datesArray){
+  getTimeLog(datesArray) {
     let data = {
       date: datesArray,
-      instructorId : this.selectedInstructorId
+      instructorId: this.selectedInstructorId
     }
-    this._timeSheetService.getSecondReportDetails(data).subscribe((responseLogs)=>{
+    this._timeSheetService.getSecondReportDetails(data).subscribe((responseLogs) => {
       console.log("---Got time logs---", responseLogs.response[0]);
       if (responseLogs.response && responseLogs.response.length == 0) {
         this.dataForSingleWeek = 'noData'
         this.displayMsg = true;
         return
-      } 
+      }
       else this.displayMsg = false;
       this.dataForSingleWeek = responseLogs.response[0].logs
       this.timeLogs = responseLogs.response[0].logs
       this.totalHours = responseLogs.response[0].totalWorkingHours
       this.totalMinutes = responseLogs.response[0].totalWorkingMinutes
-      if(this.totalMinutes == 60){
+      if (this.totalMinutes == 60) {
         this.totalHours = this.totalHours + 1
         this.totalMinutes = this.totalMinutes - 60
       }
-      else if(this.totalMinutes > 60){
+      else if (this.totalMinutes > 60) {
         this.totalHours = this.totalHours + Math.floor(this.totalMinutes / 60)
         this.totalMinutes = this.totalMinutes % 60
       }
