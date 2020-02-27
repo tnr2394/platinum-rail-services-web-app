@@ -9,6 +9,7 @@ import { Router, NavigationExtras } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { DatePipe } from '@angular/common';
+import { Select2OptionData } from 'ng2-select2';
 
 
 
@@ -18,6 +19,13 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./assignment-status.component.scss']
 })
 export class AssignmentStatusComponent implements OnInit, OnChanges {
+  public learnerToDisplay: Array<Select2OptionData> = [];
+  public optionsForlearners: Select2Options;
+  public currentLearner: string;
+  public unitsToDisplay: Array<Select2OptionData> = [];
+  public optionsForUnits: Select2Options;
+  public currentUnit: string;
+  
   ngOnChanges(changes) {
     console.log("IN ON CHANGES",changes);
     // changes.prop contains the old and the new value...
@@ -43,13 +51,22 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     this.dataSource = new MatTableDataSource(this.learners);
   }
 
-  public test() {
-    console.log("CALLED FROM MATERIALS");
-  }
+  // public test() {
+  //   console.log("CALLED FROM MATERIALS");
+  // }
+  
   ngOnInit() {
-    console.log("ASSIGNMENT STATU CALLED");
+    this.optionsForlearners = {
+      multiple: true,
+      placeholder: "Choose learners",
+    }
+    this.optionsForUnits = {
+      multiple: true,
+      placeholder: "Choose Unit Numbers",
+    }
+    // console.log("ASSIGNMENT STATU CALLED");
 
-    console.log("jobIdFromClient", this.jobIdFromClient);
+    // console.log("jobIdFromClient", this.jobIdFromClient);
 
     if (this.jobIdFromClient != undefined) {
       this.jobId = this.jobIdFromClient
@@ -57,7 +74,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     else {
       this.activatedRoute.params.subscribe(params => {
         this.jobId = params['jobid'];
-        console.log("Calling getLearners with jobid = ", this.jobId);
+        // console.log("Calling getLearners with jobid = ", this.jobId);
       });
     }
 
@@ -65,20 +82,53 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     this.assignmentStatusWithLearner(this.jobId);
   }
 
+  changedLearner(data: { value: string[] }) {
+    console.log("change", data);
+    this.currentLearner = data.value.join(',');
+    // this.queryParamsObj['instructorId'] = this.current;
+    console.log("this.current", this.currentLearner);
+  }
+  changedUnit(data: { value: string[] }) {
+    console.log("change", data);
+    this.currentUnit = data.value.join(',');
+    // this.queryParamsObj['instructorId'] = this.current;
+    console.log("this.current", this.currentUnit);
+  }
+
+  getFilteredData(){
+    console.log("**this.currentLearner", this.currentLearner);
+    console.log("**this.currentUnit", this.currentUnit);
+    let data = {
+      unitNo: this.currentUnit,
+      learnerid : this.currentLearner,
+      jobId: this.jobId
+    }
+  }
+
 
   getAssignmentList(jobId) {
     this._materialService.getMaterialUsingJobId(jobId).subscribe((data) => {
       this.unit = data[0];
       this.unitArray = data;
+      data.forEach(value=>{
+        if (value._id != null){
+          let temp = {
+            id: value._id,
+            text: "Unit - " + value._id
+          }
+          this.unitsToDisplay.push(temp)
+        }
+      })
+      console.log("**unit data is ", data);
       this.assignment = data.assignment;
       this.assignmentLength = this.unit.assignment.length;
     });
   }
 
   loadLearners(object) {
-    console.log("OBJECT", object);
+    // console.log("OBJECT", object);
     this.learners = object.learners;
-    console.log("Learners loaded by event = ", object.learners);
+    // console.log("Learners loaded by event = ", object.learners);
   }
 
   checkArray(assignmentArray, assignment) {
@@ -114,8 +164,16 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   assignmentStatusWithLearner(jobId) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = data;
+      data.forEach(value=>{
+        let temp = {
+          id: value._id,
+          text: value.learnerName
+        }
+        this.learnerToDisplay.push(temp)
+      })
+      // console.log("**learnerToDisplay", this.learnerToDisplay);
       this.learnerLength = this.learner.length;
-      console.log('Learner List:::::::::::::::::::::::', this.learner);
+      // console.log('Learner List:::::::::::::::::::::::', this.learner);
     });
   }
 }

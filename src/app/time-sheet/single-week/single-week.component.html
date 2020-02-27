@@ -1,6 +1,10 @@
 <h3 *ngIf="displayTitle">Single Week Entry</h3>
-
-<div class="row justify-content-around">
+<mat-card class="mat-elevation-z0" style="padding-bottom: 0%;">
+<div class="row" *ngIf="doGetWeekDates">
+    <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
+        (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
+</div>
+<div class="row justify-content-between">
     <div>
     <h3>Total Working Hours:
     <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
@@ -15,7 +19,7 @@
         </h3>
     </div>
 </div>
-
+</mat-card>
 
 <div class="row">
     <div class="col-12">

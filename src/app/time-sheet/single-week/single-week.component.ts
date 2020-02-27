@@ -92,6 +92,7 @@ export class SingleWeekComponent implements OnInit {
     else if(this.doGetWeekDates) {
       console.log("**On init this.instructorId", this.instructorId);
       this.instructorId = this.instFromAdminReport;
+      this.displayMsg = false;
       // this.selectedDate = moment().format("MM/DD/YYYY")
       this.getWeekDates();
     }

@@ -54,7 +54,7 @@ export class AdminTimeSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.options = { multiple: false }
+    this.options = { multiple: true }
     this.view = "Week"
     this.getCurrentWeekDates().then((resolvedDates:any)=>{
       this.barChartLabels = resolvedDates
