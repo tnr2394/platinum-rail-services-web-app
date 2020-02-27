@@ -43,8 +43,12 @@
                                     <!-- Date Column -->
                                     <ng-container matColumnDef="date">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
-                                            {{days.date}} </td>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
+                                            <div class="row">
+                                               <button (click)="copyPreviousLogs(i)"><img src="../../../assets/copyAbove.png" class="copyArrow" *ngIf="i != 0"></button> {{days.date}}
+                                            </div>
+                                        
+                                        </td>
                                     </ng-container>
                                     <!-- Login Column -->
 

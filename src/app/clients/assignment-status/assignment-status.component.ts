@@ -25,6 +25,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   public unitsToDisplay: Array<Select2OptionData> = [];
   public optionsForUnits: Select2Options;
   public currentUnit: string;
+  unitArrayCopy: any;
   
   ngOnChanges(changes) {
     console.log("IN ON CHANGES",changes);
@@ -79,7 +80,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     }
 
     this.getAssignmentList(this.jobId);
-    this.assignmentStatusWithLearner(this.jobId);
+    this.assignmentStatusWithLearner();
   }
 
   changedLearner(data: { value: string[] }) {
@@ -98,11 +99,23 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   getFilteredData(){
     console.log("**this.currentLearner", this.currentLearner);
     console.log("**this.currentUnit", this.currentUnit);
-    let data = {
-      unitNo: this.currentUnit,
-      learnerid : this.currentLearner,
-      jobId: this.jobId
+    if (this.currentUnit){
+      this.unitArray = []
+      this.currentUnit.split(',').forEach(unit => {
+        var index = _.findIndex(this.unitArrayCopy, function (o) { return o._id == unit })
+        if (index > -1) this.unitArray.push(this.unitArrayCopy[index])
+      })
     }
+    else this.unitArray = this.unitArrayCopy
+    // this.unitArray = this.currentUnit.split(',')
+    // let tempLearners = this.currentLearner.split(',')
+    // console.log("**tempLearners", tempLearners);
+    this.assignmentStatusWithLearner()
+    // let data = {
+    //   unitNo: this.currentUnit,
+    //   learnerid : this.currentLearner,
+    //   jobId: this.jobId
+    // }
   }
 
 
@@ -110,6 +123,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     this._materialService.getMaterialUsingJobId(jobId).subscribe((data) => {
       this.unit = data[0];
       this.unitArray = data;
+      console.log("**this.unitArray", this.unitArray);
+      this.unitArrayCopy = data
       data.forEach(value=>{
         if (value._id != null){
           let temp = {
@@ -161,8 +176,16 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   }
 
 
-  assignmentStatusWithLearner(jobId) {
-    this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
+  assignmentStatusWithLearner() {
+    let learner, unitNo
+    learner = this.currentLearner ? this.currentLearner.split(',') : undefined
+    unitNo = this.currentUnit ? this.currentUnit.split(',') : undefined
+    let data = {
+      _id: this.jobId,
+      learner: learner,
+      unitNo: unitNo
+    }
+    this._materialService.assignmentStatusWithLearner(data).subscribe((data) => {
       this.learner = data;
       data.forEach(value=>{
         let temp = {
