@@ -193,7 +193,7 @@ module.exports.getWeeklylog = (req, res) => {
 	const datesArray = req.body.date
 	const instructorId = req.body.instructorId;
 	Promise.all([
-		getLast13Logs(instructorId,datesArray),
+		getLast13Logs(instructorId, datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
 	]).then((response) => {
 		let finalStatus;
@@ -371,7 +371,7 @@ const getLast13Logs = (instructorId, datesArray) => {
 // 	})
 // }
 
-const numberOfTurns = (instructorId,weekDates) => {
+const numberOfTurns = (instructorId, weekDates) => {
 	console.log("----------numberOfTurns called---------");
 	return new Promise((resolve, reject) => {
 		let datesArray = weekDates
