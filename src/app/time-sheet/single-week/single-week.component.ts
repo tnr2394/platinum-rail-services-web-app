@@ -387,6 +387,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   totalWorkingHours() {
+    console.log("this.Days", this.Days);
     console.log('call After Api call');
     var totalH = 0;
     var totalM = 0;
@@ -466,10 +467,11 @@ export class SingleWeekComponent implements OnInit {
     newData.logOut = previousData.logOut
     newData.lunchEnd = previousData.lunchEnd
     newData.lunchStart = previousData.lunchStart
-    newData.totalHours = previousData.totalHours
+    // newData.totalHours = previousData.totalHours
     newData.travel = previousData.travel
-    newData.workingHours = previousData.workingHours
-    this.totalWorkingHours();
+    // newData.workingHours = previousData.workingHours
+    this.closed(i)
+    // this.totalWorkingHours();
     this.updateData(this.Days)
     // this.dataSource
     // logIn: "08:00"

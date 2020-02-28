@@ -90,7 +90,7 @@
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
-                                                            [(ngModel)]='days.lunchStart' [min]="minimunTime" readonly>
+                                                            [(ngModel)]='days.lunchStart' [min]="days.logIn" readonly>
                                                     </div>
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
@@ -112,7 +112,7 @@
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
-                                                            [(ngModel)]='days.lunchEnd' [min]="minimunTime" readonly>
+                                                            [(ngModel)]='days.lunchEnd' [min]="days.lunchStart" readonly>
                                                     </div>
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
@@ -134,7 +134,7 @@
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
-                                                            [(ngModel)]='days.logOut' [min]="minimunTime" readonly>
+                                                            [(ngModel)]='days.logOut' [min]="days.lunchEnd" readonly>
                                                     </div>
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
