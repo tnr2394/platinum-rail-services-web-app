@@ -14,6 +14,8 @@ import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
+// import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-file-details',
@@ -41,6 +43,7 @@ export class FileDetailsComponent implements OnInit {
   readOnlyTitle: boolean = true;
   type: any;
   currentUser: any;
+  pathForPreview: string;
   constructor(public _folderService: FolderService, public _fileService : FileService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
@@ -62,6 +65,10 @@ export class FileDetailsComponent implements OnInit {
       if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = 'material'; else this.isMaterials = 'not material'
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
+      if (changes.recievedFile.currentValue.path){
+        this.pathForPreview = "https://docs.google.com/gview?url=" + changes.recievedFile.currentValue.path + "&embedded=true"
+      }
+        // https://docs.google.com/gview?url="+ {{recievedFile.path}} + "&embedded=true"
       // else this.isMaterials = 'file'
 
       // DATES

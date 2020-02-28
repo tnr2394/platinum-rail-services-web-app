@@ -7,7 +7,11 @@
             <!-- <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div> -->
             <div *ngIf="type == 'file' || type == 'material' " class="detail_file_preview" >
                 <!-- <img src="{{recievedFile.tumbNail}}"> -->
-            <img src="../../../assets/google-docs.png" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" />
+                <iframe style="height: 350px;"
+                    [src]='pathForPreview | safe:"resourceUrl"'
+                    frameborder="0">
+                </iframe>
+            <!-- <img src="../../../assets/google-docs.png" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" /> -->
             </div>
         </div>
         <div class="row m-0">

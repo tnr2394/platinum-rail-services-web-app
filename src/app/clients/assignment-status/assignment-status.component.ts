@@ -26,6 +26,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   public optionsForUnits: Select2Options;
   public currentUnit: string;
   unitArrayCopy: any;
+  selectedLearnerArray: any[];
+  selectedUnitsArray: any[];
 
   ngOnChanges(changes) {
     console.log("IN ON CHANGES", changes);
@@ -46,6 +48,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   unitArray;
   assignmentLength;
   learnerLength;
+  loading;
+  selectedLearners;
+  selectedUnits;
   @Input('jobId') jobIdFromClient;
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
     this.learners = [];
@@ -57,13 +62,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   // }
 
   ngOnInit() {
+    this.loading = true
     this.optionsForlearners = {
       multiple: true,
-      placeholder: "Choose learners",
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select an option'
+      },
+      allowClear: true,
+      closeOnSelect: false
     }
     this.optionsForUnits = {
       multiple: true,
       placeholder: "Choose Unit Numbers",
+      allowClear: true,
+      closeOnSelect: false
     }
     // console.log("ASSIGNMENT STATU CALLED");
 
@@ -83,12 +96,16 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     this.assignmentStatusWithLearner();
   }
 
-  changedLearner(data: { value: string[] }) {
-    console.log("change", data);
-    this.currentLearner = data.value.join(',');
-    // this.queryParamsObj['instructorId'] = this.current;
-    console.log("this.current", this.currentLearner);
+  // changedLearner(data: { value: string[] }) {
+  //   console.log("change", data);
+  //   this.currentLearner = data.value.join(',');
+  //   // this.queryParamsObj['instructorId'] = this.current;
+  //   console.log("this.current", this.currentLearner);
+  // }
+  learnersSelected(){
+    console.log("***seleted Learners are", this.selectedLearners);
   }
+  
   changedUnit(data: { value: string[] }) {
     console.log("change", data);
     this.currentUnit = data.value.join(',');
@@ -97,25 +114,30 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   }
 
   getFilteredData() {
-    console.log("**this.currentLearner", this.currentLearner);
-    console.log("**this.currentUnit", this.currentUnit);
-    if (this.currentUnit) {
+    this.selectedLearnerArray = []
+    this.selectedLearners.forEach(learner=>{
+      console.log("in for each learner is", learner);
+      this.selectedLearnerArray.push(learner._id)
+    })
+    this.selectedUnitsArray = []
+    this.selectedUnits.forEach(unit => {
+      console.log("in for each unit is", unit);
+      this.selectedUnitsArray.push(unit.id)
+    })
+    // this.loading = true;
+    console.log("**this.selectedLearners", this.selectedLearners, "selectedLearnersArray", this.selectedLearnerArray);
+    console.log("**this.selectedUnits", this.selectedUnits, "selectedUnitsArray", this.selectedUnitsArray);
+    if (this.selectedUnitsArray && this.selectedUnitsArray.length > 0) {
       this.unitArray = []
-      this.currentUnit.split(',').forEach(unit => {
+      this.selectedUnitsArray.forEach(unit => {
         var index = _.findIndex(this.unitArrayCopy, function (o) { return o._id == unit })
         if (index > -1) this.unitArray.push(this.unitArrayCopy[index])
       })
     }
     else this.unitArray = this.unitArrayCopy
-    // this.unitArray = this.currentUnit.split(',')
-    // let tempLearners = this.currentLearner.split(',')
-    // console.log("**tempLearners", tempLearners);
+    
     this.assignmentStatusWithLearner()
-    // let data = {
-    //   unitNo: this.currentUnit,
-    //   learnerid : this.currentLearner,
-    //   jobId: this.jobId
-    // }
+    
   }
 
 
@@ -137,6 +159,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       console.log("**unit data is ", data);
       this.assignment = data.assignment;
       this.assignmentLength = this.unit.assignment.length;
+      this.loading = false
     });
   }
 
@@ -184,12 +207,12 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   assignmentStatusWithLearner() {
     let learner, unitNo
-    learner = this.currentLearner ? this.currentLearner.split(',') : undefined
-    unitNo = this.currentUnit ? this.currentUnit.split(',') : undefined
+    // learner = this.selectedLearnerArray ? this.currentLearner.split(',') : undefined
+    // unitNo = this.currentUnit ? this.currentUnit.split(',') : undefined
     let data = {
       _id: this.jobId,
-      learner: learner,
-      unitNo: unitNo
+      learner: this.selectedLearnerArray,
+      unitNo: this.selectedUnitsArray
     }
     this._materialService.assignmentStatusWithLearner(data).subscribe((data) => {
       if (data.length == 0) {
@@ -206,6 +229,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
         })
         console.log("**learnerToDisplay", this.learnerToDisplay);
         this.learnerLength = this.learner.length;
+        this.loading = false
       }
     });
   }

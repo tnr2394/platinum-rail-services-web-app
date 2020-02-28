@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgSelectModule } from '@ng-select/ng-select';
+// import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -118,6 +120,7 @@ import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-tim
 import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sheet/instructor-confirmation-modal/instructor-confirmation-modal.component';
 import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
 import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -195,9 +198,11 @@ import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-
     AdminTimeSheetComponent,
     InstructorConfirmationModalComponent,
     AdminReportAComponent,
-    AdminReportBComponent
+    AdminReportBComponent,
+    SafePipe
   ],
   imports: [
+    NgSelectModule,
     NgxDaterangepickerMd.forRoot(),
     ChartsModule,
     Select2Module,

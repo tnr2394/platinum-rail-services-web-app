@@ -71,15 +71,18 @@ export class FolderComponent implements OnInit {
     if (changes.subFolder) {
       console.log("changes.subFolder.currentValue typeof", typeof changes.subFolder.currentValue);
       this.allFolders = changes.subFolder.currentValue;
+      this.loading = false
       console.log("This.allFolders", this.allFolders);
     }
     // if (changes.subFolder == undefined && this.router.url.includes('/mydocuments')) {
     //   this.getFolders()
     // }
     if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole == 'admin') {
+      this.loading = true
       this.getFolders()
     }
     if (changes.subFolder == undefined && this.router.url.includes('/mydocuments') && this.currentUser.userRole != 'admin') {
+      this.loading = true;
       this.getSharedFolders();
       this.getSharedFiles();
     }
@@ -174,6 +177,7 @@ export class FolderComponent implements OnInit {
     this._folderService.getSharedFiles().subscribe((files) => {
       console.log('files List', files);
       this.sharedFile = files;
+      this.loading = false
     });
   }
 

@@ -320,6 +320,7 @@ export class SchedulerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loading = true
     this.createNewJob();
     console.log("this.loading", this.loading);
     console.log("jobsForModal**********", this.jobsForModal);
@@ -404,6 +405,7 @@ export class SchedulerComponent implements OnInit {
       console.log("IN FOR LOOP");
       var events = this.makeEventsArrayForJob(jobs[i]);
     }
+    this.loading = false;
     console.log("After for loop", this.allevents);
   }
   resetEvents() {
