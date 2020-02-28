@@ -74,7 +74,7 @@
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
-                                                <div placement="top"
+                                                <div placement="top" (click)="unassignedClicked(learn, ass)"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
                                                     tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>

@@ -203,6 +203,12 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       return 'Unassigned';
     }
   }
+  unassignedClicked(learn, assignment){
+    console.log("***learner", learn);
+    console.log("***assignment", assignment);
+    
+    
+  }
 
 
   assignmentStatusWithLearner() {

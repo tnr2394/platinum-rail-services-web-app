@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import { TimeSheetService } from '../../services/time-sheet.service';
 import { single } from 'rxjs/operators';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -70,7 +71,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
 
-  constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService) {
+  constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
     // this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
     // this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
     this.dataSource = new MatTableDataSource<any>();
@@ -133,6 +134,11 @@ export class SingleWeekComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   getWeekDates() {
@@ -545,6 +551,7 @@ export class SingleWeekComponent implements OnInit {
     }
     // console.log('finalArray===========>>>>>>', this.finalArray);
     this._timeSheetService.addTime(data).subscribe((res) => {
+      this.openSnackBar("Logs Added Successfully", "OK")
     }, err => {
 
     })
