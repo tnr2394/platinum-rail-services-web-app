@@ -45,6 +45,9 @@ export class SingleWeekComponent implements OnInit {
   currentUser: any;
   displayTitle: boolean = true;
 
+  overH = 0;
+  overM = 0;
+
 
 
 
@@ -317,6 +320,45 @@ export class SingleWeekComponent implements OnInit {
       this.Days[index].totalHours.hours = totalHr;
       return totalHr;
     }
+  }
+
+  calculateOverTimeHours() {
+    var totalH = 0;
+    _.forEach(this.Days, (day) => {
+      if (day.workingHours.hours > 12) {
+        totalH = totalH + day.workingHours.hours - 12
+      }
+      this.overH = totalH;
+    })
+    return this.overH;
+  }
+
+  calculateOverTimeMinutes() {
+    var totalH = 0;
+    var totalM = 0;
+    _.forEach(this.Days, (day) => {
+      if (day.workingHours.hours > 12) {
+        totalM = totalM + day.workingHours.minutes
+      }
+    })
+
+    if (totalM > 59) {
+      totalH = totalH + Math.floor(totalM / 60)
+      totalM = totalM % 60
+      return totalM;
+    } else if (totalM == 60) {
+      this.overH = this.overH + 1
+      totalM = totalM - 60
+      this.overM = totalM;
+      return this.overM;
+    }
+    else {
+      this.overM = totalM;
+      return this.overM;
+    }
+
+
+    return totalM;
   }
 
   calculateTravelPlusWorkMinutes(index) {
