@@ -137,15 +137,15 @@ if (config.env.name === 'production') {
 // checkQualificationCronJob.start();
 
 
-// const dbBackupCronJob = cron.schedule('1 * * * * *', () => {
+const dbBackupCronJob = cron.schedule('0 0 * * 0', () => {
 
-//   console.log('db backup Running Now');
-//   dbBackupService.dbAutoBackUp();
-// }, {
-//     scheduled: true,
-//   });
+  console.log('db backup Running Now');
+  dbBackupService.dbAutoBackUp();
+}, {
+    scheduled: true,
+  });
 
-// dbBackupCronJob.start();
+dbBackupCronJob.start();
 
 
 // const completeTimeSheetCronJob = cron.schedule('0 0 * * FRI', () => {

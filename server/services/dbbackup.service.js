@@ -20,7 +20,7 @@ function dbAutoBackUp() {
     backupClient.backupDatabase({ uri: 'mongodb://localhost/' + 'platinum', backupName: 'platinum' + newBackupDir })
         .then(response => {
             console.log('Success response ', response)
-            listDirectories(); //show all files in s3
+            // listDirectories(); //show all files in s3
         })
         .catch(err => {
             console.log("Error", err)
