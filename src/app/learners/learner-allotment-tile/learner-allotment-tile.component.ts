@@ -23,10 +23,9 @@ export class LearnerAllotmentTileComponent implements OnInit {
   assignmentDetail;
   loading: boolean = false;
 
+  fileExtensionArray = ['ppt', 'zip', 'pptx', 'mp4', 'xls', 'xlsx', 'txt', 'odt', 'png', 'jpg', 'jpeg', 'pdf', 'doc', 'docx'];
+
   constructor(public _learnerService: LearnerService, public _fileService: FileService, private activatedRoute: ActivatedRoute, private router: Router) {
-    // this.activatedRoute.queryParams.subscribe(params => {
-    //   this.assignment = this.router.getCurrentNavigation().extras.state.assignment;
-    // });
   }
 
   allotmentId;
@@ -58,19 +57,24 @@ export class LearnerAllotmentTileComponent implements OnInit {
     console.log("getAssignmentFileUsingAllotmentId= ", allotmentId);
     this._fileService.getAssignmentFileUsingAllotmentId(allotmentId).subscribe(data => {
       this.fileList = data;
-      if(this.fileList.length < 1){
+      if (this.fileList.length < 1) {
         this.disable = true
       }
       else this.disable = false
       this.loadingAssignments = false
-      console.log(' this.fileList ======>>>>>>>>>', this.fileList);
     })
   }
 
+  FileExtension(extension) {
+    let index = _.findIndex(this.fileExtensionArray, function (o) { return o == extension; });
+    if (index >= 0) {
+      return this.fileExtensionArray[index];
+    } else {
+      return 'default-extension';
+    }
+  }
+
   downloadAll() {
-
-    console.log('Download all clicked');
-
     this.loading = true;
 
     let zip: JSZip = new JSZip();

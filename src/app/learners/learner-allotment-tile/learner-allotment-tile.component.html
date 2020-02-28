@@ -4,7 +4,8 @@
 
 <mat-card class="material_main_card">
     <div class="row m-0">
-        <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn" [disabled]='disable'><i class="fas fa-download" ></i>
+        <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn" [disabled]='disable'><i
+                class="fas fa-download"></i>
             <span> Download All</span></button>
         <h4 mat-dialog-actions align='center' *ngIf="loading" class="text-info pl-3 mt-3">
             Downloading... <i class="fas fa-refresh fa-spin"></i>
@@ -16,7 +17,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of fileList">
             <mat-card class="p-0 all_material_block">
                 <mat-card-content class="material_card">
-                    <div [ngClass]="file.extension"> </div>
+                    <div [ngClass]="FileExtension(file.extension)"> </div>
                     <h3 class="file_title">{{file.title}}</h3>
                 </mat-card-content>
                 <div class="download_btn">
