@@ -4,14 +4,22 @@
             (valueChanged)="changed($event)"></select2>
     </div>
 </div> -->
+<h3 *ngIf="loading" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+</h3>
 <div class="row m-0 align-items-center">
     <div class="col" *ngIf="learner && learnerLength != 0">
-        <select2 [data]="learnerToDisplay" [cssImport]=true [options]="optionsForlearners" [value]="value"
-            (valueChanged)="changedLearner($event)"></select2>
+        <!-- <select2 [data]="learnerToDisplay" [cssImport]=true  [options]="optionsForlearners" [value]="value"
+            (valueChanged)="changedLearner($event)"></select2> -->
+            <ng-select [items]="learner" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="learnerName"
+                placeholder="Choose Learners" [(ngModel)]="selectedLearners">
+            </ng-select>
     </div>
     <div class="col" *ngIf="unitArray && unitArray.length != 0">
-        <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
-            (valueChanged)="changedUnit($event)"></select2>
+        <!-- <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
+            (valueChanged)="changedUnit($event)"></select2> -->
+            <ng-select [items]="unitsToDisplay" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="text"
+                placeholder="Choose Units" [(ngModel)]="selectedUnits">
+            </ng-select>
     </div>
     <div class="col-1" style="margin-top: 15px;">
         <button mat-mini-fab color="primary" (click)="getFilteredData()">GO</button>
@@ -75,6 +83,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            
                         </div>
                     </div>
                 </div>

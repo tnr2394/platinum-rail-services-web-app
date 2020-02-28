@@ -24,6 +24,7 @@ export class FileTileComponent implements OnInit {
 
   isSubmission;
   ismyDocs: boolean;
+  pathForPreview: string;
 
   constructor(public _fileService: FileService, private route: ActivatedRoute, public router: Router,
     public dialog: MatDialog, public _snackBar: MatSnackBar) { //|| this.router.url.includes('single-folder')
@@ -41,7 +42,7 @@ export class FileTileComponent implements OnInit {
 
   ngOnInit() {
     console.log("file tile initialized file= ", this.file);
-
+    this.pathForPreview = "https://docs.google.com/gview?url=" + this.file.path + "&embedded=true"
     this.file.alias = (this.file.alias && this.file.alias.length > 1) ? this.file.alias : this.file.title
 
     console.log(' this.isSubmission', this.isSubmission);

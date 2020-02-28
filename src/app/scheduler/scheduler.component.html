@@ -17,6 +17,8 @@
       <div class="float-left" *ngIf="displayTitle == true">
         <h3 class="page-title">Scheduler</h3>
       </div>
+      <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
+      </h3>
       <div class="float-right" *ngIf="displayTitle == true">
         <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
           <div class="">

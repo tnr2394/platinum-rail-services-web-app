@@ -192,7 +192,7 @@
                     </div>
                     <!--/.Card content-->
 
-                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="jobs && jobs.length == 0">
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="jobs && jobs.length == 0 && !loading">
                         <i class="fas fa-empty-set"></i>
                         No Jobs Assigned!
                     </h3>

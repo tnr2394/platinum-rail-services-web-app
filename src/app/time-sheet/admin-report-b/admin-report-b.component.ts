@@ -33,6 +33,7 @@ export class AdminReportBComponent implements OnInit {
   displayMsg: boolean;
   datesArray: any[];
   dataForSingleWeek;
+  selectedInstructors;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -65,13 +66,19 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  instructorChanged(data: { value: string[] }) {
-    this.totalHours = 0;
-    this.dataSource = new MatTableDataSource<any>();
-    console.log("---Inst changed---", data);
-    this.selectedInstructorId = data.value;
+  getInstructorProfile(){
+    console.log("**selected Instructor is", this.selectedInstructors);
+    this.selectedInstructorId = this.selectedInstructors._id;
     if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
   }
+  // instructorChanged(data: { value: string[] }) {
+  //   this.totalHours = 0;
+  //   this.dataSource = new MatTableDataSource<any>();
+  //   console.log("---Inst changed---", data);
+  //   this.selectedInstructorId = data.value;
+  //   if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
+  // }
+
   datesSelected(event) {
     this.display = false;
     this.selectedDatesRange = event;

@@ -171,7 +171,7 @@
                     <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h3>
-                    <div class="text-info pt-3 text-center" *ngIf="learners && learners.length == 0">
+                    <div class="text-info pt-3 text-center" *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
                         No Learners Found!
                     </div>
                 </div>

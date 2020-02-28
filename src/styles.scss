@@ -4,6 +4,8 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "../node_modules/material-colors/dist/colors.css";
 @import "~@angular/material/theming";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
 
 // @include mat-core();
 // $custom-theme-primary: mat-palette($mat-blue, 900);
@@ -869,7 +871,7 @@ body {
     width: 100% !important;
   }
   .select2-search--inline {
-    // float: none !important;
+    float: none !important;
     max-width: min-content !important;
   }
   .select2-selection--single {
@@ -884,6 +886,38 @@ body {
   }
   .select2-selection__arrow {
     height: 36px !important;
+  }
+}
+.ng-select{
+  padding-bottom: 0px !important;
+  margin-bottom: 15px;
+    border: 1px solid gray !important;
+    border-radius: 6px !important;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.ng-select-container{
+  min-height: 26.5px !important;
+}
+.ng-value-container{
+  border-top: none !important
+}
+.ng-select-container:after {
+  border-bottom: none !important;
+}
+.ngSelect{
+  .ng-select {
+    padding-bottom: 8px !important;
+    margin-bottom: 0px !important;
+    border: 1px solid #aaa !important;
+    border-radius: 4px !important;
+  }
+  .ng-arrow-wrapper {
+    display: none !important;
+  }
+  .ng-placeholder {
+    font-weight: 400;
+    color: rgb(108, 117, 125);
   }
 }
 

@@ -37,6 +37,10 @@
                                     <i class="fas fa-cloud-download-alt"
                                         style="font-size: large;color:#3CC480;height:21px;width:30px;"></i>
                                 </a>
+                                <a *ngIf="isSubmission" target="_blank" mat-button class="text-primary" triggers="hover" placement="bottom"
+                                    ngbTooltip="preview" tooltipClass="tooltip-class" href='{{pathForPreview}}'>
+                                    <i class="fa fa-eye" style="font-size: large;color:#4586FF;height:21px;width:30px;"></i>
+                                </a>
         
                                 <!-- <button (click)="delete()" placement="bottom" ngbTooltip="Delete"  tooltipClass="tooltip-class"
                                     style='background-color: transparent; border: transparent;'>
