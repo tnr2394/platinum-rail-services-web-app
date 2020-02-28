@@ -198,6 +198,26 @@
     min-height: 120px;
   }
 }
+.zip {
+  min-height: 156px;
+  min-width: 156px;
+  width: 100%;
+  background: url('../../../assets/zip.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  // background-size:100%;
+
+  @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
 
 .pptx {
   min-height: 156px;
@@ -282,12 +302,72 @@
     min-height: 120px;
   }
 }
+.xls{
+  min-height: 156px;
+  min-width: 156px;
+  width: 100%;
+  background: url("../../../assets/xlsx.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  // background-size:100%;
+
+  @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
 
 .xlsx {
   min-height: 156px;
   min-width: 156px;
   width: 100%;
   background: url("../../../assets/xlsx.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  // background-size:100%;
+
+  @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+.txt{
+  min-height: 156px;
+  min-width: 156px;
+  width: 100%;
+  background: url('../../../assets/txt.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  // background-size:100%;
+
+  @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+.odt{
+  min-height: 156px;
+  min-width: 156px;
+  width: 100%;
+  background: url('../../../assets/odt.svg');
   background-repeat: no-repeat;
   background-position: center;
   // background-size:100%;
@@ -314,6 +394,64 @@
   // background-size:100%;
 
   @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+
+
+
+.jpg{
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/jpg.png');
+    background-repeat: no-repeat;
+    margin: auto;
+    @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+
+.jpeg{
+    min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/jpg.png');
+    background-repeat: no-repeat;
+    margin: auto;
+    @media (max-width: 767px) {
+    min-width: 135px;
+    min-height: 135px;
+    background-size: contain !important;
+  }
+
+  @media (max-width: 575px) {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+
+.default-extension{
+  min-height: 156px;
+    min-width: 156px;
+    width: 100%;
+    background: url('../../../assets/iconFallBack.png');
+    background-repeat: no-repeat;
+    margin: auto;
+    @media (max-width: 767px) {
     min-width: 135px;
     min-height: 135px;
     background-size: contain !important;

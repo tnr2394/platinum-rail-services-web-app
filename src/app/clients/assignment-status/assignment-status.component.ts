@@ -63,21 +63,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.loading = true
-    this.optionsForlearners = {
-      multiple: true,
-      placeholder: {
-        id: '0', // the value of the option
-        text: 'Select an option'
-      },
-      allowClear: true,
-      closeOnSelect: false
-    }
-    this.optionsForUnits = {
-      multiple: true,
-      placeholder: "Choose Unit Numbers",
-      allowClear: true,
-      closeOnSelect: false
-    }
+    // this.optionsForlearners = {
+    //   multiple: true,
+    //   placeholder: {
+    //     id: '0', // the value of the option
+    //     text: 'Select an option'
+    //   },
+    //   allowClear: true,
+    //   closeOnSelect: false
+    // }
+    // this.optionsForUnits = {
+    //   multiple: true,
+    //   placeholder: "Choose Unit Numbers",
+    //   allowClear: true,
+    //   closeOnSelect: false
+    // }
     // console.log("ASSIGNMENT STATU CALLED");
 
     // console.log("jobIdFromClient", this.jobIdFromClient);
