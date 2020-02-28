@@ -15,6 +15,7 @@ const folderModel = require('../models/folder.model');
 const fileModel = require('../models/file.model');
 const instructorModel = require('../models/instructor.model');
 const clientModel = require('../models/client.model');
+const uploadService = require('../services/upload.service');
 
 async function allfolders(query) {
     var deferred = Q.defer();
@@ -212,6 +213,11 @@ folderController.deleteFileFromFolder = function (req, res, next) {
     folderDOA.removeFile(query)
         .then(deleted => {
             console.log("Deleted ", deleted);
+            // uploadService.s3DeleteFile().then((res) => {
+
+            // }).catch((err) => {
+
+            // })
             return res.send({
                 data: {},
                 msg: "Deleted Successfully"

@@ -1,24 +1,24 @@
 <h3 *ngIf="displayTitle">Single Week Entry</h3>
 <mat-card class="mat-elevation-z0" style="padding-bottom: 0%;">
-<div class="row" *ngIf="doGetWeekDates">
-    <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
-        (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
-</div>
-<div class="row justify-content-between">
-    <div>
-    <h3>Total Working Hours:
-    <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
-        {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
-    </span>
-    </h3>
+    <div class="row" *ngIf="doGetWeekDates">
+        <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
+            (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
     </div>
-    <div>
-        <h3>Over Time Hours:
-            <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span>
-            <span *ngIf="!overTimeHours">00:00</span>
-        </h3>
+    <div class="row justify-content-between">
+        <div>
+            <h3>Total Working Hours:
+                <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
+                    {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
+                </span>
+            </h3>
+        </div>
+        <div>
+            <h3>Over Time Hours:
+                <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span>
+                <span>{{calculateOverTimeHours() | number:'2.0'}}:{{calculateOverTimeMinutes() | number:'2.0'}}</span>
+            </h3>
+        </div>
     </div>
-</div>
 </mat-card>
 
 <div class="row">
@@ -43,11 +43,14 @@
                                     <!-- Date Column -->
                                     <ng-container matColumnDef="date">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days; let i = index">
                                             <div>
-                                               <button class="copyArrow btn" (click)="copyPreviousLogs(i)" *ngIf="i != 0" placement="bottom" ngbTooltip="Copy above logs" tooltipClass="tooltip-class">&#10551;</button> {{days.date}}
+                                                <button class="copyArrow btn" (click)="copyPreviousLogs(i)"
+                                                    *ngIf="i != 0" placement="bottom" ngbTooltip="Copy above logs"
+                                                    tooltipClass="tooltip-class">&#10551;</button> {{days.date}}
                                             </div>
-                                        
+
                                         </td>
                                     </ng-container>
                                     <!-- Login Column -->
@@ -151,20 +154,21 @@
                                             *matCellDef="let days;let i = index">
                                             <!-- <input matInput type="time" (change)="travelPlusWork(i)"
                                                 [(ngModel)]='days.travel' *ngIf="days && days.travel"> -->
-                                                <mat-form-field>
-                                                    <div class="clock">
-                                                        <div>
-                                                            <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.travel'
-                                                                [min]="minimunTime" readonly>
-                                                        </div>
-                                                        <div>
-                                                            <ngx-material-timepicker-toggle [for]="min">
-                                                            </ngx-material-timepicker-toggle>
-                                                            <ngx-material-timepicker (closed)="closed(i)" (timeSet)="travelPlusWork($event,i)" #min>
-                                                            </ngx-material-timepicker>
-                                                        </div>
+                                            <mat-form-field>
+                                                <div class="clock">
+                                                    <div>
+                                                        <input matInput type="time" [ngxTimepicker]="min" [format]="24"
+                                                            [(ngModel)]='days.travel' [min]="minimunTime" readonly>
                                                     </div>
-                                                </mat-form-field>
+                                                    <div>
+                                                        <ngx-material-timepicker-toggle [for]="min">
+                                                        </ngx-material-timepicker-toggle>
+                                                        <ngx-material-timepicker (closed)="closed(i)"
+                                                            (timeSet)="travelPlusWork($event,i)" #min>
+                                                        </ngx-material-timepicker>
+                                                    </div>
+                                                </div>
+                                            </mat-form-field>
                                         </td>
                                     </ng-container>
 
@@ -181,9 +185,10 @@
 
                                     <ng-container matColumnDef="totalHours">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Travel + Working</th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
-                                            <span [ngClass]="checkTravelPlusWorkHour(i)" >
-                                                 {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days;let i = index">
+                                            <span [ngClass]="checkTravelPlusWorkHour(i)">
+                                                {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
                                             </span>
                                         </td>
                                     </ng-container>
@@ -205,7 +210,7 @@
                         <h3 *ngIf="loading && !displayMsg" class="text-center text-info pt-3">Loading...<i
                                 class="fa fa-cog fa-spin text-info"></i>
                         </h3>
-                    
+
                         <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayMsg">
                             Please choose dates to display Time Logs!
                         </h3>
@@ -215,11 +220,11 @@
                     </div>
                     <!--/.Card content-->
                     <div class="row justify-content-center">
-                    <button mat-flat-button color="primary" (click)="submitDetail(days)" type="submit"
-                        class="mt-2 button_hover_effect col-lg-3" *ngIf="!displayNoDataMsg && !displayMsg">
-                        <i class="fas fa-save fa-fw"></i>
-                        <span> Save</span>
-                    </button>
+                        <button mat-flat-button color="primary" (click)="submitDetail(days)" type="submit"
+                            class="mt-2 button_hover_effect col-lg-3" *ngIf="!displayNoDataMsg && !displayMsg">
+                            <i class="fas fa-save fa-fw"></i>
+                            <span> Save</span>
+                        </button>
                     </div>
                 </div>
             </div>
