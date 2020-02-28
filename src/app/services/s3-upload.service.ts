@@ -24,8 +24,8 @@ export class S3UploadService {
 
     const bucket = new S3(
       {
-        accessKeyId: '',
-        secretAccessKey: '',
+        accessKeyId: 'AKIAWVUMJVVMNYKAG3VK',
+        secretAccessKey: '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',
         region: 'ap-south-1'
       }
     );
@@ -46,6 +46,16 @@ export class S3UploadService {
     // });
     //for upload progress   
     return new Observable<any>((observer) => {
+      // var request = bucket.putObject(params);
+      // request.send(function (err, data) {
+      //   if (err) {
+      //     console.log("Error:", err.code, err.message);
+      //     observer.error(err);
+      //   } else {
+      //     console.log(data);
+      //     observer.next(data);
+      //   }
+      // });
       bucket.upload(params).on('httpUploadProgress', function (evt) {
         console.log('Event In evt====>>>>', evt);
         // resolve(evt)

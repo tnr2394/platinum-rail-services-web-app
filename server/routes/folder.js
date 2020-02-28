@@ -22,7 +22,7 @@ router.delete('/', folderController.deleteFolder);
 
 
 // ADD File
-router.post('/files', folderController.addFile);
+router.post('/files', jwtService.validateJWT, folderController.addFile);
 
 router.delete('/files', folderController.deleteFileFromFolder);
 

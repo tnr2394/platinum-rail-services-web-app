@@ -156,6 +156,8 @@ export class AdminReportBComponent implements OnInit {
       }
       let tempTotalHours = (this.timeLogs.length) * 12
       this.overTimeHours = this.totalHours <= tempTotalHours ? 0 : (this.totalHours - tempTotalHours + ":" + this.totalMinutes)
+
+      console.log(' this.overTimeHours====>>>>>>', this.overTimeHours);
       console.log("---tempTotalHours---", tempTotalHours);
       console.log("this.totalHours", this.totalHours, "this.totalMinutes", this.totalMinutes);
       this.updateData(this.timeLogs)
