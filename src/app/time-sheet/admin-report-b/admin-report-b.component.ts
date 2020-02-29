@@ -3,6 +3,7 @@ import { InstructorService } from 'src/app/services/instructor.service';
 import { Select2OptionData } from 'ng2-select2';
 import { TimeSheetService } from 'src/app/services/time-sheet.service';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+// import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class AdminReportBComponent implements OnInit {
   datesArray: any[];
   dataForSingleWeek;
   selectedInstructors;
+  weekDatesFromAdmin: any;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -67,9 +69,11 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   getInstructorProfile(){
-    console.log("**selected Instructor is", this.selectedInstructors);
-    this.selectedInstructorId = this.selectedInstructors._id;
-    if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
+    if (this.selectedInstructorId){
+      console.log("**selected Instructor is", this.selectedInstructors);
+      this.selectedInstructorId = this.selectedInstructors._id;
+      if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
+    }
   }
   // instructorChanged(data: { value: string[] }) {
   //   this.totalHours = 0;
@@ -100,7 +104,8 @@ export class AdminReportBComponent implements OnInit {
         this.datesArray = dates;
         resolve(this.datesArray)
       }).then((resolvedDatesArray) => {
-        this.getTimeLog(resolvedDatesArray)
+        this.weekDatesFromAdmin = resolvedDatesArray;
+        // this.getTimeLog(resolvedDatesArray)
       })
     }
 
@@ -125,6 +130,7 @@ export class AdminReportBComponent implements OnInit {
       this.allInstructors = instructorsResponse;
 
       this.selectedInstructorId = instructorsResponse[0]._id
+      this.selectedInstructors = instructorsResponse[0]
       instructorsResponse.forEach(inst => {
         let temp = {
           id: inst._id,

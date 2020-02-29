@@ -1,8 +1,8 @@
 <h3 *ngIf="displayTitle">Single Week Entry</h3>
 <mat-card class="mat-elevation-z0" style="padding-bottom: 0%;">
     <div class="row" *ngIf="doGetWeekDates">
-        <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
-            (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
+        <!-- <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
+            (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" /> -->
     </div>
     <div class="row justify-content-between">
         <div>
@@ -46,9 +46,12 @@
                                         <td class="mat-table-cell text-center" mat-cell
                                             *matCellDef="let days; let i = index">
                                             <div>
-                                                <button class="copyArrow btn" (click)="copyPreviousLogs(i)"
-                                                    *ngIf="i != 0" placement="bottom" ngbTooltip="Copy above logs"
-                                                    tooltipClass="tooltip-class">&#10551;</button> {{days.date}}
+                                                <button class="copyArrow btn" (click)="copyCurrentLogs(i)"
+                                                 placement="bottom" ngbTooltip="Copy logs"
+                                                    tooltipClass="tooltip-class"><i class="fa fa-copy"></i></button>
+                                                <button class="copyArrow btn" (click)="pasteLogs(i)" *ngIf="showPasteBtn && i != copiedIndex" placement="bottom"
+                                                    ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i class="fa fa-paste"></i></button>
+                                                     {{days.date}}
                                             </div>
 
                                         </td>
