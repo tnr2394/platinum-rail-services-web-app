@@ -28,6 +28,9 @@ const allotmentSchema = new Schema({
         date: {
             type: Date,
             default: Date.now
+        },
+        author: {
+            type: String,
         }
     }],
     deadlineDate: {

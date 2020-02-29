@@ -587,6 +587,7 @@ learnerController.updateAllotment = function (req, res, next) {
 
     const updateAllotment = {};
     const remark = req.body.remark;
+    const author = req.user.name;
 
     if (req.body.status) updateAllotment['status'] = req.body.status;
     // if (req.body.remark) updateAllotment['remark'] = req.body.remark;
@@ -594,7 +595,7 @@ learnerController.updateAllotment = function (req, res, next) {
 
     const allotmentId = req.body.allotmentId;
 
-    allotmentDOA.updateAllotment(allotmentId, updateAllotment, remark)
+    allotmentDOA.updateAllotment(allotmentId, updateAllotment, remark, author)
         .then(updated => {
             console.log("updated ", updated);
             return res.send({

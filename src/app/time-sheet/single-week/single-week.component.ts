@@ -509,6 +509,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   mergeAndCompareBothArrays() {
+    console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
     var filterDates;
     filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
     // console.log('Fiter Dates===>>>>', filterDates);
