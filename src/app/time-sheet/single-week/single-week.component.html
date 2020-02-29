@@ -47,19 +47,18 @@
                                             *matCellDef="let days; let i = index">
                                             <div>
                                                 <button class="copyArrow btn" (click)="copyCurrentLogs(i)"
-                                                 placement="bottom" ngbTooltip="Copy logs"
+                                                    placement="bottom" ngbTooltip="Copy logs"
                                                     tooltipClass="tooltip-class"><i class="fa fa-copy"></i></button>
-                                                <button class="copyArrow btn" (click)="pasteLogs(i)" *ngIf="showPasteBtn && i != copiedIndex" placement="bottom"
-                                                    ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i class="fa fa-paste"></i></button>
-                                                     {{days.date}}
+                                                <button class="copyArrow btn" (click)="pasteLogs(i)"
+                                                    *ngIf="showPasteBtn && i != copiedIndex" placement="bottom"
+                                                    ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i
+                                                        class="fa fa-paste"></i></button>
+                                                {{days.date}}
                                             </div>
 
                                         </td>
                                     </ng-container>
                                     <!-- Login Column -->
-
-
-
 
                                     <ng-container matColumnDef="logIn">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn</th>
@@ -115,7 +114,8 @@
                                                 <div class="clock">
                                                     <div>
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
-                                                            [(ngModel)]='days.lunchEnd' [min]="days.lunchStart" readonly>
+                                                            [(ngModel)]='days.lunchEnd' [min]="days.lunchStart"
+                                                            readonly>
                                                     </div>
                                                     <div>
                                                         <ngx-material-timepicker-toggle [for]="min">
@@ -195,9 +195,6 @@
                                             </span>
                                         </td>
                                     </ng-container>
-
-
-
 
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row
