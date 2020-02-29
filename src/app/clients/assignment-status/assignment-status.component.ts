@@ -115,15 +115,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   getFilteredData() {
     this.selectedLearnerArray = []
-    this.selectedLearners.forEach(learner=>{
-      console.log("in for each learner is", learner);
-      this.selectedLearnerArray.push(learner._id)
-    })
+    if(this.selectedLearners){
+      this.selectedLearners.forEach(learner => {
+        console.log("in for each learner is", learner);
+        this.selectedLearnerArray.push(learner._id)
+      })
+    }
+   
     this.selectedUnitsArray = []
-    this.selectedUnits.forEach(unit => {
-      console.log("in for each unit is", unit);
-      this.selectedUnitsArray.push(unit.id)
-    })
+    if(this.selectedUnits){
+      this.selectedUnits.forEach(unit => {
+        console.log("in for each unit is", unit);
+        this.selectedUnitsArray.push(unit.id)
+      })
+    }
+    
     // this.loading = true;
     console.log("**this.selectedLearners", this.selectedLearners, "selectedLearnersArray", this.selectedLearnerArray);
     console.log("**this.selectedUnits", this.selectedUnits, "selectedUnitsArray", this.selectedUnitsArray);

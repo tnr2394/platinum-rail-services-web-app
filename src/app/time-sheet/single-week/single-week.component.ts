@@ -22,6 +22,8 @@ export class SingleWeekComponent implements OnInit {
   @Input('calWeekDates') doGetWeekDates;
   @Input('logsFromAdmin') logsFromAdmin;
   @Input('overTimeHours') overTimeHours;
+  @Input('datesFromInstructor') datesArrayFromInst;
+  @Input('weekDatesFromAdmin') weekDatesFromAdmin;
 
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -45,9 +47,18 @@ export class SingleWeekComponent implements OnInit {
   loading: boolean;
   currentUser: any;
   displayTitle: boolean = true;
+  copiedLogs = {
+    logIn: '',
+    lunchStart: '',
+    lunchEnd: '',
+    logOut:'',
+    travel:''
+  }
 
   overH = 0;
   overM = 0;
+  showPasteBtn: boolean = false;
+  copiedIndex: any;
 
 
 
@@ -94,15 +105,15 @@ export class SingleWeekComponent implements OnInit {
       this.getDays();
       this.getValuesUsingDates();
     }
-    else if (this.doGetWeekDates) {
+    else if (this.doGetWeekDates == true) {
       console.log("**On init this.instructorId", this.instructorId);
       this.instructorId = this.instFromAdminReport;
       this.displayMsg = false;
       // this.selectedDate = moment().format("MM/DD/YYYY")
       this.getWeekDates();
     }
-    else {
-      console.log("-----CALLED FROM ADMIN REPORT-----");
+    else if (this.doGetWeekDates == false){
+      this.datesOfWeek = this.datesArrayFromInst
     }
 
   }
@@ -130,6 +141,15 @@ export class SingleWeekComponent implements OnInit {
       this.displayMsg = false;
     };
     if (changes.overTimeHours) this.overTimeHours = changes.overTimeHours.currentValue;
+    if (changes.datesArrayFromInst && changes.datesArrayFromInst.currentValue){
+      this.datesOfWeek = changes.datesArrayFromInst.currentValue
+      this.getValuesUsingDates()
+    }
+    if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue){
+      this.displayMsg = false;
+      this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
+      this.getValuesUsingDates()
+    }
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -464,30 +484,41 @@ export class SingleWeekComponent implements OnInit {
     return ({ hours: hours, minutes: minutes })
   }
 
-  copyPreviousLogs(i) {
-    console.log("**this.dataSource", this.dataSource.data[i])
-    console.log("**this.Days", this.Days[i]);
-    let newData = this.Days[i]
-    let previousData = this.Days[i - 1]
-    newData.logIn = previousData.logIn
-    newData.logOut = previousData.logOut
-    newData.lunchEnd = previousData.lunchEnd
-    newData.lunchStart = previousData.lunchStart
+  copyCurrentLogs(i) {
+    this.copiedIndex = i;
+    this.showPasteBtn = true
+    this.copiedLogs = {
+      logIn: this.Days[i].logIn,
+      lunchStart: this.Days[i].lunchStart,
+      lunchEnd: this.Days[i].lunchEnd,
+      logOut: this.Days[i].logOut,
+      travel: this.Days[i].travel,
+    }
+    console.log("Copied logs are", this.copiedLogs);
+    // console.log("**this.dataSource", this.dataSource.data[i])
+    // console.log("**this.Days", this.Days[i]);
+    // let newData = this.Days[i]
+    // let previousData = this.Days[i - 1]
+    // newData.logIn = previousData.logIn
+    // newData.logOut = previousData.logOut
+    // newData.lunchEnd = previousData.lunchEnd
+    // newData.lunchStart = previousData.lunchStart
     // newData.totalHours = previousData.totalHours
-    newData.travel = previousData.travel
+    // newData.travel = previousData.travel
     // newData.workingHours = previousData.workingHours
-    this.closed(i)
-    // this.totalWorkingHours();
-    this.updateData(this.Days)
+    // this.closed(i)
+    // this.updateData(this.Days)
     // this.dataSource
-    // logIn: "08:00"
-    // logOut: "21:00"
-    // lunchEnd: "14:30"
-    // lunchStart: "13:30"
-    // totalHours: { hours: 14, minutes: 0 }
-    // travel: "02:00"
-    // updatedAt: "2020-02-21T08:00:05.324Z"
-    // workingHours: { hours: 12, minutes: 0 }
+  }
+  pasteLogs(i){
+    let newLogs = this.Days[i]
+    newLogs.logIn = this.copiedLogs.logIn;
+    newLogs.lunchStart = this.copiedLogs.lunchStart;
+    newLogs.lunchEnd = this.copiedLogs.lunchEnd;
+    newLogs.logOut = this.copiedLogs.logOut;
+    newLogs.travel = this.copiedLogs.travel
+    this.closed(i)
+    console.log("THIS.DAYS", this.Days);
   }
 
   getValuesUsingDates() {
