@@ -65,7 +65,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let learn of learner">
-                                        <td *ngFor="let ass of unit.assignment" class="td-width">
+                                        <td *ngFor="let ass of unit.assignment; let i = index;" class="td-width">
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'"
                                                 routerLink="/learnerAllotment/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
                                                 <div placement="top"
@@ -74,7 +74,7 @@
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
-                                                <div placement="top" (click)="unassignedClicked(learn, ass)"
+                                                <div placement="top" (click)="unassignedClicked(learn, ass, i)"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
                                                     tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>

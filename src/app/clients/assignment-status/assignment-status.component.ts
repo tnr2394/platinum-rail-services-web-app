@@ -28,6 +28,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   unitArrayCopy: any;
   selectedLearnerArray: any[];
   selectedUnitsArray: any[];
+  allotmentArray = [];
 
   ngOnChanges(changes) {
     console.log("IN ON CHANGES", changes);
@@ -209,11 +210,22 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       return 'Unassigned';
     }
   }
-  unassignedClicked(learn, assignment){
+
+  unassignedClicked(learn, assignment, i){
     console.log("***learner", learn);
     console.log("***assignment", assignment);
-    
-    
+    this.unit.assignment[i]['assignmentStatus'] == "selected"
+    // assignment.assignmentStatus
+    let newData = {
+      learner: learn._id,
+      assignment: assignment.assignmentId
+    }
+    if(this.allotmentArray){
+      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learnerId == newData.learner && o.assignmentId == newData.assignment)})
+      if(index > -1) this.allotmentArray.splice(index,1)
+      else this.allotmentArray.push(newData)
+    }
+    console.log("this.allotmentArray", this.allotmentArray);
   }
 
 

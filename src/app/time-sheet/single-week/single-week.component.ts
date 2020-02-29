@@ -200,12 +200,15 @@ export class SingleWeekComponent implements OnInit {
 
   timeChanged(event, index) {
     this.currentTime = event;
+    console.log("this.currentTime", this.currentTime);
   }
   eventFromTimePicker(event) {
     console.log("eventFromTimePicker($event)", event);
   }
 
   closed(index) {
+    console.log("***days.logIn", this.Days);
+    
     console.log('Closed Function', this.Days[index]);
     if (this.Days[index].logIn != '00:00' && this.Days[index].lunchStart != '00:00' && this.Days[index].lunchEnd != '00:00' && this.Days[index].logOut != '00:00') {
       var diff1 = this.calculateDiff1(index)
@@ -473,6 +476,8 @@ export class SingleWeekComponent implements OnInit {
     var endMinutes = endTime.split(":")[1]
     var date = moment(this.Days[index].date);
     var time1: any = new Date(date.toDate().setHours(startHours, startMinutes));
+    // console.log("***");
+    
     console.log("--time 1--", time1);
     var time2: any = new Date(date.toDate().setHours(endHours, endMinutes));
     console.log("--time 2--", time2);
@@ -541,29 +546,32 @@ export class SingleWeekComponent implements OnInit {
 
   mergeAndCompareBothArrays() {
     var filterDates;
-    filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
-    // console.log('Fiter Dates===>>>>', filterDates);
-    _.forEach((filterDates), (singleDate, index) => {
-      let newObj;
-      newObj = {
-        date: singleDate,
-        _id: 'new',
-        logIn: '00:00',
-        lunchStart: '00:00',
-        lunchEnd: '00:00',
-        logOut: '00:00',
-        workingHours: {
-          hours: 0,
-          minutes: 0,
-        },
-        travel: '00:00',
-        totalHours: {
-          hours: 0,
-          minutes: 0,
-        }
-      }
-      this.arrayFromDb.push(newObj);
-    })
+    let lengthOfArray = this.arrayFromDb.length
+    
+    
+    // filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
+    // // console.log('Fiter Dates===>>>>', filterDates);
+    // _.forEach((filterDates), (singleDate, index) => {
+    //   let newObj;
+    //   newObj = {
+    //     date: singleDate,
+    //     _id: 'new',
+    //     logIn: '00:00',
+    //     lunchStart: '00:00',
+    //     lunchEnd: '00:00',
+    //     logOut: '00:00',
+    //     workingHours: {
+    //       hours: 0,
+    //       minutes: 0,
+    //     },
+    //     travel: '00:00',
+    //     totalHours: {
+    //       hours: 0,
+    //       minutes: 0,
+    //     }
+    //   }
+    //   this.arrayFromDb.push(newObj);
+    // })
 
     this.Days = this.arrayFromDb;
     this.updateData(this.Days);
@@ -580,8 +588,10 @@ export class SingleWeekComponent implements OnInit {
       date: this.finalArray,
       instructorId: this.instructorId
     }
-    // console.log('finalArray===========>>>>>>', this.finalArray);
+    console.log('finalArray===========>>>>>>', this.finalArray);
     this._timeSheetService.addTime(data).subscribe((res) => {
+      this.finalArray = [];
+      this.getValuesUsingDates()
       this.openSnackBar("Logs Added Successfully", "OK")
     }, err => {
 
