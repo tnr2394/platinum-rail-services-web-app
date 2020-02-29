@@ -391,6 +391,20 @@ function getInstructorsTimeLogDetails(date) {
                 }
             },
             {
+                $lookup: {
+                    from: 'files',
+                    localField: 'instructor.profilePic',
+                    foreignField: '_id',
+                    as: 'instructor.profilePic',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$instructor.profilePic',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
                 $project: {
                     instructor: 1,
                     workingHours: 1,
