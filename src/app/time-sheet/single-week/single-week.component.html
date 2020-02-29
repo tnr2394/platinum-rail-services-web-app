@@ -214,14 +214,14 @@
                         <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayMsg">
                             Please choose dates to display Time Logs!
                         </h3>
-                        <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayNoDataMsg && !loading">
+                        <!-- <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayNoDataMsg && !loading">
                             No Logs Found!
-                        </h3>
+                        </h3> -->
                     </div>
                     <!--/.Card content-->
                     <div class="row justify-content-center">
                         <button mat-flat-button color="primary" (click)="submitDetail(days)" type="submit"
-                            class="mt-2 button_hover_effect col-lg-3" *ngIf="!displayNoDataMsg && !displayMsg">
+                            class="mt-2 button_hover_effect col-lg-3" *ngIf="!displayMsg">
                             <i class="fas fa-save fa-fw"></i>
                             <span> Save</span>
                         </button>
