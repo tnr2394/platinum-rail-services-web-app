@@ -6,20 +6,18 @@
         <div class="row mx-0">
             <div class="col-12">
                 <mat-tab-group>
-                    <mat-tab label="Jobs"> 
+                    <mat-tab label="Jobs">
                         <app-jobs [instructor]="instructor"></app-jobs>
                     </mat-tab>
-                    <mat-tab  label="Week Summary"> 
+                    <mat-tab label="Week Summary" class="week_set">
                         <div class="row">
-                        <div class="col-sm-6 res_col">
-                        <ng-select [items]="months" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="name"
-                            placeholder="Choose Months" [(ngModel)]="selectedMonths" (close)="generateMonthWeeks()">
-                        </ng-select>
-                        </div>
-                        <div class="col-sm-6 res_col">
-                        <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="from"
-                            placeholder="Choose Week" [(ngModel)]="selectedWeeks" (close)="generateWeekDates()">
-                            <!-- <ng-template ng-option-tmp let-item="item">
+                            <div class="col-sm-6 res_col">
+                                <ng-select [items]="months" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Choose Months" [(ngModel)]="selectedMonths" (close)="generateMonthWeeks()">
+                                </ng-select>
+                            </div>
+                            <div class="col-sm-6 res_col">
+                                <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="from" placeholder="Choose Week" [(ngModel)]="selectedWeeks" (close)="generateWeekDates()">
+                                    <!-- <ng-template ng-option-tmp let-item="item">
                                 <div *ngIf="datesRange.length == 0">
                                     Please select month to display week dates
                                 </div>
@@ -27,8 +25,8 @@
                                     {{item.from}}
                                 </div>
                             </ng-template> -->
-                        </ng-select>
-                        </div>
+                                </ng-select>
+                            </div>
                         </div>
                         <!-- <app-time-sheet-summary></app-time-sheet-summary>  -->
                         <app-single-week [instFromAdminReport]="instructorId" [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>

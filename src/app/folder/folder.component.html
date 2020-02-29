@@ -1,19 +1,18 @@
 <div class="row m-0">
     <div class="col-12 p-0">
         <!-- <mat-card> -->
-            <div *ngIf="currentUser.userRole == 'admin'">
+        <div *ngIf="currentUser.userRole == 'admin'">
             <div class="row" *ngIf="showCreateBtn">
                 <div class="col-12">
-                    <button (click)='createFolder()' mat-flat-button color="primary"
-                        class="pull-right button_hover_effect mb-3">
+                    <button (click)='createFolder()' mat-flat-button color="primary" class="pull-right button_hover_effect mb-3">
                         <i class="fas fa-plus fa-fw"></i>
                         <span> Create Folder</span>
                     </button>
                 </div>
             </div>
-            </div>
-            <!-- <mat-card-content> -->
-                <!-- <div class="folder_tile">
+        </div>
+        <!-- <mat-card-content> -->
+        <!-- <div class="folder_tile">
                 <mat-card *ngFor="let singleFolder of allFolders; let i = index" style="width: 30%;" (click)="singleFolder()">
                     {{singleFolder.title}}
                 </mat-card>
@@ -22,8 +21,8 @@
                     <material-tile [folder]='singleFolder' [index]='i' (fileDetailsComp)="openFileDetails($event)">
                     </material-tile>
                 </div> -->
-                <!-- TEST START -->
-               <!-- <div cdkDropList (cdkDropListDropped)="drop($event)" #todoList="cdkDropList"
+        <!-- TEST START -->
+        <!-- <div cdkDropList (cdkDropListDropped)="drop($event)" #todoList="cdkDropList"
                    cdkDropListOrientation="horizontal">
                   
                    <span cdkDrag *ngFor="let singleFolder of allFoldersCopy">
@@ -37,12 +36,12 @@
                          </div> 
                    </span>
                </div > -->
-                <!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"
+        <!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"
                     (cdkDropListDropped)="drop($event)">
                     <div class="example-box" *ngFor="let singleFolder of allFoldersCopy" cdkDrag>{{singleFolder.title}}
                     </div>
                 </div> -->
-                <!-- <div class="row parent_row" cdkDropList (cdkDropListDropped)="drop($event)">
+        <!-- <div class="row parent_row" cdkDropList (cdkDropListDropped)="drop($event)">
                     <div class="col materials_box" *ngFor='let singleFolder of allFoldersCopy;let i = index' class="example-list">
                         <div class="card p-0 inner-card h-100 text-center" 
                             id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)" cdkDrag>
@@ -57,56 +56,53 @@
                         </div>
                     </div>
                 </div> -->
-                <!-- TEST END -->
+        <!-- TEST END -->
 
-                <div class="row parent_row" cdkDropList cdkDropListOrientation="horizontal"
-                    (cdkDropListDropped)="drop($event)">
-                    <div class="materials_box col" cdkDrag
-                        *ngFor='let singleFolder of allFolders;let i = index'>
-                        <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)"
-                            id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
-                            <mat-card class="p-0" appMaterialElevation [defaultElevation]="0" raisedElevation="5">
-                                <mat-card-content class="material_card p-2">
-                                    <div class="materia_icon_span {{getRandomColorClass(i)}}">
-                                        <i class="fa fa-folder icon round"></i>
-                                    </div>
-                                    <h5 class="materials_title pt-2 pb-2">{{singleFolder.title}}</h5>
-                                </mat-card-content>
-                            </mat-card>
-                        </div>
-                        <!-- <h5 class="materials_title pt-2">{{singleFolder.title}}</h5> -->
-                    <!-- </mat-card-content> -->
+        <div class="row parent_row" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            <div class="materials_box col" cdkDrag *ngFor='let singleFolder of allFolders;let i = index'>
+                <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
+                    <mat-card class="p-0" appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+                        <mat-card-content class="material_card p-2">
+                            <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                                <i class="fa fa-folder icon round"></i>
+                            </div>
+                            <h5 class="materials_title pt-2 pb-2">{{singleFolder.title}}</h5>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
+                <!-- <h5 class="materials_title pt-2">{{singleFolder.title}}</h5> -->
+                <!-- </mat-card-content> -->
             </div>
-            <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
-            </h3>
         </div>
-
-        <div class="row no-folder text-center justify-content-center" *ngIf="allFolders && allFolders.length == 0 && !loading">
-            <img src="../../assets/folder.png" height="100px" width="100px">
-            <h3 class="text-center text-info pt-3 no_found_msg">No Folder Found! </h3>
-        </div>
-
-        <!-- </mat-card-content> -->
-        <!-- </mat-card> -->
+        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
+        </h3>
     </div>
-    <div class="col-9" *ngIf="currentUser.userRole != 'admin'">
-        <mat-card>
+
+    <div class="row no-folder text-center justify-content-center" *ngIf="allFolders && allFolders.length == 0 && !loading">
+        <img src="../../assets/folder.png" height="100px" width="100px">
+        <h3 class="text-center text-info pt-3 no_found_msg">No Folder Found! </h3>
+    </div>
+
+    <!-- </mat-card-content> -->
+    <!-- </mat-card> -->
+</div>
+<div class="col-9" *ngIf="currentUser.userRole != 'admin'">
+    <mat-card>
+        <div class="row">
+            <div class="col-12">
+                <h3>Shared Files</h3>
+            </div>
+        </div>
+        <mat-card-content>
             <div class="row">
-                <div class="col-12">
-                    <h3>Shared Files</h3>
+                <div class="col-lg-6 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile">
+                    <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
                 </div>
             </div>
-            <mat-card-content>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 materials_box" *ngFor="let file of sharedFile">
-                        <file-tile [file]="file" (openSideNav)="openFileDetails($event)"></file-tile>
-                    </div>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <!-- <div class="col-3" *ngIf="display">
+        </mat-card-content>
+    </mat-card>
+</div>
+<!-- <div class="col-3" *ngIf="display">
         <app-file-details [details]="details"></app-file-details>
     </div> -->
 <!-- </div> -->
