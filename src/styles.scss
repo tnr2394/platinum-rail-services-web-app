@@ -1028,8 +1028,14 @@ body {
     border-top: none !important;
 }
 
+// }
 .close_btn {
     cursor: pointer !important;
 }
 
-// }
+@media (max-width: 1500px) {
+    .md-drppicker.ltr .calendar,
+    .md-drppicker.ltr .ranges {
+        float: none !important;
+    }
+}
