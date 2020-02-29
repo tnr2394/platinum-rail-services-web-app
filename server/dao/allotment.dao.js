@@ -41,15 +41,13 @@ allotment.createAllotment = function (obj) {
 }
 
 
-allotment.updateAllotment = function (allotmentId, updateAllotment, remark) {
+allotment.updateAllotment = function (allotmentId, updateAllotment, remark, author) {
     console.log("Update Allotemnt in allotemnt DAO", allotmentId, updateAllotment, remark);
     const q = Q.defer();
 
-    // if (remark) {
-    const remarkDetail = { text: remark }
+    const remarkDetail = { text: remark, author: author }
     console.log("remarkDetail", remarkDetail);
 
-    // }
     allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment, $push: { remark: remarkDetail } }, { upsert: true, new: true }, (err, allotment) => {
         if (err) return q.reject(err);
         else {

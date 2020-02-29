@@ -545,6 +545,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   mergeAndCompareBothArrays() {
+    console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
     var filterDates;
     let lengthOfArray = this.arrayFromDb.length
     
