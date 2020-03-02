@@ -12,11 +12,11 @@
                     <mat-tab label="Week Summary" class="week_set">
                         <div class="row">
                             <div class="col-sm-6 res_col">
-                                <ng-select [items]="months" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Choose Months" [(ngModel)]="selectedMonths" (close)="generateMonthWeeks()">
+                                <ng-select [items]="months" [multiple]="false" [closeOnSelect]="true" [searchable]="true" bindLabel="name"  placeholder="Choose Months" [(ngModel)]="selectedMonths" (close)="generateMonthWeeks()">
                                 </ng-select>
                             </div>
                             <div class="col-sm-6 res_col">
-                                <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="false" [searchable]="true" bindLabel="from" placeholder="Choose Week" [(ngModel)]="selectedWeeks" (close)="generateWeekDates()">
+                                <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="true" [searchable]="true" bindLabel="from" placeholder="Choose Week" [(ngModel)]="selectedWeeks" (close)="generateWeekDates()">
                                     <!-- <ng-template ng-option-tmp let-item="item">
                                 <div *ngIf="datesRange.length == 0">
                                     Please select month to display week dates
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <!-- <app-time-sheet-summary></app-time-sheet-summary>  -->
-                        <app-single-week [instFromAdminReport]="instructorId" [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>
+                        <app-single-week [instFromAdminReport]="instructorId" [monthChanged]="monthChanged" [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>
                     </mat-tab>
                 </mat-tab-group>
             </div>
