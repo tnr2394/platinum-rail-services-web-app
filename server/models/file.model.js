@@ -13,7 +13,9 @@ const fileSchema = new Schema({
     type: {
         type: String,
         required: true
-        // Material,Submission
+    },
+    size: {
+        type: String
     },
     path: {
         type: String,

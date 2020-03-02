@@ -1,15 +1,24 @@
 .showCard {
-  height: 150px;
-  color: #fff;
-  background-color: #0bc;
+    height: 150px;
+    color: #fff;
+    background-color: #0bc;
 }
-.iconCalendar{
+
+.iconCalendar {
     padding: 12px;
     border-radius: 100%;
     color: white;
     font-size: 20px;
 }
- .displayDates{   
-   display: flex;
-  justify-content: space-between;
+
+.displayDates {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 320px) {
+    .mat-card-content>:first-child,
+    .mat-card>:first-child {
+        font-size: 12px !important;
+    }
 }

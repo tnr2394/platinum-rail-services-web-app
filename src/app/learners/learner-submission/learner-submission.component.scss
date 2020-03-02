@@ -1,176 +1,206 @@
 .uploadBtn {
-  // font-size: xx-large;
-  color: #4586ff;
-  background-color: transparent;
-  border: transparent;
-  width: 100%;
-  text-align: left;
-  padding: 0px 15px;
-  &:active,
-  &:focus,
-  &:hover {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  i {
-    font-size: 45px;
-    @media (max-width: 575px) {
-      font-size: 40px;
+    // font-size: xx-large;
+    color: #4586ff;
+    background-color: transparent;
+    border: transparent;
+    width: 100%;
+    text-align: left;
+    padding: 0px 15px;
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none !important;
+        box-shadow: none !important;
     }
-  }
+    i {
+        font-size: 45px;
+        @media (max-width: 575px) {
+            font-size: 40px;
+        }
+    }
 }
+
 // .background {
 //   background-color: lightgray;
 // }
-
 .background {
-  background-color: #d9d9d9;
-//   @media (max-width: 575px) {
-//     padding-bottom: 1px;
-//   }
-//   .fa-file-alt {
-//     font-size: 30px;
-//     margin-right: 20px;
-//     @media (max-width: 575px) {
-//       font-size: 20px;
-//       margin-right: 2px;
-//     }
-//   }
-//   .mat-form-field {
-//     width: 75% !important;
-//   }
+    background-color: #d9d9d9;
+    //   @media (max-width: 575px) {
+    //     padding-bottom: 1px;
+    //   }
+    //   .fa-file-alt {
+    //     font-size: 30px;
+    //     margin-right: 20px;
+    //     @media (max-width: 575px) {
+    //       font-size: 20px;
+    //       margin-right: 2px;
+    //     }
+    //   }
+    //   .mat-form-field {
+    //     width: 75% !important;
+    //   }
 }
 
 .center {
-  justify-content: center;
+    justify-content: center;
 }
-.col-6{
-  @media (max-width:422px){
-    max-width: 100% !important;
-    flex: auto !important;
-  }
+
+.col-6 {
+    @media (max-width: 422px) {
+        max-width: 100% !important;
+        flex: auto !important;
+    }
 }
+
 .btnColorGreen {
-  background-color: #3cc480;
-  color: white;
-  @media (max-width:422px) {
-    width: 100%;
-    margin-top: 20px;
-  }
+    background-color: #3cc480;
+    color: white;
+    @media (max-width: 422px) {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
+
 .btnColorBlue {
-  background-color: #3b86ff;
-  color: white;
-  @media (max-width:422px) {
-    width: 100%;
-  }
+    background-color: #3b86ff;
+    color: white;
+    @media (max-width: 422px) {
+        width: 100%;
+    }
 }
+
 .chipColor {
-  background-color: #3b86ff;
-  color: white;
+    background-color: #3b86ff;
+    color: white;
 }
+
 div {
-  padding: inherit;
+    padding: inherit;
 }
 
 .assignment-status {
-  background-color: #4586ff;
-  color: white;
-  padding: 10px;
-  margin: 1px;
-  margin-top: 15px;
+    background-color: #4586ff;
+    color: white;
+    padding: 10px;
+    margin: 1px;
+    margin-top: 15px;
 }
+
 .submitted {
-  font-size: 45px;
-  font-weight: 400;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  display: flex;
-  @media (max-width: 767px) {
-    font-size: 35px;
-  }
-}
-.assignment_title {
-  margin-bottom: 20px;
-  @media (max-width: 575px) {
-    font-size: 23px;
-  }
-}
-.remark_block {
-  p {
-    font-size: 16px;
-    line-height: 1.8;
-    word-spacing: 1px;
-    margin: 0;
-    @media (max-width: 575px) {
-      font-size: 14px;
+    font-size: 45px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    @media (max-width: 767px) {
+        font-size: 35px;
     }
-  }
 }
+
+.assignment_title {
+    margin-bottom: 20px;
+    @media (max-width: 575px) {
+        font-size: 23px;
+    }
+}
+
+.remark_block {
+    p {
+        font-size: 16px;
+        line-height: 1.8;
+        word-spacing: 1px;
+        margin: 0;
+        @media (max-width: 575px) {
+            font-size: 14px;
+        }
+    }
+    .remark_activity_card {
+        margin-bottom: 5px !important;
+    }
+}
+
 @media (max-width: 767px) {
-  .fa-7x {
-    font-size: 70px !important;
-  }
+    .fa-7x {
+        font-size: 70px !important;
+    }
 }
+
 @media (max-width: 575px) {
-  .submission {
-    padding-left: 20px;
-    font-size: 22px;
-  }
-  .col-lg-6 {
-    padding: 0 !important;
-  }
-  .remark_block {
-    margin-top: 20px;
-  }
-  .remark {
-    font-size: 22px;
-  }
-  .fa-7x {
-    font-size: 50px !important;
-  }
-  .submitted {
-    font-size: 24px;
-  }
+    .submission {
+        padding-left: 20px;
+        font-size: 22px;
+    }
+    .col-lg-6 {
+        padding: 0 !important;
+    }
+    .remark_block {
+        margin-top: 20px;
+    }
+    .remark {
+        font-size: 22px;
+    }
+    .fa-7x {
+        font-size: 50px !important;
+    }
+    .submitted {
+        font-size: 24px;
+    }
 }
 
 .remark_area {
-  .mat-form-field {
-    width: 100% !important;
-  }
-  @media (max-width: 575px) {
-    padding: 0 !important;
-  }
+    .mat-form-field {
+        width: 100% !important;
+    }
+    @media (max-width: 575px) {
+        padding: 0 !important;
+    }
 }
-mat-form-field{
-  width: 100%;
+
+mat-form-field {
+    width: 100%;
 }
-.submission_by{
-  @media (max-width:575px){
-    font-size: 20px;
-  }
-  @media (max-width:422px) {
-    font-size: 18px;
-  }
+
+.submission_by {
+    @media (max-width: 575px) {
+        font-size: 20px;
+    }
+    @media (max-width:422px) {
+        font-size: 18px;
+    }
 }
-.submission_table{
-  background: #d9d9d9 !important;
+
+.submission_table {
+    background: #d9d9d9 !important;
 }
+
 table {
-  margin: 0;
-  width: 100%;
-  @media(max-width: 991px){
-      min-width: 450px;
-  }
+    margin: 0;
+    width: 100%;
+    @media(max-width: 991px) {
+        min-width: 450px;
+    }
 }
-.remark_activity_card{
-  overflow-y: auto;
-  height: 300px;
+
+.remark_activity_card {
+    overflow-y: auto;
+    height: 300px;
 }
-.remarks_activity{
-  padding: 10px 0;
+
+.remarks_activity {
+    padding: 10px 0;
 }
-.remark_date{
-  color: #4586ff;
+
+.remark_date {
+    color: #4586ff;
+}
+
+.text_posotion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spacing {
+    margin-bottom: 15px !important;
 }

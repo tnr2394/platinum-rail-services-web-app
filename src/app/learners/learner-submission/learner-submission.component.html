@@ -12,8 +12,7 @@
                 <!-- File Upload Section -->
                 <div class='row p-0 mb-3'>
                     <div class='col-2 p-0'>
-                        <button class='uploadBtn' (click)="addFileModal()" placement="bottom" ngbTooltip="Upload"
-                            tooltipClass="tooltip-class">
+                        <button class='uploadBtn' (click)="addFileModal()" placement="bottom" ngbTooltip="Upload" tooltipClass="tooltip-class">
                             <i class="fas fa-cloud-upload-alt"></i>
                         </button>
                     </div>
@@ -34,11 +33,9 @@
                 <!--Submission Files Section -->
                 <div class='row all_file_tile_row' *ngIf="files.length > 0">
                     <div class="table-responsive">
-                        <table mat-table [dataSource]="dataSource" matSort
-                            class="table table-borderless mb-0 submission_table">
+                        <table mat-table [dataSource]="dataSource" matSort class="table table-borderless mb-0 submission_table">
                             <ng-container matColumnDef="Materials">
-                                <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
-                                    mat-sort-header="title">
+                                <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
                                     NAME
                                 </th>
 
@@ -98,10 +95,13 @@
                     <h4>Activity Logs</h4>
                     <mat-card-content *ngIf="olderRemarks.length > 0">
                         <div *ngFor="let remark of olderRemarks" class="remarks_activity">
-                            <p class="remark_date">{{remark.date | date:shortDate}}</p>
-                            <p class="remark_date">{{remark.author}}</p>
-                            <h6>{{remark.text}}</h6>
-                            <mat-divider></mat-divider>
+                            <p>{{remark.text}} </p>
+                            <!-- <hr> -->
+                            <div class="text_posotion">
+                                <h6 class="remark_date">{{remark.date | date:shortDate}}</h6>
+                                <h6 class="remark_author">{{remark.author}}</h6>
+                            </div>
+                            <mat-divider class="spacing"></mat-divider>
                         </div>
                     </mat-card-content>
                     <div *ngIf="olderRemarks.length == 0">
@@ -114,16 +114,14 @@
                     <!-- Remark Section -->
                     <div class="row">
                         <mat-form-field class="example-full-width" *ngIf="assignment">
-                            <textarea rows="4" cols="100" [(ngModel)]='remark' matInput
-                                placeholder="Leave a remark"></textarea>
+                            <textarea rows="4" cols="100" [(ngModel)]='remark' matInput placeholder="Leave a remark"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="row">
                         <div class="col-6 pr-2">
                             <!-- Deadline Date Section -->
                             <mat-form-field *ngIf="assignment && assignment.deadlineDate">
-                                <input matInput [matDatepicker]="picker" [(ngModel)]='deadlineDate'
-                                    placeholder="Due date">
+                                <input matInput [matDatepicker]="picker" [(ngModel)]='deadlineDate' placeholder="Due date">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker [startAt]="deadlineDate"></mat-datepicker>
                             </mat-form-field>
@@ -156,8 +154,7 @@
                             </div> -->
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
-                                <button [disabled]="loading" mat-raised-button
-                                    class='btnColorGreen success_hover_effect' (click)="submit()"><i
+                                <button [disabled]="loading" mat-raised-button class='btnColorGreen success_hover_effect' (click)="submit()"><i
                                         class="fas fa-check-double"></i><span>
                                         Submit</span>
                                 </button>
@@ -169,8 +166,7 @@
             </div>
         </div>
 
-        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
-                class="fa fa-cog fa-spin text-info"></i></h3>
+        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
 
 
     </mat-card>
