@@ -610,7 +610,7 @@ export class SingleWeekComponent implements OnInit {
 
   submitDetail() {
     _.forEach((this.Days), (singleDate, index) => {
-      if ((singleDate.logIn != '00:00' && singleDate.lunchStart != '00:00') || (singleDate.lunchEnd != '00:00' && singleDate.logOut != '00:00')) {
+      if (singleDate.logIn != '00:00') {
         this.finalArray.push(singleDate);
       }
     })
