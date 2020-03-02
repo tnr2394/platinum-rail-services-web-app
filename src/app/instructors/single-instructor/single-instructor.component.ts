@@ -149,9 +149,11 @@ export class SingleInstructorComponent implements OnInit {
             // console.log("weekEndDate > moment().endOf('year')", weekEndDate, moment().endOf('year'));
             weekEndDate = moment().endOf('year')
           }
+          let tempStartDate = weekStartDate
+          let tempEndDate = weekEndDate
           this.allWeeks.push({
-            weekNumber: i, from: "From: " + weekStartDate.format('MM/DD/YYYY') + " - " + "To: " + weekEndDate.format('MM/DD/YYYY'),
-            weekStartDate: weekStartDate, weekEndDate: weekEndDate
+            weekNumber: i, weekStartDate: weekStartDate, weekEndDate: weekEndDate,
+            from: "From: " + tempStartDate.format('MM/DD/YYYY') + " - " + "To: " + tempEndDate.format('MM/DD/YYYY')
           })
           console.log("weekNumber: i", i, "weekStartDate", weekStartDate, "weekEndDate", weekEndDate);
         }
@@ -167,19 +169,27 @@ export class SingleInstructorComponent implements OnInit {
     // this.index = i
   }
   generateWeekDates(){
+    console.log("**generatingWeekDates");
     this.monthChanged = false
-    if(this.selectedWeeks){
+    if (this.selectedWeeks){
       let week = this.selectedWeeks
       console.log("-----getWeekDates-----", week);
+      let temp = week.from.split(" ")
+      let weekStartDate = moment(temp[1]) 
+      let weekEndDate = moment(temp[4])
+      console.log("**temp", temp);
+      console.log("**weekStartDate", weekStartDate, "**weekEndDate", weekEndDate);
+      
       let dates = []
       // return new Promise((resolve,reject)=>{
-      dates.push(week.weekStartDate.format('MM/DD/YYYY'))
+      dates.push(temp[1])
       return new Promise((resolve, reject) => {
-        while (week.weekStartDate.add(1, 'days').diff(week.weekEndDate) < 0) {
+        while (weekStartDate.add(1, 'days').diff(weekEndDate) < 0) {
           console.log("In while loop");
-          console.log(week.weekStartDate.toDate());
-          dates.push(week.weekStartDate.clone().format('MM/DD/YYYY'));
+          // console.log(weekStartDate.toDate());
+          dates.push(weekStartDate.clone().format('MM/DD/YYYY'));
         }
+        dates.push(temp[4])
         resolve(dates)
       }).then(resolvedDates => {
         console.log("this.generatedDates are", resolvedDates);
@@ -187,6 +197,15 @@ export class SingleInstructorComponent implements OnInit {
         this.weekDates = resolvedDates
       })
     }
+  }
+  clearMonth(){
+    this.monthChanged = true
+    this.doCalWeekDates = true
+    this.selectedWeeks = []
+    // this.datesRange = []
+  }
+  clearWeek(){
+    this.doCalWeekDates = true
   }
   // updateData(jobs) {
   //   this.dataSource = new MatTableDataSource(jobs);

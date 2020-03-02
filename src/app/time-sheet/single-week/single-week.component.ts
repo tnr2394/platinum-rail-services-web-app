@@ -99,6 +99,7 @@ export class SingleWeekComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
+    // if (this.router.url.includes('/instructors')) this.displayMsg = false;
 
     // this.loading = true;
     console.log("**ON INIT**", this.datesOfWeek)
@@ -151,7 +152,7 @@ export class SingleWeekComponent implements OnInit {
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
     }
-    if (changes.monthChanged && changes.monthChanged.currentValue == true){
+    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true){
       this.getWeekDates()
     }
   }
@@ -166,6 +167,8 @@ export class SingleWeekComponent implements OnInit {
   }
 
   getWeekDates() {
+    console.log("**getWeekDates called")
+    this.displayMsg = false;
     console.log("-----getWeekDates-----", moment().startOf('week'), moment().endOf('week'));
     let weekStartDate = moment().startOf('week')
     let weekEndDate = moment().endOf('week')
@@ -538,6 +541,7 @@ export class SingleWeekComponent implements OnInit {
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Inside Res=======>>>>', res);
         this.arrayFromDb = res;
+        this.loading = false
         // console.log('Arrayform db', this.arrayFromDb);
         this.mergeAndCompareBothArrays();
       }, error => {
@@ -664,6 +668,7 @@ export class SingleWeekComponent implements OnInit {
       console.log("data.date is found", data.date);
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Res========>>>>>', res);
+        this.loading = false
         this.updateData(res)
       }, err => {
       })
