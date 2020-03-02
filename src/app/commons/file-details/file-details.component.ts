@@ -35,6 +35,7 @@ export class FileDetailsComponent implements OnInit {
   displaySaveBtn: boolean = false;
   id: any;
   units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  supportedDocuments = ['doc', 'docx', 'pdf', 'ppt', 'xlsx', 'xls'];
   loading;
   currentFolder;
   sharedClient: any;
@@ -42,6 +43,7 @@ export class FileDetailsComponent implements OnInit {
   isMaterials: String;
   path: any;
   readOnlyTitle: boolean = true;
+  supportedDocument: boolean;
   type: any;
   currentUser: any;
   pathForPreview: string;
@@ -78,6 +80,7 @@ export class FileDetailsComponent implements OnInit {
 
       // PATH
       this.path = changes.recievedFile.currentValue.path;
+      this.supportedDocument = this.supportFilePreview(changes.recievedFile.currentValue.extension);
 
       // TITLE
       (changes.recievedFile.currentValue.alias) ? this.title = changes.recievedFile.currentValue.alias : this.title = changes.recievedFile.currentValue.title
@@ -217,6 +220,16 @@ export class FileDetailsComponent implements OnInit {
       n = n / 1024;
     }
     return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + this.units[l]);
+  }
+
+  supportFilePreview(type) {
+    console.log('File Type Support=====>>>>>>>', type);
+    let index = _.findIndex(this.supportedDocuments, function (o) { return o == type; });
+    if (index >= 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

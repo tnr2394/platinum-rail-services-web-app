@@ -24,6 +24,7 @@ export class SingleWeekComponent implements OnInit {
   @Input('overTimeHours') overTimeHours;
   @Input('datesFromInstructor') datesArrayFromInst;
   @Input('weekDatesFromAdmin') weekDatesFromAdmin;
+  @Input('monthChanged') monthChanged;
 
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -149,6 +150,9 @@ export class SingleWeekComponent implements OnInit {
       this.displayMsg = false;
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
+    }
+    if (changes.monthChanged && changes.monthChanged.currentValue == true){
+      this.getWeekDates()
     }
   }
   ngAfterViewInit() {
