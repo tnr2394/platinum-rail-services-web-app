@@ -105,6 +105,7 @@ file.addNewFile = function (object) {
             title: object.title,
             alias: object.alias,
             type: object.type,
+            size: object.size,
             path: object.path,
             extension: object.extension,
             uploadedBy: object.uploadedBy,

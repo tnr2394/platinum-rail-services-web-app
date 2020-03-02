@@ -5,9 +5,6 @@
             <h4 color="warn"><i class="fa fa-times-circle"></i>
             </h4>
         </button>
-        <!-- uploadedFilesCount-----{{uploadedFilesCount}}
-        queueCount-----{{queueCount}}
-        uploadedFiles.length-----{{uploadedFiles.length}} -->
     </h1>
 </div>
 <mat-card>
@@ -24,7 +21,7 @@
                     <div class="fake_file">
                         <p class="m-0">Choose file</p>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -71,8 +68,7 @@
 
 
                                 <button type="button" *ngIf="!item.inProgress()"
-                                    class="btn btn-danger btn-sm action_btns"
-                                    (click)="item.remove();">
+                                    class="btn btn-danger btn-sm action_btns" (click)="item.remove();">
                                     <i class="fa fa-trash"></i>
                                 </button>
 
