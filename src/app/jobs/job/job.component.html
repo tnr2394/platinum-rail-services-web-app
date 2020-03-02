@@ -20,12 +20,8 @@
         </div>
         <div>
             <mat-card class="text-center">
-                <circle-progress [percent]="completionPercent" [radius]="90" [outerStrokeWidth]="12"
-                    [innerStrokeWidth]="1" [space]="1" [backgroundGradient]="false" [backgroundOpacity]="1"
-                    [backgroundColor]="'#ffffff'" [backgroundGradientStopColor]="'#6DD5FA'" [responsive]="false"
-                    [animation]="true" [subtitleFormat]="formatSubtitle" [showSubtitle]="true" [titleFontSize]="30"
-                    [unitsFontSize]="20" [subtitleFontSize]="15" [subtitleColor]="'#000000'" [titleFontWeight]="600"
-                    [outerStrokeGradient]="false" [outerStrokeGradientStopColor]="'#0049c3'"
+                <circle-progress [percent]="completionPercent" [radius]="90" [outerStrokeWidth]="12" [innerStrokeWidth]="1" [space]="1" [backgroundGradient]="false" [backgroundOpacity]="1" [backgroundColor]="'#ffffff'" [backgroundGradientStopColor]="'#6DD5FA'" [responsive]="false"
+                    [animation]="true" [subtitleFormat]="formatSubtitle" [showSubtitle]="true" [titleFontSize]="30" [unitsFontSize]="20" [subtitleFontSize]="15" [subtitleColor]="'#000000'" [titleFontWeight]="600" [outerStrokeGradient]="false" [outerStrokeGradientStopColor]="'#0049c3'"
                     [outerStrokeColor]="'#4c8fff'" [innerStrokeColor]="'#4285f4'" [animationDuration]="300">
                 </circle-progress>
             </mat-card>
@@ -44,8 +40,7 @@
             <mat-tab label="learners">
                 <div class="status_tab">
                     <!-- <div class="card"> -->
-                    <app-learners (getLearnersFromComponent)="loadLearners($event)"
-                        (learnerAdded)="addedLearner($event)" [jobId]='job._id'></app-learners>
+                    <app-learners (getLearnersFromComponent)="loadLearners($event)" (learnerAdded)="addedLearner($event)" [jobId]='job._id'></app-learners>
                     <!-- </div> -->
                 </div>
             </mat-tab>
@@ -54,13 +49,10 @@
                     <!-- <div class="card"> -->
                     <div *ngIf="job && !clientDashboard" class="mt-3">
                         <!-- passing into material =  {{job.course._id}} -->
-                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [jobId]="job._id"
-                            (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted" (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()"
+                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [jobId]="job._id" (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted" (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()"
                             #material>
                         </app-materials>
-                        <button mat-flat-button color="primary" class="pull-right my-4 button_hover_effect"
-                            (click)="allocateLearners()"
-                            *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
+                        <button mat-flat-button class="pull-right my-4 button_hover_effect ripple Button_shap_effact" (click)="allocateLearners()" *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
                             <i class="fas fa-users"></i>
                             <span> Allocate to..</span>
                         </button>

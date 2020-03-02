@@ -1,27 +1,21 @@
 <h1 mat-dialog-title class="text-primary light-underline">
-    <i class="fas fa-edit fa-fw"></i>
-    Edit Client
+    <i class="fas fa-edit fa-fw"></i> Edit Client
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required
-                cdkFocusInitial>
+            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
             <input matInput name="client-email" placeholder="Client Email" [(ngModel)]='data.email' required>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
-                [(ngModel)]='data.password' required>
-            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="password()"></span>
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]='data.password' required>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()"></span>
         </mat-form-field>
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password"
-                [(ngModel)]='data.confirmPassword' required>
-            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="cpassword()"></span>
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="cpassword()"></span>
         </mat-form-field>
 
     </div>
@@ -33,11 +27,10 @@
         </div>
     </div>
     <div *ngIf="!loading">
-        <button mat-flat-button class="button_hover_effect" color="primary" type="submit"><i
+        <button mat-flat-button class="button_hover_effect Button_shap_effact ripple" type="submit"><i
                 class="fas fa-save fa-fw"></i>
             <span>Save</span></button>
-        <button mat-flat-button class="close_hover_effect" type="button" color="warn" class="text-white pull-right"
-            (click)="delete()">
+        <button mat-flat-button class="text-white pull-right close_hover_effect ripple resets_delete_button" type="button" (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
             <span> Delete</span>
         </button>

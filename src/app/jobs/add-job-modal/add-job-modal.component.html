@@ -7,14 +7,12 @@
             <div class='row mx-0 mt-2'>
 
                 <!-- Job Course -->
-                
-                <div class='col col-sm course_select' formArrayName="course"
-                    *ngFor="let item of addJobForm.get('course').controls; let i = index;">
+
+                <div class='col col-sm course_select' formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                     <div [formGroupName]="i">
                         <mat-form-field>
                             <!-- NEW COURSE SELECT -->
-                            <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)="courseChanged($event)"
-                                #selected>
+                            <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)="courseChanged($event)" #selected>
                                 <mat-option *ngFor="let course of courses" [value]='course' matTooltip='{{course.title}}'>
                                     <div class="d-inline-block w-100">
                                         <div class="float-left">
@@ -36,8 +34,7 @@
 
                 <div class='col col-sm center'>
                     <mat-form-field>
-                        <mat-select formControlName="client" placeholder="Client"
-                            (selectionChange)="clientChanged($event)">
+                        <mat-select formControlName="client" placeholder="Client" (selectionChange)="clientChanged($event)">
                             <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
                             <mat-option *ngIf='clients && clients.length < 1'>No Client Found</mat-option>
                         </mat-select>
@@ -45,7 +42,7 @@
                 </div>
 
                 <!-- Job Title -->
-                
+
                 <div class='col col-sm center'>
                     <mat-form-field>
                         <input matInput formControlName="title" placeholder="Job Title" cdkFocusInitial [errorStateMatcher]="matcher">
@@ -63,9 +60,7 @@
 
                 <div class='col col-sm center add_picker_position'>
                     <mat-form-field>
-                        <input formControlName='jobColor' required [(colorPicker)]="color" matInput
-                            [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
-                            [cpAlphaChannel]="always" placeholder="Choose Color" [errorStateMatcher]="matcher" />
+                        <input formControlName='jobColor' required [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color" [cpAlphaChannel]="always" placeholder="Choose Color" [errorStateMatcher]="matcher" />
                         <mat-error *ngIf="addJobForm.controls['jobColor'].hasError('required')">
                             Please select a job color
                         </mat-error>
@@ -105,10 +100,7 @@
             <div class='col col-sm center'>
                 <mat-form-field>
                     <!-- [min]="minDate" -->
-                    <input matInput [matDatepicker]="picker" formControlName="startingDate"
-                        placeholder="Starting date"
-                        (dateChange)='searchDays($event); jobDates.EditDates($event.value, totalDays)'
-                        [errorStateMatcher]="matcher">
+                    <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date" (dateChange)='searchDays($event); jobDates.EditDates($event.value, totalDays)' [errorStateMatcher]="matcher">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
@@ -153,13 +145,11 @@
 </form>
 <div mat-dialog-actions>
     <div class='submitButton pt-3'>
-        <button mat-flat-button class="pull-right resetButton close_hover_effect"
-            (click)="jobDates.clearCheckBoxes();clearForm()">
+        <button mat-flat-button class="pull-right resetButton close_hover_effect resets_delete_button ripple" (click)="jobDates.clearCheckBoxes();clearForm()">
             <i class="fa fa-repeat"></i>
             <span> Reset</span>
         </button>
-        <button mat-flat-button color="primary" [disabled]="isDisabled" class="pull-right button_hover_effect"
-            (click)="addJob()">
+        <button mat-flat-button color="primary" [disabled]="isDisabled" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addJob()">
             <i class="fas fa-plus fa-fw"></i>
             <span> Add Job</span>
         </button>

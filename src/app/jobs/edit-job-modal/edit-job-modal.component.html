@@ -13,9 +13,7 @@
 
                 <div class='col center edit_color_picker'>
                     <mat-form-field>
-                        <input formControlName='jobColor' required [(colorPicker)]="color" matInput
-                            [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color"
-                            [cpAlphaChannel]="always" placeholder="Choose Color" />
+                        <input formControlName='jobColor' required [(colorPicker)]="color" matInput [cpOutputFormat]='rgba' [style.background]="color" [(ngModel)]="color" [cpAlphaChannel]="always" placeholder="Choose Color" />
                     </mat-form-field>
                 </div>
             </div>
@@ -23,8 +21,7 @@
             <div class='row mx-0'>
                 <div class='col center'>
                     <mat-form-field>
-                        <mat-select placeholder="Client" (selectionChange)="clientChanged($event)"
-                            [(value)]="selectedClient">
+                        <mat-select placeholder="Client" (selectionChange)="clientChanged($event)" [(value)]="selectedClient">
                             <mat-option *ngFor='let client of clients' [value]='client'>{{client.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -32,8 +29,7 @@
 
                 <div class='col center'>
                     <mat-form-field *ngIf="selectedClient">
-                        <mat-select placeholder="Location" [(value)]='selectedLocation'
-                            (selectionChange)="locationChanged($event)">
+                        <mat-select placeholder="Location" [(value)]='selectedLocation' (selectionChange)="locationChanged($event)">
                             <mat-option *ngFor="let location of selectedClient.locations" [value]="location">
                                 {{location.title}}
                             </mat-option>
@@ -47,11 +43,9 @@
                     <div formArrayName="course" *ngFor="let item of addJobForm.get('course').controls; let i = index;">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-select formControlName="course" placeholder="Choose Course"
-                                    (selectionChange)='courseChanged($event); jobDates.clearCheckBoxes()'>
+                                <mat-select formControlName="course" placeholder="Choose Course" (selectionChange)='courseChanged($event); jobDates.clearCheckBoxes()'>
                                     <!-- {{selectedCourse}} -->
-                                    <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}'
-                                        [value]='course'>
+                                    <mat-option *ngFor='let course of courses' matTooltip='{{course.title}}' [value]='course'>
                                         <!-- {{selectedCourse.title}} -->
                                         {{course.title}}
                                         <!-- - <span class="badge position">{{course.duration}}</span> -->
@@ -100,8 +94,7 @@
                 <div class='col col-sm center'>
                     <mat-form-field>
                         <mat-label>Choose Instructors</mat-label>
-                        <mat-select [(value)]="selectedInstructor" (selectionChange)="instructorChanged($event)"
-                            multiple>
+                        <mat-select [(value)]="selectedInstructor" (selectionChange)="instructorChanged($event)" multiple>
                             <mat-option *ngFor="let instructor of instructors" [value]="instructor">
                                 {{instructor.name}}
                             </mat-option>
@@ -117,9 +110,7 @@
                 </div> -->
                 <div class='col center'>
                     <mat-form-field>
-                        <input matInput [matDatepicker]="picker" formControlName="startingDate"
-                            placeholder="Starting date" [errorStateMatcher]="matcher"
-                            (dateChange)='jobDates.EditDates($event.value, totalDays)'>
+                        <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date" [errorStateMatcher]="matcher" (dateChange)='jobDates.EditDates($event.value, totalDays)'>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <!-- <mat-error *ngIf="addJobForm.controls['startingDate'].hasError('required')">
@@ -134,8 +125,7 @@
                 </div>
             </div>
             <div class='row mx-0' style="display: block;">
-                <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate'
-                    [startingDate]='startingDate' (dateChange)='daySelection($event)' #jobDates></app-job-dates>
+                <app-job-dates [duration]='duration' [frequency]='totalDays' [singleJobDate]='singleJobDate' [startingDate]='startingDate' (dateChange)='daySelection($event)' #jobDates></app-job-dates>
             </div>
         </div>
     </div>
@@ -154,11 +144,10 @@
 </div> -->
 <div mat-dialog-actions class="center mt-3 mb-1">
     <div *ngIf="!loading">
-        <button mat-flat-button class="button_hover_effect" color="primary" (click)='addJob()'><i
+        <button mat-flat-button class="button_hover_effect ripple Button_shap_effact" (click)='addJob()'><i
                 class="fas fa-save fa-fw"></i><span>
                 Save</span></button>
-        <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
-            (click)="delete()">
+        <button mat-flat-button type="button" class="text-white pull-right close_hover_effect resets_delete_button ripple" (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
             <span> Delete</span>
         </button>

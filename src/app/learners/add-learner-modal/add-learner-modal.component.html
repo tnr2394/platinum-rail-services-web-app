@@ -4,8 +4,7 @@
 
         <!-- Learner Name -->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required
-                cdkFocusInitial>
+            <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required cdkFocusInitial>
             <mat-error>Name is required</mat-error>
         </mat-form-field>
 
@@ -17,20 +16,16 @@
 
         <!-- Learner Password -->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
-                [(ngModel)]='data.password' required>
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]='data.password' required>
             <mat-error>Password is required.</mat-error>
-            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="password()"></span>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()"></span>
         </mat-form-field>
 
         <!-- Learner Confirm Password-->
         <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password"
-                [(ngModel)]='data.confirmPassword' required>
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
             <mat-error>Confirm Password is required.</mat-error>
-            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="cpassword()"></span>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="cpassword()"></span>
         </mat-form-field>
 
     </div>
@@ -43,7 +38,7 @@
     </div>
 
     <div mat-dialog-actions align="center" *ngIf="!loading">
-        <button mat-flat-button color="primary" type="submit" class="mb-3 button_hover_effect">
+        <button mat-flat-button color="primary" type="submit" class="mb-3 button_hover_effect ripple Button_shap_effact">
             <i class="fas fa-save fa-fw"></i>
             <span> Save</span>
         </button>

@@ -1,5 +1,5 @@
 .add_job_form {
-    @media(max-width:575px) {
+    @media(max-width: 575px) {
         .mat-dialog-content {
             margin-right: 0 !important;
             margin-left: 0 !important;
@@ -107,7 +107,6 @@
 
 .mat-dialog-title {
     font-size: 18px;
-
     i {
         font-size: 25px !important;
         margin-right: 15px;
@@ -115,7 +114,7 @@
 }
 
 color-picker {
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
         .color-picker {
             top: 204.297px !important;
             left: 0px !important;
@@ -135,8 +134,7 @@ mat-form-field {
 
 .instructor_btn {
     justify-content: flex-end !important;
-
-    @media (max-width:575px) {
+    @media (max-width: 575px) {
         justify-content: space-around !important;
         margin: 0 !important;
     }
@@ -147,17 +145,14 @@ mat-form-field {
         width: 100% !important;
         min-width: 100% !important;
     }
-
     mat-form-field {
         min-width: 90%;
         // margin-left: 24px;
     }
-
     .mat-form-field-infix {
         //  width: 250px !important;
         min-width: 90% !important;
     }
-
     // .course_select {
     //     min-width: 50% !important;
     // }
@@ -167,19 +162,15 @@ mat-form-field {
     .ng-star-inserted {
         width: 98% !important;
     }
-
     mat-form-field {
         width: 98% !important;
     }
-
     @media (max-width:991px) {
         // min-width: 50% !important;
-
         mat-form-field {
             width: 100% !important;
         }
     }
-
     @media (max-width:575px) {
         min-width: 100% !important;
     }
@@ -189,7 +180,6 @@ mat-form-field {
     .course_select {
         min-width: 100% !important;
     }
-
     mat-form-field {
         margin-left: 0px !important;
     }
