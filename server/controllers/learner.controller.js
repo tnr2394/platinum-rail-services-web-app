@@ -412,6 +412,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         alias: req.body.Key,
         type: "material",
         path: req.body.Location,
+        size: req.body.size,
         extension: extension,
         uploadedBy: req.user.name,
         uploadedDate: new Date()

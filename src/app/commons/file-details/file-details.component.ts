@@ -34,6 +34,7 @@ export class FileDetailsComponent implements OnInit {
   title: any;
   displaySaveBtn: boolean = false;
   id: any;
+  units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   loading;
   currentFolder;
   sharedClient: any;
@@ -44,7 +45,7 @@ export class FileDetailsComponent implements OnInit {
   type: any;
   currentUser: any;
   pathForPreview: string;
-  constructor(public _folderService: FolderService, public _fileService : FileService,
+  constructor(public _folderService: FolderService, public _fileService: FileService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -65,10 +66,10 @@ export class FileDetailsComponent implements OnInit {
       if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = 'material'; else this.isMaterials = 'not material'
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
-      if (changes.recievedFile.currentValue.path){
+      if (changes.recievedFile.currentValue.path) {
         this.pathForPreview = "https://docs.google.com/gview?url=" + changes.recievedFile.currentValue.path + "&embedded=true"
       }
-        // https://docs.google.com/gview?url="+ {{recievedFile.path}} + "&embedded=true"
+      // https://docs.google.com/gview?url="+ {{recievedFile.path}} + "&embedded=true"
       // else this.isMaterials = 'file'
 
       // DATES
@@ -115,7 +116,7 @@ export class FileDetailsComponent implements OnInit {
     });
   }
 
-  closeSidenav(){
+  closeSidenav() {
 
   }
 
@@ -131,6 +132,7 @@ export class FileDetailsComponent implements OnInit {
       this.openSnackBar("Shared Successfully", "ok")
     })
   }
+
   delete() {
     let update = {
       title: this.title,
@@ -157,31 +159,18 @@ export class FileDetailsComponent implements OnInit {
           })
         }
         this.fileDeleted.emit({ fileId: this.id, type: this.type })
-        //   console.log("DELETED");
-        //   this.openSnackBar("Deleted Successfully", "ok")
       }
     })
   }
 
   downloadAll() {
-
     console.log('Download all clicked', this.currentFolder);
-
     this.loading = true;
-
-
-    console.log("this.currentFolder", this.currentFolder._id)
-
     this._folderService.getFolder(this.currentFolder._id).subscribe(res => {
 
       let zip: JSZip = new JSZip();
       let count = 0;
-
       var zipFilename = res.folders.title + '.zip';
-
-
-      console.log(res.folders);
-
       if (res.folders[0].files && res.folders[0].files.length) {
         _.forEach(res.folders[0].files, (file) => {
           console.log("file.path", file.path, file)
@@ -206,7 +195,6 @@ export class FileDetailsComponent implements OnInit {
       else {
         alert("No files contais in this folder")
       }
-
     })
   }
 
@@ -222,4 +210,13 @@ export class FileDetailsComponent implements OnInit {
     })
     this.openSnackBar("Updated Successfully", "ok")
   }
+
+  convertBytes(x) {
+    let l = 0, n = parseInt(x, 10) || 0;
+    while (n >= 1024 && ++l) {
+      n = n / 1024;
+    }
+    return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + this.units[l]);
+  }
+
 }

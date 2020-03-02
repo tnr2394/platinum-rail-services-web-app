@@ -146,6 +146,8 @@ export class FileUploaderService {
 
     formData.append('file', queueObj.file, queueObj.file.name);
 
+    console.log('queueObj.file size===>>>', queueObj.file.size);
+
     this._s3UplodService.uploadFile(queueObj.file, queueObj.file.name).subscribe((event) => {
       console.log('Event In fileUpload service', event);
       if (event.type === 'progress') {
@@ -158,6 +160,7 @@ export class FileUploaderService {
 
       if (event.Location) {
         event.myId = this.myId;
+        event.size = queueObj.file.size;
         if (this.bodyData.status) { event.status = this.bodyData.status }
         const req = new HttpRequest('POST', this.url, event, {
           reportProgress: true,
