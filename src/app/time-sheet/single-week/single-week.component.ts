@@ -99,7 +99,7 @@ export class SingleWeekComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
-    // if (this.router.url.includes('/instructors')) this.displayMsg = false;
+    if (this.router.url.includes('/instructors')) this.displayMsg = false;
 
     // this.loading = true;
     console.log("**ON INIT**", this.datesOfWeek)
@@ -497,14 +497,14 @@ export class SingleWeekComponent implements OnInit {
   copyCurrentLogs(i) {
     this.copiedIndex = i;
     this.showPasteBtn = true
-    this.copiedLogs = {
-      logIn: this.Days[i].logIn,
-      lunchStart: this.Days[i].lunchStart,
-      lunchEnd: this.Days[i].lunchEnd,
-      logOut: this.Days[i].logOut,
-      travel: this.Days[i].travel,
-    }
-    console.log("Copied logs are", this.copiedLogs);
+    // this.copiedLogs = {
+    //   logIn: this.Days[i].logIn,
+    //   lunchStart: this.Days[i].lunchStart,
+    //   lunchEnd: this.Days[i].lunchEnd,
+    //   logOut: this.Days[i].logOut,
+    //   travel: this.Days[i].travel,
+    // }
+    // console.log("Copied logs are", this.copiedLogs);
     // console.log("**this.dataSource", this.dataSource.data[i])
     // console.log("**this.Days", this.Days[i]);
     // let newData = this.Days[i]
@@ -522,11 +522,11 @@ export class SingleWeekComponent implements OnInit {
   }
   pasteLogs(i) {
     let newLogs = this.Days[i]
-    newLogs.logIn = this.copiedLogs.logIn;
-    newLogs.lunchStart = this.copiedLogs.lunchStart;
-    newLogs.lunchEnd = this.copiedLogs.lunchEnd;
-    newLogs.logOut = this.copiedLogs.logOut;
-    newLogs.travel = this.copiedLogs.travel
+    newLogs.logIn = this.Days[this.copiedIndex].logIn;
+    newLogs.lunchStart = this.Days[this.copiedIndex].lunchStart;
+    newLogs.lunchEnd = this.Days[this.copiedIndex].lunchEnd;
+    newLogs.logOut = this.Days[this.copiedIndex].logOut;
+    newLogs.travel = this.Days[this.copiedIndex].travel
     this.closed(i)
     console.log("THIS.DAYS", this.Days);
   }
