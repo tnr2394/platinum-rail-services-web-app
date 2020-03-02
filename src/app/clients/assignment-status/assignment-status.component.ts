@@ -29,6 +29,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   selectedLearnerArray: any[];
   selectedUnitsArray: any[];
   allotmentArray = [];
+  allLearners: any;
 
   ngOnChanges(changes) {
     console.log("IN ON CHANGES", changes);
@@ -64,6 +65,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.loading = true
+    
     // this.optionsForlearners = {
     //   multiple: true,
     //   placeholder: {
@@ -95,6 +97,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
     this.getAssignmentList(this.jobId);
     this.assignmentStatusWithLearner();
+    this.getLearnerList()
   }
 
   // changedLearner(data: { value: string[] }) {
@@ -256,5 +259,12 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
         this.loading = false
       }
     });
+  }
+  getLearnerList(){
+    console.log("**getLearnerList called");
+    this._learnerService.getLearnersByJobId(this.jobId).subscribe(learners=>{
+      this.allLearners = learners
+      console.log("**this.allLearners", this.allLearners);
+    })
   }
 }
