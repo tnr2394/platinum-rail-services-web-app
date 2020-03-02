@@ -81,7 +81,7 @@ courseController.deleteCourse = function (req, res, next) {
 
         } else {
             console.log('Couse Not deleted');
-            return res.status(400).send({ data: {}, msg: "Couse Not deleted" });
+            return res.status(400).send({ data: {}, msg: "This Cource Is Currently Active" });
         }
 
     }).catch((error) => {

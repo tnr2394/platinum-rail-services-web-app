@@ -241,6 +241,8 @@ folderController.addFile = function (req, res, next) {
     let re = /(?:\.([^.]+))?$/;
     let extension = re.exec(req.body.Key)[1];
 
+    console.log('extension====>>', extension);
+
 
     console.log(" req.user.name ", req.user)
 
@@ -250,7 +252,7 @@ folderController.addFile = function (req, res, next) {
         type: "file",
         path: req.body.Location,
         size: req.body.size,
-        extension: extension,
+        extension: extension.toLowerCase(),
         uploadedBy: (req.user && req.user.name) ? req.user.name : 'admin',
         uploadedDate: new Date()
     }

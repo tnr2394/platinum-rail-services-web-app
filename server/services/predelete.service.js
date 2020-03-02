@@ -66,7 +66,24 @@ const preClientLocationDelete = (locationId) => {
     })
 }
 
+const preJobDelete = (jobId) => {
+    console.log('Pre Job Delete::::::::', jobId)
+    return new Promise((resolve, reject) => {
+        jobModel.find({ _id: jobId }, (error, job) => {
+            if (error) {
+                console.log('Error while checking:', error);
+                reject(error)
+            } else if (job.length != 0) {
+                resolve(false)
+            } else {
+                resolve(true)
+            }
+        })
+    })
+}
+
 module.exports.preInstructorDelete = preInstructorDelete;
 module.exports.preClientDelete = preClientDelete;
+module.exports.preJobDelete = preJobDelete;
 module.exports.preClientLocationDelete = preClientLocationDelete;
 module.exports.preCourseDelete = preCourseDelete;
