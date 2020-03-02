@@ -35,7 +35,7 @@ export class FileDetailsComponent implements OnInit {
   displaySaveBtn: boolean = false;
   id: any;
   units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  supportedDocuments = ['doc', 'docx', 'pdf', 'ppt', 'xlsx', 'xls'];
+  supportedDocuments = ['doc', 'docx', 'pdf', 'ppt', 'pptx', 'xlsx', 'xls'];
   loading;
   currentFolder;
   sharedClient: any;

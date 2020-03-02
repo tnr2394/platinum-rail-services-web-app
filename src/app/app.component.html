@@ -34,6 +34,11 @@
                     <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
                     <span class="menuText">Dashboard</span>
                 </a>
+                <a *ngIf="currentUser && currentUser.userRole=='instructor'" routerLink="/instructors/{{currentUser._id}}" routerLinkActive="active-link">
+                  <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Profile' : ''}}"
+                    tooltipClass="tooltip-sidebar-class"></i>
+                  <span class="menuText">Profile</span>
+                </a>
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">

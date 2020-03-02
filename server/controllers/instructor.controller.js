@@ -219,18 +219,18 @@ const updateProfilePicture = (profileImg) => {
 
         console.log('Profile Picture Function:', profileImg);
         var re = /(?:\.([^.]+))?$/;
-        var ext = re.exec(profileImg.name)[1];
+        var extension = re.exec(profileImg.name)[1];
         var name = profileImg.name.split('.').slice(0, -1).join('.')
         var newName = name + '-' + '-' + Date.now();
 
-        profileImg.name = newName + '.' + ext;
+        profileImg.name = newName + '.' + extension;
 
         var newFile = {
             title: newName,
             alias: name,
             type: "Profile",
             path: "NEWPATH",
-            extension: ext,
+            extension: extension.toLowerCase(),
             uploadedBy: 'ADMIN',
             file: profileImg,
             uploadedDate: new Date()

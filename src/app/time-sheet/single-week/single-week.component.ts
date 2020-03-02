@@ -38,6 +38,7 @@ export class SingleWeekComponent implements OnInit {
   datesOfWeek;
   Days: any = [];
   finalArray: any = [];
+  showTotalHoursColor = true;
 
   arrayFromDb: any = [];
   arrayFromParam: any = [];
@@ -99,7 +100,8 @@ export class SingleWeekComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
-
+    if (this.router.url.includes('/instructors')) this.displayMsg = false;
+    if (this.router.url.includes('/admin-time-sheet')) this.showTotalHoursColor = false;
     // this.loading = true;
     console.log("**ON INIT**", this.datesOfWeek)
     if (this.datesOfWeek) {
@@ -151,7 +153,7 @@ export class SingleWeekComponent implements OnInit {
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
     }
-    if (changes.monthChanged && changes.monthChanged.currentValue == true){
+    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true){
       this.getWeekDates()
     }
   }
@@ -166,6 +168,8 @@ export class SingleWeekComponent implements OnInit {
   }
 
   getWeekDates() {
+    console.log("**getWeekDates called")
+    this.displayMsg = false;
     console.log("-----getWeekDates-----", moment().startOf('week'), moment().endOf('week'));
     let weekStartDate = moment().startOf('week')
     let weekEndDate = moment().endOf('week')
@@ -494,14 +498,14 @@ export class SingleWeekComponent implements OnInit {
   copyCurrentLogs(i) {
     this.copiedIndex = i;
     this.showPasteBtn = true
-    this.copiedLogs = {
-      logIn: this.Days[i].logIn,
-      lunchStart: this.Days[i].lunchStart,
-      lunchEnd: this.Days[i].lunchEnd,
-      logOut: this.Days[i].logOut,
-      travel: this.Days[i].travel,
-    }
-    console.log("Copied logs are", this.copiedLogs);
+    // this.copiedLogs = {
+    //   logIn: this.Days[i].logIn,
+    //   lunchStart: this.Days[i].lunchStart,
+    //   lunchEnd: this.Days[i].lunchEnd,
+    //   logOut: this.Days[i].logOut,
+    //   travel: this.Days[i].travel,
+    // }
+    // console.log("Copied logs are", this.copiedLogs);
     // console.log("**this.dataSource", this.dataSource.data[i])
     // console.log("**this.Days", this.Days[i]);
     // let newData = this.Days[i]
@@ -519,11 +523,11 @@ export class SingleWeekComponent implements OnInit {
   }
   pasteLogs(i) {
     let newLogs = this.Days[i]
-    newLogs.logIn = this.copiedLogs.logIn;
-    newLogs.lunchStart = this.copiedLogs.lunchStart;
-    newLogs.lunchEnd = this.copiedLogs.lunchEnd;
-    newLogs.logOut = this.copiedLogs.logOut;
-    newLogs.travel = this.copiedLogs.travel
+    newLogs.logIn = this.Days[this.copiedIndex].logIn;
+    newLogs.lunchStart = this.Days[this.copiedIndex].lunchStart;
+    newLogs.lunchEnd = this.Days[this.copiedIndex].lunchEnd;
+    newLogs.logOut = this.Days[this.copiedIndex].logOut;
+    newLogs.travel = this.Days[this.copiedIndex].travel
     this.closed(i)
     console.log("THIS.DAYS", this.Days);
   }
@@ -538,6 +542,7 @@ export class SingleWeekComponent implements OnInit {
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Inside Res=======>>>>', res);
         this.arrayFromDb = res;
+        this.loading = false
         // console.log('Arrayform db', this.arrayFromDb);
         this.mergeAndCompareBothArrays();
       }, error => {
@@ -606,7 +611,7 @@ export class SingleWeekComponent implements OnInit {
 
   submitDetail() {
     _.forEach((this.Days), (singleDate, index) => {
-      if ((singleDate.logIn != '00:00' && singleDate.lunchStart != '00:00') || (singleDate.lunchEnd != '00:00' && singleDate.logOut != '00:00')) {
+      if (singleDate.logIn != '00:00') {
         this.finalArray.push(singleDate);
       }
     })
@@ -625,7 +630,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkHour(hours) {
-    if (hours > 12) {
+    if (hours >= 12) {
       return 'break';
     } else {
       return 'ok';
@@ -638,7 +643,7 @@ export class SingleWeekComponent implements OnInit {
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalHr < 14) {
+    if (totalHr <= 14) {
       return 'ok';
     } else {
       return 'break';
@@ -646,12 +651,16 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkingHours(hours) {
-    // console.log('Check Total Working Hours===>>>', hours);
-    if (hours > 72) {
-      return 'break';
-    } else {
-      return 'ok';
+    if (this.showTotalHoursColor == true){
+      if (hours >= 72) {
+        return 'break';
+      } else {
+        return 'ok';
+      }
     }
+    else return 'ok';
+    // console.log('Check Total Working Hours===>>>', hours);
+    
   }
 
   getInstructorTimeLogs(datesArray, instructorId) {
@@ -664,6 +673,7 @@ export class SingleWeekComponent implements OnInit {
       console.log("data.date is found", data.date);
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Res========>>>>>', res);
+        this.loading = false
         this.updateData(res)
       }, err => {
       })

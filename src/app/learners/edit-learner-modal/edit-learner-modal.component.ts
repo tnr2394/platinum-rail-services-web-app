@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { Course } from 'src/app/interfaces/course';
+import { Observable } from 'rxjs';
 import { LearnerService } from '../../services/learner.service';
+import { DeleteConfirmModalComponent } from '../../commons/delete-confirm-modal/delete-confirm-modal.component'
 import * as _ from 'lodash';
 declare var $;
 
@@ -10,20 +12,17 @@ declare var $;
   templateUrl: './edit-learner-modal.component.html',
   styleUrls: ['./edit-learner-modal.component.scss']
 })
+
 export class EditLearnerModalComponent implements OnInit {
   loading: Boolean = false;
   learnerData;
   passwordMismatch: boolean;
-
   show: boolean;
   pwd: boolean;
   show1: boolean;
   pwd1: boolean;
-
   url1: any;
   profileFile: any = [];
-
-
 
   ngOnInit() {
 
@@ -40,7 +39,7 @@ export class EditLearnerModalComponent implements OnInit {
     });
 
   }
-  constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _learnerService: LearnerService) {
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any, public _learnerService: LearnerService) {
     // NO DEFINITION
   }
 
@@ -104,25 +103,30 @@ export class EditLearnerModalComponent implements OnInit {
 
   delete() {
     console.warn("DELETING ", this.data._id);
-    this.loading = true;
-    this._learnerService.deleteLearner(this.learnerData._id).subscribe(learners => {
-      // this.data = learners;
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'success',
-        data: this.learnerData
-      });
-    }, err => {
-      alert("Error deleting course.")
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'err',
-        data: err
-      });
-    });
 
+    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
+      if (confirm == '') return
+      else if (confirm == 'yes') {
+        this.loading = true;
+        this._learnerService.deleteLearner(this.learnerData._id).subscribe(learners => {
+          // this.data = learners;
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'success',
+            data: this.learnerData
+          });
+        }, err => {
+          alert("Error deleting course.")
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'err',
+            data: err
+          });
+        });
+      }
+    })
   }
 
   password() {
@@ -147,7 +151,11 @@ export class EditLearnerModalComponent implements OnInit {
     }
   }
 
-
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    return dialogRef.afterClosed();
+  }
 
   closoeDialog(result) {
     this.dialogRef.close(result);

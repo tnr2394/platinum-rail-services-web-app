@@ -175,7 +175,7 @@ materialController.addFile = (req, res, next) => {
         type: "material",
         path: req.body.Location,
         size: req.body.size,
-        extension: extension,
+        extension: extension.toLowerCase(),
         uploadedBy: req.user.name,
         uploadedDate: new Date()
     }
