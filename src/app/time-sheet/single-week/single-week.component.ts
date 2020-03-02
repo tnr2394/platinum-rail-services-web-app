@@ -38,6 +38,7 @@ export class SingleWeekComponent implements OnInit {
   datesOfWeek;
   Days: any = [];
   finalArray: any = [];
+  showTotalHoursColor = true;
 
   arrayFromDb: any = [];
   arrayFromParam: any = [];
@@ -100,7 +101,7 @@ export class SingleWeekComponent implements OnInit {
     if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
     if (this.router.url.includes('/instructors')) this.displayMsg = false;
-
+    if (this.router.url.includes('/admin-time-sheet')) this.showTotalHoursColor = false;
     // this.loading = true;
     console.log("**ON INIT**", this.datesOfWeek)
     if (this.datesOfWeek) {
@@ -610,7 +611,7 @@ export class SingleWeekComponent implements OnInit {
 
   submitDetail() {
     _.forEach((this.Days), (singleDate, index) => {
-      if ((singleDate.logIn != '00:00' && singleDate.lunchStart != '00:00') || (singleDate.lunchEnd != '00:00' && singleDate.logOut != '00:00')) {
+      if (singleDate.logIn != '00:00') {
         this.finalArray.push(singleDate);
       }
     })
@@ -629,7 +630,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkHour(hours) {
-    if (hours > 12) {
+    if (hours >= 12) {
       return 'break';
     } else {
       return 'ok';
@@ -642,7 +643,7 @@ export class SingleWeekComponent implements OnInit {
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalHr < 14) {
+    if (totalHr <= 14) {
       return 'ok';
     } else {
       return 'break';
@@ -650,12 +651,16 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkingHours(hours) {
-    // console.log('Check Total Working Hours===>>>', hours);
-    if (hours > 72) {
-      return 'break';
-    } else {
-      return 'ok';
+    if (this.showTotalHoursColor == true){
+      if (hours >= 72) {
+        return 'break';
+      } else {
+        return 'ok';
+      }
     }
+    else return 'ok';
+    // console.log('Check Total Working Hours===>>>', hours);
+    
   }
 
   getInstructorTimeLogs(datesArray, instructorId) {

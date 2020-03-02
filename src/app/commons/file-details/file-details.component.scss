@@ -1,239 +1,250 @@
 h5 {
-  padding: 15px 0px;
-  border-bottom: 1px solid lightgrey;
-  font-weight: 700;
-  color: #888888;
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-  @media (max-width: 575px) {
-    font-size: 16px;
-  }
-  span {
-    font-size: 16px;
-    color: #979797;
-    display: block;
-    padding-top: 10px;
-  }
-  @media (max-width: 575px) {
-    font-size: 14px;
-  }
-}
-h4 {
-  padding: 15px 0px 25px;
-  font-size: 700;
-}
-mat-form-field {
-  width: 100%;
-  color: #979797;
-}
-.mat-form-field-infix {
-  input {
-    color: #979797;
-  }
-}
-.mini_btn {
-  position: absolute;
-  top: -76px;
-  right: 5px;
-}
-.drawer_btn {
-  justify-content: space-between;
-  display: flex;
-  @media (max-width: 422px) {
-    display: inline-block !important;
-    width: 100%;
-    button {
-      width: 100%;
-      margin-bottom: 10px;
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgrey;
+    font-weight: 700;
+    color: #888888;
+    @media (max-width: 768px) {
+        font-size: 18px;
     }
-  }
+    @media (max-width: 575px) {
+        font-size: 16px;
+    }
+    span {
+        font-size: 16px;
+        color: #979797;
+        display: block;
+        padding-top: 10px;
+    }
+    @media (max-width: 575px) {
+        font-size: 14px;
+    }
 }
+
+h4 {
+    padding: 15px 0px 25px;
+    font-size: 700;
+}
+
+mat-form-field {
+    width: 100%;
+    color: #979797;
+}
+
+.mat-form-field-infix {
+    input {
+        color: #979797;
+    }
+}
+
+.mini_btn {
+    position: absolute;
+    top: -76px;
+    right: 5px;
+}
+
+.drawer_btn {
+    justify-content: space-between;
+    display: flex;
+    @media (max-width: 422px) {
+        display: inline-block !important;
+        width: 100%;
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+}
+
 .download_link {
-  a {
+    a {
+        color: white;
+        text-decoration: none;
+    }
     color: brown;
-    text-decoration: none;
-  }
-  color: brown;
 }
+
 .icon {
-  width: 100%;
-  justify-content: center;
+    width: 100%;
+    justify-content: center;
 }
+
 .pdf {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/pdf-icon-round.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/pdf-icon-round.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .ppt {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/icon-powerpoint.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/icon-powerpoint.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .zip {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/zip.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/zip.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .jpg {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/jpg.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/jpg.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .jpeg {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/jpg.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/jpg.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .png {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/png.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/png.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .pptx {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/icon-powerpoint.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/icon-powerpoint.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .mp4 {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/icon-powerpoint.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/icon-powerpoint.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .docx {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/icon-docx.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/icon-docx.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .mp4 {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/mp4icon.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/mp4icon.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .xls {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/xlsx.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/xlsx.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .xlsx {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/xlsx.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/xlsx.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .txt {
-  height: 100px;
-  width: 100px;
-  background: url("../../../assets/txt.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 100px;
+    background: url("../../../assets/txt.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .doc {
-  height: 100px;
-  width: 1040px;
-  background: url("../../../assets/word-doc-icon.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  margin: auto;
+    height: 100px;
+    width: 1040px;
+    background: url("../../../assets/word-doc-icon.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 // .icon{
 //     height: 50% !important;
 // }
 .folder_icon {
-  font-size: 70px;
-  margin-bottom: 0;
+    font-size: 70px;
+    margin-bottom: 0;
 }
+
 .shared_with {
-  @media (max-width: 575px) {
-    font-size: 24px;
-  }
-  @media (max-width: 422px) {
-    font-size: 20px;
-  }
+    @media (max-width: 575px) {
+        font-size: 24px;
+    }
+    @media (max-width: 422px) {
+        font-size: 20px;
+    }
 }
+
 .detail_file_preview {
-  img {
-    width: 100%;
-    min-width: 250px;
-    max-width: 330px;
-    height: auto;
-    min-height: 250px;
-    max-height: 280px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: top;
-    object-position: top;
-    border: 1px solid black;
-  }
-  background: url(../../../assets/loader.gif) center center no-repeat;
+    img {
+        width: 100%;
+        min-width: 250px;
+        max-width: 330px;
+        height: auto;
+        min-height: 250px;
+        max-height: 280px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: top;
+        object-position: top;
+        border: 1px solid black;
+    }
+    background: url(../../../assets/loader.gif) center center no-repeat;
 }
+
 .inst_pic {
-  position: relative;
-  margin-right: 10px;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
+    position: relative;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
 }
