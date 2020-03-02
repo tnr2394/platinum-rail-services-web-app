@@ -14,14 +14,15 @@
             placeholder="Choose Learners" [(ngModel)]="selectedLearners">
         </ng-select>
     </div>
-    <div class="col" *ngIf="unitArray && unitArray.length != 0">
+    <div class="col" *ngIf="unitArray && unitArray.length != 0 && allLearners && allLearners.length != 0">
         <!-- <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
             (valueChanged)="changedUnit($event)"></select2> -->
         <ng-select [items]="unitsToDisplay" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
             bindLabel="text" placeholder="Choose Units" [(ngModel)]="selectedUnits">
         </ng-select>
     </div>
-    <div class="col-1" style="margin-top: 15px;">
+    <div class="col-1" style="margin-top: 15px;"
+        *ngIf="unitArray && unitArray.length != 0 && allLearners && allLearners.length != 0">
         <button mat-mini-fab color="primary" (click)="getFilteredData()">GO</button>
     </div>
     <div class="col-12 responsive-row">
@@ -65,7 +66,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let learn of learner; let learnIndex = index;">
-                                        <td *ngFor="let ass of unit.assignment; let assignIndex = index;" class="td-width">
+                                        <td *ngFor="let ass of unit.assignment; let assignIndex = index;"
+                                            class="td-width">
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'"
                                                 routerLink="/learnerAllotment/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
                                                 <div placement="top"
@@ -73,12 +75,14 @@
                                                     tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
-                                            <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'" >
-                                                <div placement="top" (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)"
+                                            <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
+                                                <div placement="top"
+                                                    (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
                                                     tooltipClass="tooltip-top-class"
-                                                    [ngClass]="checkArray(learn.assignments,ass.assignmentId)" id="Unassigned{{ass.assignmentId}}{{learn._id}}"> </div>
-                                                    <!--  -->
+                                                    [ngClass]="checkArray(learn.assignments,ass.assignmentId)"
+                                                    id="Unassigned{{ass.assignmentId}}{{learn._id}}"> </div>
+                                                <!--  -->
                                             </a>
                                         </td>
                                     </tr>
@@ -90,7 +94,7 @@
                 </div>
 
 
-                <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="alllearners && allLearners.length !=0">
+                <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="alllearners && allLearners.length == 0">
                     No Assignment Alloted!
                 </h3>
 
