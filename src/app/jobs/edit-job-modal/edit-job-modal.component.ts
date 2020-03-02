@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, FormArray, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, throwToolbarMixedModesError } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { DeleteConfirmModalComponent } from '../../commons/delete-confirm-modal/delete-confirm-modal.component'
 
 import { ClientService } from '../../services/client.service';
 import { CourseService } from '../../services/course.service';
@@ -88,7 +90,7 @@ export class EditJobModalComponent implements OnInit {
     this.addJobForm.controls['location'].setValue(data.value)
   }
 
-  constructor(public _clientService: ClientService, public _courseService: CourseService, 
+  constructor(public dialog: MatDialog, public _clientService: ClientService, public _courseService: CourseService,
     public _instructorService: InstructorService, public _jobService: JobService,
     @Inject(MAT_DIALOG_DATA) public data: any, @Inject(MAT_DIALOG_DATA) public DialogData: any,
     public formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditJobModalComponent>) { }
@@ -313,24 +315,31 @@ export class EditJobModalComponent implements OnInit {
 
   delete() {
     let id = this.DialogData._id
-    this._jobService.deleteJobs(id).subscribe(data => {
-      this.data = this.DialogData;
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'success',
-        data: this.DialogData
-      });
-    }, err => {
-      alert("Error deleting instructor.")
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'err',
-        data: err
-      });
-    });
+    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
+      if (confirm == '') return
+      else if (confirm == 'yes') {
+        this._jobService.deleteJobs(id).subscribe(data => {
+          this.data = this.DialogData;
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'success',
+            data: this.DialogData
+          });
+        }, err => {
+          alert("Error deleting instructor.")
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'err',
+            data: err
+          });
+        });
+      }
+
+    })
   }
+
   closoeDialog(result) {
     this.dialogRef.close(result);
   }
@@ -395,6 +404,12 @@ export class EditJobModalComponent implements OnInit {
       })
       this.addJobForm.controls.instructor.setValue(this.selectedInstructor);
     });
+  }
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    return dialogRef.afterClosed();
   }
 
   instructorChanged(data) {

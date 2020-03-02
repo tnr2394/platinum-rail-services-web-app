@@ -10,16 +10,16 @@
     <div class="col" *ngIf="allLearners && allLearners.length != 0">
         <!-- <select2 [data]="learnerToDisplay" [cssImport]=true  [options]="optionsForlearners" [value]="value"
             (valueChanged)="changedLearner($event)"></select2> -->
-            <ng-select [items]="allLearners" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name"
-                placeholder="Choose Learners" [(ngModel)]="selectedLearners">
-            </ng-select>
+        <ng-select [items]="allLearners" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name"
+            placeholder="Choose Learners" [(ngModel)]="selectedLearners">
+        </ng-select>
     </div>
     <div class="col" *ngIf="unitArray && unitArray.length != 0">
         <!-- <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
             (valueChanged)="changedUnit($event)"></select2> -->
-            <ng-select [items]="unitsToDisplay" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="text"
-                placeholder="Choose Units" [(ngModel)]="selectedUnits">
-            </ng-select>
+        <ng-select [items]="unitsToDisplay" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
+            bindLabel="text" placeholder="Choose Units" [(ngModel)]="selectedUnits">
+        </ng-select>
     </div>
     <div class="col-1" style="margin-top: 15px;">
         <button mat-mini-fab color="primary" (click)="getFilteredData()">GO</button>
@@ -27,7 +27,7 @@
     <div class="col-12 responsive-row">
         <div class="card">
             <div class="row">
-                <ul class="legend" *ngIf="assignmentLength != 0 && learnerLength != 0">
+                <ul class="legend" *ngIf="assignmentLength != 0 && allLearners && allLearners.length != 0">
                     <li><span class="unassigned"></span>Unassigned</li>
                     <li><span class="pending"></span>Pending</li>
                     <li><span class="submitted"></span>Submitted</li>
@@ -35,7 +35,7 @@
                     <li><span class="requestforresubmission"></span>Request for resubmission</li>
                     <li><span class="completed"></span>Completed</li>
                 </ul>
-                <div class="col-12" *ngIf="assignmentLength != 0 && learnerLength != 0">
+                <div class="col-12" *ngIf="assignmentLength != 0 && allLearners && allLearners.length != 0">
                     <div class="table-responsive">
                         <table class="float-left">
                             <thead>
@@ -83,18 +83,18 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            
+
                         </div>
                     </div>
                 </div>
 
 
-                <!-- <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="assignmentLength < 1 || learnerLength < 1">
+                <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="alllearners && allLearners.length !=0">
                     No Assignment Alloted!
-                </h3> -->
+                </h3>
 
             </div>
         </div>
-        
+
     </div>
 </div>

@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 // import { instructor } from 'src/app/interfaces/instructor';
-import { InstructorService } from '../../services/instructor.service'
+import { InstructorService } from '../../services/instructor.service';
+import { DeleteConfirmModalComponent } from '../../commons/delete-confirm-modal/delete-confirm-modal.component'
 import { format } from 'url';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 declare var $;
 
 
@@ -55,7 +57,7 @@ export class EditInstructorModalComponent implements OnInit {
       $("#cpassword").toggleClass("fa-eye fa-eye-slash");
     });
   }
-  constructor(public dialogRef: MatDialogRef<Instructor>, @Inject(MAT_DIALOG_DATA) public data: any, public _instructorService: InstructorService) {
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<Instructor>, @Inject(MAT_DIALOG_DATA) public data: any, public _instructorService: InstructorService) {
     // NO DEFINITION
   }
   validate(data) {
@@ -147,24 +149,29 @@ export class EditInstructorModalComponent implements OnInit {
 
   delete() {
     console.warn("DELETING ", this.data._id);
-    this.loading = true;
-    this._instructorService.deleteInstructor(this.instructorData._id).subscribe(instructors => {
-      this.data = instructors;
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'success',
-        data: this.instructorData
-      });
-    }, err => {
-      alert("Error deleting instructor.")
-      this.loading = false;
-      this.closoeDialog({
-        action: 'delete',
-        result: 'err',
-        data: err
-      });
-    });
+    this.openDialog(DeleteConfirmModalComponent).subscribe(confirm => {
+      if (confirm == '') return
+      else if (confirm == 'yes') {
+        this.loading = true;
+        this._instructorService.deleteInstructor(this.instructorData._id).subscribe(instructors => {
+          this.data = instructors;
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'success',
+            data: this.instructorData
+          });
+        }, err => {
+          alert("Error deleting instructor.")
+          this.loading = false;
+          this.closoeDialog({
+            action: 'delete',
+            result: 'err',
+            data: err
+          });
+        });
+      }
+    })
   }
 
 
@@ -193,10 +200,16 @@ export class EditInstructorModalComponent implements OnInit {
     }
   }
 
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
+    return dialogRef.afterClosed();
+  }
+
   closoeDialog(result) {
     this.dialogRef.close(result);
   }
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
