@@ -171,7 +171,8 @@ export class SingleInstructorComponent implements OnInit {
   generateWeekDates(){
     console.log("**generatingWeekDates");
     this.monthChanged = false
-    if (this.selectedWeeks){
+    console.log("this.selectedWeeks", this.selectedWeeks)
+    if (this.selectedWeeks && this.selectedWeeks.from){
       let week = this.selectedWeeks
       console.log("-----getWeekDates-----", week);
       let temp = week.from.split(" ")
@@ -202,6 +203,7 @@ export class SingleInstructorComponent implements OnInit {
     this.monthChanged = true
     this.doCalWeekDates = true
     this.selectedWeeks = []
+    this.datesRange = []
     // this.datesRange = []
   }
   clearWeek(){
