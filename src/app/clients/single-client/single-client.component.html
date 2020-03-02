@@ -9,7 +9,7 @@
 
     <!-- Add Location Button -->
     <div class="col-sm-6 loaction_btn">
-        <button mat-flat-button color="primary" class="modal_open button_hover_effect" (click)="addLocationModal()">
+        <button mat-flat-button color="primary" class="modal_open button_hover_effect Button_shap_effact ripple" (click)="addLocationModal()">
             <i class="fas fa-plus fa-fw"></i>
             <span> Add Location</span>
         </button>
@@ -25,8 +25,7 @@
                 <h4 class="text-info" style="padding: 20px 30px;">No Locations</h4>
             </div>
             <div class="col-lg-4 col-md-4" *ngFor="let location of client.locations">
-                <location-tab class="locationtab" [isActive]="false" [(location)]="location"
-                    (onDeleted)="deletedLocation($event)"></location-tab>
+                <location-tab class="locationtab" [isActive]="false" [(location)]="location" (onDeleted)="deletedLocation($event)"></location-tab>
             </div>
         </div>
     </div>
