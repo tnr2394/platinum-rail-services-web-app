@@ -14,12 +14,12 @@
         </div>
     </div>
     <div class='col-md-6'>
-    <div class='row px-3'>
-        <div class="col-lg-6">
-            <i class="fa fa-calendar faiconColor"></i> <span class='datesColor'> Dates for job</span>
-        </div>
-        <div class="col-lg-6">
-            <!-- <div class='center'>
+        <div class='row pr-3'>
+            <div class="col-lg-6">
+                <i class="fa fa-calendar faiconColor"></i> <span class='datesColor'> Dates for job</span>
+            </div>
+            <div class="col-lg-6">
+                <!-- <div class='center'>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" formControlName="startingDate" placeholder="Starting date"
                         (dateChange)='searchDays($event); jobDates.EditDates($event.value, totalDays)'
@@ -31,31 +31,29 @@
                     </mat-error>
                 </mat-form-field>
             </div> -->
-        </div>
-    </div>
-    <div class='row'>
-        <div class='col-12'>
-            <div class='row greyBackground'>
-                <div class='col-3 headerColor'>Sr.No.</div>
-                <div class='col-9 headerColor'>Date</div>
             </div>
-            <div class='maxHeight'>
-                <div class='row m-0' *ngFor='let oneDate of finalCourseDates | slice:0:duration; let j = index;'>
-                    <div class='col-3 center'>
-                        {{j + 1}}
-                    </div>
-                    <div class='col-9'>
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="picker" formControlName="singleJobDates"
-                                placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}'
-                                (dateChange)="singleDateChanged($event,j)">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker [startAt]='oneDate'></mat-datepicker>
-                        </mat-form-field>
+        </div>
+        <div class='row'>
+            <div class='col-12'>
+                <div class='row greyBackground'>
+                    <div class='col-3 headerColor'>Sr.No.</div>
+                    <div class='col-9 headerColor'>Date</div>
+                </div>
+                <div class='maxHeight'>
+                    <div class='row m-0' *ngFor='let oneDate of finalCourseDates | slice:0:duration; let j = index;'>
+                        <div class='col-3 center'>
+                            {{j + 1}}
+                        </div>
+                        <div class='col-9'>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" formControlName="singleJobDates" placeholder='{{oneDate.getDate()}}/{{oneDate.getMonth()+1}}/{{oneDate.getFullYear()}}' (dateChange)="singleDateChanged($event,j)">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker [startAt]='oneDate'></mat-datepicker>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </form>

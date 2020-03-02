@@ -4,143 +4,128 @@
                                 <app-file-details></app-file-details>
                             </mat-sidenav> -->
     <!-- <div class="expansion_tab"> -->
-        <!-- <mat-sidenav #sidenav mode="side" position="end">
+    <!-- <mat-sidenav #sidenav mode="side" position="end">
             <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                     aria-hidden="true"></i></mat-button>
             <app-file-details [details]="file"></app-file-details>
         </mat-sidenav> -->
     <!-- </div> -->
-<mat-sidenav-content>
-<div class="row">
-    <div class="col-12 responsive-row">
-        <h3 class="page-title" *ngIf="course">Course : {{course.title}}</h3>
+    <mat-sidenav-content>
         <div class="row">
+            <div class="col-12 responsive-row">
+                <h3 class="page-title" *ngIf="course">Course : {{course.title}}</h3>
+                <div class="row">
 
-            <div class="col-12 ">
-                <div class="card">
-                    <div class="row material_row">
-                        <div class="col-lg-7">
-                            <h3 class="card-title h5 mb-1" *ngIf="course">
-                                Materials:
-                                <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
+                    <div class="col-12 ">
+                        <div class="card">
+                            <div class="row material_row">
+                                <div class="col-lg-7">
+                                    <h3 class="card-title h5 mb-1" *ngIf="course">
+                                        Materials:
+                                        <!-- <span class="materials_title" matBadge="{{materials.length}}" matBadgeOverlap="false"
                                     matBadgeColor="warn"> {{course.title}}</span> -->
-                                <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
-                                <span class="course_t_span"></span> <button mat-mini-fab
-                                    disabled>{{materials.length}}</button>
-                            </h3>
-                        </div>
-                        <div class="col-lg-5 material_btn_insmall">
-                            <button mat-flat-button color="primary" class="pull-right button_hover_effect"
-                                (click)="addMaterialModal()">
+                                        <!-- <mat-icon class="badge-icon" matBadge="{{materials.length}}" matBadgePosition="above after" matBadgeOverlap="false"> {{course.title}}</mat-icon> -->
+                                        <span class="course_t_span"></span> <button mat-mini-fab disabled>{{materials.length}}</button>
+                                    </h3>
+                                </div>
+                                <div class="col-lg-5 material_btn_insmall">
+                                    <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addMaterialModal()">
                                 <i class="fas fa-plus fa-fw"></i>
                                 <span> Add Material</span>
                             </button>
-                        </div>
-                    </div>
-                    <div class="row table_search">
-                        <div class="col-lg-12 material_flex_paginator">
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                        <div class="row w-100">
-                            <div class="col-md-6 pl-0">
-                                <div class="row mt-1 res-row">
-                                    <div *ngFor='let status of assignmentStatus;let i = index'>
-                                        <div class="col-md-2">
-                                            <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                                                (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
-                                                {{status.display}}
-                                            </mat-checkbox>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 p-0 ">
-                                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Select Assignment Status -->
-                    
-
-
-                    <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
-                        
-                        <div class="col-lg-12 all_material_tile">
-                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-
-                                <!-- Title Column -->
-                                <ng-container matColumnDef="Materials">
-                                    <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
-                                        mat-sort-header="title">
-                                        Name
-                                    </th>
-                                    <td class="mat-table-cell text-center" mat-cell
-                                        *matCellDef="let material; let i = index;">
-                                        <div class="row material_tile_row">
-                                             <!-- <div class='materialsDiaplay'>  -->
-                                                 <div class="col-1 d-flex justify-content-center align-items-center">
-                                                     <div *ngIf="view == false">
-                                                        <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                            <mat-checkbox [ngModel]="selectedCheckbox"
-                                                                (change)='onMaterialSelection($event)'
-                                                                [value]='material'>
-                                                            </mat-checkbox>
-                                                        </div>
-                                                     </div>
-                                                 </div>
-                                                <div class="col-10">
-                                                    <material-tile [material]="material" [jobId]="jobId"
-                                                        [learnersAllotedFromJob]="learnersAlloted"
-                                                        [isSelected]="(material._id === selectedMaterial)" [index]='i'
-                                                        (getFiles)="loadMaterialFiles($event)"
-                                                        (assignmentAllocated)="allocatedFromTile($event)"
-                                                        (fileDetailsComp)="fileDetailsComp($event)"
-                                                        (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                            <div class="row table_search">
+                                <div class="col-lg-12 material_flex_paginator">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                    <div class="row w-100">
+                                        <div class="col-md-6 pl-0">
+                                            <div class="row mt-1 res-row">
+                                                <div *ngFor='let status of assignmentStatus;let i = index'>
+                                                    <div class="col-md-2">
+                                                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                                            {{status.display}}
+                                                        </mat-checkbox>
+                                                    </div>
                                                 </div>
-                                             <!-- </div> -->
+                                            </div>
                                         </div>
-                                    </td>
-                                </ng-container>
-                                <thead>
-                                    <tr style="background:lightgray;" mat-header-row
-                                        *matHeaderRowDef="displayedColumns"></tr>
-                                </thead>
-                                <tbody>
-                                    <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
-                                </tbody>
-                            </table>
-                            <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
-                                    class="fa fa-cog fa-spin text-info"></i>
-                            </h3>
-                            </div>
-                            <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
-                                <div class="d-inline-block w-100">
-                                    <div class="float-left title_display" *ngIf="file">
-                                    {{file.title}}
+                                        <div class="col-md-6 p-0 ">
+                                            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                                        </div>
                                     </div>
-                                <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
-                                        aria-hidden="true"></i></mat-button>
                                 </div>
-                                <app-file-details [details]="file" (fileDeleted)="deleteFile($event)"></app-file-details>
-                            </mat-sidenav>
-                        
-                        <!-- <div class="col-lg-5 expansion_tab">
+                            </div>
+
+                            <!-- Select Assignment Status -->
+
+
+
+                            <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
+
+                                <div class="col-lg-12 all_material_tile">
+                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                        <!-- Title Column -->
+                                        <ng-container matColumnDef="Materials">
+                                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+                                                Name
+                                            </th>
+                                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
+                                                <div class="row material_tile_row">
+                                                    <!-- <div class='materialsDiaplay'>  -->
+                                                    <div class="col-1 d-flex justify-content-center align-items-center">
+                                                        <div *ngIf="view == false">
+                                                            <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                                                                <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)' [value]='material'>
+                                                                </mat-checkbox>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <material-tile [material]="material" [jobId]="jobId" [learnersAllotedFromJob]="learnersAlloted" [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)" (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                                    </div>
+                                                    <!-- </div> -->
+                                                </div>
+                                            </td>
+                                        </ng-container>
+                                        <thead>
+                                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
+                                        </tbody>
+                                    </table>
+                                    <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                                    </h3>
+                                </div>
+                                <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
+                                    <div class="d-inline-block w-100">
+                                        <div class="float-left title_display" *ngIf="file">
+                                            {{file.title}}
+                                        </div>
+                                        <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle" aria-hidden="true"></i></mat-button>
+                                    </div>
+                                    <app-file-details [details]="file" (fileDeleted)="deleteFile($event)"></app-file-details>
+                                </mat-sidenav>
+
+                                <!-- <div class="col-lg-5 expansion_tab">
                             <mat-sidenav #sidenav mode="side" position="end">
                                 <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
                                         aria-hidden="true"></i></mat-button>
                                 <app-file-details [details]="file"></app-file-details>
                             </mat-sidenav>
                         </div> -->
-                        
 
 
-                        <!--Card content-->
 
-                        <!-- <div class="col-lg-6" *ngIf="selectedMaterial">
+                                <!--Card content-->
+
+                                <!-- <div class="col-lg-6" *ngIf="selectedMaterial">
                             <material-files [materialId]="selectedMaterial"></material-files>
                         </div>
                         <div class="col-lg-6" *ngIf="!selectedMaterial">
@@ -154,16 +139,16 @@
                             No Materials Found!
                         </h3>
                     </mat-card> -->
-                    <!-- <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
+                                <!-- <h1 *ngIf="!(materials)" class="text-center"><i class="fa fa-cog fa-spin"></i></h1> -->
+                            </div>
+                            <!-- /.Card content -->
+                            <h1 class="text-center" *ngIf="!materials">
+                                <i class="fa fa-refresh fa-spin fa-fw"></i>
+                            </h1>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.Card content -->
-                <h1 class="text-center" *ngIf="!materials">
-                    <i class="fa fa-refresh fa-spin fa-fw"></i>
-                </h1>
             </div>
         </div>
-    </div>
-</div>
-</div>
-</mat-sidenav-content>
+    </mat-sidenav-content>
 </mat-sidenav-container>

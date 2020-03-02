@@ -7,8 +7,7 @@
                 </h3>
             </div>
             <div class="col-6">
-                <button mat-flat-button color="primary" class="pull-right button_hover_effect"
-                    (click)="addClientModal()">
+                <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addClientModal()">
                     <i class="fas fa-plus fa-fw"></i>
                    <span> Add Client</span>
                 </button>
@@ -35,44 +34,37 @@
                         <!--Text-->
                         <div>
                             <!-- <h1>{{dataSource.length}}</h1> -->
-                             <div class="table-responsive">
+                            <div class="table-responsive">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                     <!-- Name Column -->
                                     <ng-container matColumnDef="name">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="name"> Name </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let client"> {{client.name}} </td>
                                     </ng-container>
 
                                     <!-- Email Column -->
                                     <ng-container matColumnDef="email">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                                        <td class="mat-table-cell  text-center" mat-cell
-                                            *matCellDef="let client; let i = index;"><span
-                                                class="badge width-150 {{getRandomColorClass(i)}}"> {{client.email}} </span>
+                                        <td class="mat-table-cell  text-center" mat-cell *matCellDef="let client; let i = index;"><span class="badge width-150 {{getRandomColorClass(i)}}"> {{client.email}} </span>
                                         </td>
                                     </ng-container>
 
                                     <!-- Action Column -->
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
-                                        <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let client; let i = index;">
-                                            <a class="text-success bold mr-5" (click)="editClientModal(i, client)"
-                                            placement="bottom" ngbTooltip="Edit"  tooltipClass="tooltip-class" triggers="hover">
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let client; let i = index;">
+                                            <a class="text-success bold mr-5" (click)="editClientModal(i, client)" placement="bottom" ngbTooltip="Edit" tooltipClass="tooltip-class" triggers="hover">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="text-primary bold" routerLink="/client/{{client._id}}"
-                                            placement="bottom" ngbTooltip="Details" triggers="hover" tooltipClass="tooltip-class">
+                                            <a class="text-primary bold" routerLink="/client/{{client._id}}" placement="bottom" ngbTooltip="Details" triggers="hover" tooltipClass="tooltip-class">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </ng-container>
 
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     </thead>
                                     <tbody>
                                         <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>

@@ -4,8 +4,7 @@
 
         <!-- Client Name -->
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required
-                cdkFocusInitial>
+            <input matInput name="client-name" placeholder="Client Name" [(ngModel)]='data.name' required cdkFocusInitial>
             <mat-error>Name is required</mat-error>
         </mat-form-field>
 
@@ -17,20 +16,16 @@
 
         <!-- Client Password -->
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
-                [(ngModel)]='data.password' required>
+            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]='data.password' required>
             <mat-error>Password is required.</mat-error>
-            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="password()"></span>
+            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()"></span>
         </mat-form-field>
 
 
         <!-- Client Confirm Password-->
         <mat-form-field class="example-full-width col-md-6">
-            <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password"
-                [(ngModel)]='data.confirmPassword' required>
-            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="cpassword()"></span>
+            <input matInput [type]="show1 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
+            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="cpassword()"></span>
             <mat-error>Confirm Password is required.</mat-error>
         </mat-form-field>
 
@@ -44,7 +39,7 @@
     </div>
 
     <div mat-dialog-actions align="center" *ngIf="!loading">
-        <button mat-flat-button class="button_hover_effect" color="primary" type="submit">
+        <button mat-flat-button class="button_hover_effect ripple Button_shap_effact" type="submit">
             <i class="fas fa-save fa-fw"></i><span> Save</span>
         </button>
         <!-- <button mat-button (click)="onNoClick()">Cancle</button> -->

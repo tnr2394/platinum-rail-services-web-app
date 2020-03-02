@@ -1,5 +1,3 @@
-
-
 <div class="row">
     <div class="col-12">
         <div class="row align-items-center">
@@ -9,8 +7,7 @@
                 </h3>
             </div>
             <div class="col-6">
-                <button *ngIf="!view" mat-flat-button color="primary" class="pull-right button_hover_effect"
-                    (click)="addCourseModal()">
+                <button *ngIf="!view" mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addCourseModal()">
                     <i class="fas fa-plus fa-fw"></i>
                     <span> Add Course</span>
                 </button>
@@ -42,8 +39,7 @@
 
                                     <!-- Title Column -->
                                     <ng-container matColumnDef="title">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="title"> Title </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="title"> Title </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let course">
                                             {{course.title}} </td>
                                     </ng-container>
@@ -51,32 +47,24 @@
                                     <!-- Duration Column -->
                                     <ng-container matColumnDef="duration">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
-                                        <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let course; let i = index;"><span
-                                                class="badge {{getRandomColorClass(i)}}"> {{course.duration}} </span>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let course; let i = index;"><span class="badge {{getRandomColorClass(i)}}"> {{course.duration}} </span>
                                         </td>
                                     </ng-container>
 
                                     <!-- Action Column -->
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
-                                        <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let course; let i = index;">
-                                            <a mat-button class="text-success" (click)="editCourseModal(i, course)"
-                                                placement="bottom" ngbTooltip="Edit" triggers="hover"
-                                                tooltipClass="tooltip-class">
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let course; let i = index;">
+                                            <a mat-button class="text-success" (click)="editCourseModal(i, course)" placement="bottom" ngbTooltip="Edit" triggers="hover" tooltipClass="tooltip-class">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a mat-button class="text-primary" routerLink="/materials/{{course._id}}"
-                                                placement="bottom" ngbTooltip="Details" triggers="hover"
-                                                tooltipClass="tooltip-class">
+                                            <a mat-button class="text-primary" routerLink="/materials/{{course._id}}" placement="bottom" ngbTooltip="Details" triggers="hover" tooltipClass="tooltip-class">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </ng-container>
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     </thead>
                                     <tbody>
                                         <tr mat-row *matRowDef="let course; columns: displayedColumns;"></tr>
@@ -86,12 +74,11 @@
                                 </h3>
                             </div>
                         </div>
-                        
+
                     </div>
                     <!--/.Card content-->
 
-                    <h3 class="text-center text-info pt-3 no_found_msg"
-                        *ngIf="loading == false && courses && courses.length == 0">
+                    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="loading == false && courses && courses.length == 0">
                         No Courses Found!
                     </h3>
 
