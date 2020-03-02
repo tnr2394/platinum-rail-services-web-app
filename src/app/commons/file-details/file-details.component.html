@@ -5,12 +5,18 @@
         <div class="row icon m-0 py-4">
             <h1 *ngIf="type=='folder'" class="folder_icon"><i class="fa fa-folder-open text-warning"></i></h1>
             <!-- <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div> -->
-            <div *ngIf="type == 'file' || type == 'material' " class="detail_file_preview">
-                <!-- <img src="{{recievedFile.tumbNail}}"> -->
+
+            <!-- Iframe Support Types doc,docx,pdf,ppt,xlsx,xls -->
+            <div *ngIf="(type == 'file' || type == 'material') && supportedDocument " class="detail_file_preview">
                 <iframe style="height: 350px;" [src]='pathForPreview | safe:"resourceUrl"' frameborder="0">
                 </iframe>
-                <!-- <img src="../../../assets/google-docs.png" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" /> -->
             </div>
+
+            <!-- This For File Like jpg,jpeg,png -->
+            <div *ngIf="(type == 'file' || type == 'material') && !supportedDocument " class="detail_file_preview">
+                <img src="{{recievedFile.path}}" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" />
+            </div>
+
         </div>
         <div class="row m-0">
             <div class="col">
