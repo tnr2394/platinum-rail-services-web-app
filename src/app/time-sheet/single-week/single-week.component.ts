@@ -548,35 +548,40 @@ export class SingleWeekComponent implements OnInit {
     console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
     var filterDates;
     // let lengthOfArray = this.arrayFromDb.length
-    
-    
-    filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
-    // console.log('Fiter Dates===>>>>', filterDates);
-    _.forEach((filterDates), (singleDate, index) => {
-      let newObj;
-      newObj = {
-        date: singleDate,
-        _id: 'new',
-        logIn: '00:00',
-        lunchStart: '00:00',
-        lunchEnd: '00:00',
-        logOut: '00:00',
-        workingHours: {
-          hours: 0,
-          minutes: 0,
-        },
-        travel: '00:00',
-        totalHours: {
-          hours: 0,
-          minutes: 0,
+    return new Promise((resolve,reject)=>{
+      filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
+      // console.log('Fiter Dates===>>>>', filterDates);
+      _.forEach((filterDates), (singleDate, index) => {
+        let newObj;
+        newObj = {
+          date: singleDate,
+          _id: 'new',
+          logIn: '00:00',
+          lunchStart: '00:00',
+          lunchEnd: '00:00',
+          logOut: '00:00',
+          workingHours: {
+            hours: 0,
+            minutes: 0,
+          },
+          travel: '00:00',
+          totalHours: {
+            hours: 0,
+            minutes: 0,
+          }
         }
-      }
-      this.arrayFromDb.push(newObj);
+        this.arrayFromDb.push(newObj);
+      })
+      resolve(this.arrayFromDb)
+    }).then((resolvedArray:any)=>{
+      this.arrayFromDb = (resolvedArray.sort(function (a, b) {
+      console.log("**a",a.date,"**b",b.date);
+      return <any>new Date(b.date) - <any>new Date(a.date);
+    })).reverse();
+      this.Days = this.arrayFromDb;
+      this.updateData(this.Days);
+      this.totalWorkingHours();
     })
-
-    this.Days = this.arrayFromDb;
-    this.updateData(this.Days);
-    this.totalWorkingHours();
   }
 
   submitDetail() {
