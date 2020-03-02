@@ -53,6 +53,7 @@ export class SingleInstructorComponent implements OnInit {
   selectedWeeks: any;
   doCalWeekDates = true;
   weekDates: unknown;
+  monthChanged: boolean;
   // @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
   //   this.sort = ms;
   //   this.setDataSourceAttributes();
@@ -120,6 +121,8 @@ export class SingleInstructorComponent implements OnInit {
     })
   }
   generateMonthWeeks(){
+    this.selectedWeeks = []
+    this.monthChanged = true
     if(this.selectedMonths){
       console.log(this.selectedMonths.id)
       let month = this.selectedMonths.id
@@ -164,6 +167,7 @@ export class SingleInstructorComponent implements OnInit {
     // this.index = i
   }
   generateWeekDates(){
+    this.monthChanged = false
     if(this.selectedWeeks){
       let week = this.selectedWeeks
       console.log("-----getWeekDates-----", week);
@@ -183,7 +187,6 @@ export class SingleInstructorComponent implements OnInit {
         this.weekDates = resolvedDates
       })
     }
-    
   }
   // updateData(jobs) {
   //   this.dataSource = new MatTableDataSource(jobs);

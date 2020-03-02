@@ -187,6 +187,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       if (index >= 0) {
         return assignmentArray[index].assignmentStatus;
       } else {
+        // console.log('***Unassigned' + assignment);
+        // 
         return 'Unassigned';
       }
     } else {
@@ -214,17 +216,26 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     }
   }
 
-  unassignedClicked(learn, assignment, i){
-    console.log("***learner", learn);
-    console.log("***assignment", assignment);
-    this.unit.assignment[i]['assignmentStatus'] == "selected"
-    // assignment.assignmentStatus
+  unassignedClicked(learn, assignmentId, learnIndex, assignIndex, event){
+    console.log("***event", event.target.classList.value);
+    console.log("***assignment", assignmentId);
+    // console.log("***learnIndex", learnIndex);
+    console.log("***Clicked", assignmentId + ',' + learn._id);
     let newData = {
       learner: learn._id,
-      assignment: assignment.assignmentId
+      assignment: assignmentId
     }
+    if (event.target.classList.value == 'Unassigned'){
+      $("#Unassigned" + assignmentId + learn._id).removeClass('Unassigned');
+      $("#Unassigned" + assignmentId + learn._id).addClass('selected');
+    }
+    else if (event.target.classList.value == 'selected'){
+      $("#Unassigned" + assignmentId + learn._id).removeClass('selected');
+      $("#Unassigned" + assignmentId + learn._id).addClass('Unassigned');
+    }
+    
     if(this.allotmentArray){
-      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learnerId == newData.learner && o.assignmentId == newData.assignment)})
+      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learner == newData.learner && o.assignment == newData.assignment)})
       if(index > -1) this.allotmentArray.splice(index,1)
       else this.allotmentArray.push(newData)
     }
@@ -246,7 +257,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
         return;
       } else {
         this.learner = data;
-        console.log('this.learner======~~~~~', this.learner);
+        // console.log('this.learner======~~~~~', this.learner);
         data.forEach(value => {
           let temp = {
             id: value._id,
