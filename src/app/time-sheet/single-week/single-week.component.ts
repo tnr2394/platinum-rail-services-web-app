@@ -52,8 +52,8 @@ export class SingleWeekComponent implements OnInit {
     logIn: '',
     lunchStart: '',
     lunchEnd: '',
-    logOut:'',
-    travel:''
+    logOut: '',
+    travel: ''
   }
 
   overH = 0;
@@ -113,7 +113,7 @@ export class SingleWeekComponent implements OnInit {
       // this.selectedDate = moment().format("MM/DD/YYYY")
       this.getWeekDates();
     }
-    else if (this.doGetWeekDates == false){
+    else if (this.doGetWeekDates == false) {
       this.datesOfWeek = this.datesArrayFromInst
     }
 
@@ -142,11 +142,11 @@ export class SingleWeekComponent implements OnInit {
       this.displayMsg = false;
     };
     if (changes.overTimeHours) this.overTimeHours = changes.overTimeHours.currentValue;
-    if (changes.datesArrayFromInst && changes.datesArrayFromInst.currentValue){
+    if (changes.datesArrayFromInst && changes.datesArrayFromInst.currentValue) {
       this.datesOfWeek = changes.datesArrayFromInst.currentValue
       this.getValuesUsingDates()
     }
-    if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue){
+    if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue) {
       this.displayMsg = false;
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
@@ -212,7 +212,7 @@ export class SingleWeekComponent implements OnInit {
 
   closed(index) {
     console.log("***days.logIn", this.Days);
-    
+
     console.log('Closed Function', this.Days[index]);
     if (this.Days[index].logIn != '00:00' && this.Days[index].lunchStart != '00:00' && this.Days[index].lunchEnd != '00:00' && this.Days[index].logOut != '00:00') {
       var diff1 = this.calculateDiff1(index)
@@ -426,9 +426,7 @@ export class SingleWeekComponent implements OnInit {
     var totalM = 0;
     _.forEach(this.Days, (day) => {
       totalH = totalH + day.workingHours.hours;
-      console.log("totalH", totalH);
       totalM = totalM + day.workingHours.minutes;
-      console.log("totalM", totalM);
     })
     if (totalM > 59) {
       totalH = totalH + Math.floor(totalM / 60)
@@ -481,7 +479,7 @@ export class SingleWeekComponent implements OnInit {
     var date = moment(this.Days[index].date);
     var time1: any = new Date(date.toDate().setHours(startHours, startMinutes));
     // console.log("***");
-    
+
     console.log("--time 1--", time1);
     var time2: any = new Date(date.toDate().setHours(endHours, endMinutes));
     console.log("--time 2--", time2);
@@ -519,7 +517,7 @@ export class SingleWeekComponent implements OnInit {
     // this.updateData(this.Days)
     // this.dataSource
   }
-  pasteLogs(i){
+  pasteLogs(i) {
     let newLogs = this.Days[i]
     newLogs.logIn = this.copiedLogs.logIn;
     newLogs.lunchStart = this.copiedLogs.lunchStart;
@@ -552,7 +550,7 @@ export class SingleWeekComponent implements OnInit {
     console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
     var filterDates;
     // let lengthOfArray = this.arrayFromDb.length
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
       // console.log('Fiter Dates===>>>>', filterDates);
       _.forEach((filterDates), (singleDate, index) => {
@@ -574,14 +572,32 @@ export class SingleWeekComponent implements OnInit {
             minutes: 0,
           }
         }
+
+        // newObj = {
+        //   date: singleDate,
+        //   _id: 'new',
+        //   logIn: '--:--',
+        //   lunchStart: '--:--',
+        //   lunchEnd: '--:--',
+        //   logOut: '--:--',
+        //   workingHours: {
+        //     hours: 0,
+        //     minutes: 0,
+        //   },
+        //   travel: '--:--',
+        //   totalHours: {
+        //     hours: 0,
+        //     minutes: 0,
+        //   }
+        // }
         this.arrayFromDb.push(newObj);
       })
       resolve(this.arrayFromDb)
-    }).then((resolvedArray:any)=>{
+    }).then((resolvedArray: any) => {
       this.arrayFromDb = (resolvedArray.sort(function (a, b) {
-      console.log("**a",a.date,"**b",b.date);
-      return <any>new Date(b.date) - <any>new Date(a.date);
-    })).reverse();
+        console.log("**a", a.date, "**b", b.date);
+        return <any>new Date(b.date) - <any>new Date(a.date);
+      })).reverse();
       this.Days = this.arrayFromDb;
       this.updateData(this.Days);
       this.totalWorkingHours();

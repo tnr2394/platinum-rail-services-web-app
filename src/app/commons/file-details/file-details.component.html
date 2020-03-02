@@ -5,37 +5,49 @@
         <div class="row icon m-0 py-4">
             <h1 *ngIf="type=='folder'" class="folder_icon"><i class="fa fa-folder-open text-warning"></i></h1>
             <!-- <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div> -->
-            <div *ngIf="type == 'file' || type == 'material' " class="detail_file_preview">
-                <!-- <img src="{{recievedFile.tumbNail}}"> -->
+
+            <!-- Iframe Support Types doc,docx,pdf,ppt,xlsx,xls -->
+            <div *ngIf="(type == 'file' || type == 'material') && supportedDocument " class="detail_file_preview">
                 <iframe style="height: 350px;" [src]='pathForPreview | safe:"resourceUrl"' frameborder="0">
                 </iframe>
-                <!-- <img src="../../../assets/google-docs.png" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" /> -->
             </div>
+
+            <!-- This For File Like jpg,jpeg,png -->
+            <div *ngIf="(type == 'file' || type == 'material') && !supportedDocument " class="detail_file_preview">
+                <img src="{{recievedFile.path}}" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" />
+            </div>
+
         </div>
         <div class="row m-0">
             <div class="col">
-                <h5 *ngIf="recievedFile && recievedFile.type == 'folder'">Total Files : <span>{{recievedFile.files.length}}</span></h5>
+                <h5 *ngIf="recievedFile && recievedFile.type == 'folder'">Total Files :
+                    <span>{{recievedFile.files.length}}</span></h5>
                 <h5>Last Updated At : <span>{{lastUpdate | date:'mediumDate'}}</span></h5>
                 <h5>Created At : <span>{{createdAt | date:'mediumDate'}}</span></h5>
                 <h5 *ngIf="recievedFile && recievedFile.extension">Type : <span>{{recievedFile.extension}}</span></h5>
+                <h5 *ngIf="recievedFile && recievedFile.size">Size : <span>{{convertBytes(recievedFile.size)}}</span>
+                </h5>
+
                 <!-- Type:{{type}} -->
                 <h5 style="border-bottom: none;" *ngIf="recievedFile && recievedFile.type == 'folder'">Title :
-                    <mat-form-field *ngIf="type=='folder'" class="example-full-width" style="margin-top: -15px;" (click)="showSaveBtn()">
+                    <mat-form-field *ngIf="type=='folder'" class="example-full-width" style="margin-top: -15px;"
+                        (click)="showSaveBtn()">
                         <input matInput readonly="{{readOnlyTitle}}" [(ngModel)]="title">
                     </mat-form-field>
                     <div style="position: relative;">
-                        <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i
-                        class="fa fa-check-circle"></i></button>
+                        <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn"
+                            (click)="saveFolder()"><i class="fa fa-check-circle"></i></button>
                     </div>
                 </h5>
                 <div *ngIf="isMaterials == 'material'">
                     <div class="drawer_btn">
                         <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
-                            aria-hidden="true"></i> Share</button>
-                        <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i>
-                        Delete</button>
-                        <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i class="fa fa-download"
-                                aria-hidden="true"></i> Download</a></button>
+                                aria-hidden="true"></i> Share</button>
+                        <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
+                                aria-hidden="true"></i>
+                            Delete</button>
+                        <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i
+                                    class="fa fa-download" aria-hidden="true"></i> Download</a></button>
 
                     </div>
                 </div>
@@ -53,7 +65,8 @@
                 {{client.name}}
             </li>
         </ul>
-        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #2196F3;">Not shared with any clients!</div>
+        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #2196F3;">
+            Not shared with any clients!</div>
 
         <h6><b>Instructors</b></h6>
         <mat-list align='center'>
@@ -77,7 +90,8 @@
                 {{instructor.name}}
             </li>
         </ul> -->
-        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedInstructor.length < 1" style="color: #2196F3;">Not shared with any instructors!</div>
+        <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedInstructor.length < 1"
+            style="color: #2196F3;">Not shared with any instructors!</div>
         <div class="drawer_btn">
             <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>

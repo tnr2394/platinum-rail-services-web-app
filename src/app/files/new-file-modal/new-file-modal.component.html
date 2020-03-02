@@ -1,13 +1,9 @@
 <div>
     <h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus-circle"></i> Add Files
-        <button (click)="close()" class="closeBtn"
-            *ngIf="uploadedFilesCount == queueCount || queueCount <= uploadedFiles.length || queueCount == 0 ||uploadedFilesCount == 0 && uploadedFiles.length === 0">
+        <button (click)="close()" class="closeBtn" *ngIf="uploadedFilesCount == queueCount || queueCount <= uploadedFiles.length || queueCount == 0 ||uploadedFilesCount == 0 && uploadedFiles.length === 0">
             <h4 color="warn"><i class="fa fa-times-circle"></i>
             </h4>
         </button>
-        <!-- uploadedFilesCount-----{{uploadedFilesCount}}
-        queueCount-----{{queueCount}}
-        uploadedFiles.length-----{{uploadedFiles.length}} -->
     </h1>
 </div>
 <mat-card>
@@ -18,13 +14,11 @@
                 <div class="well drop-zone" (onFileDropped)="dragQueue($event)" appDragDrop>Files drop zone </div>
                 <div class="single-file">
                     <h4>Select files</h4>
-                    <input type="file"
-                        accept=".pdf, .ppt,.pptx, .doc, .docx ,.mp4,.jpg,.jpeg,.png,.zip,.csv,.mov,.mkv,.txt,.xls,.xlsx,.xlsm"
-                        #fileInput multiple (change)="addToQueue()" />
+                    <input type="file" accept=".pdf, .ppt,.pptx, .doc, .docx ,.mp4,.jpg,.jpeg,.png,.zip,.csv,.mov,.mkv,.txt,.xls,.xlsx,.xlsm" #fileInput multiple (change)="addToQueue()" />
                     <div class="fake_file">
                         <p class="m-0">Choose file</p>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -46,8 +40,7 @@
                             <td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
                             <td>
                                 <div class="progress" style="border: 1px solid black;">
-                                    <div class=" progress-bar" role="progressbar"
-                                        [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                    <div class=" progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
                                 </div>
 
                                 <!-- {{ item.progress + ' %' }} -->
@@ -59,20 +52,16 @@
                                 <span *ngIf="item.isError()" class="tag tag-danger"></span>
                             </td>
                             <td class="text-right">
-                                <button type="button" class="btn btn-success btn-sm action_btns"
-                                    style="margin-right: 5px;" *ngIf="item.isUploadable()" (click)="item.upload()">
+                                <button type="button" class="btn btn-success btn-sm action_btns" style="margin-right: 5px;" *ngIf="item.isUploadable()" (click)="item.upload()">
                                     <i class="fa fa-upload"></i>
                                 </button>
 
-                                <button type="button" class="btn btn-warning btn-sm action_btns"
-                                    style="margin-right: 5px;" *ngIf="item.inProgress()" (click)="item.cancel()">
+                                <button type="button" class="btn btn-warning btn-sm action_btns" style="margin-right: 5px;" *ngIf="item.inProgress()" (click)="item.cancel()">
                                     <i class="fa fa-times-circle"></i>
                                 </button>
 
 
-                                <button type="button" *ngIf="!item.inProgress()"
-                                    class="btn btn-danger btn-sm action_btns"
-                                    (click)="item.remove();">
+                                <button type="button" *ngIf="!item.inProgress()" class="btn btn-danger btn-sm action_btns" (click)="item.remove();">
                                     <i class="fa fa-trash"></i>
                                 </button>
 
@@ -82,12 +71,11 @@
                 </table>
                 <div>
                     <!-- (click)="uploader.uploadAll() -->
-                    <button type="button" class="btn btn-success btn-sm" (click)="upload()">
+                    <button type="button" class="btn btn-success btn-sm success_button" (click)="upload()">
                         <i class="fa fa-upload"></i> Upload all
                     </button>
 
-                    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px;"
-                        (click)="uploader.clearQueue()">
+                    <button type="button" class="btn btn-danger btn-sm remove_button" style="margin-left: 10px;" (click)="uploader.clearQueue()">
                         <i class="fa fa-trash"></i> Remove all
                     </button>
 

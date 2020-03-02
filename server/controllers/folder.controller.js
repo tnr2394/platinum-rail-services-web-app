@@ -249,6 +249,7 @@ folderController.addFile = function (req, res, next) {
         alias: req.body.Key,
         type: "file",
         path: req.body.Location,
+        size: req.body.size,
         extension: extension,
         uploadedBy: (req.user && req.user.name) ? req.user.name : 'admin',
         uploadedDate: new Date()

@@ -10,10 +10,8 @@
                 <mat-error>Useremail is required</mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width w-100">
-                <input matInput name="password" [type]="show ? 'text' : 'password'" id="password" placeholder="Password"
-                    type="password" formControlName="password" required>
-                <span toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                    (click)="password()"></span>
+                <input matInput name="password" [type]="show ? 'text' : 'password'" id="password" placeholder="Password" type="password" formControlName="password" required>
+                <span toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()"></span>
                 <mat-error>Password is required.</mat-error>
             </mat-form-field>
 
@@ -33,7 +31,7 @@
                 <p class="msg_error mb-0 mt-1" style="text-align: center;">{{ errmsg }}</p>
                 <p class="msg_success" style="text-align: center;">{{ msg }}</p>
             </div>
-            <button mat-flat-button class="btn btn-sm login_btn" type="submit">
+            <button mat-flat-button class="btn btn-sm login_btn Button_shap_effact ripple" type="submit">
                 <span>Login</span>
             </button>
         </form>
