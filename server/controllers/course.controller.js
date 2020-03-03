@@ -4,6 +4,8 @@ var Q = require('q');
 const preService = require('../services/predelete.service');
 
 var courseController = {};
+const ObjectId = require('mongodb').ObjectId;
+
 
 async function allCourses(query) {
     var deferred = Q.defer();
@@ -89,5 +91,79 @@ courseController.deleteCourse = function (req, res, next) {
     })
 
 }
+
+
+courseController.allMaterialsUsingCourseIdWithUnitGroup = function (req, res) {
+
+    let courseId = req.query._id;
+
+
+    courseModel.aggregate([
+        {
+            $match: {
+                '_id': ObjectId(courseId)
+            },
+        },
+        {
+            $unwind: {
+                path: '$materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'materials',
+                localField: 'materials',
+                foreignField: '_id',
+                as: 'material',
+            }
+        },
+        {
+            $unwind: {
+                path: '$material',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                assignment: {
+                    assignmentTitle: '$material.title',
+                    assignmentNo: '$material.assignmentNo',
+                    assignmentUnit: '$material.unitNo',
+                    assignmentId: '$material._id',
+                    assignmentType: '$material.type',
+                }
+            }
+        },
+        {
+            $group: {
+                _id: '$assignment.assignmentUnit',
+                assignment: {
+                    $push: '$assignment'
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                unitNo: '$_id',
+                assignment: 1
+            }
+        },
+        {
+            $sort: {
+                'assignment.assignmentUnit': 1
+            }
+        }
+    ]).exec((error, material) => {
+        if (error) {
+            console.log('Error:', error);
+            return res.status(500).send({ err })
+        } else {
+            return res.send({ data: { material }, msg: "material fetch Successfully" });
+        }
+    });
+}
+
 
 module.exports = courseController;

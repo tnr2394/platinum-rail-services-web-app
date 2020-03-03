@@ -10,4 +10,8 @@ router.put('/', courseController.updateCourse);
 // Delete COURSE
 router.delete('/', courseController.deleteCourse);
 
+router.get('/material-group', courseController.allMaterialsUsingCourseIdWithUnitGroup);
+
+
+
 module.exports = router;
