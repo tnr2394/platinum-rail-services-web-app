@@ -230,7 +230,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     let newData = {
       learner: learn,
       assignment: assignment,
-      dueDate: null
+      duedate: null
     }
     if (event.target.classList.value == 'Unassigned'){
       $("#Unassigned" + assignment.assignmentId + learn._id).removeClass('Unassigned');
@@ -257,12 +257,13 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       if(allot == undefined) return
       else {
         this.allotmentArray.forEach(obj=>{
-          obj.dueDate = allot
+          obj.duedate = allot
         })
         console.log("this.allotmentArray", this.allotmentArray);
-        // this._learnerService.allocateLearner(this.allotmentArray).subscribe(res=>{
-        //   this.assignmentStatusWithLearner()
-        // })
+        this._learnerService.allocateLearnerFromStatus(this.allotmentArray).subscribe(res=>{
+          console.log("**Response", res);
+          this.assignmentStatusWithLearner()
+        })
       }
     })
   }
