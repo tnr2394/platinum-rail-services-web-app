@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -61,6 +61,7 @@ export class SingleWeekComponent implements OnInit {
   overM = 0;
   showPasteBtn: boolean = false;
   copiedIndex: any;
+  isPrint: boolean = false;
 
 
 
@@ -82,6 +83,17 @@ export class SingleWeekComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
   }
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true
+  }
+
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    alert('After Print Msg')
+    this.isPrint = false
+  }
+
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
@@ -153,7 +165,7 @@ export class SingleWeekComponent implements OnInit {
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
     }
-    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true){
+    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true) {
       this.getWeekDates()
     }
   }
@@ -166,6 +178,10 @@ export class SingleWeekComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  
+
+
 
   getWeekDates() {
     console.log("**getWeekDates called")
@@ -651,7 +667,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkingHours(hours) {
-    if (this.showTotalHoursColor == true){
+    if (this.showTotalHoursColor == true) {
       if (hours >= 72) {
         return 'break';
       } else {
@@ -660,7 +676,7 @@ export class SingleWeekComponent implements OnInit {
     }
     else return 'ok';
     // console.log('Check Total Working Hours===>>>', hours);
-    
+
   }
 
   getInstructorTimeLogs(datesArray, instructorId) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { InstructorService } from 'src/app/services/instructor.service';
 import { Select2OptionData } from 'ng2-select2';
 import { TimeSheetService } from 'src/app/services/time-sheet.service';
@@ -36,6 +36,7 @@ export class AdminReportBComponent implements OnInit {
   dataForSingleWeek;
   selectedInstructors;
   weekDatesFromAdmin: any;
+  isPrint: any = false;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -47,6 +48,15 @@ export class AdminReportBComponent implements OnInit {
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true
+
+
+    // alert('before print');
+    // this.removePaginator();
   }
 
   constructor(private _instructorService: InstructorService, public _timeSheetService: TimeSheetService) {
@@ -68,8 +78,8 @@ export class AdminReportBComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  getInstructorProfile(){
-    if (this.selectedInstructorId){
+  getInstructorProfile() {
+    if (this.selectedInstructorId) {
       console.log("**selected Instructor is", this.selectedInstructors);
       this.selectedInstructorId = this.selectedInstructors._id;
       if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
@@ -122,6 +132,10 @@ export class AdminReportBComponent implements OnInit {
     console.log('SETTING SORT TO = ', this.dataSource.sort)
     console.log('SETTING paginator TO = ', this.dataSource.paginator)
   }
+
+  // removePaginator() {
+  //   console.log('Before Print Remove Pagination');
+  // }
 
   // API
   getAllInstructors() {
