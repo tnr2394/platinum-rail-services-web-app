@@ -81,6 +81,22 @@ export class CourseService {
       })
     });
   }
+  getCourseGrouped(id): Observable<any> {
+
+    if (!id) {
+      return;
+    }
+    console.log("Getting courses");
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "courses/material-group?_id=" + id).subscribe((res: any) => {
+        console.log("Get Courses : ", res);
+        observer.next(res.data.courses);
+        observer.complete();
+      })
+    });
+  }
 
 
 

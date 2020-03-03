@@ -134,6 +134,7 @@ export class MaterialsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params['courseId'] != undefined) {
         this.getMaterials(params['courseId']);
+        this.getGroupedMaterials(params['courseId'])
       }
     });
 
@@ -343,6 +344,21 @@ export class MaterialsComponent implements OnInit {
       this.materials = this.course.materials;
 
       console.log('This material:::', this.materials, this.course);
+      this.loading = false;
+      this.dataSource = new MatTableDataSource(this.materials);
+      this.copyMaterials = this.materials;
+      this.updateData(this.materials)
+    });
+  }
+  getGroupedMaterials(courseId) {
+    console.log("getting materials in materials component for courseId = ", courseId)
+    this._courseService.getCourseGrouped(courseId).subscribe((courses: any) => {
+      console.log('GETTING ');
+
+      // this.course = courses.pop();
+      this.materials = this.course.materials;
+
+      console.log('**This material:::', this.materials, this.course);
       this.loading = false;
       this.dataSource = new MatTableDataSource(this.materials);
       this.copyMaterials = this.materials;

@@ -6,7 +6,38 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import { TimeSheetService } from '../../services/time-sheet.service';
 import { single } from 'rxjs/operators';
+import { trigger, transition, query, animateChild, state, style, animate, useAnimation } from '@angular/animations';
+import { bounce } from 'ng-animate';
+import { flip, flipInX, flipInY } from 'ng-animate';
 // import { MatSnackBar } from '@angular/material/snack-bar';
+
+export const FLIP_TRANSITION = [
+  trigger('flipInX', [transition('* => *', useAnimation(flipInX,{
+    params: { timing: 0.5, delay: 0 }
+  }))]),
+  // trigger(
+  //   'inOutAnimation',
+  //   [
+  //     transition(
+  //       ':enter',
+  //       [
+  //         style({ opacity: 0 }),
+  //         animate('5s ease-in-out',
+  //           style({ opacity: 1 }))
+  //       ]
+  //     ),
+  //     transition(
+  //       ':leave',
+  //       [
+  //         style({ opacity: 1 }),
+  //         animate('5s ease-in',
+  //           style({ opacity: 0 }))
+  //       ]
+  //     )
+  //   ]
+  // ),
+  // trigger('flipInX', [transition('* => *', useAnimation(flip))]),
+];
 
 
 
@@ -14,7 +45,8 @@ import { single } from 'rxjs/operators';
 @Component({
   selector: 'app-single-week',
   templateUrl: './single-week.component.html',
-  styleUrls: ['./single-week.component.scss']
+  styleUrls: ['./single-week.component.scss'],
+  animations: [FLIP_TRANSITION]
 })
 export class SingleWeekComponent implements OnInit {
 
@@ -29,7 +61,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -61,6 +93,9 @@ export class SingleWeekComponent implements OnInit {
   overM = 0;
   showPasteBtn: boolean = false;
   copiedIndex: any;
+  editing: boolean = false;
+  index: any;
+  editedIndex = [];
 
 
 
@@ -662,7 +697,35 @@ export class SingleWeekComponent implements OnInit {
     // console.log('Check Total Working Hours===>>>', hours);
     
   }
-
+  edit(i){
+    $('#'+i).addClass('make-blue')
+    console.log("index", i);
+    this.index = i
+    this.editedIndex.push(i)
+    this.editing = true
+  }
+  save(i){
+    // console.log("index", i);
+    this.index = null;
+    this.editing = false
+  }
+  // editedIndices(i){
+  //   console.log("**EDITEDINDICES", this.editedIndex, "iindex",i);
+    
+  //   if(this.editedIndex.length > 0){
+  //     this.editedIndex.forEach(index => {
+  //       if (index == i) {
+  //         console.log("index", index, "i", i);
+  //         return 'make-gold'
+  //       }
+  //       else return 'make-default'
+  //     })
+  //   }
+  //   else {
+  //     console.log("return DEFAULT");
+  //     return 'make-default'
+  //   }
+  // }
   getInstructorTimeLogs(datesArray, instructorId) {
     let data = {
       date: datesArray,
