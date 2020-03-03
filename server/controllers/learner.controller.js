@@ -397,6 +397,38 @@ const sendAssignmentAllotmentMail = (learnerDetail, assignment, allotedBy, allot
 }
 
 
+const sendAssignmentAllotmentMailFromStatusLayout = (learnerId, assignment, allotedBy, allotmentId) => {
+    return new Promise((resolve, reject) => {
+        let allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId;
+
+        learnerDOA.getLearnersByQuery({ _id: learnerId }).then((response) => {
+            console.log('Learner Response==>', response)
+        }).catch((error) => {
+
+        })
+
+        let mailData = {
+            learner: learnerDetail,
+            assignment: assignment,
+            allotedBy: allotedBy,
+            allotmentUrl: allotmentUrl
+        }
+        const defaultPasswordEmailoptions = {
+            to: mailData.learner.email,
+            subject: `Assignments Alloted`,
+            template: 'allotment-learner'
+        };
+        mailService.sendMail(defaultPasswordEmailoptions, mailData, null, function (err, mailResult) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(mailResult);
+            }
+        });
+    })
+}
+
+
 learnerController.assignmentSubmisssion = function (req, res, next) {
 
 
@@ -705,6 +737,39 @@ learnerController.updateExamMarks = function (req, res, next) {
 }
 
 
+learnerController.allotmentFromStatus = function (req, res, next) {
 
+    const allotedBy = req.user.name;
+
+    const recordArray = req.body.array;
+
+    console.log('Alloted By==>', allotedBy);
+
+    async.eachSeries(recordArray, (singleRecord, callback) => {
+
+        const newAllotment = {
+            assignment: singleRecord.assignment.assignmentId,
+            learner: singleRecord.learner.learnerId,
+            status: 'Pending',
+            deadlineDate: singleRecord.duedate
+        }
+
+        console.log('New Allotment Object==>', newAllotment)
+
+        // Create New Allotment With Single Learner
+
+        allotmentDOA.createAllotment(newAllotment).then((response) => {
+            console.log('Allotment Added now update learner');
+            learnerDOA.updateAssignment(singleRecord.learner, response._id).then((updatedLearner) => {
+                console.log("updatedLearner", updatedLearner);
+                callback();
+            }).catch((updateLearnerErr) => {
+                return res.status(500).send({ err })
+            })
+        }).catch((error) => {
+            return res.status(500).send({ err })
+        })
+    })
+}
 
 module.exports = learnerController;

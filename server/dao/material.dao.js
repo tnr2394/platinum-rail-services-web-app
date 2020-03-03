@@ -44,7 +44,7 @@ const checkMaterialExist = (course, unitNo, assignmentNo, type) => {
                 course: course,
                 unitNo: unitNo,
                 assignmentNo: assignmentNo,
-                type:type
+                type: type
             }).exec((error, course) => {
                 if (error) {
                     console.log('Error While Find', error)
