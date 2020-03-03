@@ -35,6 +35,7 @@
                     <li><span class="resubmitted"></span>Re-submitted</li>
                     <li><span class="requestforresubmission"></span>Request for resubmission</li>
                     <li><span class="completed"></span>Completed</li>
+                    <li><button mat-button *ngIf="showAllocate" (click)="allocate()">Allocate</button></li>
                 </ul>
                 <div class="col-12" *ngIf="assignmentLength != 0 && allLearners && allLearners.length != 0">
                     <div class="table-responsive">
@@ -77,11 +78,12 @@
                                             </a>
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
                                                 <div placement="top"
-                                                    (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)"
+                                                    (click)="unassignedClicked(learn, ass, learnIndex, assignIndex, $event)"
                                                     ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}"
                                                     tooltipClass="tooltip-top-class"
                                                     [ngClass]="checkArray(learn.assignments,ass.assignmentId)"
-                                                    id="Unassigned{{ass.assignmentId}}{{learn._id}}"> </div>
+                                                    id="Unassigned{{ass.assignmentId}}{{learn._id}}">
+                                                </div>
                                                 <!--  -->
                                             </a>
                                         </td>

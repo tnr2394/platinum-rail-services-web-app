@@ -741,7 +741,7 @@ learnerController.allotmentFromStatus = function (req, res, next) {
 
     const allotedBy = req.user.name;
 
-    const recordArray = req.body.array;
+    const recordArray = req.body;
 
     console.log('Alloted By==>', allotedBy);
 

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title><i class="fa fa-plus-circle"></i> Allocate</h1>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+<div class="row justify-content-center">
+    <div class="col-12">
+        <p>Select a due date to allocate the selected assignments.</p>
+    </div>
+    <div class="col-12">
+        <mat-form-field class="choose-date">
+            <input matInput [matDatepicker]="picker" [(ngModel)]='dueDate'
+                placeholder="Due Date"
+                (dateChange)="dateSelected($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="buttons">
+        <button mat-button (click)="confirm('allocate')" color="primary" [disabled]="disabled">Allocate</button>
+        <button mat-button (click)="confirm('cancle')" color="warn">Cancle</button>
+    </div>
+</mat-dialog-actions>

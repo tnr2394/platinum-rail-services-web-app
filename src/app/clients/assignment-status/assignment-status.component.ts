@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
+import { MatPaginator, PageEvent, MatDialog, MatSnackBar } from '@angular/material';
 import { MaterialService } from "../../services/material.service";
 import { LearnerService } from "../../services/learner.service";
 import { JobService } from "../../services/job.service";
@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { DatePipe } from '@angular/common';
 import { Select2OptionData } from 'ng2-select2';
+import { Observable } from 'rxjs';
+import { AllotmentConfirmationComponent } from './allotment-confirmation/allotment-confirmation.component';
 
 
 
@@ -30,6 +32,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   selectedUnitsArray: any[];
   allotmentArray = [];
   allLearners: any;
+  showAllocate: boolean;
 
   ngOnChanges(changes) {
     console.log("IN ON CHANGES", changes);
@@ -54,7 +57,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   selectedLearners;
   selectedUnits;
   @Input('jobId') jobIdFromClient;
-  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService) {
+  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, 
+    private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService,
+    public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
   }
@@ -216,30 +221,64 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     }
   }
 
-  unassignedClicked(learn, assignmentId, learnIndex, assignIndex, event){
+  unassignedClicked(learn, assignment, learnIndex, assignIndex, event){
+    
     console.log("***event", event.target.classList.value);
-    console.log("***assignment", assignmentId);
+    console.log("***assignment", assignment);
     // console.log("***learnIndex", learnIndex);
-    console.log("***Clicked", assignmentId + ',' + learn._id);
+    console.log("***Clicked", assignment.assignmentId + ',' + learn._id);
     let newData = {
-      learner: learn._id,
-      assignment: assignmentId
+      learner: learn,
+      assignment: assignment,
+      duedate: null
     }
     if (event.target.classList.value == 'Unassigned'){
-      $("#Unassigned" + assignmentId + learn._id).removeClass('Unassigned');
-      $("#Unassigned" + assignmentId + learn._id).addClass('selected');
+      $("#Unassigned" + assignment.assignmentId + learn._id).removeClass('Unassigned');
+      $("#Unassigned" + assignment.assignmentId + learn._id).addClass('selected');
     }
     else if (event.target.classList.value == 'selected'){
-      $("#Unassigned" + assignmentId + learn._id).removeClass('selected');
-      $("#Unassigned" + assignmentId + learn._id).addClass('Unassigned');
+      $("#Unassigned" + assignment.assignmentId + learn._id).removeClass('selected');
+      $("#Unassigned" + assignment.assignmentId + learn._id).addClass('Unassigned');
     }
     
     if(this.allotmentArray){
-      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learner == newData.learner && o.assignment == newData.assignment)})
+      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learner.learnerId == newData.learner.learnerId && o.assignment.assignmentId == newData.assignment.assignmentId)})
       if(index > -1) this.allotmentArray.splice(index,1)
       else this.allotmentArray.push(newData)
     }
+    if(this.allotmentArray.length > 0){
+      this.showAllocate = true
+    }
+    else this.showAllocate = false
     console.log("this.allotmentArray", this.allotmentArray);
+  }
+  allocate(){
+    this.openDialog(AllotmentConfirmationComponent).subscribe((allot)=>{
+      if(allot == undefined) return
+      else {
+        this.allotmentArray.forEach(obj=>{
+          obj.duedate = allot
+        })
+        console.log("this.allotmentArray", this.allotmentArray);
+        this._learnerService.allocateLearnerFromStatus(this.allotmentArray).subscribe(res=>{
+          console.log("**Response", res);
+          this.assignmentStatusWithLearner()
+        })
+      }
+    })
+  }
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data });
+    return dialogRef.afterClosed();
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 
@@ -257,7 +296,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
         return;
       } else {
         this.learner = data;
-        // console.log('this.learner======~~~~~', this.learner);
+        console.log('this.learner======~~~~~', this.learner);
         data.forEach(value => {
           let temp = {
             id: value._id,

@@ -98,6 +98,9 @@ courseController.allMaterialsUsingCourseIdWithUnitGroup = function (req, res) {
     let courseId = req.query._id;
 
 
+    console.log('CourseId=========?>>>>>>', courseId);
+
+
     courseModel.aggregate([
         {
             $match: {

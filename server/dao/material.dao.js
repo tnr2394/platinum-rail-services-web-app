@@ -8,7 +8,7 @@ var material = {};
 material.createMaterial = function (obj) {
     return new Promise((resolve, reject) => {
         if (obj.unitNo && obj.assignmentNo) {
-            checkMaterialExist(obj.course, obj.unitNo, obj.assignmentNo).then((response) => {
+            checkMaterialExist(obj.course, obj.unitNo, obj.assignmentNo, obj.type).then((response) => {
                 if (response) {
                     return reject('This Material Already Exists');
                 } else {
