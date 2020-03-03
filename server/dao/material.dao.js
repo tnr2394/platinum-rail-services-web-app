@@ -35,7 +35,7 @@ material.createMaterial = function (obj) {
 }
 
 // Checking Same Material Exists or Not
-const checkMaterialExist = (course, unitNo, assignmentNo) => {
+const checkMaterialExist = (course, unitNo, assignmentNo, type) => {
     console.log('Inside Check Material');
     return new Promise((resolve, reject) => {
 
@@ -43,7 +43,8 @@ const checkMaterialExist = (course, unitNo, assignmentNo) => {
             {
                 course: course,
                 unitNo: unitNo,
-                assignmentNo: assignmentNo
+                assignmentNo: assignmentNo,
+                type: type
             }).exec((error, course) => {
                 if (error) {
                     console.log('Error While Find', error)
