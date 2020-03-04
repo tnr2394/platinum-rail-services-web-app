@@ -22,14 +22,17 @@
                                 <div class="col-lg-7">
                                     <h3 class="card-title h5 mb-1" *ngIf="course">
                                         Materials:
-                                        <span class="course_t_span"></span> <button mat-mini-fab disabled>{{materials.length}}</button>
+                                        <span class="course_t_span"></span> <button mat-mini-fab
+                                            disabled>{{materials.length}}</button>
                                     </h3>
                                 </div>
                                 <div class="col-lg-5 material_btn_insmall">
-                                    <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addMaterialModal()">
-                                <i class="fas fa-plus fa-fw"></i>
-                                <span> Add Material</span>
-                            </button>
+                                    <button mat-flat-button
+                                        class="pull-right button_hover_effect Button_shap_effact ripple"
+                                        (click)="addMaterialModal()">
+                                        <i class="fas fa-plus fa-fw"></i>
+                                        <span> Add Material</span>
+                                    </button>
                                 </div>
                             </div>
                             <div class="row table_search">
@@ -43,7 +46,8 @@
                                             <div class="row mt-1 res-row">
                                                 <div *ngFor='let status of assignmentStatus;let i = index'>
                                                     <div class="col-md-2">
-                                                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                                                            (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
                                                             {{status.display}}
                                                         </mat-checkbox>
                                                     </div>
@@ -68,30 +72,39 @@
 
                                         <!-- Title Column -->
                                         <ng-container matColumnDef="Materials">
-                                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+                                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
+                                                mat-sort-header="title">
                                                 Name
                                             </th>
-                                            <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
+                                            <td class="mat-table-cell text-center" mat-cell
+                                                *matCellDef="let material; let i = index;">
                                                 <div class="row material_tile_row">
-                                    
+
                                                     <div class="col-1 d-flex justify-content-center align-items-center">
                                                         <div *ngIf="view == false">
                                                             <div class="checkbox" *ngIf='material.type == "Assignment"'>
-                                                                <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)' [value]='material'>
+                                                                <mat-checkbox [ngModel]="selectedCheckbox"
+                                                                    (change)='onMaterialSelection($event)'
+                                                                    [value]='material'>
                                                                 </mat-checkbox>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-10">
-                                                        <!-- <material-tile [material]="material" [jobId]="jobId" [learnersAllotedFromJob]="learnersAlloted" [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)" (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
-                                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile> -->
+                                                        <material-tile [material]="material" [jobId]="jobId"
+                                                            [learnersAllotedFromJob]="learnersAlloted"
+                                                            [isSelected]="(material._id === selectedMaterial)"
+                                                            [index]='i' (getFiles)="loadMaterialFiles($event)"
+                                                            (assignmentAllocated)="allocatedFromTile($event)"
+                                                            (fileDetailsComp)="fileDetailsComp($event)"
+                                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile>
 
-                                                            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                                                        <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                                                                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
                                                                     <button mat-icon-button disabled></button>
                                                                     {{node.title}}
-                                                                </mat-tree-node>
-                                                                <!-- <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                                                                </mat-tree-node> -->
+                                                        <!-- <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
                                                                     <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
                                                                         <mat-icon class="mat-icon-rtl-mirror">
                                                                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -100,20 +113,22 @@
                                                                     {{node.title}}
                                                                     <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate" class="example-tree-progress-bar"></mat-progress-bar>
                                                                 </mat-tree-node> -->
-                                                            </mat-tree>
+                                                        <!-- </mat-tree> -->
                                                     </div>
-                                    
+
                                                 </div>
                                             </td>
                                         </ng-container>
                                         <thead>
-                                            <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr style="background:lightgray;" mat-header-row
+                                                *matHeaderRowDef="displayedColumns"></tr>
                                         </thead>
                                         <tbody>
                                             <tr mat-row *matRowDef="let instructor; columns: displayedColumns;"></tr>
                                         </tbody>
                                     </table>
-                                    <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                                    <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
+                                            class="fa fa-cog fa-spin text-info"></i>
                                     </h3>
                                 </div>
                                 <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
@@ -121,9 +136,12 @@
                                         <div class="float-left title_display" *ngIf="file">
                                             {{file.title}}
                                         </div>
-                                        <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle" aria-hidden="true"></i></mat-button>
+                                        <mat-button class="close_btn text-primary float-right"
+                                            (click)="sidenav.close()"><i class="fa fa-times-circle"
+                                                aria-hidden="true"></i></mat-button>
                                     </div>
-                                    <app-file-details [details]="file" (fileDeleted)="deleteFile($event)"></app-file-details>
+                                    <app-file-details [details]="file" (fileDeleted)="deleteFile($event)">
+                                    </app-file-details>
                                 </mat-sidenav>
                             </div>
                             <!-- /.Card content -->
