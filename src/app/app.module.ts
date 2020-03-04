@@ -48,6 +48,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { Select2Module } from 'ng2-select2';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { MatTreeModule } from '@angular/material/tree';
 
 
 
@@ -121,6 +122,7 @@ import { InstructorConfirmationModalComponent } from './time-sheet/admin-time-sh
 import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
 import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 import { SafePipe } from './safe.pipe';
+import { AllotmentConfirmationComponent } from './clients/assignment-status/allotment-confirmation/allotment-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -199,9 +201,11 @@ import { SafePipe } from './safe.pipe';
     InstructorConfirmationModalComponent,
     AdminReportAComponent,
     AdminReportBComponent,
-    SafePipe
+    SafePipe,
+    AllotmentConfirmationComponent
   ],
   imports: [
+    MatTreeModule,
     NgSelectModule,
     NgxDaterangepickerMd.forRoot(),
     ChartsModule,
@@ -245,7 +249,7 @@ import { SafePipe } from './safe.pipe';
     }),
     NgCircleProgressModule.forRoot({})
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent, AllotmentConfirmationComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

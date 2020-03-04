@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivatedRoute, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from './services/login.service';
 
@@ -8,7 +8,7 @@ import { LoginService } from './services/login.service';
 })
 
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private _loginService: LoginService) {
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private _loginService: LoginService) {
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -39,7 +39,6 @@ export class AuthGuard implements CanActivate {
 
 
     console.log('state.url======>>>>>>>>', state.url);
-
     this.router.navigate(['login/learners'], { queryParams: { returnUrl: state.url } });
     return false;
   }

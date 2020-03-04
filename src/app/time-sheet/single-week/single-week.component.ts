@@ -1,12 +1,43 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { TimeSheetService } from '../../services/time-sheet.service';
 import { single } from 'rxjs/operators';
+import { trigger, transition, query, animateChild, state, style, animate, useAnimation } from '@angular/animations';
+import { bounce } from 'ng-animate';
+import { flip, flipInX, flipInY } from 'ng-animate';
 // import { MatSnackBar } from '@angular/material/snack-bar';
+
+export const FLIP_TRANSITION = [
+  trigger('flipInX', [transition('* => *', useAnimation(flipInX, {
+    params: { timing: 0.5, delay: 0 }
+  }))]),
+  // trigger(
+  //   'inOutAnimation',
+  //   [
+  //     transition(
+  //       ':enter',
+  //       [
+  //         style({ opacity: 0 }),
+  //         animate('5s ease-in-out',
+  //           style({ opacity: 1 }))
+  //       ]
+  //     ),
+  //     transition(
+  //       ':leave',
+  //       [
+  //         style({ opacity: 1 }),
+  //         animate('5s ease-in',
+  //           style({ opacity: 0 }))
+  //       ]
+  //     )
+  //   ]
+  // ),
+  // trigger('flipInX', [transition('* => *', useAnimation(flip))]),
+];
 
 
 
@@ -14,7 +45,8 @@ import { single } from 'rxjs/operators';
 @Component({
   selector: 'app-single-week',
   templateUrl: './single-week.component.html',
-  styleUrls: ['./single-week.component.scss']
+  styleUrls: ['./single-week.component.scss'],
+  animations: [FLIP_TRANSITION]
 })
 export class SingleWeekComponent implements OnInit {
 
@@ -29,7 +61,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['copy','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+  displayedColumns: string[] = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -61,6 +93,12 @@ export class SingleWeekComponent implements OnInit {
   overM = 0;
   showPasteBtn: boolean = false;
   copiedIndex: any;
+  isPrint: boolean = false;
+  editing: boolean = false;
+  index: any;
+  editedIndex = [];
+  p: Number = 1;
+  currentPage: any = 0;
 
 
 
@@ -82,6 +120,19 @@ export class SingleWeekComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
   }
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+  }
+
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    this.isPrint = false
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+  }
+
+  pageEvent: PageEvent;
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
@@ -153,7 +204,7 @@ export class SingleWeekComponent implements OnInit {
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
     }
-    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true){
+    if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true) {
       this.getWeekDates()
     }
   }
@@ -166,6 +217,10 @@ export class SingleWeekComponent implements OnInit {
       duration: 2000,
     });
   }
+
+
+
+
 
   getWeekDates() {
     console.log("**getWeekDates called")
@@ -529,6 +584,9 @@ export class SingleWeekComponent implements OnInit {
     newLogs.logOut = this.Days[this.copiedIndex].logOut;
     newLogs.travel = this.Days[this.copiedIndex].travel
     this.closed(i)
+    $('#' + this.currentPage + i).addClass('make-blue')
+    this.editedIndex.push({ currentPage: this.currentPage, index: i })
+    // this.edit(i,this.currentPage)
     console.log("THIS.DAYS", this.Days);
   }
 
@@ -651,7 +709,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   checkTotalWorkingHours(hours) {
-    if (this.showTotalHoursColor == true){
+    if (this.showTotalHoursColor == true) {
       if (hours >= 72) {
         return 'break';
       } else {
@@ -660,9 +718,66 @@ export class SingleWeekComponent implements OnInit {
     }
     else return 'ok';
     // console.log('Check Total Working Hours===>>>', hours);
+
+  }
+  edit(i, pageEvent){
+    this.Days[i]['updated'] = true
+    if (pageEvent && pageEvent.pageIndex){
+      this.currentPage = pageEvent.pageIndex
+    }
+    else {this.currentPage = 0}
+    console.log("On edit adding class to", '#' + this.currentPage + i);
+    $('#' + this.currentPage + i).addClass('make-blue')
+    console.log("index", i);
+    this.index = i
+    this.editedIndex.push({currentPage: this.currentPage,index:i})
+    console.log("in edit this.editedIndex", this.editedIndex);
+    this.editing = true
+    console.log("**CURRENT PAGE",this.currentPage);
     
   }
+  pageNext(event){
+    this.editing = false
+    this.index = null
+    console.log("**event", event);
+    console.log("**this.editedIndex", this.editedIndex);
+    this.currentPage = event.pageIndex;
+    if(this.editedIndex){
+      this.editedIndex.forEach(i=>{
+        console.log("i",i);
+        if (this.currentPage == i.currentPage){
+          console.log("adding class to", '#' + i.currentPage.toString() + i.index.toString());
+          $(document).ready(function () {
+            console.log("ready!");
+            $('#' + i.currentPage.toString() + i.index.toString()).addClass('make-blue')
 
+          });
+        }
+      })
+    }
+  }
+  save(i) {
+    // console.log("index", i);
+    this.index = null;
+    this.editing = false
+  }
+  // editedIndices(i){
+  //   console.log("**EDITEDINDICES", this.editedIndex, "iindex",i);
+
+  //   if(this.editedIndex.length > 0){
+  //     this.editedIndex.forEach(index => {
+  //       if (index == i) {
+  //         console.log("index", index, "i", i);
+  //         return 'make-gold'
+  //       }
+  //       else return 'make-default'
+  //     })
+  //   }
+  //   else {
+  //     console.log("return DEFAULT");
+  //     return 'make-default'
+  //   }
+  // }
   getInstructorTimeLogs(datesArray, instructorId) {
     let data = {
       date: datesArray,

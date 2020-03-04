@@ -46,6 +46,9 @@ router.get('/assignment/files', learnerController.assignmentFilesUsingAllotmentI
 router.post('/exam', learnerController.updateExamMarks);
 
 
+router.post('/allotment', jwtService.validateJWT, learnerController.allotmentFromStatus);
+
+
 
 
 

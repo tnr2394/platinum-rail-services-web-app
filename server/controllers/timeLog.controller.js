@@ -478,5 +478,8 @@ module.exports.secondReportLogsDetails = (req, res) => {
 
 
 
+
+
+
 // let x = this.numberOfTurns(req, res, response[i].date)
 // console.log("SATISFIED at", i, satisfied, "STATUS", x);

@@ -126,6 +126,8 @@ if (config.env.name === 'production') {
 
 }
 
+// timeLogService.scriptForTimelog();
+
 // const checkQualificationCronJob = cron.schedule('1 * * * * *', () => {
 
 //   console.log('Is Running Now');
@@ -142,8 +144,8 @@ const dbBackupCronJob = cron.schedule('0 0 * * 0', () => {
   console.log('db backup Running Now');
   dbBackupService.dbAutoBackUp();
 }, {
-    scheduled: true,
-  });
+  scheduled: true,
+});
 
 dbBackupCronJob.start();
 

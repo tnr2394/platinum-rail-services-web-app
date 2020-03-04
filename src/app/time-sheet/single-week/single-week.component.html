@@ -26,23 +26,21 @@
 
         <div class="row">
             <div class="col-12 ">
-                <div class="card">
+                <div class="card" *ngIf="!isPrint">
                     <!--Card content-->
                     <div class="card-block">
                         <div class="row justify-content-end m-0">
-                            <mat-paginator [pageSizeOptions]="[10, 25, 100]">
+
+                            <mat-paginator [pageSizeOptions]="[10, 25, 100]" (page)="pageNext($event); pageEvent = $event">
                             </mat-paginator>
                         </div>
                         <!--Title-->
                         <!--Text-->
                         <div>
-                            <!-- <h1>{{dataSource.length}}</h1> -->
                             <div class="table-responsive">
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-
-                                    <!-- Date Column -->
-
-                                    <ng-container matColumnDef="copy">
+                                    <!-- copy paste -->
+                                    <ng-container matColumnDef="copyPaste">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
                                             <div>
@@ -52,10 +50,22 @@
                                             </div>
                                         </td>
                                     </ng-container>
+                                    <!-- Date Column -->
                                     <ng-container matColumnDef="date">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
-                                            <span>{{days.date}}</span>
+                                            <div>
+
+                                                <!-- <button class="copyArrow btn" (click)="copyCurrentLogs(i)"
+                                                    placement="bottom" ngbTooltip="Copy logs"
+                                                    tooltipClass="tooltip-class"><i class="fa fa-copy"></i></button>
+                                                <button class="copyArrow btn" (click)="pasteLogs(i)"
+                                                    *ngIf="showPasteBtn && i != copiedIndex" placement="bottom"
+                                                    ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i
+                                                        class="fa fa-paste"></i></button>  -->
+                                                {{days.date}}
+                                            </div>
+
                                         </td>
                                     </ng-container>
                                     <!-- Login Column -->
@@ -65,7 +75,7 @@
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
                                             <!-- <app-time-picker [defaultTime]="defaultTime"
                                                 (timeFor)="eventFromTimePicker($event)"></app-time-picker> -->
-                                            <mat-form-field>
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.logIn' [min]="minimunTime" readonly>
@@ -78,13 +88,16 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
+                                            <div class="clock inputDisabled" *ngIf="index != i">
+                                                <input matInput [(ngModel)]='days.logIn' disabled>
+                                            </div>
                                         </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="lunchStart">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch Start </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field>
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.lunchStart' [min]="days.logIn" readonly>
@@ -97,13 +110,16 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
+                                            <div class="clock inputDisabled" *ngIf="index != i">
+                                                <input matInput [(ngModel)]='days.lunchStart' disabled>
+                                            </div>
                                         </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="lunchEnd">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field>
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.lunchEnd' [min]="days.lunchStart" readonly>
@@ -116,13 +132,16 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
+                                            <div class="clock inputDisabled" *ngIf="index != i">
+                                                <input matInput [(ngModel)]='days.lunchEnd' disabled>
+                                            </div>
                                         </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="logOut">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Log Out </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field>
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.logOut' [min]="days.lunchEnd" readonly>
@@ -135,6 +154,9 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
+                                            <div class="clock inputDisabled" *ngIf="index != i">
+                                                <input matInput [(ngModel)]='days.logOut' disabled>
+                                            </div>
                                         </td>
                                     </ng-container>
 
@@ -143,7 +165,7 @@
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
                                             <!-- <input matInput type="time" (change)="travelPlusWork(i)"
                                                 [(ngModel)]='days.travel' *ngIf="days && days.travel"> -->
-                                            <mat-form-field>
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24" [(ngModel)]='days.travel' [min]="minimunTime" readonly>
@@ -156,6 +178,9 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
+                                            <div class="clock inputDisabled" *ngIf="index != i">
+                                                <input matInput [(ngModel)]='days.travel' disabled>
+                                            </div>
                                         </td>
                                     </ng-container>
 
@@ -179,11 +204,25 @@
                                         </td>
                                     </ng-container>
 
+                                    <ng-container matColumnDef="edit">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef>Edit</th>
+                                        <!-- <div [hidden]="isPrint"> -->
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                            <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit" *ngIf="index != i" triggers="hover" tooltipClass="tooltip-class" (click)="edit(i, pageEvent)"><i class="fa fa-edit"></i></button>
+                                            <!-- <button mat-button class="text-info" placement="bottom" ngbTooltip="Save" triggers="hover" *ngIf="editing && index == i"
+                                                tooltipClass="tooltip-class" (click)="save(i)"><i class="fa fa-check-square-o"></i></button> -->
+                                        </td>
+                                        <!-- </div> -->
+                                    </ng-container>
+
                                     <thead>
                                         <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <!--  -->
                                     </thead>
                                     <tbody>
-                                        <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+
+                                        <tr mat-row *matRowDef="let learner; index as i; columns: displayedColumns;" id="{{currentPage}}{{i}}"></tr>
+                                        <!-- <tr mat-row ngClass="{{editedIndices()}}" *matRowDef="let row; columns: displayedColumns;"></tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -205,6 +244,104 @@
                             <i class="fas fa-save fa-fw"></i>
                             <span> Save</span>
                         </button>
+                    </div>
+                </div>
+
+
+                <!-- Print Table Portion -->
+                <div *ngIf="isPrint">
+                    <div>
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+
+                                <ng-container matColumnDef="date">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
+                                        <span>{{days.date}}</span>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="logIn">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>LogIn</th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
+                                        <div class="clock">
+                                            <input matInput [(ngModel)]='days.logIn'>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="lunchStart">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch Start </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
+                                        <div class="clock">
+                                            <input matInput [(ngModel)]='days.lunchStart'>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="lunchEnd">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
+                                        <div class="clock">
+                                            <input matInput [(ngModel)]='days.lunchEnd'>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="logOut">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Log Out </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
+                                        <div class="clock">
+                                            <input matInput [(ngModel)]='days.logOut'>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="travelHours">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Travel Hours </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                        <div class="clock">
+                                            <input matInput [(ngModel)]='days.travel'>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+
+
+                                <ng-container matColumnDef="hoursWorked">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Hours Worked </th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
+                                        <span [ngClass]="checkTotalWorkHour(days.workingHours.hours)">
+                                            {{days.workingHours.hours | number:'2.0'}}:{{days.workingHours.minutes | number:'2.0'}}
+                                        </span>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="totalHours">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Travel + Working</th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                        <span [ngClass]="checkTravelPlusWorkHour(i)">
+                                            {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
+                                        </span>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="edit">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Edit</th>
+                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                        <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit" *ngIf="index != i" triggers="hover" tooltipClass="tooltip-class" (click)="edit(i)"><i class="fa fa-edit"></i></button>
+                                    </td>
+                                </ng-container>
+
+                                <thead>
+                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                </thead>
+                                <tbody>
+                                    <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>

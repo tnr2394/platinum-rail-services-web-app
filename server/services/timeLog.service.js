@@ -2,6 +2,9 @@
 const path = require('path')
 const mongoose = require('mongoose')
 const lodash = require('lodash')
+const async = require("async");
+const moment = require("moment");
+
 
 // Database model
 
@@ -29,6 +32,7 @@ module.exports.getWeeklyTimeLog = getWeeklyTimeLog;
 module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstructors
 module.exports.getInstructorsTimeLogDetails = getInstructorsTimeLogDetails
 module.exports.secondReportLogsDetails = secondReportLogsDetails
+module.exports.scriptForTimelog = scriptForTimelog
 
 function addTimeLog(data) {
     return new Promise((resolve, reject) => {
@@ -513,3 +517,178 @@ function secondReportLogsDetails(instructorId, datesArray) {
         })
     })
 }
+
+function scriptForTimelog() {
+    console.log('script to generate timelogs')
+    const instructorId = '5e45310bbb516d2ee082f58d';
+
+
+    const timeLogArray = []
+
+
+
+    let timeLogIds = []
+
+    async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
+
+        if (singleTimeLog.day != 'Sunday' && singleTimeLog.day != 'Saturday') {
+
+            var diff1 = calculateDiff1(singleTimeLog)
+            var diff2 = calculateDiff2(singleTimeLog)
+            let hoursWorking = diff1.hours + diff2.hours
+            let totalMinute = diff1.minutes + diff2.minutes
+            if (totalMinute > 60) {
+                totalMinute = totalMinute % 60;
+                hoursWorking = hoursWorking + Math.floor(totalMinute / 60)
+                singleTimeLog.workingHours.hours = hoursWorking;
+                singleTimeLog.workingHours.minutes = totalMinute;
+            }
+            else if (totalMinute == 60) {
+                singleTimeLog.workingHours.hours = hoursWorking + 1;
+                singleTimeLog.workingHours.minutes = totalMinute - 60;
+            }
+            else {
+                singleTimeLog.workingHours.hours = hoursWorking;
+                singleTimeLog.workingHours.minutes = totalMinute;
+            }
+
+            singleTimeLog.totalHours = { hours: calculateTravelPlusWorkHours(singleTimeLog), minutes: calculateTravelPlusWorkMinutes(singleTimeLog) }
+            // console.log(" datat ", datassss)
+            delete singleTimeLog.day
+            console.log(" singleTimeLog ::: ", singleTimeLog)
+
+            // innerCallback()
+
+            addTimeLog(singleTimeLog).then((response) => {
+                let newData = { instructorId: ObjectId("5e352cb9390acb3ff3a0e1f3"), logId: response._id }
+                console.log(" Yash CHeck this ")
+                addTimeLogInInstructor(newData).then((result) => {
+                    innerCallback();
+                }).catch((error) => {
+                    errorLog(" Error ", error)
+                })
+            }).catch((error) => {
+                errorLog(" Error ", error)
+            })
+        }
+        else {
+            console.log(" +++++++++++ Holiday ++++++++++ ")
+            innerCallback()
+        }
+
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+        } else {
+            console.log("Date set Completed", callbackResponse);
+        }
+    })
+}
+
+
+const calculateDiff1 = (timelog) => {
+    // console.log("CalculateDiff 1", timelog);
+    var startTime = timelog.logIn;
+    var startHours = startTime.split(":")[0]
+    var startMinutes = startTime.split(":")[1]
+    var endTime = timelog.lunchStart;
+    var endHours = endTime.split(":")[0]
+    var endMinutes = endTime.split(":")[1]
+    var date = moment(new Date(timelog.date))
+    var time1 = new Date(date.toDate().setHours(startHours, startMinutes)) //new Date(date + ' ' + startTime + ':00 GMT+0000');
+    var time2 = new Date(date.toDate().setHours(endHours, endMinutes))//new Date(date + ' ' + endTime + ':00 GMT+0000');
+    var difference = (time2 - time1) / 60000;
+    var minutes = difference % 60;
+    var hours = (difference - minutes) / 60;
+    return ({ hours: hours, minutes: minutes })
+}
+
+const calculateDiff2 = (timelog) => {
+    // console.log("CalculateDiff 2");
+    var startTime = timelog.lunchEnd;
+    var startHours = startTime.split(":")[0]
+    var startMinutes = startTime.split(":")[1]
+    var endTime = timelog.logOut;
+    var endHours = endTime.split(":")[0]
+    var endMinutes = endTime.split(":")[1]
+    var date = moment(new Date(timelog.date));
+    var time1 = new Date(date.toDate().setHours(startHours, startMinutes));
+    var time2 = new Date(date.toDate().setHours(endHours, endMinutes));
+    var difference = (time2 - time1) / 60000;
+    var minutes = difference % 60;
+    var hours = (difference - minutes) / 60;
+    return ({ hours: hours, minutes: minutes })
+}
+
+const calculateTravelPlusWorkMinutes = (timelog) => {
+    let travel, totalHr, totalMin;
+    travel = timelog.travel.split(":")
+    totalHr = timelog.workingHours.hours + Number(travel[0])
+    totalMin = timelog.workingHours.minutes + Number(travel[1])
+    if (totalMin > 59) {
+        // totalMin = totalMin - 60;
+        // totalHr = totalHr + 1
+        totalHr = totalHr + Math.floor(totalMin / 60)
+        totalMin = totalMin % 60
+        timelog.totalHours.minutes = totalMin;
+        return totalMin;
+    }
+    else if (totalMin == 60) {
+        totalHr = totalHr + 1
+        totalMin = totalMin - 60
+        timelog.totalHours.minutes = totalMin;
+        return totalMin;
+    }
+    else {
+        timelog.totalHours.minutes = totalMin;
+        return totalMin;
+    }
+}
+
+const calculateTravelPlusWorkHours = (timelog) => {
+    let travel, totalHr, totalMin;
+    travel = timelog.travel.split(":")
+    totalHr = timelog.workingHours.hours + Number(travel[0])
+    totalMin = timelog.workingHours.minutes + Number(travel[1])
+    if (totalMin > 59) {
+        totalHr = totalHr + Math.floor(totalMin / 60)
+        totalMin = totalMin % 60
+        timelog.totalHours.hours = totalHr;
+        return timelog.totalHours.hours;
+    } else if (totalMin == 60) {
+        totalHr = totalHr + 1
+        totalMin = totalMin - 60
+        timelog.totalHours.hours = totalHr;
+        return timelog.totalHours.hours;
+    }
+    else {
+        timelog.totalHours.hours = totalHr;
+        return timelog.totalHours.hours;
+    }
+}
+
+
+const updateTimeLogRecords = () => {
+    console.log('Update Logs Date');
+
+    async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
+        addTimeLog(singleTimeLog).then((response) => {
+            let newData = { instructorId: ObjectId("5e352cb9390acb3ff3a0e1f3"), logId: response._id }
+            console.log(" Yash CHeck this ")
+            addTimeLogInInstructor(newData).then((result) => {
+                innerCallback();
+            }).catch((error) => {
+                errorLog(" Error ", error)
+            })
+        }).catch((error) => {
+            errorLog(" Error ", error)
+        })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+        } else {
+            console.log("Date set Completed", callbackResponse);
+        }
+    })
+}
+// scriptForTimelog()

@@ -1194,3 +1194,9 @@ body {
     background: lightgrey;
     // border-radius: 10px;
 }
+
+.inputDisabled {
+    .mat-input-element:disabled {
+        color: black;
+    }
+}

@@ -79,6 +79,24 @@ export class LearnerService {
         })
     });
   }
+  allocateLearnerFromStatus(data: any): Observable<any> {
+    console.log("ALLOTMENT", data);
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.post(config.baseApiUrl + "learners/allotment", data).subscribe((res: any) => {
+        console.log("alloted : ", res);
+        observer.next(res);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
 
   submitExamMarks(data: any): Observable<any> {
     console.log("submit Marks learners", data);

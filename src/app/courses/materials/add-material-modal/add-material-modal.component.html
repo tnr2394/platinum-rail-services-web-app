@@ -10,10 +10,10 @@
                 <mat-option value='Reading'> Reading Material</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
+        <mat-form-field class="example-full-width col-6">
             <input matInput name='unit' min="0" oninput="validity.valid||(value='')" placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
         </mat-form-field>
-        <mat-form-field class="example-full-width col-6" *ngIf='data.type == "Assignment"'>
+        <mat-form-field class="example-full-width col-6">
             <input matInput name='assignment' min="0" oninput="validity.valid||(value='')" placeholder="Enter Assignment Number" type="number" required [(ngModel)]='data.assignmentNo'>
         </mat-form-field>
         <div *ngIf="isValid == false" class="errorMsg">All fields are required!</div>
