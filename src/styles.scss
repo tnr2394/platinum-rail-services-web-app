@@ -1173,11 +1173,6 @@ body {
     cursor: pointer !important;
 }
 
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-}
-
 @media (max-width: 1500px) {
     .md-drppicker.ltr .calendar,
     .md-drppicker.ltr .ranges {
@@ -1185,8 +1180,23 @@ body {
         margin-left: 20px;
     }
 }
-.inputDisabled{
-    .mat-input-element:disabled{
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+ ::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 5px grey;
+    // border-radius: 10px;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: lightgrey;
+    // border-radius: 10px;
+}
+
+.inputDisabled {
+    .mat-input-element:disabled {
         color: black;
     }
 }

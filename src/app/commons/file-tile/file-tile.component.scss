@@ -1,12 +1,12 @@
-.file-type{
+.file-type {
     height: 40px;
-    width:40px;
+    width: 40px;
     border: none;
 }
 
-.pdf{
+.pdf {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/pdf-icon-round.png');
     background-size: 40px;
     background-repeat: no-repeat;
@@ -14,117 +14,115 @@
     // border-style: none;
 }
 
-.ppt{
+.ppt {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.zip{
+.zip {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/zip.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.jpg{
+.jpg {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/jpg.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.jpeg{
+.jpeg {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/jpg.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.png{
+.png {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/png.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-
-.pptx{
+.pptx {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.mp4{
+.mp4 {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/icon-powerpoint.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.docx{
+.docx {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/icon-docx.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.mp4{
+.mp4 {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/mp4icon.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.xls{
+.xls {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/xlsx.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.xlsx{
+.xlsx {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/xlsx.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-.txt{
+.txt {
     height: 40px;
-    width:40px;
+    width: 40px;
     background: url('../../../assets/txt.png');
     background-size: 40px;
     background-repeat: no-repeat;
     margin: auto;
 }
 
-
-.doc{
+.doc {
     height: 40px;
     width: 40px;
     background: url('../../../assets/word-doc-icon.png');
@@ -132,7 +130,8 @@
     background-repeat: no-repeat;
     margin: auto;
 }
-.odt{
+
+.odt {
     height: 40px;
     width: 40px;
     background: url('../../../assets/odt.svg');
@@ -140,24 +139,26 @@
     background-repeat: no-repeat;
     margin: auto;
 }
-@media (max-width:1199){
+
+@media (max-width:1199) {
     .upload_user {
         margin-bottom: 0 !important;
     }
 }
-@media (max-width:575px){
+
+@media (max-width:575px) {
     .col-2 {
         padding-left: 7px !important;
     }
-    .date{
+    .date {
         font-size: 14px !important;
     }
-    
 }
-.file_title{
-    b{
+
+.file_title {
+    b {
         height: 18px;
-        width:190px;
+        width: 190px;
         padding: 0;
         overflow: hidden;
         position: relative;
@@ -169,20 +170,24 @@
         color: #000;
     }
 }
-.date{
+
+.date {
     font-style: 14px;
 }
-.col-sm-3{
-    @media (max-width: 575px){
+
+.col-sm-3 {
+    @media (max-width: 575px) {
         width: 25% !important;
     }
 }
+
 .col-sm-9 {
     @media (max-width: 575px) {
         width: 75% !important;
     }
 }
-.file_tile_main_area{
+
+.file_tile_main_area {
     font-size: 13px;
     font-weight: 500;
     text-overflow: ellipsis;
@@ -192,24 +197,32 @@
     margin-bottom: 0px !important;
     margin-top: 5px;
 }
-.preview{
-    img{
+
+.preview {
+    img {
         width: 100%;
         height: 280px;
         object-fit: cover;
         object-position: top;
     }
 }
-.fileView{
+
+.fileView {
     // max-width: 250px !important;
     height: auto;
     padding: 0 !important;
 }
-.thumbnail_preview{
-    img{
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    object-position: top;
+
+.thumbnail_preview {
+    img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        object-position: top;
+    }
 }
+
+.text-primary {
+    padding: 0px 0px 0px 0px !important;
+    min-width: 45px !important;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -57,11 +57,12 @@ export class SingleWeekComponent implements OnInit {
   @Input('datesFromInstructor') datesArrayFromInst;
   @Input('weekDatesFromAdmin') weekDatesFromAdmin;
   @Input('monthChanged') monthChanged;
-
+  @Input('instDetails') instDetails;
+  @Output() print: EventEmitter<any> = new EventEmitter<any>();
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+  displayedColumns: string[] = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -97,6 +98,12 @@ export class SingleWeekComponent implements OnInit {
   editing: boolean = false;
   index: any;
   editedIndex = [];
+  p: Number = 1;
+  currentPage: any = 0;
+  instName: any;
+  instEmail: any;
+  periodStart: any;
+  periodEnd: any;
 
 
 
@@ -121,15 +128,20 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
+    this.print.emit({msg:'printing'})
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+    this.dataSource.paginator = null;
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
-    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    this.print.emit({ msg: 'printing complete' })
+    this.displayedColumns = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    this.dataSource.paginator = this.paginator;
   }
 
+  pageEvent: PageEvent;
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
@@ -166,6 +178,10 @@ export class SingleWeekComponent implements OnInit {
     else if (this.doGetWeekDates == false) {
       this.datesOfWeek = this.datesArrayFromInst
     }
+    if (this.instDetails){
+      this.instName = this.instDetails.name
+      this.instEmail = this.instDetails.email
+    }
 
   }
 
@@ -197,6 +213,11 @@ export class SingleWeekComponent implements OnInit {
       this.getValuesUsingDates()
     }
     if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue) {
+      // console.log("weekDatesFromAdmin", changes.weekDatesFromAdmin.currentValue);
+      this.periodStart = changes.weekDatesFromAdmin.currentValue[0]
+      console.log("**this.periodStart", this.periodStart);
+      this.periodEnd = changes.weekDatesFromAdmin.currentValue[changes.weekDatesFromAdmin.currentValue.length - 1]
+      console.log("**this.periodEnd", this.periodEnd);
       this.displayMsg = false;
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
@@ -204,11 +225,15 @@ export class SingleWeekComponent implements OnInit {
     if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true) {
       this.getWeekDates()
     }
+    if (changes.instDetails && changes.instDetails.currentValue) {
+      this.instName = changes.instDetails.currentValue.name
+      this.instEmail = changes.instDetails.currentValue.email
+    }
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   // this.dataSource.sort = this.sort;
+  // }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
@@ -411,44 +436,69 @@ export class SingleWeekComponent implements OnInit {
     }
   }
 
-  calculateOverTimeHours() {
-    var totalH = 0;
-    _.forEach(this.Days, (day) => {
-      if (day.workingHours.hours > 12) {
-        totalH = totalH + day.workingHours.hours - 12
-      }
-      this.overH = totalH;
-    })
-    return this.overH;
-  }
-
-  calculateOverTimeMinutes() {
+  calcOverTime(){
     var totalH = 0;
     var totalM = 0;
-    _.forEach(this.Days, (day) => {
-      if (day.workingHours.hours > 12) {
+    _.forEach(this.Days, (day)=>{
+      if (day.workingHours.hours > 12){
+        totalH = totalH + day.workingHours.hours - 12
         totalM = totalM + day.workingHours.minutes
       }
     })
-
-    if (totalM > 59) {
+    if (totalM > 60) {
       totalH = totalH + Math.floor(totalM / 60)
       totalM = totalM % 60
-      return totalM;
+      // return totalM;
     } else if (totalM == 60) {
       this.overH = this.overH + 1
       totalM = totalM - 60
       this.overM = totalM;
-      return this.overM;
+      // return this.overM;
     }
     else {
       this.overM = totalM;
-      return this.overM;
+      // return this.overM;
     }
-
-
-    return totalM;
+    return totalH.toString() + ':' + totalM.toString()
   }
+  // calculateOverTimeHours() {
+  //   var totalH = 0;
+  //   _.forEach(this.Days, (day) => {
+  //     if (day.workingHours.hours > 12) {
+  //       totalH = totalH + day.workingHours.hours - 12
+  //     }
+  //     this.overH = totalH;
+  //   })
+  //   return this.overH;
+  // }
+
+  // calculateOverTimeMinutes() {
+  //   var totalH = 0;
+  //   var totalM = 0;
+  //   _.forEach(this.Days, (day) => {
+  //     if (day.workingHours.hours > 12) {
+  //       totalM = totalM + day.workingHours.minutes
+  //     }
+  //   })
+
+  //   if (totalM > 60) {
+  //     totalH = totalH + Math.floor(totalM / 60)
+  //     totalM = totalM % 60
+  //     return totalM;
+  //   } else if (totalM == 60) {
+  //     this.overH = this.overH + 1
+  //     totalM = totalM - 60
+  //     this.overM = totalM;
+  //     return this.overM;
+  //   }
+  //   else {
+  //     this.overM = totalM;
+  //     return this.overM;
+  //   }
+
+
+  //   return totalM;
+  // }
 
   calculateTravelPlusWorkMinutes(index) {
     let travel, totalHr, totalMin;
@@ -581,6 +631,9 @@ export class SingleWeekComponent implements OnInit {
     newLogs.logOut = this.Days[this.copiedIndex].logOut;
     newLogs.travel = this.Days[this.copiedIndex].travel
     this.closed(i)
+    $('#' + this.currentPage + i).addClass('make-blue')
+    this.editedIndex.push({ currentPage: this.currentPage, index: i })
+    // this.edit(i,this.currentPage)
     console.log("THIS.DAYS", this.Days);
   }
 
@@ -593,6 +646,8 @@ export class SingleWeekComponent implements OnInit {
     if (data.date && data.instructorId) {
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Inside Res=======>>>>', res);
+        this.editing = false
+        this.index = null
         this.arrayFromDb = res;
         this.loading = false
         // console.log('Arrayform db', this.arrayFromDb);
@@ -714,12 +769,41 @@ export class SingleWeekComponent implements OnInit {
     // console.log('Check Total Working Hours===>>>', hours);
 
   }
-  edit(i) {
-    $('#' + i).addClass('make-blue')
+  edit(i, pageEvent){
+    this.Days[i]['updated'] = true
+    if (pageEvent && pageEvent.pageIndex){
+      this.currentPage = pageEvent.pageIndex
+    }
+    else {this.currentPage = 0}
+    console.log("On edit adding class to", '#' + this.currentPage + i);
+    $('#' + this.currentPage + i).addClass('make-blue')
     console.log("index", i);
     this.index = i
-    this.editedIndex.push(i)
+    this.editedIndex.push({currentPage: this.currentPage,index:i})
+    console.log("in edit this.editedIndex", this.editedIndex);
     this.editing = true
+    console.log("**CURRENT PAGE",this.currentPage);
+    
+  }
+  pageNext(event){
+    this.editing = false
+    this.index = null
+    console.log("**event", event);
+    console.log("**this.editedIndex", this.editedIndex);
+    this.currentPage = event.pageIndex;
+    if(this.editedIndex){
+      this.editedIndex.forEach(i=>{
+        console.log("i",i);
+        if (this.currentPage == i.currentPage){
+          console.log("adding class to", '#' + i.currentPage.toString() + i.index.toString());
+          $(document).ready(function () {
+            console.log("ready!");
+            $('#' + i.currentPage.toString() + i.index.toString()).addClass('make-blue')
+
+          });
+        }
+      })
+    }
   }
   save(i) {
     // console.log("index", i);
@@ -753,6 +837,8 @@ export class SingleWeekComponent implements OnInit {
       console.log("data.date is found", data.date);
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Res========>>>>>', res);
+        this.editing = false
+        this.index = null
         this.loading = false
         this.updateData(res)
       }, err => {
