@@ -4,3 +4,4 @@ i{
 .mat-tab-body-content {
     overflow: unset !important;
 }
+::ng-deep .tabs .mat-tab-list .mat-tab-labels { display: none; }

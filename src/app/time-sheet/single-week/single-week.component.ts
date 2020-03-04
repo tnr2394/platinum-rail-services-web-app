@@ -104,6 +104,7 @@ export class SingleWeekComponent implements OnInit {
   instEmail: any;
   periodStart: any;
   periodEnd: any;
+  regularHours: number;
 
 
 
@@ -638,6 +639,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   getValuesUsingDates() {
+    if (this.datesOfWeek) { this.regularHours = this.datesOfWeek.length * 12}
     console.log('Get Values Using Dates');
     let data = {
       date: this.datesOfWeek,

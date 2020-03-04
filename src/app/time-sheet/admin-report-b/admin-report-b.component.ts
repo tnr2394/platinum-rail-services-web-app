@@ -93,6 +93,7 @@ export class AdminReportBComponent implements OnInit {
       this.print.emit({msg:'printing'})
     }
     else if (event.msg == 'printing complete'){
+      this.print.emit({ msg: 'printing complete' })
       this.hide = false
     }
   }

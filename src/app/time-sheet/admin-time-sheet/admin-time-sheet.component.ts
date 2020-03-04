@@ -42,7 +42,8 @@ export class AdminTimeSheetComponent implements OnInit {
   view: string;
   selectedInstructorId: string[];
   displayMessage = false;
-  hide: boolean;
+  hide: boolean=false;
+  selectedIndex: any;
   
   // instructors = [{name:'Inst '}]
 
@@ -55,6 +56,7 @@ export class AdminTimeSheetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedIndex = 0;
     this.options = { multiple: true }
     this.view = "Week"
     this.getCurrentWeekDates().then((resolvedDates:any)=>{
@@ -197,12 +199,19 @@ export class AdminTimeSheetComponent implements OnInit {
     console.log("**IS PRINTING**", event);
     if (event.msg == 'printing') {
       this.hide = true;
-      $('#tabLabel').addClass('opacity')
+      if(this.hide) $('.mat-tab-header').hide()
+      else $('.mat-tab-header').show()
+      // $('#tabLabel').addClass('opacity')
       // this.print.emit({ msg: 'printing' })
     }
     else if (event.msg == 'printing complete') {
       this.hide = false
+      $('.mat-tab-header').show()
     }
+  }
+  tabChanged(event){
+    console.log("**tab changed", event);
+    this.selectedIndex = event.index
   }
   getWeekDates(week) {
     // var currentDate = moment();
