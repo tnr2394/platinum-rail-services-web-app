@@ -48,6 +48,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { Select2Module } from 'ng2-select2';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { MatTreeModule } from '@angular/material/tree';
 
 
 
@@ -204,6 +205,7 @@ import { AllotmentConfirmationComponent } from './clients/assignment-status/allo
     AllotmentConfirmationComponent
   ],
   imports: [
+    MatTreeModule,
     NgSelectModule,
     NgxDaterangepickerMd.forRoot(),
     ChartsModule,

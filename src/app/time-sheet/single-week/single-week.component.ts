@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -61,7 +61,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
+  displayedColumns: string[] = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -97,6 +97,8 @@ export class SingleWeekComponent implements OnInit {
   editing: boolean = false;
   index: any;
   editedIndex = [];
+  p: Number = 1;
+  currentPage: any = 0;
 
 
 
@@ -129,6 +131,7 @@ export class SingleWeekComponent implements OnInit {
     this.isPrint = false
   }
 
+  pageEvent: PageEvent;
 
 
   constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
@@ -580,6 +583,9 @@ export class SingleWeekComponent implements OnInit {
     newLogs.logOut = this.Days[this.copiedIndex].logOut;
     newLogs.travel = this.Days[this.copiedIndex].travel
     this.closed(i)
+    $('#' + this.currentPage + i).addClass('make-blue')
+    this.editedIndex.push({ currentPage: this.currentPage, index: i })
+    // this.edit(i,this.currentPage)
     console.log("THIS.DAYS", this.Days);
   }
 
@@ -713,12 +719,41 @@ export class SingleWeekComponent implements OnInit {
     // console.log('Check Total Working Hours===>>>', hours);
 
   }
-  edit(i){
-    $('#'+i).addClass('make-blue')
+  edit(i, pageEvent){
+    this.Days[i]['updated'] = true
+    if (pageEvent && pageEvent.pageIndex){
+      this.currentPage = pageEvent.pageIndex
+    }
+    else {this.currentPage = 0}
+    console.log("On edit adding class to", '#' + this.currentPage + i);
+    $('#' + this.currentPage + i).addClass('make-blue')
     console.log("index", i);
     this.index = i
-    this.editedIndex.push(i)
+    this.editedIndex.push({currentPage: this.currentPage,index:i})
+    console.log("in edit this.editedIndex", this.editedIndex);
     this.editing = true
+    console.log("**CURRENT PAGE",this.currentPage);
+    
+  }
+  pageNext(event){
+    this.editing = false
+    this.index = null
+    console.log("**event", event);
+    console.log("**this.editedIndex", this.editedIndex);
+    this.currentPage = event.pageIndex;
+    if(this.editedIndex){
+      this.editedIndex.forEach(i=>{
+        console.log("i",i);
+        if (this.currentPage == i.currentPage){
+          console.log("adding class to", '#' + i.currentPage.toString() + i.index.toString());
+          $(document).ready(function () {
+            console.log("ready!");
+            $('#' + i.currentPage.toString() + i.index.toString()).addClass('make-blue')
+
+          });
+        }
+      })
+    }
   }
   save(i){
     // console.log("index", i);
