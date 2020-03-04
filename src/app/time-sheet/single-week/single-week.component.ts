@@ -129,7 +129,8 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
-    this.print.emit({ msg: 'printing' })
+    $('th').addClass('printTableHeader')
+    this.print.emit({msg:'printing'})
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
     this.dataSource.paginator = null;
   }
@@ -137,6 +138,7 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
+    $('th').removeClass('printTableHeader')
     this.print.emit({ msg: 'printing complete' })
     this.displayedColumns = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
     this.dataSource.paginator = this.paginator;
