@@ -10,11 +10,8 @@
     <div class="col" *ngIf="allLearners && allLearners.length != 0">
         <!-- <select2 [data]="learnerToDisplay" [cssImport]=true  [options]="optionsForlearners" [value]="value"
             (valueChanged)="changedLearner($event)"></select2> -->
-        <<<<<<< HEAD <ng-select [items]="allLearners" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Choose Learners" [(ngModel)]="selectedLearners">
-            =======
-            <ng-select [items]="allLearners" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Choose Learners" [(ngModel)]="selectedLearners">
-                >>>>>>> d881482667dc4c361d0e2853b743ec1370e46681
-            </ng-select>
+        <ng-select [items]="allLearners" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Choose Learners" [(ngModel)]="selectedLearners">
+        </ng-select>
     </div>
     <div class="col" *ngIf="unitArray && unitArray.length != 0 && allLearners && allLearners.length != 0">
         <!-- <select2 [data]="unitsToDisplay" [cssImport]=true [options]="optionsForUnits" [value]="value"
@@ -22,7 +19,7 @@
         <ng-select [items]="unitsToDisplay" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="text" placeholder="Choose Units" [(ngModel)]="selectedUnits">
         </ng-select>
     </div>
-    <div class="col-1" style="margin-top: 15px;" *ngIf="unitArray && unitArray.length != 0 && allLearners && allLearners.length != 0">
+    <div class="col-1" style="margin-top: 10px; margin-right: 15px;" *ngIf="unitArray && unitArray.length != 0 && allLearners && allLearners.length != 0">
         <button mat-mini-fab color="primary" (click)="getFilteredData()">GO</button>
     </div>
     <div class="col-12 responsive-row">
@@ -66,36 +63,30 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let learn of learner; let learnIndex = index;">
-                                        <<<<<<< HEAD <td *ngFor="let ass of unit.assignment; let assignIndex = index;" class="td-width">
+                                        <td *ngFor="let ass of unit.assignment; let assignIndex = index;" class="td-width">
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'" routerLink="/learnerAllotment/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
                                                 <div placement="top" ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}" tooltipClass="tooltip-top-class" [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
                                             </a>
                                             <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
-                                                <div placement="top" (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)" ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}" tooltipClass="tooltip-top-class" [ngClass]="checkArray(learn.assignments,ass.assignmentId)"=======<
-                                                    td *ngFor="let ass of unit.assignment; let assignIndex = index;" class="td-width">
-                                                    <a *ngIf="checkArray(learn.assignments,ass.assignmentId) != 'Unassigned'" routerLink="/learnerAllotment/{{checkArrayForRouting(learn.assignments,ass.assignmentId)}}">
-                                                        <div placement="top" ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}" tooltipClass="tooltip-top-class" [ngClass]="checkArray(learn.assignments,ass.assignmentId)"> </div>
-                                                    </a>
-                                                    <a *ngIf="checkArray(learn.assignments,ass.assignmentId) == 'Unassigned'">
-                                                        <div placement="top" (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)" ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}" tooltipClass="tooltip-top-class" [ngClass]="checkArray(learn.assignments,ass.assignmentId)">>>>>>> d881482667dc4c361d0e2853b743ec1370e46681 id="Unassigned{{ass.assignmentId}}{{learn._id}}"> </div>
-                                                        <!--  -->
-                                                    </a>
-                                                    </td>
+                                                <div placement="top" (click)="unassignedClicked(learn, ass.assignmentId, learnIndex, assignIndex, $event)" ngbTooltip="{{checkArrayWithDate(learn.assignments,ass.assignmentId)}}" tooltipClass="tooltip-top-class" [ngClass]="checkArray(learn.assignments,ass.assignmentId)"
+                                                    id="Unassigned{{ass.assignmentId}}{{learn._id}}"> </div>
+                                                <!--  -->
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            </div>
                         </div>
                     </div>
-
-
-                    <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="allLearners && allLearners.length == 0">
-                        No Assignment Alloted!
-                    </h3>
-
                 </div>
-            </div>
 
+
+                <h3 class="m-auto text-info py-2 no_found_msg" *ngIf="allLearners && allLearners.length == 0">
+                    No Assignment Alloted!
+                </h3>
+
+            </div>
         </div>
+
     </div>

@@ -1,19 +1,21 @@
-.full-height{
+.full-height {
     min-height: 100vh;
 }
-.title_display{
-    @media (max-width:575px){
+
+.title_display {
+    @media (max-width: 575px) {
         min-width: 230px;
         max-width: 230px;
     }
-    p{
+    p {
         font-size: 20px;
         max-width: 300px;
     }
 }
-.close_btn{
+
+.close_btn {
     font-size: 28px;
-    @media (max-width:575px){
+    @media (max-width: 575px) {
         font-size: 22px;
     }
 }

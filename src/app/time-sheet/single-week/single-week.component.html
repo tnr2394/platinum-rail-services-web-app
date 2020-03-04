@@ -41,15 +41,21 @@
                                 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                     <!-- Date Column -->
-                                    <ng-container matColumnDef="date">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+
+                                    <ng-container matColumnDef="copy">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
                                             <div>
                                                 <button class="copyArrow btn" (click)="copyCurrentLogs(i)" placement="bottom" ngbTooltip="Copy logs" tooltipClass="tooltip-class"><i class="fa fa-copy"></i></button>
                                                 <button class="copyArrow btn" (click)="pasteLogs(i)" *ngIf="showPasteBtn && i != copiedIndex" placement="bottom" ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i
-                                                        class="fa fa-paste"></i></button> {{days.date}}
+                                                        class="fa fa-paste"></i></button>
                                             </div>
-
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="date">
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
+                                            <span>{{days.date}}</span>
                                         </td>
                                     </ng-container>
                                     <!-- Login Column -->

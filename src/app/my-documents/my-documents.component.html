@@ -10,10 +10,9 @@
                 </a>
             </div>
             <div *ngIf="type != 'folder'" class="float-left title_display">
-                    <p>{{fileTitle}}</p>
+                <p>{{fileTitle}}</p>
             </div>
-            <mat-button class="close_btn text-primary float-right" (click)="closeSidnav()"><i class="fa fa-times-circle"
-                    aria-hidden="true"></i>
+            <mat-button class="close_btn text-primary float-right" (click)="closeSidnav()"><i class="fa fa-times-circle" aria-hidden="true"></i>
             </mat-button>
         </div>
         <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)" (titleChanged)="folderTitleChenged($event)"></app-file-details>
@@ -22,5 +21,5 @@
         <mat-card class="mt-2">
             <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile" [updatedFolder]="updatedFolder" [removeCssClass]="removeCssClass"></app-folder>
         </mat-card>
-</mat-sidenav-content>
+    </mat-sidenav-content>
 </mat-sidenav-container>
