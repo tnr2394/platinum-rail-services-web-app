@@ -62,7 +62,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
+  displayedColumns: string[] = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -129,7 +129,7 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
-    this.print.emit({msg:'printing'})
+    this.print.emit({ msg: 'printing' })
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
     this.dataSource.paginator = null;
   }
@@ -138,7 +138,7 @@ export class SingleWeekComponent implements OnInit {
   onAfterPrint(event) {
     this.isPrint = false
     this.print.emit({ msg: 'printing complete' })
-    this.displayedColumns = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    this.displayedColumns = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
     this.dataSource.paginator = this.paginator;
   }
 
@@ -179,7 +179,7 @@ export class SingleWeekComponent implements OnInit {
     else if (this.doGetWeekDates == false) {
       this.datesOfWeek = this.datesArrayFromInst
     }
-    if (this.instDetails){
+    if (this.instDetails) {
       this.instName = this.instDetails.name
       this.instEmail = this.instDetails.email
     }
@@ -437,11 +437,11 @@ export class SingleWeekComponent implements OnInit {
     }
   }
 
-  calcOverTime(){
+  calcOverTime() {
     var totalH = 0;
     var totalM = 0;
-    _.forEach(this.Days, (day)=>{
-      if (day.workingHours.hours > 12){
+    _.forEach(this.Days, (day) => {
+      if (day.workingHours.hours > 12) {
         totalH = totalH + day.workingHours.hours - 12
         totalM = totalM + day.workingHours.minutes
       }
@@ -639,7 +639,7 @@ export class SingleWeekComponent implements OnInit {
   }
 
   getValuesUsingDates() {
-    if (this.datesOfWeek) { this.regularHours = this.datesOfWeek.length * 12}
+    if (this.datesOfWeek) { this.regularHours = this.datesOfWeek.length * 12 }
     console.log('Get Values Using Dates');
     let data = {
       date: this.datesOfWeek,
@@ -663,7 +663,6 @@ export class SingleWeekComponent implements OnInit {
   mergeAndCompareBothArrays() {
     console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
     var filterDates;
-    // let lengthOfArray = this.arrayFromDb.length
     return new Promise((resolve, reject) => {
       filterDates = this.datesOfWeek.filter(o => !this.arrayFromDb.find(o2 => o === o2.date))
       // console.log('Fiter Dates===>>>>', filterDates);
@@ -686,24 +685,6 @@ export class SingleWeekComponent implements OnInit {
             minutes: 0,
           }
         }
-
-        // newObj = {
-        //   date: singleDate,
-        //   _id: 'new',
-        //   logIn: '--:--',
-        //   lunchStart: '--:--',
-        //   lunchEnd: '--:--',
-        //   logOut: '--:--',
-        //   workingHours: {
-        //     hours: 0,
-        //     minutes: 0,
-        //   },
-        //   travel: '--:--',
-        //   totalHours: {
-        //     hours: 0,
-        //     minutes: 0,
-        //   }
-        // }
         this.arrayFromDb.push(newObj);
       })
       resolve(this.arrayFromDb)
@@ -746,6 +727,10 @@ export class SingleWeekComponent implements OnInit {
     }
   }
 
+  totalWeekHour() {
+
+  }
+
   checkTravelPlusWorkHour(index) {
 
     let travel, totalHr, totalMin;
@@ -771,32 +756,32 @@ export class SingleWeekComponent implements OnInit {
     // console.log('Check Total Working Hours===>>>', hours);
 
   }
-  edit(i, pageEvent){
+  edit(i, pageEvent) {
     this.Days[i]['updated'] = true
-    if (pageEvent && pageEvent.pageIndex){
+    if (pageEvent && pageEvent.pageIndex) {
       this.currentPage = pageEvent.pageIndex
     }
-    else {this.currentPage = 0}
+    else { this.currentPage = 0 }
     console.log("On edit adding class to", '#' + this.currentPage + i);
     $('#' + this.currentPage + i).addClass('make-blue')
     console.log("index", i);
     this.index = i
-    this.editedIndex.push({currentPage: this.currentPage,index:i})
+    this.editedIndex.push({ currentPage: this.currentPage, index: i })
     console.log("in edit this.editedIndex", this.editedIndex);
     this.editing = true
-    console.log("**CURRENT PAGE",this.currentPage);
-    
+    console.log("**CURRENT PAGE", this.currentPage);
+
   }
-  pageNext(event){
+  pageNext(event) {
     this.editing = false
     this.index = null
     console.log("**event", event);
     console.log("**this.editedIndex", this.editedIndex);
     this.currentPage = event.pageIndex;
-    if(this.editedIndex){
-      this.editedIndex.forEach(i=>{
-        console.log("i",i);
-        if (this.currentPage == i.currentPage){
+    if (this.editedIndex) {
+      this.editedIndex.forEach(i => {
+        console.log("i", i);
+        if (this.currentPage == i.currentPage) {
           console.log("adding class to", '#' + i.currentPage.toString() + i.index.toString());
           $(document).ready(function () {
             console.log("ready!");
@@ -846,7 +831,5 @@ export class SingleWeekComponent implements OnInit {
       }, err => {
       })
     }
-
   }
-
 }
