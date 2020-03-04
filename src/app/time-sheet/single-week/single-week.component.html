@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="col-12 ">
-                <div class="card" [hidden]="isPrint">
+                <div class="card" *ngIf="!isPrint">
                     <!--Card content-->
                     <div class="card-block">
                         <div class="row justify-content-end m-0">
@@ -102,8 +102,9 @@
 
                                     <ng-container matColumnDef="lunchStart">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch Start </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field *ngIf="editing && index == i" >
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days;let i=index">
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -126,8 +127,9 @@
 
                                     <ng-container matColumnDef="lunchEnd">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Lunch End </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field *ngIf="editing && index == i" > 
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days;let i=index">
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -151,8 +153,9 @@
 
                                     <ng-container matColumnDef="logOut">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef>Log Out </th>
-                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
-                                            <mat-form-field *ngIf="editing && index == i" >
+                                        <td class="mat-table-cell text-center" mat-cell
+                                            *matCellDef="let days;let i=index">
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -167,7 +170,7 @@
                                                     </div>
                                                 </div>
                                             </mat-form-field>
-                                            <div class="clock inputDisabled" *ngIf="index != i" >
+                                            <div class="clock inputDisabled" *ngIf="index != i">
                                                 <input matInput [(ngModel)]='days.logOut' disabled>
                                             </div>
                                         </td>
@@ -179,7 +182,7 @@
                                             *matCellDef="let days;let i = index">
                                             <!-- <input matInput type="time" (change)="travelPlusWork(i)"
                                                 [(ngModel)]='days.travel' *ngIf="days && days.travel"> -->
-                                            <mat-form-field *ngIf="editing && index == i" >
+                                            <mat-form-field *ngIf="editing && index == i">
                                                 <div class="clock">
                                                     <div class="time_disp">
                                                         <input matInput type="time" [ngxTimepicker]="min" [format]="24"
@@ -234,7 +237,8 @@
                                     </ng-container>
                                     
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row
+                                            *matHeaderRowDef="displayedColumns"></tr>
                                         <!--  -->
                                     </thead>
                                     <tbody>
@@ -346,6 +350,16 @@
                                         <span [ngClass]="checkTravelPlusWorkHour(i)">
                                             {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
                                         </span>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="edit">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef>Edit</th>
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days;let i = index">
+                                        <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit"
+                                            *ngIf="index != i" triggers="hover" tooltipClass="tooltip-class"
+                                            (click)="edit(i)"><i class="fa fa-edit"></i></button>
                                     </td>
                                 </ng-container>
 

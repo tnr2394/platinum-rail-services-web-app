@@ -12,7 +12,7 @@ import { flip, flipInX, flipInY } from 'ng-animate';
 // import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const FLIP_TRANSITION = [
-  trigger('flipInX', [transition('* => *', useAnimation(flipInX,{
+  trigger('flipInX', [transition('* => *', useAnimation(flipInX, {
     params: { timing: 0.5, delay: 0 }
   }))]),
   // trigger(
@@ -123,12 +123,13 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
-    alert('After Print Msg')
     this.isPrint = false
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
   }
 
   pageEvent: PageEvent;
@@ -217,7 +218,7 @@ export class SingleWeekComponent implements OnInit {
     });
   }
 
-  
+
 
 
 
@@ -755,14 +756,14 @@ export class SingleWeekComponent implements OnInit {
       })
     }
   }
-  save(i){
+  save(i) {
     // console.log("index", i);
     this.index = null;
     this.editing = false
   }
   // editedIndices(i){
   //   console.log("**EDITEDINDICES", this.editedIndex, "iindex",i);
-    
+
   //   if(this.editedIndex.length > 0){
   //     this.editedIndex.forEach(index => {
   //       if (index == i) {
