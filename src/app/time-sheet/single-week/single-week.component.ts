@@ -105,6 +105,7 @@ export class SingleWeekComponent implements OnInit {
   periodStart: any;
   periodEnd: any;
   regularHours: number;
+  workWeekHours: Number;
 
 
 
@@ -130,7 +131,7 @@ export class SingleWeekComponent implements OnInit {
   onBeforePrint(event) {
     this.isPrint = true
     $('th').addClass('printTableHeader')
-    this.print.emit({msg:'printing'})
+    this.print.emit({ msg: 'printing' })
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
     this.dataSource.paginator = null;
   }
@@ -464,6 +465,32 @@ export class SingleWeekComponent implements OnInit {
     }
     return totalH.toString() + ':' + totalM.toString()
   }
+
+
+  totalWeekHour() {
+    var totalH = 0;
+    var totalM = 0;
+    _.forEach(this.Days, (day) => {
+      totalH = totalH + day.totalHours.hours
+      totalM = totalM + day.totalHours.minutes
+    })
+    if (totalM > 60) {
+      totalH = totalH + Math.floor(totalM / 60)
+      totalM = totalM % 60
+      // return totalM;
+    } else if (totalM == 60) {
+      this.overH = this.overH + 1
+      totalM = totalM - 60
+      this.overM = totalM;
+      // return this.overM;
+    }
+    else {
+      this.overM = totalM;
+      // return this.overM;
+    }
+    return totalH.toString() + ':' + totalM.toString()
+  }
+
   // calculateOverTimeHours() {
   //   var totalH = 0;
   //   _.forEach(this.Days, (day) => {
@@ -729,9 +756,7 @@ export class SingleWeekComponent implements OnInit {
     }
   }
 
-  totalWeekHour() {
 
-  }
 
   checkTravelPlusWorkHour(index) {
 

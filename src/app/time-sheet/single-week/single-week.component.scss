@@ -1,65 +1,72 @@
 .break {
-    color: red !important;
+  color: red !important;
 }
 
 .ok {
-    color: green !important;
+  color: green !important;
 }
 
 .labelColor {
-    color: #2196f3;
+  color: #2196f3;
 }
 
 .clock {
-    display: flex;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
 mat-form-field {
-    max-width: 100px;
-    margin: 2px 0px;
+  max-width: 100px;
+  margin: 2px 0px;
 }
 
 .copyArrow {
-    background: transparent;
-    color: #2196f3;
-    font-size: 20px;
+  background: transparent;
+  color: #2196f3;
+  font-size: 20px;
 }
 
 table {
-    margin: 0;
-    width: 100%;
-    @media(max-width: 1199px) {
-        min-width: 950px;
-    }
+  margin: 0;
+  width: 100%;
+  @media (max-width: 1199px) {
+    min-width: 950px;
+  }
 }
 
 // .time_disp {
 .input.mat-input-element {
-    text-align: right!important;
-    margin-left: 25% !important;
+  text-align: right !important;
+  margin-left: 25% !important;
 }
 
 // }
 .ok {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 h5 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 th.text-center {
-    font-size: 13px;
+  font-size: 13px;
 }
 .make-blue {
-    background-color: #c1d1ff40
+  background-color: #c1d1ff40;
 }
+
 .make-default {
-    // background-color: rgb(207, 255, 235)
+  // background-color: rgb(207, 255, 235)
 }
-.printTableHeader{
-    background: black !important;
-    color: white !important;
+.printTableHeader {
+  background: black !important;
+  color: white !important;
+}
+.text_spacing {
+  font-weight: bold;
+}
+b {
+  font-weight: 400;
 }

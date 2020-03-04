@@ -294,45 +294,51 @@
 
 
 <div class="row" *ngIf="isPrint">
-    <div class="col-12 d-flex">
-        <div class="col-6">
-            <h4> Employee Details </h4>
-            <mat-divider></mat-divider>
-            <b>Name:</b>{{instName}}
-            <b>Email:</b>{{instEmail}}
-        </div>
-        <div class="col-6">
-            <h4>Time Sheet Period</h4>
-            <mat-divider></mat-divider>
-            <b>Period Start:</b>{{periodStart}}
-            <b>Period End:</b>{{periodEnd}}
-        </div>
-    </div>
-    <div class="col-12 d-flex">
-        <div class="col-6">
-            <h4>Total work week hours</h4>
-            <mat-divider></mat-divider>
-            {{totalWeekHour}}
-        </div>
-        <div class="col-6">
-            <h4>Total hours worked</h4>
-            <mat-divider></mat-divider>
-            <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
-                {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
-            </span>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 col-xl-6 col-md-6 mb-5">
+                <h4 class="text_spacing"> Employee Details </h4>
+                <mat-divider></mat-divider>
+                <p><b class="ml-2">Name:</b><span>{{instName}}</span></p>
+                <b class="ml-2">Email:</b><span>{{instEmail}}</span>
+            </div>
+            <div class="col-sm-12 col-lg-6 col-xl-6 col-md-6 mb-5">
+                <h4 class="text_spacing">Time Sheet Period</h4>
+                <mat-divider></mat-divider>
+                <p><b class="ml-2">Period Start:</b><span>{{periodStart}}</span></p>
+                <b class="ml-2">Period End:</b><span>{{periodEnd}}</span>
+            </div>
         </div>
     </div>
-    <div class="col-12 d-flex">
-        <div class="col-6">
-            <h4>Overtime hours</h4>
-            <mat-divider></mat-divider>
-            <!-- <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span> -->
-            <span>{{calcOverTime()}}</span>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 col-xl-6 col-md-6 mb-5">
+                <h4 class="text_spacing">Total work week hours</h4>
+                <mat-divider></mat-divider>
+                {{(totalWeekHour())}}
+            </div>
+            <div class="col-sm-12 col-lg-6 col-xl-6 col-md-6 mb-5">
+                <h4 class="text_spacing">Total hours worked</h4>
+                <mat-divider></mat-divider>
+                <span *ngIf="totalHoursWorked" [ngClass]="checkTotalWorkingHours(totalHoursWorked.hours)">
+                    {{totalHoursWorked.hours | number:'2.0'}}:{{totalHoursWorked.minutes | number:'2.0'}}
+                </span>
+            </div>
         </div>
-        <div class="col-6">
-            <h4>Regular hours</h4>
-            <mat-divider></mat-divider>
-            {{regularHours}}
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 col-xl-6 col-md-6">
+                <h4 class="text_spacing">Overtime hours</h4>
+                <mat-divider></mat-divider>
+                <!-- <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span> -->
+                <span>{{calcOverTime()}}</span>
+            </div>
+            <div class="col-6">
+                <h4 class="text_spacing">Regular hours</h4>
+                <mat-divider></mat-divider>
+                {{regularHours}}
+            </div>
         </div>
     </div>
     <div class="col-12">
@@ -344,7 +350,9 @@
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
                                 <ng-container matColumnDef="date">
-                                    <th class="text-center printTableHeader" style="background: black !important; color: white !important;" mat-header-cell *matHeaderCellDef> Date </th>
+                                    <th class="text-center printTableHeader"
+                                        style="background: black !important; color: white !important;" mat-header-cell
+                                        *matHeaderCellDef> Date </th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days; let i = index">
                                         <span>{{days.date}}</span>
@@ -352,7 +360,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="logIn">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>LogIn</th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>LogIn
+                                    </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
                                         <div class="clock">
                                             <input matInput [(ngModel)]='days.logIn'>
@@ -361,7 +370,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="lunchStart">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Lunch Start </th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Lunch
+                                        Start </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
                                         <div class="clock">
                                             <input matInput [(ngModel)]='days.lunchStart'>
@@ -370,7 +380,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="lunchEnd">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Lunch End </th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Lunch End
+                                    </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
                                         <div class="clock">
                                             <input matInput [(ngModel)]='days.lunchEnd'>
@@ -379,7 +390,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="logOut">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Log Out </th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Log Out
+                                    </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i=index">
                                         <div class="clock">
                                             <input matInput [(ngModel)]='days.logOut'>
@@ -388,7 +400,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="travelHours">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Travel Hours </th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Travel
+                                        Hours </th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days;let i = index">
                                         <div class="clock">
@@ -400,7 +413,8 @@
 
 
                                 <ng-container matColumnDef="hoursWorked">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Hours Worked </th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Hours
+                                        Worked </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
                                         <span [ngClass]="checkTotalWorkHour(days.workingHours.hours)">
                                             {{days.workingHours.hours | number:'2.0'}}:{{days.workingHours.minutes | number:'2.0'}}
@@ -409,7 +423,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="totalHours">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Travel + Working</th>
+                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef>Travel +
+                                        Working</th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days;let i = index">
                                         <span [ngClass]="checkTravelPlusWorkHour(i)">
@@ -419,7 +434,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="edit">
-                                    <th class="text-center  printTableHeader" mat-header-cell *matHeaderCellDef>Edit</th>
+                                    <th class="text-center  printTableHeader" mat-header-cell *matHeaderCellDef>Edit
+                                    </th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days;let i = index">
                                         <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit"
