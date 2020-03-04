@@ -57,7 +57,8 @@ export class SingleWeekComponent implements OnInit {
   @Input('datesFromInstructor') datesArrayFromInst;
   @Input('weekDatesFromAdmin') weekDatesFromAdmin;
   @Input('monthChanged') monthChanged;
-
+  @Input('instDetails') instDetails;
+  @Output() print: EventEmitter<any> = new EventEmitter<any>();
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
@@ -99,6 +100,10 @@ export class SingleWeekComponent implements OnInit {
   editedIndex = [];
   p: Number = 1;
   currentPage: any = 0;
+  instName: any;
+  instEmail: any;
+  periodStart: any;
+  periodEnd: any;
 
 
 
@@ -123,12 +128,14 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
+    this.print.emit({msg:'printing'})
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
+    this.print.emit({ msg: 'printing complete' })
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
   }
 
@@ -169,6 +176,10 @@ export class SingleWeekComponent implements OnInit {
     else if (this.doGetWeekDates == false) {
       this.datesOfWeek = this.datesArrayFromInst
     }
+    if (this.instDetails){
+      this.instName = this.instDetails.name
+      this.instEmail = this.instDetails.email
+    }
 
   }
 
@@ -200,12 +211,21 @@ export class SingleWeekComponent implements OnInit {
       this.getValuesUsingDates()
     }
     if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue) {
+      // console.log("weekDatesFromAdmin", changes.weekDatesFromAdmin.currentValue);
+      this.periodStart = changes.weekDatesFromAdmin.currentValue[0]
+      console.log("**this.periodStart", this.periodStart);
+      this.periodEnd = changes.weekDatesFromAdmin.currentValue[changes.weekDatesFromAdmin.currentValue.length - 1]
+      console.log("**this.periodEnd", this.periodEnd);
       this.displayMsg = false;
       this.datesOfWeek = changes.weekDatesFromAdmin.currentValue
       this.getValuesUsingDates()
     }
     if ((changes.monthChanged && changes.monthChanged.currentValue == true) || changes.doGetWeekDates && changes.doGetWeekDates.currentValue == true) {
       this.getWeekDates()
+    }
+    if (changes.instDetails && changes.instDetails.currentValue) {
+      this.instName = changes.instDetails.currentValue.name
+      this.instEmail = changes.instDetails.currentValue.email
     }
   }
   ngAfterViewInit() {

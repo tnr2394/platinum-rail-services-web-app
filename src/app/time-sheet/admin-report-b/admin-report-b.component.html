@@ -10,7 +10,7 @@
     <input type="text" ngxDaterangepickerMd placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
 </div>
 </div> -->
-<div class="row select_responsive_row mx-0">
+<div class="row select_responsive_row mx-0" [hidden]=hide>
     <div class="col-lg-3"></div>
     <div class="col-lg-9">
         <div class="row select">
@@ -58,7 +58,7 @@
 </div>
 
 <div class="row mt-2 mx-0">
-    <div class="col-lg-3">
+    <div class="col-lg-3" [hidden]=hide>
         <app-profile [instructorForProfile]="selectedInstructorId"></app-profile>
     </div>
     <div class="col-lg-9">
@@ -160,6 +160,6 @@
         </div>
     </div>
 </div> -->
-        <app-single-week [instFromAdminReport]='selectedInstructorId' [overTimeHours]="overTimeHours"
+        <app-single-week [instFromAdminReport]='selectedInstructorId' [instDetails]="selectedInstructors" [overTimeHours]="overTimeHours" (print)="printing($event)"
             [calWeekDates]="false" [logsFromAdmin]="dataForSingleWeek" [weekDatesFromAdmin]="weekDatesFromAdmin"></app-single-week>
     </div>

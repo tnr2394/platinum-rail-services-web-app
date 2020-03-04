@@ -42,6 +42,7 @@ export class AdminTimeSheetComponent implements OnInit {
   view: string;
   selectedInstructorId: string[];
   displayMessage = false;
+  hide: boolean;
   
   // instructors = [{name:'Inst '}]
 
@@ -191,6 +192,17 @@ export class AdminTimeSheetComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+  printing(event) {
+    console.log("**IS PRINTING**", event);
+    if (event.msg == 'printing') {
+      this.hide = true;
+      $('#tabLabel').addClass('opacity')
+      // this.print.emit({ msg: 'printing' })
+    }
+    else if (event.msg == 'printing complete') {
+      this.hide = false
+    }
   }
   getWeekDates(week) {
     // var currentDate = moment();
