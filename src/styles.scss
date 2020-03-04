@@ -1207,4 +1207,10 @@ body {
         color: black;
     }
 }
-
+@media print{
+    .printTableHeader{
+    background-color: black !important;
+    -webkit-print-color-adjust: exact;
+    color: white !important;
+}
+}

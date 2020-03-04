@@ -1,5 +1,5 @@
-<app-top-nav></app-top-nav>
-<div>
+<app-top-nav *ngIf="!isPrint"></app-top-nav>
+<div *ngIf="!isPrint">
     <div class="sidebar sidebar--Collapse" [hidden]="!currentUser">
         <div class="collapseToggle">
             <span id="toggleIcon" class="fa fa-chevron-left rotate" placement="right" ngbTooltip="{{getToolTip()}}" tooltipClass="tooltip-class"></span>

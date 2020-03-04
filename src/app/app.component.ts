@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SideNavServiceService } from './services/side-nav-service.service';
 import { LoginService } from './services/login.service';
@@ -14,6 +14,16 @@ declare var $: any;
 })
 export class AppComponent {
   @ViewChild('sidemenu', { static: true }) sidemenu: MatSidenav;
+  isPrint: boolean;
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true
+  }
+
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    this.isPrint = false
+  }
   reason = '';
 
   loggedInUser;
