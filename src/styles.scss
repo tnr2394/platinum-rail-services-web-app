@@ -40,6 +40,13 @@ $light: #555;
 
 /* cyrillic-ext */
 
+@media print { 
+    .noprint { 
+        visibility: hidden; 
+    } 
+}
+
+
 @font-face {
     font-family: "Roboto";
     font-style: normal;
@@ -1200,3 +1207,4 @@ body {
         color: black;
     }
 }
+

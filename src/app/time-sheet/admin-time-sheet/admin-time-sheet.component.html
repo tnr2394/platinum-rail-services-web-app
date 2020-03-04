@@ -41,22 +41,23 @@
 </div> -->
 
 <div class="job_tab">
-    <mat-tab-group>
-        <div >
-        <mat-tab id="tabLabel">
-            <ng-template mat-tab-label >
-                <!-- <i class="fa fa-file-text-o" aria-hidden="true"></i> -->
+    <mat-tab-group (selectedTabChange)="tabChanged($event)" [selectedIndex]="0">
+        <mat-tab id="tabLabel" *ngIf="!hide">
+            <ng-template mat-tab-label>
                  Daily time-logs 
             </ng-template>
             <app-admin-report-a></app-admin-report-a>
         </mat-tab>
-        </div>
         <mat-tab>
-            <ng-template mat-tab-label>
-                <!-- <i class="fa fa-file-text-o" aria-hidden="true"></i> -->
+            <ng-template mat-tab-label *ngIf='!hide'>
                 Instructor wise time-logs 
             </ng-template>
             <app-admin-report-b (print)="printing($event)" ></app-admin-report-b>
         </mat-tab>
     </mat-tab-group>
 </div>
+
+<!-- <div class="job_tab" *ngIf="hide">
+    <app-admin-report-a *ngIf="selectedIndex == 0"></app-admin-report-a>
+    <app-admin-report-b (print)="printing($event)" *ngIf="selectedIndex == 1" ></app-admin-report-b>
+</div> -->

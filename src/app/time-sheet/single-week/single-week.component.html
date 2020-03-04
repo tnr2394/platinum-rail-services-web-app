@@ -327,11 +327,12 @@
             <h4>Overtime hours</h4>
             <mat-divider></mat-divider>
             <!-- <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span> -->
-            <span>{{calculateOverTimeHours() | number:'2.0'}}:{{calculateOverTimeMinutes() | number:'2.0'}}</span>
+            <span>{{calcOverTime()}}</span>
         </div>
         <div class="col-6">
             <h4>Regular hours</h4>
             <mat-divider></mat-divider>
+            {{regularHours}}
         </div>
     </div>
     <div class="col-12">
