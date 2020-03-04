@@ -12,7 +12,7 @@ import { flip, flipInX, flipInY } from 'ng-animate';
 // import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const FLIP_TRANSITION = [
-  trigger('flipInX', [transition('* => *', useAnimation(flipInX,{
+  trigger('flipInX', [transition('* => *', useAnimation(flipInX, {
     params: { timing: 0.5, delay: 0 }
   }))]),
   // trigger(
@@ -61,7 +61,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours','edit'];
+  displayedColumns: string[] = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -121,12 +121,13 @@ export class SingleWeekComponent implements OnInit {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
-    alert('After Print Msg')
     this.isPrint = false
+    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
   }
 
 
@@ -214,7 +215,7 @@ export class SingleWeekComponent implements OnInit {
     });
   }
 
-  
+
 
 
 
@@ -713,21 +714,21 @@ export class SingleWeekComponent implements OnInit {
     // console.log('Check Total Working Hours===>>>', hours);
 
   }
-  edit(i){
-    $('#'+i).addClass('make-blue')
+  edit(i) {
+    $('#' + i).addClass('make-blue')
     console.log("index", i);
     this.index = i
     this.editedIndex.push(i)
     this.editing = true
   }
-  save(i){
+  save(i) {
     // console.log("index", i);
     this.index = null;
     this.editing = false
   }
   // editedIndices(i){
   //   console.log("**EDITEDINDICES", this.editedIndex, "iindex",i);
-    
+
   //   if(this.editedIndex.length > 0){
   //     this.editedIndex.forEach(index => {
   //       if (index == i) {
