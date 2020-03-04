@@ -1,4 +1,4 @@
-<div *ngIf="!isPrint">
+<div [hidden]="isPrint">
     <h3 *ngIf="displayTitle">Single Week Entry</h3>
     <mat-card class="mat-elevation-z0" style="padding-bottom: 0%;">
         <div class="row" *ngIf="doGetWeekDates">
@@ -21,7 +21,6 @@
             </div>
         </div>
     </mat-card>
-
     <div class="row">
         <div class="col-12">
             <div class="row">

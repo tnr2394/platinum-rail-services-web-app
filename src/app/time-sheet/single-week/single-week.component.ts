@@ -130,13 +130,15 @@ export class SingleWeekComponent implements OnInit {
     this.isPrint = true
     this.print.emit({msg:'printing'})
     this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+    this.dataSource.paginator = null;
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
     this.print.emit({ msg: 'printing complete' })
-    this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    this.displayedColumns = ['copyPaste','date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    this.dataSource.paginator = this.paginator;
   }
 
   pageEvent: PageEvent;
@@ -228,10 +230,10 @@ export class SingleWeekComponent implements OnInit {
       this.instEmail = changes.instDetails.currentValue.email
     }
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   // this.dataSource.sort = this.sort;
+  // }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
