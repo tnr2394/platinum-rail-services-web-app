@@ -1,26 +1,56 @@
-h3 Learner Detail
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+    body
+        div(style='background: #f5f5f5;display: table;margin: auto;max-width: 100%; box-sizing: border-box;')
+            div(style='background: white;margin: 0;margin:20px; padding: 20px; width: 380px; max-width: 100%;')
+                img(style='max-width: 130px;' src='https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png')
+                p(style="font-family:'Sf UI';") We've attached the link to assignment #{assignment.assignmentStatus}  by learner #{learner.learnerName}.
+                div(style="font-family: 'Segoe UI';")
+                    h4(style='margin-bottom: 2px;')
+                        b Assignment Detail
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Assignment Title:   
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.assignmentTitle}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Unit:         
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.assignmentUnit}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Assignment:   
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.assignmentNo}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Status:       
+                        span(style='color:#d9a34a; font-size: 12px;') #{assignment.assignmentStatus}
+                div(style="font-family: 'Segoe UI';")
+                    h4(style='margin-bottom: 2px;')
+                        b Course Details
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Title :   
+                        span(style='color:#d9a34a; font-size: 12px;') #{course.courseTitle}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Duration: 
+                        span(style='color:#d9a34a; font-size: 12px;') #{course.courseDuration}
+                div(style="font-family: 'Segoe UI';")
+                    h4(style='margin-bottom: 2px;')
+                        b Client Details
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Title :   
+                        span(style='color:#d9a34a; font-size: 12px;') #{client.clientName}
+                    h5(style='margin: 5px 0px; font-weight: 500;')
+                        | Location: 
+                        span(style='color:#d9a34a; font-size: 12px;') #{client.location}
+                a(href=allotmentUrl style='display: flex; background-color: #007AC2; color: #fff; padding: 10px 0; text-decoration: none; padding-left: 45%; border: none; outline: none; cursor: pointer;') View    
+            div(style="text-align:center; font-family: 'Segoe UI';")
+                p(style='font-size: 12px;')
+                    | Copyright 
+                    span ©
+                    | 2018 
+                    b Platinum Rail Services. All Rights Reserved.
+                p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353
 
-p Name-#{learner.learnerName}
-p Email-#{learner.learnerEmail}
 
 
-h3 Assignment Detail
-
-p Title: #{assignment.assignmentTitle}
-p Unit: #{assignment.assignmentUnit}
-p Assignment: #{assignment.assignmentNo}
-
-p Status: #{assignment.assignmentStatus}
-
-h3 Course Detail
-
-p Title: #{course.courseTitle}
-p Duration: #{course.courseDuration} 
-
-h3 Client Detail
-
-p Title: #{client.clientName}
-p Location: #{client.location}
 
 
 

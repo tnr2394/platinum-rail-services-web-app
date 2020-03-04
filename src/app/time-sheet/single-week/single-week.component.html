@@ -14,7 +14,7 @@
         </div>
         <div>
             <h5>Over Time Hours:
-                <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span>
+                <!-- <span *ngIf="overTimeHours != 0" style="color: red;">{{overTimeHours}}</span> -->
                 <span>{{calculateOverTimeHours() | number:'2.0'}}:{{calculateOverTimeMinutes() | number:'2.0'}}</span>
             </h5>
         </div>

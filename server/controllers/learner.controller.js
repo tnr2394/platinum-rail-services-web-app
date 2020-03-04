@@ -305,34 +305,17 @@ learnerController.loginLearner = function (req, res, next) {
 
 
 learnerController.allotAssignments = function (req, res, next) {
-
-    console.log('Allot Assignment', req.body);
-
     const allotedBy = req.user.name;
-
-
-    console.log('Alloted By======>>>>', allotedBy);
-
-    console.log('Allotment Url====>>>>>>', config.env.url);
-
     async.eachSeries(req.body, (singleLearner, outerCallback) => {
-        console.log('Single learner', singleLearner);
-        // assignmentAllotmentMailDataLearner(singleLearner.assignments)
         async.eachSeries(singleLearner.assignments, (singleAssignment, innerCallback) => {
-            console.log('singleAssignment', singleAssignment);
             const newAllotment = {
                 assignment: singleAssignment._id,
                 learner: singleLearner.learner._id,
                 status: 'Pending',
                 deadlineDate: singleLearner.learner.duedate
             }
-
-            // Create New Allotment With Single Learner
-
             allotmentDOA.createAllotment(newAllotment).then((response) => {
-                console.log('Allotment Added now update learner');
                 learnerDOA.updateAssignment(singleLearner.learner, response._id).then((updatedLearner) => {
-                    console.log("updatedLearner", updatedLearner);
                     sendAssignmentAllotmentMail(singleLearner.learner, singleAssignment, allotedBy, response._id).then((mailRes) => {
                         innerCallback();
                     }).catch((error) => {
@@ -345,26 +328,17 @@ learnerController.allotAssignments = function (req, res, next) {
                 return res.status(500).send({ err })
             })
         }, (callbackError, callbackResponse) => {
-
             if (callbackError) {
-                return res.status(500).send({
-                    err
-                })
+                return res.status(500).send({ err })
             } else {
                 outerCallback();
             }
         })
     }, (callbackError, callbackResponse) => {
         if (callbackError) {
-            return res.status(500).send({
-                err
-            })
+            return res.status(500).send({ err })
         } else {
-            console.log("Final callback");
-            return res.send({
-                data: {},
-                msg: "Assignment Alloted Successfully"
-            });
+            return res.send({ data: {}, msg: "Assignment Alloted Successfully" });
         }
     })
 
@@ -373,7 +347,7 @@ learnerController.allotAssignments = function (req, res, next) {
 
 const sendAssignmentAllotmentMail = (learnerDetail, assignment, allotedBy, allotmentId) => {
     return new Promise((resolve, reject) => {
-        let allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId;
+        let allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId + '/?user=learners';
 
         let mailData = {
             learner: learnerDetail,

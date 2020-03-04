@@ -51,43 +51,54 @@ allotment.updateAllotment = function (allotmentId, updateAllotment, remark, auth
     allotmentModel.findByIdAndUpdate({ _id: allotmentId }, { $set: updateAllotment, $push: { remark: remarkDetail } }, { upsert: true, new: true }, (err, allotment) => {
         if (err) return q.reject(err);
         else {
-            console.log("Allotment Updated Successfully =  ", allotment, q);
-
-            let emailArrays = [];
-
-
-
-            allotmentUsingAllotmentId(allotmentId).then((res) => {
-
-                if (res.learner) {
-                    emailArrays.push(res.learner.learnerEmail)
-                }
-
-                lodash.forEach(res.instructors, function (single) {
-                    emailArrays.push(single.email);
-                })
-
-                const defaultPasswordEmailoptions = {
-                    to: emailArrays,
-                    subject: `Submission Status:` + res.assignment.assignmentStatus,
-                    template: 'submission-instructor'
-                };
-
-                mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
-                    if (err) {
-                        return res.status(500).send({ err })
-                    } else {
-                        return q.resolve(allotment);
-                    }
-                });
-
-            }).catch((err) => {
-                console.log('ERROR While Instructor Email', err);
+            sendMailToInstructorAndLearnerWhenInstructorUpdateAllotment(allotmentId).then((mailRes) => {
+                q.resolve(allotment)
+            }).catch((mailError) => {
+                console.log('Error while mail:', mailError)
+                q.reject(mailError)
             })
         }
     });
     return q.promise;
 }
+
+
+const sendMailToInstructorAndLearnerWhenInstructorUpdateAllotment = (allotmentId) => {
+    return new Promise((resolve, reject) => {
+
+        let emailArrays = [];
+
+        const allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId + '/?user=learners';
+        allotmentUsingAllotmentId(allotmentId).then((res) => {
+
+            if (res.learner) {
+                emailArrays.push(res.learner.learnerEmail)
+            }
+
+            lodash.forEach(res.instructors, function (single) {
+                emailArrays.push(single.email);
+            })
+
+            const defaultPasswordEmailoptions = {
+                to: emailArrays,
+                subject: `Submission Status:` + res.assignment.assignmentStatus,
+                template: 'submission-instructor'
+            };
+
+            res.allotmentUrl = allotmentUrl;
+
+            mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(mailResult);
+                }
+            });
+        })
+    })
+}
+
+
 
 allotment.getAllotment = function (allotemntId) {
     console.log("Get Allotemnts in allotemnt DAO", allotemntId);
@@ -118,54 +129,62 @@ allotment.deleteAllotment = function (allotemntId) {
     return q.promise;
 }
 
-allotment.submissionOfAssignment = function (allotemntId, assignmentStatus, obj) {
-    console.log('Assignment Submission', allotemntId, obj);
+allotment.submissionOfAssignment = function (allotmentId, assignmentStatus, obj) {
     var q = Q.defer();
     fileDAO.addNewFile(obj).then((response) => {
-        console.log('File added now update allotment file array', response._id);
-        allotmentModel.updateOne({ _id: allotemntId },
+        allotmentModel.updateOne({ _id: allotmentId },
             {
                 $addToSet: { files: response._id },
                 $set: {
                     status: assignmentStatus
                 }
             }, { new: true }, (err, updatedAllotment) => {
-                if (err) q.reject(err);
-
-                allotmentUsingAllotmentId(allotemntId).then((res) => {
-
-                    let instructorsArray = [];
-
-                    lodash.forEach(res.instructors, function (single) {
-                        instructorsArray.push(single.email);
+                if (err) {
+                    q.reject(err);
+                } else {
+                    sendMailToInstructorWhenLearnerSubmitAssignment(allotmentId).then((mailRes) => {
+                        q.resolve(updatedAllotment)
+                    }).catch((mailErr) => {
+                        q.reject(mailErr)
                     })
-
-                    var mailSubject = res.client.clientName + '(' + res.client.location + ') ' + 'Assignment ' + res.assignment.assignmentStatus;
-
-                    const defaultPasswordEmailoptions = {
-                        to: instructorsArray,
-                        subject: mailSubject,
-                        template: 'submission-learner'
-                    };
-
-                    mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
-                        if (err) {
-                            console.log('error:', err);
-                            q.reject(err);
-                        } else {
-                            q.resolve(updatedAllotment);
-                        }
-                    });
-
-                }).catch((err) => {
-                    console.log('ERROR While Instructor Email', err);
-                })
+                }
             });
     }).catch((error) => {
         q.reject(error);
     });
     return q.promise;
 }
+
+
+const sendMailToInstructorWhenLearnerSubmitAssignment = (allotmentId) => {
+    return new Promise((resolve, reject) => {
+        const allotmentUrl = config.env.url + 'learnerAllotment/' + allotmentId + '/?user=instructors';
+        allotmentUsingAllotmentId(allotmentId).then((res) => {
+            let instructorsArray = [];
+            lodash.forEach(res.instructors, function (single) {
+                instructorsArray.push(single.email);
+            })
+            var mailSubject = res.client.clientName + '(' + res.client.location + ') ' + 'Assignment ' + res.assignment.assignmentStatus;
+            const defaultPasswordEmailoptions = {
+                to: instructorsArray,
+                subject: mailSubject,
+                template: 'submission-learner'
+            };
+            res.allotmentUrl = allotmentUrl;
+            mailService.sendMail(defaultPasswordEmailoptions, res, null, function (err, mailResult) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(mailResult);
+                }
+            });
+        })
+    })
+}
+
+
+
+
 
 allotment.removeFileFromAllotment = function (fileId) {
     console.log("delete file to allotment DOA ", { fileId });

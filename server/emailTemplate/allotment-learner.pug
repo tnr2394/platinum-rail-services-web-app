@@ -17,8 +17,8 @@ html
                         span(style='color:#d9a34a; font-size: 12px;') #{assignment.title}
                     h5(style='margin: 5px 0px;')
                         | Deadline:         
-                        span(style='color:#d9a34a; font-size: 12px;') #{learner.duedate}
-                a(href=allotmentUrl style='display: flex; background-color: #007AC2; color: #fff; padding: 10px 0; text-decoration: none; padding-left: 45%; border: none; outline: none; cursor: pointer;') Visit
+                        span(style='color:#d9a34a; font-size: 12px;') #{prettyDate(learner.duedate)}
+                a(href=allotmentUrl style='display: flex; background-color: #007AC2; color: #fff; padding: 10px 0; text-decoration: none; padding-left: 45%; border: none; outline: none; cursor: pointer;') View
             div(style="text-align:center; font-family: 'Segoe UI';")
                 p(style='font-size: 12px;')
                     | Copyright 
@@ -26,3 +26,12 @@ html
                     | 2018 
                     b Platinum Rail Services. All Rights Reserved.
                 p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353
+
+-function prettyDate(dateString){
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return d+' '+m+' '+y;
+-}
