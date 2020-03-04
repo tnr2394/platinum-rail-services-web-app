@@ -9,8 +9,8 @@ import { LoginService } from './services/login.service';
 
 export class AuthGuard implements CanActivate {
   constructor(private activeRoute: ActivatedRoute, private router: Router, private _loginService: LoginService) {
-
   }
+  returnUrl;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const currentUser = this._loginService.currentUserValue;
     console.log("currentUser Admin:", currentUser);
@@ -26,7 +26,11 @@ export class AuthGuard implements CanActivate {
         } else if (currentUser.userRole == 'client') {
           this.router.navigate(['/jobs']);
         } else if (currentUser.userRole == 'learner') {
-          this.router.navigate(['/learner/' + currentUser._id]);
+          if (this.returnUrl) {
+            this.router.navigate(this.returnUrl)
+          } else {
+            this.router.navigate(['/learner/' + currentUser._id]);
+          }
         }
 
         return false;
@@ -34,12 +38,13 @@ export class AuthGuard implements CanActivate {
 
       return true;
     }
+    console.log('state.url======>', state.url);
+    const userType: string = route.queryParams.user;
+
     // not logged in so redirect to login page with the return url
     // this.router.navigate(['/login/admin']);
 
-
-    console.log('state.url======>>>>>>>>', state.url);
-    this.router.navigate(['login/learners'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['login/' + userType], { queryParams: { returnUrl: state.url } });
     return false;
   }
 

@@ -345,7 +345,8 @@
 
                                 <ng-container matColumnDef="date">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days; let i = index">
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days; let i = index">
                                         <span>{{days.date}}</span>
                                     </td>
                                 </ng-container>
@@ -388,7 +389,8 @@
 
                                 <ng-container matColumnDef="travelHours">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef>Travel Hours </th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days;let i = index">
                                         <div class="clock">
                                             <input matInput [(ngModel)]='days.travel'>
                                         </div>
@@ -408,7 +410,8 @@
 
                                 <ng-container matColumnDef="totalHours">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef>Travel + Working</th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days;let i = index">
                                         <span [ngClass]="checkTravelPlusWorkHour(i)">
                                             {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
                                         </span>
@@ -417,13 +420,17 @@
 
                                 <ng-container matColumnDef="edit">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef>Edit</th>
-                                    <td class="mat-table-cell text-center" mat-cell *matCellDef="let days;let i = index">
-                                        <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit" *ngIf="index != i" triggers="hover" tooltipClass="tooltip-class" (click)="edit(i)"><i class="fa fa-edit"></i></button>
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days;let i = index">
+                                        <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit"
+                                            *ngIf="index != i" triggers="hover" tooltipClass="tooltip-class"
+                                            (click)="edit(i)"><i class="fa fa-edit"></i></button>
                                     </td>
                                 </ng-container>
 
                                 <thead>
-                                    <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr style="background:lightgray;" mat-header-row
+                                        *matHeaderRowDef="displayedColumns"></tr>
                                 </thead>
                                 <tbody>
                                     <tr mat-row *matRowDef="let learner; columns: displayedColumns;"></tr>

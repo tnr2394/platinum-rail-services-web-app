@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { config } from '../config';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -21,9 +21,12 @@ export class LoginService {
 
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  returnUrl;
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(public activeRoute: ActivatedRoute, private http: HttpClient, private router: Router) {
+
+
 
     console.log('localStorage', localStorage.getItem('currentUser'));
     if (localStorage.getItem('currentUser') != null) {
@@ -61,19 +64,19 @@ export class LoginService {
         this.userProfile.emit(res.profile);
         this.userToken.emit(res.token);
 
-        const learnerDashBoard = '/learner/' + res.profile._id;
+        // const learnerDashBoard = '/learner/' + res.profile._id;
 
-        if (res.userRole == 'admin') {
-          this.router.navigate(['/dashboard']);
-        } else if (res.userRole == 'instructor') {
-          this.router.navigate(['/scheduler']);
-        } else if (res.userRole == 'client') {
-          this.router.navigate(['/client/:id']);
-        } else if (res.userRole == 'learner') {
-          this.router.navigate([learnerDashBoard]);
-        }
+        // if (res.userRole == 'admin') {
+        //   this.router.navigate(['/dashboard']);
+        // } else if (res.userRole == 'instructor') {
+        //   this.router.navigate(['/scheduler']);
+        // } else if (res.userRole == 'client') {
+        //   this.router.navigate(['/client/:id']);
+        // } else if (res.userRole == 'learner') {
+        //   this.router.navigate([learnerDashBoard]);
+        // }
 
-        observer.next(res.data);
+        observer.next(res.profile);
         observer.complete();
         return res.profile;
       }, err => {

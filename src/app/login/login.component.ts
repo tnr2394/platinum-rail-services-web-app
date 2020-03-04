@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
       this.activeRouteName = param.user;
     });
 
-    this.returnUrl = this.router.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.router.snapshot.queryParams['returnUrl'];
+
+    console.log('this.returnUrl In Login', this.returnUrl);
 
     $(".toggle-password").click(function () {
       $(this).toggleClass("fa-eye fa-eye-slash");
     });
-
-
   }
 
   validate(data) {
@@ -98,7 +98,25 @@ export class LoginComponent implements OnInit {
     this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
       console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
-        console.log("Added Successfully", data);
+        console.log("Added Successfully==========>>", data);
+
+        const learnerDashBoard = '/learner/' + data._id;
+
+        if (this.returnUrl != null) {
+          this.route.navigateByUrl(this.returnUrl);
+        } else {
+          if (data.userRole == 'admin') {
+            this.route.navigate(['/dashboard']);
+          } else if (data.userRole == 'instructor') {
+            this.route.navigate(['/scheduler']);
+          } else if (data.userRole == 'client') {
+            this.route.navigate(['/client/:id']);
+          } else if (data.userRole == 'learner') {
+            this.route.navigate([learnerDashBoard]);
+          }
+        }
+
+
         // this.route.navigateByUrl(this.returnUrl);
       }, err => {
         console.log('error while login', err);
