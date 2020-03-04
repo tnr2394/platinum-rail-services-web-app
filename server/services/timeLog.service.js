@@ -504,6 +504,12 @@ function secondReportLogsDetails(instructorId, datesArray) {
                     },
                     totalWorkingMinutes: {
                         $sum: '$logs.workingHours.minutes'
+                    },
+                    totalHours: {
+                        $sum: '$logs.totalHours.hours'
+                    },
+                    totalMinutes: {
+                        $sum: '$logs.totalHours.minutes'
                     }
                 }
             },
