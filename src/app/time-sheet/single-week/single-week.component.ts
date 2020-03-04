@@ -436,44 +436,69 @@ export class SingleWeekComponent implements OnInit {
     }
   }
 
-  calculateOverTimeHours() {
-    var totalH = 0;
-    _.forEach(this.Days, (day) => {
-      if (day.workingHours.hours > 12) {
-        totalH = totalH + day.workingHours.hours - 12
-      }
-      this.overH = totalH;
-    })
-    return this.overH;
-  }
-
-  calculateOverTimeMinutes() {
+  calcOverTime(){
     var totalH = 0;
     var totalM = 0;
-    _.forEach(this.Days, (day) => {
-      if (day.workingHours.hours > 12) {
+    _.forEach(this.Days, (day)=>{
+      if (day.workingHours.hours > 12){
+        totalH = totalH + day.workingHours.hours - 12
         totalM = totalM + day.workingHours.minutes
       }
     })
-
-    if (totalM > 59) {
+    if (totalM > 60) {
       totalH = totalH + Math.floor(totalM / 60)
       totalM = totalM % 60
-      return totalM;
+      // return totalM;
     } else if (totalM == 60) {
       this.overH = this.overH + 1
       totalM = totalM - 60
       this.overM = totalM;
-      return this.overM;
+      // return this.overM;
     }
     else {
       this.overM = totalM;
-      return this.overM;
+      // return this.overM;
     }
-
-
-    return totalM;
+    return totalH.toString() + ':' + totalM.toString()
   }
+  // calculateOverTimeHours() {
+  //   var totalH = 0;
+  //   _.forEach(this.Days, (day) => {
+  //     if (day.workingHours.hours > 12) {
+  //       totalH = totalH + day.workingHours.hours - 12
+  //     }
+  //     this.overH = totalH;
+  //   })
+  //   return this.overH;
+  // }
+
+  // calculateOverTimeMinutes() {
+  //   var totalH = 0;
+  //   var totalM = 0;
+  //   _.forEach(this.Days, (day) => {
+  //     if (day.workingHours.hours > 12) {
+  //       totalM = totalM + day.workingHours.minutes
+  //     }
+  //   })
+
+  //   if (totalM > 60) {
+  //     totalH = totalH + Math.floor(totalM / 60)
+  //     totalM = totalM % 60
+  //     return totalM;
+  //   } else if (totalM == 60) {
+  //     this.overH = this.overH + 1
+  //     totalM = totalM - 60
+  //     this.overM = totalM;
+  //     return this.overM;
+  //   }
+  //   else {
+  //     this.overM = totalM;
+  //     return this.overM;
+  //   }
+
+
+  //   return totalM;
+  // }
 
   calculateTravelPlusWorkMinutes(index) {
     let travel, totalHr, totalMin;
@@ -621,6 +646,8 @@ export class SingleWeekComponent implements OnInit {
     if (data.date && data.instructorId) {
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Inside Res=======>>>>', res);
+        this.editing = false
+        this.index = null
         this.arrayFromDb = res;
         this.loading = false
         // console.log('Arrayform db', this.arrayFromDb);
@@ -810,6 +837,8 @@ export class SingleWeekComponent implements OnInit {
       console.log("data.date is found", data.date);
       this._timeSheetService.getTimeLogUsingDates(data).subscribe(res => {
         console.log('Res========>>>>>', res);
+        this.editing = false
+        this.index = null
         this.loading = false
         this.updateData(res)
       }, err => {
