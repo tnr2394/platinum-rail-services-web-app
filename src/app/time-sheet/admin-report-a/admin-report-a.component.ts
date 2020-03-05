@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { InstructorService } from 'src/app/services/instructor.service';
 import { FilterService } from 'src/app/services/filter.service';
@@ -24,6 +24,7 @@ export class AdminReportAComponent implements OnInit {
   allInstrutorsLogs: any;
   displayMsg: boolean;
   loading: boolean;
+  isPrint: boolean;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -36,6 +37,23 @@ export class AdminReportAComponent implements OnInit {
   setDataSourceAttributes() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    // this.isPrint = true
+    $('th').addClass('printTableHeader')
+    // this.print.emit({ msg: 'printing' })
+    // this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+    // this.dataSource.paginator = null;
+  }
+
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    // this.isPrint = false
+    $('th').removeClass('printTableHeader')
+    // this.print.emit({ msg: 'printing complete' })
+    // this.displayedColumns = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+    // this.dataSource.paginator = this.paginator;
   }
   constructor(private _instructorService: InstructorService, public _filter: FilterService, public _timeSheetService: TimeSheetService) {
     this.dataSource = new MatTableDataSource<any>();
