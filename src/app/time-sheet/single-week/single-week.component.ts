@@ -218,6 +218,7 @@ export class SingleWeekComponent implements OnInit {
     }
     if (changes.weekDatesFromAdmin && changes.weekDatesFromAdmin.currentValue) {
       // console.log("weekDatesFromAdmin", changes.weekDatesFromAdmin.currentValue);
+      this.showPasteBtn = false
       this.periodStart = changes.weekDatesFromAdmin.currentValue[0]
       console.log("**this.periodStart", this.periodStart);
       this.periodEnd = changes.weekDatesFromAdmin.currentValue[changes.weekDatesFromAdmin.currentValue.length - 1]
@@ -656,6 +657,7 @@ export class SingleWeekComponent implements OnInit {
     // this.dataSource
   }
   pasteLogs(i) {
+    this.showPasteBtn = false
     let newLogs = this.Days[i]
     newLogs.logIn = this.Days[this.copiedIndex].logIn;
     newLogs.lunchStart = this.Days[this.copiedIndex].lunchStart;
@@ -721,7 +723,7 @@ export class SingleWeekComponent implements OnInit {
       resolve(this.arrayFromDb)
     }).then((resolvedArray: any) => {
       this.arrayFromDb = (resolvedArray.sort(function (a, b) {
-        console.log("**a", a.date, "**b", b.date);
+
         return <any>new Date(b.date) - <any>new Date(a.date);
       })).reverse();
       this.Days = this.arrayFromDb;

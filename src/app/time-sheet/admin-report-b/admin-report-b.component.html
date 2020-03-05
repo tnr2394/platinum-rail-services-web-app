@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="row">
-                    <input type="text" ngxDaterangepickerMd [drops]="down" placeholder="Choose Dates Range"
+                    <input type="text" ngxDaterangepickerMd [drops]="down" [(ngModel)]="selected" placeholder="Choose Dates Range"
                         (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { InstructorService } from 'src/app/services/instructor.service';
 import { Select2OptionData } from 'ng2-select2';
 import { TimeSheetService } from 'src/app/services/time-sheet.service';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import * as moment from 'moment';
 // import { FormsModule } from '@angular/forms';
 
 
@@ -38,6 +39,8 @@ export class AdminReportBComponent implements OnInit {
   weekDatesFromAdmin: any;
   isPrint: any = false;
   hide: boolean = false;
+  ranges: any[];
+  selected;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -81,7 +84,7 @@ export class AdminReportBComponent implements OnInit {
   }
   getInstructorProfile() {
     if (this.selectedInstructorId) {
-      console.log("**selected Instructor is", this.selectedInstructors);
+      // console.log("**selected Instructor is", this.selectedInstructors);
       this.selectedInstructorId = this.selectedInstructors._id;
       if (this.selectedDatesRange && this.selectedInstructorId) this.getTimeLog(this.datesArray)
     }
@@ -108,24 +111,36 @@ export class AdminReportBComponent implements OnInit {
   datesSelected(event) {
     this.display = false;
     this.selectedDatesRange = event;
-    console.log("---datesSelected---", event);
+    console.log("***selected", this.selected);
+    // this.ranges = [event.startDate, event.endDate]
+    // console.log("***datesSelected---", event);
     this.getWeekDates(this.selectedDatesRange)
   }
+  rangeClicked(range){
+    console.log("***event", range);
+  }
+  ngModelChange(event){
+    console.log("***ngModelChange", event);
+  }
   getWeekDates(selectedDatesRange) {
-    if (selectedDatesRange.startDate && selectedDatesRange.endDate) {
-      console.log("-----getWeekDates-----", selectedDatesRange);
+    let tempStartDate = selectedDatesRange.startDate
+    let tempEndDate = selectedDatesRange.endDate
+    if (tempStartDate && tempEndDate) {
+      // console.log("-----getWeekDates-----", selectedDatesRange);
       let dates = []
-      dates.push(selectedDatesRange.startDate.format('MM/DD/YYYY'))
+      dates.push(tempStartDate.format('MM/DD/YYYY'))
       return new Promise((resolve, reject) => {
-        while (selectedDatesRange.startDate.add(1, 'days').diff(selectedDatesRange.endDate) < 0) {
+        while (tempStartDate.add(1, 'days').diff(tempEndDate) < 0) {
           console.log("In while loop");
-          console.log(selectedDatesRange.startDate.toDate());
-          dates.push(selectedDatesRange.startDate.clone().format('MM/DD/YYYY'));
+          // console.log(tempStartDate.toDate());
+          dates.push(tempStartDate.clone().format('MM/DD/YYYY'));
         }
-        console.log(" AFTER WHILE **dates", dates);
+        // console.log(" AFTER WHILE **dates", dates);
         this.datesArray = dates;
         resolve(this.datesArray)
-      }).then((resolvedDatesArray) => {
+      }).then((resolvedDatesArray:any) => {
+        this.selected = { startDate: moment(resolvedDatesArray[0]), endDate: moment(resolvedDatesArray[resolvedDatesArray.length - 1])}
+        console.log("***UPDATE", this.selected);
         this.weekDatesFromAdmin = resolvedDatesArray;
         // this.getTimeLog(resolvedDatesArray)
       })
@@ -137,12 +152,12 @@ export class AdminReportBComponent implements OnInit {
 
   }
   updateData(logs) {
-    console.log('UPDATING DATA = ', logs)
+    // console.log('UPDATING DATA = ', logs)
     this.dataSource = new MatTableDataSource(logs);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log('SETTING SORT TO = ', this.dataSource.sort)
-    console.log('SETTING paginator TO = ', this.dataSource.paginator)
+    // console.log('SETTING SORT TO = ', this.dataSource.sort)
+    // console.log('SETTING paginator TO = ', this.dataSource.paginator)
   }
 
   // removePaginator() {
@@ -152,7 +167,7 @@ export class AdminReportBComponent implements OnInit {
   // API
   getAllInstructors() {
     this._instructorService.getInstructors().subscribe(instructorsResponse => {
-      console.log("instructorsResponse", instructorsResponse)
+      // console.log("instructorsResponse", instructorsResponse)
       this.allInstructors = instructorsResponse;
 
       this.selectedInstructorId = instructorsResponse[0]._id
@@ -163,7 +178,7 @@ export class AdminReportBComponent implements OnInit {
           text: inst.name
         }
         this.instToDisplay.push(temp)
-        console.log("this.instToDisplay", this.instToDisplay);
+        // console.log("this.instToDisplay", this.instToDisplay);
       })
       // this.dataSource = new MatTableDataSource<any>(instructorsResponse)
     })
@@ -174,7 +189,7 @@ export class AdminReportBComponent implements OnInit {
       instructorId: this.selectedInstructorId
     }
     this._timeSheetService.getSecondReportDetails(data).subscribe((responseLogs) => {
-      console.log("---Got time logs---", responseLogs.response[0]);
+      // console.log("---Got time logs---", responseLogs.response[0]);
       if (responseLogs.response && responseLogs.response.length == 0) {
         this.dataForSingleWeek = 'noData'
         this.displayMsg = true;
@@ -196,9 +211,9 @@ export class AdminReportBComponent implements OnInit {
       let tempTotalHours = (this.timeLogs.length) * 12
       this.overTimeHours = this.totalHours <= tempTotalHours ? 0 : (this.totalHours - tempTotalHours + ":" + this.totalMinutes)
 
-      console.log(' this.overTimeHours====>>>>>>', this.overTimeHours);
-      console.log("---tempTotalHours---", tempTotalHours);
-      console.log("this.totalHours", this.totalHours, "this.totalMinutes", this.totalMinutes);
+      // console.log(' this.overTimeHours====>>>>>>', this.overTimeHours);
+      // console.log("---tempTotalHours---", tempTotalHours);
+      // console.log("this.totalHours", this.totalHours, "this.totalMinutes", this.totalMinutes);
       this.updateData(this.timeLogs)
       // this.dataSource = new MatTableDataSource<any>(this.timeLogs);
     })
