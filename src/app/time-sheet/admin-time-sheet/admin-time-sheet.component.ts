@@ -215,7 +215,7 @@ export class AdminTimeSheetComponent implements OnInit {
       // this.print.emit({ msg: 'printing' })
     }
     else if (event.msg == 'printing complete') {
-      this.hide = false
+      // this.hide = false
       $('.mat-tab-header').show()
     }
   }
