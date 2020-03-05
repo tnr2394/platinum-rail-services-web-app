@@ -48,7 +48,7 @@ export class AdminTimeSheetComponent implements OnInit {
   isPrint: boolean;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
-    this.isPrint = true
+    this.isPrint = true;
   }
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {

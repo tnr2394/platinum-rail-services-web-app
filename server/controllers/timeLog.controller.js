@@ -232,18 +232,30 @@ module.exports.getWeeklylog = (req, res) => {
 				else status.push("Regulation exceeded")
 			}
 			else status.push("Regulation Achieved")
-			let tempFinalStatus = status.every(isAchieved)
-			if (tempFinalStatus == false) {
-				let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
-				if (matchIndex > -1) finalStatus = "Less than Regulation used"
-				else {
-					let matchIndexAgain = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
-					if (matchIndexAgain > -1) finalStatus = "Regulation exceeded"
-				}
-			}
-			else finalStatus = "Regulation Achieved"
+			lessThenCount = 0
+			exceededCount = 0
+			achievedCount = 0
+			status.forEach(item=>{
+				if (item == 'Less than Regulation used') lessThenCount = lessThenCount + 1
+				if (item == 'Regulation exceeded') exceededCount = exceededCount + 1
+				if (item == 'Regulation Achieved') achievedCount = achievedCount + 1 
+			})
+			let max = Math.max(lessThenCount, exceededCount, achievedCount);
+			if (max == lessThenCount) finalStatus = "Less than Regulation used"
+			else if (max == exceededCount) finalStatus = 'Regulation exceeded'
+			else if (max == achievedCount) finalStatus = "Regulation Achieved"
+			// let tempFinalStatus = status.every(isAchieved)
+			// if (tempFinalStatus == false) {
+			// 	let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
+			// 	if (matchIndex > -1) finalStatus = "Less than Regulation used"
+			// 	else {
+			// 		let matchIndexAgain = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
+			// 		if (matchIndexAgain > -1) finalStatus = "Regulation exceeded"
+			// 	}
+			// }
+			// else finalStatus = "Regulation Achieved"
 			// status = (x == false) ? 'not satisfied' : status
-			return res.status(200).json({ message: 'Status sent ', finalStatus })
+			return res.status(200).json({ message: 'Status sent ', status:status, finalStatus: finalStatus })
 		}
 		else return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
 	}).catch((error) => {
@@ -259,9 +271,9 @@ function isGreaterThan13(count) {
 	// console.log("CoUnT", count);
 	return count > 13;
 }
-function isAchieved(status) {
-	return status == "Regulation Achieved"
-}
+// function isAchieved(status) {
+// 	return status == "Regulation Achieved"
+// }
 
 const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 	// console.log("weeklyLogsWithOtherRules", datesArray);
