@@ -43,32 +43,32 @@
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">
-                    <i class="fas fa-fw fa-book" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Course' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-                    <span class="menuText">Course</span>
+                    <i class="fas fa-fw fa-book" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Courses' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
+                    <span class="menuText">Courses</span>
                 </a>
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/instructors" routerLinkActive="active-link">
                     <i class="fas fa-fw fa-user-tie" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Instructors' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-                    <span class="menuText">Instructor</span>
+                    <span class="menuText">Instructors</span>
                 </a>
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor' || currentUser.userRole=='client')" routerLink="/jobs" routerLinkActive="active-link">
                     <i class="fas fa-briefcase" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Jobs' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-                    <span class="menuText">Job</span>
+                    <span class="menuText">Jobs</span>
                 </a>
             </li>
             <li>
                 <a *ngIf="currentUser && (currentUser.userRole=='admin' ||currentUser.userRole=='instructor')" routerLink="/submission" routerLinkActive="active-link">
-                    <i class="fas fa-clipboard-check" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Submission' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-                    <span class="menuText">Submission</span>
+                    <i class="fas fa-clipboard-check" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Submissions' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
+                    <span class="menuText">Submissions</span>
                 </a>
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/clients" routerLinkActive="active-link">
                     <i class="fas fa-university" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Clients' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-                    <span class="menuText">Client</span>
+                    <span class="menuText">Clients</span>
                 </a>
             </li>
             <li>

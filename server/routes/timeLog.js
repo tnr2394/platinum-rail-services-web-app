@@ -4,7 +4,6 @@ const router = express.Router();
 
 const timeLogController = require('../controllers/timeLog.controller')
 
-console.log(" ---------- Hey Time Log Router Call ---------- ")
 
 /* GET timeLog listing. */
 router.get('/instructor', timeLogController.getTimeLog);

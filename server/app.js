@@ -36,6 +36,7 @@ const materialsRouter = require('./routes/materials');
 const adminRouter = require('./routes/admin');
 const folderRouter = require('./routes/folder');
 const timeLogRouter = require('./routes/timeLog');
+const competenciesRouter = require('./routes/competencies');
 
 const instructorController = require('./controllers/instructor.controller');
 const dbBackupService = require('./services/dbbackup.service');
@@ -172,6 +173,7 @@ app.use('/materials', materialsRouter);
 app.use('/admin', adminRouter);
 app.use('/folder', folderRouter);
 app.use('/time-log', timeLogRouter);
+app.use('/competencies', competenciesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
