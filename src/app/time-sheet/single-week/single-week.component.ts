@@ -465,7 +465,7 @@ export class SingleWeekComponent implements OnInit {
       // return this.overM;
     }
 
-    console.log('calcOverTime Here===>>>', totalH, totalM);
+    // console.log('calcOverTime Here===>>>', totalH, totalM);
     return totalH.toString() + ':' + totalM.toString()
   }
 
