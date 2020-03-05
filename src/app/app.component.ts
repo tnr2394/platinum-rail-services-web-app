@@ -18,12 +18,13 @@ export class AppComponent {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
-    $(".sidebar").toggleClass('sidebar--Collapse');
+    $(".sidebar").css('display','none');
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
+    $(".sidebar").css('display', 'block');
   }
   reason = '';
 
