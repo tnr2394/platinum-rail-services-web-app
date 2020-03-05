@@ -63,17 +63,13 @@
                 </mat-form-field>
             </div>
 
-
-
-
-
             <!-- Select Assignment Status -->
             <div class="row justify-content-between w-100">
                 <div *ngFor='let status of assignmentStatus;let i = index'>
                     <div class="col-md-2">
                         <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
                             (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status,assignmentStatus[i].display)">
-                            {{status.display}}
+                            {{status.label}}
                         </mat-checkbox>
                     </div>
                 </div>
@@ -171,7 +167,8 @@
                     <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h3>
-                    <div class="text-info pt-3 text-center" *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
+                    <div class="text-info pt-3 text-center"
+                        *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
                         No Learners Found!
                     </div>
                 </div>

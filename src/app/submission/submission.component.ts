@@ -72,11 +72,11 @@ export class SubmissionComponent implements OnInit {
   queryParamsObj = {}
 
   assignmentStatus = [
-    { id: '0', display: 'Completed', status: 'Completed', checked: false },
-    { id: '0', display: 'Pending', status: 'Pending', checked: false },
-    { id: '1', display: 'ReSubmitted', status: 'Re-submitted', checked: false },
-    { id: '2', display: 'ResubmitRequested', status: 'Requested for Resubmission', checked: false },
-    { id: '3', display: 'Submitted', status: 'Submitted', checked: false },
+    { id: '0', label: 'Completed', display: 'Completed', status: 'Completed', checked: false },
+    { id: '0', label: 'Pending', display: 'Pending', status: 'Pending', checked: false },
+    { id: '1', label: 'Re-Submitted', display: 'ReSubmitted', status: 'Re-submitted', checked: false },
+    { id: '2', label: 'Resubmit Requestted', display: 'ResubmitRequested', status: 'Requested for Resubmission', checked: false },
+    { id: '3', label: 'Submitted', display: 'Submitted', status: 'Submitted', checked: false },
   ];
   initialData: any;
   allLearners: any

@@ -446,26 +446,37 @@ export class SingleWeekComponent implements OnInit {
   }
 
   calcOverTime() {
+    console.log("calcOverTime")
     var totalH = 0;
     var totalM = 0;
     _.forEach(this.Days, (day) => {
-      if (day.workingHours.hours > 12) {
+      console.log("calcOverTime in forEach loop")
+      console.log("day.workingHours.hours", day.workingHours.hours);
+      if (day.workingHours.hours > 11) {
+        console.log("calcOverTime in if");
         totalH = totalH + day.workingHours.hours - 12
+        console.log("calcOverTime in if totalH", totalH);
         totalM = totalM + day.workingHours.minutes
+        console.log("calcOverTime in if totalM", totalM);
       }
     })
     if (totalM > 60) {
+      console.log("Minutes > 60");
       totalH = totalH + Math.floor(totalM / 60)
+      console.log("totalH = ", totalH + Math.floor(totalM / 60));
       totalM = totalM % 60
+      console.log("totalM = ", totalM % 60);
       // return totalM;
     } else if (totalM == 60) {
-      this.overH = this.overH + 1
+      console.log("Minutes == 60");
+      totalH = totalH + 1
+      console.log("totalH = ", totalH);
       totalM = totalM - 60
-      this.overM = totalM;
+      console.log("totalM", totalM);
       // return this.overM;
     }
     else {
-      this.overM = totalM;
+      this.overTime = totalH.toString() + ':' + totalM.toString();  
       // return this.overM;
     }
     this.overTime = totalH.toString() + ':' + totalM.toString();

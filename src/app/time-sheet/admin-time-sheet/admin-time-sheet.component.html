@@ -42,14 +42,14 @@
 
 <div class="job_tab">
     <mat-tab-group (selectedTabChange)="tabChanged($event)" [selectedIndex]="0">
-        <mat-tab id="tabLabel" *ngIf="!hide">
+        <mat-tab id="tabLabel" >
             <ng-template mat-tab-label>
                 Daily time-logs
             </ng-template>
             <app-admin-report-a></app-admin-report-a>
         </mat-tab>
         <mat-tab>
-            <ng-template mat-tab-label *ngIf='!hide'>
+            <ng-template mat-tab-label >
                 Instructor wise time-logs
             </ng-template>
             <app-admin-report-b (print)="printing($event)"></app-admin-report-b>

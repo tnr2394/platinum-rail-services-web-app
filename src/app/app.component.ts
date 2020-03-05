@@ -18,13 +18,17 @@ export class AppComponent {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
-    $(".sidebar").css('display','none');
+    $(".main").addClass('mainPrint')
+    $(".sidebar").addClass('sidebarPrint')
   }
 
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
     this.isPrint = false
-    $(".sidebar").css('display', 'block');
+    $(".main").removeClass('mainPrint')
+    $(".sidebar").removeClass('sidebarPrint')
+    // $(".sidebar").css('display', 'block');
+    
   }
   reason = '';
 

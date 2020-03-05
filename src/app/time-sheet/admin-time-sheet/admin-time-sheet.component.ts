@@ -48,7 +48,7 @@ export class AdminTimeSheetComponent implements OnInit {
   isPrint: boolean;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
-    this.isPrint = true
+    this.isPrint = true;
   }
   @HostListener('window:afterprint', ['$event'])
   onAfterPrint(event) {
@@ -215,7 +215,7 @@ export class AdminTimeSheetComponent implements OnInit {
       // this.print.emit({ msg: 'printing' })
     }
     else if (event.msg == 'printing complete') {
-      this.hide = false
+      // this.hide = false
       $('.mat-tab-header').show()
     }
   }
