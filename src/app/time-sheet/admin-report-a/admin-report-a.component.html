@@ -77,19 +77,19 @@
                                 <!-- WorkHours Column -->
                                 <ng-container matColumnDef="WorkHours">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> WorkHours </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
                                         {{log.workingHours.hours}}:{{log.workingHours.minutes}} </td>
                                 </ng-container>
 
                                 <!-- TravelHours Column -->
                                 <ng-container matColumnDef="TravelHours">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> TravelHours </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.travel}} </td>
+                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log"> {{log.travel}} </td>
                                 </ng-container>
                                 <!-- Total -->
                                 <ng-container matColumnDef="Total">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef> Total </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
                                         {{log.totalHours.hours}}:{{log.totalHours.minutes}}
                                     </td>
                                 </ng-container>

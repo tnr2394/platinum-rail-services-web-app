@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row m-0">
     <div class="col-12">
         <div class="row mb-3">
             <div class="col-6">
@@ -32,8 +32,7 @@
 
                                     <!-- Date Column -->
                                     <ng-container matColumnDef="Date">
-                                        <th class="text-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header="Date"> Date </th>
+                                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="Date"> Date </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let ins">
                                             <span> {{ins.date}}
                                             </span>
@@ -79,24 +78,21 @@
                                     </ng-container>
 
                                     <ng-container matColumnDef="workingHours">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> working
-                                            Hours </th>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> working Hours </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
                                                 {{ins.workingHours.hours}} : {{ins.workingHours.minutes}}
                                             </span>
                                         </td>
                                     </ng-container>
                                     <ng-container matColumnDef="travelHours">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Travel
-                                            Hours </th>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Travel Hours </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
                                                 {{ins.travel}} 
                                             </span>
                                         </td>
                                     </ng-container>
                                     <ng-container matColumnDef="totalHours">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total
-                                            Hours </th>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Hours </th>
                                         <td class="mat-table-cell  text-center" mat-cell *matCellDef="let ins;"><span>
                                                 {{ins.totalHours.hours}} : {{ins.totalHours.minutes}}
                                             </span>
@@ -105,8 +101,7 @@
 
 
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     </thead>
                                     <tbody>
                                         <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
@@ -114,8 +109,7 @@
                                 </table>
                             </div>
                         </div>
-                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
-                                class="fa fa-cog fa-spin text-info"></i></h3>
+                        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
                     </div>
                     <!--/.Card content-->
 

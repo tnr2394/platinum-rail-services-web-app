@@ -1,7 +1,8 @@
-tr.mat-header-row{
+tr.mat-header-row {
     height: 45px;
     background: #F5F6FA;
 }
+
 .inst_pic {
     position: relative;
     margin-right: 10px;
@@ -22,6 +23,7 @@ tr.mat-header-row{
         object-fit: cover;
     }
 }
+
 .mat-list-item-content {
     display: flex;
     flex-direction: row;
@@ -32,10 +34,19 @@ tr.mat-header-row{
     height: inherit;
     justify-content: center !important;
 }
+
+.bold_text {
+    font-weight: bold;
+    color: green !important;
+}
+
+.text-center {
+    color: black;
+}
+
 table {
     margin: 0;
     width: 100%;
-
     @media(max-width: 991px) {
         min-width: 950px;
     }
