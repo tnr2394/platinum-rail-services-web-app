@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" [hidden]="isPrint">
     <h3 class="page-title">
-        Timesheet summary 
+        Timesheet summary
     </h3>
 </div>
 <!-- <p>
@@ -44,15 +44,15 @@
     <mat-tab-group (selectedTabChange)="tabChanged($event)" [selectedIndex]="0">
         <mat-tab id="tabLabel" *ngIf="!hide">
             <ng-template mat-tab-label>
-                 Daily time-logs 
+                Daily time-logs
             </ng-template>
             <app-admin-report-a></app-admin-report-a>
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label *ngIf='!hide'>
-                Instructor wise time-logs 
+                Instructor wise time-logs
             </ng-template>
-            <app-admin-report-b (print)="printing($event)" ></app-admin-report-b>
+            <app-admin-report-b (print)="printing($event)"></app-admin-report-b>
         </mat-tab>
     </mat-tab-group>
 </div>
