@@ -39,7 +39,7 @@ export class AdminReportAComponent implements OnInit {
   }
   constructor(private _instructorService: InstructorService, public _filter: FilterService, public _timeSheetService: TimeSheetService) {
     this.dataSource = new MatTableDataSource<any>();
-   }
+  }
 
   ngOnInit() {
     this.loading = true;
@@ -48,7 +48,7 @@ export class AdminReportAComponent implements OnInit {
     this.getInstructorTime(this.selectedDate)
     // this.getAllInstructors()
   }
-  dateChanged(event){
+  dateChanged(event) {
     this.displayMsg = false
     this.dataSource = new MatTableDataSource()
     console.log("event", event);
@@ -56,23 +56,28 @@ export class AdminReportAComponent implements OnInit {
     console.log("this.selectedDate", this.selectedDate);
     this.getInstructorTime(this.selectedDate)
   }
+
+
   filter(searchText) {
-    console.log('FILTER CALLED', searchText);
     if (searchText === '') {
       this.dataSource = new MatTableDataSource(this.allInstrutorsLogs);
       this.dataSource.paginator = this.paginator;
       return;
+    } else {
+      const finalarray = [];
+      this.allInstrutorsLogs.forEach((e1) => {
+        if (e1.instructor.name.toString().toLowerCase().includes(searchText.toString().toLowerCase())) {
+          finalarray.push(e1)
+        }
+        this.updateData(finalarray);
+      })
     }
-    let temp = this._filter.filter(searchText, this.allInstrutorsLogs, ['name']);
-    this.updateData(temp)
   }
+
   updateData(logs) {
-    console.log('UPDATING DATA = ', logs)
     this.dataSource = new MatTableDataSource(logs);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log('SETTING SORT TO = ', this.dataSource.sort)
-    console.log('SETTING paginator TO = ', this.dataSource.paginator)
   }
 
   // API
@@ -83,14 +88,14 @@ export class AdminReportAComponent implements OnInit {
   //     // this.dataSource = new MatTableDataSource<any>(this.allInstrutors)
   //   })
   // }
-  getInstructorTime(date){
+  getInstructorTime(date) {
     let data = {
       date: date
     }
-    this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs=>{
+    this._timeSheetService.getMultipleInstructorTime(data).subscribe(instLogs => {
       this.loading = false;
       this.allInstrutorsLogs = instLogs.response;
-      if (this.allInstrutorsLogs.length == 0){ this.displayMsg = true; return;}
+      if (this.allInstrutorsLogs.length == 0) { this.displayMsg = true; return; }
       console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);
       if (this.allInstrutorsLogs.length > 0) this.updateData(this.allInstrutorsLogs)
     })

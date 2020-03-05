@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { InstructorService } from 'src/app/services/instructor.service';
@@ -26,13 +26,13 @@ export class AdminTimeSheetComponent implements OnInit {
     responsive: true,
   };
   public barChartLabels: Label[]
-    // = ['11/11,Monday', '11/11,Tuesday', '11/11,Wednesday', '11/11,Thursday', '11/11,Friday', '11/11,Saturday', '11/11,Monday'];
+  // = ['11/11,Monday', '11/11,Tuesday', '11/11,Wednesday', '11/11,Thursday', '11/11,Friday', '11/11,Saturday', '11/11,Monday'];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [{ data: [], label: '' }];
-  
+
   allInstructors = [];
   public instToDisplay: Array<Select2OptionData> = [];
   public options: Select2Options;
@@ -42,14 +42,24 @@ export class AdminTimeSheetComponent implements OnInit {
   view: string;
   selectedInstructorId: string[];
   displayMessage = false;
-  hide: boolean=false;
+  hide: boolean = false;
   selectedIndex: any;
-  
+
+  isPrint: boolean;
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true
+  }
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    this.isPrint = false
+  }
+
   // instructors = [{name:'Inst '}]
 
 
   constructor(private _instructorService: InstructorService, private _timeSheetService: TimeSheetService,
-    private route: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { 
+    private route: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -59,7 +69,7 @@ export class AdminTimeSheetComponent implements OnInit {
     this.selectedIndex = 0;
     this.options = { multiple: true }
     this.view = "Week"
-    this.getCurrentWeekDates().then((resolvedDates:any)=>{
+    this.getCurrentWeekDates().then((resolvedDates: any) => {
       this.barChartLabels = resolvedDates
       this.getInstructorLogs(this.selectedInstructorId)
     })
@@ -69,18 +79,18 @@ export class AdminTimeSheetComponent implements OnInit {
         this.value = [(params.instructorId)];
         console.log("value", this.value);
         let tempArray = params.instructorId.split('|')
-        tempArray.forEach(id=>{this.value.push(id)})
+        tempArray.forEach(id => { this.value.push(id) })
         // this.value = tempArray.forEach(value=>{ if(value) value = value.trim()})
       }
     });
     this.getInstructorList();
   }
-  findInstructor(index){
+  findInstructor(index) {
     let instructor = this.allInstructors[index]
     console.log("instructor", instructor);
   }
-  getCurrentWeekDates(){
-    return new Promise((resolve,reject)=>{
+  getCurrentWeekDates() {
+    return new Promise((resolve, reject) => {
       let today = moment()
       let currentWeek = moment().week()
       let weekStartDate = moment().startOf('isoWeek').isoWeek(currentWeek);
@@ -97,19 +107,19 @@ export class AdminTimeSheetComponent implements OnInit {
       }
       resolve(dates)
     })
-    
+
     // console.log("*****dates:", dates);
     // console.log("---CURRENT WEEK-----", currentWeek);
   }
   public chartClicked(e: any): void {
     console.log("THE DATA IS", this.barChartData);
-    console.log("e in chart clicked",e);
+    console.log("e in chart clicked", e);
     let instructorName;
-    if (e.active[0]){
+    if (e.active[0]) {
       const chart = e.active[0]._chart;
       const activePoints = chart.getElementAtEvent(e.event);
       if (activePoints.length > 0) {
-        console.log("activePoints",activePoints)
+        console.log("activePoints", activePoints)
         console.log("chart.data", chart.data);
         const datasetIndex = activePoints[0]._datasetIndex;
         const clickedElementIndex = activePoints[0]._index;
@@ -120,22 +130,22 @@ export class AdminTimeSheetComponent implements OnInit {
         this.getActualData(value, clickedElementIndex)
         // instructorName = this.allInstructors[datasetIndex-1].name
         // this.router.navigate(['week-list'], { state: { instructor: instructorName } })
-      // }
+        // }
       }
     }
   }
-  getActualData(value,index){
+  getActualData(value, index) {
     const actualData = []
-      this.barChartData.forEach((chartData, i) => {
-        if (chartData.data[index] == value) actualData.push(this.allInstructors[i])
-        else console.log("Not Same at", chartData.label);
+    this.barChartData.forEach((chartData, i) => {
+      if (chartData.data[index] == value) actualData.push(this.allInstructors[i])
+      else console.log("Not Same at", chartData.label);
     })
     console.log("actualData", actualData);
-    if(actualData.length > 1) {
+    if (actualData.length > 1) {
       console.log("Open PopUp")
-      this.openDialog(InstructorConfirmationModalComponent, actualData).subscribe(instChosen=>{
-        if(instChosen == undefined) return
-        else{
+      this.openDialog(InstructorConfirmationModalComponent, actualData).subscribe(instChosen => {
+        if (instChosen == undefined) return
+        else {
           // this.router.navigate(['week-list'], { state: { instructor: instChosen } })
         }
       })
@@ -144,7 +154,7 @@ export class AdminTimeSheetComponent implements OnInit {
       console.log("ELSE", this.selectedInstructorId)
       this.router.navigate(['week-list'], { state: { instructor: this.selectedInstructorId } })
     };
-    
+
     // else this.router.navigate(['week-list'], { state: { instructor: actualData } })
   }
   instructorChanged(data: { value: string[] }) {
@@ -164,16 +174,16 @@ export class AdminTimeSheetComponent implements OnInit {
     this.barChartData.push({ data: [0, -1, 3, -3, 2, 3, 0, -5, 5, 0, 0, -10], label: 'Intructor Added' })
 
   }
-  viewType(value){
-    if(value == 'Year') {
-    this.barChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  viewType(value) {
+    if (value == 'Year') {
+      this.barChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     }
     else this.getChartLabels(value)
     // else if(value == 'Month'){
     //   this.barChartLabels = ['Week 1', 'Week 2', 'Week 4', 'Week 5'];
     // }
   }
-  getChartLabels(view){
+  getChartLabels(view) {
     if (view == 'Week') {
       this.barChartLabels = ['11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday', '11/11,Monday'];
     }
@@ -199,7 +209,7 @@ export class AdminTimeSheetComponent implements OnInit {
     console.log("**IS PRINTING**", event);
     if (event.msg == 'printing') {
       this.hide = true;
-      if(this.hide) $('.mat-tab-header').hide()
+      if (this.hide) $('.mat-tab-header').hide()
       else $('.mat-tab-header').show()
       // $('#tabLabel').addClass('opacity')
       // this.print.emit({ msg: 'printing' })
@@ -209,7 +219,7 @@ export class AdminTimeSheetComponent implements OnInit {
       $('.mat-tab-header').show()
     }
   }
-  tabChanged(event){
+  tabChanged(event) {
     console.log("**tab changed", event);
     this.selectedIndex = event.index
   }
@@ -241,7 +251,7 @@ export class AdminTimeSheetComponent implements OnInit {
         this.instToDisplay.push(temp)
         // console.log("temp==", temp);
       })
-      this.barChartData.splice(0,1)
+      this.barChartData.splice(0, 1)
       // this.allInstructorsCopy = this.allInstructors;
       console.log("this.instToDisplay", this.instToDisplay);
     })
@@ -249,14 +259,14 @@ export class AdminTimeSheetComponent implements OnInit {
   getInstructorLogs(id) {
     let data = {
       instructorId: id,
-      date : this.barChartLabels
+      date: this.barChartLabels
     }
     let instructorName;
-    var index = _.findIndex(this.allInstructors, function(o){return o._id == id})
-    if(index > -1) instructorName = this.allInstructors[index].name
+    var index = _.findIndex(this.allInstructors, function (o) { return o._id == id })
+    if (index > -1) instructorName = this.allInstructors[index].name
     this._timeSheetService.getTimeLogUsingDates(data).subscribe(logs => {
       console.log("logs", logs);
-      if(logs.length > 0){
+      if (logs.length > 0) {
         let finaldata = []
         logs.forEach((singleLog) => {
           let dataSet = singleLog.totalHours.hours + (singleLog.totalHours.minutes * 0.017)
@@ -267,7 +277,7 @@ export class AdminTimeSheetComponent implements OnInit {
       else this.displayMessage = true;
       // console.log("finaldata", finaldata);
       // console.log("this.barChartData", this.barChartData);
-      
+
       // this.barChartData = finaldata
       // if (inst._id == "5e293b0fa452624cba0dcfd5") {
       //   let dataForChart = {
@@ -277,7 +287,7 @@ export class AdminTimeSheetComponent implements OnInit {
       //   }
       //   this.barChartData.push(dataForChart)
       // }
-      
+
     })
   }
 
