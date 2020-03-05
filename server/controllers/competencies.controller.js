@@ -28,4 +28,45 @@ competenciesController.addCompetencies = async function (req, res, next) {
     });
 }
 
+
+competenciesController.updateCompetencies = async function (req, res, next) {
+
+    const competenciesId = req.body.competenciesId;
+    const competenciesData = req.body.competenciesData;
+
+    competenciesDOA.updateCompetencies().then((res) => {
+        return res.send({ data: { competencies: res } })
+    }).catch((err) => {
+        return res.status(500).send({ err });
+    })
+}
+
+
+competenciesController.deleteCompetencies = async function (req, res, next) {
+    const competenciesId = req.query.id;
+    console.log('Competencies Remove Function', competenciesId)
+    competenciesDOA.deleteCompetencies(competenciesId).then(newComp => {
+        competenciesDOA.pullCompetenciesFromInstructor(instructorId, newComp._id)
+            .then(updatedIns => {
+                return res.send({ data: { competencies: newComp } })
+            }).catch(err => {
+                console.error(err);
+                return res.status(500).send({ err });
+            })
+    }, err => {
+        return res.status(500).send({ err });
+    });
+}
+
+competenciesController.getCompetencies = async function (req, res, next) {
+    const instructorId = req.query.id;
+    console.log('Competencies List Function', instructorId)
+    competenciesDOA.getCompetencies(instructorId).then(updatedIns => {
+        return res.send({ data: { competencies: newComp } })
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).send({ err });
+    })
+}
+
 module.exports = competenciesController;
