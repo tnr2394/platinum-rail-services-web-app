@@ -3,6 +3,11 @@ if assignment.assignmentStatus == 'Requested for Resubmission'
 else
     - var title =  "Your Assignment is marked as completed"
 
+if assignment.assignmentRemark.length == '0'
+    - var remark = "No Remarks"
+else
+    - var remark = assignment.assignmentRemark[assignment.assignmentRemark.length - 1].text
+
 html
     head
         meta(charset='utf-8')
@@ -31,7 +36,7 @@ html
                     h4(style='margin-bottom: 2px;')
                         b Remarks
                     p(style="font-family:'Sf UI'; font-size: 12px")
-                        |#{assignment.assignmentRemark}
+                        |#{remark}
                 div(style="font-family: 'Segoe UI';")
                     h4(style='margin-bottom: 2px;')
                         b Course Details
