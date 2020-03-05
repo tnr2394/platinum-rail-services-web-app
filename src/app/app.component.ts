@@ -18,6 +18,7 @@ export class AppComponent {
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
+    $(".sidebar").toggleClass('sidebar--Collapse');
   }
 
   @HostListener('window:afterprint', ['$event'])

@@ -106,6 +106,7 @@ export class SingleWeekComponent implements OnInit {
   periodEnd: any;
   regularHours: number;
   workWeekHours: Number;
+  overTime: string;
 
 
 
@@ -328,6 +329,7 @@ export class SingleWeekComponent implements OnInit {
         this.Days[index].workingHours.minutes = totalMinute;
       }
       this.totalWorkingHours();
+      this.calcOverTime();
     }
     else if (this.Days[index].logIn != '00:00' && this.Days[index].lunchStart != '00:00') {
       var diff1 = this.calculateDiff1(index)
@@ -354,6 +356,7 @@ export class SingleWeekComponent implements OnInit {
         this.Days[index].workingHours.minutes = totalMinute;
       }
       this.totalWorkingHours();
+      this.calcOverTime();
     }
     else if (this.Days[index].lunchEnd != '00:00' && this.Days[index].logOut != '00:00') {
       var diff2 = this.calculateDiff2(index)
@@ -380,6 +383,7 @@ export class SingleWeekComponent implements OnInit {
         this.Days[index].workingHours.minutes = totalMinute;
       }
       this.totalWorkingHours();
+      this.calcOverTime();
     }
   }
 
@@ -464,6 +468,7 @@ export class SingleWeekComponent implements OnInit {
       this.overM = totalM;
       // return this.overM;
     }
+    this.overTime = totalH.toString() + ':' + totalM.toString();
     return totalH.toString() + ':' + totalM.toString()
   }
 
@@ -683,6 +688,7 @@ export class SingleWeekComponent implements OnInit {
         this.index = null
         this.arrayFromDb = res;
         this.loading = false
+        
         // console.log('Arrayform db', this.arrayFromDb);
         this.mergeAndCompareBothArrays();
       }, error => {
@@ -727,6 +733,7 @@ export class SingleWeekComponent implements OnInit {
       this.Days = this.arrayFromDb;
       this.updateData(this.Days);
       this.totalWorkingHours();
+      this.calcOverTime()
     })
   }
 
