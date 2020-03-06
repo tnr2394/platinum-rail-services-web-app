@@ -34,7 +34,8 @@ const instructorSchema = new Schema({
         type: Date
     },
     competencies: {
-        type: Array
+        type: Schema.Types.ObjectId,
+        ref: 'competencies'
     },
     file: {
         type: Schema.Types.ObjectId,
@@ -49,7 +50,7 @@ const instructorSchema = new Schema({
         ref: 'file'
     }
 }, {
-        timestamps: true
-    });
+    timestamps: true
+});
 const instructorModel = mongoose.model('instructor', instructorSchema);
 module.exports = instructorModel;

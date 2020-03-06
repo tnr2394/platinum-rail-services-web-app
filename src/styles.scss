@@ -1211,3 +1211,22 @@ body {
         margin: 3cm 1.5cm 3cm 1.5cm !important;
     }
 }
+
+.change_icon {
+    .mat-tab-label {
+        &:first-child {
+            .mat-tab-label-content {
+                &:before {
+                    content: "\f0ae" !important;
+                    font-family: FontAwesome;
+                }
+            }
+        }
+        .mat-tab-label-content {
+            &:before {
+                content: "\f1da" !important;
+                font-family: FontAwesome !important;
+            }
+        }
+    }
+}

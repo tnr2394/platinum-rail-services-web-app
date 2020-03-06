@@ -12,7 +12,7 @@ competenciesController.addCompetencies = async function (req, res, next) {
     const instructorId = req.body.instructorId;
     if (req.body.title) newCompetencies['title'] = req.body.title;
     if (req.body.expiryDate) newCompetencies['expiryDate'] = req.body.expiryDate;
-
+    if (req.body.instructorId) newCompetencies['instructor'] = req.body.instructorId;
 
     competenciesDOA.addCompetencies(newCompetencies).then(newComp => {
         console.log('New Comp in Controller:', newComp);
@@ -47,9 +47,9 @@ competenciesController.deleteCompetencies = async function (req, res, next) {
     const competenciesId = req.query.id;
     console.log('Competencies Remove Function', competenciesId)
     competenciesDOA.deleteCompetencies(competenciesId).then(newComp => {
-        competenciesDOA.pullCompetenciesFromInstructor(instructorId, newComp._id)
+        competenciesDOA.pullCompetenciesFromInstructor(competenciesId, newComp.instructor)
             .then(updatedIns => {
-                return res.send({ data: { competencies: newComp } })
+                return res.send({ data: { newComp }, msg: "Deleted Successfully" });
             }).catch(err => {
                 console.error(err);
                 return res.status(500).send({ err });
@@ -79,7 +79,6 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
         uploadedDate: new Date()
     }
 
-
     competenciesDOA.uploadFileToCompetencies(competenciesId, newFile)
         .then(updated => {
             console.log("updated ", updated);
@@ -95,11 +94,6 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
             })
         })
 }
-
-
-
-
-
 
 
 

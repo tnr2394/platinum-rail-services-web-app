@@ -32,6 +32,11 @@ table {
     }
 }
 
+// @media(max-width :575px) {
+//     .spacing {
+//         // margin: -15px !important;
+//     }
+// }
 .mat-paginator-outer-container {
     @media(max-width: 500px) {
         .mat-paginator-container {
