@@ -99,21 +99,21 @@
                                                             (fileDetailsComp)="fileDetailsComp($event)"
                                                             (DeleteMaterial)="deletedMaterial($event)"></material-tile>
 
-                                                        <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                                                                <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-                                                                    <button mat-icon-button disabled></button>
-                                                                    {{node.title}}
-                                                                </mat-tree-node> -->
-                                                        <!-- <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-                                                                    <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
-                                                                        <mat-icon class="mat-icon-rtl-mirror">
-                                                                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                                                                        </mat-icon>
-                                                                    </button>
-                                                                    {{node.title}}
-                                                                    <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate" class="example-tree-progress-bar"></mat-progress-bar>
-                                                                </mat-tree-node> -->
-                                                        <!-- </mat-tree> -->
+                                                    <!-- <mat-expansion-panel>
+                                                        <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                                {{material.unitNo}}
+                                                            </mat-panel-title>
+                                                        </mat-expansion-panel-header>
+                                                        <material-tile *ngFor="let oneMaterial of material.assignment; let i = index;" [material]="oneMaterial" [jobId]="jobId" [learnersAllotedFromJob]="learnersAlloted"
+                                                            [isSelected]="(oneMaterial.assignmentId === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
+                                                            (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+                                                    </mat-expansion-panel> -->
+
+                                                    
+
+
                                                     </div>
 
                                                 </div>

@@ -227,23 +227,31 @@ module.exports.getWeeklylog = (req, res) => {
 			}
 			let x = countForEachDay.every(isEqualThan13)
 			if (x == false) {
+				console.log("weekLogs", weekLogs)
 				x = countForEachDay.every(isGreaterThan13)
 				if (x == false) status.push("Less than Regulation used");
 				else status.push("Regulation exceeded")
 			}
-			else status.push("Regulation Achieved")
-			lessThenCount = 0
-			exceededCount = 0
-			achievedCount = 0
-			status.forEach(item=>{
-				if (item == 'Less than Regulation used') lessThenCount = lessThenCount + 1
-				if (item == 'Regulation exceeded') exceededCount = exceededCount + 1
-				if (item == 'Regulation Achieved') achievedCount = achievedCount + 1 
-			})
-			let max = Math.max(lessThenCount, exceededCount, achievedCount);
-			if (max == lessThenCount) finalStatus = "Less than Regulation used"
-			else if (max == exceededCount) finalStatus = 'Regulation exceeded'
-			else if (max == achievedCount) finalStatus = "Regulation Achieved"
+			else status.push("Regulation Achieved") 
+			let exceeded = lodash.findIndex(status, function (o) { return o == "Regulation exceeded"})
+			if (exceeded >= 0) finalStatus = "Regulation exceeded"
+			else {
+				var lessThen = lodash.findIndex(status, function (o) { return o == "Less than Regulation used"})
+				if (lessThen >= 0) finalStatus = "Less than Regulation used"
+				else finalStatus = "Regulation Achieved"
+			}
+			// lessThenCount = 0
+			// exceededCount = 0
+			// achievedCount = 0
+			// status.forEach(item=>{
+			// 	if (item == 'Less than Regulation used') lessThenCount = lessThenCount + 1
+			// 	if (item == 'Regulation exceeded') exceededCount = exceededCount + 1
+			// 	if (item == 'Regulation Achieved') achievedCount = achievedCount + 1 
+			// })
+			// let max = Math.max(lessThenCount, exceededCount, achievedCount);
+			// if (max == lessThenCount) finalStatus = "Less than Regulation used"
+			// else if (max == exceededCount) finalStatus = 'Regulation exceeded'
+			// else if (max == achievedCount) finalStatus = "Regulation Achieved"
 			// let tempFinalStatus = status.every(isAchieved)
 			// if (tempFinalStatus == false) {
 			// 	let matchIndex = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
@@ -271,9 +279,9 @@ function isGreaterThan13(count) {
 	// console.log("CoUnT", count);
 	return count > 13;
 }
-// function isAchieved(status) {
-// 	return status == "Regulation Achieved"
-// }
+function exceeded(status) {
+	return status == "Regulation exceeded"
+}
 
 const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 	// console.log("weeklyLogsWithOtherRules", datesArray);
@@ -320,9 +328,9 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 					var hours = ((difference - minutes) / 60)
 					// console.log("loop", i);
 					// console.log("DIFFERENCE iS", hours, minutes);
-					if (hours < 12) status.push("Less than Regulation used") //status = 'Less than Regulation used';
+					if (hours < 12) status.push("Regulation exceeded") //status = 'Regulation exceeded';
 					else if (hours == 12 && minutes == 00) status.push("Regulation achieved") //status = 'Regulation achieved'
-					else status.push("Regulation exceeded") //status = "Regulation exceeded"
+					else status.push("Less than Regulation used") //status = "Less than Regulation used"
 				}
 			}
 			if (tempWeeklyMinutes > 60) { //Hours per week
