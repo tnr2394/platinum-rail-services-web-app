@@ -2,7 +2,9 @@ const async = require("async");
 
 const fileDAO = require('../dao/file.dao');
 const competenciesModel = require('../models/competencies.model');
-const instructorModel = require('../models/instructor.model')
+const instructorModel = require('../models/instructor.model');
+const ObjectId = require('mongodb').ObjectId;
+
 
 const competencies = {};
 
@@ -10,21 +12,13 @@ const competencies = {};
 
 competencies.addCompetencies = (obj) => {
     return new Promise((resolve, reject) => {
-        console.log('Add New Competencies In DOA File');
-
-        if (obj.file) {
-            competencies.addFiles(obj.file).then((fileResponse) => {
-                obj.file = fileResponse;
-            }).catch((fileErr) => {
-                reject(fileErr)
-            })
-        }
-
-        competenciesModel.create(obj, (competencies, error) => {
+        console.log('Add New Competencies In DOA File', obj);
+        competenciesModel.create(obj, (error, competencies) => {
             if (error) {
+                console.log('error::::', error);
                 reject(error)
             } else {
-                resolve(obj)
+                resolve(competencies)
             }
         })
     })
@@ -43,27 +37,6 @@ competencies.updateCompetencies = (competenciesId, competenciesData) => {
                     resolve(response)
                 }
             })
-    })
-}
-
-
-competencies.addFiles = function (file) {
-    return new Promise((resolve, reject) => {
-        let filesArray = [];
-        async.eachSeries(obj.file, (singleFile, innerCallback) => {
-            fileDAO.addNewFile(singleFile).then((response) => {
-                filesArray.push(response);
-                innerCallback()
-            }).catch((error) => {
-                reject(error);
-            })
-        }, (callbackError, callbackResponse) => {
-            if (callbackError) {
-                reject(callbackError)
-            } else {
-                resolve(filesArray)
-            }
-        })
     })
 }
 
@@ -116,15 +89,81 @@ competencies.pushCompetenciesIntoInstructor = function (instructorId, competenci
     })
 }
 
+competencies.uploadFileToCompetencies = function (competenciesId, obj) {
+    console.log('File Upload In Competencies', competenciesId, obj);
+    var q = Q.defer();
+    fileDAO.addNewFile(obj).then((response) => {
+        console.log('File added now update Folder', response._id);
+        competenciesModel.updateOne({
+            _id: competenciesId
+        }, {
+            $addToSet: {
+                files: response._id
+            },
+        }, {
+            new: true
+        }, (err, updatedComp) => {
+            if (err) q.reject(err);
+            else {
+                q.resolve(response);
+            }
+        });
+    }).catch((error) => {
+        q.reject(error);
+    });
+    return q.promise;
+}
+
 
 competencies.getCompetencies = function (instructorId) {
     return new Promise((resolve, reject) => {
         console.log("Get Competencies List", { instructorId });
         instructorModel.aggregate([
             {
-
+                $match: {
+                    '_id': ObjectId(instructorId)
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies',
+                }
+            },
+            {
+                $lookup: {
+                    from: 'competencies',
+                    localField: 'competencies',
+                    foreignField: '_id',
+                    as: 'competencies',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies.files',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'files',
+                    localField: 'competencies.files',
+                    foreignField: '_id',
+                    as: 'competencies.files',
+                }
+            },
+        ]).exec((err, response) => {
+            if (err) {
+                console.log('Error====>>>', err)
+                reject(err)
+            } else {
+                resolve(response)
             }
-        ])
+        })
     })
 }
 
