@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
@@ -39,6 +39,19 @@ export class SingleInstructorComponent implements OnInit {
   view;
   mobile;
   email;
+
+  isPrint: boolean;
+  @HostListener('window:beforeprint', ['$event'])
+  onBeforePrint(event) {
+    this.isPrint = true;
+    $('.mat-tab-header').hide()
+  }
+  @HostListener('window:afterprint', ['$event'])
+  onAfterPrint(event) {
+    this.isPrint = false
+    $('.mat-tab-header').show()
+  }
+
   // MatPaginator Output
   // pageEvent: PageEvent;
 
@@ -67,7 +80,7 @@ export class SingleInstructorComponent implements OnInit {
   //   this.dataSource.sort = this.sort;
   // }
 
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService, 
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService,
     private activatedRoute: ActivatedRoute, private router: Router, private config: NgSelectConfig) {
     this.activatedRoute.params.subscribe(params => {
       this.instructorId = params.id;
@@ -120,10 +133,10 @@ export class SingleInstructorComponent implements OnInit {
       height: '100vh'
     })
   }
-  generateMonthWeeks(){
+  generateMonthWeeks() {
     this.selectedWeeks = []
     this.monthChanged = true
-    if(this.selectedMonths){
+    if (this.selectedMonths) {
       console.log(this.selectedMonths.id)
       let month = this.selectedMonths.id
       return new Promise((resolve, reject) => {
@@ -165,22 +178,22 @@ export class SingleInstructorComponent implements OnInit {
         this.datesRange = resolvedAllWeeks
       })
     }
-    
+
     // this.index = i
   }
-  generateWeekDates(){
+  generateWeekDates() {
     console.log("**generatingWeekDates");
     this.monthChanged = false
     console.log("this.selectedWeeks", this.selectedWeeks)
-    if (this.selectedWeeks && this.selectedWeeks.from){
+    if (this.selectedWeeks && this.selectedWeeks.from) {
       let week = this.selectedWeeks
       console.log("-----getWeekDates-----", week);
       let temp = week.from.split(" ")
-      let weekStartDate = moment(temp[1]) 
+      let weekStartDate = moment(temp[1])
       let weekEndDate = moment(temp[4])
       console.log("**temp", temp);
       console.log("**weekStartDate", weekStartDate, "**weekEndDate", weekEndDate);
-      
+
       let dates = []
       // return new Promise((resolve,reject)=>{
       dates.push(temp[1])
@@ -199,14 +212,14 @@ export class SingleInstructorComponent implements OnInit {
       })
     }
   }
-  clearMonth(){
+  clearMonth() {
     this.monthChanged = true
     this.doCalWeekDates = true
     this.selectedWeeks = []
     this.datesRange = []
     // this.datesRange = []
   }
-  clearWeek(){
+  clearWeek() {
     this.doCalWeekDates = true
   }
   // updateData(jobs) {

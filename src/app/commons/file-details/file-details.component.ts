@@ -25,6 +25,7 @@ import * as _ from 'lodash';
 })
 export class FileDetailsComponent implements OnInit {
   @Input('details') recievedFile;
+  @Input('isCompetency') isCompetency;
   @Output() fileDeleted: EventEmitter<any> = new EventEmitter<any>();
   @Output() titleChanged: EventEmitter<any> = new EventEmitter<any>();
 
@@ -51,17 +52,29 @@ export class FileDetailsComponent implements OnInit {
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+    console.log("On init isCompetency", this.isCompetency);
     console.log(this.recievedFile)
     console.log("this.recievedFile in file-details", this.recievedFile);
+    if(this.isCompetency == true){
+      this.isMaterials = 'material'
+    }
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   ngOnChanges(changes: SimpleChanges): void {
+    
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.sharedClient = []
     this.sharedInstructor = []
 
     this.displaySaveBtn = false
     console.log("CHANGES", changes);
+    if (changes.isCompetency && changes.isCompetency.currentValue == true){
+      this.isCompetency = changes.isCompetency.currentValue;
+      this.isMaterials = 'material'
+    }
+    // if (changes.isCompetency == undefined){
+    //   this.isCompetency = false
+    // }
     if (changes.recievedFile.currentValue) {
       this.currentFolder = changes.recievedFile.currentValue;
       // TYPE

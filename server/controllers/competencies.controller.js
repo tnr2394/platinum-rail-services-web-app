@@ -7,12 +7,12 @@ const competenciesController = {};
 
 competenciesController.addCompetencies = async function (req, res, next) {
     console.log("ADD Competencies", req.body);
-
+    
     let newCompetencies = {};
     const instructorId = req.body.instructorId;
     if (req.body.title) newCompetencies['title'] = req.body.title;
     if (req.body.expiryDate) newCompetencies['expiryDate'] = req.body.expiryDate;
-
+    if (req.body.instructorId) newCompetencies['instructor'] = req.body.instructorId;
 
     competenciesDOA.addCompetencies(newCompetencies).then(newComp => {
         console.log('New Comp in Controller:', newComp);
@@ -47,9 +47,9 @@ competenciesController.deleteCompetencies = async function (req, res, next) {
     const competenciesId = req.query.id;
     console.log('Competencies Remove Function', competenciesId)
     competenciesDOA.deleteCompetencies(competenciesId).then(newComp => {
-        competenciesDOA.pullCompetenciesFromInstructor(instructorId, newComp._id)
+        competenciesDOA.pullCompetenciesFromInstructor(competenciesId, newComp.instructor)
             .then(updatedIns => {
-                return res.send({ data: { competencies: newComp } })
+                return res.send({ data: { newComp }, msg: "Deleted Successfully" });
             }).catch(err => {
                 console.error(err);
                 return res.status(500).send({ err });
@@ -71,14 +71,13 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
     let newFile = {
         title: req.body.Key,
         alias: req.body.Key,
-        type: "file",
+        type: "competencies",
         path: req.body.Location,
         size: req.body.size,
         extension: extension.toLowerCase(),
         uploadedBy: (req.user && req.user.name) ? req.user.name : 'admin',
         uploadedDate: new Date()
     }
-
 
     competenciesDOA.uploadFileToCompetencies(competenciesId, newFile)
         .then(updated => {
@@ -98,13 +97,8 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
 
 
 
-
-
-
-
-
 competenciesController.getCompetencies = async function (req, res, next) {
-    const instructorId = req.query.id;
+    const instructorId = req.query._id;
     console.log('Competencies List Function', instructorId)
     competenciesDOA.getCompetencies(instructorId).then(updatedIns => {
         return res.send({ data: { competencies: updatedIns } })
