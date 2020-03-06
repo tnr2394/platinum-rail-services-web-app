@@ -1,64 +1,57 @@
 <h1 mat-dialog-title class="text-primary light-underline pb-2">
-    <i class="fas fa-edit fa-fw"></i>
-    Edit Learner
+    <i class="fas fa-edit fa-fw"></i> Edit Learner
 </h1>
 <form #editCourse (ngSubmit)="doSubmit()">
     <div mat-dialog-content>
         <div class="row m-0">
-        <div class="col-md-6">
-        <div class="profile_image ">
-            <div class="profile_image_box ng-star-inserted" touranchor="change-profile"
-                ng-reflect-tour-anchor="change-profile">
-                <input type="file" id="profile" name="fileUpload" (change)="addProfileImage($event)" accept=".jpg, .png, .jpeg"
-                    hidden="true" style="display:none;">
-                <label for="profile" class="profile_and_cover_edit" placement="top" ngbTooltip="Change Profile" tooltipClass="tooltip-top-class"><i class="fas fa-edit"></i></label>
-        
-                <div class="" *ngIf="url1">
-                    <img [src]="url1">
-                </div>
-        
-                <div class="" *ngIf="data.profilePic && !url1">
-                    <img src="{{data.profilePic.path}}">
-                </div>
-        
-                <div class="" *ngIf="!data.profilePic && !url1">
-                    <img src="../../../assets/Avatar.png">
+            <div class="col-md-6">
+                <div class="profile_image ">
+                    <div class="profile_image_box ng-star-inserted" touranchor="change-profile" ng-reflect-tour-anchor="change-profile">
+                        <input type="file" id="profile" name="fileUpload" (change)="addProfileImage($event)" accept=".jpg, .png, .jpeg" hidden="true" style="display:none;">
+                        <label for="profile" class="profile_and_cover_edit" placement="top" ngbTooltip="Change Profile" tooltipClass="tooltip-top-class"><i class="fas fa-edit"></i></label>
+
+                        <div class="" *ngIf="url1">
+                            <img [src]="url1">
+                        </div>
+
+                        <div class="" *ngIf="data.profilePic && !url1">
+                            <img src="{{data.profilePic.path}}">
+                        </div>
+
+                        <div class="" *ngIf="!data.profilePic && !url1">
+                            <img src="../../../assets/Avatar.png">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="col-md-6 pt-3">
-            <mat-form-field class="example-full-width">
-                <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required cdkFocusInitial>
+            <div class="col-md-6 pt-3">
+                <mat-form-field class="example-full-width">
+                    <input matInput name="learner-name" placeholder="Learner Name" [(ngModel)]='data.name' required cdkFocusInitial>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone' required>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="example-full-width col-md-6 col-sm-12">
+                <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]='data.password' required>
+                <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()"></span>
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <input matInput name="learner-email" placeholder="Learner Email" [(ngModel)]='data.email' required>
+            <mat-form-field class="example-full-width col-md-6 col-sm-12">
+                <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password" [(ngModel)]='data.confirmPassword' required>
+                <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="cpassword()"></span>
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <input matInput type="number" name="learner-phone" placeholder="Learner Phone" [(ngModel)]='data.phone' required>
-            </mat-form-field>
-        </div>
-        
-        <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput [type]="show ? 'text' : 'password'" name="password" placeholder="Password"
-                [(ngModel)]='data.password' required>
-            <span toggle="#password-field" id="password" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="password()"></span>
-        </mat-form-field>
-        <mat-form-field class="example-full-width col-md-6 col-sm-12">
-            <input matInput [type]="show1 ? 'text' : 'password'" name="confirm-password" placeholder="Confirm Password"
-                [(ngModel)]='data.confirmPassword' required>
-            <span toggle="#password-field" id="cpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"
-                (click)="cpassword()"></span>
-        </mat-form-field>
-        
+
         </div>
         <!-- <label class="input-file-button" for="hello"><span>Profile</span>
             <input type="file" name="profile-file" id="hello" accept=".jpeg, .jpg, .png, .gif"
                 [(ngModel)]="data.profile" required="required" (change)="addProfileImage($event)">
         </label> -->
 
-        
+
 
 
         <!-- <div class="col-md-6" *ngIf="url1">
@@ -74,10 +67,9 @@
         </div>
     </div>
     <div *ngIf="!loading" class="d-inline-block w-100 px-3">
-        <button mat-flat-button color="primary" type="submit" class="text-white pull-left button_hover_effect"><i
+        <button mat-flat-button type="submit" class="text-white pull-left button_hover_effect ripple Button_shap_effact"><i
                 class="fas fa-save fa-fw"></i><span> Save</span></button>
-        <button mat-flat-button type="button" color="warn" class="text-white pull-right close_hover_effect"
-            (click)="delete()">
+        <button mat-flat-button type="button" class="text-white pull-right close_hover_effect resets_delete_button" (click)="delete()">
             <i class="fas fa-trash fa-fw"></i>
             <span> Delete</span>
         </button>
