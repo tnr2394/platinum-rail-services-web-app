@@ -9,13 +9,13 @@ competenciesController.addCompetencies = async function (req, res, next) {
     console.log("ADD Competencies", req.body);
 
     let newCompetencies = {};
-
     const instructorId = req.body.instructorId;
     if (req.body.title) newCompetencies['title'] = req.body.title;
-    if (req.body.files) newCompetencies['files'] = req.body.files;
     if (req.body.expiryDate) newCompetencies['expiryDate'] = req.body.expiryDate;
 
+
     competenciesDOA.addCompetencies(newCompetencies).then(newComp => {
+        console.log('New Comp in Controller:', newComp);
         competenciesDOA.pushCompetenciesIntoInstructor(instructorId, newComp._id)
             .then(updatedIns => {
                 return res.send({ data: { competencies: newComp } })
@@ -28,19 +28,20 @@ competenciesController.addCompetencies = async function (req, res, next) {
     });
 }
 
-
 competenciesController.updateCompetencies = async function (req, res, next) {
 
     const competenciesId = req.body.competenciesId;
-    const competenciesData = req.body.competenciesData;
 
-    competenciesDOA.updateCompetencies().then((res) => {
+    let newCompetencies = {};
+    if (req.body.title) newCompetencies['title'] = req.body.title;
+    if (req.body.expiryDate) newCompetencies['expiryDate'] = req.body.expiryDate;
+
+    competenciesDOA.updateCompetencies(competenciesId, newCompetencies).then((res) => {
         return res.send({ data: { competencies: res } })
     }).catch((err) => {
         return res.status(500).send({ err });
     })
 }
-
 
 competenciesController.deleteCompetencies = async function (req, res, next) {
     const competenciesId = req.query.id;
@@ -58,11 +59,55 @@ competenciesController.deleteCompetencies = async function (req, res, next) {
     });
 }
 
+
+competenciesController.addFilesToCompetencies = async function (req, res, next) {
+    console.log("ADD Files Into Competencies", req.body);
+    const competenciesId = req.body.myId;
+    let re = /(?:\.([^.]+))?$/;
+    let extension = re.exec(req.body.Key)[1];
+
+    console.log(" req.user.name ", req.user)
+
+    let newFile = {
+        title: req.body.Key,
+        alias: req.body.Key,
+        type: "file",
+        path: req.body.Location,
+        size: req.body.size,
+        extension: extension.toLowerCase(),
+        uploadedBy: (req.user && req.user.name) ? req.user.name : 'admin',
+        uploadedDate: new Date()
+    }
+
+
+    competenciesDOA.uploadFileToCompetencies(competenciesId, newFile)
+        .then(updated => {
+            console.log("updated ", updated);
+            return res.send({
+                data: {
+                    file: updated
+                },
+                msg: "File Uploaded Successfully"
+            });
+        }, err => {
+            return res.status(500).send({
+                err
+            })
+        })
+}
+
+
+
+
+
+
+
+
 competenciesController.getCompetencies = async function (req, res, next) {
     const instructorId = req.query.id;
     console.log('Competencies List Function', instructorId)
     competenciesDOA.getCompetencies(instructorId).then(updatedIns => {
-        return res.send({ data: { competencies: newComp } })
+        return res.send({ data: { competencies: updatedIns } })
     }).catch(err => {
         console.error(err);
         return res.status(500).send({ err });

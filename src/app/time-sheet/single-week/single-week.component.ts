@@ -106,7 +106,7 @@ export class SingleWeekComponent implements OnInit {
   periodEnd: any;
   regularHours: number;
   workWeekHours: Number;
-  overTime: string;
+  overTime: string = "00:00";
 
 
 

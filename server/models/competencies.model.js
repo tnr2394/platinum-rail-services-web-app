@@ -9,10 +9,10 @@ const competenciesSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'file'
     }],
-    expiryDate: [{
+    expiryDate: {
         type: Date,
         require: true
-    }]
+    }
 }, {
     timestamps: true
 });

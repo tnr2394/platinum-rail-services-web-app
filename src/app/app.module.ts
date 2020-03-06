@@ -123,6 +123,8 @@ import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-
 import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
 import { SafePipe } from './safe.pipe';
 import { AllotmentConfirmationComponent } from './clients/assignment-status/allotment-confirmation/allotment-confirmation.component';
+import { CompetencesComponent } from './instructors/competences/competences.component';
+import { AddCompModalComponent } from './instructors/competences/add-comp-modal/add-comp-modal.component';
 
 @NgModule({
   declarations: [
@@ -202,7 +204,9 @@ import { AllotmentConfirmationComponent } from './clients/assignment-status/allo
     AdminReportAComponent,
     AdminReportBComponent,
     SafePipe,
-    AllotmentConfirmationComponent
+    AllotmentConfirmationComponent,
+    CompetencesComponent,
+    AddCompModalComponent
   ],
   imports: [
     MatTreeModule,
@@ -249,7 +253,7 @@ import { AllotmentConfirmationComponent } from './clients/assignment-status/allo
     }),
     NgCircleProgressModule.forRoot({})
   ],
-  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent, AllotmentConfirmationComponent],
+  entryComponents: [AddCourseModalComponent, EditCourseModalComponent, AddJobModalComponent, EditJobModalComponent, AddInstructorModalComponent, EditInstructorModalComponent, AddClientModalComponent, EditClientModalComponent, AddLearnerModalComponent, EditLearnerModalComponent, AddMaterialModalComponent, EditMaterialModalComponent, AddFileModalComponent, EditFileModalComponent, AllocateLearnerModalComponent, AddLocationComponent, CreateFolderModalComponent, ShareFileModalComponent, SchedulerComponent, DeleteConfirmModalComponent, AddTimelogModalComponent, InstructorConfirmationModalComponent, AllotmentConfirmationComponent, AddCompModalComponent],
   providers: [SideNavServiceService, DatePipe, MatDatepickerModule, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
