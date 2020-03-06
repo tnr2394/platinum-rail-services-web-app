@@ -53,18 +53,19 @@ competencies.deleteCompetencies = function (competenciesId) {
     })
 }
 
-competencies.pullCompetenciesFromInstructor = function (instructorId, competenciesId) {
+competencies.pullCompetenciesFromInstructor = function (competenciesId, instructorId) {
     return new Promise((resolve, reject) => {
-        console.log("Adding Competencies To Instructor", { instructorId, competenciesId });
-        instructorModel.findOneAndUpdate({ _id: instructorId }, {
+        console.log("Pull Competencies From Instructor", { competenciesId });
+        instructorModel.updateMany({ _id: instructorId }, {
             $pull: {
                 competencies: competenciesId
             }
-        }, { upsert: true }, (err, updatedIns) => {
+        }, { upsert: true, new: true }, (err, updatedIns) => {
             if (err) {
+                console.log('Error while $pull', err);
                 reject(err);
             } else {
-                console.log("Updated Instructor After adding competencies = ", updatedIns);
+                console.log("Updated Instructor After remove competencies = ", updatedIns);
                 resolve(updatedIns);
             }
         });
@@ -160,7 +161,7 @@ competencies.getCompetencies = function (instructorId) {
                 $project: {
                     competencies: 1,
                     competencies: {
-                        competenciesId: '$_id',
+                        competenciesId: '$competencies._id',
                         title: '$competencies.title',
                         files: '$competencies.files',
                         expiryDate: '$competencies.expiryDate',
@@ -181,9 +182,10 @@ competencies.getCompetencies = function (instructorId) {
             }
         ]).exec((err, response) => {
             if (err) {
-                console.log('Error====>>>', err)
+                console.log('Error====>>>', err);
                 reject(err)
             } else {
+                console.log('Response===>>', response);
                 resolve(response)
             }
         })

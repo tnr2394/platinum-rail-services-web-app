@@ -12,6 +12,11 @@ const competenciesSchema = new Schema({
     expiryDate: {
         type: Date,
         require: true
+    },
+    instructor: {
+        type: Schema.Types.ObjectId,
+        ref: 'instructor',
+        require: true
     }
 }, {
     timestamps: true
