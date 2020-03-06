@@ -23,7 +23,7 @@ export class CompetencesComponent implements OnInit {
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log('OPENDIALOG', 'DATA = ', data)
-    const dialogRef = this.dialog.open(someComponent, { data, width: '1000px', height: '967px' });
+    const dialogRef = this.dialog.open(someComponent, { data, width: 'auto', height: '967px' });
 
     return dialogRef.afterClosed();
   }
