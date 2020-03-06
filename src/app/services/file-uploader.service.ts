@@ -134,10 +134,14 @@ export class FileUploaderService {
       // formData.set('status', this.bodyData.status);
       this.url = config.baseApiUrl + "learners/submission"
       this.myId = this.bodyData.allotmentId;
-    } else {
+    } else if (this.bodyData.materialId) {
       // formData.set('materialId', this.bodyData.materialId);
       this.url = config.baseApiUrl + "materials/files"
       this.myId = this.bodyData.materialId;
+    } ///file
+    else if (this.bodyData.competenciesId){
+      this.url = config.baseApiUrl + "competencies/file"
+      this.myId = this.bodyData.competenciesId;
     }
 
 

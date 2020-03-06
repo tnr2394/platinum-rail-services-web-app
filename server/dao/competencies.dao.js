@@ -4,6 +4,7 @@ const fileDAO = require('../dao/file.dao');
 const competenciesModel = require('../models/competencies.model');
 const instructorModel = require('../models/instructor.model');
 const ObjectId = require('mongodb').ObjectId;
+const Q = require('q');
 
 
 const competencies = {};
@@ -160,7 +161,7 @@ competencies.getCompetencies = function (instructorId) {
                 $project: {
                     competencies: 1,
                     competencies: {
-                        competenciesId: '$_id',
+                        competenciesId: '$competencies._id',
                         title: '$competencies.title',
                         files: '$competencies.files',
                         expiryDate: '$competencies.expiryDate',

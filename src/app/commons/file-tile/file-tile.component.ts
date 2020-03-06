@@ -17,6 +17,7 @@ export class FileTileComponent implements OnInit {
 
 
   @Input('file') file: any;
+  @Input('isCompetency') isCompetency;
   @Output() deletedFile: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();
@@ -94,7 +95,7 @@ export class FileTileComponent implements OnInit {
   fileDetails(){
     $('.parent_row').addClass('col-width-class');
     console.log("file tile clicked", event);
-    this.openSideNav.emit({ file: this.file })
+    this.openSideNav.emit({ file: this.file , isCompetency: this.isCompetency })
   }
 
 }
