@@ -4,6 +4,7 @@ const fileDAO = require('../dao/file.dao');
 const competenciesModel = require('../models/competencies.model');
 const instructorModel = require('../models/instructor.model');
 const ObjectId = require('mongodb').ObjectId;
+const Q = require('q');
 
 
 const competencies = {};

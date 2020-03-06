@@ -21,7 +21,8 @@ export class NewFileModalComponent implements OnInit {
   constructor(public uploader: FileUploaderService, public _snackbar: MatSnackBar, public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-
+    console.log("this.data", this.data);
+    
     console.log("Upload files initialized", this.queue);
 
     this.queue = this.uploader.queue;

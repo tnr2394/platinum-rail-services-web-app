@@ -64,7 +64,7 @@
     "ng2-select2": "^1.0.0-beta.16",
     "ngx-color-picker": "^8.2.0",
     "ngx-contextmenu": "^5.3.0",
-    "ngx-daterangepicker-material": "^2.2.0",
+    "ngx-daterangepicker-material": "^2.1.10",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-image-cropper": "^2.1.0",
     "ngx-material-timepicker": "^5.3.0",

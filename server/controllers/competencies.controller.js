@@ -7,7 +7,7 @@ const competenciesController = {};
 
 competenciesController.addCompetencies = async function (req, res, next) {
     console.log("ADD Competencies", req.body);
-
+    
     let newCompetencies = {};
     const instructorId = req.body.instructorId;
     if (req.body.title) newCompetencies['title'] = req.body.title;
@@ -71,7 +71,7 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
     let newFile = {
         title: req.body.Key,
         alias: req.body.Key,
-        type: "file",
+        type: "competencies",
         path: req.body.Location,
         size: req.body.size,
         extension: extension.toLowerCase(),
@@ -98,7 +98,7 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
 
 
 competenciesController.getCompetencies = async function (req, res, next) {
-    const instructorId = req.query.id;
+    const instructorId = req.query._id;
     console.log('Competencies List Function', instructorId)
     competenciesDOA.getCompetencies(instructorId).then(updatedIns => {
         return res.send({ data: { competencies: updatedIns } })
