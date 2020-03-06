@@ -22,13 +22,17 @@ export class AddCompModalComponent implements OnInit {
   }
   submit(){
     console.log("title", this.title, "x-date", this.expiryDate);
+    if (this.title && this.expiryDate){
+      let data = {
+        title: this.title,
+        xDate: this.expiryDate
+      }
+      this.dialogRef.close(data)
+    }
+    else {
+      this.openSnackBar("Title and Expiry Date are required","OK");
+    }
   }
-  openFileUpload(){
-    this.openDialog(NewFileModalComponent, {competencies : true}).subscribe(uploaded=>{
-      console.log("uploaded", uploaded);
-    })
-  }
-
 
   openDialog(someComponent, data = {}): Observable<any> {
     console.log('OPENDIALOG', 'DATA = ', data)
