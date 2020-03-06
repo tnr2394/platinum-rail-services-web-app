@@ -156,6 +156,29 @@ competencies.getCompetencies = function (instructorId) {
                     as: 'competencies.files',
                 }
             },
+            {
+                $project: {
+                    competencies: 1,
+                    competencies: {
+                        competenciesId: '$_id',
+                        title: '$competencies.title',
+                        files: '$competencies.files',
+                        expiryDate: '$competencies.expiryDate',
+                        isValid: {
+                            $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
+                        },
+                    }
+
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    competencies: {
+                        $push: '$competencies'
+                    }
+                }
+            }
         ]).exec((err, response) => {
             if (err) {
                 console.log('Error====>>>', err)
@@ -166,10 +189,6 @@ competencies.getCompetencies = function (instructorId) {
         })
     })
 }
-
-
-
-
 
 
 module.exports = competencies;
