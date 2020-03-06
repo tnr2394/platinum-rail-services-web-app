@@ -118,7 +118,16 @@ module.exports.addTimeLog = (req, res) => {
 			console.log("callbackError ", callbackError);
 			return res.status(500).send({ callbackError })
 		} else {
-			return res.status(200).json({ message: ' Add Time Logs ', callbackResponse })
+			if (req.body.deletedLog.length != 0) {
+				timeLogServices.deleteTimeLogs(req.body.deletedLog).then((response) => {
+					return res.status(200).json({ message: ' Add Time Logs ', callbackResponse })
+				}).catch((err) => {
+					return res.status(500).send({ callbackError })
+				})
+			} else {
+				return res.status(200).json({ message: ' Add Time Logs ', callbackResponse })
+
+			}
 		}
 	})
 }
@@ -232,11 +241,11 @@ module.exports.getWeeklylog = (req, res) => {
 				if (x == false) status.push("Less than Regulation used");
 				else status.push("Regulation exceeded")
 			}
-			else status.push("Regulation Achieved") 
-			let exceeded = lodash.findIndex(status, function (o) { return o == "Regulation exceeded"})
+			else status.push("Regulation Achieved")
+			let exceeded = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
 			if (exceeded >= 0) finalStatus = "Regulation exceeded"
 			else {
-				var lessThen = lodash.findIndex(status, function (o) { return o == "Less than Regulation used"})
+				var lessThen = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
 				if (lessThen >= 0) finalStatus = "Less than Regulation used"
 				else finalStatus = "Regulation Achieved"
 			}
@@ -263,7 +272,7 @@ module.exports.getWeeklylog = (req, res) => {
 			// }
 			// else finalStatus = "Regulation Achieved"
 			// status = (x == false) ? 'not satisfied' : status
-			return res.status(200).json({ message: 'Status sent ', status:status, finalStatus: finalStatus })
+			return res.status(200).json({ message: 'Status sent ', status: status, finalStatus: finalStatus })
 		}
 		else return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
 	}).catch((error) => {

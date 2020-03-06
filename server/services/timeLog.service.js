@@ -33,6 +33,7 @@ module.exports.sendSheetCompleteMailToInstructors = sendSheetCompleteMailToInstr
 module.exports.getInstructorsTimeLogDetails = getInstructorsTimeLogDetails
 module.exports.secondReportLogsDetails = secondReportLogsDetails
 module.exports.scriptForTimelog = scriptForTimelog
+module.exports.deleteTimeLogs = deleteTimeLogs
 
 function addTimeLog(data) {
     return new Promise((resolve, reject) => {
@@ -695,6 +696,61 @@ const updateTimeLogRecords = () => {
         } else {
             console.log("Date set Completed", callbackResponse);
         }
+    })
+}
+
+
+const deleteTimeLogs = (timeLogArray) => {
+    async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
+        deleteTimeLogFromTimeLogModel(singleTimeLog).then((response) => {
+            deleteTimeLogFromIns(singleTimeLog).then((result) => {
+                innerCallback();
+            }).catch((error) => {
+                errorLog(" Error ", error)
+            })
+        }).catch((error) => {
+            errorLog(" Error ", error)
+        })
+    }, (callbackError, callbackResponse) => {
+        if (callbackError) {
+            console.log("callbackError ", callbackError);
+        } else {
+            console.log("Date set Completed", callbackResponse);
+        }
+    })
+}
+
+
+const deleteTimeLogFromTimeLogModel = (timeLogId) => {
+    return new Promise((resolve, reject) => {
+        console.log('Remove Time Log From Ins', timeLogId)
+        TimeLog.findByIdAndRemove({ _id: timeLogId }, (err, updatedIns) => {
+            if (err) {
+                reject(err);
+            } else {
+                console.log("Updated Instructor After remove timelog = ", updatedIns);
+                resolve(updatedIns);
+            }
+        });
+    })
+}
+
+const deleteTimeLogFromIns = (timeLogId) => {
+    return new Promise((resolve, reject) => {
+        console.log('Remove Time Log From Ins', timeLogId)
+        InstructorTimeLog.updateMany({ logs: timeLogId }, {
+            $pull: {
+                logs: timeLogId
+            }
+        }, { upsert: true, new: true }, (err, updatedIns) => {
+            if (err) {
+                console.log('Error while $pull', err);
+                reject(err);
+            } else {
+                console.log("Updated Instructor After remove timelog = ", updatedIns);
+                resolve(updatedIns);
+            }
+        });
     })
 }
 // scriptForTimelog()
