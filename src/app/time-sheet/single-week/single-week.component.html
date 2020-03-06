@@ -15,7 +15,6 @@
             </div>
             <div>
                 <h5>Over Time Hours:
-                    <!-- <span *ngIf="overTimeHours != 0" style="color: red;"></span> -->
                     <span>{{overTime}}</span>
                 </h5>
             </div>
@@ -234,6 +233,23 @@
                                     </td>
                                     <!-- </div> -->
                                 </ng-container>
+
+                                <ng-container matColumnDef="reset">
+                                    <th class="text-center" mat-header-cell *matHeaderCellDef> Action </th>
+                                    <td class="mat-table-cell text-center" mat-cell
+                                        *matCellDef="let days; let i = index">
+                                        <div>
+                                            <button class="copyArrow btn" (click)="copyCurrentLogs(i)"
+                                                placement="bottom" ngbTooltip="Copy logs"
+                                                tooltipClass="tooltip-class"><i class="fa fa-copy"></i></button>
+                                            <button class="copyArrow btn" (click)="pasteLogs(i)"
+                                                *ngIf="showPasteBtn && i != copiedIndex" placement="bottom"
+                                                ngbTooltip="Paste logs" tooltipClass="tooltip-class"><i
+                                                    class="fa fa-paste"></i></button>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
 
                                 <thead>
                                     <tr style="background:lightgray;" mat-header-row

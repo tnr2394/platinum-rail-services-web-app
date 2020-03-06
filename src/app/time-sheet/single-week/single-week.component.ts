@@ -62,7 +62,7 @@ export class SingleWeekComponent implements OnInit {
   totalHoursWorked = { hours: 0, minutes: 0 };
   pageSizeOptions: number[] = [5, 10, 25, 100];
   jobId;
-  displayedColumns: string[] = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit'];
+  displayedColumns: string[] = ['copyPaste', 'date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours', 'edit', 'reset'];
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   currentTime;
@@ -476,7 +476,7 @@ export class SingleWeekComponent implements OnInit {
       // return this.overM;
     }
     else {
-      this.overTime = totalH.toString() + ':' + totalM.toString();  
+      this.overTime = totalH.toString() + ':' + totalM.toString();
       // return this.overM;
     }
     this.overTime = totalH.toString() + ':' + totalM.toString();
@@ -699,7 +699,7 @@ export class SingleWeekComponent implements OnInit {
         this.index = null
         this.arrayFromDb = res;
         this.loading = false
-        
+
         // console.log('Arrayform db', this.arrayFromDb);
         this.mergeAndCompareBothArrays();
       }, error => {
