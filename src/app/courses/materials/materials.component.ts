@@ -134,7 +134,7 @@ export class MaterialsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params['courseId'] != undefined) {
         this.getMaterials(params['courseId']);
-        this.getGroupedMaterials(params['courseId'])
+        // this.getGroupedMaterials(params['courseId'])
       }
     });
 

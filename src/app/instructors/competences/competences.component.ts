@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar, MatTableDataSource, MatPaginator, MatSort, MatSidenav } from '@angular/material';
 import { AddCompModalComponent } from './add-comp-modal/add-comp-modal.component';
+import { EditCompModalComponent } from './edit-comp-modal/edit-comp-modal.component'
 import { NewFileModalComponent } from 'src/app/files/new-file-modal/new-file-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { CompetenciesService } from 'src/app/services/competencies.service';
@@ -42,7 +43,7 @@ export class CompetencesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
-
+  @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute,
     public _competencyService: CompetenciesService) {
     this.dataSource = new MatTableDataSource(this.compArray)
@@ -69,6 +70,11 @@ export class CompetencesComponent implements OnInit {
       console.log("Data in comp", data);
       if (data == undefined) return
       else {
+        console.log("data.expiryDate", data.expiryDate, "new Date()", new Date(), data.expiryDate < new Date());
+        let isValid = data.expiryDate < new Date()
+        data['isValid'] = !isValid
+        console.log("data", data);
+        // this.getCompetencyData()
         this.compArray.push(data)
         this.updateData(this.compArray)
       }
@@ -107,27 +113,25 @@ export class CompetencesComponent implements OnInit {
   fileDetails(event) {
     console.log("event file tile clicked", event);
     this.file = event.file
-    this.mydsidenav.open();
+    this.openSideNav.emit(event)
+    // this.mydsidenav.open();
   }
-
-  deleteFile(event) {
-    console.log('delete Event:', event);
+  editCompModal(element){
+    this.openDialog(EditCompModalComponent, element).subscribe(data=>{
+      console.log("DATA IN COMP FROM EDIT", data)
+    })
   }
-
-  // fileDetailsComp(event) {
-  //   console.log("fileDetailsComp", event);
-  //   this.materialIndex = event.materialIndex
-  //   this.file = event.file;
-  //   this.mydsidenav.open();
-  //   console.log("EVENT OPENING", event.file);
-  // }
 
   // API
-  getCompetencyData() {
-    this._competencyService.getCompetencies(this.instructorId).subscribe(res => {
-      console.log("res in comp = ", res.competencies[0].competencies);
-      this.compArray = res.competencies[0].competencies
+  getCompetencyData(){
+    this._competencyService.getCompetencies(this.instructorId).subscribe(res=>{
+      console.log("***res in comp = ", res.competencies);
+      this.compArray = res.competencies
+      console.log("***this.compArray", this.compArray);
       this.updateData(this.compArray)
     })
+  }
+  deleteFile(event) {
+    console.log('delete Event:', event);
   }
 }

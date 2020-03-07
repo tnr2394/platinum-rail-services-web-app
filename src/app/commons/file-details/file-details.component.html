@@ -37,16 +37,15 @@
                         <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i class="fa fa-check-circle"></i></button>
                     </div>
                 </h5>
-                <div *ngIf="isMaterials == 'material'">
+                <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies')">
                     <div class="drawer_btn">
-                        <button mat-stroked-button color="primary" (click)="shareWith()"><i class="fa fa-share-alt"
-                                aria-hidden="true"></i> Share</button>
+                        <button mat-stroked-button color="primary" (click)="shareWith()" *ngIf = "recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
+                                aria-hidden="true"></i> Share </button>
                         <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
                                 aria-hidden="true"></i>
                             Delete</button>
-                        <button mat-stroked-button class="download_link"><a href="{{path}}" color="dark"><i
+                        <button mat-stroked-button class="download_link"><a href="{{path}}" ><i
                                     class="fa fa-download" aria-hidden="true"></i> Download</a></button>
-
                     </div>
                 </div>
             </div>
@@ -54,7 +53,7 @@
     </mat-tab>
 
     <!-- <div *ngIf="currentUser.userRole == admin"> -->
-    <mat-tab label="Activity" *ngIf="isMaterials != 'material'">
+    <mat-tab label="Activity" *ngIf="recievedFile && (recievedFile.type == 'folder' || recievedFile.type == 'file')">
         {{isCompetency}}
         <h4>Shared with:</h4>
         <h6><b>Clients</b></h6>
@@ -90,7 +89,7 @@
         </ul> -->
         <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedInstructor.length < 1" style="color: #3b86ff;">Not shared with any instructors!</div>
         <div class="drawer_btn">
-            <button mat-stroked-button class="ripple Button_shap_effact" (click)="shareWith()"><i class="fa fa-share-alt"
+            <button mat-stroked-button class="ripple Button_shap_effact" (click)="shareWith()" ><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>
             <button mat-stroked-button class="ripple resets_delete_button" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i>
                 Delete</button>

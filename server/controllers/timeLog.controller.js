@@ -207,7 +207,15 @@ module.exports.getWeeklylog = (req, res) => {
 		getLast13Logs(instructorId, datesArray),
 		weeklyLogsWithOtherRules(instructorId, datesArray)
 	]).then((response) => {
+		// weeklyLogs: response,
+		// 	status: status,
+		// 		workingHrsStatus: workingHrsStatus,
+		// 			travelHrsStatus: travelHrsStatus,
+		// 				breakBtnTurnsStatus: breakBtnTurnsStatus,
+		// 					weekHrs: weekHrs
+		
 		let finalStatus;
+		let last13Status = [];
 		// console.log("---RESPONSE AFTER ALL PROMISE---", response[0], response[1].weeklyLogs);
 		let last13daysLogs = response[0].logs
 		let dates = response[0].dates
@@ -240,17 +248,22 @@ module.exports.getWeeklylog = (req, res) => {
 			if (x == false) {
 				console.log("weekLogs", weekLogs)
 				x = countForEachDay.every(isGreaterThan13)
-				if (x == false) status.push("Less than Regulation used");
-				else status.push("Regulation exceeded")
+				if (x == false) last13Status.push("Less than Regulation used");
+				else last13Status.push("Regulation exceeded")
 			}
-			else status.push("Regulation Achieved")
-			let exceeded = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
-			if (exceeded >= 0) finalStatus = "Regulation exceeded"
-			else {
-				var lessThen = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
-				if (lessThen >= 0) finalStatus = "Less than Regulation used"
-				else finalStatus = "Regulation Achieved"
-			}
+			else last13Status.push("Regulation Achieved")
+			let finalLast13Status = last13Status[0]
+			let finalWorkingHrsStatus = getFinalStatus(response[1].workingHrsStatus)
+			let finaltravelHrsStatus = getFinalStatus(response[1].travelHrsStatus)
+			let finalbreakBtnTurnsStatus = getFinalStatus(response[1].breakBtnTurnsStatus)
+			let finalweekHrs = getFinalStatus(response[1].weekHrs)
+			// let exceeded = lodash.findIndex(status, function (o) { return o == "Regulation exceeded" })
+			// if (exceeded >= 0) finalStatus = "Regulation exceeded"
+			// else {
+			// 	var lessThen = lodash.findIndex(status, function (o) { return o == "Less than Regulation used" })
+			// 	if (lessThen >= 0) finalStatus = "Less than Regulation used"
+			// 	else finalStatus = "Regulation Achieved"
+			// }
 			// lessThenCount = 0
 			// exceededCount = 0
 			// achievedCount = 0
@@ -274,7 +287,11 @@ module.exports.getWeeklylog = (req, res) => {
 			// }
 			// else finalStatus = "Regulation Achieved"
 			// status = (x == false) ? 'not satisfied' : status
-			return res.status(200).json({ message: 'Status sent ', status: status, finalStatus: finalStatus })
+			return res.status(200).json({
+				message: 'Status sent ', workingHrsStatus: finalWorkingHrsStatus, workingHrsArray: response[1].workingHrsStatus,
+				travelHrsStatus: finaltravelHrsStatus, breakBtnTurnsStatus: finalbreakBtnTurnsStatus, weekHrs: finalweekHrs,
+				last13Status: finalLast13Status,
+			finalStatus: finalStatus })
 		}
 		else return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
 	}).catch((error) => {
@@ -293,12 +310,25 @@ function isGreaterThan13(count) {
 function exceeded(status) {
 	return status == "Regulation exceeded"
 }
+function getFinalStatus(array){
+	let index = lodash.findIndex(array, function (o) { return o == "Regulation exceeded" })
+	if (index >= 0) return finalStatus = "Regulation exceeded"
+	else {
+		var lessThen = lodash.findIndex(array, function (o) { return o == "Less than Regulation used" })
+		if (lessThen >= 0) return finalStatus = "Less than Regulation used"
+		else return finalStatus = "Regulation Achieved"
+	}
+}
 
 const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 	// console.log("weeklyLogsWithOtherRules", datesArray);
 
 	return new Promise((resolve, reject) => {
 		let status = [];
+		let workingHrsStatus = [];
+		let travelHrsStatus = [];
+		let breakBtnTurnsStatus = [];
+		let weekHrs = [];
 		// status = 'satisfied'
 		timeLogServices.getInstructorTimeLog(instructorId, datesArray).then((response) => {
 			// console.log("***getInstructorTimeLog***", response);
@@ -312,16 +342,16 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 				// Working hours
 				if ((response[i].workingHours.hours == 12 && response[i].workingHours.minutes == 00)) {
 					// status = "Regulation achieved"
-					status.push("Regulation achieved")
+					workingHrsStatus.push("Regulation achieved")
 				}
-				else if (response[i].workingHours.hours < 12) status.push("Less than Regulation used")  //status = "Less than Regulation used"
-				else status.push("Regulation exceeded") //status = "Regulation exceeded"
+				else if (response[i].workingHours.hours < 12) workingHrsStatus.push("Less than Regulation used")  //status = "Less than Regulation used"
+				else workingHrsStatus.push("Regulation exceeded") //status = "Regulation exceeded"
 
 				// traver + work
 				if (response[i].totalHours && (response[i].totalHours.hours == 14 && response[i].workingHours.minutes == 00)) {
-					status.push("Regulation achieved") // status = "Regulation achieved"
-				} else if (response[i].totalHours && response[i].totalHours.hours < 14) status.push("Less than Regulation used") //status = "Less than Regulation used"
-				else status.push("Regulation exceeded") //status = "Regulation exceeded"
+					travelHrsStatus.push("Regulation achieved") // status = "Regulation achieved"
+				} else if (response[i].totalHours && response[i].totalHours.hours < 14) travelHrsStatus.push("Less than Regulation used") //status = "Less than Regulation used"
+				else travelHrsStatus.push("Regulation exceeded") //status = "Regulation exceeded"
 
 				console.log("tempWeeklyMinutes:", tempWeeklyMinutes, "tempWeeklyHours", tempWeeklyHours);
 				console.log("in for loop", "SATISFIED at", i, status);
@@ -339,9 +369,9 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 					var hours = ((difference - minutes) / 60)
 					// console.log("loop", i);
 					// console.log("DIFFERENCE iS", hours, minutes);
-					if (hours < 12) status.push("Regulation exceeded") //status = 'Regulation exceeded';
-					else if (hours == 12 && minutes == 00) status.push("Regulation achieved") //status = 'Regulation achieved'
-					else status.push("Less than Regulation used") //status = "Less than Regulation used"
+					if (hours < 12) breakBtnTurnsStatus.push("Regulation exceeded") //status = 'Regulation exceeded';
+					else if (hours == 12 && minutes == 00) breakBtnTurnsStatus.push("Regulation achieved") //status = 'Regulation achieved'
+					else breakBtnTurnsStatus.push("Less than Regulation used") //status = "Less than Regulation used"
 				}
 			}
 			if (tempWeeklyMinutes > 60) { //Hours per week
@@ -353,14 +383,18 @@ const weeklyLogsWithOtherRules = (instructorId, datesArray) => {
 				tempWeeklyHours = tempWeeklyHours + 1
 				tempWeeklyMinutes = tempWeeklyMinutes - 60
 			}
-			if (tempWeeklyHours == 72) status.push("Regulation Achieved") //status = "Regulation Achieved";
-			else if (tempWeeklyHours > 72) status.push("Regulation Exceeded") //status = "Regulation Exceeded" 
-			else status.push("Less than Regulation used") //status = 'Less than Regulation used' //Hours per week
+			if (tempWeeklyHours == 72) weekHrs.push("Hours per week : Regulation Achieved") //status = "Regulation Achieved";
+			else if (tempWeeklyHours > 72) weekHrs.push("Hours per week : Regulation Exceeded") //status = "Regulation Exceeded" 
+			else weekHrs.push("Hours per week : Less than Regulation used") //status = 'Less than Regulation used' //Hours per week
 			//Break between turns
 			console.log("tempWeeklyHours", tempWeeklyHours, "tempWeeklyMinutes", tempWeeklyMinutes, "status", status);
 			let weeklyResponse = {
 				weeklyLogs: response,
-				status: status
+				status: status,
+				workingHrsStatus: workingHrsStatus,
+				travelHrsStatus: travelHrsStatus,
+				breakBtnTurnsStatus: breakBtnTurnsStatus,
+				weekHrs: weekHrs
 			}
 			resolve(weeklyResponse)
 		}).catch((error) => {

@@ -131,6 +131,14 @@ export class WeekListComponent implements OnInit {
             this.loading = false;
             singleWeek['status'] = statusResponse.finalStatus;
             //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
+            // console.log("-----statusResponse-----",statusResponse.finalStatus );
+            // singleWeek['status'] = statusResponse.finalStatus;
+            singleWeek['breakBtnTurnsStatus'] = statusResponse.breakBtnTurnsStatus
+            singleWeek['last13Status'] = statusResponse.last13Status
+            singleWeek['travelHrsStatus'] = statusResponse.travelHrsStatus
+            singleWeek['weekHrs'] = statusResponse.weekHrs
+            singleWeek['workingHrsStatus'] = statusResponse.workingHrsStatus
+            console.log("-----weeklySTATUS of-----", singleWeek);
           })
         })
         resolve(weeks)

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { MatPaginator, PageEvent, MatDialog } from '@angular/material';
+import { MatPaginator, PageEvent, MatDialog, MatSidenav } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -41,6 +41,7 @@ export class SingleInstructorComponent implements OnInit {
   email;
 
   isPrint: boolean;
+  file: any;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true;
@@ -79,7 +80,7 @@ export class SingleInstructorComponent implements OnInit {
   //   this.dataSource.paginator = this.paginator;
   //   this.dataSource.sort = this.sort;
   // }
-
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, public _filter: FilterService, public _instrctorService: InstructorService, public _jobService: JobService,
     private activatedRoute: ActivatedRoute, private router: Router, private config: NgSelectConfig) {
     this.activatedRoute.params.subscribe(params => {
@@ -221,6 +222,14 @@ export class SingleInstructorComponent implements OnInit {
   }
   clearWeek() {
     this.doCalWeekDates = true
+  }
+  fileDetails(event) {
+    console.log("event file tile clicked", event);
+    this.file = event.file
+    this.mydsidenav.open();
+  }
+  deleteFile(event){
+    
   }
   // updateData(jobs) {
   //   this.dataSource = new MatTableDataSource(jobs);

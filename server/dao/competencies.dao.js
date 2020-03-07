@@ -28,11 +28,13 @@ competencies.addCompetencies = (obj) => {
 
 competencies.updateCompetencies = (competenciesId, competenciesData) => {
     return new Promise((resolve, reject) => {
-        competenciesModel.findByIdAndUpdate(
+        console.log('Data in DOA==>>', competenciesId, competenciesData);
+        competenciesModel.updateOne(
             { _id: competenciesId },
             { $set: competenciesData },
             { upsert: true, new: true }, (err, response) => {
                 if (err) {
+                    console.log('err====', err);
                     reject(err)
                 } else {
                     resolve(response)
@@ -208,7 +210,7 @@ competencies.getCompetencies = function (instructorId) {
                     title: 1,
                     createdAt: 1,
                     isValid: {
-                        $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
+                        $cond: { if: { $lt: ["$expiryDate", new Date()] }, then: false, else: true }
                     },
                 }
             },

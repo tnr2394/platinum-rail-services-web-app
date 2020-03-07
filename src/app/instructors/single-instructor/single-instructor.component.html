@@ -2,7 +2,7 @@
     <div class="col-lg-3" [hidden]="isPrint">
         <app-profile [instructorForProfile]="instructorId"></app-profile>
     </div>
-    <div class='col-lg-9 job_tab'>
+    <div class='col-lg-9 job_tab inst_tab_icons'>
         <div class="row m-0">
             <div class="col-12">
                 <mat-tab-group>
@@ -28,7 +28,22 @@
                         <app-single-week [instFromAdminReport]="instructorId" [monthChanged]="monthChanged" [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>
                     </mat-tab>
                     <mat-tab label="Competencies">
-                        <app-competences></app-competences>
+                        <mat-sidenav-container class="example-container fullHeight" autosize>
+                            <mat-sidenav-content>
+                        <app-competences (openSideNav)="fileDetails($event)"></app-competences>
+                            </mat-sidenav-content>
+                            <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
+                                <div class="d-inline-block w-100">
+                                    <div class="float-left title_display" *ngIf="file">
+                                        {{file.title}}
+                                    </div>
+                                    <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
+                                            aria-hidden="true"></i></mat-button>
+                                </div>
+                                <app-file-details [details]="file" [isCompetency]="true" (fileDeleted)="deleteFile($event)">
+                                </app-file-details>
+                            </mat-sidenav>
+                            </mat-sidenav-container>
                     </mat-tab>
                 </mat-tab-group>
             </div>

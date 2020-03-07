@@ -52,4 +52,44 @@ export class CompetenciesService {
     });
 
   }
+
+  updateCompetency(data: any): Observable<any> {
+    console.log("Updating competency", data);
+
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      var that = this;
+      this.http.put(config.baseApiUrl + "competencies", data).subscribe((res: any) => {
+        console.log("Received Sending = ", res.data)
+        observer.next(res.data);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+
+    });
+
+  }
+  deleteCompetency(id) {
+    return new Observable((observer) => {
+      this.http.delete(config.baseApiUrl + "competencies_id=" + id).subscribe((res: any) => {
+        observer.next(res.data.clients);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        });
+
+    })
+  }
+
 }

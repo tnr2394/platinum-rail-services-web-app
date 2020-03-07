@@ -6,6 +6,18 @@
     </div>
 </div>
 <div class="row">
+    <mat-card>
+        <!-- <h4>Current Rules</h4> -->
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip class="workingHrsStatus">Work hours per day</mat-chip>
+            <mat-chip class="travelHrsStatus">Travel + work per day</mat-chip>
+            <mat-chip class="last13Status" >No. of turns in last 14 days</mat-chip>
+            <mat-chip class="weekHrs" >Hours per week</mat-chip>
+            <mat-chip class="breakBtnTurnsStatus" >Min break between turns</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+</div>
+<div class="row">
     <div class="col-sm-12 col-lg-4 col-md-4">
         <div *ngFor="let month of months;let i = index">
             <mat-expansion-panel class="mb-4" *ngIf="i == 0 || i == 3 || i == 6 || i == 9"
@@ -26,8 +38,17 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div>
-                        {{week.status}}
+                    <div class="d-flex">
+                        <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus"
+                            *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
+                        <div matBadge="X" matBadgeOverlap="false" class="last13Status"
+                            *ngIf="week.last13Status == 'Regulation exceeded'"></div>
+                        <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus"
+                            *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
+                        <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
+                        <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus"
+                            *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
+                        <!-- {{week.status}} -->
                     </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -53,8 +74,12 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div>
-                        {{week.status}}
+                    <div class="d-flex">
+                    <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus" *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="last13Status" *ngIf="week.last13Status == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus" *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus" *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
                     </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -80,8 +105,16 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div>
-                        {{week.status}}
+                    <div class="d-flex">
+                    <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus"
+                        *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="last13Status"
+                        *ngIf="week.last13Status == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus"
+                        *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
+                    <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus"
+                        *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
                     </div>
                 </mat-card>
             </mat-expansion-panel>

@@ -14,6 +14,7 @@ import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
+import { CompetenciesService } from 'src/app/services/competencies.service';
 // import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -41,23 +42,23 @@ export class FileDetailsComponent implements OnInit {
   currentFolder;
   sharedClient: any;
   sharedInstructor: any;
-  isMaterials: String;
+  isMaterials: boolean;
   path: any;
   readOnlyTitle: boolean = true;
   supportedDocument: boolean;
   type: any;
   currentUser: any;
   pathForPreview: string;
-  constructor(public _folderService: FolderService, public _fileService: FileService,
+  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log("On init isCompetency", this.isCompetency);
     console.log(this.recievedFile)
     console.log("this.recievedFile in file-details", this.recievedFile);
-    if(this.isCompetency == true){
-      this.isMaterials = 'material'
-    }
+    // if(this.isCompetency == true){
+    //   this.isMaterials = 'material'
+    // }
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -70,7 +71,7 @@ export class FileDetailsComponent implements OnInit {
     console.log("CHANGES", changes);
     if (changes.isCompetency && changes.isCompetency.currentValue == true){
       this.isCompetency = changes.isCompetency.currentValue;
-      this.isMaterials = 'material'
+      // this.isMaterials = 'material'
     }
     // if (changes.isCompetency == undefined){
     //   this.isCompetency = false
@@ -78,7 +79,8 @@ export class FileDetailsComponent implements OnInit {
     if (changes.recievedFile.currentValue) {
       this.currentFolder = changes.recievedFile.currentValue;
       // TYPE
-      if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = 'material'; else this.isMaterials = 'not material'
+      if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = true; else this.isMaterials = false
+      
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
       if (changes.recievedFile.currentValue.path) {
@@ -172,6 +174,11 @@ export class FileDetailsComponent implements OnInit {
         else if (this.type == 'file') {
           this._folderService.deleteFile(this.id).subscribe(res => {
             console.log("file DELETED", res);
+          })
+        }
+        else if(this.type == 'competencies') {
+          this._competencyService.deleteCompetency(this.id).subscribe(res => {
+            console.log("Competency deleted", res);
           })
         }
         this.fileDeleted.emit({ fileId: this.id, type: this.type })
