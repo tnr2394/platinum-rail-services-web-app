@@ -1,10 +1,10 @@
 // Colors
-$white : "#ffffff";
+$white: "#ffffff";
 
 // #sidemenu{
-//     width: 260px !important;  
+//     width: 260px !important;
 //     background: #3E3E3E 0% 0% no-repeat padding-box;
-//     background-size: cover; 
+//     background-size: cover;
 //     padding-top: 60px;
 // }
 
@@ -66,251 +66,251 @@ $white : "#ffffff";
 //     }
 // }
 
-
-
 // New Side bar Start Here
 .main {
-    position: relative;
-    padding: 100px 35px 20px 85px;
-    transition: padding 0.5s;
-    &.menu--open{
-        padding-left: 245px;
-        &:after{
-            display: none;
-            content: "";
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 111;
-            background-color: rgba(0,0,0,0.5);
-            @media (max-width: 1024px) {
-                display: block;
-            }
-            @media(max-width: 599px) {
-                display: block;
-            }
-        }
+  position: relative;
+  padding: 100px 35px 20px 85px;
+  transition: padding 0.5s;
+  &.menu--open {
+    padding-left: 245px;
+    &:after {
+      display: none;
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 111;
+      background-color: rgba(0, 0, 0, 0.5);
+      @media (max-width: 1024px) {
+        display: block;
+      }
+      @media (max-width: 599px) {
+        display: block;
+      }
     }
-    @media (max-width: 1024px) {
-        padding: 80px 15px 20px !important;
-    }
+  }
+  @media (max-width: 1024px) {
+    padding: 80px 15px 20px !important;
+  }
 }
 .sidebar {
-    width: 210px;
-    background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-    z-index: 5;
-    transition: all 0.5s;
-    display: block;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding-top: 64px;
-    box-shadow: 0px 0px 20px -5px #fff;
+  width: 210px;
+  background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
+  z-index: 999;
+  transition: all 0.5s;
+  display: block;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 64px;
+  box-shadow: 0px 0px 20px -5px #fff;
+  @media (max-width: 1024px) {
+    padding-top: 0;
+    z-index: 999;
+    overflow: auto;
+  }
+  &.sidebar--Collapse {
+    width: 50px;
     @media (max-width: 1024px) {
-        padding-top: 0;
-        z-index: 999;
-        overflow: auto;
+      width: 0;
     }
-    &.sidebar--Collapse{
-        width: 50px;
-        @media (max-width: 1024px) {
-            width: 0;
-        }
+  }
+  .collapseToggle {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    height: 40px;
+    width: 50px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    bottom: 0;
+    @media (max-width: 1024px) {
+      top: 13px;
+      right: 0;
+      position: fixed;
     }
-    .collapseToggle {
-        display: block;
-        cursor: pointer;
+    @media (max-width: 599px) and (orientation: landscape) {
+      top: 9px;
+    }
+    @media (max-width: 599px) {
+      top: 9px;
+      right: 0;
+      position: fixed;
+    }
+    #toggleIcon {
+      transition: all 0.5s;
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  ul {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    li {
+      display: inline-block;
+      float: left;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      a {
+        display: table;
+        width: 100%;
         color: #fff;
-        height: 40px;
-        width: 50px;
-        text-align: center;
-        line-height: 40px;
-        position: absolute;
-        bottom: 0;
-        @media (max-width: 1024px) {
-            top: 13px;
-            right: 0;
-            position: fixed;
+        transition: all 0.5s;
+        &:hover,
+        &.active-link {
+          background-color: #fff;
+          color: #111;
         }
-        @media (max-width: 599px) and (orientation : landscape) {
-            top: 9px;
+        i {
+          font-size: 18px;
+          display: inline-block;
+          float: left;
+          width: 50px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
         }
-        @media(max-width: 599px) {
-            top: 9px;
-            right: 0;
-            position: fixed;
+        span.menuText {
+          display: inline-block;
+          float: left;
+          line-height: 40px;
+          width: calc(100% - 50px);
+          strong {
+            font-weight: 900;
+          }
         }
-        #toggleIcon{
-            transition: all 0.5s;
-            &.rotate {
-                transform: rotate(180deg);
-            }
-        }
+      }
     }
-    ul{
-        border-top: 1px solid rgba(255, 255, 255, 0.25);
-        li {
-            display: inline-block;
-            float: left;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            a{
-                display: table;
-                width: 100%;
-                color: #fff;
-                transition: all 0.5s;
-                &:hover, &.active-link{
-                    background-color: #fff;
-                    color: #111;
-                }
-                i {
-                    font-size: 18px;
-                    display: inline-block;
-                    float: left;
-                    width: 50px;
-                    height: 40px;
-                    line-height: 40px;
-                    text-align: center;
-                }
-                span.menuText {
-                    display: inline-block;
-                    float: left;
-                    line-height: 40px;
-                    width: calc(100% - 50px);
-                    strong{
-                        font-weight: 900;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 .mainPrint {
-    background: white;
-    position: relative;
-    padding: 100px 35px 20px 85px;
-    transition: padding 0.5s;
-    &.menu--open{
-        padding-left: 245px;
-        &:after{
-            display: none;
-            content: "";
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 111;
-            background-color: rgba(0,0,0,0.5);
-            @media (max-width: 1024px) {
-                display: none !important;
-            }
-            @media(max-width: 599px) {
-                display: block;
-            }
-        }
+  background: white;
+  position: relative;
+  padding: 100px 35px 20px 85px;
+  transition: padding 0.5s;
+  &.menu--open {
+    padding-left: 245px;
+    &:after {
+      display: none;
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 111;
+      background-color: rgba(0, 0, 0, 0.5);
+      @media (max-width: 1024px) {
+        display: none !important;
+      }
+      @media (max-width: 599px) {
+        display: block;
+      }
     }
-    @media (max-width: 1024px) {
-        padding: 80px 15px 20px !important;
-    }
+  }
+  @media (max-width: 1024px) {
+    padding: 80px 15px 20px !important;
+  }
 }
 .sidebarPrint {
-    width: 210px;
-    background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-    z-index: 5;
-    transition: all 0.5s;
-    display: block;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding-top: 64px;
-    box-shadow: 0px 0px 20px -5px #fff;
+  width: 210px;
+  background: transparent linear-gradient(180deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
+  z-index: 5;
+  transition: all 0.5s;
+  display: block;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 64px;
+  box-shadow: 0px 0px 20px -5px #fff;
+  @media (max-width: 1024px) {
+    padding-top: 0;
+    z-index: -1;
+    overflow: auto;
+  }
+  &.sidebar--Collapse {
+    width: 50px;
     @media (max-width: 1024px) {
-        padding-top: 0;
-        z-index: -1;
-        overflow: auto;
+      width: 0;
     }
-    &.sidebar--Collapse{
-        width: 50px;
-        @media (max-width: 1024px) {
-            width: 0;
-        }
+  }
+  .collapseToggle {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    height: 40px;
+    width: 50px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    bottom: 0;
+    @media (max-width: 1024px) {
+      top: 13px;
+      right: 0;
+      position: fixed;
     }
-    .collapseToggle {
-        display: block;
-        cursor: pointer;
+    @media (max-width: 599px) and (orientation: landscape) {
+      top: 9px;
+    }
+    @media (max-width: 599px) {
+      top: 9px;
+      right: 0;
+      position: fixed;
+    }
+    #toggleIcon {
+      transition: all 0.5s;
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  ul {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    li {
+      display: inline-block;
+      float: left;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      a {
+        display: table;
+        width: 100%;
         color: #fff;
-        height: 40px;
-        width: 50px;
-        text-align: center;
-        line-height: 40px;
-        position: absolute;
-        bottom: 0;
-        @media (max-width: 1024px) {
-            top: 13px;
-            right: 0;
-            position: fixed;
+        transition: all 0.5s;
+        &:hover,
+        &.active-link {
+          background-color: #fff;
+          color: #111;
         }
-        @media (max-width: 599px) and (orientation : landscape) {
-            top: 9px;
+        i {
+          font-size: 18px;
+          display: inline-block;
+          float: left;
+          width: 50px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
         }
-        @media(max-width: 599px) {
-            top: 9px;
-            right: 0;
-            position: fixed;
+        span.menuText {
+          display: inline-block;
+          float: left;
+          line-height: 40px;
+          width: calc(100% - 50px);
+          strong {
+            font-weight: 900;
+          }
         }
-        #toggleIcon{
-            transition: all 0.5s;
-            &.rotate {
-                transform: rotate(180deg);
-            }
-        }
+      }
     }
-    ul{
-        border-top: 1px solid rgba(255, 255, 255, 0.25);
-        li {
-            display: inline-block;
-            float: left;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            a{
-                display: table;
-                width: 100%;
-                color: #fff;
-                transition: all 0.5s;
-                &:hover, &.active-link{
-                    background-color: #fff;
-                    color: #111;
-                }
-                i {
-                    font-size: 18px;
-                    display: inline-block;
-                    float: left;
-                    width: 50px;
-                    height: 40px;
-                    line-height: 40px;
-                    text-align: center;
-                }
-                span.menuText {
-                    display: inline-block;
-                    float: left;
-                    line-height: 40px;
-                    width: calc(100% - 50px);
-                    strong{
-                        font-weight: 900;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
