@@ -104,7 +104,8 @@ module.exports.addTimeLog = (req, res) => {
 					}
 				}).catch((error) => {
 					errorLog(" Return befor erro  ", error)
-					return res.status(500).json({ message: ' Error in: Add Time Logs ', error })
+					return innerCallback(error)
+					// return res.status(500).json({ message: ' Error in: Add Time Logs ', error })
 				})
 		} else {
 			timeLogServices.updateTimeLog(singleRecord._id, singleRecord).then((response) => {
