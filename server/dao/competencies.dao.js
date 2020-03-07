@@ -190,34 +190,28 @@ competencies.getCompetencies = function (instructorId) {
                     files: {
                         $push: '$competencies.files'
                     },
-                    competencies: {
-                        $first: '$competencies'
+                    title: {
+                        $first: '$competencies.title'
+                    },
+                    expiryDate: {
+                        $first: '$competencies.expiryDate'
+                    },
+                    createdAt: {
+                        $first: '$competencies.createdAt'
                     }
                 }
             },
-            // {
-            //     $project: {
-            //         competencies: 1,
-            //         competencies: {
-            //             competenciesId: '$competencies._id',
-            //             title: '$competencies.title',
-            //             files: '$competencies.files',
-            //             expiryDate: '$competencies.expiryDate',
-            //             isValid: {
-            //                 $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
-            //             },
-            //         }
-
-            //     }
-            // },
-            // {
-            //     $group: {
-            //         _id: '$_id',
-            //         competencies: {
-            //             $push: '$competencies'
-            //         }
-            //     }
-            // }
+            {
+                $project: {
+                    files: 1,
+                    expiryDate: 1,
+                    title: 1,
+                    createdAt: 1,
+                    isValid: {
+                        $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
+                    },
+                }
+            },
         ]).exec((err, response) => {
             if (err) {
                 console.log('Error====>>>', err);

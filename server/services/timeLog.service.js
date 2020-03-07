@@ -700,7 +700,7 @@ const updateTimeLogRecords = () => {
 }
 
 
-function deleteTimeLogs (timeLogArray)  {
+function deleteTimeLogs(timeLogArray) {
     async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
         deleteTimeLogFromTimeLogModel(singleTimeLog).then((response) => {
             deleteTimeLogFromIns(singleTimeLog).then((result) => {
@@ -738,9 +738,9 @@ const deleteTimeLogFromTimeLogModel = (timeLogId) => {
 const deleteTimeLogFromIns = (timeLogId) => {
     return new Promise((resolve, reject) => {
         console.log('Remove Time Log From Ins', timeLogId)
-        InstructorTimeLog.updateMany({ logs: timeLogId }, {
+        InstructorTimeLog.updateMany({ logs: ObjectId(timeLogId) }, {
             $pull: {
-                logs: timeLogId
+                logs: ObjectId(timeLogId)
             }
         }, { upsert: true, new: true }, (err, updatedIns) => {
             if (err) {

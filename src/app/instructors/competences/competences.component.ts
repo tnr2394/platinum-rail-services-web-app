@@ -42,9 +42,9 @@ export class CompetencesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
-  
+
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute,
-     public _competencyService: CompetenciesService) { 
+    public _competencyService: CompetenciesService) {
     this.dataSource = new MatTableDataSource(this.compArray)
   }
 
@@ -63,12 +63,12 @@ export class CompetencesComponent implements OnInit {
   //   paginatorIntl.previousPageLabel = '';
   // }
 
-  addCompModal(){
+  addCompModal() {
     console.log("Open modal");
-    this.openDialog(AddCompModalComponent, {instructorId: this.instructorId}).subscribe(data=>{
+    this.openDialog(AddCompModalComponent, { instructorId: this.instructorId }).subscribe(data => {
       console.log("Data in comp", data);
-      if(data == undefined) return
-      else{
+      if (data == undefined) return
+      else {
         this.compArray.push(data)
         this.updateData(this.compArray)
       }
@@ -99,12 +99,12 @@ export class CompetencesComponent implements OnInit {
       duration: 2000,
     });
   }
-  expand(element){
+  expand(element) {
     console.log("***element", element)
     this.expandedElement = element
     this.allFiles = element.files
   }
-  fileDetails(event){
+  fileDetails(event) {
     console.log("event file tile clicked", event);
     this.file = event.file
     this.mydsidenav.open();
@@ -118,5 +118,8 @@ export class CompetencesComponent implements OnInit {
       console.log("***this.compArray", this.compArray);
       this.updateData(this.compArray)
     })
+  }
+  deleteFile(event) {
+    console.log('delete Event:', event);
   }
 }
