@@ -2,7 +2,7 @@
   loading
 </div> -->
 <div class="row">
-<!-- <div class="col-12" *ngIf="displayTitle == true">
+  <!-- <div class="col-12" *ngIf="displayTitle == true">
   <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
     <div class="">
       <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}" dragActiveClass="drag-active">
@@ -17,8 +17,6 @@
       <div class="float-left" *ngIf="displayTitle == true">
         <h3 class="page-title">Scheduler</h3>
       </div>
-      <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
-      </h3>
       <div class="float-right" *ngIf="displayTitle == true">
         <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
           <div class="">
@@ -30,97 +28,66 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-12 ">
         <div class="card">
-          
+
           <div class="row text-center">
             <div class="col-md-6">
               <div class="btn-group">
-                <div
-                class="btn btn-primary"
-                mwlCalendarPreviousView
-                [(view)]="view"
-                [(viewDate)]="viewDate"
-                (viewDateChange)="closeOpenMonthViewDay()"
-                >
-                Previous
+                <div class="btn btn-primary" mwlCalendarPreviousView [(view)]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
+                  Previous
+                </div>
+                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                  Today
+                </div>
+                <div class="btn btn-primary" mwlCalendarNextView [(view)]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
+                  Next
+                </div>
               </div>
-              <div
-              class="btn btn-outline-secondary"
-              mwlCalendarToday
-              [(viewDate)]="viewDate"
-              >
-              Today
             </div>
-            <div
-            class="btn btn-primary"
-            mwlCalendarNextView
-            [(view)]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="closeOpenMonthViewDay()"
-            >
-            Next
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-      </div>
-      <!-- <div class="col-md-4"> -->
-        
-        <!-- <h4 class="job_select">JOB</h4>
+            <div class="col-md-6">
+              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+            </div>
+            <!-- <div class="col-md-4"> -->
+
+            <!-- <h4 class="job_select">JOB</h4>
           <mat-form-field class=" col-6" *ngIf="jobs && viewDropdown == true">
             <mat-select [(ngModel)]="job" style="display: block;" (selectionChange)="jobChanged($event)">
               <mat-option *ngFor="let job of jobs"  [value]='job'>{{job.title}}</mat-option>
               <mat-option *ngIf='jobs.length < 0'>No Jobs Found!</mat-option>
             </mat-select>
         </mat-form-field> -->
-        
-      <!-- </div> -->
-    </div>
-    <div [ngSwitch]="view">
-      <mwl-calendar-month-view 
-      *ngSwitchCase="CalendarView.Month"
-      [viewDate]="viewDate"
-      [events]="allevents"
-      [refresh]="refresh"
-      [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventDropped($event)"
-      >
-      
-    </mwl-calendar-month-view>
-    
-    <!-- Day View and Week View Code -->
-    <div *ngIf=false>
-      <mwl-calendar-week-view
-      *ngSwitchCase="CalendarView.Week"
-      [viewDate]="viewDate"
-      [events]="allevents"
-      [refresh]="refresh"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)"
-      >
-    </mwl-calendar-week-view>
-    <mwl-calendar-day-view
-    *ngSwitchCase="CalendarView.Day"
-    [viewDate]="viewDate"
-    [events]="allevents"
-    [refresh]="refresh"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)"
-    >
-  </mwl-calendar-day-view>
-</div>
-</div>
 
-</div>
-</div>
-</div>
-</div>
+            <!-- </div> -->
+          </div>
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="allevents"
+              [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventDropped($event)">
+
+            </mwl-calendar-month-view>
+
+            <!-- Day View and Week View Code -->
+            <div *ngIf=false>
+              <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="allevents"
+                [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="allevents"
+                [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
+              </mwl-calendar-day-view>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 

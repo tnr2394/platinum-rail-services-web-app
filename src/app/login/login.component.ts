@@ -89,7 +89,6 @@ export class LoginComponent implements OnInit {
 
 
   doSubmit() {
-    this.loading = true
     this.router.params.subscribe(param => {
       this.activeRouteName = param.user;
     });
@@ -100,7 +99,6 @@ export class LoginComponent implements OnInit {
       console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully==========>>", data);
-        this.loading = false
 
 
 
