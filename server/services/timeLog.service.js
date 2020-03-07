@@ -700,7 +700,7 @@ const updateTimeLogRecords = () => {
 }
 
 
-const deleteTimeLogs = (timeLogArray) => {
+function deleteTimeLogs (timeLogArray)  {
     async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
         deleteTimeLogFromTimeLogModel(singleTimeLog).then((response) => {
             deleteTimeLogFromIns(singleTimeLog).then((result) => {

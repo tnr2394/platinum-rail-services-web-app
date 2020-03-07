@@ -41,7 +41,7 @@ export class FileDetailsComponent implements OnInit {
   currentFolder;
   sharedClient: any;
   sharedInstructor: any;
-  isMaterials: String;
+  isMaterials: boolean;
   path: any;
   readOnlyTitle: boolean = true;
   supportedDocument: boolean;
@@ -55,9 +55,9 @@ export class FileDetailsComponent implements OnInit {
     console.log("On init isCompetency", this.isCompetency);
     console.log(this.recievedFile)
     console.log("this.recievedFile in file-details", this.recievedFile);
-    if(this.isCompetency == true){
-      this.isMaterials = 'material'
-    }
+    // if(this.isCompetency == true){
+    //   this.isMaterials = 'material'
+    // }
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,8 +78,8 @@ export class FileDetailsComponent implements OnInit {
     if (changes.recievedFile.currentValue) {
       this.currentFolder = changes.recievedFile.currentValue;
       // TYPE
-      if (changes.recievedFile.currentValue.type == 'material' || changes.recievedFile.currentValue.type == "competencies") this.isMaterials = 'material'; else this.isMaterials = 'not material'
-      // if ()
+      if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = true; else this.isMaterials = false
+      
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
       if (changes.recievedFile.currentValue.path) {

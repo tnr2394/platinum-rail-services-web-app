@@ -1231,3 +1231,40 @@ body {
         }
     }
 }
+.inst_tab_icons {
+    .mat-tab-label {
+        &:first-child {
+            .mat-tab-label-content {
+                &:before {
+                    content: "\f0ae" !important;
+                    font-family: FontAwesome;
+                }
+            }
+        }
+        &:last-child {
+            .mat-tab-label-content {
+                &:before {
+                    content: "\f0f6" !important;
+                    font-family: FontAwesome;
+                }
+            }
+        }
+        .mat-tab-label-content {
+            &:before {
+                content: "\f0c0";
+                font-family: FontAwesome;
+                margin-right: 12px;
+                padding-right: 20px;
+                border-right: 1px solid #707070;
+                font-size: 22px;
+            }
+        }
+        .mat-tab-label-content {
+            &:before {
+                content: "\f1da" !important;
+                font-family: FontAwesome !important;
+            }
+        }
+        
+    }
+}
