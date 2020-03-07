@@ -1,24 +1,20 @@
-<h1 mat-dialog-title><i class="fa fa-plus-circle"></i> Add</h1>
-<mat-divider></mat-divider>
-
-<div mat-dialog-content class="row">
-    <div class="col-6">
-        <mat-form-field>
-            <input matInput placeholder="Title" [(ngModel)]="title" required>
-        </mat-form-field>
+<div mat-dialog-content>
+    <div class="row m-0">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput placeholder="Title" [(ngModel)]="title" required>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a expiry date" [(ngModel)]="expiryDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
     </div>
-    <div class="col-6">
-        <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a expiry date" [(ngModel)]="expiryDate" required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
-    <!-- <div>
-        <button (click)="openFileUpload()">Attachments</button>
-    </div> -->
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="cancle()">Cancle</button>
-    <button mat-button (click)="submit()" cdkFocusInitial>Submit</button>
+<div mat-dialog-actions align="center">
+    <button mat-button (click)="cancle()" class="resets_delete_button">Cancle</button>
+    <button mat-button (click)="submit()" cdkFocusInitial class="Button_shap_effact ripple">Submit</button>
 </div>

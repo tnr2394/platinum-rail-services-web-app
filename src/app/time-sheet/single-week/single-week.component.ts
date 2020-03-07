@@ -98,6 +98,7 @@ export class SingleWeekComponent implements OnInit {
   editing: boolean = false;
   index: any;
   editedIndex = [];
+  deletedLog = [];
   p: Number = 1;
   currentPage: any = 0;
   instName: any;
@@ -685,6 +686,8 @@ export class SingleWeekComponent implements OnInit {
     console.log("THIS.DAYS", this.Days);
   }
 
+
+
   getValuesUsingDates() {
     if (this.datesOfWeek) { this.regularHours = this.datesOfWeek.length * 12 }
     console.log('Get Values Using Dates');
@@ -707,6 +710,8 @@ export class SingleWeekComponent implements OnInit {
       })
     }
   }
+
+
 
   mergeAndCompareBothArrays() {
     console.log('this.datesOfWeek=========>>>', this.datesOfWeek);
@@ -748,6 +753,29 @@ export class SingleWeekComponent implements OnInit {
     })
   }
 
+  resetCurrentLogs(index) {
+    console.log('Reset Logs here:', index)
+    this.Days[index].logIn = '00:00';
+    this.Days[index].lunchStart = '00:00';
+    this.Days[index].lunchEnd = '00:00';
+    this.Days[index].logOut = '00:00';
+    this.Days[index].travel = '00:00';
+    this.Days[index].workingHours.hours = 0;
+    this.Days[index].workingHours.minutes = 0;
+    this.Days[index].totalHours.hours = 0;
+    this.Days[index].totalHours.minutes = 0;
+    this.Days[index].reset = true;
+
+    if (this.Days[index]._id && this.Days[index]._id != 'new') {
+      this.deletedLog.push(this.Days[index]._id)
+    }
+
+    console.log('Deleted Logs==>', this.deletedLog);
+
+    this.totalWorkingHours();
+    this.calcOverTime();
+  }
+
   submitDetail() {
     _.forEach((this.Days), (singleDate, index) => {
       if (singleDate.logIn != '00:00') {
@@ -756,6 +784,7 @@ export class SingleWeekComponent implements OnInit {
     })
     let data = {
       date: this.finalArray,
+      deletedLog: this.deletedLog,
       instructorId: this.instructorId
     }
     console.log('finalArray===========>>>>>>', this.finalArray);

@@ -3,7 +3,7 @@
         <app-profile [instructorForProfile]="instructorId"></app-profile>
     </div>
     <div class='col-lg-9 job_tab'>
-        <div class="row">
+        <div class="row m-0">
             <div class="col-12">
                 <mat-tab-group>
                     <mat-tab label="Jobs" class="assi_tab">
@@ -15,22 +15,17 @@
 
                         <div class="row" [hidden]="isPrint">
                             <div class="col-sm-6 res_col">
-                                <ng-select [items]="months" [multiple]="false" [closeOnSelect]="true"
-                                    [searchable]="true" bindLabel="name" placeholder="Choose Months"
-                                    [(ngModel)]="selectedMonths" (clear)="clearMonth()" (close)="generateMonthWeeks()">
+                                <ng-select [items]="months" [multiple]="false" [closeOnSelect]="true" [searchable]="true" bindLabel="name" placeholder="Choose Months" [(ngModel)]="selectedMonths" (clear)="clearMonth()" (close)="generateMonthWeeks()">
                                 </ng-select>
                             </div>
                             <div class="col-sm-6 res_col">
-                                <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="true"
-                                    [searchable]="true" bindLabel="from" placeholder="Choose Week"
-                                    [(ngModel)]="selectedWeeks" (clear)="clearWeek()" (close)="generateWeekDates()">
+                                <ng-select [items]="datesRange" [multiple]="false" [closeOnSelect]="true" [searchable]="true" bindLabel="from" placeholder="Choose Week" [(ngModel)]="selectedWeeks" (clear)="clearWeek()" (close)="generateWeekDates()">
                                 </ng-select>
                             </div>
                         </div>
 
                         <!-- Month And Week Select End -->
-                        <app-single-week [instFromAdminReport]="instructorId" [monthChanged]="monthChanged"
-                            [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>
+                        <app-single-week [instFromAdminReport]="instructorId" [monthChanged]="monthChanged" [calWeekDates]="doCalWeekDates" [datesFromInstructor]="weekDates"></app-single-week>
                     </mat-tab>
                     <mat-tab label="Competencies">
                         <app-competences></app-competences>

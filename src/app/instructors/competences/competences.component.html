@@ -5,18 +5,15 @@
     <span> Add</span>
 </button> -->
 <mat-sidenav-container class="example-container fullHeight" autosize>
-<mat-sidenav-content>
-<div class="row m-0">
-    <div class="col-12 responsive-row">
-        <div class="row">
-            <div class="col-12 ">
-                <div class="card">
-                    <div class="card-block">
-                        <div class="card-title h5 mb-1 d-inline-block w-100"><span
-                                class="learner_title">Competences</span>
-                            <button mat-flat-button color="primary"
-                                class="pull-right button_hover_effect add_learner_btn ripple Button_shap_effact"
-                                (click)="addCompModal()">
+    <mat-sidenav-content>
+        <div class="row m-0">
+            <div class="col-12 responsive-row">
+                <div class="row">
+                    <div class="col-12 ">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-title h5 mb-1 d-inline-block w-100"><span class="learner_title">Competences</span>
+                                    <button mat-flat-button color="primary" class="pull-right button_hover_effect add_learner_btn ripple Button_shap_effact" (click)="addCompModal()">
                                 <i class="fas fa-plus fa-fw"></i>
                                 <span> Add</span>
                             </button>
@@ -86,37 +83,22 @@
                                         </td>
                                     </ng-container>
 
-                                    <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-                                            class="example-element-row"
-                                            [class.example-expanded-row]="expandedElement === element"
-                                            (click)="expand(element)"></tr>
-                                        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</mat-sidenav-content>
-<mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
-    <div class="d-inline-block w-100">
-        <div class="float-left title_display" *ngIf="file">
-            {{file.title}}
+    </mat-sidenav-content>
+    <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
+        <div class="d-inline-block w-100">
+            <div class="float-left title_display" *ngIf="file">
+                {{file.title}}
+            </div>
+            <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle" aria-hidden="true"></i></mat-button>
         </div>
-        <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
-                aria-hidden="true"></i></mat-button>
-    </div>
-    <app-file-details [details]="file" [isCompetency]="true" (fileDeleted)="deleteFile($event)">
-    </app-file-details>
-</mat-sidenav>
+        <app-file-details [details]="file" [isCompetency]="true" (fileDeleted)="deleteFile($event)">
+        </app-file-details>
+    </mat-sidenav>
 </mat-sidenav-container>
