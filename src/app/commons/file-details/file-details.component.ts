@@ -14,6 +14,7 @@ import * as  JSZip from 'jszip';
 import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
+import { CompetenciesService } from 'src/app/services/competencies.service';
 // import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -48,7 +49,7 @@ export class FileDetailsComponent implements OnInit {
   type: any;
   currentUser: any;
   pathForPreview: string;
-  constructor(public _folderService: FolderService, public _fileService: FileService,
+  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -173,6 +174,11 @@ export class FileDetailsComponent implements OnInit {
         else if (this.type == 'file') {
           this._folderService.deleteFile(this.id).subscribe(res => {
             console.log("file DELETED", res);
+          })
+        }
+        else if(this.type == 'competencies') {
+          this._competencyService.deleteCompetency(this.id).subscribe(res => {
+            console.log("Competency deleted", res);
           })
         }
         this.fileDeleted.emit({ fileId: this.id, type: this.type })

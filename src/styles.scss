@@ -1268,3 +1268,54 @@ body {
         
     }
 }
+
+.breakBtnTurnsStatus{
+ .mat-badge-content {
+    background:#dd2c00 !important;
+    color: white;
+}   
+&.mat-standard-chip {
+    background-color: #dd2c00 !important;
+    color:white;
+}
+}
+.last13Status{
+ .mat-badge-content {
+    background: #ffab00 !important;
+    color: white;
+} 
+&.mat-standard-chip {
+    background-color: #ffab00 !important;
+    color:white;
+}  
+}
+.travelHrsStatus{
+ .mat-badge-content {
+    background: #43a047 !important;
+    color: white;
+} 
+&.mat-standard-chip {
+    background-color: #43a047 !important;
+    color:white;
+}  
+}
+.weekHrs{
+ .mat-badge-content {
+    background: #00b8d4 !important;
+    color: white;
+} 
+&.mat-standard-chip {
+    background-color: #00b8d4 !important;
+    color:white;
+}  
+}
+.workingHrsStatus{
+ .mat-badge-content {
+    background: #607d8b !important;
+    color: white;
+}   
+&.mat-standard-chip {
+    background-color: #607d8b !important;
+    color:white;
+}
+}

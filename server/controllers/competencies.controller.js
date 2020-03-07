@@ -7,7 +7,7 @@ const competenciesController = {};
 
 competenciesController.addCompetencies = async function (req, res, next) {
     console.log("ADD Competencies", req.body);
-    
+
     let newCompetencies = {};
     const instructorId = req.body.instructorId;
     if (req.body.title) newCompetencies['title'] = req.body.title;
@@ -31,14 +31,18 @@ competenciesController.addCompetencies = async function (req, res, next) {
 competenciesController.updateCompetencies = async function (req, res, next) {
 
     const competenciesId = req.body.competenciesId;
+    console.log("competenciesId =========", competenciesId);
+
 
     let newCompetencies = {};
     if (req.body.title) newCompetencies['title'] = req.body.title;
     if (req.body.expiryDate) newCompetencies['expiryDate'] = req.body.expiryDate;
 
-    competenciesDOA.updateCompetencies(competenciesId, newCompetencies).then((res) => {
-        return res.send({ data: { competencies: res } })
+    console.log("new comp ==========", newCompetencies);
+    competenciesDOA.updateCompetencies(competenciesId, newCompetencies).then((response) => {
+        return res.send({ data: { competencies: response } })
     }).catch((err) => {
+        console.log('Err in catch', err);
         return res.status(500).send({ err });
     })
 }
