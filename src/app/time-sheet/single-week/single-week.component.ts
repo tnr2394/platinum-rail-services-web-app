@@ -168,7 +168,7 @@ export class SingleWeekComponent implements OnInit {
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
     if (this.router.url.includes('/instructors')) this.displayMsg = false;
     if (this.router.url.includes('/admin-time-sheet')) this.showTotalHoursColor = false;
-    // this.loading = true;
+
     console.log("**ON INIT**", this.datesOfWeek)
     if (this.datesOfWeek) {
       this.getDays();
@@ -480,8 +480,18 @@ export class SingleWeekComponent implements OnInit {
       this.overTime = totalH.toString() + ':' + totalM.toString();
       // return this.overM;
     }
+    totalH = this.pad(totalH);
+    totalM = this.pad(totalM);
     this.overTime = totalH.toString() + ':' + totalM.toString();
     return totalH.toString() + ':' + totalM.toString()
+  }
+
+  pad(value) {
+    if (value < 10) {
+      return '0' + value;
+    } else {
+      return value;
+    }
   }
 
 
@@ -506,6 +516,8 @@ export class SingleWeekComponent implements OnInit {
       this.overM = totalM;
       // return this.overM;
     }
+    totalH = this.pad(totalH)
+    totalM = this.pad(totalM)
     return totalH.toString() + ':' + totalM.toString()
   }
 
@@ -689,6 +701,7 @@ export class SingleWeekComponent implements OnInit {
 
 
   getValuesUsingDates() {
+    this.loading = true
     if (this.datesOfWeek) { this.regularHours = this.datesOfWeek.length * 12 }
     console.log('Get Values Using Dates');
     let data = {
