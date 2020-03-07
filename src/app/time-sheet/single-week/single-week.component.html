@@ -222,7 +222,6 @@
 
                                 <ng-container matColumnDef="edit">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef>Edit</th>
-                                    <!-- <div [hidden]="isPrint"> -->
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days;let i = index">
                                         <button mat-button class="text-success" placement="bottom" ngbTooltip="Edit"
@@ -263,16 +262,17 @@
                         </div>
 
                     </div>
-                    <h3 *ngIf="loading && !displayMsg" class="text-center text-info pt-3">Loading...<i
-                            class="fa fa-cog fa-spin text-info"></i>
-                    </h3>
+
+
+                    <div *ngIf="loading && !displayMsg" id="loader-wrapper">
+                        <div class="lds-dual-ring"></div>
+                    </div>
+
 
                     <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayMsg">
                         Please choose dates to display Time Logs!
                     </h3>
-                    <!-- <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="displayNoDataMsg && !loading">
-                            No Logs Found!
-                        </h3> -->
+
                 </div>
                 <!--/.Card content-->
                 <div class="row justify-content-center">

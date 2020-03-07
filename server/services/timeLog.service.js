@@ -525,6 +525,84 @@ function secondReportLogsDetails(instructorId, datesArray) {
     })
 }
 
+
+
+function deleteTimeLogs(timeLogArray) {
+
+    return new Promise((resolve, reject) => {
+
+        deleteTimeLogFromTimeLogModel(timeLogArray).then((response) => {
+            deleteTimeLogFromIns(timeLogArray).then((res) => {
+                resolve(res)
+            }).catch((error) => {
+                reject(error);
+            })
+        }).catch((err) => {
+            reject(err);
+        })
+        // async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
+        //     deleteTimeLogFromTimeLogModel(singleTimeLog).then((response) => {
+        //         deleteTimeLogFromIns(singleTimeLog).then((result) => {
+        //             innerCallback();
+        //         }).catch((error) => {
+        //             errorLog(" Error ", error)
+        //         })
+        //     }).catch((error) => {
+        //         errorLog(" Error ", error)
+        //     })
+        // }, (callbackError, callbackResponse) => {
+        //     if (callbackError) {
+        //         console.log("callbackError ", callbackError);
+        //     } else {
+        //         console.log("Date set Completed", callbackResponse);
+        //     }
+        // })
+    })
+}
+
+
+const deleteTimeLogFromTimeLogModel = (logsArray) => {
+    return new Promise((resolve, reject) => {
+        console.log('Remove Time Log From TimeLog', logsArray)
+        TimeLog
+            .deleteMany(
+                {
+                    _id: { $in: logsArray }
+                })
+            .exec((err, res) => {
+                if (res) return resolve(res)
+                else if (err) return reject(err)
+                else return resolve()
+            })
+    })
+}
+
+const deleteTimeLogFromIns = (logsArray) => {
+    return new Promise((resolve, reject) => {
+        console.log('Remove Time Log From Instimelogs', logsArray)
+        InstructorTimeLog
+            .updateMany(
+                {
+                    _id: { $in: logsArray }
+                },
+                {
+                    $pull: {
+                        logs: logsArray
+                    }
+                },
+                {
+                    upsert: true,
+                    new: true
+                }).exec((err, res) => {
+                    if (res) return resolve(res)
+                    else if (err) return reject(err)
+                    else return resolve()
+                })
+    })
+}
+
+// Functions For Script Start Here
+
 function scriptForTimelog() {
     console.log('script to generate timelogs')
     const instructorId = '5e45310bbb516d2ee082f58d';
@@ -700,57 +778,5 @@ const updateTimeLogRecords = () => {
 }
 
 
-function deleteTimeLogs(timeLogArray) {
-    async.eachSeries(timeLogArray, (singleTimeLog, innerCallback) => {
-        deleteTimeLogFromTimeLogModel(singleTimeLog).then((response) => {
-            deleteTimeLogFromIns(singleTimeLog).then((result) => {
-                innerCallback();
-            }).catch((error) => {
-                errorLog(" Error ", error)
-            })
-        }).catch((error) => {
-            errorLog(" Error ", error)
-        })
-    }, (callbackError, callbackResponse) => {
-        if (callbackError) {
-            console.log("callbackError ", callbackError);
-        } else {
-            console.log("Date set Completed", callbackResponse);
-        }
-    })
-}
 
-
-const deleteTimeLogFromTimeLogModel = (timeLogId) => {
-    return new Promise((resolve, reject) => {
-        console.log('Remove Time Log From Ins', timeLogId)
-        TimeLog.findByIdAndRemove({ _id: timeLogId }, (err, updatedIns) => {
-            if (err) {
-                reject(err);
-            } else {
-                console.log("Updated Instructor After remove timelog = ", updatedIns);
-                resolve(updatedIns);
-            }
-        });
-    })
-}
-
-const deleteTimeLogFromIns = (timeLogId) => {
-    return new Promise((resolve, reject) => {
-        console.log('Remove Time Log From Ins', timeLogId)
-        InstructorTimeLog.updateMany({ logs: ObjectId(timeLogId) }, {
-            $pull: {
-                logs: ObjectId(timeLogId)
-            }
-        }, { upsert: true, new: true }, (err, updatedIns) => {
-            if (err) {
-                console.log('Error while $pull', err);
-                reject(err);
-            } else {
-                console.log("Updated Instructor After remove timelog = ", updatedIns);
-                resolve(updatedIns);
-            }
-        });
-    })
-}
 // scriptForTimelog()

@@ -121,6 +121,7 @@ module.exports.addTimeLog = (req, res) => {
 		} else {
 			if (req.body.deletedLog.length != 0) {
 				timeLogServices.deleteTimeLogs(req.body.deletedLog).then((response) => {
+					console.log('Res in delete then===>>', response)
 					return res.status(200).json({ message: ' Add Time Logs ', callbackResponse })
 				}).catch((err) => {
 					return res.status(500).send({ callbackError })
