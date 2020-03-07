@@ -39,6 +39,7 @@ export class FolderComponent implements OnInit {
   @Input('folderIdFromParams') folderIdFromParams: any;
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   showCreateBtn: boolean = false;
+  showSharedFiles: boolean = false;
   allFoldersCopy: any[];
   constructor(public _folderService: FolderService, private activatedRoute: ActivatedRoute
     , public dialog: MatDialog, public _snackBar: MatSnackBar, public router: Router) {
@@ -49,6 +50,7 @@ export class FolderComponent implements OnInit {
     this.loading = true;
     if (this.router.url.includes('/mydocuments')) {
       this.showCreateBtn = true
+      this.showSharedFiles = true
     }
     this.currentUser = JSON.parse(localStorage.currentUser);
     // if (this.currentUser.userRole == 'admin') {
