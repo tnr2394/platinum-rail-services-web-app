@@ -1,49 +1,62 @@
 .showCard {
-    height: 150px;
-    color: #fff;
-    background-color: #0bc;
+  height: 150px;
+  color: #fff;
+  background-color: #0bc;
 }
 
 .iconCalendar {
-    padding: 12px;
-    border-radius: 100%;
-    color: white;
-    font-size: 20px;
+  padding: 12px;
+  border-radius: 100%;
+  color: white;
+  font-size: 20px;
 }
 
 .displayDates {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 320px) {
-    .mat-card-content>:first-child,
-    .mat-card>:first-child {
-        font-size: 12px !important;
-    }
+  .mat-card-content > :first-child,
+  .mat-card > :first-child {
+    font-size: 12px !important;
+  }
 }
-.workingHrs{
-.mat-badge-content {
-    background: red !important;
-    color: black;
-}}
-.weekHrs{
-.mat-badge-content {
-    background: red !important;
-    color: black;
-}}
-.travelHrs{
-.mat-badge-content {
-    background: red !important;
-    color: black;
-}}
-.last13Days{
-.mat-badge-content {
-    background: red !important;
-    color: black;
-}}
-.break{
-.mat-badge-content {
-    background: red !important;
-    color: black;
-}}
+.workingHrs {
+  background: red !important;
+  color: black;
+}
+.weekHrs {
+  background: red !important;
+  color: black;
+}
+.travelHrs {
+  background: red !important;
+  color: black;
+}
+.last13Days {
+  background: red !important;
+  color: black;
+}
+.break {
+  background: red !important;
+  color: black;
+}
+.badge {
+  margin: 1px 2px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: 20px;
+  -webkit-border-radius: 40%;
+  -moz-border-radius: 40%;
+  border-radius: 8px;
+}
+.badge2 {
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: 20px;
+  background: #d5e1e6;
+  color: #414141;
+  padding: 3px;
+}

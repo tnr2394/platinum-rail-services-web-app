@@ -387,7 +387,6 @@ export class SubmissionComponent implements OnInit {
 
 
   serverFilter(paramsData) {
-    this.loadingAssignments = true;
     return new Promise((resolve, reject) => {
       this._materialService.filterAllotedAssignment(paramsData).subscribe((data) => {
 

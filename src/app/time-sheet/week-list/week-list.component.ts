@@ -129,7 +129,7 @@ export class WeekListComponent implements OnInit {
           this._timeSheetService.getWeeklyStatus({ date: datesArrayResolved, instructorId: this.instructorId }).subscribe((statusResponse) => {
             //   console.log("-----statusResponse-----",statusResponse.finalStatus );
             this.loading = false;
-            singleWeek['status'] = statusResponse.finalStatus;
+            // singleWeek['status'] = statusResponse.finalStatus;
             //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
             // console.log("-----statusResponse-----",statusResponse.finalStatus );
             // singleWeek['status'] = statusResponse.finalStatus;

@@ -5,17 +5,19 @@
         </h3>
     </div>
 </div>
-<div class="row">
-    <mat-card>
-        <!-- <h4>Current Rules</h4> -->
-        <mat-chip-list aria-label="Fish selection">
-            <mat-chip class="workingHrsStatus">Work hours per day</mat-chip>
-            <mat-chip class="travelHrsStatus">Travel + work per day</mat-chip>
-            <mat-chip class="last13Status" >No. of turns in last 14 days</mat-chip>
-            <mat-chip class="weekHrs" >Hours per week</mat-chip>
-            <mat-chip class="breakBtnTurnsStatus" >Min break between turns</mat-chip>
-        </mat-chip-list>
-    </mat-card>
+<div class="row mb-3">
+    <div class="col-12">
+        <mat-card>
+            <!-- <h4>Current Rules</h4> -->
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip class="workingHrsStatus">Work hours per day</mat-chip>
+                <mat-chip class="travelHrsStatus">Travel + work per day</mat-chip>
+                <mat-chip class="last13Status">No. of turns in last 14 days</mat-chip>
+                <mat-chip class="weekHrs">Hours per week</mat-chip>
+                <mat-chip class="breakBtnTurnsStatus">Min break between turns</mat-chip>
+            </mat-chip-list>
+        </mat-card>
+    </div>
 </div>
 <div class="row">
     <div class="col-sm-12 col-lg-4 col-md-4">
@@ -38,17 +40,19 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div class="d-flex">
-                        <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus"
-                            *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
-                        <div matBadge="X" matBadgeOverlap="false" class="last13Status"
-                            *ngIf="week.last13Status == 'Regulation exceeded'"></div>
-                        <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus"
-                            *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
-                        <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
-                        <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus"
-                            *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
-                        <!-- {{week.status}} -->
+                    <div>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
+                            class="badge breakBtnTurnsStatus"> 1 </span>
+                        <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> 1 </span>
+                        <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> 1
+                        </span>
+                        <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> 1 </span>
+                        <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> 1
+                        </span>
+                        <span
+                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
+                            class="badge2"> No Rules Break
+                        </span>
                     </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -74,12 +78,19 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div class="d-flex">
-                    <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus" *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="last13Status" *ngIf="week.last13Status == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus" *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus" *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
+                    <div>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
+                            class="badge breakBtnTurnsStatus"> 1 </span>
+                        <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> 1 </span>
+                        <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> 1
+                        </span>
+                        <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> 1 </span>
+                        <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> 1
+                        </span>
+                        <span
+                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
+                            class="badge2"> No Rules Break
+                        </span>
                     </div>
                 </mat-card>
             </mat-expansion-panel>
@@ -105,23 +116,35 @@
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
-                    <div class="d-flex">
-                    <div matBadge="X" matBadgeOverlap="false" class="breakBtnTurnsStatus"
-                        *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="last13Status"
-                        *ngIf="week.last13Status == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="travelHrsStatus"
-                        *ngIf="week.travelHrsStatus == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="weekHrs" *ngIf="week.weekHrs == 'Regulation exceeded'"></div>
-                    <div matBadge="X" matBadgeOverlap="false" class="workingHrsStatus"
-                        *ngIf="week.workingHrsStatus == 'Regulation exceeded'"></div>
+                    <div>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
+                            class="badge breakBtnTurnsStatus"> 1 </span>
+                        <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> 1 </span>
+                        <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> 1
+                        </span>
+                        <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> 1 </span>
+                        <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> 1
+                        </span>
+                        <span
+                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
+                            class="badge2"> No Rules Break
+                        </span>
                     </div>
                 </mat-card>
             </mat-expansion-panel>
         </div>
     </div>
 </div>
-
+<!-- 
 <div *ngIf="loading && !displayMsg" id="loader-wrapper">
     <div class="lds-dual-ring"></div>
+</div> -->
+
+<div *ngIf="loading && !displayMsg" id="loader-wrapper">
+    <div class="spinner">
+        <img src="../../assets/full_logo.png">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
 </div>

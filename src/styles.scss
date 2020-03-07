@@ -1231,121 +1231,128 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 99;
-  background-color: #504e4e99;
+  background-color: rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: 100px auto 0;
+  width: 150px;
+  text-align: center;
+}
 
-.lds-dual-ring {
+.spinner img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #4d4f5b;
+
+  border-radius: 100%;
   display: inline-block;
-  width: 80px;
-  height: 80px;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #111111;
-  border-color: #111111 transparent #111111 transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
 }
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 .inst_tab_icons {
-    .mat-tab-label {
-        &:first-child {
-            .mat-tab-label-content {
-                &:before {
-                    content: "\f0ae" !important;
-                    font-family: FontAwesome;
-                }
-            }
+  .mat-tab-label {
+    &:first-child {
+      .mat-tab-label-content {
+        &:before {
+          content: "\f0ae" !important;
+          font-family: FontAwesome;
         }
-        &:last-child {
-            .mat-tab-label-content {
-                &:before {
-                    content: "\f0f6" !important;
-                    font-family: FontAwesome;
-                }
-            }
-        }
-        .mat-tab-label-content {
-            &:before {
-                content: "\f0c0";
-                font-family: FontAwesome;
-                margin-right: 12px;
-                padding-right: 20px;
-                border-right: 1px solid #707070;
-                font-size: 22px;
-            }
-        }
-        .mat-tab-label-content {
-            &:before {
-                content: "\f1da" !important;
-                font-family: FontAwesome !important;
-            }
-        }
-        
+      }
     }
+    &:last-child {
+      .mat-tab-label-content {
+        &:before {
+          content: "\f0f6" !important;
+          font-family: FontAwesome;
+        }
+      }
+    }
+    .mat-tab-label-content {
+      &:before {
+        content: "\f0c0";
+        font-family: FontAwesome;
+        margin-right: 12px;
+        padding-right: 20px;
+        border-right: 1px solid #707070;
+        font-size: 22px;
+      }
+    }
+    .mat-tab-label-content {
+      &:before {
+        content: "\f1da" !important;
+        font-family: FontAwesome !important;
+      }
+    }
+  }
 }
 
-.breakBtnTurnsStatus{
- .mat-badge-content {
-    background:#dd2c00 !important;
+.breakBtnTurnsStatus {
+    background: #dd2c00 !important;
     color: white;
-}   
-&.mat-standard-chip {
-    background-color: #dd2c00 !important;
-    color:white;
 }
-}
-.last13Status{
- .mat-badge-content {
+.last13Status {
     background: #ffab00 !important;
     color: white;
-} 
-&.mat-standard-chip {
-    background-color: #ffab00 !important;
-    color:white;
-}  
+  
 }
-.travelHrsStatus{
- .mat-badge-content {
+.travelHrsStatus {
     background: #43a047 !important;
     color: white;
-} 
-&.mat-standard-chip {
-    background-color: #43a047 !important;
-    color:white;
-}  
+  
 }
-.weekHrs{
- .mat-badge-content {
+.weekHrs {
     background: #00b8d4 !important;
     color: white;
-} 
-&.mat-standard-chip {
-    background-color: #00b8d4 !important;
-    color:white;
-}  
+  
 }
-.workingHrsStatus{
- .mat-badge-content {
+.workingHrsStatus {
     background: #607d8b !important;
     color: white;
-}   
-&.mat-standard-chip {
-    background-color: #607d8b !important;
-    color:white;
+  
 }
+.set_Badge{
+  margin: 10px 15px 15px 15px !important;
 }
