@@ -70,7 +70,7 @@ export class FileDetailsComponent implements OnInit {
     console.log("CHANGES", changes);
     if (changes.isCompetency && changes.isCompetency.currentValue == true){
       this.isCompetency = changes.isCompetency.currentValue;
-      this.isMaterials = 'material'
+      // this.isMaterials = 'material'
     }
     // if (changes.isCompetency == undefined){
     //   this.isCompetency = false
@@ -78,7 +78,8 @@ export class FileDetailsComponent implements OnInit {
     if (changes.recievedFile.currentValue) {
       this.currentFolder = changes.recievedFile.currentValue;
       // TYPE
-      if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = 'material'; else this.isMaterials = 'not material'
+      if (changes.recievedFile.currentValue.type == 'material' || changes.recievedFile.currentValue.type == "competencies") this.isMaterials = 'material'; else this.isMaterials = 'not material'
+      // if ()
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
       if (changes.recievedFile.currentValue.path) {

@@ -121,112 +121,112 @@ competencies.getCompetencies = function (instructorId) {
     return new Promise((resolve, reject) => {
         console.log("Get Competencies List", { instructorId });
 
-        instructorModel.find({ _id: instructorId })
-            .populate('competencies')
-            .populate({
-                path: 'competencies',
-                populate: {
-                    path: 'files',
-                    model: 'file'
-                },
-            })
-            .exec((err, response) => {
-                if (err) {
-                    console.log('Error====>>>', err);
-                    reject(err)
-                } else {
-                    console.log('Response===>>', response);
-                    resolve(response)
+        // instructorModel.find({ _id: instructorId })
+        //     .populate('competencies')
+        //     .populate({
+        //         path: 'competencies',
+        //         populate: {
+        //             path: 'files',
+        //             model: 'file'
+        //         },
+        //     })
+        //     .exec((err, response) => {
+        //         if (err) {
+        //             console.log('Error====>>>', err);
+        //             reject(err)
+        //         } else {
+        //             console.log('Response===>>', response);
+        //             resolve(response)
+        //         }
+        //     })
+
+        instructorModel.aggregate([
+            {
+                $match: {
+                    '_id': ObjectId(instructorId)
                 }
-            })
+            },
+            {
+                $unwind: {
+                    path: '$competencies',
+                }
+            },
+            {
+                $lookup: {
+                    from: 'competencies',
+                    localField: 'competencies',
+                    foreignField: '_id',
+                    as: 'competencies',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies.files',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'files',
+                    localField: 'competencies.files',
+                    foreignField: '_id',
+                    as: 'competencies.files',
+                }
+            },
+            {
+                $unwind: {
+                    path: '$competencies.files',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $group: {
+                    _id: '$competencies._id',
+                    files: {
+                        $push: '$competencies.files'
+                    },
+                    competencies: {
+                        $first: '$competencies'
+                    }
+                }
+            },
+            // {
+            //     $project: {
+            //         competencies: 1,
+            //         competencies: {
+            //             competenciesId: '$competencies._id',
+            //             title: '$competencies.title',
+            //             files: '$competencies.files',
+            //             expiryDate: '$competencies.expiryDate',
+            //             isValid: {
+            //                 $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
+            //             },
+            //         }
 
-        // instructorModel.aggregate([
-        //     {
-        //         $match: {
-        //             '_id': ObjectId(instructorId)
-        //         }
-        //     },
-        //     {
-        //         $unwind: {
-        //             path: '$competencies',
-        //         }
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: 'competencies',
-        //             localField: 'competencies',
-        //             foreignField: '_id',
-        //             as: 'competencies',
-        //         }
-        //     },
-        //     {
-        //         $unwind: {
-        //             path: '$competencies',
-        //         }
-        //     },
-        //     {
-        //         $unwind: {
-        //             path: '$competencies.files',
-        //             preserveNullAndEmptyArrays: true
-        //         }
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: 'files',
-        //             localField: 'competencies.files',
-        //             foreignField: '_id',
-        //             as: 'competencies.files',
-        //         }
-        //     },
-        //     {
-        //         $unwind: {
-        //             path: '$competencies.files',
-        //             preserveNullAndEmptyArrays: true
-        //         }
-        //     },
-        //     {
-        //         $group: {
-        //             _id: '$competencies._id',
-        //             files: {
-        //                 $push: '$competencies.files'
-        //             },
-        //             competencies: {
-        //                 $first: '$competencies'
-        //             }
-        //         }
-        //     },
-        //     // {
-        //     //     $project: {
-        //     //         competencies: 1,
-        //     //         competencies: {
-        //     //             competenciesId: '$competencies._id',
-        //     //             title: '$competencies.title',
-        //     //             files: '$competencies.files',
-        //     //             expiryDate: '$competencies.expiryDate',
-        //     //             isValid: {
-        //     //                 $cond: { if: { $lte: ["$competencies.expiryDate", Date.now()] }, then: true, else: false }
-        //     //             },
-        //     //         }
-
-        //     //     }
-        //     // },
-        //     // {
-        //     //     $group: {
-        //     //         _id: '$_id',
-        //     //         competencies: {
-        //     //             $push: '$competencies'
-        //     //         }
-        //     //     }
-        //     // }
-        // ]).exec((err, response) => {
-        //     if (err) {
-        //         console.log('Error====>>>', err);
-        //         reject(err)
-        //     } else {
-        //         console.log('Response===>>', response);
-        //         resolve(response)
-        //     }
-        // })
+            //     }
+            // },
+            // {
+            //     $group: {
+            //         _id: '$_id',
+            //         competencies: {
+            //             $push: '$competencies'
+            //         }
+            //     }
+            // }
+        ]).exec((err, response) => {
+            if (err) {
+                console.log('Error====>>>', err);
+                reject(err)
+            } else {
+                console.log('Response===>>', response);
+                resolve(response)
+            }
+        })
     })
 }
 

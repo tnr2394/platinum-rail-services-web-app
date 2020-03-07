@@ -110,19 +110,12 @@ export class CompetencesComponent implements OnInit {
     this.mydsidenav.open();
   }
 
-  // fileDetailsComp(event) {
-  //   console.log("fileDetailsComp", event);
-  //   this.materialIndex = event.materialIndex
-  //   this.file = event.file;
-  //   this.mydsidenav.open();
-  //   console.log("EVENT OPENING", event.file);
-  // }
-
   // API
   getCompetencyData(){
     this._competencyService.getCompetencies(this.instructorId).subscribe(res=>{
-      console.log("res in comp = ", res.competencies[0].competencies);
-      this.compArray = res.competencies[0].competencies
+      console.log("***res in comp = ", res.competencies);
+      this.compArray = res.competencies
+      console.log("***this.compArray", this.compArray);
       this.updateData(this.compArray)
     })
   }
