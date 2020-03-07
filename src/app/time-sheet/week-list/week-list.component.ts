@@ -24,6 +24,7 @@ export class WeekListComponent implements OnInit {
   testId: any;
   show: Boolean = false;
   index;
+  loading: Boolean = false;
   dateOfWeek = [];
   allWeeks = [];
   hideme = [];
@@ -110,6 +111,7 @@ export class WeekListComponent implements OnInit {
     // this.router.navigate(['single-week'], { state: { datesOfTheWeek: dates } })
   }
   getStatus(weeks) {
+    this.loading = true;
     console.log("-----getStatus-----", weeks);
     return new Promise((resolve, reject) => {
       let tempdatesArrayResolved = []
@@ -126,6 +128,7 @@ export class WeekListComponent implements OnInit {
 
           this._timeSheetService.getWeeklyStatus({ date: datesArrayResolved, instructorId: this.instructorId }).subscribe((statusResponse) => {
             //   console.log("-----statusResponse-----",statusResponse.finalStatus );
+            this.loading = false;
             singleWeek['status'] = statusResponse.finalStatus;
             //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
           })

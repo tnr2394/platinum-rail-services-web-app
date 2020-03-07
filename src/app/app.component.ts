@@ -15,6 +15,7 @@ declare var $: any;
 export class AppComponent {
   @ViewChild('sidemenu', { static: true }) sidemenu: MatSidenav;
   isPrint: boolean;
+  loading: boolean = false;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
@@ -40,7 +41,6 @@ export class AppComponent {
   isVisible: boolean = true;
   disableTooltip;
   disabled: boolean;
-
   public onlineOffline: boolean = navigator.onLine;
 
 
@@ -126,6 +126,8 @@ export class AppComponent {
 
   Logout() {
     console.log('Logout is called');
+    this.loading = true
     this._loginService.logout();
+    this.loading = false
   }
 }

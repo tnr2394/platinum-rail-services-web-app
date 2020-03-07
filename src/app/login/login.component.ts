@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { Observable } from 'rxjs';
+import { bool } from 'aws-sdk/clients/signer';
 declare var $;
 
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   show: boolean;
   pwd: boolean;
   returnUrl;
-
+  loading: boolean = false
 
   constructor(public route: Router, public dialog: MatDialog, public _loginService: LoginService, public router: ActivatedRoute, private recaptchaV3Service: ReCaptchaV3Service) {
     this.loginForm = new FormGroup({
@@ -88,7 +89,7 @@ export class LoginComponent implements OnInit {
 
 
   doSubmit() {
-
+    this.loading = true
     this.router.params.subscribe(param => {
       this.activeRouteName = param.user;
     });
@@ -99,9 +100,17 @@ export class LoginComponent implements OnInit {
       console.log('Token:', token);
       this._loginService.login(this.loginForm.value, this.activeRouteName, token).subscribe(data => {
         console.log("Added Successfully==========>>", data);
+        this.loading = false
+
+
+
+        $(document).ready(function () {
+          $(".sidebar").show()
+          $("#topnav").show()
+          $(".sidebar").toggleClass('sidebar--Collapse')
+        });
 
         const learnerDashBoard = '/learner/' + data._id;
-
         if (this.returnUrl != null) {
           this.route.navigateByUrl(this.returnUrl);
         } else {
@@ -116,8 +125,9 @@ export class LoginComponent implements OnInit {
           }
         }
 
-
-        // this.route.navigateByUrl(this.returnUrl);
+        $(document).ready(function () {
+          $(".sidebar").toggleClass('sidebar--Collapse')
+        });
       }, err => {
         console.log('error while login', err);
         this.errmsg = err.error.message;

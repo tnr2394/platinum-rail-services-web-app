@@ -22,6 +22,7 @@ export class LoginService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   returnUrl;
+  tempUser: any;
 
 
   constructor(public activeRoute: ActivatedRoute, private http: HttpClient, private router: Router) {
@@ -90,15 +91,42 @@ export class LoginService {
     });
 
   }
+
   logout() {
-
     console.log('Logout is called');
+    this.tempUser = JSON.parse(localStorage.currentUser)
     localStorage.clear();
-    this.router.navigate(['/login/admin']);
-    setTimeout(function () { window.location.reload() }, 1);
     this.currentUserSubject.next(null);
-
+    switch (this.tempUser['userRole']) {
+      case 'admin':
+        this.router.navigate(['/login/admin']);
+        break;
+      case 'instructor':
+        this.router.navigate(['/login/instructors']);
+        break;
+      case 'learner':
+        this.router.navigate(['/login/learners']);
+        break;
+    }
+    $(document).ready(function () {
+      $(".sidebar").hide();
+      $("#topnav").hide();
+    });
   }
+
+
+
+  // logout() {
+
+  //   this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  //   console.log('Logout is called');
+  //   localStorage.clear();
+  //   this.router.navigate(['/login/admin']);
+  //   // setTimeout(function () { window.location.reload() }, 1);
+  //   this.currentUserSubject.next(null);
+
+  // }
 
 
   forgotPassword(data: any, routename): Observable<any> {

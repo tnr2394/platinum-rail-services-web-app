@@ -25,7 +25,7 @@
             <div class='col-xl-3 col-md-3'>
                 <!-- <h1>{{selUnit}}</h1> -->
                 <mat-form-field>
-                    <mat-select placeholder="Unit Number" [(ngModel)]='selUnit'
+                    <mat-select placeholder="Unit Number" [disabled]="unit.length == 0" [(ngModel)]='selUnit'
                         (selectionChange)='unitNoChanged($event)'>
                         <span *ngFor='let Unit of unit'>
                             <mat-option [value]='Unit._id'>
@@ -42,8 +42,8 @@
             <div class='col-xl-3 col-md-3'>
                 <!-- <h1>{{selAss}}</h1> -->
                 <mat-form-field>
-                    <mat-select placeholder="Assignment Number" name="selectedAssignment" [(ngModel)]="selAss"
-                        (selectionChange)='assignmentNoChanged($event)'>
+                    <mat-select [disabled]="assignment.length == 0" placeholder="Assignment Number"
+                        name="selectedAssignment" [(ngModel)]="selAss" (selectionChange)='assignmentNoChanged($event)'>
                         <span *ngFor='let assi of assignment'>
                             <mat-option [value]='assi.assignmentId'>
                                 Assignment-{{assi.assignmentNo}}
@@ -164,9 +164,16 @@
                         </tbody>
                     </table>
 
-                    <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
+                    <!-- <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
-                    </h3>
+                    </h3> -->
+
+                    <div *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
+                        id="loader-wrapper">
+                        <div class="lds-dual-ring"></div>
+                    </div>
+
+
                     <div class="text-info pt-3 text-center"
                         *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
                         No Learners Found!

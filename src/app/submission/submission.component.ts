@@ -387,6 +387,7 @@ export class SubmissionComponent implements OnInit {
 
 
   serverFilter(paramsData) {
+    this.loadingAssignments = true;
     return new Promise((resolve, reject) => {
       this._materialService.filterAllotedAssignment(paramsData).subscribe((data) => {
 
@@ -394,8 +395,9 @@ export class SubmissionComponent implements OnInit {
         if (!isEmpty(obj)) {
           this.learners = data;
           this.copyLearners = this.learners;
-          this.updateData(this.learners)
           this.loadingAssignments = false;
+          this.updateData(this.learners)
+
           return resolve(this.copyLearners);
         } else {
           this.copyLearners = [];
