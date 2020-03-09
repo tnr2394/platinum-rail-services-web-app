@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CompetenciesService } from 'src/app/services/competencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DeleteConfirmModalComponent } from 'src/app/commons/delete-confirm-modal/delete-confirm-modal.component';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-competences',
@@ -81,9 +83,19 @@ export class CompetencesComponent implements OnInit {
       }
     })
   }
-  openFileUpload(element) {
-    this.openDialog(NewFileModalComponent, { competenciesId: element.competenciesId }).subscribe(uploaded => {
+  openFileUpload(element,i) {
+    console.log("element in file upload", element, i);
+    this.openDialog(NewFileModalComponent, { competenciesId: element._id }).subscribe(uploaded => {
       console.log("uploaded", uploaded);
+      let tempArray = this.compArray
+      var index = _.findIndex(tempArray, function (o) { return o._id == element._id})
+      if(index > -1){
+        this.compArray[index].files.push(uploaded[0].data.file)
+        this.updateData(this.compArray)
+      }
+      // console.log("this.compArray",this.compArray[i])
+      // this.compArray[i].files.push(uploaded[0].data.file)
+      
     })
   }
 
