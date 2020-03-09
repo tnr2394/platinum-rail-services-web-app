@@ -7,13 +7,13 @@
             <!-- <div class="image" *ngIf="type == 'file' || type == 'material' " [ngClass]="recievedFile.extension"></div> -->
 
             <!-- Iframe Support Types doc,docx,pdf,ppt,xlsx,xls -->
-            <div *ngIf="(type == 'file' || type == 'material') && supportedDocument " class="detail_file_preview">
+            <div *ngIf="(type == 'file' || type == 'material' || type == 'competencies') && supportedDocument " class="detail_file_preview">
                 <iframe style="height: 350px;" [src]='pathForPreview | safe:"resourceUrl"' frameborder="0">
                 </iframe>
             </div>
 
             <!-- This For File Like jpg,jpeg,png -->
-            <div *ngIf="(type == 'file' || type == 'material') && !supportedDocument " class="detail_file_preview">
+            <div *ngIf="(type == 'file' || type == 'material' || type == 'competencies') && !supportedDocument " class="detail_file_preview">
                 <img src="{{recievedFile.path}}" onerror="this.src='../../../assets/sample.png';" alt="Missing Image" />
             </div>
 
@@ -37,7 +37,7 @@
                         <button mat-mini-fab class="mini_btn" color="primary" *ngIf="displaySaveBtn" (click)="saveFolder()"><i class="fa fa-check-circle"></i></button>
                     </div>
                 </h5>
-                <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies')">
+                <div *ngIf="recievedFile && recievedFile.type == 'material'">
                     <div class="drawer_btn">
                         <button mat-stroked-button color="primary" (click)="shareWith()" *ngIf="recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
                                 aria-hidden="true"></i> Share </button>
