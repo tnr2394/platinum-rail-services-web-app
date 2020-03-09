@@ -27,13 +27,22 @@
             <div class="card">
                 <!--Card content-->
                 <div class="card-block">
-                    <div class="row justify-content-end ">
+                    <div class="row">
+                        <div class="col-6">
+                            <p *ngIf="datesOfWeek && datesOfWeek.length > 0">From:{{datesOfWeek[0]}} -
+                                To:{{datesOfWeek[datesOfWeek.length - 1]}}
+                            </p>
+                        </div>
+                        <div class="col-6">
                         <mat-paginator [pageSizeOptions]="[10, 25, 100]" (page)="pageNext($event); pageEvent = $event">
                         </mat-paginator>
+                        </div>
                     </div>
                     <!--Title-->
                     <!--Text-->
                     <div>
+                        
+                        
                         <div class="table-responsive">
                             <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
                                 <!-- copy paste -->
@@ -203,7 +212,7 @@
                                 <ng-container matColumnDef="hoursWorked">
                                     <th class="text-center" mat-header-cell *matHeaderCellDef>Hours Worked </th>
                                     <td class="mat-table-cell text-center" mat-cell *matCellDef="let days">
-                                        <span [ngClass]="checkTotalWorkHour(days.workingHours.hours)">
+                                        <span [ngClass]="checkTotalWorkHour(days.workingHours.hours, days.workingHours.minutes)">
                                             {{days.workingHours.hours | number:'2.0'}}:{{days.workingHours.minutes | number:'2.0'}}
                                         </span>
                                     </td>
@@ -214,8 +223,9 @@
                                     </th>
                                     <td class="mat-table-cell text-center" mat-cell
                                         *matCellDef="let days;let i = index">
+                                        <!-- travelPlusWorkStatus  -->
                                         <span [ngClass]="checkTravelPlusWorkHour(i)">
-                                            {{calculateTravelPlusWorkHours(i) | number:'2.0'}}:{{calculateTravelPlusWorkMinutes(i) | number:'2.0'}}
+                                            {{days.totalTravelNWork}}
                                         </span>
                                     </td>
                                 </ng-container>

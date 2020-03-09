@@ -48,7 +48,7 @@ competenciesController.updateCompetencies = async function (req, res, next) {
 }
 
 competenciesController.deleteCompetencies = async function (req, res, next) {
-    const competenciesId = req.query.id;
+    const competenciesId = req.query._id;
     console.log('Competencies Remove Function', competenciesId)
     competenciesDOA.deleteCompetencies(competenciesId).then(newComp => {
         competenciesDOA.pullCompetenciesFromInstructor(competenciesId, newComp.instructor)

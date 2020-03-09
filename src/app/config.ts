@@ -20,7 +20,7 @@ const baseUrl = "http://localhost:3000/";
 
 // For Remove Console Logs 
 
-console.log = function () { }
+// console.log = function () { }
 
 export const config = {
     baseApiUrl: baseUrl,
