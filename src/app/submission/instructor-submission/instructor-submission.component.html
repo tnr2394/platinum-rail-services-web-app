@@ -36,8 +36,7 @@
                 <div class='row all_file_tile_row' *ngIf="files.length > 0">
                     <table mat-table [dataSource]="dataSource" matSort class="table table-borderless mb-0">
                         <ng-container matColumnDef="Materials">
-                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
-                                mat-sort-header="title">
+                            <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
                                 NAME
                             </th>
 
@@ -52,7 +51,7 @@
                                     <div class='row' *ngIf="files.length == 0">
                                         <div class="col-12 p-0">
                                             <mat-card class="text-info">
-                                                No Files Found!
+                                                No Files Found
                                             </mat-card>
                                         </div>
                                     </div>
@@ -75,8 +74,7 @@
             <div class='col-lg-6 status_area' *ngIf="assignment.status !== 'Pending'">
                 <div class="col-12">
                     <div class="d-flex justify-content-center align-items-center w-100">
-                        <button [disabled]="loading" mat-raised-button class='btnColorGreen success_hover_effect'
-                            (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span> Mark
+                        <button [disabled]="loading" mat-raised-button class='btnColorGreen success_hover_effect' (click)="doSubmit(remark,'Completed')"><i class="fas fa-check-double"></i><span> Mark
                                 Completed</span>
                         </button>
                     </div>
@@ -84,14 +82,12 @@
                 <div class="col-12 remark_area">
                     <form [formGroup]="remark">
                         <mat-form-field class="example-full-width">
-                            <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput
-                                formControlName="remark" placeholder="Leave a remark"></textarea>
+                            <textarea rows="4" cols="100" [(ngModel)]='assignment.remark' matInput formControlName="remark" placeholder="Leave a remark"></textarea>
                         </mat-form-field>
                         <mat-divider></mat-divider>
                         <div class='mt-3'>
                             <div class="justify-content-center">
-                                <button [disabled]="loading" mat-raised-button class='btnColorBlue button_hover_effect'
-                                    (click)="doSubmit(remark,'Requested for Resubmission')"><i class='fa fa-bell'></i>
+                                <button [disabled]="loading" mat-raised-button class='btnColorBlue button_hover_effect' (click)="doSubmit(remark,'Requested for Resubmission')"><i class='fa fa-bell'></i>
                                     <span> Request Resubmission</span></button>
                             </div>
                         </div>
@@ -100,8 +96,7 @@
             </div>
         </div>
         <!-- </mat-card> -->
-        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i
-                class="fa fa-cog fa-spin text-info"></i></h3>
+        <h3 *ngIf="loading == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i></h3>
         <div *ngIf='loading == false && !assignment'>
             {{learner}} Does not have any allocated {{material}} <i class="fa fa-frown-o"></i>
         </div>

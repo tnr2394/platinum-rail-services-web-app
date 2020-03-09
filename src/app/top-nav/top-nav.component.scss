@@ -1,21 +1,24 @@
 #topnav {
-  background: transparent linear-gradient(90deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
-  opacity: 1;
-  position: fixed;
-  z-index: 9999;
+    background: transparent linear-gradient(90deg, #111111 0%, #434343 100%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    position: fixed;
+    z-index: 9998;
 }
+
 #title {
-  color: white;
-  margin-left: 20px;
-  font-weight: bold;
-  font-family: "Source Sans Pro", sans-serif;
+    color: white;
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: "Source Sans Pro", sans-serif;
 }
+
 #logo-top-nav {
-  height: 45px;
-  margin-right: 25px;
+    height: 45px;
+    margin-right: 25px;
 }
+
 @media screen and (max-width: 575px) {
-  #title {
-    display: none !important;
-  }
+    #title {
+        display: none !important;
+    }
 }

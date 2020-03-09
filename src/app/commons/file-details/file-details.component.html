@@ -39,7 +39,7 @@
                 </h5>
                 <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies')">
                     <div class="drawer_btn">
-                        <button mat-stroked-button color="primary" (click)="shareWith()" *ngIf = "recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
+                        <button mat-stroked-button color="primary" (click)="shareWith()" *ngIf="recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
                                 aria-hidden="true"></i> Share </button>
                         <button mat-stroked-button color="warn" (click)="delete()"><i class="fa fa-trash"
                                 aria-hidden="true"></i>
@@ -63,7 +63,7 @@
             </li>
         </ul>
         <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #3b86ff;">
-            Not shared with any clients!</div>
+            Not shared with any clients</div>
 
         <h6><b>Instructors</b></h6>
         <mat-list align='center'>
@@ -89,7 +89,7 @@
         </ul> -->
         <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedInstructor.length < 1" style="color: #3b86ff;">Not shared with any instructors!</div>
         <div class="drawer_btn">
-            <button mat-stroked-button class="ripple Button_shap_effact" (click)="shareWith()" ><i class="fa fa-share-alt"
+            <button mat-stroked-button class="ripple Button_shap_effact" (click)="shareWith()"><i class="fa fa-share-alt"
                     aria-hidden="true"></i> Share</button>
             <button mat-stroked-button class="ripple resets_delete_button" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i>
                 Delete</button>

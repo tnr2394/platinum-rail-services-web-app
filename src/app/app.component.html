@@ -1,6 +1,6 @@
 <app-top-nav [hidden]="isPrint"></app-top-nav>
 <!-- *ngIf="!isPrint" -->
-<div  >
+<div>
     <div class="sidebar sidebar--Collapse" [hidden]="!currentUser">
         <div class="collapseToggle">
             <span id="toggleIcon" class="fa fa-chevron-left rotate" placement="right" ngbTooltip="{{getToolTip()}}" tooltipClass="tooltip-class"></span>
@@ -36,9 +36,8 @@
                     <span class="menuText">Dashboard</span>
                 </a>
                 <a *ngIf="currentUser && currentUser.userRole=='instructor'" routerLink="/instructors/{{currentUser._id}}" routerLinkActive="active-link">
-                  <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Profile' : ''}}"
-                    tooltipClass="tooltip-sidebar-class"></i>
-                  <span class="menuText">Profile</span>
+                    <i class="fas fa-fw fa-user" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Profile' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
+                    <span class="menuText">Profile</span>
                 </a>
             </li>
             <li>
@@ -205,8 +204,8 @@
   </mat-sidenav-content>
 </mat-sidenav-container> -->
 
-  <div *ngIf="loading" id="loader-wrapper">
+<div *ngIf="loading" id="loader-wrapper">
     <div class="lds-dual-ring">
-      
+
     </div>
-  </div>
+</div>
