@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, HostListener, EventEmitter, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -108,6 +108,7 @@ export class SingleWeekComponent implements OnInit {
   regularHours: number;
   workWeekHours: Number;
   overTime: string = "00:00";
+  totalTravelNWork: string;
 
 
 
@@ -150,7 +151,8 @@ export class SingleWeekComponent implements OnInit {
   pageEvent: PageEvent;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar) {
+  constructor(private route: ActivatedRoute, private router: Router, public _timeSheetService: TimeSheetService, private _snackBar: MatSnackBar, 
+    private changeDetector: ChangeDetectorRef) {
     // this.datesOfWeek = this.router.getCurrentNavigation().extras.state.datesOfTheWeek;
     // this.instructorId = this.router.getCurrentNavigation().extras.state.instructorId;
     this.dataSource = new MatTableDataSource<any>();
@@ -237,17 +239,16 @@ export class SingleWeekComponent implements OnInit {
       this.instEmail = changes.instDetails.currentValue.email
     }
   }
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   // this.dataSource.sort = this.sort;
-  // }
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    // this.checkTravelPlusWorkHour()
+  }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
-
-
 
 
 
@@ -337,7 +338,7 @@ export class SingleWeekComponent implements OnInit {
       let hoursWorking = diff1.hours
       let totalMinute = diff1.minutes
       console.log("hoursWorking else ", diff1)
-      if (totalMinute > 59) {
+      if (totalMinute > 60) {
         // totalMinute = totalMinute - 60;
         // hoursWorking = hoursWorking + 1
         totalMinute = totalMinute % 60;
@@ -364,7 +365,7 @@ export class SingleWeekComponent implements OnInit {
       let hoursWorking = diff2.hours
       let totalMinute = diff2.minutes
       console.log(" hoursWorking else ", hoursWorking)
-      if (totalMinute > 59) {
+      if (totalMinute > 60) {
         // totalMinute = totalMinute - 60;
         // hoursWorking = hoursWorking + 1
         totalMinute = totalMinute % 60;
@@ -423,27 +424,46 @@ export class SingleWeekComponent implements OnInit {
   }
 
   calculateTravelPlusWorkHours(index) {
+    // console.log("***calculateTravelPlusWorkHours called");
     let travel, totalHr, totalMin;
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
+    console.log("totalHr", totalHr);
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalMin > 59) {
+    console.log("totalMin", totalMin);
+    if (totalMin > 60) {
       // totalMin = totalMin - 60;
       // totalHr = totalHr + 1
       totalHr = totalHr + Math.floor(totalMin / 60)
       totalMin = totalMin % 60
       this.Days[index].totalHours.hours = totalHr;
-      return totalHr;
+      this.Days[index].totalHours.minutes = totalMin;
+      if (totalHr < 10) { totalHr = '0' + totalHr }
+      if(totalMin < 10){ totalMin = '0' + totalMin}
+      // this.checkTravelPlusWorkHour(index)
+      return totalHr + ":" + totalMin;
     } else if (totalMin == 60) {
       totalHr = totalHr + 1
       totalMin = totalMin - 60
       this.Days[index].totalHours.hours = totalHr;
-      return totalHr;
+      this.Days[index].totalHours.minutes = totalMin;
+      if (totalHr < 10) { totalHr = '0' + totalHr }
+      if (totalMin < 10) { totalMin = '0' + totalMin }
+      // this.changeDetector.detectChanges();
+      // this.checkTravelPlusWorkHour(index)
+      return totalHr + ":" + totalMin;
     }
     else {
       this.Days[index].totalHours.hours = totalHr;
-      return totalHr;
+      this.Days[index].totalHours.minutes = totalMin;
+      if (totalHr < 10) { totalHr = '0' + totalHr }
+      if (totalMin < 10) { totalMin = '0' + totalMin }
+      // this.changeDetector.detectChanges();
+      // this.checkTravelPlusWorkHour(index)
+      return totalHr + ":" + totalMin;
     }
+    
+    // if (this.Days[index].totalHours.hours)
   }
 
   calcOverTime() {
@@ -565,7 +585,7 @@ export class SingleWeekComponent implements OnInit {
     travel = this.Days[index].travel.split(":")
     totalHr = this.Days[index].workingHours.hours + Number(travel[0])
     totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalMin > 59) {
+    if (totalMin > 60) {
       // totalMin = totalMin - 60;
       // totalHr = totalHr + 1
       totalHr = totalHr + Math.floor(totalMin / 60)
@@ -590,15 +610,17 @@ export class SingleWeekComponent implements OnInit {
     console.log('call After Api call');
     var totalH = 0;
     var totalM = 0;
-    _.forEach(this.Days, (day) => {
+    _.forEach(this.Days, (day, index) => {
       totalH = totalH + day.workingHours.hours;
       totalM = totalM + day.workingHours.minutes;
+      day['totalTravelNWork'] = this.calculateTravelPlusWorkHours(index)
     })
-    if (totalM > 59) {
+    if (totalM > 60) {
       totalH = totalH + Math.floor(totalM / 60)
       totalM = totalM % 60
       this.totalHoursWorked.hours = totalH;
       this.totalHoursWorked.minutes = totalM;
+      // this.checkTravelPlusWorkHour()
     } else if (totalM == 60) {
       this.totalHoursWorked.hours = totalH + 1;
       this.totalHoursWorked.minutes = totalM - 60
@@ -810,25 +832,45 @@ export class SingleWeekComponent implements OnInit {
     })
   }
 
-  checkTotalWorkHour(hours) {
-    if (hours >= 12) {
+  checkTotalWorkHour(hours, minutes) {
+    // console.log("***checkTotalWorkHour", hours, minutes, typeof minutes);
+    if (hours > 11 && minutes > 0) {
+      // console.log("***checkTotalWorkHour", "hours", hours, "minutes", minutes);
       return 'break';
-    } else {
+    } if (hours == 12 && minutes == 0) {
+      return 'ok';
+    }
+     else {
       return 'ok';
     }
   }
 
 
-
   checkTravelPlusWorkHour(index) {
-
+   
     let travel, totalHr, totalMin;
-    travel = this.Days[index].travel.split(":")
-    totalHr = this.Days[index].workingHours.hours + Number(travel[0])
-    totalMin = this.Days[index].workingHours.minutes + Number(travel[1])
-    if (totalHr <= 14) {
+    // travel = this.Days[index].travel.split(":")
+    totalHr = this.Days[index].totalHours.hours 
+    totalMin = this.Days[index].totalHours.minutes 
+    // // console.log("**********totalMin", totalMin);
+    
+    if (totalHr < 14) {
+      // this.Days[index]['travelPlusWorkStatus'] = 'ok'
+      // console.log("**********totalHr < 14", totalHr);
       return 'ok';
-    } else {
+    } else if (totalHr == 14 && totalMin >= 1){
+      // console.log("**********totalHr == 14", totalHr, "**********totalMin > 0", totalMin)
+      // this.Days[index]['travelPlusWorkStatus'] = 'break'
+      return 'break'
+    } 
+    else if (totalHr == 14 && totalMin == 0) {
+      // console.log("**********totalHr == 14", totalHr, "**********totalMin > 0", totalMin)
+      // this.Days[index]['travelPlusWorkStatus'] = 'ok'
+      return 'ok'
+    } 
+    else {
+      // console.log("**********totalHr", totalHr, "**********totalMin", totalMin);
+      // this.Days[index]['travelPlusWorkStatus'] = 'break'
       return 'break';
     }
   }

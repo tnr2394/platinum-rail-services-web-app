@@ -7,6 +7,7 @@ import { NewFileModalComponent } from 'src/app/files/new-file-modal/new-file-mod
 import { ActivatedRoute } from '@angular/router';
 import { CompetenciesService } from 'src/app/services/competencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DeleteConfirmModalComponent } from 'src/app/commons/delete-confirm-modal/delete-confirm-modal.component';
 
 @Component({
   selector: 'app-competences',
@@ -119,6 +120,19 @@ export class CompetencesComponent implements OnInit {
   editCompModal(element){
     this.openDialog(EditCompModalComponent, element).subscribe(data=>{
       console.log("DATA IN COMP FROM EDIT", data)
+    })
+  }
+  delete(element, i){
+    this.openDialog(DeleteConfirmModalComponent, element).subscribe(confirm=>{
+      if (confirm == 'no') return
+      else{
+        console.log("element on delete", element, i);
+        this._competencyService.deleteCompetency(element._id).subscribe(res => {
+          console.log("Competency deleted", res);
+          this.compArray.splice(i,1)
+          this.updateData(this.compArray)
+        })
+      }
     })
   }
 

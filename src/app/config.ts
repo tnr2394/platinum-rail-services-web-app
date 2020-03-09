@@ -20,7 +20,7 @@ const baseUrl = "https://testing.platinumrailservices.co.uk:4000/"
 
 // For Remove Console Logs 
 
-console.log = function () { }
+// console.log = function () { }
 
 export const config = {
     baseApiUrl: baseUrl,

@@ -177,9 +177,9 @@ export class FileDetailsComponent implements OnInit {
           })
         }
         else if(this.type == 'competencies') {
-          this._competencyService.deleteCompetency(this.id).subscribe(res => {
-            console.log("Competency deleted", res);
-          })
+          // this._competencyService.deleteCompetency(this.id).subscribe(res => {
+          //   console.log("Competency deleted", res);
+          // })
         }
         this.fileDeleted.emit({ fileId: this.id, type: this.type })
       }
