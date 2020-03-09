@@ -9,7 +9,7 @@
     <div class="col-12">
         <mat-card>
             <!-- <h4>Current Rules</h4> -->
-            <mat-chip-list >
+            <mat-chip-list>
                 <mat-chip class="workingHrsStatus">Work hours per day</mat-chip>
                 <mat-chip class="travelHrsStatus">Travel + work per day</mat-chip>
                 <mat-chip class="last13Status">No. of turns in last 14 days</mat-chip>
@@ -22,8 +22,7 @@
 <div class="row">
     <div class="col-sm-12 col-lg-4 col-md-4">
         <div *ngFor="let month of months;let i = index">
-            <mat-expansion-panel class="mb-4" *ngIf="i == 0 || i == 3 || i == 6 || i == 9"
-                (opened)="showWeeks(month.id, i) " [expanded]="step === i">
+            <mat-expansion-panel class="mb-4" *ngIf="i == 0 || i == 3 || i == 6 || i == 9" (opened)="showWeeks(month.id, i) " [expanded]="step === i">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="col-3">
@@ -35,23 +34,19 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
-                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2" *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
                     <div>
-                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
-                            class="badge breakBtnTurnsStatus"> X </span>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'" class="badge breakBtnTurnsStatus"> X </span>
                         <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> X </span>
                         <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> X
                         </span>
                         <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> X </span>
                         <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> X
                         </span>
-                        <span
-                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
-                            class="badge2"> No Rules Break
+                        <span *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' " class="badge2"> No Rules Break
                         </span>
                     </div>
                 </mat-card>
@@ -60,8 +55,7 @@
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4">
         <div *ngFor="let month of months;let i = index">
-            <mat-expansion-panel class="mb-4" *ngIf="i == 1 || i == 4 || i == 7 || i == 10"
-                (opened)="showWeeks(month.id, i)" [expanded]="step === i">
+            <mat-expansion-panel class="mb-4" *ngIf="i == 1 || i == 4 || i == 7 || i == 10" (opened)="showWeeks(month.id, i)" [expanded]="step === i">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="col-3">
@@ -73,23 +67,19 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
-                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2" *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
                     <div>
-                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
-                            class="badge breakBtnTurnsStatus"> X </span>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'" class="badge breakBtnTurnsStatus"> X </span>
                         <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> X </span>
                         <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> X
                         </span>
                         <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> X </span>
                         <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> X
                         </span>
-                        <span
-                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
-                            class="badge2"> No Rules Break
+                        <span *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' " class="badge2"> No Rules Break
                         </span>
                     </div>
                 </mat-card>
@@ -98,8 +88,7 @@
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4">
         <div *ngFor="let month of months;let i = index">
-            <mat-expansion-panel class="mb-4" *ngIf="i == 2 || i == 5 || i == 8 || i == 11"
-                (opened)="showWeeks(month.id, i);" [expanded]="step === i">
+            <mat-expansion-panel class="mb-4" *ngIf="i == 2 || i == 5 || i == 8 || i == 11" (opened)="showWeeks(month.id, i);" [expanded]="step === i">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="col-3">
@@ -111,23 +100,19 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-divider></mat-divider>
-                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2"
-                    *ngFor="let week of allWeeks" (click)="singleWeek(week)">
+                <mat-card class="mt-2 displayDates" appMaterialElevation [defaultElevation]="0" raisedElevation="2" *ngFor="let week of allWeeks" (click)="singleWeek(week)">
                     <div>
                         {{week.weekStart | date:shortDate}} - {{week.weekEnd | date:shortDate}}
                     </div>
                     <div>
-                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'"
-                            class="badge breakBtnTurnsStatus">X</span>
+                        <span *ngIf="week.breakBtnTurnsStatus == 'Regulation exceeded'" class="badge breakBtnTurnsStatus">X</span>
                         <span *ngIf="week.last13Status == 'Regulation exceeded'" class="badge last13Status"> X </span>
                         <span *ngIf="week.travelHrsStatus == 'Regulation exceeded'" class="badge travelHrsStatus"> X
                         </span>
                         <span *ngIf="week.weekHrs == 'Regulation exceeded'" class="badge weekHrs"> X </span>
                         <span *ngIf="week.workingHrsStatus == 'Regulation exceeded'" class="badge workingHrsStatus"> X
                         </span>
-                        <span
-                            *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' "
-                            class="badge2"> No Rules Break
+                        <span *ngIf="week.workingHrsStatus != 'Regulation exceeded' && week.weekHrs != 'Regulation exceeded' && week.breakBtnTurnsStatus != 'Regulation exceeded' && week.last13Status != 'Regulation exceeded' " class="badge2"> No Rules Break
                         </span>
                     </div>
                 </mat-card>

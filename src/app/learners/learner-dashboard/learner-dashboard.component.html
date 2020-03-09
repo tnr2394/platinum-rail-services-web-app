@@ -144,8 +144,7 @@
                     <div class="row justify-content-between w-100">
                         <div *ngFor='let status of assignmentStatus;let i = index'>
                             <div class="col-md-2">
-                                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
-                                    (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
+                                <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status)">
                                     {{status.display}}
                                 </mat-checkbox>
                             </div>
@@ -164,14 +163,12 @@
                                         <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>
                                             Assignment
                                         </th>
-                                        <td class="mat-table-cell text-left" mat-cell
-                                            *matCellDef="let allotment; let i = index;">
+                                        <td class="mat-table-cell text-left" mat-cell *matCellDef="let allotment; let i = index;">
 
                                             <a class="btn {{getRandomColorClass(i)}} text-white fab-item ">
                                                 <i class="fas fa-clipboard-list"></i>
                                             </a>
-                                            Unit- {{allotment.assignment.unitNo}}
-                                            Assignment-{{allotment.assignment.assignmentNo}}
+                                            Unit- {{allotment.assignment.unitNo}} Assignment-{{allotment.assignment.assignmentNo}}
                                         </td>
                                     </ng-container>
 
@@ -180,8 +177,7 @@
                                     <ng-container matColumnDef="DueDate">
                                         <th class="text-left" mat-header-cell *matHeaderCellDef mat-sort-header>Due Date
                                         </th>
-                                        <td class="mat-table-cell text-left" mat-cell
-                                            *matCellDef="let assignment; let i = index;">
+                                        <td class="mat-table-cell text-left" mat-cell *matCellDef="let assignment; let i = index;">
                                             {{assignment.deadlineDate | date:'mediumDate'}}
                                         </td>
                                     </ng-container>
@@ -192,8 +188,7 @@
                                         <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header>
                                             Status
                                         </th>
-                                        <td class="mat-table-cell text-center m-0" mat-cell
-                                            *matCellDef="let assignment; let i = index;">
+                                        <td class="mat-table-cell text-center m-0" mat-cell *matCellDef="let assignment; let i = index;">
                                             <div [ngClass]="assignment.status" class="text-center">
                                                 <span>{{assignment.status}}</span>
                                             </div>
@@ -204,32 +199,25 @@
                                     <ng-container matColumnDef="View">
                                         <th class="text-center" mat-header-cell *matHeaderCellDef> View
                                         </th>
-                                        <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let allotment; let i = index;">
-                                            <a mat-button class="text-primary bold" placement="bottom"
-                                                ngbTooltip="Details" tooltipClass="tooltip-class"
-                                                routerLink="/learnerAllotment/{{allotment._id}}">
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let allotment; let i = index;">
+                                            <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details" tooltipClass="tooltip-class" routerLink="/learnerAllotment/{{allotment._id}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </ng-container>
 
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     </thead>
                                     <tbody>
                                         <tr mat-row *matRowDef="let learner; columns: displayedColumns;">
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="text-info pt-3 text-center"
-                                    *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
-                                    No Assignment Allocated!
+                                <div class="text-info pt-3 text-center" *ngIf="loadingJobs == false && loadingAssignments == false && loadingLearners == false && learners < 1">
+                                    No Assignment Allocated
                                 </div>
-                                <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
-                                    class="text-center text-info pt-3">Loading...<i
-                                        class="fa fa-cog fa-spin text-info"></i>
+                                <h3 *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                                 </h3>
                             </div>
                         </div>
@@ -253,8 +241,7 @@
                     </mat-form-field>
                     <mat-card-content>
                         <div class="row" *ngIf='material.length > 0'>
-                            <div class="col-xl-2 col-md-4 col-sm-4 materials_box"
-                                *ngFor='let material of material | filterBy: userFilter;let i = index;'>
+                            <div class="col-xl-2 col-md-4 col-sm-4 materials_box" *ngFor='let material of material | filterBy: userFilter;let i = index;'>
                                 <mat-card class="p-0 inner-card h-100" (click)="showMaterialFiles(material)">
                                     <mat-card-content class="material_card">
                                         <span class="materia_icon_span {{getRandomColorClass(i)}}"><i
@@ -268,7 +255,7 @@
                             <div class="col-12 materials_box">
                                 <mat-card class="mb-3">
                                     <mat-card-header>
-                                        <h5 class="text-info">No Reading Material Found!</h5>
+                                        <h5 class="text-info">No Reading Material Found</h5>
                                     </mat-card-header>
                                 </mat-card>
                             </div>
