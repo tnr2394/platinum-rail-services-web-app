@@ -1332,27 +1332,77 @@ body {
 .breakBtnTurnsStatus {
     background: #dd2c00 !important;
     color: white;
+    &.mat-standard-chip {
+    background-color: #dd2c00 !important;
+    color:white;
+}
 }
 .last13Status {
     background: #ffab00 !important;
     color: white;
+    &.mat-standard-chip {
+    background-color: #ffab00 !important;
+    color:white;
+}  
   
 }
 .travelHrsStatus {
     background: #43a047 !important;
     color: white;
+    &.mat-standard-chip {
+    background-color: #43a047 !important;
+    color:white;
+}  
   
 }
 .weekHrs {
     background: #00b8d4 !important;
     color: white;
+    &.mat-standard-chip {
+    background-color: #00b8d4 !important;
+    color:white;
+} 
   
 }
 .workingHrsStatus {
     background: #607d8b !important;
     color: white;
+    &.mat-standard-chip {
+    background-color: #607d8b !important;
+    color:white;
+}
   
 }
 .set_Badge{
   margin: 10px 15px 15px 15px !important;
 }
+// .breakBtnTurnsStatus{
+// &.mat-standard-chip {
+//     background-color: #dd2c00 !important;
+//     color:white;
+// }
+// }
+// .last13Status{
+// &.mat-standard-chip {
+//     background-color: #ffab00 !important;
+//     color:white;
+// }  
+// }
+// .travelHrsStatus{
+// &.mat-standard-chip {
+//     background-color: #43a047 !important;
+//     color:white;
+// }  
+// }
+// .weekHrs{
+// &.mat-standard-chip {
+//     background-color: #00b8d4 !important;
+//     color:white;
+// }  
+// }
+// .workingHrsStatus{
+// &.mat-standard-chip {
+//     background-color: #607d8b !important;
+//     color:white;
+// }
+// }
