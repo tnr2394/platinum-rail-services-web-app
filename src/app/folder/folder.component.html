@@ -4,8 +4,7 @@
         <div *ngIf="currentUser.userRole == 'admin'">
             <div class="row" *ngIf="showCreateBtn">
                 <div class="col-12">
-                    <button (click)='createFolder()' mat-flat-button
-                        class="pull-right button_hover_effect mb-3 ripple Button_shap_effact">
+                    <button (click)='createFolder()' mat-flat-button class="pull-right button_hover_effect mb-3 ripple Button_shap_effact">
                         <i class="fas fa-plus fa-fw"></i>
                         <span> Create Folder</span>
                     </button>
@@ -61,8 +60,7 @@
 
         <div class="row parent_row" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
             <div class="materials_box col" cdkDrag *ngFor='let singleFolder of allFolders;let i = index'>
-                <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)"
-                    id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
+                <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
                     <mat-card class="p-0" appMaterialElevation [defaultElevation]="0" raisedElevation="5">
                         <mat-card-content class="material_card p-2">
                             <div class="materia_icon_span {{getRandomColorClass(i)}}">
@@ -76,15 +74,13 @@
                 <!-- </mat-card-content> -->
             </div>
         </div>
-        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i
-                class="fa fa-cog fa-spin text-info"></i>
+        <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
         </h3>
     </div>
 
-    <div class="row no-folder text-center justify-content-center"
-        *ngIf="allFolders && allFolders.length == 0 && !loading">
+    <div class="row no-folder text-center justify-content-center" *ngIf="allFolders && allFolders.length == 0 && !loading">
         <img src="../../assets/folder.png" height="100px" width="100px">
-        <h3 class="text-center text-info pt-3 no_found_msg">No Folder Found! </h3>
+        <h3 class="text-center text-info pt-3 no_found_msg">No Folder Found </h3>
     </div>
 
     <!-- </mat-card-content> -->

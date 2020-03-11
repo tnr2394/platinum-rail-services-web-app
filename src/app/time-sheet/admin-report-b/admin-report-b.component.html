@@ -22,8 +22,7 @@
                     <!-- <ng-select [items]="allInstructors" [multiple]="false" [closeOnSelect]="true" [searchable]="true" bindLabel="name"
                         placeholder="Choose Instructors" [(ngModel)]="selectedInstructors" (close)="getInstructorProfile()">
                     </ng-select> -->
-                    <ng-select [items]="allInstructors" [multiple]="false" bindLabel="name" [clearable]="false"
-                        placeholder="Choose Instructors" [(ngModel)]="selectedInstructors" (close)="getInstructorProfile()">
+                    <ng-select [items]="allInstructors" [multiple]="false" bindLabel="name" [clearable]="false" placeholder="Choose Instructors" [(ngModel)]="selectedInstructors" (close)="getInstructorProfile()">
                         <ng-template ng-label-tmp let-item="item" let-clear="clear">
                             <span class="ng-value-label" *ngIf="item && item.profilePic && item.profilePic.path">
                                 <img [src]="item.profilePic.path" class="image">
@@ -37,11 +36,11 @@
                         </ng-template>
 
                         <ng-template ng-option-tmp let-item="item">
-                            <div  *ngIf="item && item.profilePic">
+                            <div *ngIf="item && item.profilePic">
                                 <img [src]="item.profilePic.path" class="image"> {{item.name}}
                             </div>
                             <div *ngIf="!item.profilePic">
-                            <img src="../../assets/Avatar.png" class="image">{{item.name}}
+                                <img src="../../assets/Avatar.png" class="image">{{item.name}}
                             </div>
                         </ng-template>
                     </ng-select>
@@ -49,8 +48,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="row">
-                    <input type="text" ngxDaterangepickerMd [drops]="down" [(ngModel)]="selected" placeholder="Choose Dates Range"
-                        (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
+                    <input type="text" ngxDaterangepickerMd [drops]="down" [(ngModel)]="selected" placeholder="Choose Dates Range" (datesUpdated)="datesSelected($event)" class="form-control dates-chosen" />
                 </div>
             </div>
         </div>
@@ -160,6 +158,5 @@
         </div>
     </div>
 </div> -->
-        <app-single-week [instFromAdminReport]='selectedInstructorId' [instDetails]="selectedInstructors" [overTimeHours]="overTimeHours" (print)="printing($event)"
-            [calWeekDates]="false" [logsFromAdmin]="dataForSingleWeek" [weekDatesFromAdmin]="weekDatesFromAdmin"></app-single-week>
+        <app-single-week [instFromAdminReport]='selectedInstructorId' [instDetails]="selectedInstructors" [overTimeHours]="overTimeHours" (print)="printing($event)" [calWeekDates]="false" [logsFromAdmin]="dataForSingleWeek" [weekDatesFromAdmin]="weekDatesFromAdmin"></app-single-week>
     </div>

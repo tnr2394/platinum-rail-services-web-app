@@ -77,7 +77,9 @@ export class CompetenciesService {
   }
   deleteCompetency(id) {
     return new Observable((observer) => {
-      this.http.delete(config.baseApiUrl + "competencies_id=" + id).subscribe((res: any) => {
+      console.log("deleteCompetency", id);
+      
+      this.http.delete(config.baseApiUrl + "competencies?_id=" + id).subscribe((res: any) => {
         observer.next(res.data.clients);
         // observer.complete();
       }, err => {

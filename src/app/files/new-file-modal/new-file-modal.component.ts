@@ -36,18 +36,22 @@ export class NewFileModalComponent implements OnInit {
   completeItem = (item: FileQueueObject, response: any) => {
     console.log('New file uploaded', response, item);
     this.data = response.data;
-
-    if (this.uploadStatus) {
-      this.uploadStatus = false
-    } else {
-      this.uploadedFilesCount++
+    if (this.uploader.bodyData.competenciesId) {
+      this.uploadedFiles.push(response)
     }
-    console.log("response.data", response.data);
-    this.uploadedFiles.push(response.data.file[0])
-    console.log("this.uploadedFiles", this.uploadedFiles);
-    this.queueCount = this.queue.source['_value'].length || 0
-    console.log("uploadedFilesCount", this.uploadedFilesCount)
-    console.log("queueCount", this.queueCount)
+    else{
+      if (this.uploadStatus) {
+        this.uploadStatus = false
+      } else {
+        this.uploadedFilesCount++
+      }
+      console.log("response.data", response.data);
+      this.uploadedFiles.push(response.data.file[0])
+      console.log("this.uploadedFiles", this.uploadedFiles);
+      this.queueCount = this.queue.source['_value'].length || 0
+      console.log("uploadedFilesCount", this.uploadedFilesCount)
+      console.log("queueCount", this.queueCount)
+    }
     // this.dialogRef.close(response.data.file);
     // this.onCompleteItem.emit({ item, response });
   }

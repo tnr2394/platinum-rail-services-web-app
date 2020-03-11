@@ -7,6 +7,9 @@ import { NewFileModalComponent } from 'src/app/files/new-file-modal/new-file-mod
 import { ActivatedRoute } from '@angular/router';
 import { CompetenciesService } from 'src/app/services/competencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DeleteConfirmModalComponent } from 'src/app/commons/delete-confirm-modal/delete-confirm-modal.component';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-competences',
@@ -70,19 +73,33 @@ export class CompetencesComponent implements OnInit {
       console.log("Data in comp", data);
       if (data == undefined) return
       else {
-        console.log("data.expiryDate", data.expiryDate, "new Date()", new Date(), data.expiryDate < new Date());
-        let isValid = data.expiryDate < new Date()
-        data['isValid'] = !isValid
-        console.log("data", data);
+        console.group(" Check Data Here ")
+        // console.log("data.expiryDate", data.expiryDate, "new Date()", new Date(), data.expiryDate < new Date());
+        console.log(" new Date(data.expiryDate) ", new Date(data.expiryDate))
+        console.log(" new Date() ", new Date())
+        console.log(" Diff ", new Date(data.expiryDate) < new Date())
+        data['isValid'] = ((new Date(data.expiryDate) < new Date()) == false) ? true : false
+        console.groupEnd()
+         
         // this.getCompetencyData()
         this.compArray.push(data)
         this.updateData(this.compArray)
       }
     })
   }
-  openFileUpload(element) {
-    this.openDialog(NewFileModalComponent, { competenciesId: element.competenciesId }).subscribe(uploaded => {
+  openFileUpload(element,i) {
+    console.log("element in file upload", element, i);
+    this.openDialog(NewFileModalComponent, { competenciesId: element._id }).subscribe(uploaded => {
       console.log("uploaded", uploaded);
+      let tempArray = this.compArray
+      var index = _.findIndex(tempArray, function (o) { return o._id == element._id})
+      if(index > -1){
+        this.compArray[index].files.push(uploaded[0].data.file)
+        this.updateData(this.compArray)
+      }
+      // console.log("this.compArray",this.compArray[i])
+      // this.compArray[i].files.push(uploaded[0].data.file)
+      
     })
   }
 
@@ -119,6 +136,19 @@ export class CompetencesComponent implements OnInit {
   editCompModal(element){
     this.openDialog(EditCompModalComponent, element).subscribe(data=>{
       console.log("DATA IN COMP FROM EDIT", data)
+    })
+  }
+  delete(element, i){
+    this.openDialog(DeleteConfirmModalComponent, element).subscribe(confirm=>{
+      if (confirm == 'no') return
+      else{
+        console.log("element on delete", element, i);
+        this._competencyService.deleteCompetency(element._id).subscribe(res => {
+          console.log("Competency deleted", res);
+          this.compArray.splice(i,1)
+          this.updateData(this.compArray)
+        })
+      }
     })
   }
 

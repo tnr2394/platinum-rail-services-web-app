@@ -5,8 +5,8 @@
         </h3>
         <div class="row">
             <div class="col-lg-3 col-md-6">
-                <p class="page-title1" *ngIf="learner"><i class="fa fa-envelope" aria-hidden="true"></i>
-                    {{learner.email}}</p>
+                <p class="page-title1" *ngIf="learner"><i class="fa fa-envelope" aria-hidden="true"></i> {{learner.email}}
+                </p>
             </div>
             <div class="col-lg-3 col-md-6">
 
@@ -58,11 +58,9 @@
                                     <!-- Unit Column -->
 
                                     <ng-container matColumnDef="unit">
-                                        <th class="text-center justify-content-center" mat-header-cell
-                                            *matHeaderCellDef mat-sort-header="name">Unit </th>
+                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header="name">Unit </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner;let i = index">
-                                            <i class="fas fa-file-alt {{getRandomColorClass(i)}}"></i>
-                                            Unit-{{learner.assignment.unitNo}}
+                                            <i class="fas fa-file-alt {{getRandomColorClass(i)}}"></i> Unit-{{learner.assignment.unitNo}}
                                         </td>
                                     </ng-container>
 
@@ -70,8 +68,7 @@
                                     <!-- Assignment Column -->
 
                                     <ng-container matColumnDef="assignment">
-                                        <th class="text-center justify-content-center" mat-header-cell
-                                            *matHeaderCellDef mat-sort-header="assignment"> Assignment </th>
+                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header="assignment"> Assignment </th>
                                         <td class="mat-table-cell text-center" mat-cell *matCellDef="let assignment">
                                             Assignment-{{assignment.assignment.assignmentNo}}
                                         </td>
@@ -81,18 +78,16 @@
                                     <!-- Status Column -->
 
                                     <ng-container matColumnDef="status">
-                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
-                                            mat-sort-header>
+                                        <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header>
                                             Status </th>
-                                        <td class="mat-table-cell text-center" mat-cell
-                                            *matCellDef="let assignment; let i = index;">
+                                        <td class="mat-table-cell text-center" mat-cell *matCellDef="let assignment; let i = index;">
                                             <span class="badge width-150 {{getRandomColorClass(i)}} color-white">
                                                 {{assignment.status}}
                                             </span></td>
                                     </ng-container>
 
                                     <!-- action Column -->
-<!-- 
+                                    <!-- 
                                     <ng-container matColumnDef="actions">
                                         <th class="text-center justify-content-center" mat-header-cell
                                             *matHeaderCellDef>View </th>
@@ -106,8 +101,7 @@
                                     </ng-container> -->
 
                                     <thead>
-                                        <tr style="background:lightgray;" mat-header-row
-                                            *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     </thead>
                                     <tbody>
                                         <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
@@ -128,5 +122,5 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
