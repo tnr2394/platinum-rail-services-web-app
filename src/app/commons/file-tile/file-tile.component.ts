@@ -18,6 +18,7 @@ export class FileTileComponent implements OnInit {
 
   @Input('file') file: any;
   @Input('isCompetency') isCompetency;
+  
   @Output() deletedFile: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();

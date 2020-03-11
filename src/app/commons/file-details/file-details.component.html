@@ -42,7 +42,7 @@
                         <input matInput readonly="{{readOnlyTitle}}" [(ngModel)]="title" disabled>
                     </mat-form-field>
                 </h5>
-                <div *ngIf="recievedFile && recievedFile.type == 'material'">
+                <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies')">
                     <div class="drawer_btn">
                         <button mat-stroked-button color="primary" class="ripple Button_shap_effact" (click)="shareWith()" *ngIf="recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
                                 aria-hidden="true"></i> Share </button>

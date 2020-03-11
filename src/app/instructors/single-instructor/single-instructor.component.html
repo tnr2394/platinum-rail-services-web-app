@@ -30,7 +30,7 @@
                     <mat-tab label="Competencies">
                         <mat-sidenav-container class="example-container fullHeight" autosize>
                             <mat-sidenav-content>
-                        <app-competences (openSideNav)="fileDetails($event)"></app-competences>
+                        <app-competences (openSideNav)="fileDetails($event)" [deletedId]="deleteEvent"></app-competences>
                             </mat-sidenav-content>
                             <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
                                 <div class="d-inline-block w-100">
@@ -40,7 +40,7 @@
                                     <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
                                             aria-hidden="true"></i></mat-button>
                                 </div>
-                                <app-file-details [details]="file" [isCompetency]="true" (fileDeleted)="deleteFile($event)">
+                                <app-file-details [details]="file" [isCompetency]="true" [competencieId]="compId" (fileDeleted)="deleteFile($event)">
                                 </app-file-details>
                             </mat-sidenav>
                             </mat-sidenav-container>
