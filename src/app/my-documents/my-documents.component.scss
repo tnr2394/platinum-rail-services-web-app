@@ -3,6 +3,11 @@
 }
 
 .title_display {
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 50%;
+    overflow: hidden;
     @media (max-width: 575px) {
         min-width: 230px;
         max-width: 230px;

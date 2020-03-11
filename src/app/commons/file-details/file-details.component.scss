@@ -57,10 +57,17 @@ mat-form-field {
 
 .download_link {
     a {
-        color: brown;
+        color: white;
         text-decoration: none;
+        border-radius: 50px;
+        outline:none ;
+        background-color: green;
     }
-    color: brown;
+    text-decoration: none;
+    border-radius: 50px;
+    outline:none ;
+    background-color: green;
+    // color: white;
 }
 
 .icon {
