@@ -10,7 +10,19 @@ const ObjectId = require('mongodb').ObjectId;
 async function allCourses(query) {
     var deferred = Q.defer();
     courseModel.find(query)
-        .populate("materials")
+        .populate([
+            {
+                path: "materials",
+                model: 'material'
+            },
+            {
+                path: 'materials',
+                populate: [{
+                    path: 'files',
+                    model: 'file'
+                }]
+            }
+        ])
         .exec((err, courses) => {
             if (err) deferred.reject(err);
             console.log("RETRIVED DATA = ", courses);

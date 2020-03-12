@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent, MatDialog, MatSnackBar } from '@angular/material';
@@ -20,6 +20,7 @@ import { AllotmentConfirmationComponent } from './allotment-confirmation/allotme
   templateUrl: './assignment-status.component.html',
   styleUrls: ['./assignment-status.component.scss']
 })
+
 export class AssignmentStatusComponent implements OnInit, OnChanges {
   public learnerToDisplay: Array<Select2OptionData> = [];
   public optionsForlearners: Select2Options;
@@ -34,10 +35,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   allLearners: any;
   showAllocate: boolean;
 
-  ngOnChanges(changes) {
-    console.log("IN ON CHANGES", changes);
-    // changes.prop contains the old and the new value...
-  }
+
+  
   assignment;
 
   // displayedColumns: string[];
@@ -57,6 +56,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   selectedLearners;
   selectedUnits;
   @Input('jobId') jobIdFromClient;
+  @Input('learnersFromJob') learnersFromJob;
   constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, 
     private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService,
     public dialog: MatDialog, public _snackBar: MatSnackBar) {
@@ -67,6 +67,12 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   // public test() {
   //   console.log("CALLED FROM MATERIALS");
   // }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("IN ON CHANGES", changes);
+    if (changes.learnersFromJob && changes.learnersFromJob.currentValue){
+      this.allLearners = changes.learnersFromJob.currentValue
+    }
+  }
 
   ngOnInit() {
     this.loading = true
@@ -102,7 +108,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
     this.getAssignmentList(this.jobId);
     this.assignmentStatusWithLearner();
-    this.getLearnerList()
+    // this.getLearnerList()
   }
 
   // changedLearner(data: { value: string[] }) {

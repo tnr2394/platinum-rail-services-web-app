@@ -12,6 +12,7 @@ import { MaterialsComponent } from '../../courses/materials/materials.component'
 import { AssignmentStatusComponent } from '../../clients/assignment-status/assignment-status.component'
 import { LearnersComponent } from '../../learners/learners.component'
 import { SchedulerComponent } from '../../scheduler/scheduler.component'
+import { MaterialService } from 'src/app/services/material.service';
 declare var $: any;
 
 
@@ -49,10 +50,14 @@ export class JobComponent implements OnInit, AfterViewInit {
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
+  allLearners: any;
+  learnerAssignmentStatus: any;
 
 
   constructor(private router: Router,
-    public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService) {
+    public _learnerService: LearnerService, public dialog: MatDialog, public _filter: FilterService, 
+    public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private _jobService: JobService,
+    private _materialService: MaterialService,) {
     this.bgColors = ["badge-info", "badge-success", "badge-warning", "badge-primary", "badge-danger"];
     this.learners = [];
     this.dataSource = new MatTableDataSource(this.learners);
@@ -73,6 +78,8 @@ export class JobComponent implements OnInit, AfterViewInit {
     if (this.jobIdFromClient != undefined) {
       this.jobId = this.jobIdFromClient._id
       this.getJob(this.jobId)
+      this.getLearners(this.jobId)
+      this.assignmentStatusWithLearner()
       this.learnersComp.jobIdFromClient = this.jobId
     }
     else {
@@ -81,6 +88,8 @@ export class JobComponent implements OnInit, AfterViewInit {
         console.log("Calling getLearners with jobid = ", this.jobId);
         if (this.jobId != undefined) {
           this.getJob(this.job);
+          this.assignmentStatusWithLearner()
+          this.getLearners(this.jobId)
         }
       });
 
@@ -198,6 +207,22 @@ export class JobComponent implements OnInit, AfterViewInit {
       console.log("Setting job = ", { job: this.job });
       this.loading = false;
     });
+  }
+
+  getLearners(jobId){
+    this._learnerService.getLearnersByJobId(jobId).subscribe(responseLearner=>{
+      this.allLearners = responseLearner;
+    })
+  }
+  assignmentStatusWithLearner(){
+    console.log("this.jobId in assignmentStatusWithLearner", this.jobId);
+    let data = {
+      _id: this.jobId,
+    }
+    this._materialService.assignmentStatusWithLearner(data).subscribe(responseData=>{
+      console.log("assignmentStatusWithLearner responseData", responseData);
+      this.learnerAssignmentStatus = responseData
+    })
   }
 
   completionPercentage(job) {

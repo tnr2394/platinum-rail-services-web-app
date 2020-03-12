@@ -92,6 +92,8 @@
                                                     </div>
                                                     <div class="col-10">
                                                         <material-tile [material]="material" [jobId]="jobId"
+                                                            [learnersFromJob]="learnersFromJob"
+                                                            [allLearnersFromJob]="allLearners"
                                                             [learnersAllotedFromJob]="learnersAlloted"
                                                             [isSelected]="(material._id === selectedMaterial)"
                                                             [index]='i' (getFiles)="loadMaterialFiles($event)"
@@ -134,7 +136,7 @@
                                 <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
                                     <div class="d-inline-block w-100">
                                         <div class="float-left title_display" *ngIf="file">
-                                            {{file.title}}
+                                            <p>{{file.title}}</p>
                                         </div>
                                         <mat-button class="close_btn text-primary float-right"
                                             (click)="sidenav.close()"><i class="fa fa-times-circle"

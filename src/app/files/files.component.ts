@@ -21,6 +21,8 @@ export class FilesComponent implements OnInit, OnChanges {
   @Input('materialId') materialId: any;
   @Input('folder') folder: any;
   @Input('onCompleteItem') newfile: any;
+  @Input('filesFromMaterialTile') filesFromMaterialTile
+  
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
@@ -34,7 +36,8 @@ export class FilesComponent implements OnInit, OnChanges {
     // console.log("SOMETHING CHANGED!!", this.materialId);
     console.log("SOMETHING CHANGED!!", changes);
     if (this.materialId != undefined) {
-      this.getFiles();
+      this.files = this.filesFromMaterialTile
+      // this.getFiles();
     }
     if (this.folder != undefined) {
       this.files = this.folder.files;
@@ -49,7 +52,8 @@ export class FilesComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log("Initialized Files component by", this.files, { materialId: this.materialId });
     if (this.materialId != undefined) {
-      this.getFiles();
+      this.files = this.filesFromMaterialTile
+      // this.getFiles();
     }
   }
 

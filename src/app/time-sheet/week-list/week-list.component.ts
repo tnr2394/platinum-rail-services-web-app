@@ -84,8 +84,22 @@ export class WeekListComponent implements OnInit {
       resolve(this.allWeeks)
     }).then((resolvedAllWeeks) => {
       console.log("---resolvedAllWeeks-- in AFTER FOR LOOP", resolvedAllWeeks);
-      this.getStatus(resolvedAllWeeks).then((resolvedWeeks) => {
+      this.getStatus(resolvedAllWeeks).then((resolvedWeeks:any) => {
         console.log("$$resolvedWeeks-----", resolvedWeeks);
+        this._timeSheetService.getWeeklyStatus({ dateArray: resolvedWeeks, instructorId: this.instructorId}).subscribe((statusResponse)=>{
+          this.allWeeks.forEach((singleWeek,index)=>{
+            console.log("index in allWeeks loop", index);
+            console.log("statusResponse in allWeeks loop", statusResponse);
+            
+            singleWeek['breakBtnTurnsStatus'] = statusResponse.res2[index].breakBtnTurnsStatus
+            singleWeek['last13Status'] = statusResponse.res2[index].last13Status
+            singleWeek['travelHrsStatus'] = statusResponse.res2[index].travelHrsStatus
+            singleWeek['weekHrs'] = statusResponse.res2[index].weekHrs
+            singleWeek['workingHrsStatus'] = statusResponse.res2[index].workingHrsStatus
+          })
+          this.loading = false
+          console.log("********** allWeeks after api response", this.allWeeks);
+        })
       })
     })
     // this.index = i;
@@ -125,24 +139,27 @@ export class WeekListComponent implements OnInit {
           singleWeek.weekStart = datesArrayResolved[0]
           singleWeek.weekEnd = datesArrayResolved[datesArrayResolved.length - 1]
           //       console.log("datesOfTheWeek", singleWeek.datesOfTheWeek);
-
-          this._timeSheetService.getWeeklyStatus({ date: datesArrayResolved, instructorId: this.instructorId }).subscribe((statusResponse) => {
-            //   console.log("-----statusResponse-----",statusResponse.finalStatus );
-            this.loading = false;
-            // singleWeek['status'] = statusResponse.finalStatus;
-            //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
-            // console.log("-----statusResponse-----",statusResponse.finalStatus );
-            // singleWeek['status'] = statusResponse.finalStatus;
-            singleWeek['breakBtnTurnsStatus'] = statusResponse.breakBtnTurnsStatus
-            singleWeek['last13Status'] = statusResponse.last13Status
-            singleWeek['travelHrsStatus'] = statusResponse.travelHrsStatus
-            singleWeek['weekHrs'] = statusResponse.weekHrs
-            singleWeek['workingHrsStatus'] = statusResponse.workingHrsStatus
-            console.log("-----weeklySTATUS of-----", singleWeek);
-          })
+          tempdatesArrayResolved.push(datesArrayResolved)
+          // console.log("******tempdatesArrayResolved", tempdatesArrayResolved);
+        //   this._timeSheetService.getWeeklyStatus({ date: datesArrayResolved, instructorId: this.instructorId }).subscribe((statusResponse) => {
+        //     //   console.log("-----statusResponse-----",statusResponse.finalStatus );
+        //     this.loading = false;
+        //     // singleWeek['status'] = statusResponse.finalStatus;
+        //     //   console.log("-----weeklySTATUS of-----", singleWeek.weekNumber, singleWeek.status, singleWeek.datesOfTheWeek );
+        //     // console.log("-----statusResponse-----",statusResponse.finalStatus );
+        //     // singleWeek['status'] = statusResponse.finalStatus;
+        //     singleWeek['breakBtnTurnsStatus'] = statusResponse.breakBtnTurnsStatus
+        //     singleWeek['last13Status'] = statusResponse.last13Status
+        //     singleWeek['travelHrsStatus'] = statusResponse.travelHrsStatus
+        //     singleWeek['weekHrs'] = statusResponse.weekHrs
+        //     singleWeek['workingHrsStatus'] = statusResponse.workingHrsStatus
+        //     console.log("-----weeklySTATUS of-----", singleWeek);
+        //   })
         })
-        resolve(weeks)
+        console.log("******tempdatesArrayResolved", tempdatesArrayResolved);
+        resolve(tempdatesArrayResolved)
       })
+      // console.log("******tempdatesArrayResolved", tempdatesArrayResolved);
       //   console.log("after API call", weeks);
 
     })

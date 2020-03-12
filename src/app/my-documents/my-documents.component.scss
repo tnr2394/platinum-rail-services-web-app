@@ -4,10 +4,6 @@
 
 .title_display {
     font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 50%;
-    overflow: hidden;
     @media (max-width: 575px) {
         min-width: 230px;
         max-width: 230px;
@@ -15,6 +11,10 @@
     p {
         font-size: 20px;
         max-width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 90%;
     }
 }
 

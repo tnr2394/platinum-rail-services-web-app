@@ -33,14 +33,14 @@
             <mat-tab class="assi_tab" label="Assignment Status">
                 <!-- <div class="card"> -->
                 <div class="status_tab">
-                    <app-assignment-status [jobId]='job._id'></app-assignment-status>
+                    <app-assignment-status [jobId]='job._id' [learnersFromJob]="allLearners"></app-assignment-status>
                 </div>
                 <!-- </div> -->
             </mat-tab>
             <mat-tab label="learners">
                 <div class="status_tab">
                     <!-- <div class="card"> -->
-                    <app-learners (getLearnersFromComponent)="loadLearners($event)" (learnerAdded)="addedLearner($event)" [jobId]='job._id'></app-learners>
+                    <app-learners (getLearnersFromComponent)="loadLearners($event)" (learnerAdded)="addedLearner($event)" [jobId]='job._id' [learnersFromJob]="allLearners"></app-learners>
                     <!-- </div> -->
                 </div>
             </mat-tab>
@@ -49,7 +49,7 @@
                     <!-- <div class="card"> -->
                     <div *ngIf="job && !clientDashboard" class="mt-3">
                         <!-- passing into material =  {{job.course._id}} -->
-                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [jobId]="job._id" (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted" (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()"
+                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [learnersFromJob]="learnerAssignmentStatus" [allLearnersFromJob]="allLearners" [materials]="job.course.materials" [jobId]="job._id" (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted" (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()"
                             #material>
                         </app-materials>
                         <button mat-flat-button class="pull-right my-4 button_hover_effect ripple Button_shap_effact" (click)="allocateLearners()" *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">

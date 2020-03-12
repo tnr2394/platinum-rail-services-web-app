@@ -25,6 +25,8 @@ export class MaterialTileComponent implements OnInit {
   @Input('jobId') jobId;
   @Input('folder') folder: any;
   @Input('learnersAllotedFromJob') learnersAlloted;
+  @Input('learnersFromJob') learnersFromJob;
+  @Input('allLearnersFromJob') allLearners;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
@@ -50,7 +52,7 @@ export class MaterialTileComponent implements OnInit {
   resubmissionLearners: number = 0;
   submittedLearners: number = 0;
   completedLearners: number = 0;
-  allLearners: any;
+  // allLearners: any;
   unassignedLearners: number = 0;
   reSubmittedLearners: number = 0;
   learnerNames = [];
@@ -62,6 +64,7 @@ export class MaterialTileComponent implements OnInit {
   today = new Date()
   learnerCopy: any;
   indexForMatTab: number = 1;
+  allFiles: any;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
@@ -75,8 +78,10 @@ export class MaterialTileComponent implements OnInit {
 
     if (this.router.url.includes('/jobs')) {
       this.displayLearners = true
-      this.getLearners()
-      this.assignmentStatusWithLearner(this.jobId, "true")
+      // this.getLearners()
+      // this.assignmentStatusWithLearner(this.jobId, "true")
+      this.learner = this.learnersFromJob
+      this.getCount()
       this.indexForMatTab = 2;
       var id = '#' + this.material._id;
       // console.log(id, "click here")
@@ -103,15 +108,19 @@ export class MaterialTileComponent implements OnInit {
     if (this.displayLearners == true) {
       if (changes.jobId != undefined) {
         if (changes.jobId.currentValue != undefined) {
-          this.assignmentStatusWithLearner(this.jobId, "true");
-          this.getLearners()
-          this.getLearnerCheck()
+          this.learner = changes.learnersFromJob.currentValue
+          console.log("this.learner in changes.jobId", this.learner);
+          this.getCount()
+          // this.assignmentStatusWithLearner(this.jobId, "true");
+          // this.getLearners()
+          // this.getLearnerCheck()
         }
       }
     }
 
     if (changes.material != undefined) {
       if (changes.material.currentValue != undefined) {
+        // this.getLearnerCheck()
         this.materialId = changes.material.currentValue.material_id;
         this.assignedLearner = 0
         this.pendingLearners = 0
@@ -119,11 +128,28 @@ export class MaterialTileComponent implements OnInit {
         this.submittedLearners = 0
         this.completedLearners = 0
         this.reSubmittedLearners = 0;
+        this.allFiles = changes.material.currentValue.files
       }
     }
     if (changes.learnersAlloted && changes.learnersAlloted.currentValue == true) {
+      // this.learner = changes.learnersFromJob.currentValue
+      // this.getCount()
       this.assignmentStatusWithLearner(this.jobId, "true")
       // this.isSelected = false;
+    }
+    if (changes.learnersFromJob && changes.learnersFromJob.currentValue){
+      this.learner = changes.learnersFromJob.currentValue
+      console.log("***in changes.learnersFromJob", this.learner);
+      this.getCount()
+    }
+    if (changes.allLearners && changes.allLearners.currentValue) {
+      this.allLearners = changes.allLearners.currentValue;
+      this.allLearnersCount = changes.allLearners.currentValue.length || 0
+      // this.allLearners.forEach(learner => {
+      //   // learner.checked = false
+      // })
+      // this.getLearnerCheck()
+      this.learnerCopy = this.allLearners;
     }
   }
 
@@ -263,6 +289,8 @@ export class MaterialTileComponent implements OnInit {
   }
   // GET LEARNER COUNT
   getCount() {
+    console.log("in get counts", this.learner);
+    
     this.learnerNames = [];
     this.assignedLearner = 0
     this.pendingLearners = 0
@@ -270,30 +298,32 @@ export class MaterialTileComponent implements OnInit {
     this.submittedLearners = 0
     this.completedLearners = 0
     this.reSubmittedLearners = 0;
-    this.learner.forEach(learner => {
-      learner.assignments.forEach(assignment => {
-        if (assignment.assignmentId == this.materialId) {
-          this.learnerNames.push(learner.learnerName)
-          this.assignedLearner += 1;
-          if (assignment.assignmentStatus == 'Pending') {
-            this.pendingLearners += 1
+    if(this.learner){
+      this.learner.forEach(singleLearner => {
+        singleLearner.assignments.forEach(assignment => {
+          if (assignment.assignmentId == this.materialId) {
+            this.learnerNames.push(singleLearner.learnerName)
+            this.assignedLearner += 1;
+            if (assignment.assignmentStatus == 'Pending') {
+              this.pendingLearners += 1
+            }
+            else if (assignment.assignmentStatus == 'Requested for Resubmission') {
+              this.resubmissionLearners += 1
+            }
+            else if (assignment.assignmentStatus == 'Submitted') {
+              this.submittedLearners += 1
+            }
+            else if (assignment.assignmentStatus == 'Completed') {
+              this.completedLearners += 1
+            }
+            else if (assignment.assignmentStatus == 'Re-submitted') {
+              this.reSubmittedLearners += 1
+            }
           }
-          else if (assignment.assignmentStatus == 'Requested for Resubmission') {
-            this.resubmissionLearners += 1
-          }
-          else if (assignment.assignmentStatus == 'Submitted') {
-            this.submittedLearners += 1
-          }
-          else if (assignment.assignmentStatus == 'Completed') {
-            this.completedLearners += 1
-          }
-          else if (assignment.assignmentStatus == 'Re-submitted') {
-            this.reSubmittedLearners += 1
-          }
-        }
-        this.unassignedLearners = (this.allLearnersCount - this.assignedLearner > 0) ? this.allLearnersCount - this.assignedLearner : 0;
+          this.unassignedLearners = (this.allLearnersCount - this.assignedLearner > 0) ? this.allLearnersCount - this.assignedLearner : 0;
+        })
       })
-    })
+    }
   }
 
   onSelectChange(event, i) {
@@ -339,11 +369,6 @@ export class MaterialTileComponent implements OnInit {
   }
 
   getLearnerCheck() {
-    // console.log("Getting allocated learner", event);
-    // if (event.tab.textLabel == "Learners") {
-
-    // console.log("this.learner", this.learner)
-    // console.log("this.allLearners", this.allLearners)
     if (this.allLearners) {
       this.allLearners.forEach(singleLearner => {
 
@@ -402,24 +427,23 @@ export class MaterialTileComponent implements OnInit {
   // console.log("THIS.ALLLEARNERS", this.allLearners);
 
   // API
-  getLearners() {
-    this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
-      console.log("**allLearners", allLearners);
-      this.allLearnersCount = allLearners.length || 0
-      this.allLearners = allLearners
-      this.allLearners.forEach(learner => {
-        learner.checked = false
-      })
-      this.getLearnerCheck()
-      this.learnerCopy = this.allLearners;
-    })
-  }
+  // getLearners() {
+  //   this._learnerService.getLearnersByJobId(this.jobId).subscribe(allLearners => {
+  //     console.log("**allLearners", allLearners);
+  //     this.allLearnersCount = allLearners.length || 0
+  //     this.allLearners = allLearners
+  //     this.allLearners.forEach(learner => {
+  //       learner.checked = false
+  //     })
+  //     this.getLearnerCheck()
+  //     this.learnerCopy = this.allLearners;
+  //   })
+  // }
 
   assignmentStatusWithLearner(jobId, doGetCount) {
     this._materialService.assignmentStatusWithLearner(jobId).subscribe((data) => {
       this.learner = JSON.parse(JSON.stringify(data));
       console.log("*****assignmentStatusWithLearner have to display this all", this.learner);
-
       if (doGetCount == "true") this.getCount()
       this.learnerLength = data.length;
     });
