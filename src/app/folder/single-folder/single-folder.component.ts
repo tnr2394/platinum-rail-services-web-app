@@ -172,7 +172,7 @@ export class SingleFolderComponent implements OnInit {
     console.log("IN MY DOCS", event);
     $('.expansion-row').addClass('drawer-col-class');
     $('.flex_row').addClass('flex_reverse');
-    $('.col-md-8').addClass('col-md-12');
+    // $('.col-md-8').addClass('col-md-12');
     if (event.file != undefined) {
       this.details = event.file;
       this.fileTitle = this.details.alias ? this.details.alias : this.details.title

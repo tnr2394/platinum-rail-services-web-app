@@ -60,8 +60,8 @@
 
         <div class="row parent_row" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
             <div class="materials_box col" cdkDrag *ngFor='let singleFolder of allFolders;let i = index'>
-                <div class="card p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
-                    <mat-card class="p-0" appMaterialElevation [defaultElevation]="0" raisedElevation="5">
+                <div class="p-0 inner-card h-100 text-center" (click)="singleClick($event,singleFolder, i)" id="folder_card_{{i}}" (dblclick)="doubleClick($event,singleFolder)">
+                    <mat-card class="p-0 folder" appMaterialElevation [defaultElevation]="1" raisedElevation="5">
                         <mat-card-content class="material_card p-2">
                             <div class="materia_icon_span {{getRandomColorClass(i)}}">
                                 <i class="fa fa-folder icon round"></i>

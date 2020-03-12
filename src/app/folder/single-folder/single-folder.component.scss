@@ -480,7 +480,7 @@ button.uploadBtn {
     }
 }
 .flex_reverse{
-    flex-direction: column;
+    // flex-direction: column;
 }
 @media (max-width:1024px){
     .flex_reverse {
@@ -510,6 +510,6 @@ button.uploadBtn {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        width: 90%;
+        width: 100%;
     }
 }

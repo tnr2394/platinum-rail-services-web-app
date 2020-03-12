@@ -15,6 +15,7 @@ import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
 import { CompetenciesService } from 'src/app/services/competencies.service';
+import { Router } from '@angular/router';
 // import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -51,7 +52,7 @@ export class FileDetailsComponent implements OnInit {
   currentUser: any;
   pathForPreview: string;
   constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
-    public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
+    public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef, public router: Router) { }
 
   ngOnInit() {
     console.log("On init isCompetency", this.isCompetency);
@@ -153,6 +154,9 @@ export class FileDetailsComponent implements OnInit {
       // users.file = this.id;
       this.openSnackBar("Shared Successfully", "ok")
     })
+  }
+  openFolder(){
+    this.router.navigate(['/single-folder', this.recievedFile._id])
   }
 
   delete() {
