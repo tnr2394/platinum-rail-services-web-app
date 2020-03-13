@@ -652,10 +652,6 @@ function subFolderDetail(folderId, subFoldersTree, allFiles, callback) {
                     if (folder.child && folder.child.length) {
 
                         subFoldersTree.push({ folderId, subFolders: folder.child })
-                        console.log(" Hey Vishal Here have sub folders ")
-                        console.log(" Hey Vishal Here have sub folders ")
-
-
                         async.eachSeries(folder.child, (singleChild, innerCb) => {
 
                             subFolderDetail(singleChild, subFoldersTree, allFiles, function (data, error) {

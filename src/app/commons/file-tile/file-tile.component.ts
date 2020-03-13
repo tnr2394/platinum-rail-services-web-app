@@ -1,4 +1,4 @@
-import { Component ,OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileService } from 'src/app/services/file.service';
 import { from, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class FileTileComponent implements OnInit {
 
   @Input('file') file: any;
   @Input('isCompetency') isCompetency;
-  
+
   @Output() deletedFile: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();
@@ -29,13 +29,13 @@ export class FileTileComponent implements OnInit {
   pathForPreview: string;
 
   constructor(public _fileService: FileService, private route: ActivatedRoute, public router: Router,
-    public dialog: MatDialog, public _snackBar: MatSnackBar) { //|| this.router.url.includes('single-folder')
+    public dialog: MatDialog, public _snackBar: MatSnackBar) {
     if (this.router.url.includes('submission') || this.router.url.includes('learnerAllotment')) {
       this.isSubmission = true;
     } else {
       this.isSubmission = false;
     }
-    if (this.router.url.includes('jobs') || this.router.url.includes('materials')){
+    if (this.router.url.includes('jobs') || this.router.url.includes('materials')) {
       this.ismyDocs = false
     }
     else this.ismyDocs = true;
@@ -46,8 +46,6 @@ export class FileTileComponent implements OnInit {
     console.log("file tile initialized file= ", this.file);
     this.pathForPreview = "https://docs.google.com/gview?url=" + this.file.path + "&embedded=true"
     this.file.alias = (this.file.alias && this.file.alias.length > 1) ? this.file.alias : this.file.title
-
-    console.log(' this.isSubmission', this.isSubmission);
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
@@ -93,10 +91,10 @@ export class FileTileComponent implements OnInit {
     })
   }
 
-  fileDetails(){
+  fileDetails() {
     $('.parent_row').addClass('col-width-class');
     console.log("file tile clicked", event);
-    this.openSideNav.emit({ file: this.file , isCompetency: this.isCompetency })
+    this.openSideNav.emit({ file: this.file, isCompetency: this.isCompetency })
   }
 
 }

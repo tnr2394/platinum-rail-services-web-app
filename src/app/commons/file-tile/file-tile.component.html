@@ -11,34 +11,45 @@
             <div class="row m-0 py-3">
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="excxtnsion_img">
-                        <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" onerror="this.src='../../../assets/iconFallBack.png';" alt="Missing Image" [ngClass]="file.extension">
+                        <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif"
+                            onerror="this.src='../../../assets/iconFallBack.png';" alt="Missing Image"
+                            [ngClass]="file.extension">
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 text-left">
-                    <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}" tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</p>
+                    <p class="file_tile_main_area mb-1" placement="bottom-left" ngbTooltip="{{file.alias}}"
+                        tooltipClass="tooltip-class" triggers="hover">{{file.alias}}</p>
                     <div class="row text-left align-items-center">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 file_title">
-                            <!-- <b>{{file}}</b> -->
-                            <p class="upload_user mb-0" style="font-size: small;" *ngIf="file.uploadedBy">uploaded By:{{file.uploadedBy}}</p>
-                            <p class="upload_user mb-0" style="font-size: small;" *ngIf="!file.uploadedBy">uploaded By:ADMIN</p>
+                            <p class="upload_user mb-0" style="font-size: small;" *ngIf="file.uploadedBy">uploaded
+                                By:{{file.uploadedBy}}</p>
+                            <p class="upload_user mb-0" style="font-size: small;" *ngIf="!file.uploadedBy">uploaded
+                                By:ADMIN</p>
                         </div>
                         <!-- <div class="col-12"> -->
                         <div class='col-xl-6 col-lg-6 col-md-6 col-sm-6'>
 
-                            <span class="date" placement="bottom-left" ngbTooltip="Uploaded On" tooltipClass="tooltip-class">
-                                    {{ file.createdAt | date: 'shortDate' }}</span>
+                            <span class="date" placement="bottom-left" ngbTooltip="Uploaded On"
+                                tooltipClass="tooltip-class">
+                                {{ file.createdAt | date: 'shortDate' }}</span>
 
-                            <a *ngIf="isSubmission" href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class" download>
+
+                            <!-- File Download Option -->
+                            
+                            <a *ngIf="isSubmission" href="{{file.path}}" mat-button class="text-primary"
+                                triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class"
+                                download>
                                 <i class="fas fa-cloud-download-alt" style="font-size: large;color:#3CC480;"></i>
                             </a>
-                            <a *ngIf="isSubmission" target="_blank" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="preview" tooltipClass="tooltip-class" href='{{pathForPreview}}'>
+
+                            <!-- File Preview Option -->
+
+                            <a *ngIf="isSubmission" target="_blank" mat-button class="text-primary" triggers="hover"
+                                placement="bottom" ngbTooltip="preview" tooltipClass="tooltip-class"
+                                href='{{pathForPreview}}'>
                                 <i class="fa fa-eye" style="font-size: large;color:#4786FF;"></i>
                             </a>
 
-                            <!-- <button (click)="delete()" placement="bottom" ngbTooltip="Delete"  tooltipClass="tooltip-class"
-                                    style='background-color: transparent; border: transparent;'>
-                                    <i class="fas fa-trash" style='color:#FF6565;'></i>
-                                </button>  -->
                         </div>
                     </div>
                 </div>

@@ -34,32 +34,14 @@ export class S3UploadService {
       Key: newName,
       Body: file,
       ACL: 'public-read',
-      ContentType: contentType
+      ContentType: contentType,
+      ContentEncoding: 'base64',
+      ContentDisposition: 'attachment',
     };
-    // bucket.upload(params, function (err, data) {
-    //   if (err) {
-    //     console.log('There was an error uploading your file: ', err);
-    //     return false;
-    //   }
-    //   console.log('Successfully uploaded file.', data);
-    //   return true;
-    // });
     //for upload progress   
     return new Observable<any>((observer) => {
-      // var request = bucket.putObject(params);
-      // request.send(function (err, data) {
-      //   if (err) {
-      //     console.log("Error:", err.code, err.message);
-      //     observer.error(err);
-      //   } else {
-      //     console.log(data);
-      //     observer.next(data);
-      //   }
-      // });
       bucket.upload(params).on('httpUploadProgress', function (evt) {
         console.log('Event In evt====>>>>', evt);
-        // resolve(evt)
-        // console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
         observer.next(evt);
       }).send(function (err, data) {
         if (err) {

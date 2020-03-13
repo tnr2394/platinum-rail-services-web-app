@@ -130,11 +130,8 @@ export class SingleFolderComponent implements OnInit {
 
   downloadAll() {
     this.loading = true;
-    let tempFolder = this.folder.title
-    let tempFileList = this.fileList
-
-
-  
+    let tempFolder = this.folder.title;
+    let tempFileList = this.fileList;
     let zip: JSZip = new JSZip();
     var zipFilename = tempFolder + '.zip';
     let count = 0;
@@ -142,7 +139,7 @@ export class SingleFolderComponent implements OnInit {
 
     new JSZip.external.Promise(function (resolve, reject) {
       console.log('Download all clicked');
-      
+      // First For Each For Folders
       _.forEach(tempFileList, (file) => {
         var filename = file.path.split("/")[3];
         // loading a file and add it in a zip file
@@ -164,9 +161,9 @@ export class SingleFolderComponent implements OnInit {
               resolve(data)
             }
           },
-          progress: function (e) { 
+          progress: function (e) {
             this.percentage = e.percent
-            // console.log("*****PROGRESS",e); 
+            // console.log("*****PROGRESS", e);
           }
         });
       });
@@ -206,8 +203,8 @@ export class SingleFolderComponent implements OnInit {
   //     });
   //   });
   // }
-// <---------------OLD FUNCTION END------------------>
-  
+  // <---------------OLD FUNCTION END------------------>
+
   createFolder() {
     this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
       if (folder == undefined) return
@@ -239,6 +236,8 @@ export class SingleFolderComponent implements OnInit {
     }
     this.mydsidenav.open()
   }
+
+
   fileDeleted(event) {
     console.log("In singleFolder", event);
     if (event.type == 'folder') {
@@ -256,8 +255,8 @@ export class SingleFolderComponent implements OnInit {
       if (index > -1) this.folder.files.splice(index, 1)
     }
     this.mydsidenav.close();
-    // this.subFolders
   }
+
   folderTitleChenged(event) {
     console.log("Title changed event in folder", event);
     this.fileTitle = event.alias
