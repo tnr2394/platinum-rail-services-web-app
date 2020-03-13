@@ -1,9 +1,4 @@
-import {
-  Component, OnInit, Input, SimpleChanges, ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ShareFileModalComponent } from 'src/app/folder/share-file-modal/share-file-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -15,6 +10,7 @@ import * as JSZipUtil from 'jszip-utils'
 import { saveAs } from "file-saver";
 import * as _ from 'lodash';
 import { CompetenciesService } from 'src/app/services/competencies.service';
+JSZip.support.nodebuffer = false;
 // import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -49,7 +45,7 @@ export class FileDetailsComponent implements OnInit {
   type: any;
   currentUser: any;
   pathForPreview: string;
-  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
+  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService: CompetenciesService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -62,14 +58,14 @@ export class FileDetailsComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   ngOnChanges(changes: SimpleChanges): void {
-    
+
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.sharedClient = []
     this.sharedInstructor = []
 
     this.displaySaveBtn = false
     console.log("CHANGES", changes);
-    if (changes.isCompetency && changes.isCompetency.currentValue == true){
+    if (changes.isCompetency && changes.isCompetency.currentValue == true) {
       this.isCompetency = changes.isCompetency.currentValue;
       // this.isMaterials = 'material'
     }
@@ -80,7 +76,7 @@ export class FileDetailsComponent implements OnInit {
       this.currentFolder = changes.recievedFile.currentValue;
       // TYPE
       if (changes.recievedFile.currentValue.type == 'material') this.isMaterials = true; else this.isMaterials = false
-      
+
       if (changes.recievedFile.currentValue.type == 'folder') this.readOnlyTitle = false; else this.readOnlyTitle = true;
       this.type = changes.recievedFile.currentValue.type;
       if (changes.recievedFile.currentValue.path) {
@@ -176,7 +172,7 @@ export class FileDetailsComponent implements OnInit {
             console.log("file DELETED", res);
           })
         }
-        else if(this.type == 'competencies') {
+        else if (this.type == 'competencies') {
           // this._competencyService.deleteCompetency(this.id).subscribe(res => {
           //   console.log("Competency deleted", res);
           // })
@@ -187,37 +183,77 @@ export class FileDetailsComponent implements OnInit {
   }
 
   downloadAll() {
-    console.log('Download all clicked', this.currentFolder);
+    console.log('Download all calling', this.currentFolder);
+
     this.loading = true;
-    this._folderService.getFolder(this.currentFolder._id).subscribe(res => {
+    this._folderService.getFolderWithSubFolder(this.currentFolder._id).subscribe(res => {
 
-      let zip: JSZip = new JSZip();
-      let count = 0;
-      var zipFilename = res.folders.title + '.zip';
-      if (res.folders[0].files && res.folders[0].files.length) {
-        _.forEach(res.folders[0].files, (file) => {
-          console.log("file.path", file.path, file)
-          var filename = file.path.split("/")[3];
-          // loading a file and add it in a zip file
-          JSZipUtil.getBinaryContent(file.path, (err, data) => {
-            if (err) {
-              throw err; // or handle the error
-            }
-            zip.file(filename, data, { binary: true });
-            count++;
+      console.log('Res in ts file===>>', res);
 
-            if (count == res.folders[0].files.length) {
-              zip.generateAsync({ type: 'blob' }).then(function (content) {
-                saveAs(content, zipFilename);
-              });
-              this.loading = false;
-            }
+      _.forEach(res, (singleFolder) => {
+        let zip: JSZip = new JSZip();
+        let count = 0;
+        var zipFilename = singleFolder.title + '.zip';
+
+
+        if (singleFolder.files && singleFolder.files.length) {
+          _.forEach(singleFolder.files, (file) => {
+            console.log("file.path", file.path, file)
+            var filename = file.path.split("/")[3];
+            // loading a file and add it in a zip file
+            JSZipUtil.getBinaryContent(file.path, (err, data) => {
+              if (err) {
+                throw err; // or handle the error
+              }
+              zip.file(filename, data, { binary: true });
+              count++;
+
+              if (count == singleFolder.files.length) {
+                zip.generateAsync({ type: 'blob' }).then(function (content) {
+                  saveAs(content, zipFilename);
+                });
+                this.loading = false;
+              }
+            });
           });
-        });
-      }
-      else {
-        alert("No files contais in this folder")
-      }
+        }
+        else {
+          alert("No files contais in this folder")
+        }
+      })
+
+
+      //   return;
+
+      //   let zip: JSZip = new JSZip();
+      //   let count = 0;
+      //   var zipFilename = res.folders.title + '.zip';
+
+      //   if (res.folders[0].files && res.folders[0].files.length) {
+      //     _.forEach(res.folders[0].files, (file) => {
+      //       console.log("file.path", file.path, file)
+      //       var filename = file.path.split("/")[3];
+      //       // loading a file and add it in a zip file
+      //       JSZipUtil.getBinaryContent(file.path, (err, data) => {
+      //         if (err) {
+      //           throw err; // or handle the error
+      //         }
+      //         zip.file(filename, data, { binary: true });
+      //         count++;
+
+      //         if (count == res.folders[0].files.length) {
+      //           zip.generateAsync({ type: 'blob' }).then(function (content) {
+      //             saveAs(content, zipFilename);
+      //           });
+      //           this.loading = false;
+      //         }
+      //       });
+      //     });
+      //   }
+      //   else {
+      //     alert("No files contais in this folder")
+      //   }
+      // })
     })
   }
 
@@ -251,5 +287,4 @@ export class FileDetailsComponent implements OnInit {
       return false;
     }
   }
-
 }

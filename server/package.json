@@ -6,6 +6,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "array-to-tree": "^3.3.2",
     "async": "^3.1.0",
     "aws-sdk": "^2.580.0",
     "bcryptjs": "^2.4.3",

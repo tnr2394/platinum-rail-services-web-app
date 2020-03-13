@@ -38,6 +38,8 @@ router.get('/shared', jwtService.validateJWT, folderController.getSharedFolder);
 // GET SHARED FILE
 router.get('/shared-file', jwtService.validateJWT, folderController.getSharedFile);
 
+router.get('/sub', folderController.getAllSubFolders);
+
 
 
 // FILE OPERATIONS

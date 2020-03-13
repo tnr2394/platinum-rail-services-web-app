@@ -94,12 +94,6 @@ folderController.getFolders = async function (req, res, next) {
             })
         }
     })
-
-    // return;
-    // allfolders(query).then(folders => {
-    //     console.log("SENDING RESPONSE Folders = ", folders)
-    //     return res.send({ data: { folders } });
-    // })
 }
 
 
@@ -272,75 +266,6 @@ folderController.addFile = function (req, res, next) {
                 err
             })
         })
-
-
-
-    // return;
-
-    // let files = [];
-
-    // let filesArray = [];
-
-    // if (Array.isArray(req.files.file)) {
-    //     files = req.files.file
-    // } else {
-    //     files[0] = req.files.file;
-    // }
-
-    // async.eachSeries(files, (singleFile, innerCallback) => {
-    //     console.log('singleFile', singleFile);
-
-    //     const folderId = req.body.folderId;
-
-    //     let re = /(?:\.([^.]+))?$/;
-    //     let ext = re.exec(singleFile.name)[1];
-    //     let name = singleFile.name.split('.').slice(0, -1).join('.')
-
-    //     let newName = name + '-' + Date.now();
-
-    //     singleFile.name = newName + '.' + ext;
-
-
-
-    //     let newFile = {
-    //         title: newName,
-    //         alias: name,
-    //         type: "file", // OR SUBMISSION OR DOCUMENT
-    //         path: "NEWPATH",
-    //         extension: ext,
-    //         // uploadedBy: req.user.name,
-    //         file: singleFile,
-    //         uploadedDate: new Date()
-    //     }
-
-    //     console.log('new file object', newFile, folderId);
-
-    //     folderDOA.uploadFileToFolder(folderId, newFile)
-    //         .then(updated => {
-    //             console.log("updated ", updated);
-    //             filesArray.push(updated);
-    //             innerCallback();
-    //         }, err => {
-    //             return res.status(500).send({
-    //                 err
-    //             })
-    //         })
-    // }, (callbackError, callbackResponse) => {
-    //     if (callbackError) {
-    //         console.log("callbackError ", callbackError);
-    //         return res.status(500).send({
-    //             err
-    //         })
-    //     } else {
-    //         console.log('Files Array::::::::', filesArray);
-    //         return res.send({
-    //             data: {
-    //                 file: filesArray
-    //             },
-    //             msg: "File Uploaded Successfully"
-    //         });
-    //     }
-    // })
 }
 
 // Update folder details
@@ -670,6 +595,272 @@ const slugify = function (text) {
         .replace(/^-+/, '') // Trim - from start of text
         .replace(/-+$/, ''); // Trim - from end of text
 }
+
+
+folderController.getAllSubFolders = function (req, res, next) {
+    const folderId = req.query._id;
+    let subFoldersTree = [];
+    let allFiles = [];
+
+    console.log('Get All Sub Folder Using FolderId', folderId);
+
+    subFolderDetail(folderId, subFoldersTree, allFiles, function (data, error) {
+        console.log(" data ", data)
+        if (data) {
+            return res.status(200).json(data)
+        }
+        else {
+            console.log(error)
+            return res.status(500).json({ error })
+        }
+    })
+}
+
+// Function For Sub Folders
+
+function subFolderDetail(folderId, subFoldersTree, allFiles, callback) {
+    console.log("  ")
+    console.log("  ")
+    console.log("  ")
+    console.log(" Subfolder details for ", folderId)
+    console.log(" subFoldersTree ", subFoldersTree)
+    console.log(" All Files ", allFiles)
+    console.log("  ")
+    console.log("  ")
+
+    folderModel.findOne({
+        _id: folderId
+    }, {
+        child: 1,
+        name: 1,
+        title: 1
+    }).exec((error, folder) => {
+        if (error) return callback(null, error);
+        else {
+
+            getFolderFiles(folderId)
+                .then((files) => {
+                    console.log(" Files=====>> ", files)
+                    if (files && files.length && files[0].files) {
+                        console.log(" Have to Add in files array with folder Id ")
+                        allFiles.push({ folderId: folderId, title: files[0].title, files: files[0].files })
+                    }
+                    else {
+                        console.log(" No Files in folder ")
+                    }
+
+                    if (folder.child && folder.child.length) {
+
+                        subFoldersTree.push({ folderId, subFolders: folder.child })
+                        console.log(" Hey Vishal Here have sub folders ")
+                        console.log(" Hey Vishal Here have sub folders ")
+
+
+                        async.eachSeries(folder.child, (singleChild, innerCb) => {
+
+                            subFolderDetail(singleChild, subFoldersTree, allFiles, function (data, error) {
+                                console.log(data)
+                                if (data) {
+                                    return innerCb()
+                                }
+                                else {
+                                    console.log(" 2222222222222222222222222 ")
+                                }
+                            })
+
+                        }, (err) => {
+                            if (err) {
+                                console.log(" Error in async for sub folders ")
+                                console.error(err)
+                            }
+                            else {
+                                console.log(" Success For all the sub folders ")
+                                return callback({ subFoldersTree, allFiles }, null)
+                            }
+                        })
+                    }
+                    else {
+                        return callback({ subFoldersTree, allFiles }, null)
+                    }
+
+                    // Have to work for sub folder
+                    // if (folder.child && folder.child.length) {
+                    //     if (parent) {
+
+                    //         subFolders.push({
+                    //             _id: folder._id,
+                    //             title: folder.title,
+                    //             files: files[0].files || [],
+                    //             subFolderId: folder.child
+                    //         })
+
+                    //         console.log(" Add as a root folder===>>", subFolders)
+
+                    //     } else {
+                    //         console.log(" Wrong ****************************************8 ")
+                    //         console.log(" Folder Id current ", folderId)
+                    //         console.log(" Folder Sub Folder ", JSON.stringify(subFolders[0], null, 2))
+                    //         console.log(" Check in subfolder ")
+                    //     }
+
+
+                    //     console.log("")
+                    //     console.log("")
+
+                    //     console.log(" Get Details From Sub folder ")
+                    //     console.log("")
+                    //     console.log("")
+
+                    //     console.log(" folder.child ", folder.child)
+                    //     console.log("")
+                    //     console.log("")
+
+                    //     async.eachSeries(folder.child, (singleChild, innerCb) => {
+                    //         console.log('singleChild==>>', singleChild);
+
+                    //         subFolderDetail(singleChild, subFolders, false, function (result, err) {
+                    //             if (err) console.error(" Hey ", err)
+                    //             else subFolders.push(result)
+                    //             // return innerCb()
+                    //         })
+                    //     }, (callbackError, callbackResponse) => {
+                    //         if (callbackError) {
+                    //         } else {
+                    //             console.log("async End Here====>>")
+                    //             // return res.status(200).json(callbackResponse)
+                    //         }
+                    //     })
+                    // }
+                    // else {
+                    //     console.log("No Sub Folders=====>>>>>>", subFolders)
+                    //     if (parent) {
+
+                    //         subFolders.push({
+                    //             _id: folder._id,
+                    //             title: folder.title,
+                    //             files: files[0].files || [],
+                    //         })
+
+                    //         return callback(subFolders)
+
+                    //     } else {
+                    //         console.log("SubFolder", JSON.stringify(subFolders, null, 2))
+                    //         console.log("folderId and files", folderId, files)
+
+                    //         console.log(files[0])
+
+                    //         // Add Files in sub folder
+                    //         if (files && files.length && files[0].files && files[0].files.length) {
+                    //             addInSubFolder(folderId, subFolders, files)
+                    //                 .then(() => {
+
+                    //                 })
+                    //                 .catch(() => {
+
+                    //                 })
+                    //         }
+                    //         else {
+                    //             console.log(" No files ", subFolders)
+                    //         }
+
+
+                    //         // _.findIndex(subFolders, function(o) { return o.user == 'barney'; });
+                    //         // console.log(folderId)
+                    //         // console.log(" Wrong ")
+                    //     }
+
+                    //     // return callback({ subFolderDetail: folder.child, files })
+                    // }
+                })
+                .catch((error) => {
+                    console.log(error)
+                    // return callback(null)
+                })
+        }
+        // return callback(folder, null);
+    })
+}
+
+
+
+function addInSubFolder(folderId, subFolders, files) {
+
+    console.log(" addInSubFolder ", subFolders)
+
+    return new Promise((resolve, reject) => {
+        for (var i = 0; i < subFolders.length; i++) {
+            console.log("In For Loop", JSON.stringify(subFolders[i], null, 2))
+
+            if (subFolders[i].subFolderId && subFolders[i].subFolderId.length) {
+                console.log(" Have Subfolder ");
+                console.log(' folderId ', folderId)
+
+                var index = lodash.findIndex(subFolders[i].subFolderId, function (o) { return o.toString() == folderId.toString(); });
+                console.log(" Index ", index)
+
+                if (index > -1) {
+                    // subFolders[i].subFolderId[index]
+                    if (subFolders[i].subFoldersDetails) {
+
+                    }
+                    else {
+                        subFolders[i]['subFoldersDetails'] = [{
+                            files
+                        }]
+
+                        console.log(JSON.subFolders)
+                    }
+
+                }
+                else {
+
+                }
+            }
+            else {
+                console.log(" Have no Subfolder ");
+            }
+        }
+    })
+
+}
+
+
+// const subFolderDetail = (folderId) => {
+//     // return new Promise((resolve, reject) => {
+//         folderModel.findOne({
+//             _id: folderId
+//         }, {
+//             _id: 1,
+//             child: 1
+//         }).exec((error, folder) => {
+//             if (error) {
+//                 console.log('Error===>>', error);
+//                 // return reject(error);
+//             } else {
+//                 console.log('Folder====>>', folder);
+//                 // return resolve(folder);
+//             }
+//         })
+//     // })
+// }
+
+// Function For Folder Files
+const getFolderFiles = (folderId) => {
+    return new Promise((resolve, reject) => {
+        folderModel.find({ _id: folderId }, { _id: 1, files: 1, title: 1 })
+            .populate('files')
+            .exec((err, folders) => {
+                if (err) return reject(err);
+                // console.log("RETRIVED DATA = ", folders);
+                return resolve(folders);
+            });
+    })
+}
+
+const formatInObject = (object) => {
+    console.log('Format in object:', object);
+}
+
 
 
 

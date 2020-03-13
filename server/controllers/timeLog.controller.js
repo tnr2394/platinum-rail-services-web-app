@@ -1,5 +1,3 @@
-console.log(" Time Log Controller ")
-
 // Npm Modules
 const async = require("async")
 const lodash = require('lodash')

@@ -155,6 +155,18 @@ export class FolderService {
     });
   }
 
+  getFolderWithSubFolder(id): Observable<any> {
+    var that = this;
+    return new Observable<any>((observer) => {
+      console.log("Observable");
+      this.http.get(config.baseApiUrl + "folder/sub?_id=" + id).subscribe((res: any) => {
+        console.log("Get Folders In Service====>> : ", res);
+        observer.next(res.allFiles);
+        observer.complete();
+      })
+    });
+  }
+
   uploadFileToFolder(data: any): Observable<any> {
     console.log("Adding Files", data);
 
@@ -163,7 +175,7 @@ export class FolderService {
       var that = this;
       this.http.post(config.baseApiUrl + "folder/files", data).subscribe((res: any) => {
         console.log("in folder service", res);
-        
+
         observer.next(res.data.file);
       }, err => {
         console.log("ERROR ")
