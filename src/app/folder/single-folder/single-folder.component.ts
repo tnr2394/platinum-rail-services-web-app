@@ -15,6 +15,8 @@ import { CreateFolderModalComponent } from '../create-folder-modal/create-folder
 // import { $ } from 'protractor';
 declare var $: any;
 import { NewFileModalComponent } from '../../files/new-file-modal/new-file-modal.component'
+JSZip.support.nodebuffer = false;
+
 
 
 
@@ -127,35 +129,85 @@ export class SingleFolderComponent implements OnInit {
   }
 
   downloadAll() {
-
-    console.log('Download all clicked');
-
     this.loading = true;
+    let tempFolder = this.folder.title
+    let tempFileList = this.fileList
 
+
+  
     let zip: JSZip = new JSZip();
+    var zipFilename = tempFolder + '.zip';
     let count = 0;
-    var zipFilename = this.folder.title + '.zip';
+    let myZip;
 
+    new JSZip.external.Promise(function (resolve, reject) {
+      console.log('Download all clicked');
+      
+      _.forEach(tempFileList, (file) => {
+        var filename = file.path.split("/")[3];
+        // loading a file and add it in a zip file
+        JSZipUtil.getBinaryContent(file.path, {
+          callback: function (err, data) {
+            if (err) {
+              reject(err);
+            } else {
+              zip.file(filename, data, { binary: true });
+              count++;
+              if (count == tempFileList.length) {
+                zip.generateAsync({ type: 'blob' }).then(function (content) {
+                  saveAs(content, zipFilename);
+                });
+                // this.loading = false;
+              } else {
 
-    _.forEach(this.fileList, (file) => {
-      var filename = file.path.split("/")[3];
-      // loading a file and add it in a zip file
-      JSZipUtil.getBinaryContent(file.path, (err, data) => {
-        if (err) {
-          throw err; // or handle the error
-        }
-        zip.file(filename, data, { binary: true });
-        count++;
-
-        if (count == this.fileList.length) {
-          zip.generateAsync({ type: 'blob' }).then(function (content) {
-            saveAs(content, zipFilename);
-          });
-          this.loading = false;
-        }
+              }
+              resolve(data)
+            }
+          },
+          progress: function (e) { 
+            this.percentage = e.percent
+            // console.log("*****PROGRESS",e); 
+          }
+        });
       });
-    });
+    }).then((data) => {
+      console.log("data in .then", data);
+      // return JSZip.loadAsync(data);
+    })
   }
+  // <---------------OLD FUNCTION START------------------>
+  // downloadAll() {
+
+  //   console.log('Download all clicked');
+
+  //   this.loading = true;
+
+  //   let zip: JSZip = new JSZip();
+  //   let count = 0;
+  //   var zipFilename = this.folder.title + '.zip';
+
+
+  //   _.forEach(this.fileList, (file) => {
+  //     var filename = file.path.split("/")[3];
+  //     // loading a file and add it in a zip file
+  //     JSZipUtil.getBinaryContent(file.path, (err, data) => {
+  //       if (err) {
+  //         throw err; // or handle the error
+  //       }
+  //       zip.file(filename, data, { binary: true });
+  //       count++;
+
+  //       if (count == this.fileList.length) {
+  //         zip.generateAsync({ type: 'blob' }).then(function (content) {
+  //           saveAs(content, zipFilename);
+  //         });
+  //         this.loading = false;
+  //       }
+  //     });
+  //   });
+  // }
+// <---------------OLD FUNCTION END------------------>
+  
   createFolder() {
     this.openDialog(CreateFolderModalComponent, this.folderId).subscribe(folder => {
       if (folder == undefined) return

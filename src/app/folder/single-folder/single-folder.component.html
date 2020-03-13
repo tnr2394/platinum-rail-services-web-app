@@ -48,11 +48,12 @@
                     <button mat-button (click)="downloadAll()" class="bg-info dwnload_all_btn"><i
                             class="fas fa-download"></i><span>
                             Download All</span></button>
-
+                                
                 </div>
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-9 col-sm-9">
+                           PERCENTAGE: {{percentage}}
                             <mat-form-field class="w-100" style="padding-left:25px !important;">
                                 <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="filter()"
                                     value="value">
