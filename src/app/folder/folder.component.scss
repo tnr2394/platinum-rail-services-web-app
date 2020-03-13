@@ -33,6 +33,7 @@
     align-items: center;
     display: flex;
     line-height: 105px;
+    color: white;
     @media (max-width:1199px){
         line-height: 70px;
         font-size: 35px;
@@ -170,4 +171,7 @@ h5{
 .no-folder{
     display: block;
     width: 100%;
+}
+.folder{
+    max-width: 200px;
 }

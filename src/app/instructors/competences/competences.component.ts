@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar, MatTableDataSource, MatPaginator, MatSort, MatSidenav } from '@angular/material';
 import { AddCompModalComponent } from './add-comp-modal/add-comp-modal.component';
@@ -46,6 +46,8 @@ export class CompetencesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
+
+  @Input('deletedId') deletedId;
   @Output() openSideNav: EventEmitter<any> = new EventEmitter<any>();
   constructor(public dialog: MatDialog, public _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute,
     public _competencyService: CompetenciesService) {
@@ -58,6 +60,21 @@ export class CompetencesComponent implements OnInit {
       console.log("this.instructorId =  ", this.instructorId);
     });
     this.getCompetencyData()
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.deletedId && changes.deletedId.currentValue){
+      this.deletedId = changes.deletedId.currentValue
+      let tempdeletedId = this.deletedId
+      console.log("*****this.deletedId", this.deletedId);
+      var compIndex = _.findIndex(this.compArray, function (o) { return o._id == tempdeletedId.competenciesId})
+      if (compIndex > -1){
+        var fileIndex = _.findIndex(this.compArray[compIndex].files, function (o) { return o._id == tempdeletedId.fileId })
+        if (fileIndex > -1) {
+          this.compArray[compIndex].files.splice(fileIndex, 1)
+          this.updateData(this.compArray)
+        }
+      }
+    }
   }
   // ngAfterViewInit() {
   //   this.dataSource.paginator = this.paginator;
@@ -129,8 +146,9 @@ export class CompetencesComponent implements OnInit {
   }
   fileDetails(event) {
     console.log("event file tile clicked", event);
+    console.log("this.expandedElement = element", this.expandedElement);
     this.file = event.file
-    this.openSideNav.emit(event)
+    this.openSideNav.emit({ compId: this.expandedElement, file:event,})
     // this.mydsidenav.open();
   }
   editCompModal(element){
@@ -150,6 +168,9 @@ export class CompetencesComponent implements OnInit {
         })
       }
     })
+  }
+  deletedFile(event){
+    console.log("**********file deleted event in competencies", event)
   }
 
   // API

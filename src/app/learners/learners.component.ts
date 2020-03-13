@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { LearnerService } from '../services/learner.service';
 import { ActivatedRoute } from '@angular/router';
@@ -27,6 +27,7 @@ export class LearnersComponent implements OnInit {
   sort: MatSort;
   currentUser;
   loading: Boolean;
+  allLearners: any;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -38,6 +39,7 @@ export class LearnersComponent implements OnInit {
   }
   @Input('jo') isActive: Boolean;
   @Input('jobId') jobIdFromClient;
+  @Input('learnersFromJob') learnersFromJob;
   @Output() getLearnersFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() learnerAdded: EventEmitter<any> = new EventEmitter<any>();
   // @Output() learnersFor: EventEmitter<any> = new EventEmitter<any>();
@@ -55,10 +57,13 @@ export class LearnersComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("*****Learners from job", this.learnersFromJob);
+    
     console.log("jobIdFromClient", this.jobIdFromClient);
     this.loading = true;
     if (this.jobIdFromClient != undefined){
       this.jobId = this.jobIdFromClient
+      this.learners = this.learnersFromJob
     }
     else{
       this.activatedRoute.params.subscribe(params => {
@@ -66,12 +71,22 @@ export class LearnersComponent implements OnInit {
         console.log("Calling getLearnersFromComponent with jobid = ", this.jobId);
       })
     }
-    this.getLearners(this.jobId);
+    // this.getLearners(this.jobId);
+    this.learners = this.learnersFromJob
     this.getJob(this.job);
     this.currentUser = JSON.parse(localStorage.currentUser);
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';
     paginatorIntl.previousPageLabel = '';
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes in learner component", changes);
+    if (changes.learnersFromJob && changes.learnersFromJob.currentValue){
+      this.learners = changes.learnersFromJob.currentValue
+      this.loading = false;
+      this.updateData(this.learners)
+    }
   }
 
   ngAfterViewInit() {

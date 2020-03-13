@@ -18,6 +18,9 @@ router.put('/', competenciesController.updateCompetencies);
 // Delete Competencies
 router.delete('/', competenciesController.deleteCompetencies);
 
+// Delete file
+router.delete('/file', competenciesController.deleteFileFromCompetencies);
+
 // Get Competenies
 router.get('/', competenciesController.getCompetencies);
 

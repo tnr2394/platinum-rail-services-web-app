@@ -63,6 +63,19 @@ competenciesController.deleteCompetencies = async function (req, res, next) {
     });
 }
 
+competenciesController.deleteFileFromCompetencies = async function (req, res, next) {
+    const competenciesId = req.query.competencieId;
+    const fileId = req.query.fileId;
+    console.log('Competencies Remove FILE Function', competenciesId, fileId)
+    competenciesDOA.pullFilesFromCompetencies(competenciesId, fileId )
+        .then(updatedComps => {
+            return res.send({ data: { updatedComps }, msg: "Deleted Successfully" });
+        }).catch(err => {
+            console.error(err);
+            return res.status(500).send({ err });
+        })
+}
+
 
 competenciesController.addFilesToCompetencies = async function (req, res, next) {
     console.log("ADD Files Into Competencies", req.body);
@@ -98,7 +111,6 @@ competenciesController.addFilesToCompetencies = async function (req, res, next) 
             })
         })
 }
-
 
 
 competenciesController.getCompetencies = async function (req, res, next) {

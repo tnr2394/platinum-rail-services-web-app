@@ -172,7 +172,7 @@ function getInstructorWiseTimeLog(instructorId, date) {
 
 function getInstructorTimeLog(instructorId, datesArray) {
 
-    successLog("instructorId", instructorId, datesArray)
+    successLog("instructorId in getInstructorTimeLog==========>>>>>>>>>>", instructorId, JSON.stringify(datesArray, null, 2))
 
     return new Promise((resolve, reject) => {
 

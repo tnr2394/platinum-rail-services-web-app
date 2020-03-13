@@ -94,4 +94,23 @@ export class CompetenciesService {
     })
   }
 
+  deleteFile(competencieId, fileId) {
+    return new Observable((observer) => {
+      console.log("deleteFile", competencieId, fileId);
+
+      this.http.delete(config.baseApiUrl + "competencies/file?competencieId=" + competencieId + "&fileId=" + fileId).subscribe((res: any) => {
+        observer.next(res.data.clients);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        });
+
+    })
+  }
+
 }

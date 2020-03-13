@@ -44,6 +44,66 @@ async function allJobs(query) {
         },
         {
             $lookup: {
+                from: 'materials',
+                localField: 'course.materials',
+                foreignField: '_id',
+                as: 'course.materials'
+            }
+        },
+        {
+            $unwind: {
+                path: '$course.materials',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'files',
+                localField: 'course.materials.files',
+                foreignField: '_id',
+                as: 'course.materials.files'
+            }
+        },
+        {
+            $group: {
+                _id: '$_id',
+                client: {
+                    $first: '$client'
+                },
+                color: {
+                    $first: '$color'
+                },
+                instructors: {
+                    $first: '$instructors'
+                },
+                location: {
+                    $first: '$location'
+                },
+                singleJobDate: {
+                    $first: '$singleJobDate'
+                },
+                startingDate: {
+                    $first: '$startingDate'
+                },
+                client: {
+                    $first: '$client'
+                },
+                title: {
+                    $first: '$title'
+                },
+                totalDays: {
+                    $first: '$totalDays'
+                },
+                course: {
+                    $first: '$course'
+                },
+                materials: {
+                    $push: '$course.materials'
+                } 
+            }
+        },
+        {
+            $lookup: {
                 from: 'clients',
                 localField: 'client',
                 foreignField: '_id',
@@ -144,13 +204,23 @@ async function allJobs(query) {
                 },
                 course: {
                     $first: '$course',
+                },
+                materials: {
+                    $first: '$materials'
                 }
             }
         },
         {
             $project: {
                 instructors: 1,
-                course: 1,
+                course: {
+                    createdAt: 1,
+                    duration: 1,
+                    title: 1,
+                    updatedAt: 1,
+                    _id: 1,
+                    materials: '$materials'
+                },
                 totalDays: 1,
                 startingDate: 1,
                 singleJobDate: 1,

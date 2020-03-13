@@ -60,3 +60,15 @@
   color: #414141;
   padding: 3px;
 }
+.devide_row{
+  @media (max-width: 991px){
+    display: none;
+  }
+  display:block;
+}
+.single_row{
+  display: none;
+  @media (max-width: 991px){
+    display: block;
+  }
+}

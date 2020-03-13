@@ -11,6 +11,7 @@ import { saveAs } from "file-saver";
 import * as _ from 'lodash';
 import { CompetenciesService } from 'src/app/services/competencies.service';
 JSZip.support.nodebuffer = false;
+import { Router } from '@angular/router';
 // import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -23,6 +24,7 @@ JSZip.support.nodebuffer = false;
 export class FileDetailsComponent implements OnInit {
   @Input('details') recievedFile;
   @Input('isCompetency') isCompetency;
+  @Input('competencieId') competencieId;
   @Output() fileDeleted: EventEmitter<any> = new EventEmitter<any>();
   @Output() titleChanged: EventEmitter<any> = new EventEmitter<any>();
 
@@ -45,8 +47,8 @@ export class FileDetailsComponent implements OnInit {
   type: any;
   currentUser: any;
   pathForPreview: string;
-  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService: CompetenciesService,
-    public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
+  constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
+    public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef, public router: Router) { }
 
   ngOnInit() {
     console.log("On init isCompetency", this.isCompetency);
@@ -68,6 +70,9 @@ export class FileDetailsComponent implements OnInit {
     if (changes.isCompetency && changes.isCompetency.currentValue == true) {
       this.isCompetency = changes.isCompetency.currentValue;
       // this.isMaterials = 'material'
+    }
+    if (changes.competencieId && changes.competencieId.currentValue){
+      this.competencieId = changes.competencieId.currentValue
     }
     // if (changes.isCompetency == undefined){
     //   this.isCompetency = false
@@ -146,6 +151,9 @@ export class FileDetailsComponent implements OnInit {
       this.openSnackBar("Shared Successfully", "ok")
     })
   }
+  openFolder(){
+    this.router.navigate(['/single-folder', this.recievedFile._id])
+  }
 
   delete() {
     let update = {
@@ -172,12 +180,13 @@ export class FileDetailsComponent implements OnInit {
             console.log("file DELETED", res);
           })
         }
-        else if (this.type == 'competencies') {
-          // this._competencyService.deleteCompetency(this.id).subscribe(res => {
-          //   console.log("Competency deleted", res);
-          // })
+        else if(this.type == 'competencies') {
+          console.log("competenciesId", this.competencieId, "fileId", this.id);
+          this._competencyService.deleteFile(this.competencieId,this.id).subscribe(res => {
+            console.log("Competency deleted", res);
+          })
         }
-        this.fileDeleted.emit({ fileId: this.id, type: this.type })
+        this.fileDeleted.emit({ fileId: this.id, type: this.type, competenciesId: this.competencieId })
       }
     })
   }

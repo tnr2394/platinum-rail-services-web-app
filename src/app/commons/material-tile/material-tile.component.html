@@ -28,7 +28,7 @@
         <mat-tab label="Files">
             <div class='row m-0 material_responsive'>
                 <div class='col-lg-12'>
-                    <material-files [materialId]="materialId" [folder]="folder" (getFileDetails)="fileDetails($event)">
+                    <material-files [materialId]="materialId" [filesFromMaterialTile]="allFiles" [folder]="folder" (getFileDetails)="fileDetails($event)">
                     </material-files>
                 </div>
             </div>

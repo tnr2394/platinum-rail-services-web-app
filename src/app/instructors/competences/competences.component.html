@@ -87,7 +87,7 @@
                                                         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                                                         <div *ngIf="allFiles && allFiles.length > 0">
                                                             <div *ngFor="let file of allFiles">
-                                                                <file-tile (deletedFile)="deletedFile($event)"
+                                                                <file-tile (deletedFile)="deletedFile($event)" [competencieId]="expandedElement._id"
                                                                     (openSideNav)="fileDetails($event)" [file]="file">
                                                                 </file-tile>
                                                             </div>

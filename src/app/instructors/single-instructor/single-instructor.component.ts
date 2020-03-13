@@ -42,6 +42,8 @@ export class SingleInstructorComponent implements OnInit {
 
   isPrint: boolean;
   file: any;
+  compId: any;
+  deleteEvent: any;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true;
@@ -225,11 +227,14 @@ export class SingleInstructorComponent implements OnInit {
   }
   fileDetails(event) {
     console.log("event file tile clicked", event);
-    this.file = event.file
+    this.file = event.file.file
+    this.compId = event.compId._id
     this.mydsidenav.open();
   }
   deleteFile(event){
-    
+    console.log("event in single-instructor", event);
+    this.deleteEvent = event
+    this.mydsidenav.close()
   }
   // updateData(jobs) {
   //   this.dataSource = new MatTableDataSource(jobs);

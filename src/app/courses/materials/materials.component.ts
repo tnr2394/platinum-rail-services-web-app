@@ -31,7 +31,10 @@ export class MaterialsComponent implements OnInit {
   // @Input('courseid') courseId: any;
   @Input('data') data: any;
   @Input('jobId') jobId;
+  @Input('materials') materialsFromJob;
   @Input('learnersAllotedFromJob') learnersAlloted = false;
+  @Input('learnersFromJob') learnersFromJob;
+  @Input('allLearnersFromJob') allLearners;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
@@ -92,10 +95,19 @@ export class MaterialsComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("*****Changes in app materials");
+    console.log("*****Changes in app materials", changes);
     if (this.jobId != undefined && changes.jobId) {
       this.jobId = changes.jobId.currentValue;
       console.log("this.learners", this.jobId);
+    }
+    if (changes.materialsFromJob && changes.materialsFromJob.currentValue){
+      this.materials = this.materialsFromJob
+      this.copyMaterials = this.materialsFromJob;
+      this.loading = false
+      this.updateData(this.materials)
+    }
+    if (changes.allLearners && changes.allLearners.currentValue){
+      this.allLearners = changes.allLearners.currentValue
     }
   }
   ngAfterViewInit() {
@@ -143,10 +155,12 @@ export class MaterialsComponent implements OnInit {
       console.log("VIEW VALUE IS", this.view)
     }
     this.courseId = this.data;
-    console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
+    // console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
     if (this.courseId) {
       console.log("CourseId  ", this.courseId);
-      this.getMaterials(this.courseId);
+      this.materials = this.materialsFromJob
+      this.updateData(this.materials)
+      // this.getMaterials(this.courseId);
     }
     const paginatorIntl = this.paginator._intl;
     paginatorIntl.nextPageLabel = '';

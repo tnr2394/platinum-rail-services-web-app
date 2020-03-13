@@ -25,7 +25,7 @@
                         <!-- <div class="col-12"> -->
                         <div class='col-xl-6 col-lg-6 col-md-6 col-sm-6'>
 
-                            <span class="date" title="uploaded At">
+                            <span class="date" placement="bottom-left" ngbTooltip="Uploaded On" tooltipClass="tooltip-class">
                                     {{ file.createdAt | date: 'shortDate' }}</span>
 
                             <a *ngIf="isSubmission" href="{{file.path}}" mat-button class="text-primary" triggers="hover" placement="bottom" ngbTooltip="Download" tooltipClass="tooltip-class" download>

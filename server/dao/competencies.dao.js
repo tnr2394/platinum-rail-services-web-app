@@ -75,6 +75,30 @@ competencies.pullCompetenciesFromInstructor = function (competenciesId, instruct
     })
 }
 
+competencies.pullFilesFromCompetencies = function (competenciesId, fileId) {
+    return new Promise((resolve, reject) => {
+        console.log("Pull File From Competencies", { competenciesId }, {fileId});
+        competenciesModel.updateMany({ _id: competenciesId }, {
+            $pull: {
+                files: fileId
+            }
+        }, { upsert: true, new: true }, (err, updatedIns) => {
+            if (err) {
+                console.log('Error while $pull', err);
+                reject(err);
+            } else {
+                console.log("Updated Competencies After remove file = ", updatedIns);
+                fileDAO.deleteFile({ _id: fileId }).then((deleteRes)=>{
+                    resolve(deleteRes)
+                }).catch((err)=>{
+                    reject(err)
+                })
+                // resolve(updatedIns);
+            }
+        });
+    })
+}
+
 competencies.pushCompetenciesIntoInstructor = function (instructorId, competenciesId) {
     return new Promise((resolve, reject) => {
         console.log("Adding Competencies To Instructor", { instructorId, competenciesId });
@@ -225,6 +249,5 @@ competencies.getCompetencies = function (instructorId) {
         })
     })
 }
-
 
 module.exports = competencies;
