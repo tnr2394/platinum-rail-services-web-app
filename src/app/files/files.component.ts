@@ -22,11 +22,11 @@ export class FilesComponent implements OnInit, OnChanges {
   @Input('folder') folder: any;
   @Input('onCompleteItem') newfile: any;
   @Input('filesFromMaterialTile') filesFromMaterialTile
-  
+
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
-  constructor(public _filter: FilterService, public _newFileUploadService: FileUploaderService ,public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
+  constructor(public _filter: FilterService, public _newFileUploadService: FileUploaderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
@@ -37,6 +37,7 @@ export class FilesComponent implements OnInit, OnChanges {
     console.log("SOMETHING CHANGED!!", changes);
     if (this.materialId != undefined) {
       this.files = this.filesFromMaterialTile
+      this.copyFiles = this.filesFromMaterialTile
       // this.getFiles();
     }
     if (this.folder != undefined) {
@@ -68,8 +69,8 @@ export class FilesComponent implements OnInit, OnChanges {
         _.forEach(fileQueue, (file) => {
           this.files.push(file);
         })
-      console.log("this.files After push", this.files);
-      
+        console.log("this.files After push", this.files);
+
         this.openSnackBar("File Uploaded Successfully", "Ok");
         this.updateData(this.files);
         this.fileCount = this.files.length;
@@ -88,8 +89,8 @@ export class FilesComponent implements OnInit, OnChanges {
       })
     }
     console.log("onCompleteItem from file upload service");
-   
-    
+
+
     // this.getFiles();
   }
   updateData(courses: any) {
@@ -115,11 +116,13 @@ export class FilesComponent implements OnInit, OnChanges {
 
   openDialog(someComponent, data = {}): Observable<any> {
     console.log("OPENDIALOG", "DATA = ", data);
-    const dialogRef = this.dialog.open(someComponent, { disableClose: true ,width: "1000px", data });
+    const dialogRef = this.dialog.open(someComponent, { disableClose: true, width: "1000px", data });
     return dialogRef.afterClosed();
   }
 
   applyFilter(filterValue: string) {
+    console.log('Filtered Value====>>', filterValue, this.copyFiles);
+    // this.copyFiles = this.files;
     this.files = this._filter.filter(filterValue, this.copyFiles, ['title', 'type']);
     this.updateData(this.files);
   }
@@ -166,7 +169,7 @@ export class FilesComponent implements OnInit, OnChanges {
     this._fileService.getFilesByMaterial(this.materialId)
       .subscribe(files => {
         console.log("Response from service", files);
-        this.copyFiles = files;
+        // this.copyFiles = files;
         this.files = files;
         console.log("Files updated with - ", files);
         this.fileCount = this.files.length;

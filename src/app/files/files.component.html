@@ -34,8 +34,8 @@
 <div class="row files_display" *ngIf="files.length > 0">
     <div class="col-md-6 mb-3" *ngFor="let file of files">
         <!-- <div *ngFor=""> -->
-            <file-tile (deletedFile)="deletedFile($event)" (openSideNav)="fileDetails($event)" [file]="file">
-            </file-tile>
+        <file-tile (deletedFile)="deletedFile($event)" (openSideNav)="fileDetails($event)" [file]="file">
+        </file-tile>
         <!-- </div> -->
     </div>
 
