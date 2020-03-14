@@ -13,9 +13,14 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   @ViewChild('sidemenu', { static: true }) sidemenu: MatSidenav;
   isPrint: boolean;
   loading: boolean = false;
+  details: any;
+  fileTitle: any;
+  fileId: any;
+  type: any;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
@@ -129,5 +134,57 @@ export class AppComponent {
     this.loading = true
     this._loginService.logout();
     this.loading = false
+  }
+  openFileDetails(event) {
+    console.log("IN app component", event);
+    // if (event.file != undefined) {
+    //   this.details = event.file;
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.file.type
+    // }
+    // else {
+    //   this.details = event
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.type
+    // }
+    this.mydsidenav.open()
+  }
+ public onActivate(event:any) {
+    // elementRef.<the @Output eventEmitter >.subscribe(event => {
+      console.log("ACTIVE COMPONENT",event);
+   this.mydsidenav.close()
+   if (event.openFilesSideNav){
+     event.openFilesSideNav.subscribe(res => {
+       console.log("openFilesSideNav", res);
+       if (res.event.file != undefined) {
+         this.details = res.event.file;
+         this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+         this.fileId = this.details._id
+         this.type = res.event.file.type
+       }
+       else if (res.event.event && res.event.event.file) {
+         this.details = res.event.event.file
+         this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+         this.fileId = this.details._id
+         this.type = res.event.event.file.type
+       }
+       else {
+         this.details = res.event
+         this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+         this.fileId = this.details._id
+         this.type = res.event.type
+       }
+       this.mydsidenav.open()
+     })
+   }
+   
+    // });
+  }
+  closeSidnav() {
+    this.mydsidenav.close()
+    // this.removeCssClass = true;
+    $('.parent_row').removeClass('col-width-class');
   }
 }
