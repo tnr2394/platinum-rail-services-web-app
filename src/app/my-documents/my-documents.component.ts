@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material'
 import { ShareFileModalComponent } from '../folder/share-file-modal/share-file-modal.component';
@@ -12,6 +12,7 @@ declare var $: any;
 export class MyDocumentsComponent implements OnInit {
   details: any;
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
   deletedFile: any;
   removeCssClass: boolean = false;
   fileTitle: any;
@@ -36,19 +37,20 @@ export class MyDocumentsComponent implements OnInit {
   }
   openFileDetails(event){
     console.log("IN MY DOCS", event);
-    if(event.file != undefined){
-      this.details = event.file;
-      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
-      this.fileId = this.details._id
-      this.type = event.file.type
-    }
-    else{
-      this.details = event
-      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
-      this.fileId = this.details._id
-      this.type = event.type
-    }
-    this.mydsidenav.open()
+    this.openFilesSideNav.emit({ event})
+    // if(event.file != undefined){
+    //   this.details = event.file;
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.file.type
+    // }
+    // else{
+    //   this.details = event
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.type
+    // }
+    // this.mydsidenav.open()
   }
   fileDeleted(event){
     console.log(" TEST ", event);

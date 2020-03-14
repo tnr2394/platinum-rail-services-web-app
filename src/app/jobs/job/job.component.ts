@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, ElementRef, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, ElementRef, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatSidenavModule, MatSidenav } from '@angular/material';
 import { LearnerService } from '../../services/learner.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -47,6 +47,8 @@ export class JobComponent implements OnInit, AfterViewInit {
   learnersAlloted = false;
   @Input('jobIdFromClient') jobIdFromClient;
   @Input('jobFromClient') jobFromClient;
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
+
   @ViewChild(MaterialsComponent, { static: false }) materialsComp: MaterialsComponent;
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
@@ -74,8 +76,16 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.clientDashboard = true;
       console.log("VIEW VALUE IS", this.clientDashboard)
     }
-
+    if(this.jobFromClient){
+      console.log("##########this.jobFromClient onInit", this.jobFromClient);
+      this.jobId = this.jobFromClient._id
+      this.getJob(this.jobId)
+      this.getLearners(this.jobId)
+      this.assignmentStatusWithLearner()
+      this.learnersComp.jobIdFromClient = this.jobId
+    }
     if (this.jobIdFromClient != undefined) {
+      console.log("##########this.jobIdFromClient onInit", this.jobIdFromClient);
       this.jobId = this.jobIdFromClient._id
       this.getJob(this.jobId)
       this.getLearners(this.jobId)
@@ -101,15 +111,22 @@ export class JobComponent implements OnInit, AfterViewInit {
     if (changes.jobFromClient != undefined) {
       if (changes.jobFromClient.currentValue != undefined) {
         this.job = changes.jobFromClient.currentValue
+        this.jobId = changes.jobFromClient.currentValue._id
+        console.log("&&&&&&&&&&this.jobId", this.jobId);
+        this.getLearners(this.jobId)
+        this.assignmentStatusWithLearner()
       }
     }
-
+    if (changes.jobFromClient && changes.jobFromClient.currentValue){
+      console.log("##########this.jobFromClient On Changes", this.jobFromClient);
+    }
   }
 
   jobChangedByClient(job) {
     console.log("in jobChangedByClient");
     this.learnersComp.jobIdFromClient = job._id;
-    this.learnersComp.getLearners(job._id);
+    this.getLearners(job._id)
+    // this.learnersComp.getLearners(job._id);
     this.assignmentStatusComp.assignmentStatusWithLearner()
   }
   ngAfterViewInit(): void {
@@ -208,10 +225,14 @@ export class JobComponent implements OnInit, AfterViewInit {
       this.loading = false;
     });
   }
+  openFileDetails(event){
+    this.openFilesSideNav.emit({event})
+  }
 
   getLearners(jobId){
     this._learnerService.getLearnersByJobId(jobId).subscribe(responseLearner=>{
       this.allLearners = responseLearner;
+      console.log("***this.allLearners in job", this.allLearners);
     })
   }
   assignmentStatusWithLearner(){
