@@ -108,7 +108,7 @@ courseController.deleteCourse = function (req, res, next) {
 courseController.allMaterialsUsingCourseIdWithUnitGroup = function (req, res) {
 
     let courseId = req.query._id;
-
+    let newType = 'Assignment'
 
     console.log('CourseId=========?>>>>>>', courseId);
 
@@ -142,17 +142,33 @@ courseController.allMaterialsUsingCourseIdWithUnitGroup = function (req, res) {
         {
             $project: {
                 assignment: {
-                    assignmentTitle: '$material.title',
+                    title: '$material.title',
                     assignmentNo: '$material.assignmentNo',
-                    assignmentUnit: '$material.unitNo',
-                    assignmentId: '$material._id',
-                    assignmentType: '$material.type',
+                    unitNo: '$material.unitNo',
+                    _id: '$material._id',
+                    type: '$material.type',
+                    files: '$material.files'
                 }
             }
         },
         {
+            $unwind: {
+                path: '$assignment.files',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $lookup: {
+                from: 'files',
+                localField: 'assignment.files',
+                foreignField: '_id',
+                as: 'assignment.files'
+            }
+        },
+
+        {
             $group: {
-                _id: '$assignment.assignmentUnit',
+                _id: '$assignment.unitNo',
                 assignment: {
                     $push: '$assignment'
                 }
@@ -162,19 +178,46 @@ courseController.allMaterialsUsingCourseIdWithUnitGroup = function (req, res) {
             $project: {
                 _id: 0,
                 unitNo: '$_id',
-                assignment: 1
-            }
-        },
-        {
-            $sort: {
-                'assignment.assignmentUnit': 1
+                onlyAssignment: {
+                    $filter: {
+                        input: '$assignment',
+                        as: 'type',
+                        cond: {
+                            $eq: ["$$type.type", newType]
+                        }
+                    }
+                },
+                onlyReading: {
+                    $filter: {
+                        input: '$assignment',
+                        as: 'type',
+                        cond: {
+                            $eq: ["$$type.type", 'Reading']
+                        }
+                    }
+                }
             }
         }
+
+        // {
+        //     $project: {
+        //         _id: 0,
+        //         unitNo: '$_id',
+        //         assignment: 1
+        //     }
+        // },
+
+        // {
+        //     $sort: {
+        //         'assignment.assignmentUnit': 1
+        //     }
+        // }
     ]).exec((error, material) => {
         if (error) {
             console.log('Error:', error);
             return res.status(500).send({ err })
         } else {
+            // console.log("material of ")
             return res.send({ data: { material }, msg: "material fetch Successfully" });
         }
     });

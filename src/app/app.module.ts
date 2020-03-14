@@ -126,6 +126,8 @@ import { AllotmentConfirmationComponent } from './clients/assignment-status/allo
 import { CompetencesComponent } from './instructors/competences/competences.component';
 import { AddCompModalComponent } from './instructors/competences/add-comp-modal/add-comp-modal.component';
 import { EditCompModalComponent } from './instructors/competences/edit-comp-modal/edit-comp-modal.component';
+import { UnitsComponent } from './courses/units/units.component';
+import { SingleUnitComponent } from './courses/single-unit/single-unit.component';
 
 @NgModule({
   declarations: [
@@ -208,7 +210,9 @@ import { EditCompModalComponent } from './instructors/competences/edit-comp-moda
     AllotmentConfirmationComponent,
     CompetencesComponent,
     AddCompModalComponent,
-    EditCompModalComponent
+    EditCompModalComponent,
+    UnitsComponent,
+    SingleUnitComponent
   ],
   imports: [
     MatTreeModule,

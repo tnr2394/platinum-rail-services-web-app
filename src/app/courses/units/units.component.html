@@ -1,0 +1,49 @@
+<!-- <div class="row">
+    <div class="col-6">
+        <h3>
+            Marerials
+        </h3>
+    </div>
+    <div class="col-6" style="text-align: end;">
+        <h4>Total: X</h4>
+    </div>
+</div> -->
+<div>
+    <!-- <div class="row">
+        <mat-form-field class="example-full-width col-lg-6 col-md-6">
+            <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div class="col-6">
+            <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple" (click)="addMaterialModal()">
+                <i class="fas fa-plus fa-fw"></i>
+                <span> Add Material</span>
+            </button>
+        </div>
+    </div> -->
+    <div class="col-lg-12 material_flex_paginator">
+        <mat-form-field class="example-full-width col-lg-6 col-md-6">
+            <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <div class="col-3 mb-4" *ngFor="let material of allMaterials">
+            <div class="unitCard" (click)="singleMaterial(material)">
+                <mat-card>
+                    <mat-card-title>
+                        <span>
+                            &#10000;
+                        </span>
+                        Unit: {{material.unitNo}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        Assignments: {{material.onlyAssignment.length}}
+                        Reading Material: {{material.onlyReading.length}}
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@ import * as _ from 'lodash';
 export class MaterialsComponent implements OnInit {
   file: any;
   materialIndex: any;
+  groupedMaterials: any;
   clearCheckBox() {
     console.log("CHILD METHOD");
     this.selectedCheckbox = false;
@@ -147,7 +148,7 @@ export class MaterialsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params['courseId'] != undefined) {
         this.getMaterials(params['courseId']);
-        // this.getGroupedMaterials(params['courseId'])
+        this.getGroupedMaterials(params['courseId'])
       }
     });
 
@@ -368,17 +369,9 @@ export class MaterialsComponent implements OnInit {
   }
   getGroupedMaterials(courseId) {
     console.log("getting materials in materials component for courseId = ", courseId)
-    this._courseService.getCourseGrouped(courseId).subscribe((courses: any) => {
-      console.log('GETTING ');
-
-      // this.course = courses.pop();
-      this.materials = this.course.materials;
-
-      console.log('**This material:::', this.materials, this.course);
-      this.loading = false;
-      this.dataSource = new MatTableDataSource(this.materials);
-      this.copyMaterials = this.materials;
-      this.updateData(this.materials)
+    this._courseService.getCourseGrouped(courseId).subscribe((groupedmaterial: any) => {
+      console.log('groupedmaterial ', groupedmaterial);
+      this.groupedMaterials = groupedmaterial
     });
   }
 }
