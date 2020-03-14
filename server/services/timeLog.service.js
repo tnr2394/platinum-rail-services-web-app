@@ -326,25 +326,25 @@ function getWeeklyTimeLog(instructorId) {
 function sendSheetCompleteMailToInstructors(data) {
     return new Promise((resolve, reject) => {
         console.log('Send Mail To Instructors Every Friday');
-        let emailArray = [];
         instructorController.instructorEmailList().then((res) => {
             if (res.length) {
-                lodash.forEach((res), (single) => {
-                    emailArray.push(single.email)
-                })
-                const defaultPasswordEmailoptions = {
-                    to: emailArray,
-                    subject: `Complete Time Sheet`,
-                    template: 'timeSheetComplete'
-                };
-                mailService.sendMail(defaultPasswordEmailoptions, null, null, function (err, mailResult) {
-                    if (err) {
-                        console.log('Error While Sending Mails', err);
-                        reject(err);
+                async.eachSeries(res, (singleIns, innerCallback) => {
+                    sendTimeLogMailToInstructor(singleIns)
+                        .then(updated => {
+                            console.log("updated ", updated);
+                            innerCallback();
+                        }, err => {
+                            return res.status(500).send({
+                                err
+                            })
+                        })
+                }, (callbackError, callbackResponse) => {
+                    if (callbackError) {
+                        reject(callbackError)
                     } else {
-                        resolve('Mail Send Successfully.....!!');
+                        resolve(callbackResponse)
                     }
-                });
+                })
             } else {
                 resolve('No Instructor Found....!!');
             }
@@ -352,6 +352,39 @@ function sendSheetCompleteMailToInstructors(data) {
             console.log('Error While Fetching Instructor', error);
             reject(error);
         })
+    })
+}
+
+
+const sendTimeLogMailToInstructor = (instructor) => {
+    return new Promise((resolve, reject) => {
+
+        const profileUrl = config.env.url + 'instructors/' + instructor._id + '/?user=instructors';
+
+
+        console.log('instructor Inside Mail Fn', instructor, profileUrl);
+
+
+        const mailData = {
+            profile: {
+                url: profileUrl,
+                name: instructor.name
+            }
+        }
+
+        const defaultPasswordEmailoptions = {
+            to: 'vishal.pankhaniya786@gmail.com',
+            subject: `Complete Time Sheet`,
+            template: 'timeSheetComplete'
+        };
+        mailService.sendMail(defaultPasswordEmailoptions, mailData, null, function (err, mailResult) {
+            if (err) {
+                console.log('Error While Sending Mails', err);
+                reject(err);
+            } else {
+                resolve('Mail Send Successfully.....!!');
+            }
+        });
     })
 }
 

@@ -62,6 +62,7 @@ export class SchedulerComponent implements OnInit {
   viewDate: Date = new Date();
   jobId;
   viewDropdown: Boolean = true;
+  currentUser;
 
   jobsForFilter;
 
@@ -209,37 +210,37 @@ export class SchedulerComponent implements OnInit {
     // if (event.start > new Date()) {
 
 
-      const externalIndex = this.externalEvents.indexOf(event);
-      if (typeof allDay !== 'undefined') {
-        event.allDay = allDay;
-      }
-      if (externalIndex > -1) {
-        this.externalEvents.splice(externalIndex, 1);
-        this.events.push(event);
-      }
+    const externalIndex = this.externalEvents.indexOf(event);
+    if (typeof allDay !== 'undefined') {
+      event.allDay = allDay;
+    }
+    if (externalIndex > -1) {
+      this.externalEvents.splice(externalIndex, 1);
+      this.events.push(event);
+    }
 
 
-      event.start = newStart;
-      if (newEnd) {
-        event.end = newEnd;
-      }
-      if (this.view === 'month') {
-        this.viewDate = newStart;
-        this.activeDayIsOpen = true;
-      }
-      // this.allevents.push(this.createEventObject(event));
-      console.log("this.allevents", JSON.stringify(this.allevents, null, 2));
+    event.start = newStart;
+    if (newEnd) {
+      event.end = newEnd;
+    }
+    if (this.view === 'month') {
+      this.viewDate = newStart;
+      this.activeDayIsOpen = true;
+    }
+    // this.allevents.push(this.createEventObject(event));
+    console.log("this.allevents", JSON.stringify(this.allevents, null, 2));
 
-      console.log("this.allevent last", this.allevents[this.allevents.length - 1]);
-      event.draggable = false;
-      this.allevents = [...this.allevents, event];
+    console.log("this.allevent last", this.allevents[this.allevents.length - 1]);
+    event.draggable = false;
+    this.allevents = [...this.allevents, event];
 
 
-      console.log("allevents", this.allevents)
+    console.log("allevents", this.allevents)
 
-      if (this.externalEvents.length < 1) {
-        this.createNewJob()
-      }
+    if (this.externalEvents.length < 1) {
+      this.createNewJob()
+    }
 
     // }
     // else {
@@ -324,6 +325,9 @@ export class SchedulerComponent implements OnInit {
     this.createNewJob();
     console.log("this.loading", this.loading);
     console.log("jobsForModal**********", this.jobsForModal);
+    this.currentUser = JSON.parse(localStorage.currentUser);
+
+    console.log('Current User======>>', this.currentUser);
 
     if (this.router.url.includes('/jobs') || this.router.url.includes('/client') || this.router.url.includes('/instructors')) {
       if (this.jobsForModal != undefined) {

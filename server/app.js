@@ -151,8 +151,11 @@ const dbBackupCronJob = cron.schedule('0 0 * * 0', () => {
 dbBackupCronJob.start();
 
 
-// const completeTimeSheetCronJob = cron.schedule('0 0 * * FRI', () => {
+//
 
+//5 * * * * *
+
+// const completeTimeSheetCronJob = cron.schedule('0 0 * * FRI', () => {
 //   console.log('Complete Time Sheet is Running Now');
 //   timeLogService.sendSheetCompleteMailToInstructors();
 // }, {
