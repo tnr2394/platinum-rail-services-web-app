@@ -6,9 +6,11 @@ html
         div(style='background: #f5f5f5;display: table;margin: auto;max-width: 100%; box-sizing: border-box;')
             div(style='background: white;margin: 0;margin:20px; padding: 20px; width: 380px; max-width: 100%;')
                 img(style='max-width: 130px;' src='https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png')
-                h4(style="font-family:'Sf UI'; margin-bottom: 0px") Hello
-                p(style='margin-top: 4px;') Request For Complete Your Time Sheet.
-                div(style="font-family: 'Segoe UI';")
+                p Hello #{profile.name},
+                p Greetings of the day !!!
+                p Request you to complete your time sheet.
+                p Here is the link where you can login to start with the time sheet.
+            a(href=profile.url style='display: flex; background-color: #007AC2; color: #fff; padding: 10px 0; text-decoration: none; padding-left: 45%; border: none; outline: none; cursor: pointer;') View    
             div(style="text-align:center; font-family: 'Segoe UI';")
                 p(style='font-size: 12px;')
                     | Copyright 
@@ -16,5 +18,3 @@ html
                     | 2018 
                     b Platinum Rail Services. All Rights Reserved.
                 p(style='font-size: 12px;') info@platinumrailservices.co.uk | 01133506353
-
-

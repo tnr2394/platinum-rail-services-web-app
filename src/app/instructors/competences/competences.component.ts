@@ -62,12 +62,12 @@ export class CompetencesComponent implements OnInit {
     this.getCompetencyData()
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.deletedId && changes.deletedId.currentValue){
+    if (changes.deletedId && changes.deletedId.currentValue) {
       this.deletedId = changes.deletedId.currentValue
       let tempdeletedId = this.deletedId
       console.log("*****this.deletedId", this.deletedId);
-      var compIndex = _.findIndex(this.compArray, function (o) { return o._id == tempdeletedId.competenciesId})
-      if (compIndex > -1){
+      var compIndex = _.findIndex(this.compArray, function (o) { return o._id == tempdeletedId.competenciesId })
+      if (compIndex > -1) {
         var fileIndex = _.findIndex(this.compArray[compIndex].files, function (o) { return o._id == tempdeletedId.fileId })
         if (fileIndex > -1) {
           this.compArray[compIndex].files.splice(fileIndex, 1)
@@ -97,26 +97,30 @@ export class CompetencesComponent implements OnInit {
         console.log(" Diff ", new Date(data.expiryDate) < new Date())
         data['isValid'] = ((new Date(data.expiryDate) < new Date()) == false) ? true : false
         console.groupEnd()
-         
+
         // this.getCompetencyData()
         this.compArray.push(data)
         this.updateData(this.compArray)
       }
     })
   }
-  openFileUpload(element,i) {
+  openFileUpload(element, i) {
     console.log("element in file upload", element, i);
     this.openDialog(NewFileModalComponent, { competenciesId: element._id }).subscribe(uploaded => {
       console.log("uploaded", uploaded);
       let tempArray = this.compArray
-      var index = _.findIndex(tempArray, function (o) { return o._id == element._id})
-      if(index > -1){
-        this.compArray[index].files.push(uploaded[0].data.file)
-        this.updateData(this.compArray)
+
+      if (uploaded && uploaded[0] && uploaded[0].data) {
+        var index = _.findIndex(tempArray, function (o) { return o._id == element._id })
+        if (index > -1) {
+          this.compArray[index].files.push(uploaded[0].data.file)
+          this.updateData(this.compArray)
+        }
       }
+
       // console.log("this.compArray",this.compArray[i])
       // this.compArray[i].files.push(uploaded[0].data.file)
-      
+
     })
   }
 
@@ -148,34 +152,35 @@ export class CompetencesComponent implements OnInit {
     console.log("event file tile clicked", event);
     console.log("this.expandedElement = element", this.expandedElement);
     this.file = event.file
-    this.openSideNav.emit({ compId: this.expandedElement, file:event,})
+    this.openSideNav.emit({ compId: this.expandedElement, file: event, })
     // this.mydsidenav.open();
   }
-  editCompModal(element){
-    this.openDialog(EditCompModalComponent, element).subscribe(data=>{
+  editCompModal(element) {
+    this.openDialog(EditCompModalComponent, element).subscribe(data => {
       console.log("DATA IN COMP FROM EDIT", data)
     })
   }
-  delete(element, i){
-    this.openDialog(DeleteConfirmModalComponent, element).subscribe(confirm=>{
+  delete(element, i) {
+    this.openDialog(DeleteConfirmModalComponent, element).subscribe(confirm => {
       if (confirm == 'no') return
-      else{
+      else {
         console.log("element on delete", element, i);
         this._competencyService.deleteCompetency(element._id).subscribe(res => {
-          console.log("Competency deleted", res);
-          this.compArray.splice(i,1)
+          console.log("Competency deleted====>>>", res);
+          this.getCompetencyData();
+          this.compArray.splice(i, 1)
           this.updateData(this.compArray)
         })
       }
     })
   }
-  deletedFile(event){
+  deletedFile(event) {
     console.log("**********file deleted event in competencies", event)
   }
 
   // API
-  getCompetencyData(){
-    this._competencyService.getCompetencies(this.instructorId).subscribe(res=>{
+  getCompetencyData() {
+    this._competencyService.getCompetencies(this.instructorId).subscribe(res => {
       console.log("***res in comp = ", res.competencies);
       this.compArray = res.competencies
       console.log("***this.compArray", this.compArray);

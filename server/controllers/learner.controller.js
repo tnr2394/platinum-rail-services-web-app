@@ -411,8 +411,6 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
     let re = /(?:\.([^.]+))?$/;
     let extension = re.exec(req.body.Key)[1];
 
-
-
     let newFile = {
         title: req.body.Key,
         alias: req.body.Key,
@@ -423,8 +421,7 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
         uploadedBy: req.user.name,
         uploadedDate: new Date()
     }
-    // }
-
+  
     let filesArray = [];
 
     allotmentDOA.submissionOfAssignment(allotmentId, assignmentStatus, newFile)
@@ -439,68 +436,6 @@ learnerController.assignmentSubmisssion = function (req, res, next) {
                 err
             })
         })
-
-
-
-    // let files = [];
-
-    // if (Array.isArray(req.files.file)) {
-    //     files = req.files.file
-    // } else {
-    //     files[0] = req.files.file;
-    // }
-
-    // async.eachSeries(files, (singleFile, innerCallback) => {
-    //     console.log('singleFile', singleFile);
-
-
-    //     const allotmentId = req.body.allotmentId;
-    //     const assignmentStatus = req.body.status;
-
-    //     var re = /(?:\.([^.]+))?$/;
-    //     var ext = re.exec(singleFile.name)[1];
-    //     var name = singleFile.name.split('.').slice(0, -1).join('.')
-
-    //     var newName = name + '-' + Date.now();
-
-    //     singleFile.name = newName + '.' + ext;
-
-
-    //     var newFile = {
-    //         title: newName,
-    //         alias: name,
-    //         type: "material", // OR SUBMISSION OR DOCUMENT
-    //         path: "NEWPATH",
-    //         extension: ext,
-    //         uploadedBy: req.user.name,
-    //         file: singleFile,
-    //         uploadedDate: new Date()
-    //     }
-
-    //     console.log('new file object', newFile, allotmentId);
-
-    //     allotmentDOA.submissionOfAssignment(allotmentId, assignmentStatus, newFile)
-    //         .then(updated => {
-    //             console.log("updated ", updated);
-    //             innerCallback();
-    //         }, err => {
-    //             return res.status(500).send({
-    //                 err
-    //             })
-    //         })
-    // }, (callbackError, callbackResponse) => {
-    //     if (callbackError) {
-    //         console.log("callbackError ", callbackError);
-    //         return res.status(500).send({
-    //             err
-    //         })
-    //     } else {
-    //         return res.send({
-    //             data: {},
-    //             msg: "Assigment Submitted Successfully"
-    //         });
-    //     }
-    // })
 }
 
 learnerController.forgotPassword = function (req, res, next) {
