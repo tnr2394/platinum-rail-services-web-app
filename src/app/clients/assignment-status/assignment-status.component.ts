@@ -36,7 +36,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   showAllocate: boolean;
 
 
-  
+
   assignment;
 
   // displayedColumns: string[];
@@ -57,7 +57,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   selectedUnits;
   @Input('jobId') jobIdFromClient;
   @Input('learnersFromJob') learnersFromJob;
-  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, 
+  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute,
     private _materialService: MaterialService, private _learnerService: LearnerService, private _jobService: JobService,
     public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.learners = [];
@@ -69,32 +69,20 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   // }
   ngOnChanges(changes: SimpleChanges) {
     console.log("IN ON CHANGES", changes);
-    if (changes.learnersFromJob && changes.learnersFromJob.currentValue){
+    if (changes.learnersFromJob && changes.learnersFromJob.currentValue) {
       this.allLearners = changes.learnersFromJob.currentValue
+    }
+    if (changes.jobIdFromClient && changes.jobIdFromClient.currentValue) {
+      console.log("in assignmentStatus", changes.jobIdFromClient.currentValue);
+      this.jobIdFromClient = changes.jobIdFromClient.currentValue
+      this.jobId = changes.jobIdFromClient.currentValue
+      this.getAssignmentList(this.jobIdFromClient)
+      this.assignmentStatusWithLearner()
     }
   }
 
   ngOnInit() {
     this.loading = true
-    
-    // this.optionsForlearners = {
-    //   multiple: true,
-    //   placeholder: {
-    //     id: '0', // the value of the option
-    //     text: 'Select an option'
-    //   },
-    //   allowClear: true,
-    //   closeOnSelect: false
-    // }
-    // this.optionsForUnits = {
-    //   multiple: true,
-    //   placeholder: "Choose Unit Numbers",
-    //   allowClear: true,
-    //   closeOnSelect: false
-    // }
-    // console.log("ASSIGNMENT STATU CALLED");
-
-    // console.log("jobIdFromClient", this.jobIdFromClient);
 
     if (this.jobIdFromClient != undefined) {
       this.jobId = this.jobIdFromClient
@@ -105,22 +93,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
         // console.log("Calling getLearners with jobid = ", this.jobId);
       });
     }
+    if (this.learnersFromJob) {
+      console.log("*****this.learnersFromJob", this.learnersFromJob);
+      // this.allLearners = this.learnersFromJob
+    }
 
     this.getAssignmentList(this.jobId);
     this.assignmentStatusWithLearner();
     // this.getLearnerList()
   }
 
-  // changedLearner(data: { value: string[] }) {
-  //   console.log("change", data);
-  //   this.currentLearner = data.value.join(',');
-  //   // this.queryParamsObj['instructorId'] = this.current;
-  //   console.log("this.current", this.currentLearner);
-  // }
-  learnersSelected(){
+ 
+  learnersSelected() {
     console.log("***seleted Learners are", this.selectedLearners);
   }
-  
+
   changedUnit(data: { value: string[] }) {
     console.log("change", data);
     this.currentUnit = data.value.join(',');
@@ -130,21 +117,21 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   getFilteredData() {
     this.selectedLearnerArray = []
-    if(this.selectedLearners){
+    if (this.selectedLearners) {
       this.selectedLearners.forEach(learner => {
         console.log("in for each learner is", learner);
         this.selectedLearnerArray.push(learner._id)
       })
     }
-   
+
     this.selectedUnitsArray = []
-    if(this.selectedUnits){
+    if (this.selectedUnits) {
       this.selectedUnits.forEach(unit => {
         console.log("in for each unit is", unit);
         this.selectedUnitsArray.push(unit.id)
       })
     }
-    
+
     // this.loading = true;
     console.log("**this.selectedLearners", this.selectedLearners, "selectedLearnersArray", this.selectedLearnerArray);
     console.log("**this.selectedUnits", this.selectedUnits, "selectedUnitsArray", this.selectedUnitsArray);
@@ -156,9 +143,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       })
     }
     else this.unitArray = this.unitArrayCopy
-    
+
     this.assignmentStatusWithLearner()
-    
+
   }
 
 
@@ -180,6 +167,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       console.log("**unit data is ", data);
       this.assignment = data.assignment;
       this.assignmentLength = this.unit.assignment.length;
+      console.log("*****assignmentLength", this.assignmentLength);
       this.loading = false
     });
   }
@@ -191,7 +179,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   }
 
   checkArray(assignmentArray, assignment) {
-    // console.log('assignmentArray::::::::', assignmentArray);
+    console.log('assignmentArray:::::::: in checkArray', assignmentArray);
 
     if (assignmentArray.length != 0) {
       let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
@@ -227,8 +215,8 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
     }
   }
 
-  unassignedClicked(learn, assignment, learnIndex, assignIndex, event){
-    
+  unassignedClicked(learn, assignment, learnIndex, assignIndex, event) {
+
     console.log("***event", event.target.classList.value);
     console.log("***assignment", assignment);
     // console.log("***learnIndex", learnIndex);
@@ -238,35 +226,35 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       assignment: assignment,
       duedate: null
     }
-    if (event.target.classList.value == 'Unassigned'){
+    if (event.target.classList.value == 'Unassigned') {
       $("#Unassigned" + assignment.assignmentId + learn._id).removeClass('Unassigned');
       $("#Unassigned" + assignment.assignmentId + learn._id).addClass('selected');
     }
-    else if (event.target.classList.value == 'selected'){
+    else if (event.target.classList.value == 'selected') {
       $("#Unassigned" + assignment.assignmentId + learn._id).removeClass('selected');
       $("#Unassigned" + assignment.assignmentId + learn._id).addClass('Unassigned');
     }
-    
-    if(this.allotmentArray){
-      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learner.learnerId == newData.learner.learnerId && o.assignment.assignmentId == newData.assignment.assignmentId)})
-      if(index > -1) this.allotmentArray.splice(index,1)
+
+    if (this.allotmentArray) {
+      var index = _.findIndex(this.allotmentArray, function (o) { return (o.learner.learnerId == newData.learner.learnerId && o.assignment.assignmentId == newData.assignment.assignmentId) })
+      if (index > -1) this.allotmentArray.splice(index, 1)
       else this.allotmentArray.push(newData)
     }
-    if(this.allotmentArray.length > 0){
+    if (this.allotmentArray.length > 0) {
       this.showAllocate = true
     }
     else this.showAllocate = false
     console.log("this.allotmentArray", this.allotmentArray);
   }
-  allocate(){
-    this.openDialog(AllotmentConfirmationComponent).subscribe((allot)=>{
-      if(allot == undefined) return
+  allocate() {
+    this.openDialog(AllotmentConfirmationComponent).subscribe((allot) => {
+      if (allot == undefined) return
       else {
-        this.allotmentArray.forEach(obj=>{
+        this.allotmentArray.forEach(obj => {
           obj.duedate = allot
         })
         console.log("this.allotmentArray", this.allotmentArray);
-        this._learnerService.allocateLearnerFromStatus(this.allotmentArray).subscribe(res=>{
+        this._learnerService.allocateLearnerFromStatus(this.allotmentArray).subscribe(res => {
           console.log("**Response", res);
           this.assignmentStatusWithLearner()
         })
@@ -297,6 +285,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       learner: this.selectedLearnerArray,
       unitNo: this.selectedUnitsArray
     }
+
+    console.log('data============================>>>>>>>>>>>>', data);
+
     this._materialService.assignmentStatusWithLearner(data).subscribe((data) => {
       if (data.length == 0) {
         return;
@@ -316,9 +307,9 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
       }
     });
   }
-  getLearnerList(){
+  getLearnerList() {
     console.log("**getLearnerList called");
-    this._learnerService.getLearnersByJobId(this.jobId).subscribe(learners=>{
+    this._learnerService.getLearnersByJobId(this.jobId).subscribe(learners => {
       this.allLearners = learners
       console.log("**this.allLearners", this.allLearners);
     })

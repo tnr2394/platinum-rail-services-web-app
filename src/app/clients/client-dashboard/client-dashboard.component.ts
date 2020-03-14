@@ -85,6 +85,7 @@ export class ClientDashboardComponent implements OnInit {
     // this.jobComp.job = jobs[0];
     this.jobToPass = jobs[0];
     console.log("this.jobToPass", this.jobToPass);
+    console.log("this.selectedJob", this.selectedJob);
   }
 
 }

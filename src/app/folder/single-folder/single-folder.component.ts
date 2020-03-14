@@ -32,6 +32,7 @@ export class SingleFolderComponent implements OnInit {
   @ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
   @ViewChild('sidenav', { static: false }) public mydsidenav: MatSidenav;
   @Output() titleChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
   filesToDisplay: any;
   allFolders = [];
   preventSingleClick: boolean;
@@ -218,23 +219,24 @@ export class SingleFolderComponent implements OnInit {
     // this.router.navigate(['/single-folder', folderId])
   }
   openFileDetails(event) {
-    console.log("IN MY DOCS", event);
-    $('.expansion-row').addClass('drawer-col-class');
-    $('.flex_row').addClass('flex_reverse');
-    // $('.col-md-8').addClass('col-md-12');
-    if (event.file != undefined) {
-      this.details = event.file;
-      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
-      this.fileId = this.details._id
-      this.type = event.file.type
-    }
-    else {
-      this.details = event
-      this.fileTitle = this.details.alias ? this.details.alias : this.details.title
-      this.fileId = this.details._id
-      this.type = event.type
-    }
-    this.mydsidenav.open()
+    this.openFilesSideNav.emit({ event})
+    // console.log("IN MY DOCS", event);
+    // $('.expansion-row').addClass('drawer-col-class');
+    // $('.flex_row').addClass('flex_reverse');
+    // // $('.col-md-8').addClass('col-md-12');
+    // if (event.file != undefined) {
+    //   this.details = event.file;
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.file.type
+    // }
+    // else {
+    //   this.details = event
+    //   this.fileTitle = this.details.alias ? this.details.alias : this.details.title
+    //   this.fileId = this.details._id
+    //   this.type = event.type
+    // }
+    // this.mydsidenav.open()
   }
 
 
