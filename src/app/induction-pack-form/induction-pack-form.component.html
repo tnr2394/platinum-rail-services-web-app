@@ -1,10 +1,12 @@
 <form class="induction_pack_component">
 	<div id="accordion">
 		<div class="single_accordion">
-			<div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			<div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne">
 				Type Yes/No
 			</div>
-			<div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne" data-parent="#accordion">
+			<div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne"
+				data-parent="#accordion">
 				<div class="single_accordion_content_inner">
 					<div class="row">
 						<div class="col-md-6">
@@ -35,29 +37,483 @@
 								<mat-radio-button value="2">No</mat-radio-button>
 							</mat-radio-group>
 						</div>
+						<div class="col-md-6">
+							<label>Date of induction</label>
+							<mat-form-field>
+								<input matInput name="doi" [matDatepicker]="doi"
+									placeholder="Choose a date of induction" irequired>
+								<mat-datepicker-toggle matSuffix [for]="doi"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Sponshorship</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Is induction pack complete?</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+
+						<div class="col-md-6">
+							<label>Date added to Sentinel Database</label>
+							<mat-form-field>
+								<input matInput name="dsd" [matDatepicker]="dsd"
+									placeholder="Date added to Sentinel Database" irequired>
+								<mat-datepicker-toggle matSuffix [for]="dsd"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="single_accordion">
+			<div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse"
+				data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				Candidate Details
+			</div>
+			<div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo"
+				data-parent="#accordion">
+				<div class="single_accordion_content_inner">
+					<div class="row">
+						<div class="col-md-6">
+							<label>Candidate Name</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Candidate Name" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>BirthDate</label>
+							<mat-form-field>
+								<input matInput name="dob" [matDatepicker]="dob" placeholder="Choose a birth date"
+									irequired>
+								<mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+								<mat-datepicker #dob></mat-datepicker>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>National Insurance No.</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="National Insurance Number" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Candidate Address</label>
+							<mat-form-field class="example-full-width">
+								<textarea rows="4" name="address" cols="100" matInput
+									placeholder="Candidate Address"></textarea>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Contact Number</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Candidate Number" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Sentinel Number</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Sentinel Number" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label>Email Address</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Email Address" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="single_accordion">
-			<div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				Collapsible Group Item #2
+			<div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse"
+				data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				Checklist
 			</div>
-			<div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo" data-parent="#accordion">
+			<div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree"
+				data-parent="#accordion">
 				<div class="single_accordion_content_inner">
-					Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2
+					<div class="row">
+						<div class="col-md-6">
+							<label>Right to work in UK</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Next of Kin provided</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>H&S Policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>ENV Policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Quality Policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Working Hours Policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Worksafe Policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Alcohol and Drug policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="col-md-6">
+							<label>Fire policy provided and briefed</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="col-md-6">
+							<label>Opt out of Working Hours Directive</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="col-md-6">
+							<label>HSQE Briefing Received</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="col-md-6">
+							<label>Safety Critical ID Issued (TfL only)</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+								<mat-radio-button value="2">N/A</mat-radio-button>
+							</mat-radio-group>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
 		<div class="single_accordion">
-			<div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				Collapsible Group Item #3
+			<div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse"
+				data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
+				Bank Details
 			</div>
-			<div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree" data-parent="#accordion">
+			<div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading"
+				data-parent="#accordion">
 				<div class="single_accordion_content_inner">
-					Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3
+					<div class="row">
+						<div class="col-md-6">
+							<label>Name on Account / Ltd Company Name</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Candidate Name" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Bank Name</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Bank Name" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Bank Address</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="bank address" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Account Number</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="account number" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Sort Code</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="sort code" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
+
+		<div class="single_accordion">
+			<div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse"
+				data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
+				Payment Details
+			</div>
+			<div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading"
+				data-parent="#accordion">
+				<div class="single_accordion_content_inner">
+					<div class="row">
+						<div class="col-md-6">
+							<label>CIS</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>PAYE</label>
+							<mat-radio-group aria-label="Select an option">
+								<mat-radio-button value="1">Yes</mat-radio-button>
+								<mat-radio-button value="2">No</mat-radio-button>
+							</mat-radio-group>
+						</div>
+						<div class="col-md-6">
+							<label>Company Name</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Company name" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Company No.</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Company Number" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Please provide a copy of Certificate ofIncorporation</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="sort code" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Umbrella Company – state which one</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="sort code" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="single_accordion">
+			<div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse"
+				data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
+				Insurance
+			</div>
+			<div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading"
+				data-parent="#accordion">
+				<div class="single_accordion_content_inner">
+					<div class="row">
+						<p>Please provide the policy numbers of your company insurances, and return copies of
+							thecertificates</p>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label>Employers’ Liability</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Employers’ Liability" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Professional Indemnity</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Professional Indemnity" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Public Liability</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Public Liability" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Product and Goods Liability</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Product and Goods Liability" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label> Vehicle Business Use</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Vehicle Business Use" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="single_accordion">
+			<div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin"
+				aria-expanded="false" aria-controls="collapseTwo">
+				Next of Kin
+			</div>
+			<div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin"
+				data-parent="#accordion">
+				<div class="single_accordion_content_inner">
+					<div class="row">
+						<p>Please provide detail of your next of kin. Data will be stored on the Sentinel Database.</p>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label>Name of next of kin</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Name of next of kin" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Relationship with you</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Relationship with you" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Contact number of next of kin</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Contact number of next of kin" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+						<div class="col-md-6">
+							<label>Secondary Contact number</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Secondary Contact Number" required
+									cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label>Email for next of kin</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Email Address" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+
+						<div class="col-md-6">
+							<label>Address of next of kin</label>
+							<mat-form-field class="example-full-width">
+								<textarea rows="4" name="address" cols="100" matInput
+									placeholder="Address of next of kin"></textarea>
+							</mat-form-field>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="single_accordion">
+			<div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse"
+				data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
+				Pre-deployment Safety Critical Checklist
+			</div>
+			<div id="Pre-deployment-checklist" class="collapse single_accordion_content"
+				aria-labelledby="Pre-deployment" data-parent="#accordion">
+				<div class="single_accordion_content_inner">
+					<div class="row">
+						<h6>1) Card holder’s details</h6>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label>Forename</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="Forename" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label>Surname</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="surname" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label>Card holder’s contact tel. no</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="contact" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+						<div class="col-md-6">
+							<label>Employing company</label>
+							<mat-form-field class="example-full-width col-md-6 col-sm-12">
+								<input matInput name="name" placeholder="contact" required cdkFocusInitial>
+							</mat-form-field>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 </form>
