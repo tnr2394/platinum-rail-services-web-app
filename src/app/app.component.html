@@ -113,9 +113,30 @@
         </ul>
     </div>
 </div>
+<mat-sidenav-container >
+  <mat-sidenav #sidenav class="margin" mode="side" position="end">
+    <div class="d-inline-block w-100">
+      <div *ngIf="type == 'folder'" class="float-left title_display">
+        <a routerLink="/single-folder/{{fileId}}">
+          <p>{{fileTitle}}</p>
+        </a>
+      </div>
+      <div *ngIf="type != 'folder'" class="float-left title_display">
+        <p>{{fileTitle}}</p>
+      </div>
+      <mat-button class="close_btn text-primary float-right" (click)="closeSidnav()"><i class="fa fa-times-circle"
+          aria-hidden="true"></i>
+      </mat-button>
+    </div>
+    <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)"
+      (titleChanged)="folderTitleChenged($event)"></app-file-details>
+  </mat-sidenav>
+  <mat-sidenav-content>
 <div class="main container-fluid">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)='onActivate($event)'></router-outlet>
 </div>
+</mat-sidenav-content>
+</mat-sidenav-container>
 
 
 <!-- <mat-sidenav-container class="content-container" (backdropClick)="close('backdrop')">

@@ -1,7 +1,7 @@
 <h3 class="page-title">
-    My Documents
+    My Documents 
 </h3>
-<mat-sidenav-container class="example-container full-height folder_sidenav">
+<!-- <mat-sidenav-container class="example-container full-height folder_sidenav"> 
     <mat-sidenav #sidenav mode="side" position="end">
         <div class="d-inline-block w-100">
             <div *ngIf="type == 'folder'" class="float-left title_display">
@@ -17,9 +17,9 @@
         </div>
         <app-file-details [details]="details" (fileDeleted)="fileDeleted($event)" (titleChanged)="folderTitleChenged($event)"></app-file-details>
     </mat-sidenav>
-    <mat-sidenav-content style="padding: 0px 10px;">
+    <mat-sidenav-content style="padding: 0px 10px;"> -->
         <mat-card class="mt-2">
             <app-folder (getFileDetails)="openFileDetails($event)" [deletedFile]="deletedFile" [updatedFolder]="updatedFolder" [removeCssClass]="removeCssClass"></app-folder>
         </mat-card>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    <!-- </mat-sidenav-content> 
+</mat-sidenav-container> -->

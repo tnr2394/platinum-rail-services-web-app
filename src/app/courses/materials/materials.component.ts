@@ -39,6 +39,7 @@ export class MaterialsComponent implements OnInit {
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
   @Output() assignmentAllocated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
   materials: any = [];
   bgColors: string[];
   lastColor;
@@ -320,10 +321,11 @@ export class MaterialsComponent implements OnInit {
   }
   fileDetailsComp(event) {
     console.log("fileDetailsComp", event);
-    this.materialIndex = event.materialIndex
-    this.file = event.file;
-    this.mydsidenav.open();
-    console.log("EVENT OPENING", event.file);
+    this.openFilesSideNav.emit({event})
+    // this.materialIndex = event.materialIndex
+    // this.file = event.file;
+    // this.mydsidenav.open();
+    // console.log("EVENT OPENING", event.file);
   }
   allocatedFromTile(event){
     console.log("In material", event);
