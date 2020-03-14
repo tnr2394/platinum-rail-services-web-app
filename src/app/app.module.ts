@@ -126,6 +126,7 @@ import { AllotmentConfirmationComponent } from './clients/assignment-status/allo
 import { CompetencesComponent } from './instructors/competences/competences.component';
 import { AddCompModalComponent } from './instructors/competences/add-comp-modal/add-comp-modal.component';
 import { EditCompModalComponent } from './instructors/competences/edit-comp-modal/edit-comp-modal.component';
+import { InductionPackFormComponent } from './induction-pack-form/induction-pack-form.component';
 
 @NgModule({
   declarations: [
@@ -208,7 +209,8 @@ import { EditCompModalComponent } from './instructors/competences/edit-comp-moda
     AllotmentConfirmationComponent,
     CompetencesComponent,
     AddCompModalComponent,
-    EditCompModalComponent
+    EditCompModalComponent,
+    InductionPackFormComponent
   ],
   imports: [
     MatTreeModule,

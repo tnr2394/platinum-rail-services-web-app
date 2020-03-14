@@ -37,9 +37,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js",
               "node_modules/jquery/dist/jquery.js",
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/chart.js/dist/Chart.js",
               "node_modules/select2/dist/js/select2.min.js"
             ]
           },

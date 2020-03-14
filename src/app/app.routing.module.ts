@@ -33,8 +33,8 @@ import { WeekListComponent } from './time-sheet/week-list/week-list.component';
 import { AdminTimeSheetComponent } from './time-sheet/admin-time-sheet/admin-time-sheet.component';
 import { AdminReportAComponent } from './time-sheet/admin-report-a/admin-report-a.component';
 import { AdminReportBComponent } from './time-sheet/admin-report-b/admin-report-b.component';
-
 import { SingleWeekComponent } from './time-sheet/single-week/single-week.component';
+import { InductionPackFormComponent } from './induction-pack-form/induction-pack-form.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
 
@@ -213,6 +213,10 @@ const routes: Routes = [
 	{
 		path: 'admin-report-b',
 		component: AdminReportBComponent
+	},
+	{
+		path: 'induction-form',
+		component: InductionPackFormComponent
 	}
 ];
 
