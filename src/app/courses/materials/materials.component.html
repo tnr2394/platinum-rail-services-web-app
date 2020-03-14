@@ -1,15 +1,5 @@
-<!-- <h1>TEST DATA **********</h1> -->
+
 <mat-sidenav-container class="example-container" autosize>
-    <!-- <mat-sidenav #sidenav mode="side" position="end">
-                                <app-file-details></app-file-details>
-                            </mat-sidenav> -->
-    <!-- <div class="expansion_tab"> -->
-    <!-- <mat-sidenav #sidenav mode="side" position="end">
-            <mat-button class="close_btn text-primary" (click)="sidenav.close()"><i class="fa fa-times-circle-o"
-                    aria-hidden="true"></i></mat-button>
-            <app-file-details [details]="file"></app-file-details>
-        </mat-sidenav> -->
-    <!-- </div> -->
     <mat-sidenav-content>
         <div class="row">
             <div class="col-12 responsive-row">
@@ -37,11 +27,11 @@
                             </div>
                             <div class="row table_search">
                                 <div class="col-lg-12 material_flex_paginator">
-                                    <mat-form-field class="example-full-width">
+                                    <!-- <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)">
                                         <mat-icon matSuffix>search</mat-icon>
-                                    </mat-form-field>
-                                    <div class="row w-100">
+                                    </mat-form-field> -->
+                                    <!-- <div class="row w-100">
                                         <div class="col-md-6 pl-0">
                                             <div class="row mt-1 res-row">
                                                 <div *ngFor='let status of assignmentStatus;let i = index'>
@@ -53,25 +43,23 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 p-0 ">
+                                        </div> -->
+                                        <!-- <div class="col-md-6 p-0 ">
                                             <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                    <!-- </div> -->
                                 </div>
                             </div>
 
                             <!-- Select Assignment Status -->
 
-
-
-                            <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
+                            <!-- <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
 
                                 <div class="col-lg-12 all_material_tile">
-                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless"> -->
 
                                         <!-- Title Column -->
-                                        <ng-container matColumnDef="Materials">
+                                        <!-- <ng-container matColumnDef="Materials">
                                             <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
                                                 mat-sort-header="title">
                                                 Name
@@ -100,22 +88,6 @@
                                                             (assignmentAllocated)="allocatedFromTile($event)"
                                                             (fileDetailsComp)="fileDetailsComp($event)"
                                                             (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-
-                                                    <!-- <mat-expansion-panel>
-                                                        <mat-expansion-panel-header>
-                                                            <mat-panel-title>
-                                                                {{material.unitNo}}
-                                                            </mat-panel-title>
-                                                        </mat-expansion-panel-header>
-                                                        <material-tile *ngFor="let oneMaterial of material.assignment; let i = index;" [material]="oneMaterial" [jobId]="jobId" [learnersAllotedFromJob]="learnersAlloted"
-                                                            [isSelected]="(oneMaterial.assignmentId === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
-                                                            (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
-                                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-                                                    </mat-expansion-panel> -->
-
-                                                    
-
-
                                                     </div>
 
                                                 </div>
@@ -145,15 +117,20 @@
                                     <app-file-details [details]="file" (fileDeleted)="deleteFile($event)">
                                     </app-file-details>
                                 </mat-sidenav>
-                            </div>
+                            </div> -->
                             <!-- /.Card content -->
-                            <h1 class="text-center" *ngIf="!materials">
+                            <!-- <h1 class="text-center" *ngIf="!materials">
+                        
                                 <i class="fa fa-refresh fa-spin fa-fw"></i>
-                            </h1>
+                            </h1>-->
+                            <div>
+                                <app-units [groupedMaterilas]="groupedMaterials"></app-units>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-sidenav-content> 
+</mat-sidenav-container> 
+

@@ -1,0 +1,26 @@
+<h3 *ngIf="allMaterials">
+    Unit No: {{allMaterials.unitNo}}
+</h3>
+<div class="row" *ngIf="allMaterials">
+    <div class="col-md-6">
+        Assignments: {{allMaterials.onlyAssignment.length}}
+        <div *ngFor="let material of allMaterials.onlyAssignment; let i = index">
+            <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
+                [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
+                [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
+                (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        Reading: {{allMaterials.onlyReading.length}}
+        <div *ngFor="let material of allMaterials.onlyReading; let i = index">
+            <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
+                [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
+                [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
+                (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+        </div>
+    </div>
+</div>
