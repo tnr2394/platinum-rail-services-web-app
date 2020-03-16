@@ -25,6 +25,7 @@ export class MaterialsComponent implements OnInit {
   file: any;
   materialIndex: any;
   groupedMaterials: any;
+  courseIdForUnits: any;
   clearCheckBox() {
     console.log("CHILD METHOD");
     this.selectedCheckbox = false;
@@ -100,6 +101,8 @@ export class MaterialsComponent implements OnInit {
     console.log("*****Changes in app materials", changes);
     if (this.jobId != undefined && changes.jobId) {
       this.jobId = changes.jobId.currentValue;
+      console.log("in single job page=====>>>>>>>>>",changes.data.currentValue);
+      this.getGroupedMaterials(this.data)
       console.log("this.learners", this.jobId);
     }
     if (changes.materialsFromJob && changes.materialsFromJob.currentValue){
@@ -147,6 +150,7 @@ export class MaterialsComponent implements OnInit {
     console.log("this.activatedRoute", this.activatedRoute.params)
     this.activatedRoute.params.subscribe(params => {
       if (params['courseId'] != undefined) {
+        this.courseIdForUnits = params['courseId']
         this.getMaterials(params['courseId']);
         this.getGroupedMaterials(params['courseId'])
       }
@@ -157,6 +161,11 @@ export class MaterialsComponent implements OnInit {
       console.log("VIEW VALUE IS", this.view)
     }
     this.courseId = this.data;
+    if(this.data){
+      console.log("this.data found at =====>>>>>", this.data);
+      this.courseIdForUnits = this.data
+    }
+    // this.courseIdForUnits
     // console.log("Initialized Materials with course = ", this.courseId, { data: this.data });
     if (this.courseId) {
       console.log("CourseId  ", this.courseId);
