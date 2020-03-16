@@ -1,26 +1,45 @@
 <h3 *ngIf="allMaterials">
-    Unit No: {{allMaterials.unitNo}}
+    Unit No: {{allMaterials._id}}
 </h3>
+<div class="col-lg-12 material_flex_paginator">
+    <mat-form-field class="example-full-width col-lg-6 col-md-6">
+        <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class="material_btn_insmall">
+        <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple"
+            (click)="addMaterialModal()">
+            <i class="fas fa-plus fa-fw"></i>
+            <span> Add Material</span>
+        </button>
+    </div>
+</div>
 <div class="row" *ngIf="allMaterials">
     <div class="col-md-6">
-        Assignments: {{allMaterials.onlyAssignment.length}}
-        <div *ngFor="let material of allMaterials.onlyAssignment; let i = index">
-            <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
-                [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
-                [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
-                (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
-                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-        </div>
+        <!-- Assignments: {{allMaterials.materialsAssignment.length}} -->
+        <!-- <div *ngFor="let material of allMaterials.materialsAssignment; let i = index"> -->
+        <single-material [material]="allMaterials.materialsAssignment" [type]="'Assignment'"
+            (fileDetailComp)="fileDetailsComp($event)"></single-material>
+        <!-- <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
+                                            [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
+                                            [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
+                                            (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                                            (DeleteMaterial)="deletedMaterial($event)"></material-tile> -->
+        <!-- </div>  -->
+
     </div>
 
     <div class="col-md-6">
-        Reading: {{allMaterials.onlyReading.length}}
-        <div *ngFor="let material of allMaterials.onlyReading; let i = index">
-            <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
+        <!-- Reading: {{allMaterials.materialsReading.length}} -->
+
+        <!-- <div *ngFor="let material of allMaterials.materialsReading; let i = index"> -->
+        <single-material [material]="allMaterials.materialsReading" [type]="'Reading'"
+            (fileDetailComp)="fileDetailsComp($event)"></single-material>
+        <!--    <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
                 [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
                 [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
                 (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
-                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
-        </div>
+                (DeleteMaterial)="deletedMaterial($event)"></material-tile> -->
+        <!-- </div>  -->
     </div>
 </div>

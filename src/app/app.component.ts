@@ -152,10 +152,10 @@ export class AppComponent {
     this.mydsidenav.open()
   }
  public onActivate(event:any) {
-    // elementRef.<the @Output eventEmitter >.subscribe(event => {
-      console.log("ACTIVE COMPONENT",event);
+   console.log("ACTIVE COMPONENT", event);
    this.mydsidenav.close()
    if (event.openFilesSideNav){
+     console.log("openFilesSideNav called");
      event.openFilesSideNav.subscribe(res => {
        console.log("openFilesSideNav", res);
        if (res.event.file != undefined) {
