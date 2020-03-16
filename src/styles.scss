@@ -291,6 +291,7 @@ mat-dialog-container {
     border-radius: 20px !important;
     height: auto !important;
     box-shadow: none !important;
+    margin-top: 30px !important;
     .mat-dialog-content {
         max-height: inherit;
     }
@@ -1036,6 +1037,7 @@ body {
     background-color: #962323 !important;
 }
 
+
 /* Ripple effect */
 
 .ripple {
@@ -1394,7 +1396,8 @@ body {
 .set_Badge {
     margin: 10px 15px 15px 15px !important;
 }
-.mat-drawer-container{
+
+.mat-drawer-container {
     height: 100% !important;
 }
 

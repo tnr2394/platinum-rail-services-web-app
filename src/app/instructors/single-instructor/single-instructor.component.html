@@ -2,7 +2,7 @@
     <div class="col-lg-3" [hidden]="isPrint">
         <app-profile [instructorForProfile]="instructorId"></app-profile>
     </div>
-    <div class='col-lg-9 job_tab inst_tab_icons'>
+    <div class='col-lg-9 job_tab inst_tab_icons p-0'>
         <div class="row m-0">
             <div class="col-12">
                 <mat-tab-group>
@@ -30,20 +30,19 @@
                     <mat-tab label="Competencies">
                         <mat-sidenav-container class="example-container fullHeight" autosize>
                             <mat-sidenav-content>
-                        <app-competences (openSideNav)="fileDetails($event)" [deletedId]="deleteEvent"></app-competences>
+                                <app-competences (openSideNav)="fileDetails($event)" [deletedId]="deleteEvent"></app-competences>
                             </mat-sidenav-content>
                             <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
                                 <div class="d-inline-block w-100">
                                     <div class="float-left title_display" *ngIf="file">
                                         {{file.title}}
                                     </div>
-                                    <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle"
-                                            aria-hidden="true"></i></mat-button>
+                                    <mat-button class="close_btn text-primary float-right" (click)="sidenav.close()"><i class="fa fa-times-circle" aria-hidden="true"></i></mat-button>
                                 </div>
                                 <app-file-details [details]="file" [isCompetency]="true" [competencieId]="compId" (fileDeleted)="deleteFile($event)">
                                 </app-file-details>
                             </mat-sidenav>
-                            </mat-sidenav-container>
+                        </mat-sidenav-container>
                     </mat-tab>
                 </mat-tab-group>
             </div>
