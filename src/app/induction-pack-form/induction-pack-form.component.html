@@ -1,63 +1,2110 @@
-<form class="induction_pack_component">
-	<div id="accordion">
-		<div class="single_accordion">
-			<div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				Type Yes/No
-			</div>
-			<div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne" data-parent="#accordion">
-				<div class="single_accordion_content_inner">
-					<div class="row">
-						<div class="col-md-6">
-							<label>Refresher induction</label>
-							<mat-radio-group aria-label="Select an option">
-								<mat-radio-button value="1">Yes</mat-radio-button>
-								<mat-radio-button value="2">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
-						<div class="col-md-6">
-							<label>New Starter</label>
-							<mat-radio-group aria-label="Select an option">
-								<mat-radio-button value="1">Yes</mat-radio-button>
-								<mat-radio-button value="2">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
-						<div class="col-md-6">
-							<label>Is Inductee working on NR?</label>
-							<mat-radio-group aria-label="Select an option">
-								<mat-radio-button value="1">Yes</mat-radio-button>
-								<mat-radio-button value="2">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
-						<div class="col-md-6">
-							<label>Is Inductee working on TfL?</label>
-							<mat-radio-group aria-label="Select an option">
-								<mat-radio-button value="1">Yes</mat-radio-button>
-								<mat-radio-button value="2">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
+<!-- <form class="induction_pack_component"> -->
+<div id="accordion">
+
+
+	<!-- Type Yes/No Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+			aria-expanded="true" aria-controls="collapseOne">
+			Type Yes/No
+		</div>
+		<div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Refresher induction</label>
+						<mat-radio-group [(ngModel)]="refresherInduction" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="single_accordion">
-			<div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				Collapsible Group Item #2
-			</div>
-			<div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo" data-parent="#accordion">
-				<div class="single_accordion_content_inner">
-					Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2Collapsible Group Item #2
-				</div>
-			</div>
-		</div>
-		<div class="single_accordion">
-			<div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				Collapsible Group Item #3
-			</div>
-			<div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree" data-parent="#accordion">
-				<div class="single_accordion_content_inner">
-					Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3Collapsible Group Item #3
+					<div class="col-md-6">
+						<label>New Starter</label>
+						<mat-radio-group [(ngModel)]="newStarter" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Is Inductee working on NR?</label>
+						<mat-radio-group [(ngModel)]="workingOnNR" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Is Inductee working on TfL?</label>
+						<mat-radio-group [(ngModel)]="workingOnTfL" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Date of induction</label>
+						<mat-form-field>
+							<input matInput [(ngModel)]="dateOfInduction" name="doi" [matDatepicker]="doi"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="doi"></mat-datepicker-toggle>
+							<mat-datepicker #doi></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label> Primary Sponshorship</label>
+						<mat-radio-group [(ngModel)]="primary" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Sub-Sponsored Sponshorship</label>
+						<mat-radio-group [(ngModel)]="subSponsored" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Is induction pack complete?</label>
+						<mat-radio-group [(ngModel)]="inductionPackComplete" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+
+					<div class="col-md-6">
+						<label>Date added to Sentinel Database</label>
+						<mat-form-field>
+							<input [(ngModel)]="dateAddedToSentinelDatabase" matInput name="dsd" [matDatepicker]="dsd"
+								placeholder="Date added to Sentinel Database" irequired>
+							<mat-datepicker-toggle matSuffix [for]="dsd"></mat-datepicker-toggle>
+							<mat-datepicker #dsd></mat-datepicker>
+						</mat-form-field>
+					</div>
+
+
+
 				</div>
 			</div>
 		</div>
 	</div>
-</form>
+	<!-- Type Yes/No End Here -->
+
+
+
+	<!-- Candidate Detail Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+			aria-expanded="false" aria-controls="collapseTwo">
+			Candidate Details
+		</div>
+		<div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Candidate Name</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="candidateName" name="candidateName"
+								placeholder="Candidate Name" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>BirthDate</label>
+						<mat-form-field>
+							<input matInput [(ngModel)]="dateOfBirth" name="dob" [matDatepicker]="dob"
+								placeholder="Choose a birth date">
+							<mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+							<mat-datepicker #dob></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>National Insurance No.</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber"
+								placeholder="National Insurance Number" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Candidate Address</label>
+						<mat-form-field class="example-full-width">
+							<textarea rows="4" [(ngModel)]="candidateAddress" name="address" cols="100" matInput
+								placeholder="Candidate Address"></textarea>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Contact Number</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Sentinel Number</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Email Address</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Candidate Details End Here -->
+
+	<!-- Checklist Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse"
+			data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			Checklist
+		</div>
+		<div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Right to work in UK</label>
+						<mat-radio-group [(ngModel)]="type1" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Next of Kin provided</label>
+						<mat-radio-group [(ngModel)]="type2" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>H&S Policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type3" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>ENV Policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type4" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Quality Policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type5" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Working Hours Policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type6" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Worksafe Policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type7" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Alcohol and Drug policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type8" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Fire policy provided and briefed</label>
+						<mat-radio-group [(ngModel)]="type9" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Opt out of Working Hours Directive</label>
+						<mat-radio-group [(ngModel)]="type10" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>HSQE Briefing Received</label>
+						<mat-radio-group [(ngModel)]="type11" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Safety Critical ID Issued (TfL only)</label>
+						<mat-radio-group [(ngModel)]="type12" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button value="N/A">N/A</mat-radio-button>
+						</mat-radio-group>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Checklist End Here -->
+
+
+	<!--Bank Details Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse"
+			data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
+			Bank Details
+		</div>
+		<div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Name on Account / Ltd Company Name</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Bank Name</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Bank Address</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Account Number</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Sort Code</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Bank Details End Here -->
+
+
+	<!-- Payment Detail Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse"
+			data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
+			Payment Details
+		</div>
+		<div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>CIS</label>
+						<mat-radio-group [(ngModel)]="CIS" aria-label="Select an option">
+							<mat-radio-button value="Yes">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>PAYE</label>
+						<mat-radio-group [(ngModel)]="PAYE" aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Company Name</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Company No.</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Please provide a copy of Certificate ofIncorporation</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Umbrella Company – state which one</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Payment Detail End Here -->
+
+	<!-- Insurance Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse"
+			data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
+			Insurance
+		</div>
+		<div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<p>Please provide the policy numbers of your company insurances, and return copies of
+						thecertificates</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Employers’ Liability</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Professional Indemnity</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Public Liability</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Product and Goods Liability</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="insurance4" name="name"
+								placeholder="Product and Goods Liability" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label> Vehicle Business Use</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Insurance End Here -->
+
+
+	<!-- Next Of Kin Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin"
+			aria-expanded="false" aria-controls="collapseTwo">
+			Next of Kin
+		</div>
+		<div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<p>Please provide detail of your next of kin. Data will be stored on the Sentinel Database.</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Name of next of kin</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Relationship with you</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="kinRelationship" name="name"
+								placeholder="Relationship with you" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Contact number of next of kin</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="kinContactNumber" name="name"
+								placeholder="Contact number of next of kin" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Secondary Contact number</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="kinSecondContactNumber" name="name"
+								placeholder="Secondary Contact Number" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Email for next of kin</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+
+					<div class="col-md-6">
+						<label>Address of next of kin</label>
+						<mat-form-field class="example-full-width">
+							<textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput
+								placeholder="Address of next of kin"></textarea>
+						</mat-form-field>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse"
+			data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
+			Pre-deployment Safety Critical Checklist
+		</div>
+		<div id="Pre-deployment-checklist" class="collapse single_accordion_content" aria-labelledby="Pre-deployment"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<h6>1) Card holder’s details</h6>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Forename</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Forename" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Surname</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="surname" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Card holder’s contact tel. no</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="contact" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Employing company</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="contact" required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<h6>2) Card holder’s safety critical occupational certification</h6>
+				</div>
+
+				<div class="col-md-6">
+					<label>Full Sentinel card no.</label>
+					<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<input matInput name="name" placeholder="contact" required cdkFocusInitial>
+					</mat-form-field>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Competences Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse"
+			data-target="#Competence" aria-expanded="false" aria-controls="collapseTwo">
+			Competence
+		</div>
+		<div id="Competence" class="collapse single_accordion_content" aria-labelledby="CompetenceHeading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Medical</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="medical" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="medical"></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Competences End Here -->
+
+
+
+	<!-- Medical Self-Certification Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="Medical-Self-Certification-heading" data-toggle="collapse"
+			data-target="#Medical-Self-Certification" aria-expanded="false" aria-controls="bankdetail">
+			Medical Self-Certification
+		</div>
+		<div id="Medical-Self-Certification" class="collapse single_accordion_content"
+			aria-labelledby="Medical-Self-Certification-heading" data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>1) Do you have diabetes needing insulin?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>2) Do you suffer from epilepsy or fits?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>3) Have you ever had blackouts, recurrent dizziness, or any condition that may cause
+							sudden collapse or incapacity?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>4) Do you get discomfort or pain in the chest or shortness of breath on4exercise,
+							e.g.
+							climbing a single flight of stairs?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>5) Do you have difficulty moving rapidly over short distances, including
+							slopes,5steps,
+							or rough ground?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>6) Would you have difficulty in looking over either shoulder?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>7) Would you have difficulty working in outdoor open areas?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>8) Would you have difficulty working in enclosed spaces?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>9) Would you have difficulty working above height (e.g. using ladders or9maintenance
+							platforms)?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>10a) Do you have difficulties with your eyesight?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>10b) If ‘YES’ to 10a, do you wear spectacles/contact lenses?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>10c) Do you have difficulty correctly identifying colours?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>11) Do you have any difficulty with your hearing?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>12) Are you taking any medication that is giving you dizziness or drowsiness?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>13) Have you used, or abused, drugs within the last 12 months?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>14) Have you had any alcohol-related illness during the last 12 months?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Medical Self-Certification End Here -->
+
+
+	<!-- Medical Standards: Eyewear Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse"
+			data-target="#eye-standard" aria-expanded="false" aria-controls="bankdetail">
+			Medical Standards: Eyewear
+		</div>
+		<div id="eye-standard" class="collapse single_accordion_content" aria-labelledby="eye-standard-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>1) Do you wear glasses?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>2) Do you wear contact lenses?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>3) If you do wear contact lenses, do you agree to carrya spare pair of glasses when
+							on or near the line?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Date</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="eye-standard" placeholder="Choose a date"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Medical Standards: Eyewear End Here -->
+
+
+	<!-- Occupational Health Questionnaire Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="Illnesses-heading" data-toggle="collapse"
+			data-target="#Illnesses" aria-expanded="false" aria-controls="bankdetail">
+			Occupational Health Questionnaire
+		</div>
+		<div id="Illnesses" class="collapse single_accordion_content" aria-labelledby="Illnesses-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<h5>Illnesses that can affect your safety at work.</h5>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label>Stomach/bowels</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Back/neck</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Mental illness</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Bladder</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Ears</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Claustrophobia</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Kidney</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Eyes</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Vertigo</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+
+					<div class="col-md-4">
+						<label>Hernia</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Nose or throat</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Anxiety/stress</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+
+					<div class="col-md-4">
+						<label>Heart</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Lungs</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Nervous disorder</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Blood pressure</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Sinusitis</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Skin disease</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Blood disorder</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Tuberculosis</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Allergies</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Jaundice</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Fainting/dizzy spells</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Drug dependency</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Rheumatism/arthritis</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Headaches/migraines</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Alcohol dependency</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Tendons/ligaments/joints</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<h5>Work activities that can affect your health.</h5>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<label>Vibration</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Cancer-causing agents</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Lead</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Dust</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Radiation</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Asbestos</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Noise</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Hazardous chemicals</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Mineral oil</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+
+					<div class="col-md-4">
+						<label>Manual handling</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-4">
+						<label>Skin irritants</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-4">
+						<label>Tar</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!--Occupational Health Questionnaire End Here -->
+
+
+	<!-- Other Health Information Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="Illnesses0.2-heading" data-toggle="collapse"
+			data-target="#Illnesses2" aria-expanded="false" aria-controls="bankdetail">
+			Other information that the Employer needs to know for health and safety requirements.
+		</div>
+		<div id="Illnesses2" class="collapse single_accordion_content" aria-labelledby="Illnesses0.2-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Aches?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Suffering any health problems?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Pains?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>A smoker?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Tingling?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Asthmatic?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Numbness/loss of feeling?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Epileptic?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Skin allergies, eczema, or dermatitis?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Diabetic?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Other allergies of which we should be aware?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Colour blind?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Any blood borne disease, e.g. hepatitis,HIV?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Dyslexic?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Any phobias i.e. heights, water, insects, reptiles (please list below, if
+							yes)</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!--Other Health Information End Here -->
+
+
+	<!-- Other Health Information Questions Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse"
+			data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
+			Other Questions.
+		</div>
+		<div id="Illnesses3" class="collapse single_accordion_content" aria-labelledby="Illnesses3-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Do you have any physical disability which could affect your work?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you have difficulty hearing (with a hearing aid, if needed) for all normal
+							workpurposes?*</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you have difficulty seeing (with glasses or contact lenses, if needed) for all
+							normalwork purposes?*</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you currently take any prescribed medicines that make you dizzy or
+							drowsy?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Have you ever been told that you suffer from a work-related health problem?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you suffer from a frequent health problem that causes you to be off work morethan
+							two-three times per year?*</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Have you ever had an illness or injury that has kept you off work for more than
+							threemonths?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Have you ever had to give up any previous job for medical reasons?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Have you ever received compensation for industrial injury or illness?**</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!--Other Health Information Questions End Here -->
+
+
+	<!-- Gp Registration Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="gpregistration-heading" data-toggle="collapse"
+			data-target="#gpregistration" aria-expanded="false" aria-controls="collapseTwo">
+			GP Registration:
+		</div>
+		<div id="gpregistration" class="collapse single_accordion_content" aria-labelledby="gpregistration-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<p>You should be registered with a doctor local to where you are currently living.</p>
+					<p>Please provide
+						the contact details of your GP so that the Company can inform your doctor of anydetails of
+						the type of health problems you may be exposed to as a construction worker.</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Surname</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Name" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Initials</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Initials" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Address</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Address" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-6">
+						<label>Post Code</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Post Code" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+
+					<div class="col-md-6">
+						<label>Tel No.</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Tel No." cdkFocusInitial>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3><b>Note</b></h3>
+					<p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor
+						ifyou experience a health problem in the future, you may be asked to provide authorisation
+						for yourdoctor to reply to any query concerning your health or medical history. Information
+						in the reportrelating to your employment may be passed on to the Company. You have the right
+						to see any medicalreport prepared by your doctor before it is sent to the Company Medical
+						Advisor, who will treat theinformation in the strictest confidence. It is within your rights
+						to decline to give authorisation forinformation to be passed to the Company.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Gp Registration End Here -->
+
+	<!-- TfL Area Familiarisation Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="tflarea-heading" data-toggle="collapse" data-target="#tflarea"
+			aria-expanded="false" aria-controls="collapseTwo">
+			TfL Area Familiarisation:
+		</div>
+		<div id="tflarea" class="collapse single_accordion_content" aria-labelledby="tflarea-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-12">
+						<p>Please indicate which of the TfL Routes you have gained experience on, frequency, and
+							when.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<span>Bakerloo</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area1" [matDatepicker]="area1"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area1"></mat-datepicker-toggle>
+							<mat-datepicker #area1></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Central</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area2" [matDatepicker]="area2"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area2"></mat-datepicker-toggle>
+							<mat-datepicker #area2></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Circle</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area3" [matDatepicker]="area3"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area3"></mat-datepicker-toggle>
+							<mat-datepicker #area3></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>District</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area4" [matDatepicker]="area4"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area4"></mat-datepicker-toggle>
+							<mat-datepicker #area4></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Hammersmith & City</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area5" [matDatepicker]="area5"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area5"></mat-datepicker-toggle>
+							<mat-datepicker #area5></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Jubilee</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area6" [matDatepicker]="area6"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area6"></mat-datepicker-toggle>
+							<mat-datepicker #area6></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Metropolitan</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area7" [matDatepicker]="area7"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area7"></mat-datepicker-toggle>
+							<mat-datepicker #area7></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Nothern</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area8" [matDatepicker]="area8"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area8"></mat-datepicker-toggle>
+							<mat-datepicker #area8></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Piccadilly</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area9" [matDatepicker]="area9"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area9"></mat-datepicker-toggle>
+							<mat-datepicker #area9></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Victoria</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area10" [matDatepicker]="area10"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area10"></mat-datepicker-toggle>
+							<mat-datepicker #area10></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Waterloo & City</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area11" [matDatepicker]="area11"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area11"></mat-datepicker-toggle>
+							<mat-datepicker #area11></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>DLR</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area12" [matDatepicker]="area12"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area12"></mat-datepicker-toggle>
+							<mat-datepicker #area12></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>London Overground</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area13" [matDatepicker]="area13"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area13"></mat-datepicker-toggle>
+							<mat-datepicker #area13></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>TfL Rail (Liverpool Street to Shenfield)</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area14" [matDatepicker]="area14"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area14"></mat-datepicker-toggle>
+							<mat-datepicker #area14></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Cockfosters</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area15" [matDatepicker]="area15"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area15"></mat-datepicker-toggle>
+							<mat-datepicker #area15></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Golders Green</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area16" [matDatepicker]="area16"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area16"></mat-datepicker-toggle>
+							<mat-datepicker #area16></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Hainault</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area17" [matDatepicker]="area17"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area17"></mat-datepicker-toggle>
+							<mat-datepicker #area17></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Hammersmith</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area18" [matDatepicker]="area18"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area18"></mat-datepicker-toggle>
+							<mat-datepicker #area18></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Morden</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area19" [matDatepicker]="area19"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area19"></mat-datepicker-toggle>
+							<mat-datepicker #area19></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<span>Neasden</span>
+					</div>
+					<div class="col-md-3">
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput type="number" name="name" placeholder="No. of Visit" required
+								cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-3">
+						<mat-form-field>
+							<input matInput name="area20" [matDatepicker]="area20"
+								placeholder="Choose a date of induction" irequired>
+							<mat-datepicker-toggle matSuffix [for]="area20"></mat-datepicker-toggle>
+							<mat-datepicker #area20></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- TfL Area Familiarisation End Here -->
+
+
+	<!--Night Workers Questionnaire Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="NightWorkers-heading" data-toggle="collapse"
+			data-target="#NightWorkers" aria-expanded="false" aria-controls="bankdetail">
+			Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers
+		</div>
+		<div id="NightWorkers" class="collapse single_accordion_content" aria-labelledby="NightWorkers-heading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Have you had any medical problem in the past that has prevented you fromworking at
+							night?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Are you diabetic?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Are you subject to angina, or other heart problems that may affect your
+							fitness?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Have you had duodenal or stomach ulcers in the past, or are you under treatmentfor
+							them at present?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Have you had any continuing bowel problem, such as following major surgery?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you have any chronic chest problem such as asthma, emphysema,
+							orbronchiectasis?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+
+					<div class="col-md-6">
+						<label>Do you have any disability-affecting mobility that will cause difficulties
+							inarranging night work?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Do you have any recurrent or continuing sleep disturbance requiring
+							medicaladvice?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Are you having specialist care requiring your attendance at hospital clinics
+							fortreatment?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-6">
+						<label>Are you taking any medication to a strict timetable?</label>
+						<mat-radio-group aria-label="Select an option">
+							<mat-radio-button value="1">Yes</mat-radio-button>
+							<mat-radio-button value="2">No</mat-radio-button>
+						</mat-radio-group>
+					</div>
+					<div class="col-md-12">
+						<label>Do you have any other health problem that affects your fitness for night
+							work?</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-12">
+						<label>Please give the names of any prescribed medications that you take regularly:</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+					<div class="col-md-12">
+						<label>Please give any further details that you would like to bring to our
+							attention.</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Night Workers Questionnaire End Here -->
+
+	<button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple"
+		(click)="submitValue()">
+		<i class="fas fa-plus fa-fw"></i>
+		<span>Submit</span>
+	</button>
+
+
+
+
+
+
+</div>
+<!-- </form> -->
