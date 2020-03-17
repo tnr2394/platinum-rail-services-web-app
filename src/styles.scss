@@ -1431,3 +1431,29 @@ body {
 //     color:white;
 // }
 // }
+
+
+/*induction form css start*/
+#accordion .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #111111 !important;
+}
+
+#accordion .mat-radio-button.mat-accent .mat-radio-inner-circle,
+#accordion .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+#accordion .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+#accordion .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple,
+#accordion .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #111111 !important;
+}
+#accordion .mat-form-field.mat-focused .mat-form-field-label,
+#accordion .mat-datepicker-toggle-active {
+    color: #111111 !important;
+}
+#accordion textarea{
+    resize: none;
+    height: 80px;
+}
+#accordion .mat-radio-label-content{
+    font-weight: 400;
+    font-size: 20px;
+}
