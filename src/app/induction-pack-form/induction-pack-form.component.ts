@@ -196,7 +196,6 @@ export class InductionPackFormComponent implements OnInit {
           rightWorkl5: this.rightWorkl5,
           rightWorkl6: this.rightWorkl6,
           rightWorkl7: this.rightWorkl7,
-          rightWorkl8: this.rightWorkl8,
         },
         list2: {
           rightWorkl2A: this.rightWorkl2A,
