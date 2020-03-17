@@ -34,27 +34,59 @@
             </tr>
             <tr>
                 <td colspan="4">Refresher induction</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.refresherInduction == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.refresherInduction == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td colspan="4">New Starter</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.newStarter == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.newStarter == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on NR?</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnNR == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnNR == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on TfL?</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnTfL == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnTfL == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Date of induction</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">{{data.dateOfInduction | date:shortDate}}</td>
             </tr>
             <tr>
                 <td width="25%">Sponsorship</td>
@@ -77,20 +109,28 @@
                 <td style="background:#fff; padding:0px; border:0px;">
                     <table width="100%" border="1" cellspacing="0" cellpadding="7">
                         <tr>
-                            <td style="border-top:0px; border-left:0px; border-right:0px;">&nbsp;</td>
-                            <td style="border-top:0px; border-right:0px;">&nbsp;</td>
+                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
+                            <td style="border-top:0px; border-right:0px;">NO</td>
                         </tr>
                         <tr>
-                            <td style="border-bottom:0px; border-right:0px; border-left:0px;">&nbsp;</td>
-                            <td style="border-bottom:0px; border-right:0px;">&nbsp;</td>
+                            <td style="background:#fff;">
+                                <span *ngIf="data && data.inductionPackComplete == 'Yes'">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </span>
+                            </td>
+                            <td style="background:#fff;">
+                                <span *ngIf="data && data.inductionPackComplete == 'No'">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </span>
+                            </td>
                         </tr>
                     </table>
                 </td>
                 <td colspan="2">If No, do not sponsor until completed</td>
             </tr>
             <tr>
-                <td colspan="3">&nbsp;</td>
-                <td colspan="3" style="background:#fff;">&nbsp;</td>
+                <td colspan="3">Date added to Sentinel Database</td>
+                <td colspan="3" style="background:#fff;">{{data.dateAddedToSentinelDatabase | date:shortDate}}</td>
             </tr>
         </table>
 
@@ -136,9 +176,21 @@
             </tr>
             <tr>
                 <td>Right to work in UK</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Type of ID provided<br></td>
@@ -146,69 +198,201 @@
             </tr>
             <tr>
                 <td>Next of Kin provided</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>H&amp;S Policy provided and briefed<br></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>ENV policy provided and briefed<br></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Quality Policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Working Hours policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Worksafe Policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Alcohol and Drug policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Fire policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Opt out of Working Hours Directive</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>HSQE Briefing Received</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <td>Safety Critical ID Issued <em>(TfL only)</em></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
             </tr>
         </table>
         <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation ‘Sentinel
