@@ -117,6 +117,75 @@ export class InductionPackFormComponent implements OnInit {
   kinSecondContactNumber;
   kinEmail;
 
+  //competences
+
+  competencesD1;
+  competencesE1;
+
+  competencesD2;
+  competencesE2;
+
+  competencesD3;
+  competencesE3;
+
+
+  competencesD4;
+  competencesE4;
+
+  competencesD5;
+  competencesE5;
+
+  
+  competencesD6;
+  competencesE6;
+
+  
+  competencesD7;
+  competencesE7;
+
+
+  competencesD8;
+  competencesE8;
+
+
+  competencesD9;
+  competencesE9;
+
+
+  competencesD10;
+  competencesE10;
+
+
+  competencesD11;
+  competencesE11;
+
+
+  competencesD12;
+  competencesE12;
+
+
+  competencesD13;
+  competencesE13;
+
+
+  competencesD14;
+  competencesE14;
+
+  competencesD15;
+  competencesE15;
+
+
+  competencesD16;
+  competencesE16;
+
+  competencesD17;
+  competencesE17;
+
+
+  competencesD18;
+  competencesE18;
+
+
 
 
   data = {};
