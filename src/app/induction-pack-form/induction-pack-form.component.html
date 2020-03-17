@@ -14,29 +14,29 @@
 					<div class="col-md-6">
 						<label>Refresher induction</label>
 						<mat-radio-group [(ngModel)]="refresherInduction" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>New Starter</label>
 						<mat-radio-group [(ngModel)]="newStarter" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Is Inductee working on NR?</label>
 						<mat-radio-group [(ngModel)]="workingOnNR" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Is Inductee working on TfL?</label>
 						<mat-radio-group [(ngModel)]="workingOnTfL" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
@@ -51,22 +51,22 @@
 					<div class="col-md-6">
 						<label> Primary Sponshorship</label>
 						<mat-radio-group [(ngModel)]="primary" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Sub-Sponsored Sponshorship</label>
 						<mat-radio-group [(ngModel)]="subSponsored" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Is induction pack complete?</label>
 						<mat-radio-group [(ngModel)]="inductionPackComplete" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -103,7 +103,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Candidate Name</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="candidateName" name="candidateName"
 								placeholder="Candidate Name" cdkFocusInitial>
 						</mat-form-field>
@@ -119,7 +119,7 @@
 					</div>
 					<div class="col-md-6">
 						<label>National Insurance No.</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber"
 								placeholder="National Insurance Number" required cdkFocusInitial>
 						</mat-form-field>
@@ -133,14 +133,14 @@
 					</div>
 					<div class="col-md-6">
 						<label>Contact Number</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number"
 								required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Sentinel Number</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number"
 								required cdkFocusInitial>
 						</mat-form-field>
@@ -148,7 +148,7 @@
 
 					<div class="col-md-6">
 						<label>Email Address</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -173,101 +173,101 @@
 					<div class="col-md-6">
 						<label>Right to work in UK</label>
 						<mat-radio-group [(ngModel)]="type1" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Next of Kin provided</label>
 						<mat-radio-group [(ngModel)]="type2" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>H&S Policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type3" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>ENV Policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type4" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Quality Policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type5" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Working Hours Policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type6" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Worksafe Policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type7" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Alcohol and Drug policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type8" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Fire policy provided and briefed</label>
 						<mat-radio-group [(ngModel)]="type9" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Opt out of Working Hours Directive</label>
 						<mat-radio-group [(ngModel)]="type10" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>HSQE Briefing Received</label>
 						<mat-radio-group [(ngModel)]="type11" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Safety Critical ID Issued (TfL only)</label>
 						<mat-radio-group [(ngModel)]="type12" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="No">No</mat-radio-button>
-							<mat-radio-button value="N/A">N/A</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="N/A">N/A</mat-radio-button>
 						</mat-radio-group>
 					</div>
 				</div>
@@ -289,35 +289,35 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Name on Account / Ltd Company Name</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name"
 								required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Bank Name</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Bank Address</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Account Number</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number"
 								required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Sort Code</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -342,41 +342,41 @@
 					<div class="col-md-6">
 						<label>CIS</label>
 						<mat-radio-group [(ngModel)]="CIS" aria-label="Select an option">
-							<mat-radio-button value="Yes">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>PAYE</label>
 						<mat-radio-group [(ngModel)]="PAYE" aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Company Name</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Company No.</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Please provide a copy of Certificate ofIncorporation</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Umbrella Company – state which one</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -403,28 +403,28 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Employers’ Liability</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability"
 								required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Professional Indemnity</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity"
 								required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Public Liability</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Product and Goods Liability</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="insurance4" name="name"
 								placeholder="Product and Goods Liability" required cdkFocusInitial>
 						</mat-form-field>
@@ -432,7 +432,7 @@
 
 					<div class="col-md-6">
 						<label> Vehicle Business Use</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use"
 								required cdkFocusInitial>
 						</mat-form-field>
@@ -461,7 +461,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>NAME</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="rightName" name="name" placeholder="Employers’ Liability"
 								required cdkFocusInitial>
 						</mat-form-field>
@@ -548,28 +548,28 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Name of next of kin</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required
 								cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Relationship with you</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="kinRelationship" name="name"
 								placeholder="Relationship with you" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Contact number of next of kin</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="kinContactNumber" name="name"
 								placeholder="Contact number of next of kin" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Secondary Contact number</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="kinSecondContactNumber" name="name"
 								placeholder="Secondary Contact Number" required cdkFocusInitial>
 						</mat-form-field>
@@ -577,7 +577,7 @@
 
 					<div class="col-md-6">
 						<label>Email for next of kin</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -611,28 +611,28 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Forename</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Forename" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 
 					<div class="col-md-6">
 						<label>Surname</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="surname" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 
 					<div class="col-md-6">
 						<label>Card holder’s contact tel. no</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="contact" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
 
 					<div class="col-md-6">
 						<label>Employing company</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="contact" required cdkFocusInitial>
 						</mat-form-field>
 					</div>
@@ -645,7 +645,7 @@
 
 				<div class="col-md-6">
 					<label>Full Sentinel card no.</label>
-					<mat-form-field class="example-full-width col-md-6 col-sm-12">
+					<mat-form-field>
 						<input matInput name="name" placeholder="contact" required cdkFocusInitial>
 					</mat-form-field>
 				</div>
@@ -697,8 +697,8 @@
 					<div class="col-md-6">
 						<label>1) Do you have diabetes needing insulin?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 				</div>
@@ -709,16 +709,16 @@
 					<div class="col-md-6">
 						<label>2) Do you suffer from epilepsy or fits?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>3) Have you ever had blackouts, recurrent dizziness, or any condition that may cause
 							sudden collapse or incapacity?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
@@ -726,8 +726,8 @@
 							e.g.
 							climbing a single flight of stairs?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -736,32 +736,32 @@
 							slopes,5steps,
 							or rough ground?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>6) Would you have difficulty in looking over either shoulder?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>7) Would you have difficulty working in outdoor open areas?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>8) Would you have difficulty working in enclosed spaces?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -769,64 +769,64 @@
 						<label>9) Would you have difficulty working above height (e.g. using ladders or9maintenance
 							platforms)?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>10a) Do you have difficulties with your eyesight?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>10b) If ‘YES’ to 10a, do you wear spectacles/contact lenses?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>10c) Do you have difficulty correctly identifying colours?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>11) Do you have any difficulty with your hearing?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>12) Are you taking any medication that is giving you dizziness or drowsiness?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>13) Have you used, or abused, drugs within the last 12 months?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>14) Have you had any alcohol-related illness during the last 12 months?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -850,23 +850,23 @@
 					<div class="col-md-6">
 						<label>1) Do you wear glasses?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>2) Do you wear contact lenses?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>3) If you do wear contact lenses, do you agree to carrya spare pair of glasses when
 							on or near the line?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
@@ -901,69 +901,69 @@
 					<div class="col-md-4">
 						<label>Stomach/bowels</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Back/neck</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Mental illness</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Bladder</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Ears</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Claustrophobia</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Kidney</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Eyes</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Vertigo</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -971,23 +971,23 @@
 					<div class="col-md-4">
 						<label>Hernia</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Nose or throat</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Anxiety/stress</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -995,123 +995,123 @@
 					<div class="col-md-4">
 						<label>Heart</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Lungs</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Nervous disorder</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Blood pressure</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Sinusitis</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Skin disease</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Blood disorder</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Tuberculosis</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Allergies</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Jaundice</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Fainting/dizzy spells</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Drug dependency</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Rheumatism/arthritis</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Headaches/migraines</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Alcohol dependency</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Tendons/ligaments/joints</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 				</div>
@@ -1125,69 +1125,69 @@
 					<div class="col-md-4">
 						<label>Vibration</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Cancer-causing agents</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Lead</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Dust</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Radiation</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Asbestos</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Noise</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Hazardous chemicals</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Mineral oil</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1195,23 +1195,23 @@
 					<div class="col-md-4">
 						<label>Manual handling</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-4">
 						<label>Skin irritants</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-4">
 						<label>Tar</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1237,103 +1237,103 @@
 					<div class="col-md-6">
 						<label>Aches?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Suffering any health problems?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Pains?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>A smoker?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Tingling?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Asthmatic?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Numbness/loss of feeling?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Epileptic?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Skin allergies, eczema, or dermatitis?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Diabetic?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Other allergies of which we should be aware?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Colour blind?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Any blood borne disease, e.g. hepatitis,HIV?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Dyslexic?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1341,8 +1341,8 @@
 						<label>Any phobias i.e. heights, water, insects, reptiles (please list below, if
 							yes)</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1368,47 +1368,47 @@
 					<div class="col-md-6">
 						<label>Do you have any physical disability which could affect your work?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you have difficulty hearing (with a hearing aid, if needed) for all normal
 							workpurposes?*</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you have difficulty seeing (with glasses or contact lenses, if needed) for all
 							normalwork purposes?*</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you currently take any prescribed medicines that make you dizzy or
 							drowsy?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Have you ever been told that you suffer from a work-related health problem?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you suffer from a frequent health problem that causes you to be off work morethan
 							two-three times per year?*</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1416,23 +1416,23 @@
 						<label>Have you ever had an illness or injury that has kept you off work for more than
 							threemonths?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Have you ever had to give up any previous job for medical reasons?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Have you ever received compensation for industrial injury or illness?**</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -1463,32 +1463,32 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Surname</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Name" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Initials</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Initials" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Address</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Address" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-6">
 						<label>Post Code</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Post Code" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 
 					<div class="col-md-6">
 						<label>Tel No.</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Tel No." cdkFocusInitial>
 						</mat-form-field>
 					</div>
@@ -1530,12 +1530,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1557,12 +1557,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1583,12 +1583,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1610,12 +1610,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1638,12 +1638,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1666,12 +1666,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1694,12 +1694,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1722,12 +1722,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1750,12 +1750,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1778,12 +1778,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1805,12 +1805,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1832,12 +1832,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1858,12 +1858,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1885,12 +1885,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1912,12 +1912,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1939,12 +1939,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1966,12 +1966,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -1993,12 +1993,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -2020,12 +2020,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -2046,12 +2046,12 @@
 					</div>
 					<div class="col-md-3">
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-3">
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput type="number" name="name" placeholder="No. of Visit" required
 								cdkFocusInitial>
 						</mat-form-field>
@@ -2086,47 +2086,47 @@
 						<label>Have you had any medical problem in the past that has prevented you fromworking at
 							night?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Are you diabetic?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Are you subject to angina, or other heart problems that may affect your
 							fitness?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Have you had duodenal or stomach ulcers in the past, or are you under treatmentfor
 							them at present?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
 					<div class="col-md-6">
 						<label>Have you had any continuing bowel problem, such as following major surgery?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you have any chronic chest problem such as asthma, emphysema,
 							orbronchiectasis?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 
@@ -2134,50 +2134,50 @@
 						<label>Do you have any disability-affecting mobility that will cause difficulties
 							inarranging night work?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Do you have any recurrent or continuing sleep disturbance requiring
 							medicaladvice?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Are you having specialist care requiring your attendance at hospital clinics
 							fortreatment?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-6">
 						<label>Are you taking any medication to a strict timetable?</label>
 						<mat-radio-group aria-label="Select an option">
-							<mat-radio-button value="1">Yes</mat-radio-button>
-							<mat-radio-button value="2">No</mat-radio-button>
+							<mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
+							<mat-radio-button class="mr-3" value="No">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
 					<div class="col-md-12">
 						<label>Do you have any other health problem that affects your fitness for night
 							work?</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-12">
 						<label>Please give the names of any prescribed medications that you take regularly:</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
 						</mat-form-field>
 					</div>
 					<div class="col-md-12">
 						<label>Please give any further details that you would like to bring to our
 							attention.</label>
-						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+						<mat-form-field>
 							<input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
 						</mat-form-field>
 					</div>
