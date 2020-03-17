@@ -286,6 +286,14 @@ export class InductionPackFormComponent implements OnInit {
   otherQ8;
   otherQ9;
 
+  // Gp Registration
+
+  gpSurName;
+  gpInitials;
+  gpAddress;
+  gpPostCode;
+  gpTelephone;
+
 
 
 
@@ -460,6 +468,23 @@ export class InductionPackFormComponent implements OnInit {
         workIllness10: this.workIllness10,
         workIllness11: this.workIllness11
       },
+      otherSafetyRequirements: {
+        otherSafetyR1: this.otherSafetyR1,
+        otherSafetyR2: this.otherSafetyR2,
+        otherSafetyR3: this.otherSafetyR3,
+        otherSafetyR4: this.otherSafetyR4,
+        otherSafetyR5: this.otherSafetyR5,
+        otherSafetyR6: this.otherSafetyR6,
+        otherSafetyR7: this.otherSafetyR7,
+        otherSafetyR8: this.otherSafetyR8,
+        otherSafetyR9: this.otherSafetyR9,
+        otherSafetyR10: this.otherSafetyR10,
+        otherSafetyR11: this.otherSafetyR11,
+        otherSafetyR12: this.otherSafetyR12,
+        otherSafetyR13: this.otherSafetyR13,
+        otherSafetyR14: this.otherSafetyR14,
+        otherSafetyR15: this.otherSafetyR15
+      },
       otherQuestionDetail: {
         otherQ1: this.otherQ1,
         otherQ2: this.otherQ2,
@@ -470,6 +495,13 @@ export class InductionPackFormComponent implements OnInit {
         otherQ7: this.otherQ7,
         otherQ8: this.otherQ8,
         otherQ9: this.otherQ9,
+      },
+      gpDetail: {
+        gpSurName: this.gpSurName,
+        gpInitials: this.gpInitials,
+        gpAddress: this.gpAddress,
+        gpPostCode: this.gpPostCode,
+        gpTelephone: this.gpTelephone
       }
     }
 

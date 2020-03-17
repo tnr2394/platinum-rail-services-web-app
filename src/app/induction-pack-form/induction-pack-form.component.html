@@ -1246,7 +1246,8 @@
                     <div class="col-md-6">
                         <label>Date</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard" placeholder="Choose a date" irequired>
+                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard"
+                                placeholder="Choose a date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -1836,32 +1837,33 @@
                     <div class="col-md-6">
                         <label>Surname</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Name" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpSurName" name="name" placeholder="Name" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Initials</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Initials" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpInitials" name="name" placeholder="Initials" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Address</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Address" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpAddress" name="name" placeholder="Address" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Post Code</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Post Code" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpPostCode" name="name" placeholder="Post Code"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Tel No.</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Tel No." cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpTelephone" name="name" placeholder="Tel No." cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
