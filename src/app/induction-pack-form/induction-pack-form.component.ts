@@ -102,10 +102,13 @@ export class InductionPackFormComponent implements OnInit {
   rightWorkl2AB;
   rightWorkl2AC;
 
+  // Pre-Deployment Safety Critical Checklist
 
-
-
-
+  cardHolderName;
+  cardHolderSurName;
+  cardHolderContact;
+  cardHolderCompany;
+  cardsentinelNumber;
 
 
   // Next To kin
@@ -116,6 +119,26 @@ export class InductionPackFormComponent implements OnInit {
   kinContactNumber;
   kinSecondContactNumber;
   kinEmail;
+
+  // Medical Self-Certification
+
+  msc1;
+  msc2;
+  msc3;
+  msc4;
+  msc5;
+  msc6;
+  msc7;
+  msc8;
+  msc9;
+  msc10A;
+  msc10B;
+  msc10C;
+  msc11;
+  msc12;
+  msc13;
+  msc14;
+
 
 
 
@@ -211,6 +234,31 @@ export class InductionPackFormComponent implements OnInit {
           rightWorkl2AB: this.rightWorkl2AB,
           rightWorkl2AC: this.rightWorkl2AC,
         }
+      },
+      cardHolderDetails: {
+        cardHolderName: this.cardHolderName,
+        cardHolderSurName: this.cardHolderSurName,
+        cardHolderContact: this.cardHolderContact,
+        cardHolderCompany: this.cardHolderCompany,
+        cardsentinelNumber: this.cardsentinelNumber
+      },
+      medicalSelfCertification: {
+        msc1: this.msc1,
+        msc2: this.msc2,
+        msc3: this.msc3,
+        msc4: this.msc4,
+        msc5: this.msc5,
+        msc6: this.msc6,
+        msc7: this.msc7,
+        msc8: this.msc8,
+        msc9: this.msc9,
+        msc10A: this.msc10A,
+        msc10B: this.msc10B,
+        msc10C: this.msc10C,
+        msc11: this.msc11,
+        msc12: this.msc12,
+        msc13: this.msc13,
+        msc14: this.msc14
       }
     }
 
