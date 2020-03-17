@@ -1,0 +1,2677 @@
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <TITLE></TITLE>
+    <meta NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+    <meta NAME="AUTHOR" CONTENT="Richard Bell">
+    <meta NAME="CREATED" CONTENT="20190821;93000000000000">
+    <meta NAME="CHANGEDBY" CONTENT="Alex Pedley">
+    <meta NAME="CHANGED" CONTENT="20190930;83900000000000">
+    <meta NAME="AppVersion" CONTENT="16.0000">
+    <meta NAME="DocSecurity" CONTENT="0">
+    <meta NAME="HyperlinksChanged" CONTENT="false">
+    <meta NAME="linksUpToDate" CONTENT="false">
+    <meta NAME="ScaleCrop" CONTENT="false">
+    <meta NAME="ShareDoc" CONTENT="false">
+
+</head> -->
+
+<div lang="en-GB" link="#0000ff" dir="ltr"
+    style="height:auto;margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
+    <div style="max-width:720px; width:100%; margin:0 auto; font-size: 14pt;">
+        <div style="text-align:center; margin-bottom:15px;"><img src="../../../assets/full_logo.png" alt=""
+                width="193px" /></div>
+        <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
+            Induction Pack</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="4"><strong>Type</strong></td>
+                <td width="19%" align="center">YES</td>
+                <td width="18%" align="center">NO</td>
+            </tr>
+            <tr>
+                <td colspan="4">Refresher induction</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.refresherInduction == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.refresherInduction == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">New Starter</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.newStarter == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.newStarter == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">Is Inductee working on NR?</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnNR == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnNR == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">Is Inductee working on TfL?</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnTfL == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.workingOnTfL == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">Date of induction</td>
+                <td colspan="2" style="background:#fff;">{{data.dateOfInduction | date:shortDate}}</td>
+            </tr>
+            <tr>
+                <td width="25%">Sponsorship</td>
+                <td width="9%" align="center">YES</td>
+                <td width="9%" align="center">NO</td>
+                <td width="20%">&nbsp;</td>
+                <td align="center">YES</td>
+                <td align="center">NO</td>
+            </tr>
+            <tr>
+                <td>Primary </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Sub-Sponsored</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Is induction pack complete?</td>
+                <td style="background:#fff; padding:0px; border:0px;">
+                    <table width="100%" border="1" cellspacing="0" cellpadding="7">
+                        <tr>
+                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
+                            <td style="border-top:0px; border-right:0px;">NO</td>
+                        </tr>
+                        <tr>
+                            <td style="background:#fff;">
+                                <span *ngIf="data && data.inductionPackComplete == 'Yes'">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </span>
+                            </td>
+                            <td style="background:#fff;">
+                                <span *ngIf="data && data.inductionPackComplete == 'No'">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">If No, do not sponsor until completed</td>
+            </tr>
+            <tr>
+                <td colspan="3">Date added to Sentinel Database</td>
+                <td colspan="3" style="background:#fff;">{{data.dateAddedToSentinelDatabase | date:shortDate}}</td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Candidate Name</td>
+                <td width="50%" style="background:#fff;">{{data.candidateName}}</td>
+            </tr>
+            <tr>
+                <td>DoB</td>
+                <td style="background:#fff;">{{data.dateOfBirth}}</td>
+            </tr>
+            <tr>
+                <td>National Insurance Number</td>
+                <td style="background:#fff;">{{data.nationalInsuranceNumber}}</td>
+            </tr>
+            <tr>
+                <td>Candidate Address</td>
+                <td style="background:#fff;">{{data.candidateAddress}}</td>
+            </tr>
+            <tr>
+                <td>Contact Number </td>
+                <td style="background:#fff;">{{data.contactNumber}}</td>
+            </tr>
+            <tr>
+                <td>Sentinel Number</td>
+                <td style="background:#fff;">{{data.sentinelNumber}}</td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td style="background:#fff;">{{data.emailAddress}}</td>
+            </tr>
+        </table>
+        <p style="font-family:Calibri, serif;">Checklist</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="55%"><strong>Checklist Item</strong></td>
+                <td width="15%"><strong>Yes</strong></td>
+                <td width="15%"><strong>No</strong></td>
+                <td width="15%"><strong>N/A</strong></td>
+            </tr>
+            <tr>
+                <td>Right to work in UK</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type1 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Type of ID provided<br></td>
+                <td colspan="3" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Next of Kin provided</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type2 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>H&amp;S Policy provided and briefed<br></td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type3 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>ENV policy provided and briefed<br></td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type4 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Quality Policy provided and briefed</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type5 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Working Hours policy provided and briefed</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type6 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Worksafe Policy provided and briefed</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type7 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Alcohol and Drug policy provided and briefed</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type8 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Fire policy provided and briefed</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type9 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Opt out of Working Hours Directive</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type10 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>HSQE Briefing Received</td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type11 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Safety Critical ID Issued <em>(TfL only)</em></td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'Yes'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'No'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td style="background:#fff;">
+                    <span *ngIf="data && data.checklist.type12 == 'N/A'">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation ‘Sentinel
+                Induction’ detailing the company procedures and a copy of the acknowledgement is obtained.</em></p>
+        <p><strong>Bank Details</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Name on Account / Ltd Company Name</td>
+                <td width="50%" style="background:#fff;">{{data.bankDetails.accountHolderName}}</td>
+            </tr>
+            <tr>
+                <td>Bank Name</td>
+                <td style="background:#fff;">{{data.bankDetails.bankName}}</td>
+            </tr>
+            <tr>
+                <td>Bank Address</td>
+                <td style="background:#fff;">{{data.bankDetails.bankAddress}}</td>
+            </tr>
+            <tr>
+                <td>Account Number</td>
+                <td style="background:#fff;">{{data.bankDetails.accountNumber}}</td>
+            </tr>
+            <tr>
+                <td>Sort Code</td>
+                <td style="background:#fff;">{{data.bankDetails.sortCode}}</td>
+            </tr>
+        </table>
+        <p><strong>Payment Details</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%" align="center">CIS</td>
+                <td width="50%" align="center">PAYE</td>
+            </tr>
+            <tr>
+                <td align="center" style="background:#fff;">Yes / No</td>
+                <td align="center" style="background:#fff;">Yes / No</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">Ltd Company</td>
+            </tr>
+            <tr>
+                <td>Company Name:</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyName}}</td>
+            </tr>
+            <tr>
+                <td>Company No.:</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyNo}}</td>
+            </tr>
+            <tr>
+                <td>Please provide a copy of Certificate of Incorporation</td>
+                <td style="background:#fff;">{{data.paymentDetails.certificateNumber}}</td>
+            </tr>
+            <tr>
+                <td>Umbrella Company – state which one</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyState}}</td>
+            </tr>
+        </table>
+        <p><strong>Insurance</strong></p>
+        <p style="margin-bottom:15px;">Please provide the policy numbers of your company insurances, and return copies
+            of the certificates.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Employers’ Liability</td>
+                <td width="50%" style="background:#fff;">{{data.insurance.insurance1}}</td>
+            </tr>
+            <tr>
+                <td>Professional Indemnity</td>
+                <td style="background:#fff;">{{data.insurance.insurance2}}</td>
+            </tr>
+            <tr>
+                <td>Public Liability</td>
+                <td style="background:#fff;">{{data.insurance.insurance3}}</td>
+            </tr>
+            <tr>
+                <td>Product and Goods Liability</td>
+                <td style="background:#fff;">{{data.insurance.insurance4}}</td>
+            </tr>
+            <tr>
+                <td>Vehicle Business Use</td>
+                <td style="background:#fff;">{{data.insurance.insurance5}}</td>
+            </tr>
+        </table>
+        <p><strong>Confirmations</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="4">I confirm I have been briefed on and understand the company policies.</td>
+            </tr>
+            <tr>
+                <td width="25%">Signature</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%">Date</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4">The Company will securely store information relating to its employees, both in hard copy
+                    and electronically, in accordance with GDPR Laws. Do you give your permission for the company to
+                    share the information we have on you with other interested parties (Clients / Network Rail /
+                    Enforcement Agencies, etc.)?</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
+                    belief, all particulars provided here are true. I understand that any false statement may disqualify
+                    me from employment or lead to dismissal.</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2"><em>For Office Use Only<br>
+                        Application checked for completion and accuracy</em></td>
+            </tr>
+            <tr>
+                <td width="50%">Name</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p>Right to Work in the UK</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2" width="50%">NAME:</td>
+                <td colspan="2" width="50%" style="background:#fff;">{{data.rightToWorkInUK.name}}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p>Document checks must be carried out, before commencement of work.</p>
+                    <p>Original documents must be seen and copies taken, with the applicant’s consent.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><strong>Acceptable documents are any one from LIST1 below or two from
+                        LIST2A (one being a work permit). Documents from LIST 2 and LIST 2A cannot be swapped.<br>
+                    </strong></td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><strong>LIST 1 (one document)</strong></td>
+                <td width="12%" align="center"><strong>Checked/Copied</strong></td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport (British Citizen) or has right to abode in UK</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">EEC or Swiss Passport or ID Card</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Resident Permit EEC or Swiss</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                    national from EEC or Switzerland</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                    family member of a national from EEC or Switzerland</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or travel document endorsing the holder to stay in the UK, and to allow the
+                    holder to do the type of work on offer, if they have no permit</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Application Registration Card issued by the Home Office issued to an asylum seeker,
+                    stating that the holder is permitted to accept employment</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><strong>LIST 2 (Two documents: A and one other)</strong></td>
+            </tr>
+            <tr>
+                <td width="4%">A</td>
+                <td colspan="2">Document giving person permanent national Insurance Number and Name (P45, P60 National
+                    Insurance card)</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td colspan="2">Full Birth Certificate issued in the UK , Channel Islands, Isle of Man, or Northern
+                    Ireland</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td colspan="2">Certificate of registration or naturalization, stating holder is a British citizen</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td colspan="2">Letter issued by the Home Office, indicating they can stay in the UK and can undertake
+                    work</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
+                    indefinitely in the UK </td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td colspan="2">Letter issued by Home Office indicating they can stay in the UK and undertake work</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay in
+                    the UK and can undertake work</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><strong>LIST 2A (Two documents: A and one other)</strong></td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td colspan="2">Work Permit or other approval to take employment that has been issued by Work Permits UK
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td colspan="2">Passport or other travel document endorsing the holder to stay in the UK and accept Work
+                    Permit employment</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td colspan="2">Letter issued by the Home Office, confirming that the person can stay in the UK and can
+                    take Work Permit employment </td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="3">Documents have been checked for suitability</td>
+            </tr>
+            <tr>
+                <td style="background:#fff;">Name:</td>
+                <td style="background:#fff;">Signed:</td>
+                <td style="background:#fff;">Date:</td>
+            </tr>
+        </table>
+        <p><strong>Opt-out for Sub-Contractors</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        <li>Opt out under Regulation 32 of the Conduct of Employment Agencies Employment Businesses
+                            Regulations 2003 (‘the Regulations’)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">The Contractor has agreed to provide services under the company’s terms and
+                    conditions<br></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations. The
+                        Contractor hereby confirms that it shall not be bound by the provisions of the regulations which
+                        do not apply to any services provided by the Contractor to the Company, throughout the duration
+                        of their agreement.</p>
+                    <ul>
+                        <li>Agency Workers Regulations 2010 (‘AWR’)</li>
+                        <li>The Contractor warrants that any operative placed on assignment under this contract is
+                            operating outside the scope of the AWR.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">Name of Contractor</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signed (On behalf of Contractor)</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Next of Kin</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2">Please provide detail of your next of kin. Data will be stored on the Sentinel Database.
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">Name of next of kin</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Relationship with you</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Address of next of kin</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Contact number of next of kin</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Secondary contact number</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Email for next of kin</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="4"><strong>1 Card holder’s details</strong></td>
+            </tr>
+            <tr>
+                <td width="25%" style="background:#fff;">Forename(s)</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">Surname</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background:#fff;">Card holder’s contact tel. no.</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">Employing company</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>2 Card holder’s safety critical occupational certification</strong></td>
+            </tr>
+            <tr>
+                <td>Full Sentinel card no.</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td colspan="2" align="center">An authenticated copy of the card holder’s Sentinel card must accompany
+                    this checklist, on submission</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="background:#fff;">
+                    <p>Please confirm details of card holder’s medical restrictions, i.e. red triangle, blue dot:<br>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>Please confirm details of card holder’s competency restrictions, i.e. competencies under
+                        mentorship:<br>
+                    </p>
+                    <br>
+                    <br>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td align="center"><em>Competence</em></td>
+                <td align="center"><em>Duration held<br>
+                        (years/months) </em></td>
+                <td align="center"><em>Expiry date</em></td>
+                <td align="center"><em>Competence</em></td>
+                <td align="center"><em>Duration held<br>
+                        (years/months) </em></td>
+                <td align="center"><em>Expiry date</em></td>
+            </tr>
+            <tr>
+                <td>Medical</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>IWA</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>PTS AC</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>COSS</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>PTS DC</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>COSS OLP</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>AOD PO</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>COSS CRP</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>AOD PO</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>PC</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>AOD HS</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>ES</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>AOD LXA</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>ES Level A</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>AOD RSA</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>StrapmanLvl B</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>LKT / SW</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Switching (DC)</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="8">3 <strong>Specific work/activity experience</strong> (please indicate whether the
+                    cardholder has experience of <u><strong>implementing</strong></u> the specific safe systems of
+                    work/activities below by ticking the applicable <span style="background:#ffff00;">yellow</span>
+                    boxes)</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><u><strong>LKT SW / IWA / COSS / PC</strong></u></td>
+                <td colspan="2" align="center"><u><strong>Engineering Supervisor</strong></u></td>
+                <td colspan="2" align="center"><u><strong>Other (please specify)</strong></u></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><u>Line blockage:</u></td>
+                <td colspan="2" align="center"><u>Possession:</u></td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="20%">Signal Protection only</td>
+                <td width="5%" style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2">Green Zone</td>
+                <td width="20%">With no train/OTP</td>
+                <td width="5%" style="background:#ffff00;">&nbsp;</td>
+                <td width="20%" rowspan="2" valign="top">Competent Person – Detonator Protection</td>
+                <td width="5%" style="background:#ffff00;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>TCOD</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td width="20%">Fenced</td>
+                <td width="5%" style="background:#ffff00;">&nbsp;</td>
+                <td>With train movements</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Disconnection</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Site Warden Warning</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>With OTP movement</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Detonator Protection</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td>Route setting via points Operator</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Token Block</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2"><u><em>Red Zone</em></u></td>
+                <td>Route setting via Signaller</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Absolute Block</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>ATWS</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Level crossing under local control</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Tokenless Block</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>TOWS</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Working in axle counter area</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>RETB</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>LOWS</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>ERTMS</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Pee Wee</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td>Unassisted Lookouts</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><u>Possession:</u></td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Within ES worksite</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Receiving OLP</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>With PICOP</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Receiving CRP</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Without PICOP authority</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Working in axle counter area</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Poss. of sidings</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>PC Duties</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td rowspan="2" valign="top">Line Clear Verification</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td>Hand trolley Controller</td>
+                <td style="background:#ffff00;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="3">4 Card Holder and Employer Declaration</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="background:#fff;">
+                    <p><u><strong>Cardholder:</strong></u> I confirm that the above information is true and correct.</p>
+                    <p><u><strong>Employer:</strong></u> I confirm that the above information is true and correct. I
+                        understand that if the card holder has medical or competence restrictions, these may limit the
+                        extent to which they are deployed on behalf of the company. I also understand that the specific
+                        work/activity experience identified above will define the scope of the card holder’s deployment
+                        on behalf of the Company. If the card holder has no experience of a specific work/activity, this
+                        is a work-limiting circumstance, and the card holder may not be deployed on the applicable
+                        work/activity type, until such time that they have been trained, mentored, and/or assessed to
+                        full competence, and the Company has been advised accordingly. <strong>I understand that
+                            Pre-deployment Safety Critical Checklists are valid for a maximum of 12 months from the date
+                            of my sign-off, and that an updated checklist must be sent to the Company Sentinel
+                            Coordinator when any change to the cardholder’s experiences or competence occurs. Failure to
+                            do so may limit the scope of the card holder’s deployment.</strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="35%" align="center">Card Holder Name</td>
+                <td width="31%" align="center">Signature</td>
+                <td width="34%" align="center">Date</td>
+            </tr>
+            <tr>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="center">Employer Representative Name</td>
+                <td align="center">Signature</td>
+                <td align="center">Date</td>
+            </tr>
+            <tr>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong>Rail PPE Issue</strong></div>
+        <p>Please sign below to declare the Personal Protective Equipment issued to you by the Company and to identify
+            any further requirements you may have to carry out your duties.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="20%"><strong>Item</strong></td>
+                <td width="20%"><strong>Quantity</strong></td>
+                <td width="20%"><strong>Issue Date</strong></td>
+                <td width="20%"><strong>Received By</strong></td>
+                <td width="20%"><strong>Signature</strong></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center"><strong>Clothing</strong></td>
+            </tr>
+            <tr>
+                <td>Orange HiVis Overcoat/Jacket</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Orange HiVis Vest</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Orange HiVis Trouser</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>HiVis Flame-Retardant Overalls (BS EN 11612:2015)</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Other items</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center"><strong>Safety Equipment </strong></td>
+            </tr>
+            <tr>
+                <td>Gloves – Rigger</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Gloves – Latex Grip<br>
+                    Cut Level 5 </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Ear Protection – Muffs</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Eye Protection</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Boots</td>
+                <td>Size:</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Hard Hat</td>
+                <td>Colour:</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Harness</td>
+                <td>Unique ref. no.:</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Lanyard</td>
+                <td>Unique ref. no.:</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p>All rail clothing provided shall be manufactured in accordance with Rail Industry Standard
+            <strong>RIS-3279-TOM</strong></p>
+        <p>If there is any other PPE you require for your duties, please list it below:</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#fff;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td height="500">&nbsp;</td>
+            </tr>
+        </table>
+        <p>Medical Self-Certification</p>
+        <p>Alertness and reasonable physical fitness are essential for duties that may involve interactions with moving
+            trains. It is, therefore, important to be accurate in your answers to this questionnaire, although trivial
+            matters should be ignored (e.g. transient dizziness while gardening two years ago). <strong>When you declare
+                NO, you are accepting a degree of responsibility for your safety.</strong></p>
+        <p><strong>Please study this list, and sign the declaration:</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td width="14%" align="center"><strong>YES</strong></td>
+                <td width="13%" align="center"><strong>NO</strong></td>
+            </tr>
+            <tr>
+                <td width="5%">1</td>
+                <td width="68%">Do you have diabetes needing insulin?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Do you suffer from epilepsy or fits?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Have you ever had blackouts, recurrent dizziness, or any condition that may cause sudden collapse or
+                    incapacity?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Do you get discomfort or pain in the chest or shortness of breath on exercise, e.g. climbing a
+                    single flight of stairs?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Do you have difficulty moving rapidly over short distances, including slopes, steps, or rough
+                    ground?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Would you have difficulty in looking over either shoulder?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Would you have difficulty working in outdoor open areas?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Would you have difficulty working in enclosed spaces?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Would you have difficulty working above height (e.g. using ladders or maintenance platforms)?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>10a</td>
+                <td>Do you have difficulties with your eyesight?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>10b</td>
+                <td>If ‘YES’ to 10a, do you wear spectacles/contact lenses?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>10c</td>
+                <td>Do you have difficulty correctly identifying colours?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Do you have any difficulty with your hearing?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Are you taking any medication that is giving you dizziness or drowsiness?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Have you used, or abused, drugs within the last 12 months?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Have you had any alcohol-related illness during the last 12 months?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p>If a person states YES to any of the above, then a full medical will be required.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="6">I will inform the company of any change to my health that may affect my ability to
+                    perform my duties.</td>
+            </tr>
+            <tr>
+                <td width="164">SIGNED:</td>
+                <td width="254" style="background:#fff;">&nbsp;</td>
+                <td width="244">NAME (Print): </td>
+                <td width="202" style="background:#fff;">&nbsp;</td>
+                <td width="117">DATE:</td>
+                <td width="270" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="6">Action taken by:</td>
+            </tr>
+            <tr>
+                <td width="164">SIGNED:</td>
+                <td width="254" style="background:#fff;">&nbsp;</td>
+                <td width="244">NAME (Print): </td>
+                <td width="202" style="background:#fff;">&nbsp;</td>
+                <td width="117">DATE:</td>
+                <td width="270" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="6">Accepted by:</td>
+            </tr>
+            <tr>
+                <td width="164">SIGNED:</td>
+                <td width="254" style="background:#fff;">&nbsp;</td>
+                <td width="244">NAME (Print): </td>
+                <td width="202" style="background:#fff;">&nbsp;</td>
+                <td width="117">DATE:</td>
+                <td width="270" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong> Staff Safety Responsibility Statement</strong></div>
+        <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry out work on or
+            about Network Rail-managed infrastructure</p>
+        <ul>
+            <li style="margin-bottom:10px;">You are required at all times to ensure avoidance of injury to yourself and
+                colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling public;
+            </li>
+            <li style="margin-bottom:10px;">When working near the public, you must at all times ensure that the
+                passengers have a clear and safe walking route. If this cannot be achieved, then all work must stop
+                until rectified;</li>
+            <li style="margin-bottom:10px;">You must not start any work on Network Rail-managed infrastructure if there
+                is any possibility that the works may over-run the agreed timescales;</li>
+            <li style="margin-bottom:10px;">You are required to demonstrate a positive and encouraging attitude towards
+                health and safety at all times;</li>
+            <li style="margin-bottom:10px;">You must ensure that all PPE provided is cared for and used, when required;
+            </li>
+            <li style="margin-bottom:10px;">You are required to report all accidents, incidents, and near-misses;</li>
+            <li style="margin-bottom:10px;">You are expected to participate in accident and incident investigations;
+            </li>
+            <li style="margin-bottom:10px;">You are expected to participate in and input to regular safety briefings,
+                toolbox talks, and other meetings, when required;</li>
+            <li style="margin-bottom:10px;">You must not start any work activity until you have been briefed on and
+                understand the method of work, site-specific risks, local hazards, the safe system of work, and
+                emergency arrangements;</li>
+            <li style="margin-bottom:10px;">You must be briefed on the Work Package Plans (WPPs) and be provided
+                with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</li>
+            <li style="margin-bottom:10px;">Ensure you work to the sections of the Rule Book GE/RT8000 that are
+                relevant to your duties;</li>
+            <li style="margin-bottom:10px;">Only access rail infrastructure through access points, and where
+                practicable, use authorised walking routes;</li>
+            <li style="margin-bottom:10px;">Follow and work to the instructions given by the Controller of Site
+                Safety/Safe Work Leader (COSS/SWL);</li>
+            <li style="margin-bottom:10px;">Always leave the worksite clean, tidy and free from hazards.</li>
+        </ul>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Name:</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signature:</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Medical Standards: Eyewear</strong></p>
+        <table width="100%" border="0" cellspacing="0" cellpadding="7">
+            <tr>
+                <td width="50%">&nbsp;</td>
+                <td width="25%" align="center">YES</td>
+                <td width="25%" align="center">NO</td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Do you wear glasses?</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you wear contact lenses? </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>If you do wear contact lenses, do you agree to carry a spare pair of glasses when on or near the
+                    line?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signature:</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong>Working Time Directive and OPT-OUT</strong></div>
+        <p>The European Union Working Time Directive of a 48-hour maximum working week came into effect on October 1,
+            1998. The Directive provides minimum daily and weekly rest breaks, an annual holiday entitlement, a limit on
+            the working week to an average of 48 hours, and defined night-working duties.</p>
+        <p>In the meantime, the employer is required to obtain details as to whether staff members wish to exercise
+            their right to opt in or out of the working hours directive. The maximum weekly working time of 48 hours
+            will be averaged over a 17-week period. Individuals can, if they wish, agree with their employer about the
+            maximum weekly limit, but this must be in writing and on an individual basis. Individuals are given an
+            opportunity to opt back in, in writing to the employer. This does not create an exemption from statutory
+            legal requirements, e.g. the responsibilities of individuals to comply with health and safety legislation.
+        </p>
+        <p>Please note that if you choose to opt out in order that you can work in excess of 48 hours per week, and then
+            choose to opt back in, you will be required to give seven (7) days’ written notice. The 48 hours maximum per
+            week applies to any and all paid employment collectively, not just work undertaken with the company. You are
+            required to notify us in writing of any employment external to the company that you undertak,e regardless of
+            whether you decide to opt out of the regulations. In order to record our legal obligations, please sign
+            below in the relevant section, and return one copy of this letter to the company, retaining one copy for
+            their own records.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%">Name:</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">Sign against either (a) or (b)</td>
+            </tr>
+            <tr>
+                <td>a) I want to opt out of the working time directive</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>b) I want to opt in to the working time directive</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong>Working Hours Disclaimer for Employees Working on Network Rail-Managed Infrastructure</strong>
+        </div>
+        <p>If you are in any doubt as to the requirements of this memo, please contact your Line Manager.</p>
+        <p>Under normal conditions, you will not be asked work in excess of the Network Rail Standard NR/L2/OHS/003. In
+            exceptional circumstances, situations may arise where you are required to work in exceedance of the Network
+            Rail Standard. A risk assessment will be carried out to authorise any exceedance. </p>
+        <p>Under the Sentinel Scheme Rules, any sub sponsor shall notify the Sentinel Coordinator of your hours worked;
+            these hours will be considered, before placing you to work for the company.</p>
+        <p><strong>Declaration</strong></p>
+        <p>I agree to the working times set out in Network Rail Standard NR/L2/OHS/003, and agree to abide by its
+            contents.</p>
+        <p>I agree to notify the Office Manager of any other hours I work outside of the rail industry that may impact
+            on my working hours with the company.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tbody>
+                <tr>
+                    <td width="50%">Name:</td>
+                    <td width="50%" style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Signature:</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Contract of Sponsorship (MF015)</strong></p>
+        <p>This document sets out the contractual arrangements for the primary sponsorship of an individual on Network
+            Rail’s Sentinel Systems for the management of people working on Network Rail-managed infrastructure.</p>
+        <p>Between;</p>
+        <p>And;</p>
+        <p>Name: </p>
+        <p>Sentinel No:</p>
+        <p>The Company will act as the named individual’s primary sponsor for work carried out on managed
+            infrastructure. The nature of this employment will be as set out in the Terms of Engagement for staff,
+            agency workers, and subcontractors. The company does/ does not* support any primary-sponsored staff member
+            to have a secondary (sub) sponsor.</p>
+        <p><em>*delete as applicable</em></p>
+        <p>The Company, as your primary sponsor, will commit to fulfilling the role of employer for the purposes of
+            health and safety legislation only.</p>
+
+        <p><strong>Responsibilities of the Individual</strong></p>
+        <ol style="list-style:decimal;">
+            <li style="margin-bottom:10px;">The individual shall carry their smart Sentinel card at all times, whilst
+                working on managed infrastructure.</li>
+            <li style="margin-bottom:10px;">The individual will co-operate with their primary sponsor to ensure the
+                personal information held in the Sentinel database remains accurate and up to date.</li>
+            <li style="margin-bottom:10px;">The individual shall follow the rules of personal accountability for working
+                safely on managed infrastructure, including compliance with the Sentinel Scheme Rules and those of the
+                Infrastructure Manager.</li>
+            <li style="margin-bottom:10px;">The individual has the responsibility to manage their sponsor relationships
+                and at all times; when working on managed infrastructure, they shall:
+                <ul style="margin-top:10px; list-style:disc">
+                    <li style="margin-bottom:10px;">Know the identity of their primary sponsor;</li>
+                    <li style="margin-bottom:10px;">Know which sub-sponsors they are working for, if not working for
+                        their Primary Sponsor;</li>
+                    <li style="margin-bottom:10px;">Provide the correct name of the sponsor they are working for, when
+                        booking on at site.</li>
+                </ul>
+            </li>
+            <li style="margin-bottom:10px;">Individuals are required to notify the primary sponsor if they no longer to
+                be sponsored by them, so they can be de-sponsored. The change of sponsorship must be requested online
+                through My Sentinel.</li>
+        </ol>
+        <p>As Primary Sponsor, the Company will ensure:</p>
+        <ol style="list-style:decimal;">
+            <li style="margin-bottom:10px;">Individuals receive a valid Sentinel smart card. (Note: the first card is
+                issued free of charge; replacements due to loss or theft will be chargeable.)</li>
+            <li style="margin-bottom:10px;">Individuals receive an induction briefing, that will include as a minimum
+                the rules and responsibilities of the new Sentinel scheme.</li>
+            <li style="margin-bottom:10px;">Suitable PPE is provided to the individual when they are required to go onto
+                managed infrastructure. PPE will carry the company logo, and must only be worn when working for the
+                Company.</li>
+            <li style="margin-bottom:10px;">Individuals receive regular briefings and updates of information pertaining
+                to their duties</li>
+            <li style="margin-bottom:10px;">Training and assessment at required intervals to maintain competency of
+                duties being performed.</li>
+            <li style="margin-bottom:10px;">Personal issue information: handbooks, key point cards, etc. are made
+                available.</li>
+            <li style="margin-bottom:10px;">Individuals are provided with advice, guidance and/or instructions on any
+                restrictions based on medication or other medical fitness issues.</li>
+            <li style="margin-bottom:10px;">Individuals are provided with mentoring and support to develop the
+                competence of the individual.</li>
+            <li style="margin-bottom:10px;">Conduct an annual review of the individual’s continued suitability to work
+                on the infrastructure, taking into account behaviours and performance of safety critical duties, and
+                identify development requirements.</li>
+            <li style="margin-bottom:10px;">Individuals are provided with safety critical equipment that is calibrated
+                (where required) and fit for purpose for the individual to carry out their duties.</li>
+            <li style="margin-bottom:10px;">Explain how the Sponsor will provide advice, guidance, or instructions on
+                any restrictions, based on medication and other medical fitness issues.</li>
+            <li style="margin-bottom:10px;">Require the Individual to notify the Primary Sponsor of any changes in
+                circumstance, including health or personal issues, that may need the Primary Sponsor to take action to
+                ensure the Individual’s continued fitness for work trackside.</li>
+            <li style="margin-bottom:10px;">Individuals are given access to sources of information required for them to
+                undertake planning duties.</li>
+            <li style="margin-bottom:10px;">Make the Individual aware of their ability to check their own competences by
+                methods currently available.</li>
+        </ol>
+        <p>By signing this Contract of Sponsorship, you agree to the Sentinel Scheme Rules attached, the
+            responsibilities of the Sentinel Scheme, as outlined above, and for the Company to act as your Primary
+            Sponsor.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="28%">Signed (the individual)</td>
+                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="28%">Date:</td>
+                <td width="22%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signed (the company)</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date:</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Occupational Health Questionnaire</strong></p>
+        <p>This questionnaire is designed to help the Company meet its legal health and safety duties, assess whether
+            there are any existing health issues likely to affect your employment, and to find out if any changes need
+            to be made to the workplace under the Equality Act 2010. Information given by you will also help us to work
+            out if you need any vaccinations or any health checks, as part of your job.</p>
+
+        <p style="text-align:center;"><strong>The information supplied will remain strictly confidential, and can be
+                accessed only by authorised personnel.</strong></p>
+        <p style="text-align:center;"><strong>No information will be sent outside the Company. A copy will be made
+                available, when leaving the Company’s employment.</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="40%">Name</td>
+                <td width="60%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p>Please tick <strong>Yes</strong> or <strong>NO</strong> to each question. Please answer truthfully.</p>
+        <p><strong>Illnesses that can affect your safety at work.</strong></p>
+        <p>Have you suffered from any health problems that have caused you to take time off work? <em>Please tick
+                below:</em></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+            </tr>
+            <tr>
+                <td>Stomach/bowels</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Back/neck</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Mental illness</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Bladder</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Ears</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Claustrophobia</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Kidney</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Eyes</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Vertigo</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Hernia</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Nose or throat</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Anxiety/stress</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Heart</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Lungs</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Nervous disorder</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Blood pressure</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Sinusitis</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Skin disease</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Blood disorder</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Tuberculosis</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Allergies</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Jaundice</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Fainting/dizzy spells</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Drug dependency</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Rheumatism/arthritis</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Headaches/migraines</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Alcohol dependency</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Tendons/ligaments/joints</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td colspan="6" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p style="text-align:center;"><strong>If any of the above answers is ‘Yes,’ please give details on a separate
+                piece of paper, and return it with this questionnaire to your Supervisor.</strong></p>
+        <p><strong>Work activities that can affect your health.</strong></p>
+        <p>In previous jobs, have you had any significant exposure to:</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+                <td>&nbsp;</td>
+                <td align="center">Y</td>
+                <td align="center">N</td>
+            </tr>
+            <tr>
+                <td>Vibration</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Cancer-causing agents</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Lead</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Dust</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Radiation</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Asbestos</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Noise</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Hazardous chemicals</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Mineral oil</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Manual handling</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Skin irritants</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Tar</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td style="background:#fff;">
+                    <p><strong>If ‘Yes,’ please describe the tools/products you have used:</strong></p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>Please continue on a separate piece of paper,if you run out of space, and return it with this
+                        questionnaire to your Supervisor.<br>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p><u><strong>Other information that the Employer needs to know for health and safety requirements.</strong></u>
+        </p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td>Do you suffer from:</td>
+                <td>Y</td>
+                <td>N</td>
+                <td>Are you:</td>
+                <td>Y</td>
+                <td>N</td>
+            </tr>
+            <tr>
+                <td>Aches?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Suffering any health problems?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Pains?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>A smoker?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Tingling?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Asthmatic?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Numbness/loss of feeling?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Epileptic?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Skin allergies, eczema, or dermatitis?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Diabetic?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Other allergies of which we should be aware?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Colour blind?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Any blood borne disease, e.g. hepatitis, HIV?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Dyslexic?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="6">Any phobias i.e. heights, water, insects, reptiles (please list below, if yes).</td>
+            </tr>
+            <tr>
+                <td height="150" colspan="6" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td><strong>QUESTION</strong></td>
+                <td align="center"><strong>YES</strong></td>
+                <td align="center"><strong>NO</strong></td>
+            </tr>
+            <tr>
+                <td>Do you have any physical disability which could affect your work?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you have difficulty hearing (with a hearing aid, if needed) for all normal work purposes?*</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you have difficulty seeing (with glasses or contact lenses, if needed) for all normal work
+                    purposes?*</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you currently take any prescribed medicines that make you dizzy or drowsy?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you ever been told that you suffer from a work-related health problem?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you suffer from a frequent health problem that causes you to be off work more than two-three
+                    times per year?*</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you ever had an illness or injury that has kept you off work for more than three months?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you ever had to give up any previous job for medical reasons?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you ever received compensation for industrial injury or illness?**</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong>GP Registration:</strong></div>
+        <p>You should be registered with a doctor local to where you are currently living.</p>
+        <p>Please provide the contact details of your GP so that the Company can inform your doctor of any details of
+            the type of health problems you may be exposed to as a construction worker.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="4"><strong>GP details</strong></td>
+            </tr>
+            <tr>
+                <td width="18%">Surname</td>
+                <td width="32%" style="background:#fff;">&nbsp;</td>
+                <td width="17%">Initials</td>
+                <td width="33%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td colspan="3" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Post Code</td>
+                <td colspan="3" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Tel No.</td>
+                <td colspan="3" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <div><strong>Note</strong></div>
+        <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor if you
+            experience a health problem in the future, you may be asked to provide authorisation for your doctor to
+            reply to any query concerning your health or medical history. Information in the report relating to your
+            employment may be passed on to the Company. You have the right to see any medical report prepared by your
+            doctor before it is sent to the Company Medical Advisor, who will treat the information in the strictest
+            confidence. It is within your rights to decline to give authorisation for information to be passed to the
+            Company.</p>
+        <p>Please check over this form to make sure you have answered all questions. Please complete ALL questions and
+            return the form (with any additional information) to your supervisor by the end of your first week of
+            employment.</p>
+        <p>Declaration: I declare that the answers contained in this questionnaire are, to the best of my knowledge,
+            true. I understand that should I withhold information, or lie about any details, my employment may be
+            terminated.</p>
+        <p>Employee’s signature: ………………………………………… Date: ………………………………</p>
+        <p style="font-size:22px;"><strong>English Test (TfL Only)</strong></p>
+        <p><strong>Candidates should complete the questions below to the best of their ability without any
+                assistance.</strong></p>
+        <p>1. They’ve both worked here over ten years. (in / for / since / during)</p>
+        <p>2. Choose the option closest in meaning to the word in bold:</p>
+        <p><strong>Ancestor:</strong> a. old; b. forefather; c. past; d. dead.</p>
+        <p>3. Choose the option opposite in meaning to the word in bold:</p>
+        <p><strong>Exterior:</strong> a. internal; b. inferior; c. superior; d. interior.</p>
+        <p>4. What you like to drink? (will / might / would / shall)</p>
+        <p>5. There are other people in the park ourselves.<br>(a. besides; b. beside; c. before; d. around)</p>
+        <p>6. He had a heart attack. The doctor was immediately<br>(a. Sent off; b. sent for; c. sent in; d. sent
+            through)</p>
+        <p>7. My brother and I used to fight a great deal as children. We did of things together, not always in
+            complete. In fact, on one occasion, he actually my arm. I suppose he really did me a, as I missed the school
+            exams that year.</p>
+        <p>Q. 1: a. many; b. some; c. a lot; d. a deal</p>
+        <p>Q. 2: a. harmony; b. friendship; c. unison; d. liking</p>
+        <p>Q.3: a. damaged; b. broke; c. ripped; d. tore</p>
+        <p>Q.4: a. courtesy; b. benefit; c. favour; d. privilege</p>
+        <p>Q.5: a. for; b. around; c. at; d. during</p>
+        <p style="text-align:center;"><strong>Total marks available = 11 Minimum pass mark is 8 from 11 Mark
+                achieved</strong></p>
+        <div><strong>TfL Area Familiarisation</strong></div>
+        <p>Please indicate which of the TfL Routes you have gained experience on, frequency, and when.</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="50%"><strong>ROUTE</strong></td>
+                <td width="15%"><strong>YES/NO</strong></td>
+                <td width="18%"><strong>No. of visits</strong></td>
+                <td width="17%"><strong>DATE mm/yy</strong></td>
+            </tr>
+            <tr>
+                <td>Bakerloo</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Central</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Circle</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Hammersmith &amp; City</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Jubilee</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Metropolitan</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Nothern</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Piccadilly</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Victoria</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Waterloo &amp; City</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>DLR</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>London Overground</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>TfL Rail (Liverpool Street to Shenfield)</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><strong>DEPOTS</strong></td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Cockfosters</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Golders Green</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Hainault</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Hammersmith</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Morden</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Neasden</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Northfields</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Queens Park</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Ruislip</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Stonebridge Park</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>White City</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Ealing Common</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Nothumberland Park</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Beckton</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Poplar</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers</strong></p>
+        <p>A night worker is an employee who is scheduled to work at least three hours of his/her daily working time
+            during the night on the majority of days on which he/she is scheduled to work. Night time is defined as the
+            period between 11 p.m. and 6 a.m.</p>
+        <p>Night workers are entitled to a voluntary health assessment to check whether they are fit for the work
+            required. Very few health problems will prevent people being able to work at night, and where there is a
+            medical problem that could be relevant, it will almost always be possible for the person to be able to work
+            during night hours, with suitable modifications to their treatment programme.</p>
+        <p>The purpose of the questionnaire is to ask whether you have any health problem that could be affected by
+            night work so that where necessary, an appropriate medical review can be arranged. The questionnaire will be
+            confidential to the Company’s Occupational Health Adviser (It is advisable to identify a local Occupational
+            Health Adviser, or to use the area NHS Occupational Health Service), but a report on your fitness will be
+            provided to your manager who is responsible for work assignments, and for the arrangements for health and
+            safety at work.</p>
+        <p>Please complete the form and tick the appropriate box for the questions listed; if you have any other
+            condition that you believe should be considered, please write brief details at the bottom of the page, or
+            continue on a separate sheet of paper.</p>
+        <p><strong>Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="70%"><strong>Question</strong></td>
+                <td width="15%" align="center"><strong>Yes</strong></td>
+                <td width="15%" align="center"><strong>No</strong></td>
+            </tr>
+            <tr>
+                <td>Have you had any medical problem in the past that has prevented you from working at night?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Are you diabetic?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Are you subject to angina, or other heart problems that may affect your fitness?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you had duodenal or stomach ulcers in the past, or are you under treatment for them at present?
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Have you had any continuing bowel problem, such as following major surgery?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you have any chronic chest problem such as asthma, emphysema, or bronchiectasis?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you have any disability-affecting mobility that will cause difficulties in arranging night work?
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Do you have any recurrent or continuing sleep disturbance requiring medical advice?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Are you having specialist care requiring your attendance at hospital clinics for treatment?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Are you taking any medication to a strict timetable?</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">Do you have any other health problem that affects your fitness for night work?</td>
+            </tr>
+            <tr>
+                <td height="150" colspan="3" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td>Please give the names of any prescribed medications that you take regularly:</td>
+            </tr>
+            <tr>
+                <td height="150" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Please give any further details that you would like to bring to our attention.</td>
+            </tr>
+            <tr>
+                <td height="150" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="28%">Employee signature</td>
+                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="28%">Date</td>
+                <td width="22%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Employer signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p><strong>Stress-Risk Assessment Form</strong></p>
+        <p><u><em>Note: This form is to be used only once a worker has been diagnosed with a stress condition by their
+                    doctor.</em></u></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td width="41%" style="background:#fff;"><strong>Subject of Risk Assessment; Team/Individual
+                    </strong><em>(delete as appropriate)</em></td>
+                <td width="13%" style="background:#fff;">&nbsp;</td>
+                <td width="28%" valign="top" style="background:#fff;"><strong>Number of Employees</strong></td>
+                <td width="18%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><em>Insert name of team/individual</em></td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2" style="background:#fff;"><strong>Reason or Trigger for Risk Assessment</strong></td>
+            </tr>
+            <tr>
+                <td width="50%"><em>Add a brief description indicating why the stress-risk assessment is being
+                        completed; for example, return to work after stress-related absence, or employee informed you
+                        that they had been suffering from symptoms of stress or workplace pressures.</em></td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2" style="background:#fff;"><strong>Current control measures</strong></td>
+            </tr>
+            <tr>
+                <td width="50%"><em>Control measures can be preventative (prevent workplace pressure or hazards from
+                        happening in the first instance) or protective (protect employees from existing workplace
+                        pressure or hazards). It is, therefore, important that all measures in place are listed here to
+                        show what is already being done; for example, hold regular meetings with the employee/s to
+                        discuss performance and offer further support, if necessary; have signposted employee to his/her
+                        GP and given them details of the health and wellbeing portal, and tasked them with looking at
+                        resilience information before next meeting; employee is due to start a training course the
+                        following week to ensure skills are up to date.</em></td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td><strong>Workplace Pressure</strong></td>
+                <td><strong>Issue Identified</strong></td>
+                <td colspan="3" align="center"><strong>Severity x Likelihood</strong></td>
+                <td><strong>Additional Control Measures</strong></td>
+                <td><strong>By Whom</strong></td>
+                <td><strong>By When</strong></td>
+            </tr>
+            <tr>
+                <td>CONTROL</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+                        <li>Who does what in the team?</li>
+                        <li>Having enough line manager support?</li>
+                        <li>Having sufficient control over your work?</li>
+                        <li>Having your opinions listened to?</li>
+                        <li>The balance between work and outside life?</li>
+                        <li>Any other concerns?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;">
+                    <ul>
+                        <li>Discuss flexibility over delivery of work schedules and delivery of work.</li>
+                        <li>Support flexible working practices, wherever possible and practical.</li>
+                        <li>Agree on the most appropriate communication methods and frequency.</li>
+                        <li>Include all employees in decision-making for tasks/planning work.</li>
+                        <li>Share good practice and recognise achievements or suggestions.</li>
+                        <li>Discuss learning opportunities.</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>JOB SECURITY AND CHANGE</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>By Whom</td>
+                <td>By When</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+                        <li>Feeling supported through change?</li>
+                        <li>Opportunities to comment on change?</li>
+                        <li>Your future role?</li>
+                        <li>Where to access support?</li>
+                        <li>Having enough time/resources to implement change?</li>
+                        <li>Feeling skilled enough to do new tasks?</li>
+                        <li>Any other concerns?</li>
+
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;">
+                    <ul>
+                        <li>Ensure communication mechanisms are in place and operating effectively.</li>
+                        <li>Engage with employees regularly and in a timely manner during key change initiatives, and
+                            provide opportunities to feed in their views.</li>
+                        <li>Explain the reasons for change and the benefits, as well as information on timescales.</li>
+                        <li>Ensure employees are aware of all support services available to them.</li>
+                        <li>Be honest with employees, even where news may not be positive.</li>
+                        <li>direct employees to basic lifestyle advice and coping strategies to prepare for change.</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>BALANCED WORKLOAD</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>By Whom</td>
+                <td>By When</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+
+                        <li>Clear priorities?</li>
+                        <li>Having realistic deadlines?</li>
+                        <li>Having sufficient resources to do your job?</li>
+                        <li>Your skills, training, and knowledge being sufficient to do your job?</li>
+                        <li>The length of your daily commute?</li>
+                        <li>Having a dull or repetitive work?</li>
+                        <li>Your work/life balance?</li>
+                        <li>Any other concerns?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;">
+                    <ul>
+                        <li>Reallocate duties (temporarily or permanently).</li>
+                        <li>Help prioritise tasks or projects appropriately.</li>
+                        <li>Adjust hours or work pattern (temporarily or permanently).</li>
+                        <li>Identify and support specific training needs.</li>
+                        <li>Ensure tasks and expectations are clearly defined and understood.</li>
+                        <li>Plan work carefully so that deadlines are achievable.</li>
+                        <li>Explore the full potential of an employee to utilise their skill set. If possible, offer a
+                            variety of tasks, rather than those that are simply repetitive.</li>
+                        <li>Plan workload in regular discussions.</li>
+                        <li>Agree an upper limit to working hours.</li>
+                        <li>Switch off mobile phones and laptops at a specific time.</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>JOB CONDITIONS</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>By Whom</td>
+                <td>By When</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+                        <li>Feeling insufficiently inducted into the role?</li>
+                        <li>Understanding your role?</li>
+                        <li>Your reporting structure?</li>
+                        <li>Your working environment?</li>
+                        <li>Other demands in you outside your role?</li>
+                        <li>Any other concerns?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;">
+                    <ul>
+                        <li>Clarify employee’s expectations of the role.</li>
+                        <li>Reinforce the reporting structure.</li>
+                        <li>Are there any physical hazards in the work environment that need to be managed?</li>
+                        <li>Does the employee understand the support services they can access?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>RESOURCES AND COMMUNICATION</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>By Whom</td>
+                <td>By When</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+                        <li>Feeling insufficiently supported by your team?</li>
+                        <li>Feelings of isolation?</li>
+                        <li>Being informed of workplace issues?</li>
+                        <li>Issues around communication?</li>
+                        <li>Further training needs?</li>
+                        <li>Any other concerns?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;">
+                    <ul>
+                        <li>Support employees to develop their skills and knowledge to do their work.</li>
+                        <li>Source equipment or tools needed to perform work effectively.</li>
+                        <li>Ensure communication mechanisms are in place and operating effectively.</li>
+                        <li>Focus on communicating honestly and regularly.</li>
+                        <li>Encourage employees to make suggestions to management.</li>
+                        <li>Ensure employees are aware of all support services available to them.</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>WORK RELATIONSHIPS</td>
+                <td>&nbsp;</td>
+                <td>S</td>
+                <td>L</td>
+                <td>T</td>
+                <td>&nbsp;</td>
+                <td>By Whom</td>
+                <td>By When</td>
+            </tr>
+            <tr>
+                <td valign="top" style="background:#fff;">
+                    <p><strong>Are you troubled by:</strong></p>
+                    <ul>
+                        <li>Bullying or harassment issues in the team?</li>
+                        <li>An insufficient supportive atmosphere in the team?</li>
+                        <li>How to raise a concern or find support?</li>
+                        <li>A lack of recognition for diversity in the team?</li>
+                        <li>Are there any other concerns?</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td valign="top" style="background:#fff;" style="background:#fff;">
+                    <ul>
+                        <li>Report and quickly address any bullying or harassment claims.</li>
+                        <li>Ensure employees are aware of policies related to resolving unacceptable behaviour.</li>
+                        <li>Encourage 1-2-1 discussions, rather than email.</li>
+                        <li>Review diversity and inclusion training.</li>
+                        <li>Arrange regular team and 1-2-1 meetings.</li>
+                        <li>Promote positive working relationships.</li>
+                    </ul>
+                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7" style="margin-bottom:30px;">
+            <tr>
+                <td style="border-bottom:0px;"><strong>Report</strong></td>
+            </tr>
+            <tr>
+                <td style="border-bottom:0px; border-top:0px;"><strong>MULTIPLY THE TWO SCORES: LIKELIHOOD X SEVERITY
+                    </strong></td>
+            </tr>
+            <tr>
+                <td style="border-bottom:0px; border-top:0px;"><strong>RISK SCORE IS:</strong></td>
+            </tr>
+            <tr>
+                <td style="border-bottom:0px; border-top:0px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td><strong>1 TO 3 = LOW </strong></td>
+                            <td><strong>4 TO 6 = MODERATE </strong></td>
+                            <td><strong>18 - 12 = HIGH</strong></td>
+                            <td><strong>15 OR ABOVE = VERY HIGH</strong></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-bottom:0px; border-top:0px;">
+                    <p><strong>RISK MANAGEMENT DECISION:</strong></p>
+                    <p><strong>RISK IS LOW; NO FURTHER ACTION NECESSARY: MONITOR</strong></p>
+                    <p><strong>RISK IS MODERATE; CONTROL MEASURES IN PLACE: ACCEPTABLE </strong></p>
+                    <p><strong>RISK IS HIGH; IMMEDIATE CONTROL MEASURES IN PLACE: ACCEPTABLE</strong></p>
+                    <p><strong>RISK IS VERY HIGH: DO NOT PROCEED FURTHER</strong></p>
+                    <p><strong>Comments to justify decision:</strong></p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-bottom:0px; border-top:0px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td><strong>Assessor’s name:</strong></td>
+                            <td><strong>Date assessment carried out:</strong></td>
+                            <td><strong>Review date:</strong></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<!-- </html> -->

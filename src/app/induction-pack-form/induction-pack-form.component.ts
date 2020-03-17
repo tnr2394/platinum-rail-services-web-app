@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router, NavigationExtras } from '@angular/router'
 declare var $: any;
 
 @Component({
@@ -8,7 +9,7 @@ declare var $: any;
 })
 export class InductionPackFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -213,7 +214,15 @@ export class InductionPackFormComponent implements OnInit {
         }
       }
     }
-    console.log('Submit Value Here', this.data);
+
+
+    let NavigationExtras: NavigationExtras = {
+      state: {
+        data: this.data
+      }
+    };
+    this.router.navigateByUrl('/form-preview', NavigationExtras)
+
   }
 
 }
