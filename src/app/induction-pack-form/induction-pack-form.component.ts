@@ -138,11 +138,11 @@ export class InductionPackFormComponent implements OnInit {
   competencesD5;
   competencesE5;
 
-  
+
   competencesD6;
   competencesE6;
 
-  
+
   competencesD7;
   competencesE7;
 
@@ -255,6 +255,20 @@ export class InductionPackFormComponent implements OnInit {
   workIllness9;
   workIllness10;
   workIllness11;
+
+
+  // Other QUESTION
+
+  otherQ1;
+  otherQ2;
+  otherQ3;
+  otherQ4;
+  otherQ5;
+  otherQ6;
+  otherQ7;
+  otherQ8;
+  otherQ9;
+
 
 
 
@@ -428,6 +442,17 @@ export class InductionPackFormComponent implements OnInit {
         workIllness9: this.workIllness9,
         workIllness10: this.workIllness10,
         workIllness11: this.workIllness11
+      },
+      otherQuestionDetail: {
+        otherQ1: this.otherQ1,
+        otherQ2: this.otherQ2,
+        otherQ3: this.otherQ3,
+        otherQ4: this.otherQ4,
+        otherQ5: this.otherQ5,
+        otherQ6: this.otherQ6,
+        otherQ7: this.otherQ7,
+        otherQ8: this.otherQ8,
+        otherQ9: this.otherQ9,
       }
     }
 

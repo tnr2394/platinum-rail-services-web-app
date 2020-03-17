@@ -3,10 +3,12 @@
 
     <!-- Type Yes/No Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
             Type Yes/No
         </div>
-        <div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -40,7 +42,8 @@
                     <div class="col-md-6">
                         <label>Date of induction</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="dateOfInduction" name="doi" [matDatepicker]="doi" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="dateOfInduction" name="doi" [matDatepicker]="doi"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="doi"></mat-datepicker-toggle>
                             <mat-datepicker #doi></mat-datepicker>
                         </mat-form-field>
@@ -71,7 +74,8 @@
                     <div class="col-md-6">
                         <label>Date added to Sentinel Database</label>
                         <mat-form-field>
-                            <input [(ngModel)]="dateAddedToSentinelDatabase" matInput name="dsd" [matDatepicker]="dsd" placeholder="Date added to Sentinel Database" irequired>
+                            <input [(ngModel)]="dateAddedToSentinelDatabase" matInput name="dsd" [matDatepicker]="dsd"
+                                placeholder="Date added to Sentinel Database" irequired>
                             <mat-datepicker-toggle matSuffix [for]="dsd"></mat-datepicker-toggle>
                             <mat-datepicker #dsd></mat-datepicker>
                         </mat-form-field>
@@ -89,22 +93,26 @@
 
     <!-- Candidate Detail Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
             Candidate Details
         </div>
-        <div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Candidate Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="candidateName" name="candidateName" placeholder="Candidate Name" cdkFocusInitial>
+                            <input matInput [(ngModel)]="candidateName" name="candidateName"
+                                placeholder="Candidate Name" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>BirthDate</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="dateOfBirth" name="dob" [matDatepicker]="dob" placeholder="Choose a birth date">
+                            <input matInput [(ngModel)]="dateOfBirth" name="dob" [matDatepicker]="dob"
+                                placeholder="Choose a birth date">
                             <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                             <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
@@ -112,32 +120,37 @@
                     <div class="col-md-6">
                         <label>National Insurance No.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber" placeholder="National Insurance Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber"
+                                placeholder="National Insurance Number" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Candidate Address</label>
                         <mat-form-field class="example-full-width">
-                            <textarea rows="4" [(ngModel)]="candidateAddress" name="address" cols="100" matInput placeholder="Candidate Address"></textarea>
+                            <textarea rows="4" [(ngModel)]="candidateAddress" name="address" cols="100" matInput
+                                placeholder="Candidate Address"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Contact Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Sentinel Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Email Address</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -149,10 +162,12 @@
 
     <!-- Checklist Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse"
+            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             Checklist
         </div>
-        <div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree" data-parent="#accordion">
+        <div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -264,40 +279,47 @@
 
     <!--Bank Details Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse" data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse"
+            data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
             Bank Details
         </div>
-        <div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading" data-parent="#accordion">
+        <div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Name on Account / Ltd Company Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Bank Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Bank Address</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Account Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Sort Code</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -309,10 +331,12 @@
 
     <!-- Payment Detail Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse" data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse"
+            data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
             Payment Details
         </div>
-        <div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading" data-parent="#accordion">
+        <div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -332,25 +356,29 @@
                     <div class="col-md-6">
                         <label>Company Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Company No.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Please provide a copy of Certificate ofIncorporation</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Umbrella Company – state which one</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -361,45 +389,53 @@
 
     <!-- Insurance Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse" data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse"
+            data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
             Insurance
         </div>
-        <div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading" data-parent="#accordion">
+        <div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
-                    <p>Please provide the policy numbers of your company insurances, and return copies of thecertificates
+                    <p>Please provide the policy numbers of your company insurances, and return copies of
+                        thecertificates
                     </p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Employers’ Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Professional Indemnity</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Public Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Product and Goods Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance4" name="name" placeholder="Product and Goods Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance4" name="name"
+                                placeholder="Product and Goods Liability" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label> Vehicle Business Use</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -412,20 +448,24 @@
 
     <!-- Right to work in uk Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse" data-target="#rightWorkDetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse"
+            data-target="#rightWorkDetail" aria-expanded="false" aria-controls="bankdetail">
             Right to Work in the UK
         </div>
-        <div id="rightWorkDetail" class="collapse single_accordion_content" aria-labelledby="rightworkHeading" data-parent="#accordion">
+        <div id="rightWorkDetail" class="collapse single_accordion_content" aria-labelledby="rightworkHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
-                    <p>Please provide the policy numbers of your company insurances, and return copies of thecertificates
+                    <p>Please provide the policy numbers of your company insurances, and return copies of
+                        thecertificates
                     </p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>NAME</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="rightWName" name="name" placeholder="Employers’ Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="rightWName" name="name" placeholder="Employers’ Liability"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -591,10 +631,12 @@
 
     <!-- Next Of Kin Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin"
+            aria-expanded="false" aria-controls="collapseTwo">
             Next of Kin
         </div>
-        <div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin" data-parent="#accordion">
+        <div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <p>Please provide detail of your next of kin. Data will be stored on the Sentinel Database.</p>
@@ -603,32 +645,37 @@
                     <div class="col-md-6">
                         <label>Name of next of kin</label>
                         <mat-form-field>
-                            <input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required cdkFocusInitial>
+                            <input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Relationship with you</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinRelationship" name="name" placeholder="Relationship with you" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinRelationship" name="name"
+                                placeholder="Relationship with you" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Contact number of next of kin</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinContactNumber" name="name" placeholder="Contact number of next of kin" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinContactNumber" name="name"
+                                placeholder="Contact number of next of kin" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Secondary Contact number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinSecondContactNumber" name="name" placeholder="Secondary Contact Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinSecondContactNumber" name="name"
+                                placeholder="Secondary Contact Number" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Email for next of kin</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -636,7 +683,8 @@
                     <div class="col-md-6">
                         <label>Address of next of kin</label>
                         <mat-form-field class="example-full-width">
-                            <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput placeholder="Address of next of kin"></textarea>
+                            <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput
+                                placeholder="Address of next of kin"></textarea>
                         </mat-form-field>
                     </div>
 
@@ -646,10 +694,12 @@
     </div>
 
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse" data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse"
+            data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
             Pre-deployment Safety Critical Checklist
         </div>
-        <div id="Pre-deployment-checklist" class="collapse single_accordion_content" aria-labelledby="Pre-deployment" data-parent="#accordion">
+        <div id="Pre-deployment-checklist" class="collapse single_accordion_content" aria-labelledby="Pre-deployment"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <h6>1) Card holder’s details</h6>
@@ -658,28 +708,32 @@
                     <div class="col-md-6">
                         <label>Forename</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderName" name="name" placeholder="Forename" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderName" name="name" placeholder="Forename" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Surname</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderSurName" name="name" placeholder="surname" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderSurName" name="name" placeholder="surname" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Card holder’s contact tel. no</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderContact" name="name" placeholder="contact" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderContact" name="name" placeholder="contact" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Employing company</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderCompany" name="name" placeholder="contact" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderCompany" name="name" placeholder="contact" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -692,7 +746,8 @@
                 <div class="col-md-6">
                     <label>Full Sentinel card no.</label>
                     <mat-form-field>
-                        <input matInput [(ngModel)]="cardsentinelNumber" name="name" placeholder="contact" required cdkFocusInitial>
+                        <input matInput [(ngModel)]="cardsentinelNumber" name="name" placeholder="contact" required
+                            cdkFocusInitial>
                     </mat-form-field>
                 </div>
             </div>
@@ -702,21 +757,25 @@
 
     <!-- Competences Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse" data-target="#Competence" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse"
+            data-target="#Competence" aria-expanded="false" aria-controls="collapseTwo">
             Competence
         </div>
-        <div id="Competence" class="collapse single_accordion_content" aria-labelledby="CompetenceHeading" data-parent="#accordion">
+        <div id="Competence" class="collapse single_accordion_content" aria-labelledby="CompetenceHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
                         <label>Medical</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD1" [matDatepicker]="cd1" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD1" [matDatepicker]="cd1"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd1"></mat-datepicker-toggle>
                             <mat-datepicker #cd1></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE1" [matDatepicker]="ce1" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE1" [matDatepicker]="ce1"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce1"></mat-datepicker-toggle>
                             <mat-datepicker #ce1></mat-datepicker>
                         </mat-form-field>
@@ -724,12 +783,14 @@
                     <div class="col-lg-6">
                         <label>PTS AC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD2" [matDatepicker]="cd2" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD2" [matDatepicker]="cd2"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd2"></mat-datepicker-toggle>
                             <mat-datepicker #cd2></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE2" [matDatepicker]="ce2" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE2" [matDatepicker]="ce2"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce2"></mat-datepicker-toggle>
                             <mat-datepicker #ce2></mat-datepicker>
                         </mat-form-field>
@@ -739,12 +800,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>PTS DC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD3" name="doi" [matDatepicker]="cd3" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD3" name="doi" [matDatepicker]="cd3"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd3"></mat-datepicker-toggle>
                             <mat-datepicker #cd3></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE3" name="doi" [matDatepicker]="ce3" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE3" name="doi" [matDatepicker]="ce3"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce3"></mat-datepicker-toggle>
                             <mat-datepicker #ce3></mat-datepicker>
                         </mat-form-field>
@@ -752,12 +815,14 @@
                     <div class="col-lg-6">
                         <label>AOD PO</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD4" name="doi" [matDatepicker]="cd4" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD4" name="doi" [matDatepicker]="cd4"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd4"></mat-datepicker-toggle>
                             <mat-datepicker #cd4></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE4" name="doi" [matDatepicker]="ce4" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE4" name="doi" [matDatepicker]="ce4"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce4"></mat-datepicker-toggle>
                             <mat-datepicker #ce4></mat-datepicker>
                         </mat-form-field>
@@ -767,12 +832,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>AOD PO</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD5" name="doi" [matDatepicker]="cd5" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD5" name="doi" [matDatepicker]="cd5"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd5"></mat-datepicker-toggle>
                             <mat-datepicker #cd5></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE5" name="doi" [matDatepicker]="ce5" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE5" name="doi" [matDatepicker]="ce5"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce5"></mat-datepicker-toggle>
                             <mat-datepicker #ce5></mat-datepicker>
                         </mat-form-field>
@@ -780,12 +847,14 @@
                     <div class="col-lg-6">
                         <label>AOD HS</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD6" name="doi" [matDatepicker]="cd6" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD6" name="doi" [matDatepicker]="cd6"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd6"></mat-datepicker-toggle>
                             <mat-datepicker #cd6></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE6" name="doi" [matDatepicker]="ce6" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE6" name="doi" [matDatepicker]="ce6"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce6"></mat-datepicker-toggle>
                             <mat-datepicker #ce6></mat-datepicker>
                         </mat-form-field>
@@ -795,12 +864,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>AOD LXA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD7" name="doi" [matDatepicker]="cd7" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD7" name="doi" [matDatepicker]="cd7"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd7"></mat-datepicker-toggle>
                             <mat-datepicker #cd7></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE7" name="doi" [matDatepicker]="ce7" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE7" name="doi" [matDatepicker]="ce7"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce7"></mat-datepicker-toggle>
                             <mat-datepicker #ce7></mat-datepicker>
                         </mat-form-field>
@@ -808,12 +879,14 @@
                     <div class="col-lg-6">
                         <label>AOD RSA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD8" name="doi" [matDatepicker]="cd8" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD8" name="doi" [matDatepicker]="cd8"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd8"></mat-datepicker-toggle>
                             <mat-datepicker #cd8></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE8" name="doi" [matDatepicker]="ce8" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE8" name="doi" [matDatepicker]="ce8"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce8"></mat-datepicker-toggle>
                             <mat-datepicker #ce8></mat-datepicker>
                         </mat-form-field>
@@ -823,12 +896,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>LKT / SW</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD9" name="doi" [matDatepicker]="cd9" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD9" name="doi" [matDatepicker]="cd9"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd9"></mat-datepicker-toggle>
                             <mat-datepicker #cd9></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE9" name="doi" [matDatepicker]="ce9" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE9" name="doi" [matDatepicker]="ce9"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce9"></mat-datepicker-toggle>
                             <mat-datepicker #ce9></mat-datepicker>
                         </mat-form-field>
@@ -836,12 +911,14 @@
                     <div class="col-lg-6">
                         <label>IWA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD10" name="doi" [matDatepicker]="cd10" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD10" name="doi" [matDatepicker]="cd10"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd10"></mat-datepicker-toggle>
                             <mat-datepicker #cd10></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE10" name="doi" [matDatepicker]="ce10" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE10" name="doi" [matDatepicker]="ce10"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce10"></mat-datepicker-toggle>
                             <mat-datepicker #ce10></mat-datepicker>
                         </mat-form-field>
@@ -851,12 +928,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>COSS</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD11" name="doi" [matDatepicker]="cd11" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD11" name="doi" [matDatepicker]="cd11"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd11"></mat-datepicker-toggle>
                             <mat-datepicker #cd11></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE11" name="doi" [matDatepicker]="ce11" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE11" name="doi" [matDatepicker]="ce11"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce11"></mat-datepicker-toggle>
                             <mat-datepicker #ce11></mat-datepicker>
                         </mat-form-field>
@@ -864,12 +943,14 @@
                     <div class="col-lg-6">
                         <label>COSS OLP</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD12" name="doi" [matDatepicker]="cd12" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD12" name="doi" [matDatepicker]="cd12"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd12"></mat-datepicker-toggle>
                             <mat-datepicker #cd12></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE12" name="doi" [matDatepicker]="ce12" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE12" name="doi" [matDatepicker]="ce12"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce12"></mat-datepicker-toggle>
                             <mat-datepicker #ce12></mat-datepicker>
                         </mat-form-field>
@@ -879,12 +960,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>COSS CRP</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD13" name="doi" [matDatepicker]="cd13" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD13" name="doi" [matDatepicker]="cd13"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd13"></mat-datepicker-toggle>
                             <mat-datepicker #cd13></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE13" name="doi" [matDatepicker]="ce13" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE13" name="doi" [matDatepicker]="ce13"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce13"></mat-datepicker-toggle>
                             <mat-datepicker #ce13></mat-datepicker>
                         </mat-form-field>
@@ -892,12 +975,14 @@
                     <div class="col-lg-6">
                         <label>PC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD14" name="doi" [matDatepicker]="cd14" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD14" name="doi" [matDatepicker]="cd14"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd14"></mat-datepicker-toggle>
                             <mat-datepicker #cd14></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE14" name="doi" [matDatepicker]="ce14" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE14" name="doi" [matDatepicker]="ce14"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce14"></mat-datepicker-toggle>
                             <mat-datepicker #ce14></mat-datepicker>
                         </mat-form-field>
@@ -907,12 +992,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>ES</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD15" name="doi" [matDatepicker]="cd15" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD15" name="doi" [matDatepicker]="cd15"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd15"></mat-datepicker-toggle>
                             <mat-datepicker #cd15></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE15" name="doi" [matDatepicker]="ce15" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE15" name="doi" [matDatepicker]="ce15"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce15"></mat-datepicker-toggle>
                             <mat-datepicker #ce15></mat-datepicker>
                         </mat-form-field>
@@ -920,12 +1007,14 @@
                     <div class="col-lg-6">
                         <label>ES Level A</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD16" name="doi" [matDatepicker]="cd16" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD16" name="doi" [matDatepicker]="cd16"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd16"></mat-datepicker-toggle>
                             <mat-datepicker #cd16></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE16" name="doi" [matDatepicker]="ce16" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE16" name="doi" [matDatepicker]="ce16"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce16"></mat-datepicker-toggle>
                             <mat-datepicker #ce16></mat-datepicker>
                         </mat-form-field>
@@ -935,12 +1024,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>StrapmanLvl B</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD17" name="doi" [matDatepicker]="cd17" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD17" name="doi" [matDatepicker]="cd17"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd17"></mat-datepicker-toggle>
                             <mat-datepicker #cd17></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE17" name="doi" [matDatepicker]="ce17" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE17" name="doi" [matDatepicker]="ce17"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce17"></mat-datepicker-toggle>
                             <mat-datepicker #ce17></mat-datepicker>
                         </mat-form-field>
@@ -948,12 +1039,14 @@
                     <div class="col-lg-6">
                         <label>Switching (DC)</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD18" name="doi" [matDatepicker]="cd18" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD18" name="doi" [matDatepicker]="cd18"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd18"></mat-datepicker-toggle>
                             <mat-datepicker #cd18></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE18" name="doi" [matDatepicker]="ce18" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE18" name="doi" [matDatepicker]="ce18"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce18"></mat-datepicker-toggle>
                             <mat-datepicker #ce18></mat-datepicker>
                         </mat-form-field>
@@ -967,10 +1060,12 @@
 
     <!-- Medical Self-Certification Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Medical-Self-Certification-heading" data-toggle="collapse" data-target="#Medical-Self-Certification" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Medical-Self-Certification-heading" data-toggle="collapse"
+            data-target="#Medical-Self-Certification" aria-expanded="false" aria-controls="bankdetail">
             Medical Self-Certification
         </div>
-        <div id="Medical-Self-Certification" class="collapse single_accordion_content" aria-labelledby="Medical-Self-Certification-heading" data-parent="#accordion">
+        <div id="Medical-Self-Certification" class="collapse single_accordion_content"
+            aria-labelledby="Medical-Self-Certification-heading" data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1118,10 +1213,12 @@
 
     <!-- Medical Standards: Eyewear Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse" data-target="#eye-standard" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse"
+            data-target="#eye-standard" aria-expanded="false" aria-controls="bankdetail">
             Medical Standards: Eyewear
         </div>
-        <div id="eye-standard" class="collapse single_accordion_content" aria-labelledby="eye-standard-heading" data-parent="#accordion">
+        <div id="eye-standard" class="collapse single_accordion_content" aria-labelledby="eye-standard-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1164,10 +1261,12 @@
 
     <!-- Occupational Health Questionnaire Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses-heading" data-toggle="collapse" data-target="#Illnesses" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses-heading" data-toggle="collapse"
+            data-target="#Illnesses" aria-expanded="false" aria-controls="bankdetail">
             Occupational Health Questionnaire
         </div>
-        <div id="Illnesses" class="collapse single_accordion_content" aria-labelledby="Illnesses-heading" data-parent="#accordion">
+        <div id="Illnesses" class="collapse single_accordion_content" aria-labelledby="Illnesses-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <h5>Illnesses that can affect your safety at work.</h5>
@@ -1501,10 +1600,12 @@
 
     <!-- Other Health Information Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses0.2-heading" data-toggle="collapse" data-target="#Illnesses2" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses0.2-heading" data-toggle="collapse"
+            data-target="#Illnesses2" aria-expanded="false" aria-controls="bankdetail">
             Other information that the Employer needs to know for health and safety requirements.
         </div>
-        <div id="Illnesses2" class="collapse single_accordion_content" aria-labelledby="Illnesses0.2-heading" data-parent="#accordion">
+        <div id="Illnesses2" class="collapse single_accordion_content" aria-labelledby="Illnesses0.2-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1630,15 +1731,17 @@
 
     <!-- Other Health Information Questions Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse" data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse"
+            data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
             Other Questions.
         </div>
-        <div id="Illnesses3" class="collapse single_accordion_content" aria-labelledby="Illnesses3-heading" data-parent="#accordion">
+        <div id="Illnesses3" class="collapse single_accordion_content" aria-labelledby="Illnesses3-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Do you have any physical disability which could affect your work?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1646,7 +1749,7 @@
                     <div class="col-md-6">
                         <label>Do you have difficulty hearing (with a hearing aid, if needed) for all normal
                             workpurposes?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1654,7 +1757,7 @@
                     <div class="col-md-6">
                         <label>Do you have difficulty seeing (with glasses or contact lenses, if needed) for all
                             normalwork purposes?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1662,14 +1765,14 @@
                     <div class="col-md-6">
                         <label>Do you currently take any prescribed medicines that make you dizzy or
                             drowsy?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Have you ever been told that you suffer from a work-related health problem?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1677,7 +1780,7 @@
                     <div class="col-md-6">
                         <label>Do you suffer from a frequent health problem that causes you to be off work morethan
                             two-three times per year?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1686,14 +1789,14 @@
                     <div class="col-md-6">
                         <label>Have you ever had an illness or injury that has kept you off work for more than
                             threemonths?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Have you ever had to give up any previous job for medical reasons?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1701,7 +1804,7 @@
 
                     <div class="col-md-6">
                         <label>Have you ever received compensation for industrial injury or illness?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1718,14 +1821,17 @@
 
     <!-- Gp Registration Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="gpregistration-heading" data-toggle="collapse" data-target="#gpregistration" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="gpregistration-heading" data-toggle="collapse"
+            data-target="#gpregistration" aria-expanded="false" aria-controls="collapseTwo">
             GP Registration:
         </div>
-        <div id="gpregistration" class="collapse single_accordion_content" aria-labelledby="gpregistration-heading" data-parent="#accordion">
+        <div id="gpregistration" class="collapse single_accordion_content" aria-labelledby="gpregistration-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <p>You should be registered with a doctor local to where you are currently living.</p>
-                    <p>Please provide the contact details of your GP so that the Company can inform your doctor of anydetails of the type of health problems you may be exposed to as a construction worker.</p>
+                    <p>Please provide the contact details of your GP so that the Company can inform your doctor of
+                        anydetails of the type of health problems you may be exposed to as a construction worker.</p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -1763,9 +1869,14 @@
 
                 <div class="row">
                     <h3><b>Note</b></h3>
-                    <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor ifyou experience a health problem in the future, you may be asked to provide authorisation for yourdoctor to reply to any query concerning
-                        your health or medical history. Information in the reportrelating to your employment may be passed on to the Company. You have the right to see any medicalreport prepared by your doctor before it is sent to the Company Medical
-                        Advisor, who will treat theinformation in the strictest confidence. It is within your rights to decline to give authorisation forinformation to be passed to the Company.</p>
+                    <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor
+                        ifyou experience a health problem in the future, you may be asked to provide authorisation for
+                        yourdoctor to reply to any query concerning
+                        your health or medical history. Information in the reportrelating to your employment may be
+                        passed on to the Company. You have the right to see any medicalreport prepared by your doctor
+                        before it is sent to the Company Medical
+                        Advisor, who will treat theinformation in the strictest confidence. It is within your rights to
+                        decline to give authorisation forinformation to be passed to the Company.</p>
                 </div>
             </div>
         </div>
@@ -1774,10 +1885,12 @@
 
     <!-- TfL Area Familiarisation Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="tflarea-heading" data-toggle="collapse" data-target="#tflarea" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="tflarea-heading" data-toggle="collapse" data-target="#tflarea"
+            aria-expanded="false" aria-controls="collapseTwo">
             TfL Area Familiarisation:
         </div>
-        <div id="tflarea" class="collapse single_accordion_content" aria-labelledby="tflarea-heading" data-parent="#accordion">
+        <div id="tflarea" class="collapse single_accordion_content" aria-labelledby="tflarea-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -1797,12 +1910,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area1" [matDatepicker]="area1" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area1" [matDatepicker]="area1"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area1"></mat-datepicker-toggle>
                             <mat-datepicker #area1></mat-datepicker>
                         </mat-form-field>
@@ -1822,12 +1937,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area2" [matDatepicker]="area2" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area2" [matDatepicker]="area2"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area2"></mat-datepicker-toggle>
                             <mat-datepicker #area2></mat-datepicker>
                         </mat-form-field>
@@ -1846,12 +1963,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area3" [matDatepicker]="area3" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area3" [matDatepicker]="area3"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area3"></mat-datepicker-toggle>
                             <mat-datepicker #area3></mat-datepicker>
                         </mat-form-field>
@@ -1871,12 +1990,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area4" [matDatepicker]="area4" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area4" [matDatepicker]="area4"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area4"></mat-datepicker-toggle>
                             <mat-datepicker #area4></mat-datepicker>
                         </mat-form-field>
@@ -1897,12 +2018,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area5" [matDatepicker]="area5" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area5" [matDatepicker]="area5"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area5"></mat-datepicker-toggle>
                             <mat-datepicker #area5></mat-datepicker>
                         </mat-form-field>
@@ -1923,12 +2046,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area6" [matDatepicker]="area6" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area6" [matDatepicker]="area6"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area6"></mat-datepicker-toggle>
                             <mat-datepicker #area6></mat-datepicker>
                         </mat-form-field>
@@ -1949,12 +2074,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area7" [matDatepicker]="area7" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area7" [matDatepicker]="area7"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area7"></mat-datepicker-toggle>
                             <mat-datepicker #area7></mat-datepicker>
                         </mat-form-field>
@@ -1975,12 +2102,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area8" [matDatepicker]="area8" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area8" [matDatepicker]="area8"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area8"></mat-datepicker-toggle>
                             <mat-datepicker #area8></mat-datepicker>
                         </mat-form-field>
@@ -2001,12 +2130,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area9" [matDatepicker]="area9" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area9" [matDatepicker]="area9"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area9"></mat-datepicker-toggle>
                             <mat-datepicker #area9></mat-datepicker>
                         </mat-form-field>
@@ -2027,12 +2158,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area10" [matDatepicker]="area10" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area10" [matDatepicker]="area10"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area10"></mat-datepicker-toggle>
                             <mat-datepicker #area10></mat-datepicker>
                         </mat-form-field>
@@ -2052,12 +2185,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area11" [matDatepicker]="area11" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area11" [matDatepicker]="area11"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area11"></mat-datepicker-toggle>
                             <mat-datepicker #area11></mat-datepicker>
                         </mat-form-field>
@@ -2077,12 +2212,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area12" [matDatepicker]="area12" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area12" [matDatepicker]="area12"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area12"></mat-datepicker-toggle>
                             <mat-datepicker #area12></mat-datepicker>
                         </mat-form-field>
@@ -2101,12 +2238,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area13" [matDatepicker]="area13" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area13" [matDatepicker]="area13"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area13"></mat-datepicker-toggle>
                             <mat-datepicker #area13></mat-datepicker>
                         </mat-form-field>
@@ -2126,12 +2265,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area14" [matDatepicker]="area14" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area14" [matDatepicker]="area14"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area14"></mat-datepicker-toggle>
                             <mat-datepicker #area14></mat-datepicker>
                         </mat-form-field>
@@ -2151,12 +2292,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area15" [matDatepicker]="area15" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area15" [matDatepicker]="area15"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area15"></mat-datepicker-toggle>
                             <mat-datepicker #area15></mat-datepicker>
                         </mat-form-field>
@@ -2176,12 +2319,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area16" [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area16" [matDatepicker]="area16"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area16"></mat-datepicker-toggle>
                             <mat-datepicker #area16></mat-datepicker>
                         </mat-form-field>
@@ -2201,12 +2346,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area17" [matDatepicker]="area17" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area17" [matDatepicker]="area17"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area17"></mat-datepicker-toggle>
                             <mat-datepicker #area17></mat-datepicker>
                         </mat-form-field>
@@ -2226,12 +2373,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area18" [matDatepicker]="area18" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area18" [matDatepicker]="area18"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area18"></mat-datepicker-toggle>
                             <mat-datepicker #area18></mat-datepicker>
                         </mat-form-field>
@@ -2251,12 +2400,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area19" [matDatepicker]="area19" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area19" [matDatepicker]="area19"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area19"></mat-datepicker-toggle>
                             <mat-datepicker #area19></mat-datepicker>
                         </mat-form-field>
@@ -2275,12 +2426,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput type="number" name="name" placeholder="No. of Visit" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area20" [matDatepicker]="area20" placeholder="Choose a date of induction" irequired>
+                            <input matInput name="area20" [matDatepicker]="area20"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area20"></mat-datepicker-toggle>
                             <mat-datepicker #area20></mat-datepicker>
                         </mat-form-field>
@@ -2295,10 +2448,12 @@
 
     <!--Night Workers Questionnaire Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="NightWorkers-heading" data-toggle="collapse" data-target="#NightWorkers" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="NightWorkers-heading" data-toggle="collapse"
+            data-target="#NightWorkers" aria-expanded="false" aria-controls="bankdetail">
             Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers
         </div>
-        <div id="NightWorkers" class="collapse single_accordion_content" aria-labelledby="NightWorkers-heading" data-parent="#accordion">
+        <div id="NightWorkers" class="collapse single_accordion_content" aria-labelledby="NightWorkers-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -2409,10 +2564,12 @@
 
     <!----------Specific work/activity experience start------------------------------>
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse" data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
+        <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse"
+            data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
             Specific work/activity experience
         </div>
-        <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading" data-parent="#accordion">
+        <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-12">
@@ -2487,10 +2644,12 @@
 
     <!---------------------------Rail PPE Issue start------------------------------->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse" data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
+        <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse"
+            data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
             Rail-PPE Issue
         </div>
-        <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading" data-parent="#accordion">
+        <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <h3 style="text-align: center;">Clothing</h3>
                 <div class="row">
@@ -2503,7 +2662,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date"
+                                irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue></mat-datepicker>
                         </mat-form-field>
@@ -2525,7 +2685,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date"
+                                irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue1></mat-datepicker>
                         </mat-form-field>
@@ -2547,7 +2708,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue2" [matDatepicker]="Railissue2" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue2" [matDatepicker]="Railissue2" placeholder="Issue Date"
+                                irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue2></mat-datepicker>
                         </mat-form-field>
@@ -2570,7 +2732,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date"
+                                irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue3></mat-datepicker>
                         </mat-form-field>
@@ -2593,7 +2756,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date"
+                                irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue4></mat-datepicker>
                         </mat-form-field>
@@ -2619,7 +2783,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue5" [matDatepicker]="Railissue5" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue5" [matDatepicker]="Railissue5"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue5></mat-datepicker>
                                 </mat-form-field>
@@ -2642,7 +2807,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue6" [matDatepicker]="Railissue6"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue6></mat-datepicker>
                                 </mat-form-field>
@@ -2665,7 +2831,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue7" [matDatepicker]="Railissue7"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue7></mat-datepicker>
                                 </mat-form-field>
@@ -2688,7 +2855,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue8" [matDatepicker]="Railissue8"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue8></mat-datepicker>
                                 </mat-form-field>
@@ -2711,7 +2879,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue9" [matDatepicker]="Railissue9"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue9></mat-datepicker>
                                 </mat-form-field>
@@ -2734,7 +2903,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue10" [matDatepicker]="Railissue10"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue10></mat-datepicker>
                                 </mat-form-field>
@@ -2757,7 +2927,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue11" [matDatepicker]="Railissue11"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue11></mat-datepicker>
                                 </mat-form-field>
@@ -2780,7 +2951,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue12" [matDatepicker]="Railissue12" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue12" [matDatepicker]="Railissue12"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue12></mat-datepicker>
                                 </mat-form-field>
@@ -2803,10 +2975,12 @@
 
     <!-- Stress-Risk Start--------->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Stress-Risk-Assessment" data-toggle="collapse" data-target="#Stress-Risk" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Stress-Risk-Assessment" data-toggle="collapse"
+            data-target="#Stress-Risk" aria-expanded="false" aria-controls="bankdetail">
             Stress-Risk Assessment Form
         </div>
-        <div id="Stress-Risk" class="collapse single_accordion_content" aria-labelledby="Stress-Risk-Assessment" data-parent="#accordion">
+        <div id="Stress-Risk" class="collapse single_accordion_content" aria-labelledby="Stress-Risk-Assessment"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-6">
@@ -2828,7 +3002,9 @@
                             <mat-label>Reason Of Trigger For Risk Assessment</mat-label>
                             <textarea matInput placeholder="Reason Of Trigger For Risk Assessment"></textarea>
                         </mat-form-field>
-                        <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is being completed;for example, return to work after stress-related absence, or employee informed youthat they had been suffering from symptoms
+                        <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is
+                            being completed;for example, return to work after stress-related absence, or employee
+                            informed youthat they had been suffering from symptoms
                             of stress or workplace pressures.</p>
                     </div>
                     <div class="col-12">
@@ -2837,8 +3013,11 @@
                             <textarea matInput placeholder="Current control measures"></textarea>
                         </mat-form-field>
                         <p>
-                            <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or hazards fromhappening in the first instance) or protective (protect employees from existingworkplace pressure or hazards). It is, therefore, important that
-                            all measures in placeare listed here to show what is already being done; for example, hold regularmeetings with the employee/s to discuss performance and offer further support, if</p>
+                            <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or
+                            hazards fromhappening in the first instance) or protective (protect employees from
+                            existingworkplace pressure or hazards). It is, therefore, important that
+                            all measures in placeare listed here to show what is already being done; for example, hold
+                            regularmeetings with the employee/s to discuss performance and offer further support, if</p>
                     </div>
                 </div>
             </div>
@@ -2852,7 +3031,8 @@
 
 
     <!----- -->
-    <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
+    <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple"
+        (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
     </button>
