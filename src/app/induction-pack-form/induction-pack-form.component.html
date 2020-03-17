@@ -446,6 +446,48 @@
 	<!-- Insurance End Here -->
 
 
+	<!-- Insurance Start Here -->
+	<div class="single_accordion">
+		<div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse"
+			data-target="#rightWorkDetail" aria-expanded="false" aria-controls="bankdetail">
+			Right to Work in the UK
+		</div>
+		<div id="rightWorkDetail" class="collapse single_accordion_content" aria-labelledby="rightworkHeading"
+			data-parent="#accordion">
+			<div class="single_accordion_content_inner">
+				<div class="row">
+					<p>Please provide the policy numbers of your company insurances, and return copies of
+						thecertificates</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>NAME</label>
+						<mat-form-field class="example-full-width col-md-6 col-sm-12">
+							<input matInput [(ngModel)]="rightName" name="name" placeholder="Employers’ Liability"
+								required cdkFocusInitial>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<h6>LIST 1 (one document)</h6>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Passport (British Citizen) or has right to abode in UK</label>
+						<mat-radio-group [(ngModel)]="newStarter" aria-label="Select an option">
+							<mat-radio-button value="Checked">Checked</mat-radio-button>
+							<mat-radio-button value="Copied">Copied</mat-radio-button>
+						</mat-radio-group>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Insurance End Here -->
+
+
+
+
 	<!-- Next Of Kin Start Here -->
 	<div class="single_accordion">
 		<div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin"
@@ -614,6 +656,11 @@
 							<mat-radio-button value="2">No</mat-radio-button>
 						</mat-radio-group>
 					</div>
+				</div>
+				<div class="row">
+					<h6>LIST 1 (one document)</h6>
+				</div>
+				<div class="row">
 					<div class="col-md-6">
 						<label>2) Do you suffer from epilepsy or fits?</label>
 						<mat-radio-group aria-label="Select an option">

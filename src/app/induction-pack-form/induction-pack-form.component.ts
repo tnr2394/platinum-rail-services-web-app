@@ -76,6 +76,8 @@ export class InductionPackFormComponent implements OnInit {
   insurance4;
   insurance5;
 
+  // 
+
   // Next To kin
 
   kinName;
