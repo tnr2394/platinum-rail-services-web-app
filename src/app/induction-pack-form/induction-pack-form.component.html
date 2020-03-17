@@ -2460,14 +2460,14 @@
                     <div class="col-md-6">
                         <label>Have you had any medical problem in the past that has prevented you fromworking at
                             night?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Are you diabetic?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2475,7 +2475,7 @@
                     <div class="col-md-6">
                         <label>Are you subject to angina, or other heart problems that may affect your
                             fitness?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2483,7 +2483,7 @@
                     <div class="col-md-6">
                         <label>Have you had duodenal or stomach ulcers in the past, or are you under treatmentfor
                             them at present?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2491,7 +2491,7 @@
 
                     <div class="col-md-6">
                         <label>Have you had any continuing bowel problem, such as following major surgery?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2499,7 +2499,7 @@
                     <div class="col-md-6">
                         <label>Do you have any chronic chest problem such as asthma, emphysema,
                             orbronchiectasis?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2508,7 +2508,7 @@
                     <div class="col-md-6">
                         <label>Do you have any disability-affecting mobility that will cause difficulties
                             inarranging night work?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2516,7 +2516,7 @@
                     <div class="col-md-6">
                         <label>Do you have any recurrent or continuing sleep disturbance requiring
                             medicaladvice?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2524,14 +2524,14 @@
                     <div class="col-md-6">
                         <label>Are you having specialist care requiring your attendance at hospital clinics
                             fortreatment?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Are you taking any medication to a strict timetable?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2540,20 +2540,23 @@
                         <label>Do you have any other health problem that affects your fitness for night
                             work?</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give the names of any prescribed medications that you take regularly:</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give any further details that you would like to bring to our
                             attention.</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
