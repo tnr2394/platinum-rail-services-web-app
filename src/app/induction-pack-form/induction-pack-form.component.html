@@ -2416,15 +2416,15 @@
                 <div class="row">
                     <div class="col-12">
                         <h4><label>blockage:</label></h4>
-                        <mat-checkbox class="mr-3">Signal Protection only</mat-checkbox>
-                        <mat-checkbox class="mr-3">TCOD</mat-checkbox>
-                        <mat-checkbox class="mr-3">Disconnection</mat-checkbox>
-                        <mat-checkbox class="mr-3">Detonator Protection</mat-checkbox>
-                        <mat-checkbox class="mr-3">Token Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">Absolute Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">Tokenless Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">RETB</mat-checkbox>
-                        <mat-checkbox class="mr-3">ERTMS</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage1" class="mr-3">Signal Protection only</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage2" class="mr-3">TCOD</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage3" class="mr-3">Disconnection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage4" class="mr-3">Detonator Protection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage5" class="mr-3">Token Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage6" class="mr-3">Absolute Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage7" class="mr-3">Tokenless Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage8" class="mr-3">RETB</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage9" class="mr-3">ERTMS</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2433,20 +2433,20 @@
                             <li>
                                 <h5><label>Green Zone</label></h5>
                             </li>
-                            <mat-checkbox class="mr-3">Fenced</mat-checkbox>
-                            <mat-checkbox class="mr-3">Site Warden Warning</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="greenZone1" class="mr-3">Fenced</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="greenZone2" class="mr-3">Site Warden Warning</mat-checkbox>
                         </ul>
                     </div>
                     <div class="col-12">
                         <ul class="mt-4">
                             <li>
-                                <h5><label>Zone</label></h5>
+                                <h5><label>RedZone</label></h5>
                             </li>
-                            <mat-checkbox class="mr-3">ATWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">TOWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">LOWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">Pee Wee</mat-checkbox>
-                            <mat-checkbox class="mr-3">Unassisted Lookouts</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone1" class="mr-3">ATWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone2" class="mr-3">TOWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone3" class="mr-3">LOWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone4" class="mr-3">Pee Wee</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone5" class="mr-3">Unassisted Lookouts</mat-checkbox>
                         </ul>
                     </div>
                 </div>
@@ -2454,29 +2454,29 @@
                 <div class="row">
                     <div class="col-12">
                         <h4><label>Possession:</label></h4>
-                        <mat-checkbox class="mr-3">Within ES worksite</mat-checkbox>
-                        <mat-checkbox class="mr-3">With PICOP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Without PICOP authority</mat-checkbox>
-                        <mat-checkbox class="mr-3">Poss. of sidings </mat-checkbox>
-                        <mat-checkbox class="mr-3">Line Clear Verification</mat-checkbox>
-                        <mat-checkbox class="mr-3">Receiving OLP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Receiving CRP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Working in axle counterauthorityarea</mat-checkbox>
-                        <mat-checkbox class="mr-3">PC Duties</mat-checkbox>
-                        <mat-checkbox class="mr-3">Hand trolley Controller</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession1" class="mr-3">Within ES worksite</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession2" class="mr-3">With PICOP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession3" class="mr-3">Without PICOP authority</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession4" class="mr-3">Poss. of sidings </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession5" class="mr-3">Line Clear Verification</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession6" class="mr-3">Receiving OLP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession7" class="mr-3">Receiving CRP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession8" class="mr-3">Working in axle counterauthorityarea</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession9" class="mr-3">PC Duties</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession10" class="mr-3">Hand trolley Controller</mat-checkbox>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <h4><label>Possession:</label></h4>
-                        <mat-checkbox class="mr-3">With no train/OTP</mat-checkbox>
-                        <mat-checkbox class="mr-3">With train movements</mat-checkbox>
-                        <mat-checkbox class="mr-3">With OTP movement</mat-checkbox>
-                        <mat-checkbox class="mr-3">Route setting via pointsOperator</mat-checkbox>
-                        <mat-checkbox class="mr-3">Route setting via Signaller</mat-checkbox>
-                        <mat-checkbox class="mr-3">Working in axle counterarea</mat-checkbox>
-                        <mat-checkbox class="mr-3">Competent Person Detonator Protection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE1" class="mr-3">With no train/OTP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE2" class="mr-3">With train movements</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE3" class="mr-3">With OTP movement</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE4" class="mr-3">Route setting via pointsOperator</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE5" class="mr-3">Route setting via Signaller</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE6" class="mr-3">Working in axle counterarea</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE7" class="mr-3">Competent Person Detonator Protection</mat-checkbox>
                     </div>
                 </div>
             </div>

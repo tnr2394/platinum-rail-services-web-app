@@ -359,6 +359,46 @@ tflArear20Date;
 
 // ---------------------------------------endtlf----
 
+// -----------------Spacific work===============
+blockage1;
+blockage2;
+blockage3;
+blockage4;
+blockage5;
+blockage6;
+blockage7;
+blockage8;
+blockage9;
+
+greenZone1;
+greenZone2;
+
+redZone1;
+redZone2;
+redZone3;
+redZone4;
+redZone5;
+
+Possession1;
+Possession2;
+Possession3;
+Possession4;
+Possession5;
+Possession6;
+Possession7;
+Possession8;
+Possession9;
+Possession10;
+
+PossessionE1;
+PossessionE2;
+PossessionE3;
+PossessionE4;
+PossessionE5;
+PossessionE6;
+PossessionE7;
+// ------------------end-------------------------
+
   // Other QUESTION
 
   otherQ1;
