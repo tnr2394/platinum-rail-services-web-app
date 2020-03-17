@@ -256,6 +256,23 @@ export class InductionPackFormComponent implements OnInit {
   workIllness10;
   workIllness11;
 
+  // -------------- Other Health Information Start Here-------------
+  otherSafetyR1;
+  otherSafetyR2;
+  otherSafetyR3;
+  otherSafetyR4;
+  otherSafetyR5;
+  otherSafetyR6;
+  otherSafetyR7;
+  otherSafetyR8;
+  otherSafetyR9;
+  otherSafetyR10;
+  otherSafetyR11;
+  otherSafetyR12;
+  otherSafetyR13;
+  otherSafetyR14;
+  otherSafetyR15;
+
 
 
 
