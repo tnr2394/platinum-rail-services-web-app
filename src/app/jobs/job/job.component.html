@@ -49,13 +49,15 @@
                     <!-- <div class="card"> -->
                     <div *ngIf="job && !clientDashboard" class="mt-3">
                         <!-- passing into material =  {{job.course._id}} -->
-                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [learnersFromJob]="learnerAssignmentStatus" [allLearnersFromJob]="allLearners" [materials]="job.course.materials" [jobId]="job._id" (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted"
-                            (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()" (openFilesSideNav)="openFileDetails($event)" #material>
+                        <app-materials *ngIf="job && job.course" [data]="job.course._id" [learnersFromJob]="learnerAssignmentStatus" [learnersFromComponent]="learners" 
+                        [allLearnersFromJob]="allLearners" [materials]="job.course.materials" [jobId]="job._id" (getMaterialsFromComponent)="loadMaterials($event)" [learnersAllotedFromJob]="learnersAlloted" 
+                        (assignmentAllocated)="allocatedFromMaterialTile($event)" (assignmentAdded)="assignmentAdded()" (openFilesSideNav)="openFileDetails($event)"
+                            #material>
                         </app-materials>
-                        <button mat-flat-button class="pull-right my-4 button_hover_effect ripple Button_shap_effact" (click)="allocateLearners()" *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
+                        <!-- <button mat-flat-button class="pull-right my-4 button_hover_effect ripple Button_shap_effact" (click)="allocateLearners()" *ngIf="displayAllocate == true && (currentUser.userRole == 'admin' || currentUser.userRole == 'instructor')">
                             <i class="fas fa-users"></i>
                             <span> Allocate to..</span>
-                        </button>
+                        </button> -->
                     </div>
                     <!-- </div> -->
                 </div>

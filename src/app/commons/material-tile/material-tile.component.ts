@@ -27,6 +27,9 @@ export class MaterialTileComponent implements OnInit {
   @Input('learnersAllotedFromJob') learnersAlloted;
   @Input('learnersFromJob') learnersFromJob;
   @Input('allLearnersFromJob') allLearners;
+  @Input('showLearnerTab') showLearnerTab;
+  @Input('learnerFromSingleUnit') learnerFromSingleUnit;
+  @Input('learnerWithStatus') learnerWithStatus;
   @Output() DeleteMaterial: EventEmitter<any> = new EventEmitter<any>();
   @Output() getFiles: EventEmitter<any> = new EventEmitter<any>();
   @Output() fileDetailsComp: EventEmitter<any> = new EventEmitter<any>();
@@ -74,7 +77,6 @@ export class MaterialTileComponent implements OnInit {
   ngOnInit() {
     console.log("learnersAlloted", this.learnersAlloted);
     console.log("learnersAllotedFromJob");
-
 
     if (this.router.url.includes('/jobs')) {
       this.displayLearners = true
@@ -137,7 +139,7 @@ export class MaterialTileComponent implements OnInit {
       this.assignmentStatusWithLearner(this.jobId, "true")
       // this.isSelected = false;
     }
-    if (changes.learnersFromJob && changes.learnersFromJob.currentValue){
+    if (changes.learnersFromJob && changes.learnersFromJob.currentValue) {
       this.learner = changes.learnersFromJob.currentValue
       console.log("***in changes.learnersFromJob", this.learner);
       this.getCount()
@@ -145,11 +147,22 @@ export class MaterialTileComponent implements OnInit {
     if (changes.allLearners && changes.allLearners.currentValue) {
       this.allLearners = changes.allLearners.currentValue;
       this.allLearnersCount = changes.allLearners.currentValue.length || 0
-      // this.allLearners.forEach(learner => {
-      //   // learner.checked = false
-      // })
-      // this.getLearnerCheck()
+      console.log("this.allLearners in material tile.........", this.allLearners);
+      // this.learner = changes.allLearners.currentValue
+      // console.log("%%%%this.learner%%%%", this.learner);
+      this.allLearners.forEach(learner => {
+        learner.checked = false
+      })
+      this.getLearnerCheck()
       this.learnerCopy = this.allLearners;
+    }
+    if (changes.showLearnerTab && changes.showLearnerTab.currentValue) {
+      this.displayLearners = changes.showLearnerTab.currentValue
+    }
+    // console.log("changes in mat tile------>>>>>>");
+    if (changes.learnerWithStatus && changes.learnerWithStatus.currentValue) {
+      // console.log("1111111111111changes.statusOfLearner", changes.learnerWithStatus.currentValue);
+      this.learner = changes.learnerWithStatus.currentValue
     }
   }
 
@@ -290,7 +303,7 @@ export class MaterialTileComponent implements OnInit {
   // GET LEARNER COUNT
   getCount() {
     console.log("in get counts", this.learner);
-    
+
     this.learnerNames = [];
     this.assignedLearner = 0
     this.pendingLearners = 0
@@ -298,7 +311,7 @@ export class MaterialTileComponent implements OnInit {
     this.submittedLearners = 0
     this.completedLearners = 0
     this.reSubmittedLearners = 0;
-    if(this.learner){
+    if (this.learner) {
       this.learner.forEach(singleLearner => {
         singleLearner.assignments.forEach(assignment => {
           if (assignment.assignmentId == this.materialId) {

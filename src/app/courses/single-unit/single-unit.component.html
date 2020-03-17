@@ -15,11 +15,12 @@
     </div>
 </div>
 <div class="row" *ngIf="allMaterials">
-    <div class="col-md-6">
+    <div class="col-md-6" >
         <!-- Assignments: {{allMaterials.materialsAssignment.length}} -->
         <!-- <div *ngFor="let material of allMaterials.materialsAssignment; let i = index"> -->
-        <single-material [material]="allMaterials.materialsAssignment" [type]="'Assignment'"
-            (fileDetailComp)="fileDetailsComp($event)"></single-material>
+        <single-material [material]="allMaterials.materialsAssignment" [type]="'Assignment'" [clearCheckBox]="clearCheckBox" [allLearnersFromJob]="allLearners"
+            (fileDetailComp)="fileDetailsComp($event)" (getMaterialsFromComponent)="loadMaterials($event)" [learnersFromJob]="learnersFromJob" [learnerWithStatus]="learnerAssignmentStatus"
+                                                            ></single-material>
         <!-- <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
                                             [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
                                             [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
@@ -33,8 +34,8 @@
         <!-- Reading: {{allMaterials.materialsReading.length}} -->
 
         <!-- <div *ngFor="let material of allMaterials.materialsReading; let i = index"> -->
-        <single-material [material]="allMaterials.materialsReading" [type]="'Reading'"
-            (fileDetailComp)="fileDetailsComp($event)"></single-material>
+        <single-material [material]="allMaterials.materialsReading" [type]="'Reading'" [learnersFromJob]="learnersFromJob" [allLearnersFromJob]="allLearners"
+            (fileDetailComp)="fileDetailsComp($event)" [learnerWithStatus]="learnerAssignmentStatus"></single-material>
         <!--    <material-tile [material]="material" [jobId]="jobId" [learnersFromJob]="learnersFromJob"
                 [allLearnersFromJob]="allLearners" [learnersAllotedFromJob]="learnersAlloted"
                 [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
@@ -42,4 +43,11 @@
                 (DeleteMaterial)="deletedMaterial($event)"></material-tile> -->
         <!-- </div>  -->
     </div>
+</div>
+<div class="row">
+    <button mat-flat-button class="pull-right my-4 button_hover_effect ripple Button_shap_effact"
+        (click)="allocateLearners()">
+        <i class="fas fa-users"></i>
+        <span> Allocate to..</span>
+    </button>
 </div>
