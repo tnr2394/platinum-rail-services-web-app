@@ -748,7 +748,6 @@
 	</div>
 
 
-
 	<!-- Competences Start Here -->
 	<div class="single_accordion">
 		<div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse"
@@ -759,13 +758,272 @@
 			data-parent="#accordion">
 			<div class="single_accordion_content_inner">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6 col-lg-6">
 						<label>Medical</label>
 						<mat-form-field>
-							<input matInput name="doi" [matDatepicker]="medical" placeholder="Choose a date of expiry"
+							<input matInput name="doi" [matDatepicker]="cd1" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd1"></mat-datepicker-toggle>
+							<mat-datepicker #cd1></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce1" placeholder="Choose a date of expiry"
 								irequired>
-							<mat-datepicker-toggle matSuffix [for]="medical"></mat-datepicker-toggle>
-							<mat-datepicker #picker></mat-datepicker>
+							<mat-datepicker-toggle matSuffix [for]="ce1"></mat-datepicker-toggle>
+							<mat-datepicker #ce1></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>PTS AC</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd2" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd2"></mat-datepicker-toggle>
+							<mat-datepicker #cd2></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce2" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce2"></mat-datepicker-toggle>
+							<mat-datepicker #ce2></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>PTS DC</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd3" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd3"></mat-datepicker-toggle>
+							<mat-datepicker #cd3></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce3" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce3"></mat-datepicker-toggle>
+							<mat-datepicker #ce3></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>AOD PO</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd4" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd4"></mat-datepicker-toggle>
+							<mat-datepicker #cd4></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce4" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce4"></mat-datepicker-toggle>
+							<mat-datepicker #ce4></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>AOD PO</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd5" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd5"></mat-datepicker-toggle>
+							<mat-datepicker #cd5></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce5" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce5"></mat-datepicker-toggle>
+							<mat-datepicker #ce5></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>AOD HS</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd6" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd6"></mat-datepicker-toggle>
+							<mat-datepicker #cd6></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce6" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce6"></mat-datepicker-toggle>
+							<mat-datepicker #ce6></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>AOD LXA</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd7" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd7"></mat-datepicker-toggle>
+							<mat-datepicker #cd7></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce7" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce7"></mat-datepicker-toggle>
+							<mat-datepicker #ce7></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>AOD RSA</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd8" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd8"></mat-datepicker-toggle>
+							<mat-datepicker #cd8></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce8" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce8"></mat-datepicker-toggle>
+							<mat-datepicker #ce8></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>LKT / SW</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd9" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd9"></mat-datepicker-toggle>
+							<mat-datepicker #cd9></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce9" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce9"></mat-datepicker-toggle>
+							<mat-datepicker #ce9></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>IWA</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd10" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd10"></mat-datepicker-toggle>
+							<mat-datepicker #cd10></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce10" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce10"></mat-datepicker-toggle>
+							<mat-datepicker #ce10></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>COSS</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd11" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd11"></mat-datepicker-toggle>
+							<mat-datepicker #cd11></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce11" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce11"></mat-datepicker-toggle>
+							<mat-datepicker #ce11></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>COSS OLP</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd12" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd12"></mat-datepicker-toggle>
+							<mat-datepicker #cd12></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce12" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce12"></mat-datepicker-toggle>
+							<mat-datepicker #ce12></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>COSS CRP</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd13" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd13"></mat-datepicker-toggle>
+							<mat-datepicker #cd13></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce13" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce13"></mat-datepicker-toggle>
+							<mat-datepicker #ce13></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>PC</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd14" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd14"></mat-datepicker-toggle>
+							<mat-datepicker #cd14></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce14" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce14"></mat-datepicker-toggle>
+							<mat-datepicker #ce14></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>ES</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd15" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd15"></mat-datepicker-toggle>
+							<mat-datepicker #cd15></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce15" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce15"></mat-datepicker-toggle>
+							<mat-datepicker #ce15></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>ES Level A</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd16" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd16"></mat-datepicker-toggle>
+							<mat-datepicker #cd16></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce16" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce16"></mat-datepicker-toggle>
+							<mat-datepicker #ce16></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-6">
+						<label>StrapmanLvl B</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd17" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd17"></mat-datepicker-toggle>
+							<mat-datepicker #cd17></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce17" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce17"></mat-datepicker-toggle>
+							<mat-datepicker #ce17></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6">
+						<label>Switching (DC)</label>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="cd18" placeholder="duration held" irequired>
+							<mat-datepicker-toggle matSuffix [for]="cd18"></mat-datepicker-toggle>
+							<mat-datepicker #cd18></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput name="doi" [matDatepicker]="ce18" placeholder="Choose a date of expiry"
+								irequired>
+							<mat-datepicker-toggle matSuffix [for]="ce18"></mat-datepicker-toggle>
+							<mat-datepicker #ce18></mat-datepicker>
 						</mat-form-field>
 					</div>
 				</div>
