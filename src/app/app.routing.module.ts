@@ -38,6 +38,7 @@ import { SingleWeekComponent } from './time-sheet/single-week/single-week.compon
 import { InductionPackFormComponent } from './induction-pack-form/induction-pack-form.component';
 import { AuthGuard } from './auth.guard';
 import { Role } from './_models/role';
+import { InductionFormPreviewComponent } from './induction-pack-form/induction-form-preview/induction-form-preview.component'
 
 
 const routes: Routes = [
@@ -222,6 +223,10 @@ const routes: Routes = [
 	{
 		path: 'induction-form',
 		component: InductionPackFormComponent
+	},
+	{
+		path: 'form-preview',
+		component: InductionFormPreviewComponent
 	}
 ];
 

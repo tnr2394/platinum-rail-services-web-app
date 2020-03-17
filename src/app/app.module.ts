@@ -129,6 +129,7 @@ import { EditCompModalComponent } from './instructors/competences/edit-comp-moda
 import { UnitsComponent } from './courses/units/units.component';
 import { SingleUnitComponent } from './courses/single-unit/single-unit.component';
 import { InductionPackFormComponent } from './induction-pack-form/induction-pack-form.component';
+import { InductionFormPreviewComponent } from './induction-pack-form/induction-form-preview/induction-form-preview.component';
 
 @NgModule({
   declarations: [
@@ -214,7 +215,8 @@ import { InductionPackFormComponent } from './induction-pack-form/induction-pack
     EditCompModalComponent,
     UnitsComponent,
     SingleUnitComponent,
-    InductionPackFormComponent
+    InductionPackFormComponent,
+    InductionFormPreviewComponent
   ],
   imports: [
     MatTreeModule,

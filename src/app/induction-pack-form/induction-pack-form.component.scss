@@ -1,5 +1,5 @@
 .single_accordion_title, .single_accordion_title.collapsed:hover {
-    background-color: #fff;
+    background: #fff;
     color: #111;
     margin-top: 15px;
     cursor: pointer;
@@ -13,18 +13,25 @@
 	border-bottom-color: #111;
 }
 .single_accordion_title.collapsed{
-    background-color: #111;
+    background: #111;
+    background: -moz-linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(67,67,67,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(67,67,67,1) 100%);
+    background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(67,67,67,1) 100%);
 	color: #fff;
-    transition: all 0.5s;
+    border-bottom-color: #111;
 }
 .single_accordion_content {
     border: 2px solid #111;
-    margin: -2px 0px 15px;
+    margin: -2px 0px 0px;
     border-top: none;
 }
 .single_accordion_content_inner{
-	padding: 0px 20px 20px;
+	padding: 0px 30px 15px;
 }
 .single_accordion_content_inner label{
 	width: 100%;
+    font-weight: 700;
+}
+mat-form-field{
+    width: 100%;
 }
