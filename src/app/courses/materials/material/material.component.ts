@@ -4,6 +4,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } fro
 import { AddMaterialModalComponent } from '../add-material-modal/add-material-modal.component';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import * as _ from 'lodash';
 @Component({
   selector: 'single-material',
   templateUrl: './material.component.html',
@@ -18,7 +19,12 @@ export class MaterialComponent implements OnInit {
   files: any;
   loading: boolean;
   courseId: any;
-
+  selectedMaterials = [];
+  view: Boolean = false;
+  selectedCheckbox;
+  showLearnerTab;
+  learnerToPass: any;
+  testStatus: boolean = false
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -35,13 +41,17 @@ export class MaterialComponent implements OnInit {
 
   @Input('material') material: any;
   @Input('type') type: any;
+  @Input('clearCheckBox') clearCheckBox;
+  @Input('allLearnersFromJob') allLearners;
+  @Input('learnerWithStatus') learnerWithStatus;
 
   @Output() fileDetailComp: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
-  constructor(public _materialService: MaterialService, private activatedRoute: ActivatedRoute, 
+  @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
+  constructor(public _materialService: MaterialService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
-   }
+  }
 
   ngOnInit() {
     this.loading = true
@@ -57,15 +67,41 @@ export class MaterialComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("changes in material component", changes);
-    if (changes.material && changes.material.currentValue){
+    if (changes.material && changes.material.currentValue) {
       // this.loading = true
       this.material = changes.material.currentValue
       this.updateData(this.material)
     }
-    if(changes.type && changes.type.currentValue){
+    if (changes.type && changes.type.currentValue) {
       this.type = changes.type.currentValue
+      if (this.type == 'Assignment') this.showLearnerTab = true
+      else this.showLearnerTab = false
     }
+    if (changes.clearCheckBox && changes.clearCheckBox.currentValue) {
+      this.selectedCheckbox = false
+      this.clearCheckBox = false
+    }
+    if (changes.learnerWithStatus && changes.learnerWithStatus.currentValue) {
+      console.log("changes.learnerWithStatus.currentValue", changes.learnerWithStatus.currentValue);
+      this.learnerToPass = changes.learnerWithStatus.currentValue
+      this.testStatus = true 
+    }
+    if (changes.allLearners && changes.allLearners.currentValue){
+      this.allLearners = changes.allLearners.currentValue 
+      console.log("changes.allLearners.currentValue", this.allLearners);
+    }
+
+
+
+      console.log("value assigned", this.learnerToPass);
+
   }
+  changeStatus(data) {
+    this.learnerToPass = data
+    console.log("data================", this.learnerToPass)
+  }
+
+
   updateData(updateData) {
     this.loading = false
     console.log("UPDATING DATA Called = ", updateData);
@@ -73,7 +109,7 @@ export class MaterialComponent implements OnInit {
     this.dataSource = new MatTableDataSource(updateData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    
+
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
   }
@@ -99,6 +135,29 @@ export class MaterialComponent implements OnInit {
     console.log("material deleted", this.material);
     this.updateData(this.material)
   }
+  onMaterialSelection(event) {
+    console.log("event", event);
+    console.log("this.selectedMaterials", this.selectedMaterials);
 
+    if (event.checked == true) {
+      this.selectedMaterials.push(event.source.value)
+    }
+    if (event.checked == false) {
+      var index = _.findIndex(this.selectedMaterials, function (o) { return o._id == event.source.value._id })
+      console.log("index", index);
+      if (index > -1) {
+        this.selectedMaterials.splice(index, 1)
+      }
+      // this.selectedMaterials.forEach((material) => {
+      //   console.log('MATERIAL', material)
+      //   if (material._id == event.source.value._id) {
+      //     this.selectedMaterials.splice(material, 1)
+      //   }
+      // })
+    }
+    console.log("MATERIALS ARRAY IS", this.selectedMaterials)
+    this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
+    console.log("event emited")
+  }
 
 }

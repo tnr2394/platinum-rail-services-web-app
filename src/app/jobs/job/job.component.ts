@@ -54,6 +54,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   @ViewChild(LearnersComponent, { static: false }) learnersComp: LearnersComponent;
   allLearners: any;
   learnerAssignmentStatus: any;
+  displayLearnersTab = false;
 
 
   constructor(private router: Router,
@@ -97,6 +98,7 @@ export class JobComponent implements OnInit, AfterViewInit {
         this.jobId = params['jobid'];
         console.log("Calling getLearners with jobid = ", this.jobId);
         if (this.jobId != undefined) {
+          this.displayLearnersTab = true
           this.getJob(this.job);
           this.assignmentStatusWithLearner()
           this.getLearners(this.jobId)

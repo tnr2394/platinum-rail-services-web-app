@@ -37,6 +37,7 @@ export class MaterialsComponent implements OnInit {
   @Input('learnersAllotedFromJob') learnersAlloted = false;
   @Input('learnersFromJob') learnersFromJob;
   @Input('allLearnersFromJob') allLearners;
+  @Input('learnersFromComponent') learnersFromComponent;
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showBtn: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
@@ -273,17 +274,45 @@ export class MaterialsComponent implements OnInit {
   addMaterialModal() {
     var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.course._id }).subscribe((materials) => {
       if (materials == undefined) return;
-      this.materials.push(materials);
+      // this.materials.push(materials);
       console.log("MATERIAL ADDED IS", materials);
+      var index = _.findIndex(this.groupedMaterials.material, function (o) {
+        console.log("o._id", o._id, "materials.unitNo", materials.unitNo);
+         return o._id == materials.unitNo
+        })
+      console.log("index is ", index);
+      if(index > -1){
+        console.log("in if");
+        if (materials.type == 'Reading') {
+          console.log("materials.type===>>>", materials.type);
+          this.groupedMaterials.material[index].materialsReading.push(materials)
+        }
+        else {
+          console.log("materials.type===>>>", materials.type);
+          this.groupedMaterials.material[index].materialsAssignment.push(materials)
+        }
+      }
+      else {
+        let data = {
+          _id: materials.unitNo,
+          materialsReading : [],
+          materialsAssignment : []
+        }
+        if (materials.type == 'Reading'){
+          data.materialsReading.push(materials)
+        }
+        else data.materialsAssignment.push(materials)
+        this.groupedMaterials.material.push(data)
+      }
       this.loading = false;
       this.openSnackBar("Material Added Successfully", "Ok");
-      this.updateData(this.materials);
-      this.assignmentStatus.forEach(status => {
-        status.checked = true
-      })
-      if (materials.type == "Assignment") {
-        this.assignmentAdded.emit({ assignmentAdded: 'Done!' })
-      }
+      this.updateData(this.groupedMaterials);
+      // this.assignmentStatus.forEach(status => {
+      //   status.checked = true
+      // })
+      // if (materials.type == "Assignment") {
+      //   this.assignmentAdded.emit({ assignmentAdded: 'Done!' })
+      // }
     }, err => {
       return this.openSnackBar("Material could not be Added", "Ok");
     });

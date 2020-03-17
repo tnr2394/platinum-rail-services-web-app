@@ -15,15 +15,19 @@ export class UnitsComponent implements OnInit {
 
   @Input('groupedMaterilas') allMaterials;
   @Input('courseId') courseId;
+  @Input('learnersFromComponent') learnersFromComponent;
+  @Input('allLearnersFromJob') allLearners;
+  @Input('jobId') jobId;
   allMaterialsCopy: any;
   
   constructor(private router: Router, public _filter: FilterService) { }
 
   ngOnInit() {
+    console.log("*****learnersFromComponent*****", this.learnersFromComponent);
     console.log("Oninit in unite=====>>>>>", this.allMaterials);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("changes in units=====>>>>>", changes);
+    console.log("*****changes in units*****", changes);
     if (changes.allMaterials && changes.allMaterials.currentValue){
       this.allMaterials = changes.allMaterials.currentValue.material
       this.allMaterialsCopy = this.allMaterials
@@ -31,8 +35,8 @@ export class UnitsComponent implements OnInit {
     }
   }
   singleMaterial(material){
-    console.log("material selected is", this.courseId);
-    this.router.navigate(['singleUnit', material._id,this.courseId], { state: { material: material } })
+    console.log("material selected is", material);
+    this.router.navigate(['singleUnit'], { state: { material: material, learnersFromComponent: this.learnersFromComponent, jobId: this.jobId, courseId: this.courseId }, queryParams: { unit:material._id, course:this.courseId, job:this.jobId} })
   }
   filter(searchText){
     console.log("-----searchText-----", searchText);
