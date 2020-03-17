@@ -13,99 +13,99 @@
 
 </div>
 
-<div class="row">
-    <div class="col-12">
+<!-- <div class="row"> -->
+<!-- <div class="col-12"> -->
 
-        <div class="row">
-            <div class="col-12 p-0">
-                <div class="card">
-                    <!--Card content-->
-                    <div class="card-block">
-                        <div class="table-responsive">
-                            <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+<div class="row m-0">
+    <div class="col-12 p-0">
+        <div class="card">
+            <!--Card content-->
+            <div class="card-block">
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
 
-                                <!-- Instructor Column -->
-                                <ng-container matColumnDef="Instructor">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> Instructor </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
-                                        <mat-list align='center' class="instructorName_report_a">
+                        <!-- Instructor Column -->
+                        <ng-container matColumnDef="Instructor">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> Instructor </th>
+                            <td mat-cell class="mat-table-cell text-center" *matCellDef="let log">
+                                <mat-list align='center' class="instructorName_report_a">
 
-                                            <mat-list-item class="text-center" *ngIf="log && log.instructor && log.instructor._id">
-                                                <!-- <div> -->
-                                                <div class="inst_pic" *ngIf="log && log.instructor && log.instructor.profilePic && log.instructor.profilePic.path">
-                                                    <img src="{{log.instructor.profilePic.path}}">
-                                                </div>
+                                    <mat-list-item class="text-center" *ngIf="log && log.instructor && log.instructor._id">
+                                        <!-- <div> -->
+                                        <div class="inst_pic" *ngIf="log && log.instructor && log.instructor.profilePic && log.instructor.profilePic.path">
+                                            <img src="{{log.instructor.profilePic.path}}">
+                                        </div>
 
-                                                <div class="inst_pic" *ngIf="log && log.instructor && !log.instructor.profilePic">
-                                                    <img src="../../assets/Avatar.png">
-                                                </div>
+                                        <div class="inst_pic" *ngIf="log && log.instructor && !log.instructor.profilePic">
+                                            <img src="../../assets/Avatar.png">
+                                        </div>
 
-                                                <a routerLink="/instructors/{{log.instructor._id}}">
-                                                    <span>
+                                        <a routerLink="/instructors/{{log.instructor._id}}">
+                                            <span>
                                                         {{log.instructor.name}}</span>
-                                                </a>
-                                                <!-- </div> -->
-                                            </mat-list-item>
-                                        </mat-list>
-                                    </td>
-                                </ng-container>
+                                        </a>
+                                        <!-- </div> -->
+                                    </mat-list-item>
+                                </mat-list>
+                            </td>
+                        </ng-container>
 
-                                <!-- LogIn Column -->
-                                <ng-container matColumnDef="LogIn">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LogIn </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logIn}} </td>
-                                </ng-container>
+                        <!-- LogIn Column -->
+                        <ng-container matColumnDef="LogIn">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LogIn </th>
+                            <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logIn}} </td>
+                        </ng-container>
 
-                                <!-- LunchStart Column -->
-                                <ng-container matColumnDef="LunchStart">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LunchStart </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchStart}} </td>
-                                </ng-container>
+                        <!-- LunchStart Column -->
+                        <ng-container matColumnDef="LunchStart">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LunchStart </th>
+                            <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchStart}} </td>
+                        </ng-container>
 
-                                <!-- LunchEnd Column -->
-                                <ng-container matColumnDef="LunchEnd">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LunchEnd </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchEnd}} </td>
-                                </ng-container>
+                        <!-- LunchEnd Column -->
+                        <ng-container matColumnDef="LunchEnd">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LunchEnd </th>
+                            <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.lunchEnd}} </td>
+                        </ng-container>
 
-                                <!-- LogOut Column -->
-                                <ng-container matColumnDef="LogOut">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LogOut </th>
-                                    <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logOut}} </td>
-                                </ng-container>
+                        <!-- LogOut Column -->
+                        <ng-container matColumnDef="LogOut">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> LogOut </th>
+                            <td mat-cell class="mat-table-cell text-center" *matCellDef="let log"> {{log.logOut}} </td>
+                        </ng-container>
 
-                                <!-- WorkHours Column -->
-                                <ng-container matColumnDef="WorkHours">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> WorkHours </th>
-                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
-                                        <span class="text_disp">{{log.workingHours.hours}}:{{log.workingHours.minutes}}</span></td>
-                                </ng-container>
+                        <!-- WorkHours Column -->
+                        <ng-container matColumnDef="WorkHours">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> WorkHours </th>
+                            <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
+                                <span class="text_disp">{{log.workingHours.hours}}:{{log.workingHours.minutes}}</span></td>
+                        </ng-container>
 
-                                <!-- TravelHours Column -->
-                                <ng-container matColumnDef="TravelHours">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> TravelHours </th>
-                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log"><span class="text_disp">{{log.travel}}</span> </td>
-                                </ng-container>
-                                <!-- Total -->
-                                <ng-container matColumnDef="Total">
-                                    <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> Total </th>
-                                    <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
-                                        <span class="text_disp">{{log.totalHours.hours}}:{{log.totalHours.minutes}}</span>
-                                    </td>
-                                </ng-container>
+                        <!-- TravelHours Column -->
+                        <ng-container matColumnDef="TravelHours">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> TravelHours </th>
+                            <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log"><span class="text_disp">{{log.travel}}</span> </td>
+                        </ng-container>
+                        <!-- Total -->
+                        <ng-container matColumnDef="Total">
+                            <th class="text-center printTableHeader" mat-header-cell *matHeaderCellDef> Total </th>
+                            <td mat-cell class="mat-table-cell text-center bold_text" *matCellDef="let log">
+                                <span class="text_disp">{{log.totalHours.hours}}:{{log.totalHours.minutes}}</span>
+                            </td>
+                        </ng-container>
 
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-                            <h3 *ngIf="loading" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
-                            </h3>
-                            <div *ngIf="displayMsg && !loading">
-                                <h3 class="text-center text-info pt-3 no_found_msg"> No Logs Found </h3>
-                            </div>
-                        </div>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <h3 *ngIf="loading" class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
+                    </h3>
+                    <div *ngIf="displayMsg && !loading">
+                        <h3 class="text-center text-info pt-3 no_found_msg"> No Logs Found </h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- </div> -->
+<!-- </div> -->

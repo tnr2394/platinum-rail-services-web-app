@@ -1,8 +1,42 @@
-<div class="card">
+<!-- <div class="card">
     <div class="card-title">Material Files</div>
     <div class="card-block">
 
     </div>
 </div>
 
-<learner-submission></learner-submission>
+<learner-submission></learner-submission> -->
+
+<!-- <h1>
+    <material-tile [material]="material"></material-tile>
+</h1> -->
+<div>
+    {{type}}: {{material.length}}
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>
+<table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+    <ng-container matColumnDef="Materials">
+        <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+            Name
+        </th>
+        <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
+            <material-tile [material]="material" 
+                [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
+                (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
+                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+        </td>
+    </ng-container>
+    <thead>
+        <tr style="background:lightgray;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    </thead>
+    <tbody>
+        <tr mat-row *matRowDef="let material; columns: displayedColumns;"></tr>
+    </tbody>
+</table>
+
+<div *ngIf="!loading && type == 'Reading' && material.length == 0">
+    No Reading Material Found!
+</div>
+<div *ngIf="!loading && type != 'Reading' && material.length == 0">
+    No {{type}} Found!
+</div>
