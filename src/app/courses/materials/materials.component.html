@@ -105,18 +105,6 @@
                                             class="fa fa-cog fa-spin text-info"></i>
                                     </h3>
                                 </div>
-                                <!-- <mat-sidenav #sidenav mode="side" position="end" class="expansion_tab">
-                                    <div class="d-inline-block w-100">
-                                        <div class="float-left title_display" *ngIf="file">
-                                            <p>{{file.title}}</p>
-                                        </div>
-                                        <mat-button class="close_btn text-primary float-right"
-                                            (click)="sidenav.close()"><i class="fa fa-times-circle"
-                                                aria-hidden="true"></i></mat-button>
-                                    </div>
-                                    <app-file-details [details]="file" (fileDeleted)="deleteFile($event)">
-                                    </app-file-details>
-                                </mat-sidenav> -->
                             </div>
                             <!-- /.Card content -->
                             <h1 class="text-center" *ngIf="!materials">
@@ -124,7 +112,7 @@
                                 <i class="fa fa-refresh fa-spin fa-fw"></i>
                             </h1>
                             <!-- <div>
-                                <app-units [groupedMaterilas]="groupedMaterials" [courseId]="courseIdForUnits"></app-units>
+                                <app-units [groupedMaterilas]="groupedMaterials" [allLearnersFromJob]="allLearners" [learnersFromComponent]="learnersFromComponent" [jobId]="jobId" [courseId]="courseIdForUnits"></app-units>
                             </div> -->
                         </div>
                     </div>

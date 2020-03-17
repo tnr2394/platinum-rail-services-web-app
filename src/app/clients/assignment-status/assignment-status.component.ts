@@ -179,7 +179,7 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
   }
 
   checkArray(assignmentArray, assignment) {
-    console.log('assignmentArray:::::::: in checkArray', assignmentArray);
+    // console.log('assignmentArray:::::::: in checkArray', assignmentArray);
 
     if (assignmentArray.length != 0) {
       let index = _.findIndex(assignmentArray, function (o) { return o.assignmentId == assignment; });
@@ -217,10 +217,10 @@ export class AssignmentStatusComponent implements OnInit, OnChanges {
 
   unassignedClicked(learn, assignment, learnIndex, assignIndex, event) {
 
-    console.log("***event", event.target.classList.value);
-    console.log("***assignment", assignment);
+    // console.log("***event", event.target.classList.value);
+    // console.log("***assignment", assignment);
     // console.log("***learnIndex", learnIndex);
-    console.log("***Clicked", assignment.assignmentId + ',' + learn._id);
+    // console.log("***Clicked", assignment.assignmentId + ',' + learn._id);
     let newData = {
       learner: learn,
       assignment: assignment,

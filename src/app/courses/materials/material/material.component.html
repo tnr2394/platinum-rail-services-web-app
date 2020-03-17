@@ -20,10 +20,22 @@
             Name
         </th>
         <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
-            <material-tile [material]="material" 
-                [isSelected]="(material._id === selectedMaterial)" [index]='i' (getFiles)="loadMaterialFiles($event)"
-                (assignmentAllocated)="allocatedFromTile($event)" (fileDetailsComp)="fileDetailsComp($event)"
-                (DeleteMaterial)="deletedMaterial($event)"></material-tile>
+            <div *ngIf="view == false">
+                <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                    <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)'
+                        [value]='material'>
+                    </mat-checkbox>
+                </div>
+            </div>
+            
+            <div *ngIf="testStatus">
+                <material-tile [material]="material" [isSelected]="(material._id === selectedMaterial)" [index]='i'
+                    [learnersFromJob]="learnersFromJob" [allLearnersFromJob]="allLearners"
+                    (getFiles)="loadMaterialFiles($event)" [learnerWithStatus]="learnerToPass"
+                    (assignmentAllocated)="allocatedFromTile($event)" [showLearnerTab]="showLearnerTab"
+                    (fileDetailsComp)="fileDetailsComp($event)" (DeleteMaterial)="deletedMaterial($event)">
+                </material-tile>
+            </div>
         </td>
     </ng-container>
     <thead>

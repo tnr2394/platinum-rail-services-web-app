@@ -1637,7 +1637,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Do you have any physical disability which could affect your work?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1645,7 +1645,7 @@
                     <div class="col-md-6">
                         <label>Do you have difficulty hearing (with a hearing aid, if needed) for all normal
                             workpurposes?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1653,7 +1653,7 @@
                     <div class="col-md-6">
                         <label>Do you have difficulty seeing (with glasses or contact lenses, if needed) for all
                             normalwork purposes?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1661,14 +1661,14 @@
                     <div class="col-md-6">
                         <label>Do you currently take any prescribed medicines that make you dizzy or
                             drowsy?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Have you ever been told that you suffer from a work-related health problem?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1676,7 +1676,7 @@
                     <div class="col-md-6">
                         <label>Do you suffer from a frequent health problem that causes you to be off work morethan
                             two-three times per year?*</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1685,14 +1685,14 @@
                     <div class="col-md-6">
                         <label>Have you ever had an illness or injury that has kept you off work for more than
                             threemonths?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Have you ever had to give up any previous job for medical reasons?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1700,7 +1700,7 @@
 
                     <div class="col-md-6">
                         <label>Have you ever received compensation for industrial injury or illness?**</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="otherQ9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1730,32 +1730,32 @@
                     <div class="col-md-6">
                         <label>Surname</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Name" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpSurName" name="name" placeholder="Name" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Initials</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Initials" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpInitials" name="name" placeholder="Initials" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Address</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Address" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpAddress" name="name" placeholder="Address" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Post Code</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Post Code" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpPostCode" name="name" placeholder="Post Code" cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Tel No.</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Tel No." cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpTelephone" name="name" placeholder="Tel No." cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>

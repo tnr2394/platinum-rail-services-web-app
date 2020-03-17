@@ -217,7 +217,7 @@ const routes: Routes = [
 		component: AdminReportBComponent
 	},
 	{
-		path: 'singleUnit/:unitno/:courseId',
+		path: 'singleUnit',
 		component: SingleUnitComponent
 	},
 	{
