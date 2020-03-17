@@ -20,7 +20,7 @@
 
 <div lang="en-GB" link="#0000ff" dir="ltr"
     style="height:auto;margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
-    <div style="max-width:616px; width:100%; margin:0 auto; font-size: 14pt;">
+    <div style="max-width:720px; width:100%; margin:0 auto; font-size: 14pt;">
         <div style="text-align:center; margin-bottom:15px;"><img src="../../../assets/full_logo.png" alt=""
                 width="193px" /></div>
         <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
@@ -402,23 +402,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Name on Account / Ltd Company Name</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{data.bankDetails.accountHolderName}}</td>
             </tr>
             <tr>
                 <td>Bank Name</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.bankDetails.bankName}}</td>
             </tr>
             <tr>
                 <td>Bank Address</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.bankDetails.bankAddress}}</td>
             </tr>
             <tr>
                 <td>Account Number</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.bankDetails.accountNumber}}</td>
             </tr>
             <tr>
                 <td>Sort Code</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.bankDetails.sortCode}}</td>
             </tr>
         </table>
         <p><strong>Payment Details</strong></p>
@@ -437,19 +437,19 @@
             </tr>
             <tr>
                 <td>Company Name:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyName}}</td>
             </tr>
             <tr>
                 <td>Company No.:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyNo}}</td>
             </tr>
             <tr>
                 <td>Please provide a copy of Certificate of Incorporation</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.paymentDetails.certificateNumber}}</td>
             </tr>
             <tr>
                 <td>Umbrella Company – state which one</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.paymentDetails.companyState}}</td>
             </tr>
         </table>
         <p><strong>Insurance</strong></p>
@@ -459,23 +459,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Employers’ Liability</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{data.insurance.insurance1}}</td>
             </tr>
             <tr>
                 <td>Professional Indemnity</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.insurance.insurance2}}</td>
             </tr>
             <tr>
                 <td>Public Liability</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.insurance.insurance3}}</td>
             </tr>
             <tr>
                 <td>Product and Goods Liability</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.insurance.insurance4}}</td>
             </tr>
             <tr>
                 <td>Vehicle Business Use</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{data.insurance.insurance5}}</td>
             </tr>
         </table>
         <p><strong>Confirmations</strong></p>
@@ -538,7 +538,7 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td colspan="2" width="50%">NAME:</td>
-                <td colspan="2" width="50%" style="background:#fff;">&nbsp;</td>
+                <td colspan="2" width="50%" style="background:#fff;">{{data.rightToWorkInUK.name}}</td>
             </tr>
             <tr>
                 <td colspan="4">
