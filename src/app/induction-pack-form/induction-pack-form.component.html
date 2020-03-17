@@ -1789,19 +1789,19 @@
                         <span>Bakerloo</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input [(ngModel)]="tflArear1Visit" matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area1" [matDatepicker]="area1" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear1Date" name="area1" [matDatepicker]="area1" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area1"></mat-datepicker-toggle>
                             <mat-datepicker #area1></mat-datepicker>
                         </mat-form-field>
@@ -1814,19 +1814,19 @@
                         <span>Central</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear2Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area2" [matDatepicker]="area2" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear2Date" name="area2" [matDatepicker]="area2" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area2"></mat-datepicker-toggle>
                             <mat-datepicker #area2></mat-datepicker>
                         </mat-form-field>
@@ -1838,19 +1838,19 @@
                         <span>Circle</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear3Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area3" [matDatepicker]="area3" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear3Date" name="area3" [matDatepicker]="area3" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area3"></mat-datepicker-toggle>
                             <mat-datepicker #area3></mat-datepicker>
                         </mat-form-field>
@@ -1863,19 +1863,19 @@
                         <span>District</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear4Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area4" [matDatepicker]="area4" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear4Date" name="area4" [matDatepicker]="area4" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area4"></mat-datepicker-toggle>
                             <mat-datepicker #area4></mat-datepicker>
                         </mat-form-field>
@@ -1889,19 +1889,19 @@
                         <span>Hammersmith & City</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear5Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area5" [matDatepicker]="area5" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear5Date" name="area5" [matDatepicker]="area5" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area5"></mat-datepicker-toggle>
                             <mat-datepicker #area5></mat-datepicker>
                         </mat-form-field>
@@ -1915,19 +1915,19 @@
                         <span>Jubilee</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear6Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area6" [matDatepicker]="area6" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear6Date" name="area6" [matDatepicker]="area6" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area6"></mat-datepicker-toggle>
                             <mat-datepicker #area6></mat-datepicker>
                         </mat-form-field>
@@ -1941,19 +1941,19 @@
                         <span>Metropolitan</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear7Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area7" [matDatepicker]="area7" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear7Date" name="area7" [matDatepicker]="area7" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area7"></mat-datepicker-toggle>
                             <mat-datepicker #area7></mat-datepicker>
                         </mat-form-field>
@@ -1967,19 +1967,19 @@
                         <span>Nothern</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear8Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area8" [matDatepicker]="area8" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear8Date" name="area8" [matDatepicker]="area8" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area8"></mat-datepicker-toggle>
                             <mat-datepicker #area8></mat-datepicker>
                         </mat-form-field>
@@ -1993,19 +1993,19 @@
                         <span>Piccadilly</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear9Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area9" [matDatepicker]="area9" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear9Date" name="area9" [matDatepicker]="area9" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area9"></mat-datepicker-toggle>
                             <mat-datepicker #area9></mat-datepicker>
                         </mat-form-field>
@@ -2019,19 +2019,19 @@
                         <span>Victoria</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear10Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area10" [matDatepicker]="area10" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear10Date" name="area10" [matDatepicker]="area10" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area10"></mat-datepicker-toggle>
                             <mat-datepicker #area10></mat-datepicker>
                         </mat-form-field>
@@ -2044,19 +2044,19 @@
                         <span>Waterloo & City</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea11" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear11Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area11" [matDatepicker]="area11" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear11Date" name="area11" [matDatepicker]="area11" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area11"></mat-datepicker-toggle>
                             <mat-datepicker #area11></mat-datepicker>
                         </mat-form-field>
@@ -2069,19 +2069,19 @@
                         <span>DLR</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea12" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear12Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area12" [matDatepicker]="area12" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear12Date" name="area12" [matDatepicker]="area12" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area12"></mat-datepicker-toggle>
                             <mat-datepicker #area12></mat-datepicker>
                         </mat-form-field>
@@ -2093,19 +2093,19 @@
                         <span>London Overground</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea13" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear13Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area13" [matDatepicker]="area13" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear13Date" name="area13" [matDatepicker]="area13" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area13"></mat-datepicker-toggle>
                             <mat-datepicker #area13></mat-datepicker>
                         </mat-form-field>
@@ -2118,19 +2118,19 @@
                         <span>TfL Rail (Liverpool Street to Shenfield)</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea14" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear14Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area14" [matDatepicker]="area14" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear14Date" name="area14" [matDatepicker]="area14" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area14"></mat-datepicker-toggle>
                             <mat-datepicker #area14></mat-datepicker>
                         </mat-form-field>
@@ -2143,19 +2143,19 @@
                         <span>Cockfosters</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea15" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear15Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area15" [matDatepicker]="area15" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear15Date" name="area15" [matDatepicker]="area15" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area15"></mat-datepicker-toggle>
                             <mat-datepicker #area15></mat-datepicker>
                         </mat-form-field>
@@ -2168,19 +2168,19 @@
                         <span>Golders Green</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea16" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear16Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area16" [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear16Date" [(ngModel)]="tflArear1Date" name="area16" [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area16"></mat-datepicker-toggle>
                             <mat-datepicker #area16></mat-datepicker>
                         </mat-form-field>
@@ -2193,19 +2193,19 @@
                         <span>Hainault</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea17" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear17Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area17" [matDatepicker]="area17" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear17Date" name="area17" [matDatepicker]="area17" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area17"></mat-datepicker-toggle>
                             <mat-datepicker #area17></mat-datepicker>
                         </mat-form-field>
@@ -2218,19 +2218,19 @@
                         <span>Hammersmith</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea18" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear18Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area18" [matDatepicker]="area18" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear18Date" name="area18" [matDatepicker]="area18" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area18"></mat-datepicker-toggle>
                             <mat-datepicker #area18></mat-datepicker>
                         </mat-form-field>
@@ -2243,19 +2243,19 @@
                         <span>Morden</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea19" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear19Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area19" [matDatepicker]="area19" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear19Date" name="area19" [matDatepicker]="area19" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area19"></mat-datepicker-toggle>
                             <mat-datepicker #area19></mat-datepicker>
                         </mat-form-field>
@@ -2267,19 +2267,19 @@
                         <span>Neasden</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear1Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area20" [matDatepicker]="area20" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear1Date" name="area20" [matDatepicker]="area20" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area20"></mat-datepicker-toggle>
                             <mat-datepicker #area20></mat-datepicker>
                         </mat-form-field>
