@@ -1126,14 +1126,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>1) Do you wear glasses?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="medicalEye1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>2) Do you wear contact lenses?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="medicalEye2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1141,7 +1141,7 @@
                     <div class="col-md-6">
                         <label>3) If you do wear contact lenses, do you agree to carrya spare pair of glasses when
                             on or near the line?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="medicalEye3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1149,7 +1149,8 @@
                     <div class="col-md-6">
                         <label>Date</label>
                         <mat-form-field>
-                            <input matInput name="doi" [matDatepicker]="eye-standard" placeholder="Choose a date" irequired>
+                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard"
+                                placeholder="Choose a date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -1174,14 +1175,14 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>Stomach/bowels</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Back/neck</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1189,7 +1190,7 @@
 
                     <div class="col-md-4">
                         <label>Mental illness</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1197,14 +1198,14 @@
 
                     <div class="col-md-4">
                         <label>Bladder</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Ears</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1212,7 +1213,7 @@
 
                     <div class="col-md-4">
                         <label>Claustrophobia</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1220,14 +1221,14 @@
 
                     <div class="col-md-4">
                         <label>Kidney</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Eyes</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1235,7 +1236,7 @@
 
                     <div class="col-md-4">
                         <label>Vertigo</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1244,14 +1245,14 @@
 
                     <div class="col-md-4">
                         <label>Hernia</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Nose or throat</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness11" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1259,7 +1260,7 @@
 
                     <div class="col-md-4">
                         <label>Anxiety/stress</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness12" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1268,14 +1269,14 @@
 
                     <div class="col-md-4">
                         <label>Heart</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness13" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Lungs</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness14" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1283,7 +1284,7 @@
 
                     <div class="col-md-4">
                         <label>Nervous disorder</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness15" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1291,14 +1292,14 @@
 
                     <div class="col-md-4">
                         <label>Blood pressure</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness16" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Sinusitis</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness17" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1306,7 +1307,7 @@
 
                     <div class="col-md-4">
                         <label>Skin disease</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness18" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1314,14 +1315,14 @@
 
                     <div class="col-md-4">
                         <label>Blood disorder</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness19" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Tuberculosis</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness20" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1329,7 +1330,7 @@
 
                     <div class="col-md-4">
                         <label>Allergies</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness21" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1337,14 +1338,14 @@
 
                     <div class="col-md-4">
                         <label>Jaundice</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness22" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Fainting/dizzy spells</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness23" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1352,7 +1353,7 @@
 
                     <div class="col-md-4">
                         <label>Drug dependency</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness24" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1360,14 +1361,14 @@
 
                     <div class="col-md-4">
                         <label>Rheumatism/arthritis</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness25" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Headaches/migraines</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness26" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1375,7 +1376,7 @@
 
                     <div class="col-md-4">
                         <label>Alcohol dependency</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness27" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1383,7 +1384,7 @@
 
                     <div class="col-md-4">
                         <label>Tendons/ligaments/joints</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="illness28" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1398,14 +1399,14 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>Vibration</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Cancer-causing agents</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1413,7 +1414,7 @@
 
                     <div class="col-md-4">
                         <label>Lead</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1421,14 +1422,14 @@
 
                     <div class="col-md-4">
                         <label>Dust</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Radiation</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1436,7 +1437,7 @@
 
                     <div class="col-md-4">
                         <label>Asbestos</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1444,14 +1445,14 @@
 
                     <div class="col-md-4">
                         <label>Noise</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Hazardous chemicals</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1459,7 +1460,7 @@
 
                     <div class="col-md-4">
                         <label>Mineral oil</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1468,14 +1469,14 @@
 
                     <div class="col-md-4">
                         <label>Manual handling</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-4">
                         <label>Skin irritants</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness11" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -1483,7 +1484,7 @@
 
                     <div class="col-md-4">
                         <label>Tar</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="workIllness12" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>

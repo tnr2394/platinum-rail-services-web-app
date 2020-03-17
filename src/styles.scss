@@ -1433,11 +1433,9 @@ body {
 // }
 
 /*induction form css start*/
-
 #accordion .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: #111111 !important;
 }
-
 #accordion .mat-radio-button.mat-accent .mat-radio-inner-circle,
 #accordion .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
 #accordion .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
@@ -1448,18 +1446,24 @@ body {
 #accordion .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
     background-color: #111111 !important;
 }
-
+.mat-calendar-body-selected {
+    background-color: #111 !important;
+}
 #accordion .mat-form-field.mat-focused .mat-form-field-label,
 #accordion .mat-datepicker-toggle-active {
     color: #111111 !important;
 }
-
 #accordion textarea {
     resize: none;
     height: 80px;
 }
-
 #accordion .mat-radio-label-content {
     font-weight: 400;
     font-size: 20px;
+}
+th.mat-calendar-table-header-divider {
+    display: none !important;
+}
+.mat-calendar-table-header th{
+    padding: 12px 5px !important;
 }
