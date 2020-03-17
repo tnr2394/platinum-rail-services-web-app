@@ -138,11 +138,11 @@ export class InductionPackFormComponent implements OnInit {
   competencesD5;
   competencesE5;
 
-  
+
   competencesD6;
   competencesE6;
 
-  
+
   competencesD7;
   competencesE7;
 
@@ -205,6 +205,90 @@ export class InductionPackFormComponent implements OnInit {
   msc12;
   msc13;
   msc14;
+
+  // Medical Eye Standards
+
+  medicalEye1;
+  medicalEye2;
+  medicalEye3;
+  medicalEye4;
+
+  // Occupational Health Questionnaire
+
+  illness1;
+  illness2;
+  illness3;
+  illness4;
+  illness5;
+  illness6;
+  illness7;
+  illness8;
+  illness9;
+  illness10;
+  illness11;
+  illness12;
+  illness13;
+  illness14;
+  illness15;
+  illness16;
+  illness17;
+  illness18;
+  illness19;
+  illness20;
+  illness21;
+  illness22;
+  illness23;
+  illness24;
+  illness25;
+  illness26;
+  illness27;
+  illness28;
+
+  workIllness1;
+  workIllness2;
+  workIllness3;
+  workIllness4;
+  workIllness5;
+  workIllness6;
+  workIllness7;
+  workIllness8;
+  workIllness9;
+  workIllness10;
+  workIllness11;
+
+  // -------------- Other Health Information Start Here-------------
+  otherSafetyR1;
+  otherSafetyR2;
+  otherSafetyR3;
+  otherSafetyR4;
+  otherSafetyR5;
+  otherSafetyR6;
+  otherSafetyR7;
+  otherSafetyR8;
+  otherSafetyR9;
+  otherSafetyR10;
+  otherSafetyR11;
+  otherSafetyR12;
+  otherSafetyR13;
+  otherSafetyR14;
+  otherSafetyR15;
+
+
+  // Other QUESTION
+
+  otherQ1;
+  otherQ2;
+  otherQ3;
+  otherQ4;
+  otherQ5;
+  otherQ6;
+  otherQ7;
+  otherQ8;
+  otherQ9;
+
+
+
+
 
 
 
@@ -326,6 +410,66 @@ export class InductionPackFormComponent implements OnInit {
         msc12: this.msc12,
         msc13: this.msc13,
         msc14: this.msc14
+      },
+      eyeStandard: {
+        medicalEye1: this.medicalEye1,
+        medicalEye2: this.medicalEye2,
+        medicalEye3: this.medicalEye3,
+        medicalEye4: this.medicalEye4
+      },
+      illnessDetail: {
+        illness1: this.illness1,
+        illness2: this.illness2,
+        illness3: this.illness3,
+        illness4: this.illness4,
+        illness5: this.illness5,
+        illness6: this.illness6,
+        illness7: this.illness7,
+        illness8: this.illness8,
+        illness9: this.illness9,
+        illness10: this.illness10,
+        illness11: this.illness11,
+        illness12: this.illness12,
+        illness13: this.illness13,
+        illness14: this.illness14,
+        illness15: this.illness15,
+        illness16: this.illness16,
+        illness17: this.illness17,
+        illness18: this.illness18,
+        illness19: this.illness19,
+        illness20: this.illness20,
+        illness21: this.illness21,
+        illness22: this.illness22,
+        illness23: this.illness23,
+        illness24: this.illness24,
+        illness25: this.illness25,
+        illness26: this.illness26,
+        illness27: this.illness27,
+        illness28: this.illness28
+      },
+      workIllnessDetail: {
+        workIllness1: this.workIllness1,
+        workIllness2: this.workIllness2,
+        workIllness3: this.workIllness3,
+        workIllness4: this.workIllness4,
+        workIllness5: this.workIllness5,
+        workIllness6: this.workIllness6,
+        workIllness7: this.workIllness7,
+        workIllness8: this.workIllness8,
+        workIllness9: this.workIllness9,
+        workIllness10: this.workIllness10,
+        workIllness11: this.workIllness11
+      },
+      otherQuestionDetail: {
+        otherQ1: this.otherQ1,
+        otherQ2: this.otherQ2,
+        otherQ3: this.otherQ3,
+        otherQ4: this.otherQ4,
+        otherQ5: this.otherQ5,
+        otherQ6: this.otherQ6,
+        otherQ7: this.otherQ7,
+        otherQ8: this.otherQ8,
+        otherQ9: this.otherQ9,
       }
     }
 
