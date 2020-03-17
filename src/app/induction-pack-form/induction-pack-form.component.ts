@@ -419,6 +419,24 @@ PossessionE7;
   gpPostCode;
   gpTelephone;
 
+  // Night Work Questions
+
+  nightWorkQ1;
+  nightWorkQ2;
+  nightWorkQ3;
+  nightWorkQ4;
+  nightWorkQ5;
+  nightWorkQ6;
+  nightWorkQ7;
+  nightWorkQ8;
+  nightWorkQ9;
+  nightWorkQ10;
+  nightWorkQ11;
+  nightWorkQ12;
+  nightWorkQ13;
+
+
+
 
 
 
@@ -627,6 +645,21 @@ PossessionE7;
         gpAddress: this.gpAddress,
         gpPostCode: this.gpPostCode,
         gpTelephone: this.gpTelephone
+      },
+      nightWorkDetail: {
+        nightWorkQ1: this.nightWorkQ1,
+        nightWorkQ2: this.nightWorkQ2,
+        nightWorkQ3: this.nightWorkQ3,
+        nightWorkQ4: this.nightWorkQ4,
+        nightWorkQ5: this.nightWorkQ5,
+        nightWorkQ6: this.nightWorkQ6,
+        nightWorkQ7: this.nightWorkQ7,
+        nightWorkQ8: this.nightWorkQ8,
+        nightWorkQ9: this.nightWorkQ9,
+        nightWorkQ10: this.nightWorkQ10,
+        nightWorkQ11: this.nightWorkQ11,
+        nightWorkQ12: this.nightWorkQ12,
+        nightWorkQ13: this.nightWorkQ13,
       }
     }
 
