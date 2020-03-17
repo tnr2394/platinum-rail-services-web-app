@@ -76,7 +76,36 @@ export class InductionPackFormComponent implements OnInit {
   insurance4;
   insurance5;
 
-  // 
+  // Right to work in Uk
+
+  rightWName;
+
+  rightWorkl1;
+  rightWorkl2;
+  rightWorkl3;
+  rightWorkl4;
+  rightWorkl5;
+  rightWorkl6;
+  rightWorkl7;
+  rightWorkl8;
+
+  rightWorkl2A;
+  rightWorkl2B;
+  rightWorkl2C;
+  rightWorkl2D;
+  rightWorkl2E;
+  rightWorkl2F;
+  rightWorkl2G;
+
+  rightWorkl2AA;
+  rightWorkl2AB;
+  rightWorkl2AC;
+
+
+
+
+
+
 
   // Next To kin
 
@@ -155,6 +184,33 @@ export class InductionPackFormComponent implements OnInit {
         type10: this.type10,
         type11: this.type11,
         type12: this.type12,
+      },
+      rightToWorkInUK: {
+        name: this.rightWName,
+        list1: {
+          rightWorkl1: this.rightWorkl1,
+          rightWorkl2: this.rightWorkl2,
+          rightWorkl3: this.rightWorkl3,
+          rightWorkl4: this.rightWorkl4,
+          rightWorkl5: this.rightWorkl5,
+          rightWorkl6: this.rightWorkl6,
+          rightWorkl7: this.rightWorkl7,
+          rightWorkl8: this.rightWorkl8,
+        },
+        list2: {
+          rightWorkl2A: this.rightWorkl2A,
+          rightWorkl2B: this.rightWorkl2B,
+          rightWorkl2C: this.rightWorkl2C,
+          rightWorkl2D: this.rightWorkl2D,
+          rightWorkl2E: this.rightWorkl2E,
+          rightWorkl2F: this.rightWorkl2F,
+          rightWorkl2G: this.rightWorkl2G,
+        },
+        list2A: {
+          rightWorkl2AA: this.rightWorkl2AA,
+          rightWorkl2AB: this.rightWorkl2AB,
+          rightWorkl2AC: this.rightWorkl2AC,
+        }
       }
     }
     console.log('Submit Value Here', this.data);
