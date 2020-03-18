@@ -273,131 +273,131 @@ export class InductionPackFormComponent implements OnInit {
   otherSafetyR14;
   otherSafetyR15;
 
-// -----------------------------------end Health---------------------
+  // -----------------------------------end Health---------------------
 
 
-// -----------------tflArea-------------------
-tflArea1;
-tflArear1Visit;
-tflArear1Date;
+  // -----------------tflArea-------------------
+  tflArea1;
+  tflArear1Visit;
+  tflArear1Date;
 
-tflArea2;
-tflArear2Visit;
-tflArear2Date;
+  tflArea2;
+  tflArear2Visit;
+  tflArear2Date;
 
-tflArea3;
-tflArear3Visit;
-tflArear3Date;
+  tflArea3;
+  tflArear3Visit;
+  tflArear3Date;
 
-tflArea4;
-tflArear4Visit;
-tflArear4Date;
+  tflArea4;
+  tflArear4Visit;
+  tflArear4Date;
 
-tflArea5;
-tflArear5Visit;
-tflArear5Date;
+  tflArea5;
+  tflArear5Visit;
+  tflArear5Date;
 
-tflArea6;
-tflArear6Visit;
-tflArear6Date;
+  tflArea6;
+  tflArear6Visit;
+  tflArear6Date;
 
-tflArea7;
-tflArear7Visit;
-tflArear7Date;
+  tflArea7;
+  tflArear7Visit;
+  tflArear7Date;
 
-tflArea8;
-tflArear8Visit;
-tflArear8Date;
+  tflArea8;
+  tflArear8Visit;
+  tflArear8Date;
 
-tflArea9;
-tflArear9Visit;
-tflArear9Date;
+  tflArea9;
+  tflArear9Visit;
+  tflArear9Date;
 
-tflArea10;
-tflArear10Visit;
-tflArear10Date;
+  tflArea10;
+  tflArear10Visit;
+  tflArear10Date;
 
-tflArea11;
-tflArear11Visit;
-tflArear11Date;
+  tflArea11;
+  tflArear11Visit;
+  tflArear11Date;
 
-tflArea12;
-tflArear12Visit;
-tflArear12Date;
+  tflArea12;
+  tflArear12Visit;
+  tflArear12Date;
 
-tflArea13;
-tflArear13Visit;
-tflArear13Date;
+  tflArea13;
+  tflArear13Visit;
+  tflArear13Date;
 
-tflArea14;
-tflArear14Visit;
-tflArear14Date;
+  tflArea14;
+  tflArear14Visit;
+  tflArear14Date;
 
-tflArea15;
-tflArear15Visit;
-tflArear15Date;
+  tflArea15;
+  tflArear15Visit;
+  tflArear15Date;
 
-tflArea16;
-tflArear16Visit;
-tflArear16Date;
+  tflArea16;
+  tflArear16Visit;
+  tflArear16Date;
 
-tflArea17;
-tflArear17Visit;
-tflArear17Date;
+  tflArea17;
+  tflArear17Visit;
+  tflArear17Date;
 
-tflArea18;
-tflArear18Visit;
-tflArear18Date;
+  tflArea18;
+  tflArear18Visit;
+  tflArear18Date;
 
-tflArea19;
-tflArear19Visit;
-tflArear19Date;
+  tflArea19;
+  tflArear19Visit;
+  tflArear19Date;
 
-tflArea20;
-tflArear20Visit;
-tflArear20Date;
+  tflArea20;
+  tflArear20Visit;
+  tflArear20Date;
 
-// ---------------------------------------endtlf----
+  // ---------------------------------------endtlf----
 
-// -----------------Spacific work===============
-blockage1;
-blockage2;
-blockage3;
-blockage4;
-blockage5;
-blockage6;
-blockage7;
-blockage8;
-blockage9;
+  // -----------------Spacific work===============
+  blockage1;
+  blockage2;
+  blockage3;
+  blockage4;
+  blockage5;
+  blockage6;
+  blockage7;
+  blockage8;
+  blockage9;
 
-greenZone1;
-greenZone2;
+  greenZone1;
+  greenZone2;
 
-redZone1;
-redZone2;
-redZone3;
-redZone4;
-redZone5;
+  redZone1;
+  redZone2;
+  redZone3;
+  redZone4;
+  redZone5;
 
-Possession1;
-Possession2;
-Possession3;
-Possession4;
-Possession5;
-Possession6;
-Possession7;
-Possession8;
-Possession9;
-Possession10;
+  Possession1;
+  Possession2;
+  Possession3;
+  Possession4;
+  Possession5;
+  Possession6;
+  Possession7;
+  Possession8;
+  Possession9;
+  Possession10;
 
-PossessionE1;
-PossessionE2;
-PossessionE3;
-PossessionE4;
-PossessionE5;
-PossessionE6;
-PossessionE7;
-// ------------------end-------------------------
+  PossessionE1;
+  PossessionE2;
+  PossessionE3;
+  PossessionE4;
+  PossessionE5;
+  PossessionE6;
+  PossessionE7;
+  // ------------------end-------------------------
 
   // Other QUESTION
 
@@ -666,6 +666,49 @@ Stress5;
         nightWorkQ11: this.nightWorkQ11,
         nightWorkQ12: this.nightWorkQ12,
         nightWorkQ13: this.nightWorkQ13,
+      },
+      lineBlockage: {
+        blockage1: this.blockage1,
+        blockage2: this.blockage2,
+        blockage3: this.blockage3,
+        blockage4: this.blockage4,
+        blockage5: this.blockage5,
+        blockage6: this.blockage6,
+        blockage7: this.blockage7,
+        blockage8: this.blockage8,
+        blockage9: this.blockage9,
+      },
+      greenZone: {
+        greenZone1: this.greenZone1,
+        greenZone2: this.greenZone2,
+      },
+      redZone: {
+        redZone1: this.redZone1,
+        redZone2: this.redZone2,
+        redZone3: this.redZone3,
+        redZone4: this.redZone4,
+        redZone5: this.redZone5,
+      },
+      possessionDetail: {
+        Possession1: this.Possession1,
+        Possession2: this.Possession2,
+        Possession3: this.Possession3,
+        Possession4: this.Possession4,
+        Possession5: this.Possession5,
+        Possession6: this.Possession6,
+        Possession7: this.Possession7,
+        Possession8: this.Possession8,
+        Possession9: this.Possession9,
+        Possession10: this.Possession10
+      },
+      possessionEngDetail: {
+        PossessionE1: this.PossessionE1,
+        PossessionE2: this.PossessionE2,
+        PossessionE3: this.PossessionE3,
+        PossessionE4: this.PossessionE4,
+        PossessionE5: this.PossessionE5,
+        PossessionE6: this.PossessionE6,
+        PossessionE7: this.PossessionE7,
       }
     }
 
