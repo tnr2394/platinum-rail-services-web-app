@@ -17,10 +17,95 @@
     <meta NAME="ShareDoc" CONTENT="false">
 
 </head> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
 
-<div lang="en-GB" link="#0000ff" dir="ltr"
+<button (click)="makePdf()" id="print">make pdf</button>
+
+<div *ngIf="loading" id="loader-wrapper">
+    <div class="spinner">
+        <img src="../../assets/full_logo.png">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+
+<div #content class="content" lang="en-GB" link="#0000ff" dir="ltr"
     style="height:auto;margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
-    <div style="max-width:720px; width:100%; margin:0 auto; font-size: 14pt;">
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="7"
+        style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+        <tr>
+            <td colspan="4"><strong>Type</strong></td>
+            <td width="19%" align="center">YES</td>
+            <td width="18%" align="center">NO</td>
+        </tr>
+        <tr>
+            <td colspan="4">Refresher induction</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">New Starter</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">Is Inductee working on NR?</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">Is Inductee working on TfL?</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">Date of induction</td>
+            <td colspan="2" style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td width="25%">Sponsorship</td>
+            <td width="9%" align="center">YES</td>
+            <td width="9%" align="center">NO</td>
+            <td width="20%">&nbsp;</td>
+            <td align="center">YES</td>
+            <td align="center">NO</td>
+        </tr>
+        <tr>
+            <td>Primary </td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td>Sub-Sponsored</td>
+            <td style="background:#fff;">&nbsp;</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="3">Is induction pack complete?</td>
+            <td style="background:#fff; padding:0px; border:0px;">
+                <table width="100%" border="1" cellspacing="0" cellpadding="7">
+                    <tr>
+                        <td style="border-top:0px; border-left:0px; border-right:0px;">&nbsp;</td>
+                        <td style="border-top:0px; border-right:0px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom:0px; border-right:0px; border-left:0px;">&nbsp;</td>
+                        <td style="border-bottom:0px; border-right:0px;">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+            <td colspan="2">If No, do not sponsor until completed</td>
+        </tr>
+        <tr>
+            <td colspan="3">&nbsp;</td>
+            <td colspan="3" style="background:#fff;">&nbsp;</td>
+        </tr>
+    </table>
+
+
+    <!-- <h1>HELLO!!!</h1> -->
+    <!-- <div style="max-width:720px; width:100%; margin:0 auto; font-size: 14pt;"> 
         <div style="text-align:center; margin-bottom:15px;"><img src="../../../assets/full_logo.png" alt=""
                 width="193px" /></div>
         <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
@@ -2671,7 +2756,7 @@
             </tr>
         </table>
 
-    </div>
+    </div>  -->
 </div>
 
 <!-- </html> -->

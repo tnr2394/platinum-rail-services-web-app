@@ -680,7 +680,7 @@
                     </div>
 
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Address of next of kin</label>
                         <mat-form-field class="example-full-width">
                             <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput
@@ -1246,7 +1246,8 @@
                     <div class="col-md-6">
                         <label>Date</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard" placeholder="Choose a date" irequired>
+                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard"
+                                placeholder="Choose a date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -1836,32 +1837,33 @@
                     <div class="col-md-6">
                         <label>Surname</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Name" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpSurName" name="name" placeholder="Name" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Initials</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Initials" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpInitials" name="name" placeholder="Initials" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Address</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Address" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpAddress" name="name" placeholder="Address" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Post Code</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Post Code" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpPostCode" name="name" placeholder="Post Code"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Tel No.</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Tel No." cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpTelephone" name="name" placeholder="Tel No." cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -1902,20 +1904,20 @@
                         <span>Bakerloo</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input [(ngModel)]="tflArear1Visit" matInput type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area1" [matDatepicker]="area1"
+                            <input matInput [(ngModel)]="tflArear1Date" name="area1" [matDatepicker]="area1"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area1"></mat-datepicker-toggle>
                             <mat-datepicker #area1></mat-datepicker>
@@ -1929,20 +1931,20 @@
                         <span>Central</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear2Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area2" [matDatepicker]="area2"
+                            <input matInput [(ngModel)]="tflArear2Date" name="area2" [matDatepicker]="area2"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area2"></mat-datepicker-toggle>
                             <mat-datepicker #area2></mat-datepicker>
@@ -1955,20 +1957,20 @@
                         <span>Circle</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear3Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area3" [matDatepicker]="area3"
+                            <input matInput [(ngModel)]="tflArear3Date" name="area3" [matDatepicker]="area3"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area3"></mat-datepicker-toggle>
                             <mat-datepicker #area3></mat-datepicker>
@@ -1982,20 +1984,20 @@
                         <span>District</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear4Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area4" [matDatepicker]="area4"
+                            <input matInput [(ngModel)]="tflArear4Date" name="area4" [matDatepicker]="area4"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area4"></mat-datepicker-toggle>
                             <mat-datepicker #area4></mat-datepicker>
@@ -2010,20 +2012,20 @@
                         <span>Hammersmith & City</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear5Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area5" [matDatepicker]="area5"
+                            <input matInput [(ngModel)]="tflArear5Date" name="area5" [matDatepicker]="area5"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area5"></mat-datepicker-toggle>
                             <mat-datepicker #area5></mat-datepicker>
@@ -2038,20 +2040,20 @@
                         <span>Jubilee</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear6Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area6" [matDatepicker]="area6"
+                            <input matInput [(ngModel)]="tflArear6Date" name="area6" [matDatepicker]="area6"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area6"></mat-datepicker-toggle>
                             <mat-datepicker #area6></mat-datepicker>
@@ -2066,20 +2068,20 @@
                         <span>Metropolitan</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear7Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area7" [matDatepicker]="area7"
+                            <input matInput [(ngModel)]="tflArear7Date" name="area7" [matDatepicker]="area7"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area7"></mat-datepicker-toggle>
                             <mat-datepicker #area7></mat-datepicker>
@@ -2094,20 +2096,20 @@
                         <span>Nothern</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear8Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area8" [matDatepicker]="area8"
+                            <input matInput [(ngModel)]="tflArear8Date" name="area8" [matDatepicker]="area8"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area8"></mat-datepicker-toggle>
                             <mat-datepicker #area8></mat-datepicker>
@@ -2122,20 +2124,20 @@
                         <span>Piccadilly</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear9Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area9" [matDatepicker]="area9"
+                            <input matInput [(ngModel)]="tflArear9Date" name="area9" [matDatepicker]="area9"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area9"></mat-datepicker-toggle>
                             <mat-datepicker #area9></mat-datepicker>
@@ -2150,20 +2152,20 @@
                         <span>Victoria</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear10Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area10" [matDatepicker]="area10"
+                            <input matInput [(ngModel)]="tflArear10Date" name="area10" [matDatepicker]="area10"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area10"></mat-datepicker-toggle>
                             <mat-datepicker #area10></mat-datepicker>
@@ -2177,20 +2179,20 @@
                         <span>Waterloo & City</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea11" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear11Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area11" [matDatepicker]="area11"
+                            <input matInput [(ngModel)]="tflArear11Date" name="area11" [matDatepicker]="area11"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area11"></mat-datepicker-toggle>
                             <mat-datepicker #area11></mat-datepicker>
@@ -2204,20 +2206,20 @@
                         <span>DLR</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea12" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear12Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area12" [matDatepicker]="area12"
+                            <input matInput [(ngModel)]="tflArear12Date" name="area12" [matDatepicker]="area12"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area12"></mat-datepicker-toggle>
                             <mat-datepicker #area12></mat-datepicker>
@@ -2230,20 +2232,20 @@
                         <span>London Overground</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea13" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear13Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area13" [matDatepicker]="area13"
+                            <input matInput [(ngModel)]="tflArear13Date" name="area13" [matDatepicker]="area13"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area13"></mat-datepicker-toggle>
                             <mat-datepicker #area13></mat-datepicker>
@@ -2257,20 +2259,20 @@
                         <span>TfL Rail (Liverpool Street to Shenfield)</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea14" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear14Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area14" [matDatepicker]="area14"
+                            <input matInput [(ngModel)]="tflArear14Date" name="area14" [matDatepicker]="area14"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area14"></mat-datepicker-toggle>
                             <mat-datepicker #area14></mat-datepicker>
@@ -2284,20 +2286,20 @@
                         <span>Cockfosters</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea15" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear15Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area15" [matDatepicker]="area15"
+                            <input matInput [(ngModel)]="tflArear15Date" name="area15" [matDatepicker]="area15"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area15"></mat-datepicker-toggle>
                             <mat-datepicker #area15></mat-datepicker>
@@ -2311,21 +2313,21 @@
                         <span>Golders Green</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea16" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear16Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area16" [matDatepicker]="area16"
-                                placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear16Date" [(ngModel)]="tflArear1Date" name="area16"
+                                [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area16"></mat-datepicker-toggle>
                             <mat-datepicker #area16></mat-datepicker>
                         </mat-form-field>
@@ -2338,20 +2340,20 @@
                         <span>Hainault</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea17" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear17Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area17" [matDatepicker]="area17"
+                            <input matInput [(ngModel)]="tflArear17Date" name="area17" [matDatepicker]="area17"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area17"></mat-datepicker-toggle>
                             <mat-datepicker #area17></mat-datepicker>
@@ -2365,20 +2367,20 @@
                         <span>Hammersmith</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea18" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear18Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area18" [matDatepicker]="area18"
+                            <input matInput [(ngModel)]="tflArear18Date" name="area18" [matDatepicker]="area18"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area18"></mat-datepicker-toggle>
                             <mat-datepicker #area18></mat-datepicker>
@@ -2392,20 +2394,20 @@
                         <span>Morden</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea19" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear19Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area19" [matDatepicker]="area19"
+                            <input matInput [(ngModel)]="tflArear19Date" name="area19" [matDatepicker]="area19"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area19"></mat-datepicker-toggle>
                             <mat-datepicker #area19></mat-datepicker>
@@ -2418,20 +2420,20 @@
                         <span>Neasden</span>
                     </div>
                     <div class="col-md-3">
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="tflArea1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput type="number" name="name" placeholder="No. of Visit" required
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear1Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput name="area20" [matDatepicker]="area20"
+                            <input matInput [(ngModel)]="tflArear1Date" name="area20" [matDatepicker]="area20"
                                 placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area20"></mat-datepicker-toggle>
                             <mat-datepicker #area20></mat-datepicker>
@@ -2458,14 +2460,14 @@
                     <div class="col-md-6">
                         <label>Have you had any medical problem in the past that has prevented you fromworking at
                             night?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ1" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Are you diabetic?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ2" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2473,7 +2475,7 @@
                     <div class="col-md-6">
                         <label>Are you subject to angina, or other heart problems that may affect your
                             fitness?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ3" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2481,7 +2483,7 @@
                     <div class="col-md-6">
                         <label>Have you had duodenal or stomach ulcers in the past, or are you under treatmentfor
                             them at present?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ4" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2489,7 +2491,7 @@
 
                     <div class="col-md-6">
                         <label>Have you had any continuing bowel problem, such as following major surgery?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ5" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2497,7 +2499,7 @@
                     <div class="col-md-6">
                         <label>Do you have any chronic chest problem such as asthma, emphysema,
                             orbronchiectasis?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ6" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2506,7 +2508,7 @@
                     <div class="col-md-6">
                         <label>Do you have any disability-affecting mobility that will cause difficulties
                             inarranging night work?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ7" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2514,7 +2516,7 @@
                     <div class="col-md-6">
                         <label>Do you have any recurrent or continuing sleep disturbance requiring
                             medicaladvice?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ8" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2522,14 +2524,14 @@
                     <div class="col-md-6">
                         <label>Are you having specialist care requiring your attendance at hospital clinics
                             fortreatment?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ9" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class="col-md-6">
                         <label>Are you taking any medication to a strict timetable?</label>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group [(ngModel)]="nightWorkQ10" aria-label="Select an option">
                             <mat-radio-button class="mr-3" value="Yes">Yes</mat-radio-button>
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
@@ -2538,20 +2540,23 @@
                         <label>Do you have any other health problem that affects your fitness for night
                             work?</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give the names of any prescribed medications that you take regularly:</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give any further details that you would like to bring to our
                             attention.</label>
                         <mat-form-field>
-                            <input matInput name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2573,15 +2578,15 @@
                 <div class="row">
                     <div class="col-12">
                         <h4><label>blockage:</label></h4>
-                        <mat-checkbox class="mr-3">Signal Protection only</mat-checkbox>
-                        <mat-checkbox class="mr-3">TCOD</mat-checkbox>
-                        <mat-checkbox class="mr-3">Disconnection</mat-checkbox>
-                        <mat-checkbox class="mr-3">Detonator Protection</mat-checkbox>
-                        <mat-checkbox class="mr-3">Token Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">Absolute Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">Tokenless Block</mat-checkbox>
-                        <mat-checkbox class="mr-3">RETB</mat-checkbox>
-                        <mat-checkbox class="mr-3">ERTMS</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage1" class="mr-3">Signal Protection only</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage2" class="mr-3">TCOD</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage3" class="mr-3">Disconnection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage4" class="mr-3">Detonator Protection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage5" class="mr-3">Token Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage6" class="mr-3">Absolute Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage7" class="mr-3">Tokenless Block</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage8" class="mr-3">RETB</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="blockage9" class="mr-3">ERTMS</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2590,20 +2595,20 @@
                             <li>
                                 <h5><label>Green Zone</label></h5>
                             </li>
-                            <mat-checkbox class="mr-3">Fenced</mat-checkbox>
-                            <mat-checkbox class="mr-3">Site Warden Warning</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="greenZone1" class="mr-3">Fenced</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="greenZone2" class="mr-3">Site Warden Warning</mat-checkbox>
                         </ul>
                     </div>
                     <div class="col-12">
                         <ul class="mt-4">
                             <li>
-                                <h5><label>Zone</label></h5>
+                                <h5><label>RedZone</label></h5>
                             </li>
-                            <mat-checkbox class="mr-3">ATWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">TOWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">LOWS</mat-checkbox>
-                            <mat-checkbox class="mr-3">Pee Wee</mat-checkbox>
-                            <mat-checkbox class="mr-3">Unassisted Lookouts</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone1" class="mr-3">ATWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone2" class="mr-3">TOWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone3" class="mr-3">LOWS</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone4" class="mr-3">Pee Wee</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="redZone5" class="mr-3">Unassisted Lookouts</mat-checkbox>
                         </ul>
                     </div>
                 </div>
@@ -2611,29 +2616,32 @@
                 <div class="row">
                     <div class="col-12">
                         <h4><label>Possession:</label></h4>
-                        <mat-checkbox class="mr-3">Within ES worksite</mat-checkbox>
-                        <mat-checkbox class="mr-3">With PICOP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Without PICOP authority</mat-checkbox>
-                        <mat-checkbox class="mr-3">Poss. of sidings </mat-checkbox>
-                        <mat-checkbox class="mr-3">Line Clear Verification</mat-checkbox>
-                        <mat-checkbox class="mr-3">Receiving OLP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Receiving CRP</mat-checkbox>
-                        <mat-checkbox class="mr-3">Working in axle counterauthorityarea</mat-checkbox>
-                        <mat-checkbox class="mr-3">PC Duties</mat-checkbox>
-                        <mat-checkbox class="mr-3">Hand trolley Controller</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession1" class="mr-3">Within ES worksite</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession2" class="mr-3">With PICOP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession3" class="mr-3">Without PICOP authority</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession4" class="mr-3">Poss. of sidings </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession5" class="mr-3">Line Clear Verification</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession6" class="mr-3">Receiving OLP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession7" class="mr-3">Receiving CRP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession8" class="mr-3">Working in axle counterauthorityarea
+                        </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession9" class="mr-3">PC Duties</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession10" class="mr-3">Hand trolley Controller</mat-checkbox>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <h4><label>Possession:</label></h4>
-                        <mat-checkbox class="mr-3">With no train/OTP</mat-checkbox>
-                        <mat-checkbox class="mr-3">With train movements</mat-checkbox>
-                        <mat-checkbox class="mr-3">With OTP movement</mat-checkbox>
-                        <mat-checkbox class="mr-3">Route setting via pointsOperator</mat-checkbox>
-                        <mat-checkbox class="mr-3">Route setting via Signaller</mat-checkbox>
-                        <mat-checkbox class="mr-3">Working in axle counterarea</mat-checkbox>
-                        <mat-checkbox class="mr-3">Competent Person Detonator Protection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE1" class="mr-3">With no train/OTP</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE2" class="mr-3">With train movements</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE3" class="mr-3">With OTP movement</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE4" class="mr-3">Route setting via pointsOperator
+                        </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE5" class="mr-3">Route setting via Signaller</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE6" class="mr-3">Working in axle counterarea</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE7" class="mr-3">Competent Person Detonator Protection
+                        </mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -2656,13 +2664,13 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVisOvercoat/Jacket</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing1Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date"
-                                irequired>
+                            <input matInput [(ngModel)]="clothing1D" name="Railissue" [matDatepicker]="Railissue"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue></mat-datepicker>
                         </mat-form-field>
@@ -2670,7 +2678,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing1R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2679,13 +2687,13 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVis Vest</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing2Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date"
-                                irequired>
+                            <input matInput [(ngModel)]="clothing2D" name="Railissue1" [matDatepicker]="Railissue1"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue1></mat-datepicker>
                         </mat-form-field>
@@ -2693,7 +2701,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing2R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2702,13 +2710,13 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVis Trouser</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing3Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue2" [matDatepicker]="Railissue2" placeholder="Issue Date"
-                                irequired>
+                            <input matInput name="Railissue2" [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue2></mat-datepicker>
                         </mat-form-field>
@@ -2716,7 +2724,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing3R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2726,13 +2734,13 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</mat-label>
-                            <input type="number" matInput>
+                            <input [(ngModel)]="clothing4Q" type="number" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date"
-                                irequired>
+                            <input matInput [(ngModel)]="clothing4D" name="Railissue3" [matDatepicker]="Railissue3"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue3></mat-datepicker>
                         </mat-form-field>
@@ -2740,7 +2748,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing4R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2750,13 +2758,13 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Other items</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing5Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date"
-                                irequired>
+                            <input matInput [(ngModel)]="clothing5D" name="Railissue4" [matDatepicker]="Railissue4"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue4></mat-datepicker>
                         </mat-form-field>
@@ -2764,7 +2772,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing5R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2777,12 +2785,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Gloves – Rigger</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE1Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue5" [matDatepicker]="Railissue5"
+                                    <input matInput name="Railissue5" [(ngModel)]="sE1D" [matDatepicker]="Railissue5"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue5></mat-datepicker>
@@ -2791,7 +2799,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE1R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2801,12 +2809,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Gloves – Latex GripCut Level 5</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE2Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue6" [matDatepicker]="Railissue6"
+                                    <input matInput [(ngModel)]="sE2D" name="Railissue6" [matDatepicker]="Railissue6"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue6></mat-datepicker>
@@ -2815,7 +2823,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE2R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2825,12 +2833,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Ear Protection – Muffs</mat-label>
-                                    <input type="number" matInput>
+                                    <input [(ngModel)]="sE3Q" type="number" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue7" [matDatepicker]="Railissue7"
+                                    <input matInput [(ngModel)]="sE3D" name="Railissue7" [matDatepicker]="Railissue7"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue7></mat-datepicker>
@@ -2839,7 +2847,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE3R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2849,12 +2857,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Eye Protection</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE4Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue8" [matDatepicker]="Railissue8"
+                                    <input matInput [(ngModel)]="sE4D" name="Railissue8" [matDatepicker]="Railissue8"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue8></mat-datepicker>
@@ -2863,7 +2871,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE4R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2873,12 +2881,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Size:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE5Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue9" [matDatepicker]="Railissue9"
+                                    <input matInput [(ngModel)]="sE5D" name="Railissue9" [matDatepicker]="Railissue9"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue9></mat-datepicker>
@@ -2887,7 +2895,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE5R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2897,12 +2905,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Color:</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE6Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue10" [matDatepicker]="Railissue10"
+                                    <input matInput [(ngModel)]="sE6D" name="Railissue10" [matDatepicker]="Railissue10"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue10></mat-datepicker>
@@ -2911,7 +2919,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE6R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2921,12 +2929,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Unique ref. no.:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE7Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue11" [matDatepicker]="Railissue11"
+                                    <input matInput [(ngModel)]="sE7D" name="Railissue11" [matDatepicker]="Railissue11"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue11></mat-datepicker>
@@ -2935,7 +2943,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE7R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2945,12 +2953,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Unique ref. no.:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE8Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue12" [matDatepicker]="Railissue12"
+                                    <input matInput name="Railissue12" [(ngModel)]="sE8D" [matDatepicker]="Railissue12"
                                         placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue12></mat-datepicker>
@@ -2959,7 +2967,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE8R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2986,20 +2994,21 @@
                         <label>Name of Team</label>
                         <mat-form-field>
                             <mat-label>Name Of Team/Individual:</mat-label>
-                            <input matInput>
+                            <input [(ngModel)]="Stress1" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-6">
                         <label>Number of Employees</label>
                         <mat-form-field>
                             <mat-label>Number Of Employees:</mat-label>
-                            <input type="number" matInput>
+                            <input [(ngModel)]="Stress2" type="number" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-12">
                         <mat-form-field class="example-full-width">
                             <mat-label>Reason Of Trigger For Risk Assessment</mat-label>
-                            <textarea matInput placeholder="Reason Of Trigger For Risk Assessment"></textarea>
+                            <textarea [(ngModel)]="Stress3" matInput
+                                placeholder="Reason Of Trigger For Risk Assessment"></textarea>
                         </mat-form-field>
                         <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is
                             being completed;for example, return to work after stress-related absence, or employee
@@ -3009,7 +3018,7 @@
                     <div class="col-12">
                         <mat-form-field class="example-full-width">
                             <mat-label>Current control measures</mat-label>
-                            <textarea matInput placeholder="Current control measures"></textarea>
+                            <textarea [(ngModel)]="Stress4" matInput placeholder="Current control measures"></textarea>
                         </mat-form-field>
                         <p>
                             <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or
@@ -3024,14 +3033,1563 @@
     </div>
     <!----- Strees Risk End-->
 
+    <!----------------------WorkPlacePressure----------------------------->
+    <div class="single_accordion">
+        <div class="single_accordion_title collapsed" id="WorkPlaceHeading" data-toggle="collapse"
+            data-target="#WorkPlace" aria-expanded="false" aria-controls="WorkPlace">
+            WorkPlace Pressure Form
+        </div>
+        <div id="WorkPlace" class="collapse single_accordion_content" aria-labelledby="WorkPlaceHeading"
+            data-parent="#accordion">
+            <div class="single_accordion_content_inner">
+                <h3>Control</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Who does what in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure1I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure1L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having enough line manager support?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure2I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure2S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having sufficient control over your work?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input [(ngModel)]="pressure3I" type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure3S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having your opinions listened to?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input [(ngModel)]="pressure4I" type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure4S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>The balance between work and outside life?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure5I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure5S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure6I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure6S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Discuss flexibility over delivery of work schedules and delivery of work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure1I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure1D" name="workplaceform1"
+                                [matDatepicker]="workplaceform1" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform1"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Support flexible working practices,wherever possible and practical.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure2I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure2D" name="workplaceform2"
+                                [matDatepicker]="workplaceform2" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform2"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Agree on the most appropriate communication methodsand frequency.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure3I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure3D" name="workplaceform3"
+                                [matDatepicker]="workplaceform3" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform3"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Include all employees in decision-making for tasks/planning work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure4I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure4D" name="workplaceform4"
+                                [matDatepicker]="workplaceform4" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform4"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform4></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Share good practice and recognise achievements or suggestions.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure5I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure5D" name="workplaceform6"
+                                [matDatepicker]="workplaceform6" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform6"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform6></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Discuss learning opportunities.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure6I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure6D" name="workplaceform5"
+                                [matDatepicker]="workplaceform5" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform5"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform5></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- -------------------------------------- -->
+                <h3>JOB SECURITY AND CHANGE</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling supported through change?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure7I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure7S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Opportunities to comment on change?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure8I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure8S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your future role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure9I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure9S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Where to access support?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure10I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure10S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having enough time/resourcesto implement change?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure11I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure11S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling skilled enough to do Feeling skilled enough to do</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure12I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure12S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure13I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure13S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure7I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure7D" name="workplaceform7"
+                                [matDatepicker]="workplaceform7" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform7"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform7></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Engage with employees regularly and in a timely manner during key change initiatives, and
+                            provide opportunities to feed in their views.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure8I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure8D" name="workplaceform8"
+                                [matDatepicker]="workplaceform8" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform8"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform8></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Explain the reasons for change and the benefits, as well as information on timescales.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure9I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure9D" name="workplaceform9"
+                                [matDatepicker]="workplaceform9" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform9"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform9></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure employees are aware of all support services available to them.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure10I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure10D" name="workplaceform10"
+                                [matDatepicker]="workplaceform10" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform10"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform10></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Be honest with employees, even where news may not be positive.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure11I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure11D" name="workplaceform11"
+                                [matDatepicker]="workplaceform11" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform11"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform11></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Direct employees to basic lifestyle advice and coping strategies to prepare for change.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure12I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure12D" name="workplaceform12"
+                                [matDatepicker]="workplaceform12" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform12"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform12></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- --------------------Balanced worked---------------------------------->
+                <h3>BALANCED WORKLOAD</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Clear priorities?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure14I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure14S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having realistic deadlines?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure15I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure15S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having sufficient resources to do your job?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure16I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure16S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your skills,training,and knowledge being sufficient to do your job?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure17I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure17S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>The length of your daily commute?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure18I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure18S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having a dull or repetitive work?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure19I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure19S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your work/life balance?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure20I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure20S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure21I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure21S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------------->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Reallocate duties (temporarily orpermanently).</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure13I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform13" [(ngModel)]="measure13D"
+                                [matDatepicker]="workplaceform13" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform13"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform13></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Help prioritise tasks or projects appropriately.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure14I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure14D" name="workplaceform14"
+                                [matDatepicker]="workplaceform14" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform14"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform14></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Adjust hours or workpattern (temporarily or permanently).</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure15I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure15D" name="workplaceform15"
+                                [matDatepicker]="workplaceform15" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform15"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform15></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Identify and support specific training needs.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure16I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure16D" name="workplaceform16"
+                                [matDatepicker]="workplaceform16" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform16"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform16></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure tasks and expectations are clearly defined and understood.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure17I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure17D" name="workplaceform17"
+                                [matDatepicker]="workplaceform17" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform17"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform17></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Plan work carefully so that deadlines are achievable.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure18I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure18D" name="workplaceform18"
+                                [matDatepicker]="workplaceform18" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform18"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform18></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a
+                            variety of tasks, rather than those that are simply repetitive.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input [(ngModel)]="measure19I" type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure19D" name="workplaceform19"
+                                [matDatepicker]="workplaceform19" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform19"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform19></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Plan workload in regular discussions.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure20I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure20D" name="workplaceform20"
+                                [matDatepicker]="workplaceform20" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform20"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform20></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Agree an upper limit to working hours.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure21I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure21D" name="workplaceform21"
+                                [matDatepicker]="workplaceform21" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform21"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform21></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Switch off mobile phones and laptops at a specific time.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure22I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure22D" name="workplaceform22"
+                                [matDatepicker]="workplaceform22" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform22"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform22></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ----------------------------------------------------->
+                <!-- ---------------------------------Job condition--------------->
+                <h3>JOB CONDITIONS</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling insufficiently inducted into the role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure22I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure22S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Understanding your role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure23I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure23S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your reporting structure?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure24I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure24S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your working environment?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure25I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure25S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Other demands in you outside your role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure26I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure26S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure27I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure27S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------ -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Clarify employee’s expectations of the role.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure23I" matInput>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure23D" name="workplaceform23"
+                                [matDatepicker]="workplaceform23" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform23"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform23></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Reinforce the reporting structure.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure24I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure24D" name="workplaceform24"
+                                [matDatepicker]="workplaceform24" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform24"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform24></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are there any physical hazards in the work environment that need to be managed?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure25I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure25D" name="workplaceform25"
+                                [matDatepicker]="workplaceform25" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform25"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform25></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Does the employee understand the support services they can access?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure26I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure26D" name="workplaceform26"
+                                [matDatepicker]="workplaceform26" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform26"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform26></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ------------------------------------------JOBCOndition------------------------- -->
+                <!--------------------------------------------------------RESOURCES AND COMMUNICATION------->
+                <h3>RESOURCES AND COMMUNICATION</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling insufficiently supported by your team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure28I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure28S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feelings of isolation?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure29I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure29S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Being informed of workplace issues?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure30I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure30S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Issues around communication?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure31I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure31S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Further training needs?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure32I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure32S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" [(ngModel)]="pressure33I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure33S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ----------------------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Support employees to develop their skills and knowledge to do their work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure27I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure27D" name="workplaceform27"
+                                [matDatepicker]="workplaceform27" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform27"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform27></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Source equipment or tools needed to perform work effectively.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure28I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure28D" name="workplaceform28"
+                                [matDatepicker]="workplaceform28" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform28"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform28></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure29I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure29D" name="workplaceform29"
+                                [matDatepicker]="workplaceform29" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform29"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform29></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Focus on communicating honestly and regularly.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure30I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure30D" name="workplaceform30"
+                                [matDatepicker]="workplaceform30" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform30"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform30></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Encourage employees to make suggestions to management.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure31I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure31D" name="workplaceform31"
+                                [matDatepicker]="workplaceform31" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform31"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform31></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure employees are aware of all support services available to them.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure32I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure32D" name="workplaceform32"
+                                [matDatepicker]="workplaceform32" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform32"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform32></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- --------------------------------RESOURCES AND COMMUNICATION End-------------------------------------------------->
+                <!-- -----------------------------WORK RELATIONSHIPS----------------------------------------------->
+                <h3>WORK RELATIONSHIP</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Bullying or harassment issues in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure34S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>An insufficient supportive atmosphere in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure35S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>How to raise a concern or find support?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure36S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>A lack of recognition for diversity in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure37S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are there any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox [(ngModel)]="pressure38S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38T" class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Report and quickly address any bullying or harassment claims.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure33I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure33D" name="workplaceform33"
+                                [matDatepicker]="workplaceform33" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform33"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform33></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure employees are aware of policies related to resolving unacceptable behaviour.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure34I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure34D" name="workplaceform34"
+                                [matDatepicker]="workplaceform34" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform34"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform34></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Encourage 1-2-1 discussions, rather than email.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure35I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure35D" name="workplaceform35"
+                                [matDatepicker]="workplaceform35" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform35"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform35></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Review diversity and inclusion training.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure36I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure36D" name="workplaceform36"
+                                [matDatepicker]="workplaceform36" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform36"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform36></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Arrange regular team and 1-2-1 meetings.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure37I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="measure37D" name="workplaceform37"
+                                [matDatepicker]="workplaceform37" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform37"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform37></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Promote positive working relationships.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" [(ngModel)]="measure38I" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform38" [(ngModel)]="measure38D"
+                                [matDatepicker]="workplaceform38" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform38"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform38></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ---------------------------------END of workrelationship------------------------------------------------ -->
+            </div>
+        </div>
+    </div>
+    <!-- end of workplacepressure----------------------------------------- -->
 
 
 
-
-
-    <!----- -->
-    <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple"
-        (click)="submitValue()">
+    <!-- ----------------------------English Test------------------------------------------->
+    <div class="single_accordion">
+        <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse"
+            data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
+            English-Test(TfL only) Form
+        </div>
+        <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest"
+            data-parent="#accordion">
+            <div class="single_accordion_content_inner">
+                <div class="row">
+                    <P>
+                        <b>Candidates should complete the questions below to the best of their ability without any
+                            assistance.</b>
+                    </P>
+                    <div class="col-12">
+                        <p>1. They’ve both worked here _______ over ten years.</p>
+                        <mat-radio-group [(ngModel)]="tflQ1" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>2. Choose the option closest in meaning to the word in bold:</p>
+                        <mat-radio-group [(ngModel)]="tflQ2" aria-label="Select an option">
+                            <label>Ancestor:</label>
+                            <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>3. Choose the option opposite in meaning to the word in bold:</p>
+                        <mat-radio-group [(ngModel)]="tflQ3" aria-label="Select an option">
+                            <label>Exterior:</label>
+                            <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>4. What ______ you like to drink? </p>
+                        <mat-radio-group [(ngModel)]="tflQ4" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>5. There are other people in the park _________ ourselves </p>
+                        <mat-radio-group [(ngModel)]="tflQ5" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>6. He had a heart attack. The doctor was immediately</p>
+                        <mat-radio-group [(ngModel)]="tflQ6" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>7. My brother and I used to fight a great deal as children. We did of things together,
+                            notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really
+                            did me a , as I missed the school exams that year.</p>
+                        <mat-radio-group [(ngModel)]="tflQ7" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- english test end -->
+        <!-------------------------Confirmation------------------------->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse" data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
+                Confirmation Form
+            </div>
+            <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation" data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <p>I confirm I have been briefed on and understand the company policies.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p>The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have on you with other
+                        interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p>I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to dismissal.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- confirmation end------------------------------------->
+        <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
     </button>
