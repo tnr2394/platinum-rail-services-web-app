@@ -40,6 +40,7 @@ export class SingleUnitComponent implements OnInit {
   clearCheckBox: boolean;
   learnerAssignmentStatus: any;
   jobId: any;
+  displayLearners: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, public _filter: FilterService,
     public _courseService: CourseService, public _learnerService: LearnerService,
     public dialog: MatDialog, public _snackBar: MatSnackBar,
@@ -66,7 +67,10 @@ export class SingleUnitComponent implements OnInit {
     if (this.allMaterials) {
       this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
       this.assignmentStatusWithLearner()
-      this.getLearners(this.jobId)
+      if(this.jobId){
+        this.getLearners(this.jobId)
+        this.displayLearners = true;
+      }
     }
     else {
       this.activatedRoute.queryParams.subscribe(params => {
@@ -74,9 +78,14 @@ export class SingleUnitComponent implements OnInit {
         this.unitNo = params['unit']
         this.courseId = params['course']
         this.jobId = params['job']
+        if(this.jobId){
+          console.log("in params if", this.jobId);
+          this.getLearners(this.jobId)
+          this.displayLearners = true;
+          console.log("in params if this.displayLearners", this.jobId);
+        }
         this.getGroupedMaterials(params['course'])
         this.assignmentStatusWithLearner()
-        this.getLearners(this.jobId)
       })
     }
   }
@@ -117,49 +126,50 @@ export class SingleUnitComponent implements OnInit {
     }
   }
 
-  getGroupedMaterials(courseId) {
-    console.log("getting materials in materials component for courseId = ", courseId)
-    this._courseService.getCourseGrouped(courseId).subscribe((groupedmaterial: any) => {
-      console.log('groupedmaterial in single Unit', groupedmaterial);
-      if (groupedmaterial.material.length > 0) {
-        this.groupedMaterials = groupedmaterial.material
-        console.log("this.groupedMaterials", this.groupedMaterials);
-        let unit = this.unitNo
-        var index = _.findIndex(this.groupedMaterials, function (o) {
-          console.log("o._id", o._id, "===", unit);
-          return o._id == unit
-        })
-        console.log("index", index, this.groupedMaterials[index]);
-        if (index > -1) {
-          console.log("index", index, this.groupedMaterials[index]);
-          this.allMaterials = this.groupedMaterials[index]
-          this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
-        }
-      }
-      else {
-        console.log("NOT FOUND");
-      }
-    });
-  }
-  addMaterialModal() {
-    var addedMaterial = this.openDialog(AddMaterialModalComponent, { course: this.courseId }).subscribe((materials) => {
-      console.log("*****materials*****", materials);
-      if (materials == undefined) return;
-      // this.material.push(materials);
-      // console.log("MATERIAL ADDED IS", materials);
-      // this.loading = false;
-      // this.openSnackBar("Material Added Successfully", "Ok");
-      // this.updateData(this.material);
-      // this.assignmentStatus.forEach(status => {
-      //   status.checked = true
-      // })
-      // if (materials.type == "Assignment") {
-      //   this.assignmentAdded.emit({ assignmentAdded: 'Done!' })
-      // }
-    }, err => {
-      return this.openSnackBar("Material could not be Added", "Ok");
-    });
-  }
+  
+  // addMaterialModal() {
+  //   let data = {
+  //     course: this.courseId,
+  //     unitNo : this.unitNo
+  //   }
+  //   var addedMaterial = this.openDialog(AddMaterialModalComponent, { data }).subscribe((materials) => {
+  //     console.log("*****materials*****", materials);
+  //     if (materials == undefined) return;
+  //     var index = _.findIndex(this.groupedMaterials, function (o) {
+  //       console.log("o._id", o._id, "materials.unitNo", materials.unitNo);
+  //       return o._id == materials.unitNo
+  //     })
+  //     console.log("index is ", index);
+  //     if (index > -1) {
+  //       console.log("in if");
+  //       if (materials.type == 'Reading') {
+  //         console.log("materials.type===>>>", materials.type);
+  //         this.groupedMaterials[index].materialsReading.push(materials)
+  //       }
+  //       else {
+  //         console.log("materials.type===>>>", materials.type);
+  //         this.groupedMaterials[index].materialsAssignment.push(materials)
+  //       }
+  //       this.allMaterials = this.groupedMaterials[index]
+  //       console.log("this.allMaterials issss", this.allMaterials);
+  //       this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
+  //     }
+  //     // else {
+  //     //   let data = {
+  //     //     _id: materials.unitNo,
+  //     //     materialsReading: [],
+  //     //     materialsAssignment: []
+  //     //   }
+  //     //   if (materials.type == 'Reading') {
+  //     //     data.materialsReading.push(materials)
+  //     //   }
+  //     //   else data.materialsAssignment.push(materials)
+  //     //   this.groupedMaterials.push(data)
+  //     // }
+  //   }, err => {
+  //     return this.openSnackBar("Material could not be Added", "Ok");
+  //   });
+  // }
   // loadLearners(object) {
   //   console.log("OBJECT", object);
   //   this.learners = object.learners;
@@ -231,5 +241,30 @@ export class SingleUnitComponent implements OnInit {
       console.log("assignmentStatusWithLearner responseData", responseData);
       this.learnerAssignmentStatus = responseData
     })
+  }
+  getGroupedMaterials(courseId) {
+    console.log("getting materials in materials component for courseId = ", courseId)
+    this._courseService.getCourseGrouped(courseId).subscribe((groupedmaterial: any) => {
+      console.log('groupedmaterial in single Unit', groupedmaterial);
+      if (groupedmaterial.material.length > 0) {
+        this.groupedMaterials = groupedmaterial.material
+        console.log("this.groupedMaterials", this.groupedMaterials);
+        let unit = this.unitNo
+        var index = _.findIndex(this.groupedMaterials, function (o) {
+          console.log("o._id", o._id, "===", unit);
+          return o._id == unit
+        })
+        console.log("index", index, this.groupedMaterials[index]);
+        if (index > -1) {
+          console.log("index", index, this.groupedMaterials[index]);
+          this.allMaterials = this.groupedMaterials[index]
+          console.log("this.allMaterials in getGroupedMaterials is", this.allMaterials);
+          this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
+        }
+      }
+      else {
+        console.log("NOT FOUND");
+      }
+    });
   }
 }

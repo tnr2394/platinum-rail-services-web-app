@@ -11,15 +11,24 @@
     <material-tile [material]="material"></material-tile>
 </h1> -->
 <div>
-    {{type}}: {{material.length}}
+    {{type}}: {{material.length}} 
     <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 </div>
+<div class="material_btn_insmall">
+    <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple"
+    placement="bottom" ngbTooltip="Add {{type}}" tooltipClass="tooltip-class"
+        (click)="addMaterialModal()">
+        <i class="fas fa-plus fa-fw"></i>
+        <!-- <span> Add Material</span> -->
+    </button>
+</div>
+<div class="material_tile_table_row">
 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
     <ng-container matColumnDef="Materials">
         <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
             Name
         </th>
-        <td class="mat-table-cell text-center" mat-cell *matCellDef="let material; let i = index;">
+        <td class="mat-table-cell text-center checkBoxAlign" mat-cell *matCellDef="let material; let i = index;">
             <div *ngIf="view == false">
                 <div class="checkbox" *ngIf='material.type == "Assignment"'>
                     <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)'
@@ -30,7 +39,7 @@
             
             <div *ngIf="testStatus">
                 <material-tile [material]="material" [isSelected]="(material._id === selectedMaterial)" [index]='i'
-                    [learnersFromJob]="learnersFromJob" [allLearnersFromJob]="allLearners"
+                    [learnersFromJob]="learnersFromJob" [allLearnersFromJob]="allLearners" [showLearnerTab]="displayLearners"
                     (getFiles)="loadMaterialFiles($event)" [learnerWithStatus]="learnerToPass"
                     (assignmentAllocated)="allocatedFromTile($event)" [showLearnerTab]="showLearnerTab"
                     (fileDetailsComp)="fileDetailsComp($event)" (DeleteMaterial)="deletedMaterial($event)">
@@ -45,7 +54,7 @@
         <tr mat-row *matRowDef="let material; columns: displayedColumns;"></tr>
     </tbody>
 </table>
-
+</div>
 <div *ngIf="!loading && type == 'Reading' && material.length == 0">
     No Reading Material Found!
 </div>

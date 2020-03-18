@@ -5,7 +5,7 @@ import { AddFileModalComponent } from 'src/app/files/add-file-modal/add-file-mod
 import { FilterService } from 'src/app/services/filter.service';
 import { JobService } from 'src/app/services/job.service';
 import { LearnerService } from 'src/app/services/learner.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateFolderModalComponent } from 'src/app/folder/create-folder-modal/create-folder-modal.component';
 import { AddMaterialModalComponent } from 'src/app/courses/materials/add-material-modal/add-material-modal.component';
@@ -70,13 +70,19 @@ export class MaterialTileComponent implements OnInit {
   allFiles: any;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
-    public _snackBar: MatSnackBar, public router: Router, public _filter: FilterService) {
+    public _snackBar: MatSnackBar, public router: Router, public activatedRoute: ActivatedRoute,public _filter: FilterService) {
     this.bgColors = ["btn-info", "btn-success", "btn-warning", "btn-primary", "btn-danger"];
 
   }
   ngOnInit() {
     console.log("learnersAlloted", this.learnersAlloted);
     console.log("learnersAllotedFromJob");
+    this.activatedRoute.queryParams.subscribe(param => {
+      if (param) {
+        this.jobId = param['job']
+        console.log("this.jobId in queryParams is", this.jobId);
+      }
+    })
 
     if (this.router.url.includes('/jobs')) {
       this.displayLearners = true
@@ -163,6 +169,7 @@ export class MaterialTileComponent implements OnInit {
     if (changes.learnerWithStatus && changes.learnerWithStatus.currentValue) {
       // console.log("1111111111111changes.statusOfLearner", changes.learnerWithStatus.currentValue);
       this.learner = changes.learnerWithStatus.currentValue
+      
     }
   }
 
@@ -372,6 +379,8 @@ export class MaterialTileComponent implements OnInit {
       });
     }
     this._learnerService.allocateLearner(learners).subscribe(data => {
+      console.log("this.jobId after allocation", this.jobId);
+      this.assignmentStatusWithLearner({_id:this.jobId},"true")
       // console.log("DATA SENT", learners);
       // console.log("Response", data);
     });

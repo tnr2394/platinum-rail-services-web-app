@@ -30,8 +30,9 @@ export class UnitsComponent implements OnInit {
     console.log("*****changes in units*****", changes);
     if (changes.allMaterials && changes.allMaterials.currentValue){
       this.allMaterials = changes.allMaterials.currentValue.material
-      this.allMaterialsCopy = this.allMaterials
+      this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
       console.log("####this.allMaterials", this.allMaterials);
+      console.log("this.allmaterialsCopy", this.allMaterialsCopy);
     }
   }
   singleMaterial(material){
@@ -40,13 +41,14 @@ export class UnitsComponent implements OnInit {
   }
   filter(searchText){
     console.log("-----searchText-----", searchText);
-    if (searchText == ''){
+    if (searchText == ' ' || searchText == null){
       this.allMaterials = this.allMaterialsCopy
     }
     else{
       let tempMaterials = this._filter.filter(searchText, this.allMaterialsCopy, ['_id'])
       this.allMaterials = tempMaterials
     }
+    console.log("in filter this.allMaterialsCopy", this.allMaterialsCopy);
   }
 
 }

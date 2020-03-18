@@ -23,7 +23,7 @@
     </div> -->
     <div class="col-lg-12 material_flex_paginator">
         <mat-form-field class="example-full-width col-lg-6 col-md-6">
-            <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
+            <input matInput placeholder="Search" min="0" oninput="validity.valid||(value='')" type="number" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
