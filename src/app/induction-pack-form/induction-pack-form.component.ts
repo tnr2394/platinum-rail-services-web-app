@@ -499,9 +499,295 @@ export class InductionPackFormComponent implements OnInit {
   Stress4;
   Stress5;
 
+  // Tfl Test Questions
+
+  tflQ1;
+  tflQ2;
+  tflQ3;
+  tflQ4;
+  tflQ5;
+  tflQ6;
+  tflQ7;
+
+  // Workspace pressure
+
+  pressure1I;
+  pressure1S;
+  pressure1L;
+  pressure1T;
+
+  pressure2I;
+  pressure2S;
+  pressure2L;
+  pressure2T;
+
+  pressure3I;
+  pressure3S;
+  pressure3L;
+  pressure3T;
+
+  pressure4I;
+  pressure4S;
+  pressure4L;
+  pressure4T;
+
+  pressure5I;
+  pressure5S;
+  pressure5L;
+  pressure5T;
+
+  pressure6I;
+  pressure6S;
+  pressure6L;
+  pressure6T;
+
+  pressure7I;
+  pressure7S;
+  pressure7L;
+  pressure7T;
+
+  pressure8I;
+  pressure8S;
+  pressure8L;
+  pressure8T;
+
+  pressure9I;
+  pressure9S;
+  pressure9L;
+  pressure9T;
+
+  pressure10I;
+  pressure10S;
+  pressure10L;
+  pressure10T;
+
+  pressure11I;
+  pressure11S;
+  pressure11L;
+  pressure11T;
+
+  pressure12I;
+  pressure12S;
+  pressure12L;
+  pressure12T;
+
+  pressure13I;
+  pressure13S;
+  pressure13L;
+  pressure13T;
+
+  pressure14I;
+  pressure14S;
+  pressure14L;
+  pressure14T;
+
+  pressure15I;
+  pressure15S;
+  pressure15L;
+  pressure15T;
+
+  pressure16I;
+  pressure16S;
+  pressure16L;
+  pressure16T;
+
+  pressure17I;
+  pressure17S;
+  pressure17L;
+  pressure17T;
+
+  pressure18I;
+  pressure18S;
+  pressure18L;
+  pressure18T;
+
+  pressure19I;
+  pressure19S;
+  pressure19L;
+  pressure19T;
+
+  pressure20I;
+  pressure20S;
+  pressure20L;
+  pressure20T;
+
+  pressure21I;
+  pressure21S;
+  pressure21L;
+  pressure21T;
+
+  pressure22I;
+  pressure22S;
+  pressure22L;
+  pressure22T;
+
+  pressure23I;
+  pressure23S;
+  pressure23L;
+  pressure23T;
+
+  pressure24I;
+  pressure24S;
+  pressure24L;
+  pressure24T;
+
+  pressure25I;
+  pressure25S;
+  pressure25L;
+  pressure25T;
+
+  pressure26I;
+  pressure26S;
+  pressure26L;
+  pressure26T;
+
+  pressure27I;
+  pressure27S;
+  pressure27L;
+  pressure27T;
+
+  pressure28I;
+  pressure28S;
+  pressure28L;
+  pressure28T;
+
+  pressure29I;
+  pressure29S;
+  pressure29L;
+  pressure29T;
+
+  pressure30I;
+  pressure30S;
+  pressure30L;
+  pressure30T;
+
+  pressure31I;
+  pressure31S;
+  pressure31L;
+  pressure31T;
+
+  pressure32I;
+  pressure32S;
+  pressure32L;
+  pressure32T;
+
+  pressure33I;
+  pressure33S;
+  pressure33L;
+  pressure33T;
+
+  pressure34I;
+  pressure34S;
+  pressure34L;
+  pressure34T;
+
+  pressure35I;
+  pressure35S;
+  pressure35L;
+  pressure35T;
+
+  pressure36I;
+  pressure36S;
+  pressure36L;
+  pressure36T;
+
+  pressure37I;
+  pressure37S;
+  pressure37L;
+  pressure37T;
+
+  pressure38I;
+  pressure38S;
+  pressure38L;
+  pressure38T;
 
 
 
+
+
+
+
+
+  // Measures By Whoom and Whene
+
+  measure1I;
+  measure2I;
+  measure3I;
+  measure4I;
+  measure5I;
+  measure6I;
+  measure7I;
+  measure8I;
+  measure9I;
+  measure10I;
+  measure11I;
+  measure12I;
+  measure13I;
+  measure14I;
+  measure15I;
+  measure16I;
+  measure17I;
+  measure18I;
+  measure19I;
+  measure20I;
+  measure21I;
+  measure22I;
+  measure23I;
+  measure24I;
+  measure25I;
+  measure26I;
+  measure27I;
+  measure28I;
+  measure29I;
+  measure30I;
+  measure31I;
+  measure32I;
+  measure33I;
+  measure34I;
+  measure35I;
+  measure36I;
+  measure37I;
+  measure38I;
+
+
+  measure1;
+  measure2D;
+  measure3D;
+  measure4D;
+  measure5D;
+  measure6D;
+  measure7D;
+  measure8D;
+  measure9D;
+  measure10D;
+  measure11D;
+  measure12D;
+  measure13D;
+  measure14D;
+  measure15D;
+  measure16D;
+  measure17D;
+  measure18D;
+  measure19D;
+  measure20D;
+  measure21D;
+  measure22D;
+  measure23D;
+  measure24D;
+  measure25D;
+  measure26D;
+  measure27D;
+  measure28D;
+  measure29D;
+  measure30D;
+  measure31D;
+  measure32D;
+  measure33D;
+  measure34D;
+  measure35D;
+  measure36D;
+  measure37D;
+  measure38D;
 
 
 
@@ -815,6 +1101,287 @@ export class InductionPackFormComponent implements OnInit {
         Stress3: this.Stress3,
         Stress4: this.Stress4,
         Stress5: this.Stress5,
+      },
+      tflTestDetails: {
+        tflQ1: this.tflQ1,
+        tflQ2: this.tflQ2,
+        tflQ3: this.tflQ3,
+        tflQ4: this.tflQ4,
+        tflQ5: this.tflQ5,
+        tflQ6: this.tflQ6,
+        tflQ7: this.tflQ7,
+      },
+      MeasureByWhoom: {
+        measure1I: this.measure1I,
+        measure2I: this.measure2I,
+        measure3I: this.measure3I,
+        measure4I: this.measure4I,
+        measure5I: this.measure5I,
+        measure6I: this.measure6I,
+        measure7I: this.measure7I,
+        measure8I: this.measure8I,
+        measure9I: this.measure9I,
+        measure10I: this.measure10I,
+        measure11I: this.measure11I,
+        measure12I: this.measure12I,
+        measure13I: this.measure13I,
+        measure14I: this.measure14I,
+        measure15I: this.measure15I,
+        measure16I: this.measure16I,
+        measure17I: this.measure17I,
+        measure18I: this.measure18I,
+        measure19I: this.measure19I,
+        measure20I: this.measure20I,
+        measure21I: this.measure21I,
+        measure22I: this.measure22I,
+        measure23I: this.measure23I,
+        measure24I: this.measure24I,
+        measure25I: this.measure25I,
+        measure26I: this.measure26I,
+        measure27I: this.measure27I,
+        measure28I: this.measure28I,
+        measure29I: this.measure29I,
+        measure30I: this.measure30I,
+        measure31I: this.measure31I,
+        measure32I: this.measure32I,
+        measure33I: this.measure33I,
+        measure34I: this.measure34I,
+        measure35I: this.measure35I,
+        measure36I: this.measure36I,
+        measure37I: this.measure37I,
+        measure38I: this.measure38I,
+      },
+      MeasureByWhen: {
+        measure1I: this.measure1I,
+        measure2I: this.measure2I,
+        measure3I: this.measure3I,
+        measure4I: this.measure4I,
+        measure5I: this.measure5I,
+        measure6I: this.measure6I,
+        measure7I: this.measure7I,
+        measure8I: this.measure8I,
+        measure9I: this.measure9I,
+        measure10I: this.measure10I,
+        measure11I: this.measure11I,
+        measure12I: this.measure12I,
+        measure13I: this.measure13I,
+        measure14I: this.measure14I,
+        measure15I: this.measure15I,
+        measure16I: this.measure16I,
+        measure17I: this.measure17I,
+        measure18I: this.measure18I,
+        measure19I: this.measure19I,
+        measure20I: this.measure20I,
+        measure21I: this.measure21I,
+        measure22I: this.measure22I,
+        measure23I: this.measure23I,
+        measure24I: this.measure24I,
+        measure25I: this.measure25I,
+        measure26I: this.measure26I,
+        measure27I: this.measure27I,
+        measure28I: this.measure28I,
+        measure29I: this.measure29I,
+        measure30I: this.measure30I,
+        measure31I: this.measure31I,
+        measure32I: this.measure32I,
+        measure33I: this.measure33I,
+        measure34I: this.measure34I,
+        measure35I: this.measure35I,
+        measure36I: this.measure36I,
+        measure37I: this.measure37I,
+        measure38I: this.measure38I,
+      },
+      workPressureDetail: {
+        pressure1I: this.pressure1I,
+        pressure1S: this.pressure1S,
+        pressure1L: this.pressure1L,
+        pressure1T: this.pressure1T,
+
+        pressure2I: this.pressure2I,
+        pressure2S: this.pressure2S,
+        pressure2L: this.pressure2L,
+        pressure2T: this.pressure2T,
+
+        pressure3I: this.pressure3I,
+        pressure3S: this.pressure3S,
+        pressure3L: this.pressure3L,
+        pressure3T: this.pressure3T,
+
+        pressure4I: this.pressure4I,
+        pressure4S: this.pressure4S,
+        pressure4L: this.pressure4L,
+        pressure4T: this.pressure4T,
+
+        pressure5I: this.pressure5I,
+        pressure5S: this.pressure5S,
+        pressure5L: this.pressure5L,
+        pressure5T: this.pressure5T,
+
+        pressure6I: this.pressure6I,
+        pressure6S: this.pressure6S,
+        pressure6L: this.pressure6L,
+        pressure6T: this.pressure6T,
+
+        pressure7I: this.pressure7I,
+        pressure7S: this.pressure7S,
+        pressure7L: this.pressure7L,
+        pressure7T: this.pressure7T,
+
+        pressure8I: this.pressure8I,
+        pressure8S: this.pressure8S,
+        pressure8L: this.pressure8L,
+        pressure8T: this.pressure8T,
+
+        pressure9I: this.pressure9I,
+        pressure9S: this.pressure9S,
+        pressure9L: this.pressure9L,
+        pressure9T: this.pressure9T,
+
+        pressure10I: this.pressure10I,
+        pressure10S: this.pressure10S,
+        pressure10L: this.pressure10L,
+        pressure10T: this.pressure10T,
+
+        pressure11I: this.pressure11I,
+        pressure11S: this.pressure11S,
+        pressure11L: this.pressure11L,
+        pressure11T: this.pressure11T,
+
+        pressure12I: this.pressure12I,
+        pressure12S: this.pressure12S,
+        pressure12L: this.pressure12L,
+        pressure12T: this.pressure12T,
+
+        pressure13I: this.pressure13I,
+        pressure13S: this.pressure13S,
+        pressure13L: this.pressure13L,
+        pressure13T: this.pressure13T,
+
+        pressure14I: this.pressure14I,
+        pressure14S: this.pressure14S,
+        pressure14L: this.pressure14L,
+        pressure14T: this.pressure14T,
+
+        pressure15I: this.pressure15I,
+        pressure15S: this.pressure15S,
+        pressure15L: this.pressure15L,
+        pressure15T: this.pressure15T,
+
+        pressure16I: this.pressure16I,
+        pressure16S: this.pressure16S,
+        pressure16L: this.pressure16L,
+        pressure16T: this.pressure16T,
+
+        pressure17I: this.pressure17I,
+        pressure17S: this.pressure17S,
+        pressure17L: this.pressure17L,
+        pressure17T: this.pressure17T,
+
+        pressure18I: this.pressure18I,
+        pressure18S: this.pressure18S,
+        pressure18L: this.pressure18L,
+        pressure18T: this.pressure18T,
+
+        pressure19I: this.pressure19I,
+        pressure19S: this.pressure19S,
+        pressure19L: this.pressure19L,
+        pressure19T: this.pressure19T,
+
+        pressure20I: this.pressure20I,
+        pressure20S: this.pressure20S,
+        pressure20L: this.pressure20L,
+        pressure20T: this.pressure20T,
+
+        pressure21I: this.pressure21I,
+        pressure21S: this.pressure21S,
+        pressure21L: this.pressure21L,
+        pressure21T: this.pressure21T,
+
+        pressure22I: this.pressure22I,
+        pressure22S: this.pressure22S,
+        pressure22L: this.pressure22L,
+        pressure22T: this.pressure22T,
+
+        pressure23I: this.pressure23I,
+        pressure23S: this.pressure23S,
+        pressure23L: this.pressure23L,
+        pressure23T: this.pressure23T,
+
+        pressure24I: this.pressure24I,
+        pressure24S: this.pressure24S,
+        pressure24L: this.pressure24L,
+        pressure24T: this.pressure24T,
+
+        pressure25I: this.pressure25I,
+        pressure25S: this.pressure25S,
+        pressure25L: this.pressure25L,
+        pressure25T: this.pressure25T,
+
+        pressure26I: this.pressure26I,
+        pressure26S: this.pressure26S,
+        pressure26L: this.pressure26L,
+        pressure26T: this.pressure26T,
+
+        pressure27I: this.pressure27I,
+        pressure27S: this.pressure27S,
+        pressure27L: this.pressure27L,
+        pressure27T: this.pressure27T,
+
+        pressure28I: this.pressure28I,
+        pressure28S: this.pressure28S,
+        pressure28L: this.pressure28L,
+        pressure28T: this.pressure28T,
+
+        pressure29I: this.pressure29I,
+        pressure29S: this.pressure29S,
+        pressure29L: this.pressure29L,
+        pressure29T: this.pressure29T,
+
+        pressure30I: this.pressure30I,
+        pressure30S: this.pressure30S,
+        pressure30L: this.pressure30L,
+        pressure30T: this.pressure30T,
+
+        pressure31I: this.pressure31I,
+        pressure31S: this.pressure31S,
+        pressure31L: this.pressure31L,
+        pressure31T: this.pressure31T,
+
+        pressure32I: this.pressure32I,
+        pressure32S: this.pressure32S,
+        pressure32L: this.pressure32L,
+        pressure32T: this.pressure32T,
+
+        pressure33I: this.pressure33I,
+        pressure33S: this.pressure33S,
+        pressure33L: this.pressure33L,
+        pressure33T: this.pressure33T,
+
+        pressure34I: this.pressure34I,
+        pressure34S: this.pressure34S,
+        pressure34L: this.pressure34L,
+        pressure34T: this.pressure34T,
+
+        pressure35I: this.pressure35I,
+        pressure35S: this.pressure35S,
+        pressure35L: this.pressure35L,
+        pressure35T: this.pressure35T,
+
+        pressure36I: this.pressure36I,
+        pressure36S: this.pressure36S,
+        pressure36L: this.pressure36L,
+        pressure36T: this.pressure36T,
+
+        pressure37I: this.pressure37I,
+        pressure37S: this.pressure37S,
+        pressure37L: this.pressure37L,
+        pressure37T: this.pressure37T,
+
+        pressure38I: this.pressure38I,
+        pressure38S: this.pressure38S,
+        pressure38L: this.pressure38L,
+        pressure38T: this.pressure38T,
+
       }
     }
 

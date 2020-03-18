@@ -3114,13 +3114,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure1I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3130,13 +3130,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure2I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3146,13 +3146,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="pressure3I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3162,13 +3162,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="pressure4I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3178,13 +3178,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure5I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3194,13 +3194,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure6I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------------------------------- -->
@@ -3212,12 +3212,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure1I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform1" [matDatepicker]="workplaceform1" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure1D" name="workplaceform1" [matDatepicker]="workplaceform1" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform1"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform1></mat-datepicker>
                         </mat-form-field>
@@ -3230,12 +3230,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure2I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform2" [matDatepicker]="workplaceform2" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure2D" name="workplaceform2" [matDatepicker]="workplaceform2" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform2"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform2></mat-datepicker>
                         </mat-form-field>
@@ -3248,12 +3248,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure3I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform3" [matDatepicker]="workplaceform3" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure3D" name="workplaceform3" [matDatepicker]="workplaceform3" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform3"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform3></mat-datepicker>
                         </mat-form-field>
@@ -3267,12 +3267,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure4I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform4" [matDatepicker]="workplaceform4" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure4D" name="workplaceform4" [matDatepicker]="workplaceform4" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform4"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform4></mat-datepicker>
                         </mat-form-field>
@@ -3286,12 +3286,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure5I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform6" [matDatepicker]="workplaceform6" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure5D" name="workplaceform6" [matDatepicker]="workplaceform6" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform6"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform6></mat-datepicker>
                         </mat-form-field>
@@ -3304,12 +3304,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure6I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform5" [matDatepicker]="workplaceform5" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure6D" name="workplaceform5" [matDatepicker]="workplaceform5" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform5"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform5></mat-datepicker>
                         </mat-form-field>
@@ -3329,13 +3329,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure7I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3345,13 +3345,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure8I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3361,13 +3361,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure9I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3377,13 +3377,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure10I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3393,13 +3393,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure11I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3409,13 +3409,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure12I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3425,13 +3425,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure13I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
 
@@ -3444,12 +3444,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure7I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform7" [matDatepicker]="workplaceform7" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure7D" name="workplaceform7" [matDatepicker]="workplaceform7" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform7"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform7></mat-datepicker>
                         </mat-form-field>
@@ -3462,12 +3462,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure8I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform8" [matDatepicker]="workplaceform8" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure8D" name="workplaceform8" [matDatepicker]="workplaceform8" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform8"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform8></mat-datepicker>
                         </mat-form-field>
@@ -3480,12 +3480,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure9I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform9" [matDatepicker]="workplaceform9" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure9D" name="workplaceform9" [matDatepicker]="workplaceform9" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform9"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform9></mat-datepicker>
                         </mat-form-field>
@@ -3498,12 +3498,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure10I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform10" [matDatepicker]="workplaceform10" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure10D" name="workplaceform10" [matDatepicker]="workplaceform10" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform10"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform10></mat-datepicker>
                         </mat-form-field>
@@ -3516,12 +3516,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure11I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform11" [matDatepicker]="workplaceform11" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure11D" name="workplaceform11" [matDatepicker]="workplaceform11" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform11"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform11></mat-datepicker>
                         </mat-form-field>
@@ -3534,12 +3534,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure12I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform12" [matDatepicker]="workplaceform12" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure12D" name="workplaceform12" [matDatepicker]="workplaceform12" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform12"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform12></mat-datepicker>
                         </mat-form-field>
@@ -3561,13 +3561,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure14I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3577,13 +3577,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure15I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3593,13 +3593,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure16I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3609,13 +3609,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure17I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3625,13 +3625,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure18I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3641,13 +3641,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure19I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3657,13 +3657,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure20I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3673,13 +3673,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure21I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------------->
@@ -3691,12 +3691,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure13I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform13" [matDatepicker]="workplaceform13" placeholder="By When" irequired>
+                            <input matInput name="workplaceform13" [(ngModel)]="measure13D" [matDatepicker]="workplaceform13" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform13"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform13></mat-datepicker>
                         </mat-form-field>
@@ -3709,12 +3709,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure14I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform14" [matDatepicker]="workplaceform14" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure14D" name="workplaceform14" [matDatepicker]="workplaceform14" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform14"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform14></mat-datepicker>
                         </mat-form-field>
@@ -3727,12 +3727,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure15I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform15" [matDatepicker]="workplaceform15" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure15D" name="workplaceform15" [matDatepicker]="workplaceform15" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform15"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform15></mat-datepicker>
                         </mat-form-field>
@@ -3745,12 +3745,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure16I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform16" [matDatepicker]="workplaceform16" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure16D" name="workplaceform16" [matDatepicker]="workplaceform16" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform16"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform16></mat-datepicker>
                         </mat-form-field>
@@ -3763,12 +3763,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure17I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform17" [matDatepicker]="workplaceform17" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure17D" name="workplaceform17" [matDatepicker]="workplaceform17" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform17"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform17></mat-datepicker>
                         </mat-form-field>
@@ -3781,12 +3781,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure18I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform18" [matDatepicker]="workplaceform18" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure18D" name="workplaceform18" [matDatepicker]="workplaceform18" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform18"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform18></mat-datepicker>
                         </mat-form-field>
@@ -3794,17 +3794,20 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <label>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</label>
+                        <<<<<<< HEAD <label>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</label>
+                            =======
+                            <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</h5>
+                            >>>>>>> 71ae95096c78243313fc7e5959c509dd46e7bc09
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="measure19I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform19" [matDatepicker]="workplaceform19" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure19D" name="workplaceform19" [matDatepicker]="workplaceform19" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform19"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform19></mat-datepicker>
                         </mat-form-field>
@@ -3817,12 +3820,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure20I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform20" [matDatepicker]="workplaceform20" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure20D" name="workplaceform20" [matDatepicker]="workplaceform20" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform20"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform20></mat-datepicker>
                         </mat-form-field>
@@ -3835,12 +3838,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure21I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform21" [matDatepicker]="workplaceform21" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure21D" name="workplaceform21" [matDatepicker]="workplaceform21" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform21"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform21></mat-datepicker>
                         </mat-form-field>
@@ -3853,12 +3856,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure22I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform22" [matDatepicker]="workplaceform22" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure22D" name="workplaceform22" [matDatepicker]="workplaceform22" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform22"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform22></mat-datepicker>
                         </mat-form-field>
@@ -3879,13 +3882,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure22I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3895,13 +3898,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure23I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3911,13 +3914,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure24I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3927,13 +3930,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure25I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3943,13 +3946,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure26I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3959,13 +3962,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure27I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------ -->
@@ -3977,13 +3980,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure23I" matInput>
                         </mat-form-field>
                     </div>
 
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform23" [matDatepicker]="workplaceform23" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure23D" name="workplaceform23" [matDatepicker]="workplaceform23" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform23"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform23></mat-datepicker>
                         </mat-form-field>
@@ -3996,12 +3999,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure24I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform24" [matDatepicker]="workplaceform24" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure24D" name="workplaceform24" [matDatepicker]="workplaceform24" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform24"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform24></mat-datepicker>
                         </mat-form-field>
@@ -4014,12 +4017,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure25I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform25" [matDatepicker]="workplaceform25" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure25D" name="workplaceform25" [matDatepicker]="workplaceform25" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform25"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform25></mat-datepicker>
                         </mat-form-field>
@@ -4032,12 +4035,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure26I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform26" [matDatepicker]="workplaceform26" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure26D" name="workplaceform26" [matDatepicker]="workplaceform26" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform26"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform26></mat-datepicker>
                         </mat-form-field>
@@ -4058,13 +4061,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure28I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4074,13 +4077,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure29I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4090,13 +4093,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure30I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4106,13 +4109,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure31I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4122,13 +4125,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure32I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4138,13 +4141,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure33I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ----------------------------------------------------- -->
@@ -4156,12 +4159,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure27I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform27" [matDatepicker]="workplaceform27" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure27D" name="workplaceform27" [matDatepicker]="workplaceform27" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform27"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform27></mat-datepicker>
                         </mat-form-field>
@@ -4174,12 +4177,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure28I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform28" [matDatepicker]="workplaceform28" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure28D" name="workplaceform28" [matDatepicker]="workplaceform28" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform28"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform28></mat-datepicker>
                         </mat-form-field>
@@ -4192,12 +4195,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure29I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform29" [matDatepicker]="workplaceform29" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure29D" name="workplaceform29" [matDatepicker]="workplaceform29" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform29"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform29></mat-datepicker>
                         </mat-form-field>
@@ -4210,12 +4213,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure30I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform30" [matDatepicker]="workplaceform30" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure30D" name="workplaceform30" [matDatepicker]="workplaceform30" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform30"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform30></mat-datepicker>
                         </mat-form-field>
@@ -4228,12 +4231,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure31I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform31" [matDatepicker]="workplaceform31" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure31D" name="workplaceform31" [matDatepicker]="workplaceform31" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform31"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform31></mat-datepicker>
                         </mat-form-field>
@@ -4246,12 +4249,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure32I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform32" [matDatepicker]="workplaceform32" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure32D" name="workplaceform32" [matDatepicker]="workplaceform32" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform32"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform32></mat-datepicker>
                         </mat-form-field>
@@ -4276,9 +4279,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4292,9 +4295,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4308,9 +4311,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4324,9 +4327,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4340,9 +4343,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------- -->
@@ -4354,12 +4357,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure33I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform33" [matDatepicker]="workplaceform33" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure33D" name="workplaceform33" [matDatepicker]="workplaceform33" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform33"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform33></mat-datepicker>
                         </mat-form-field>
@@ -4372,12 +4375,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure34I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform34" [matDatepicker]="workplaceform34" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure34D" name="workplaceform34" [matDatepicker]="workplaceform34" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform34"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform34></mat-datepicker>
                         </mat-form-field>
@@ -4390,12 +4393,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure35I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform35" [matDatepicker]="workplaceform35" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure35D" name="workplaceform35" [matDatepicker]="workplaceform35" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform35"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform35></mat-datepicker>
                         </mat-form-field>
@@ -4408,12 +4411,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure36I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform36" [matDatepicker]="workplaceform36" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure36D" name="workplaceform36" [matDatepicker]="workplaceform36" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform36"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform36></mat-datepicker>
                         </mat-form-field>
@@ -4426,12 +4429,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure37I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform37" [matDatepicker]="workplaceform37" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure37D" name="workplaceform37" [matDatepicker]="workplaceform37" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform37"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform37></mat-datepicker>
                         </mat-form-field>
@@ -4444,12 +4447,12 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure38I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform38" [matDatepicker]="workplaceform38" placeholder="By When" irequired>
+                            <input matInput name="workplaceform38" [(ngModel)]="measure38D" [matDatepicker]="workplaceform38" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform38"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform38></mat-datepicker>
                         </mat-form-field>
@@ -4458,235 +4461,322 @@
                 <!-- ---------------------------------END of workrelationship------------------------------------------------ -->
             </div>
         </div>
-        <!-- end of workplacepressure----------------------------------------- -->
-        <!-- ----------------------------English Test------------------------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse" data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
-                English-Test(TfL only) Form
-            </div>
-            <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest" data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <P>
-                            <b>Candidates should complete the questions below to the best of their ability without any assistance.</b>
-                        </P>
-                        <div class="col-12">
-                            <p>1. They’ve both worked here _______ over ten years.</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>2. Choose the option closest in meaning to the word in bold:</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <label>Ancestor:</label>
-                                <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>3. Choose the option opposite in meaning to the word in bold:</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <label>Exterior:</label>
-                                <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>4. What ______ you like to drink? </p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>5. There are other people in the park _________ ourselves </p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>6. He had a heart attack. The doctor was immediately</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school exams that year.
-                            </p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                    </div>
+        <<<<<<< HEAD <!-- end of workplacepressure----------------------------------------- -->
+            <!-- ----------------------------English Test------------------------------------------->
+            <div class="single_accordion">
+                <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse" data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
+                    English-Test(TfL only) Form
                 </div>
-            </div>
-        </div>
-        <!-- english test end -->
-        <!-------------------------Confirmation------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse" data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
-                Confirmation Form
-            </div>
-            <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation" data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <p>I confirm I have been briefed on and understand the company policies.</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input type="file" placeholder="select file">
-                            <!-- </mat-form-field> -->
+                <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest" data-parent="#accordion">
+                    <div class="single_accordion_content_inner">
+                        <div class="row">
+                            <P>
+                                <b>Candidates should complete the questions below to the best of their ability without any assistance.</b>
+                            </P>
+                            <div class="col-12">
+                                <p>1. They’ve both worked here _______ over ten years.</p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>2. Choose the option closest in meaning to the word in bold:</p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <label>Ancestor:</label>
+                                    <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>3. Choose the option opposite in meaning to the word in bold:</p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <label>Exterior:</label>
+                                    <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>4. What ______ you like to drink? </p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>5. There are other people in the park _________ ourselves </p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>6. He had a heart attack. The doctor was immediately</p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12">
+                                <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school exams that
+                                    year.
+                                </p>
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                    <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            =======
                         </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date" irequired>
-                                <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <p class="mt-5">The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have on you with other
-                        interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input type="file" placeholder="select file">
-                            <!-- </mat-form-field> -->
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date" irequired>
-                                <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <p class="mt-5">I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to dismissal.</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input type="file" placeholder="select file">
-                            <!-- </mat-form-field> -->
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date" irequired>
-                                <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation3></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- confirmation end------------------------------------->
+                        <!-- end of workplacepressure----------------------------------------- -->
 
-        <!-- <---------------Staff Safety Responsibility Statement----------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Staff-Safety" data-toggle="collapse" data-target="#Responsibility" aria-expanded="false" aria-controls="bankdetail">
-                Staff Safety Responsibility Statement
-            </div>
-            <div id="Responsibility" class="collapse single_accordion_content" aria-labelledby="Staff-Safety" data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Staff Safety Responsibility Statement</h4>
-                            <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry outwork on or about Network Rail-managed infrastructure
-                            </p>
-                            <ul>
-                                <li>
-                                    <p>You are required at all times to ensure avoidance of injury to yourself and colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling public;
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>When working near the public, you must at all times ensure that the passengers have a clear and safe walking route. If this cannot be achieved, then all work must stop until rectified;</p>
-                                </li>
-                                <li>
-                                    <p>You must not start any work on Network Rail-managed infrastructure if there is any possibility that the works may over-run the agreed timescales;</p>
-                                </li>
-                                <li>
-                                    <p>You are required to demonstrate a positive and encouraging attitude towards health and safety at all times;</p>
-                                </li>
-                                <li>
-                                    <p>You must ensure that all PPE provided is cared for and used, when required;</p>
-                                </li>
-                                <li>
-                                    <p>You are required to report all accidents, incidents, and near-misses;</p>
-                                </li>
-                                <li>
-                                    <p>You are expected to participate in accident and incident investigations;</p>
-                                </li>
-                                <li>
-                                    <p>You are expected to participate in and input to regular safety briefings, toolbox talks, and other meetings, when required;</p>
-                                </li>
-                                <li>
-                                    <p>You must not start any work activity until you have been briefed on and understand the method of work, site-specific risks, local hazards, the safe system of work, and emergencyarrangements;</p>
-                                </li>
-                                <li>
-                                    <p>You must be briefed on the Work Package Plans (WPPs) and be provided with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</p>
-                                </li>
-                                <li>
-                                    <p>Ensure you work to the sections of the Rule Book GE/RT8000 that are relevant to your duties;</p>
-                                </li>
-                                <li>
-                                    <p>Only access rail infrastructure through access points, and where practicable, use authorised walking routes;</p>
-                                </li>
-                                <li>
-                                    <p>Follow and work to the instructions given by the Controller of Site Safety/Safe Work Leader (COSS/SWL);</p>
-                                </li>
-                                <li>
-                                    <p>Always leave the worksite clean, tidy and free from hazards.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input matInput type="text" name="name" placeholder="Name" required cdkFocusInitial>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-4">
-                            <label>Signature</label>
-                            <input type="file">
-                        </div>
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="safety" placeholder="By When" irequired>
-                                <mat-datepicker-toggle matSuffix [for]="safety"></mat-datepicker-toggle>
-                                <mat-datepicker #safety></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- -------------------------------endStaff Safety Responsibility Statement -->
-        <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
+
+
+                        <!-- ----------------------------English Test------------------------------------------->
+                        <div class="single_accordion">
+                            <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse" data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
+                                English-Test(TfL only) Form
+                            </div>
+                            <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest" data-parent="#accordion">
+                                <div class="single_accordion_content_inner">
+                                    <div class="row">
+                                        <P>
+                                            <b>Candidates should complete the questions below to the best of their ability without any
+                            assistance.</b>
+                                        </P>
+                                        <div class="col-12">
+                                            <p>1. They’ve both worked here _______ over ten years.</p>
+                                            <mat-radio-group [(ngModel)]="tflQ1" aria-label="Select an option">
+                                                <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>2. Choose the option closest in meaning to the word in bold:</p>
+                                            <mat-radio-group [(ngModel)]="tflQ2" aria-label="Select an option">
+                                                <label>Ancestor:</label>
+                                                <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>3. Choose the option opposite in meaning to the word in bold:</p>
+                                            <mat-radio-group [(ngModel)]="tflQ3" aria-label="Select an option">
+                                                <label>Exterior:</label>
+                                                <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>4. What ______ you like to drink? </p>
+                                            <mat-radio-group [(ngModel)]="tflQ4" aria-label="Select an option">
+                                                <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>5. There are other people in the park _________ ourselves </p>
+                                            <mat-radio-group [(ngModel)]="tflQ5" aria-label="Select an option">
+                                                <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>6. He had a heart attack. The doctor was immediately</p>
+                                            <mat-radio-group [(ngModel)]="tflQ6" aria-label="Select an option">
+                                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school
+                                                exams that year.</p>
+                                            <mat-radio-group [(ngModel)]="tflQ7" aria-label="Select an option">
+                                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                                            </mat-radio-group>
+                                            >>>>>>> 71ae95096c78243313fc7e5959c509dd46e7bc09
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- english test end -->
+                            <!-------------------------Confirmation------------------------->
+                            <div class="single_accordion">
+                                <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse" data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
+                                    Confirmation Form
+                                </div>
+                                <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation" data-parent="#accordion">
+                                    <div class="single_accordion_content_inner">
+                                        <p>I confirm I have been briefed on and understand the company policies.</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <!-- <mat-form-field class="example-full-width"> -->
+                                                <label>Signature</label>
+                                                <input type="file" placeholder="select file">
+                                                <!-- </mat-form-field> -->
+                                            </div>
+                                            <div class="col-6">
+                                                <mat-form-field>
+                                                    <input matInput name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date" irequired>
+                                                    <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
+                                                    <mat-datepicker #confirmation1></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <p class="mt-5">The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have
+                                            on you with other interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <!-- <mat-form-field class="example-full-width"> -->
+                                                <label>Signature</label>
+                                                <input type="file" placeholder="select file">
+                                                <!-- </mat-form-field> -->
+                                            </div>
+                                            <div class="col-6">
+                                                <mat-form-field>
+                                                    <input matInput name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date" irequired>
+                                                    <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
+                                                    <mat-datepicker #confirmation2></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <p class="mt-5">I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to
+                                            dismissal.
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <!-- <mat-form-field class="example-full-width"> -->
+                                                <label>Signature</label>
+                                                <input type="file" placeholder="select file">
+                                                <!-- </mat-form-field> -->
+                                            </div>
+                                            <div class="col-6">
+                                                <mat-form-field>
+                                                    <input matInput name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date" irequired>
+                                                    <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
+                                                    <mat-datepicker #confirmation3></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- confirmation end------------------------------------->
+
+                            <!-- <---------------Staff Safety Responsibility Statement----------------->
+                            <div class="single_accordion">
+                                <div class="single_accordion_title collapsed" id="Staff-Safety" data-toggle="collapse" data-target="#Responsibility" aria-expanded="false" aria-controls="bankdetail">
+                                    Staff Safety Responsibility Statement
+                                </div>
+                                <div id="Responsibility" class="collapse single_accordion_content" aria-labelledby="Staff-Safety" data-parent="#accordion">
+                                    <div class="single_accordion_content_inner">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4>Staff Safety Responsibility Statement</h4>
+                                                <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry outwork on or about Network Rail-managed infrastructure
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>You are required at all times to ensure avoidance of injury to yourself and colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling public;
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>When working near the public, you must at all times ensure that the passengers have a clear and safe walking route. If this cannot be achieved, then all work must stop until rectified;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You must not start any work on Network Rail-managed infrastructure if there is any possibility that the works may over-run the agreed timescales;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You are required to demonstrate a positive and encouraging attitude towards health and safety at all times;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You must ensure that all PPE provided is cared for and used, when required;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You are required to report all accidents, incidents, and near-misses;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You are expected to participate in accident and incident investigations;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You are expected to participate in and input to regular safety briefings, toolbox talks, and other meetings, when required;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You must not start any work activity until you have been briefed on and understand the method of work, site-specific risks, local hazards, the safe system of work, and emergencyarrangements;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You must be briefed on the Work Package Plans (WPPs) and be provided with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Ensure you work to the sections of the Rule Book GE/RT8000 that are relevant to your duties;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Only access rail infrastructure through access points, and where practicable, use authorised walking routes;</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Follow and work to the instructions given by the Controller of Site Safety/Safe Work Leader (COSS/SWL);</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Always leave the worksite clean, tidy and free from hazards.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <mat-form-field>
+                                                    <input matInput type="text" name="name" placeholder="Name" required cdkFocusInitial>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-4">
+                                                <label>Signature</label>
+                                                <input type="file">
+                                            </div>
+                                            <div class="col-4">
+                                                <mat-form-field>
+                                                    <input matInput [matDatepicker]="safety" placeholder="By When" irequired>
+                                                    <mat-datepicker-toggle matSuffix [for]="safety"></mat-datepicker-toggle>
+                                                    <mat-datepicker #safety></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -------------------------------endStaff Safety Responsibility Statement -->
+                            <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
     </button>
 
-    </div>
-    <!-- </form> -->
+                        </div>
+                        <!-- </form> -->

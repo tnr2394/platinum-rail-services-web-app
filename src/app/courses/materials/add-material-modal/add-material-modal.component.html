@@ -1,5 +1,5 @@
-<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Material </h1>
-<form (ngSubmit)='doSubmit()'>
+<h1 mat-dialog-title class="mat-dialog-title light-underline"><i class="fas fa-plus fa-fw"></i>Add Material</h1>
+<form (ngSubmit)='doSubmit()' *ngIf="data">
     <div mat-dialog-content>
         <mat-form-field class="example-full-width col-xl-6 col-sm-6">
             <input matInput name="material-title" placeholder="Material Title" [(ngModel)]='data.title' required cdkFocusInitial>
@@ -11,7 +11,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width col-6">
-            <input matInput name='unit' min="0" oninput="validity.valid||(value='')" placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
+            <input matInput name='unit' min="0" oninput="validity.valid||(value='')" [disabled]="disableUnit" placeholder="Enter Unit Number" type="number" required [(ngModel)]='data.unitNo'>
         </mat-form-field>
         <mat-form-field class="example-full-width col-6">
             <input matInput name='assignment' min="0" oninput="validity.valid||(value='')" placeholder="Enter Assignment Number" type="number" required [(ngModel)]='data.assignmentNo'>
