@@ -436,6 +436,12 @@ PossessionE7;
   nightWorkQ13;
 
 
+///Strass ...............
+Stress1;
+Stress2;
+Stress3;
+Stress4;
+Stress5;
 
 
 
