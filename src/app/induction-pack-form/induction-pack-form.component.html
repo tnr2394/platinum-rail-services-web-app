@@ -2461,7 +2461,8 @@
                         <mat-checkbox [(ngModel)]="Possession5" class="mr-3">Line Clear Verification</mat-checkbox>
                         <mat-checkbox [(ngModel)]="Possession6" class="mr-3">Receiving OLP</mat-checkbox>
                         <mat-checkbox [(ngModel)]="Possession7" class="mr-3">Receiving CRP</mat-checkbox>
-                        <mat-checkbox [(ngModel)]="Possession8" class="mr-3">Working in axle counterauthorityarea</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="Possession8" class="mr-3">Working in axle counterauthorityarea
+                        </mat-checkbox>
                         <mat-checkbox [(ngModel)]="Possession9" class="mr-3">PC Duties</mat-checkbox>
                         <mat-checkbox [(ngModel)]="Possession10" class="mr-3">Hand trolley Controller</mat-checkbox>
                     </div>
@@ -2473,10 +2474,12 @@
                         <mat-checkbox [(ngModel)]="PossessionE1" class="mr-3">With no train/OTP</mat-checkbox>
                         <mat-checkbox [(ngModel)]="PossessionE2" class="mr-3">With train movements</mat-checkbox>
                         <mat-checkbox [(ngModel)]="PossessionE3" class="mr-3">With OTP movement</mat-checkbox>
-                        <mat-checkbox [(ngModel)]="PossessionE4" class="mr-3">Route setting via pointsOperator</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE4" class="mr-3">Route setting via pointsOperator
+                        </mat-checkbox>
                         <mat-checkbox [(ngModel)]="PossessionE5" class="mr-3">Route setting via Signaller</mat-checkbox>
                         <mat-checkbox [(ngModel)]="PossessionE6" class="mr-3">Working in axle counterarea</mat-checkbox>
-                        <mat-checkbox [(ngModel)]="PossessionE7" class="mr-3">Competent Person Detonator Protection</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="PossessionE7" class="mr-3">Competent Person Detonator Protection
+                        </mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -2497,12 +2500,12 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVisOvercoat/Jacket</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing1Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing1D" name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue></mat-datepicker>
                         </mat-form-field>
@@ -2510,7 +2513,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing1R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2519,12 +2522,12 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVis Vest</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing2Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing2D" name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue1></mat-datepicker>
                         </mat-form-field>
@@ -2532,7 +2535,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing2R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2541,12 +2544,12 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Orange HiVis Trouser</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing3Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue2" [matDatepicker]="Railissue2" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue2" [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2" placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue2></mat-datepicker>
                         </mat-form-field>
@@ -2554,7 +2557,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing3R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2564,12 +2567,12 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</mat-label>
-                            <input type="number" matInput>
+                            <input [(ngModel)]="clothing4Q" type="number" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing4D" name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue3></mat-datepicker>
                         </mat-form-field>
@@ -2577,7 +2580,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing4R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2587,12 +2590,12 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Other items</mat-label>
-                            <input type="number" matInput>
+                            <input type="number" [(ngModel)]="clothing5Q" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing5D" name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue4></mat-datepicker>
                         </mat-form-field>
@@ -2600,7 +2603,7 @@
                     <div class="col-3">
                         <mat-form-field class="example-full-width">
                             <mat-label>Received By</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="clothing5R" matInput>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2613,12 +2616,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Gloves – Rigger</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE1Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue5" [matDatepicker]="Railissue5" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue5" [(ngModel)]="sE1D" [matDatepicker]="Railissue5" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue5></mat-datepicker>
                                 </mat-form-field>
@@ -2626,7 +2629,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE1R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2636,12 +2639,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Gloves – Latex GripCut Level 5</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE2Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE2D" name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue6></mat-datepicker>
                                 </mat-form-field>
@@ -2649,7 +2652,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE2R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2659,12 +2662,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Ear Protection – Muffs</mat-label>
-                                    <input type="number" matInput>
+                                    <input [(ngModel)]="sE3Q" type="number" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE3D" name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue7></mat-datepicker>
                                 </mat-form-field>
@@ -2672,7 +2675,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE3R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2682,12 +2685,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Eye Protection</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE4Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE4D" name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue8></mat-datepicker>
                                 </mat-form-field>
@@ -2695,7 +2698,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE4R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2705,12 +2708,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Size:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE5Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE5D" name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue9></mat-datepicker>
                                 </mat-form-field>
@@ -2718,7 +2721,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE5R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2728,12 +2731,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Color:</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE6Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE6D" name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue10></mat-datepicker>
                                 </mat-form-field>
@@ -2741,7 +2744,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE6R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2751,12 +2754,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Unique ref. no.:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE7Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE7D" name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue11></mat-datepicker>
                                 </mat-form-field>
@@ -2764,7 +2767,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE7R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -2774,12 +2777,12 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Unique ref. no.:</mat-label>
-                                    <input type="number" matInput>
+                                    <input type="number" [(ngModel)]="sE8Q" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue12" [matDatepicker]="Railissue12" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue12" [(ngModel)]="sE8D" [matDatepicker]="Railissue12" placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue12></mat-datepicker>
                                 </mat-form-field>
@@ -2787,7 +2790,7 @@
                             <div class="col-3">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Received By</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" [(ngModel)]="sE8R" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -3322,7 +3325,7 @@
 
 
 
-        <!------->
+        <!----- -->
         <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
