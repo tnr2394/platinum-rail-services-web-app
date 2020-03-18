@@ -492,12 +492,12 @@ export class InductionPackFormComponent implements OnInit {
   sE8D;
   sE8R;
 
-///Strass ...............
-Stress1;
-Stress2;
-Stress3;
-Stress4;
-Stress5;
+  ///Strass ...............
+  Stress1;
+  Stress2;
+  Stress3;
+  Stress4;
+  Stress5;
 
 
 
@@ -808,6 +808,13 @@ Stress5;
         sE8Q: this.sE8Q,
         sE8D: this.sE8D,
         sE8R: this.sE8R,
+      },
+      riskAssessment: {
+        Stress1: this.Stress1,
+        Stress2: this.Stress2,
+        Stress3: this.Stress3,
+        Stress4: this.Stress4,
+        Stress5: this.Stress5,
       }
     }
 
