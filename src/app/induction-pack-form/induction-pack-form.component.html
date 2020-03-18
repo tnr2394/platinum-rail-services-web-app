@@ -581,12 +581,127 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="name">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <label>Signed:</label>
+                        <input type="file" placeholder="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="RightWorkUK" placeholder="Choose a date" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="RightWorkUK"></mat-datepicker-toggle>
+                            <mat-datepicker #RightWorkUK></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Right to work in uk end Here -->
 
+    <!------------Opt-out for Sub-Contractors -->
+    <div class="single_accordion">
+        <div class="single_accordion_title collapsed" id="Sub-Contractors" data-toggle="collapse" data-target="#Out-Contractors" aria-expanded="false" aria-controls="collapseTwo">
+            Opt-out for Sub-Contractors
+        </div>
+        <div id="Out-Contractors" class="collapse single_accordion_content" aria-labelledby="Sub-Contractors" data-parent="#accordion">
+            <div class="single_accordion_content_inner">
+                <div class="row">
+                    <p>(1) Opt out under Regulation 32 of the Conduct of Employment Agencies EmploymentBusinesses Regulations 2003 (‘the Regulations’)</p>
+                    <p>The Contractor has agreed to provide services under the company’s terms and conditions</p>
+                    <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations.The Contractor hereby confirms that it shall not be bound by the provisions of theregulations which do not apply to any services provided by the
+                        Contractor to the Company,throughout the duration of their agreement. <br>(1) Agency Workers Regulations 2010 (‘AWR’)<br> (2) The Contractor warrants that any operative placed on assignment under thiscontract is operating outside
+                        the scope of the AWR.
+                    </p>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name of Contractor" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="OutSub" placeholder="Choose a date" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="OutSub"></mat-datepicker-toggle>
+                            <mat-datepicker #OutSub></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <label>Signed:</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-md-12">
+                        <label>Address of next of kin</label>
+                        <mat-form-field class="example-full-width">
+                            <textarea rows="4" name="address" cols="100" matInput placeholder="Address"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Opt-out for Sub-Contractors end hear -->
 
+
+    <!-- Card Holder and Employer Declaration -->
+    <div class="single_accordion">
+        <div class="single_accordion_title collapsed" id="Card-Holder" data-toggle="collapse" data-target="#Employer-Declaration" aria-expanded="false" aria-controls="collapseTwo">
+            Card Holder and Employer Declaration
+        </div>
+        <div id="Employer-Declaration" class="collapse single_accordion_content" aria-labelledby="Card-Holder" data-parent="#accordion">
+            <div class="single_accordion_content_inner">
+                <div class="row">
+                    <p><strong><u>Cardholder:</u></strong>I confirm that the above information is true and correct.</p>
+                    <p><strong><u>Employer:</u></strong>I confirm that the above information is true and correct. I understand that if thecard holder has medical or competence restrictions, these may limit the extent to which theyare deployed on behalf of
+                        the company. I also understand that the specific work/activityexperience identified above will define the scope of the card holder’s deployment on behalfof the Company. If the card holder has no experience of a specific work/activity,
+                        this is a work-limiting circumstance, and the card holder may not be deployed on the applicablework/activity type, until such time that they have been trained, mentored, and/or assessed tofull competence, and the Company has been
+                        advised accordingly. <b>I understand that Pre-deployment Safety Critical Checklists are valid for a maximum of 12 months from the dateof my sign-off, and that an updated checklist must be sent to the Company SentinelCoordinator when
+                        any change to the cardholder’s experiences or competence occurs.Failure to do so may limit the scope of the card holder’s deployment</b>
+                    </p>
+
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Card Holder Name" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <label>signature</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="CardHolder" placeholder="Choose a date" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="CardHolder"></mat-datepicker-toggle>
+                            <mat-datepicker #CardHolder></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Employer Representative Name" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <label>signature</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="Employer" placeholder="Choose a date" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="Employer"></mat-datepicker-toggle>
+                            <mat-datepicker #Employer></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card Holder and Employer Declaration end -->
 
 
     <!-- Next Of Kin Start Here -->
@@ -1108,7 +1223,70 @@
                             <mat-radio-button class="mr-3" value="No">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
+                </div>
 
+
+                <div class="row">
+                    <div class="col-12">
+                        <p>I will inform the company of any change to my health that may affect my ability to perform my duties.</p>
+                    </div>
+                    <div class="col-4">
+                        <label>SIGNED:</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name(print)" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="medical1" placeholder="Choose a date of expiry" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="medical1"></mat-datepicker-toggle>
+                            <mat-datepicker #medical1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <h6>Action taken by:</h6>
+                <div class="row">
+                    <div class="col-4">
+                        <label>SIGNED:</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name(print)" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="medical2" placeholder="Choose a date of expiry" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="medical2"></mat-datepicker-toggle>
+                            <mat-datepicker #medical2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- ----------------------------------------------- -->
+                <h6>Accepted by: </h6>
+                <div class="row">
+                    <div class="col-4">
+                        <label>SIGNED:</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name(print)" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="medical3" placeholder="Choose a date of expiry" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="medical3"></mat-datepicker-toggle>
+                            <mat-datepicker #medical3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1153,6 +1331,74 @@
                             <mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label>signature</label>
+                        <input type="file">
+                    </div>
+                </div>
+                <!-- -------------------------------------->
+                <h3><strong>Working Time Directive and OPT-OUT</strong></h3>
+                <p>The European Union Working Time Directive of a 48-hour maximum working week came into effecton October 1, 1998. The Directive provides minimum daily and weekly rest breaks, an annual holidayentitlement, a limit on the working week to an
+                    average of 48 hours, and defined night-working duties.
+                </p>
+                <p>
+                    In the meantime, the employer is required to obtain details as to whether staff members wish toexercise their right to opt in or out of the working hours directive. The maximum weekly working timeof 48 hours will be averaged over a 17-week period. Individuals
+                    can, if they wish, agree with theiremployer about the maximum weekly limit, but this must be in writing and on an individual basis.Individuals are given an opportunity to opt back in, in writing to the employer. This does not create
+                    anexemption from statutory legal requirements, e.g. the responsibilities of individuals to comply withhealth and safety legislation.
+                </p>
+                <p>Please note that if you choose to opt out in order that you can work in excess of 48 hours per week,and then choose to opt back in, you will be required to give seven (7) days’ written notice. The 48hours maximum per week applies to any
+                    and all paid employment collectively, not just workundertaken with the company. You are required to notify us in writing of any employment external tothe company that you undertak,e regardless of whether you decide to opt out of the
+                    regulations. Inorder to record our legal obligations, please sign below in the relevant section, and return one copyof this letter to the company, retaining one copy for their own records.
+                </p>
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <p>Sign against either (a) or (b)</p>
+                        <label>a) I want to opt out of the working time directive</label>
+                        <input type="file">
+                    </div>
+                    <div class="col-12">
+                        <label>b) I want to opt in to the working time directive</label>
+                        <input type="file">
+                    </div>
+                </div>
+                <p><b>Working Hours Disclaimer for Employees Working on Network Rail-ManagedInfrastructure</b></p>
+                <p>If you are in any doubt as to the requirements of this memo, please contact your Line Manager.</p>
+                <p>Under normal conditions, you will not be asked work in excess of the Network Rail StandardNR/L2/OHS/003. In exceptional circumstances, situations may arise where you are required to workin exceedance of the Network Rail Standard. A risk
+                    assessment will be carried out to authorise anyexceedance.
+                </p>
+                <p>Under the Sentinel Scheme Rules, any sub sponsor shall notify the Sentinel Coordinator of your hoursworked; these hours will be considered, before placing you to work for the company.</p>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Declaration</label>
+                        <p>I agree to the working times set out in Network Rail Standard NR/L2/OHS/003, and agree to abide byits contents.</p>
+                        <p>I agree to notify the Office Manager of any other hours I work outside of the rail industry that mayimpact on my working hours with the company.</p>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="name" placeholder="Name" required cdkFocusInitial>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="doi" [matDatepicker]="Working" placeholder="Choose a date" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="Working"></mat-datepicker-toggle>
+                            <mat-datepicker #Working></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <label>Signature</label>
+                        <input type="file">
                     </div>
                 </div>
             </div>
@@ -2858,12 +3104,12 @@
                 <h3>Control</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by </h5>
+                        <label>Are you troubled by </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Who does what in the team?</h5>
+                        <label>Who does what in the team?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2879,7 +3125,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having enough line manager support?</h5>
+                        <label>Having enough line manager support?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2895,7 +3141,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having sufficient control over your work?</h5>
+                        <label>Having sufficient control over your work?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2911,7 +3157,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having your opinions listened to?</h5>
+                        <label>Having your opinions listened to?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2927,7 +3173,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>The balance between work and outside life?</h5>
+                        <label>The balance between work and outside life?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2943,7 +3189,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Any other concerns?</h5>
+                        <label>Any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2961,7 +3207,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Discuss flexibility over delivery of work schedules and delivery of work.</h5>
+                        <label>Discuss flexibility over delivery of work schedules and delivery of work.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2979,7 +3225,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Support flexible working practices,wherever possible and practical.</h5>
+                        <label>Support flexible working practices,wherever possible and practical.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -2997,7 +3243,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Agree on the most appropriate communication methodsand frequency.</h5>
+                        <label>Agree on the most appropriate communication methodsand frequency.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3016,7 +3262,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h5>Include all employees in decision-making for tasks/planning work.</h5>
+                        <label>Include all employees in decision-making for tasks/planning work.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3035,7 +3281,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h5>Share good practice and recognise achievements or suggestions.</h5>
+                        <label>Share good practice and recognise achievements or suggestions.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3053,7 +3299,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Discuss learning opportunities.</h5>
+                        <label>Discuss learning opportunities.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3073,12 +3319,12 @@
                 <h3>JOB SECURITY AND CHANGE</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by</h5>
+                        <label>Are you troubled by</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Feeling supported through change?</h5>
+                        <label>Feeling supported through change?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3094,7 +3340,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Opportunities to comment on change?</h5>
+                        <label>Opportunities to comment on change?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3110,7 +3356,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Your future role?</h5>
+                        <label>Your future role?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3126,7 +3372,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Where to access support?</h5>
+                        <label>Where to access support?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3142,7 +3388,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having enough time/resourcesto implement change?</h5>
+                        <label>Having enough time/resourcesto implement change?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3158,7 +3404,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Feeling skilled enough to do Feeling skilled enough to do</h5>
+                        <label>Feeling skilled enough to do Feeling skilled enough to do</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3174,7 +3420,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Any other concerns?</h5>
+                        <label>Any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3193,7 +3439,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
+                        <label>Ensure communication mechanisms are in place and operating effectively.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3211,7 +3457,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Engage with employees regularly and in a timely manner during key change initiatives, and provide opportunities to feed in their views.</h5>
+                        <label>Engage with employees regularly and in a timely manner during key change initiatives, and provide opportunities to feed in their views.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3229,7 +3475,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Explain the reasons for change and the benefits, as well as information on timescales.</h5>
+                        <label>Explain the reasons for change and the benefits, as well as information on timescales.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3247,7 +3493,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure employees are aware of all support services available to them.</h5>
+                        <label>Ensure employees are aware of all support services available to them.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3265,7 +3511,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Be honest with employees, even where news may not be positive.</h5>
+                        <label>Be honest with employees, even where news may not be positive.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3283,7 +3529,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Direct employees to basic lifestyle advice and coping strategies to prepare for change.</h5>
+                        <label>Direct employees to basic lifestyle advice and coping strategies to prepare for change.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3304,13 +3550,13 @@
                 <h3>BALANCED WORKLOAD</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by :</h5>
+                        <label>Are you troubled by :</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-4">
-                        <h5>Clear priorities?</h5>
+                        <label>Clear priorities?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3326,7 +3572,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having realistic deadlines?</h5>
+                        <label>Having realistic deadlines?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3342,7 +3588,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having sufficient resources to do your job?</h5>
+                        <label>Having sufficient resources to do your job?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3358,7 +3604,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Your skills,training,and knowledge being sufficient to do your job?</h5>
+                        <label>Your skills,training,and knowledge being sufficient to do your job?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3374,7 +3620,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>The length of your daily commute?</h5>
+                        <label>The length of your daily commute?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3390,7 +3636,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Having a dull or repetitive work?</h5>
+                        <label>Having a dull or repetitive work?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3406,7 +3652,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Your work/life balance?</h5>
+                        <label>Your work/life balance?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3422,7 +3668,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Any other concerns?</h5>
+                        <label>Any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3440,7 +3686,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Reallocate duties (temporarily orpermanently).</h5>
+                        <label>Reallocate duties (temporarily orpermanently).</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3458,7 +3704,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Help prioritise tasks or projects appropriately.</h5>
+                        <label>Help prioritise tasks or projects appropriately.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3476,7 +3722,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Adjust hours or workpattern (temporarily or permanently).</h5>
+                        <label>Adjust hours or workpattern (temporarily or permanently).</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3494,7 +3740,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Identify and support specific training needs.</h5>
+                        <label>Identify and support specific training needs.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3512,7 +3758,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure tasks and expectations are clearly defined and understood.</h5>
+                        <label>Ensure tasks and expectations are clearly defined and understood.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3530,7 +3776,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Plan work carefully so that deadlines are achievable.</h5>
+                        <label>Plan work carefully so that deadlines are achievable.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3548,7 +3794,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</h5>
+                        <label>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3566,7 +3812,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Plan workload in regular discussions.</h5>
+                        <label>Plan workload in regular discussions.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3584,7 +3830,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Agree an upper limit to working hours.</h5>
+                        <label>Agree an upper limit to working hours.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3602,7 +3848,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Switch off mobile phones and laptops at a specific time.</h5>
+                        <label>Switch off mobile phones and laptops at a specific time.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3623,12 +3869,12 @@
                 <h3>JOB CONDITIONS</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by</h5>
+                        <label>Are you troubled by</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Feeling insufficiently inducted into the role?</h5>
+                        <label>Feeling insufficiently inducted into the role?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3644,7 +3890,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Understanding your role?</h5>
+                        <label>Understanding your role?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3660,7 +3906,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Your reporting structure?</h5>
+                        <label>Your reporting structure?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3676,7 +3922,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Your working environment?</h5>
+                        <label>Your working environment?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3692,7 +3938,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Other demands in you outside your role?</h5>
+                        <label>Other demands in you outside your role?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3708,7 +3954,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Any other concerns?</h5>
+                        <label>Any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3726,7 +3972,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Clarify employee’s expectations of the role.</h5>
+                        <label>Clarify employee’s expectations of the role.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3745,7 +3991,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Reinforce the reporting structure.</h5>
+                        <label>Reinforce the reporting structure.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3763,7 +4009,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are there any physical hazards in the work environment that need to be managed?</h5>
+                        <label>Are there any physical hazards in the work environment that need to be managed?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3781,7 +4027,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Does the employee understand the support services they can access?</h5>
+                        <label>Does the employee understand the support services they can access?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3802,12 +4048,12 @@
                 <h3>RESOURCES AND COMMUNICATION</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by :</h5>
+                        <label>Are you troubled by :</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Feeling insufficiently supported by your team?</h5>
+                        <label>Feeling insufficiently supported by your team?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3823,7 +4069,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Feelings of isolation?</h5>
+                        <label>Feelings of isolation?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3839,7 +4085,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Being informed of workplace issues?</h5>
+                        <label>Being informed of workplace issues?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3855,7 +4101,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Issues around communication?</h5>
+                        <label>Issues around communication?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3871,7 +4117,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Further training needs?</h5>
+                        <label>Further training needs?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3887,7 +4133,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Any other concerns?</h5>
+                        <label>Any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3905,7 +4151,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Support employees to develop their skills and knowledge to do their work.</h5>
+                        <label>Support employees to develop their skills and knowledge to do their work.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3923,7 +4169,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Source equipment or tools needed to perform work effectively.</h5>
+                        <label>Source equipment or tools needed to perform work effectively.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3941,7 +4187,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
+                        <label>Ensure communication mechanisms are in place and operating effectively.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3959,7 +4205,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Focus on communicating honestly and regularly.</h5>
+                        <label>Focus on communicating honestly and regularly.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3977,7 +4223,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Encourage employees to make suggestions to management.</h5>
+                        <label>Encourage employees to make suggestions to management.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -3995,7 +4241,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure employees are aware of all support services available to them.</h5>
+                        <label>Ensure employees are aware of all support services available to them.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4016,12 +4262,12 @@
                 <h3>WORK RELATIONSHIP</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are you troubled by :</h5>
+                        <label>Are you troubled by :</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Bullying or harassment issues in the team?</h5>
+                        <label>Bullying or harassment issues in the team?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4037,7 +4283,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>An insufficient supportive atmosphere in the team?</h5>
+                        <label>An insufficient supportive atmosphere in the team?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4053,7 +4299,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>How to raise a concern or find support?</h5>
+                        <label>How to raise a concern or find support?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4069,7 +4315,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>A lack of recognition for diversity in the team?</h5>
+                        <label>A lack of recognition for diversity in the team?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4085,7 +4331,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Are there any other concerns?</h5>
+                        <label>Are there any other concerns?</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4103,7 +4349,7 @@
                 <h3>Additional Control Measures</h3>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Report and quickly address any bullying or harassment claims.</h5>
+                        <label>Report and quickly address any bullying or harassment claims.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4121,7 +4367,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Ensure employees are aware of policies related to resolving unacceptable behaviour.</h5>
+                        <label>Ensure employees are aware of policies related to resolving unacceptable behaviour.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4139,7 +4385,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Encourage 1-2-1 discussions, rather than email.</h5>
+                        <label>Encourage 1-2-1 discussions, rather than email.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4157,7 +4403,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Review diversity and inclusion training.</h5>
+                        <label>Review diversity and inclusion training.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4175,7 +4421,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Arrange regular team and 1-2-1 meetings.</h5>
+                        <label>Arrange regular team and 1-2-1 meetings.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4193,7 +4439,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Promote positive working relationships.</h5>
+                        <label>Promote positive working relationships.</label>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
@@ -4281,7 +4527,8 @@
                             </mat-radio-group>
                         </div>
                         <div class="col-12">
-                            <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school exams that year.</p>
+                            <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school exams that year.
+                            </p>
                             <mat-radio-group aria-label="Select an option">
                                 <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
                                 <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
@@ -4304,10 +4551,10 @@
                     <p>I confirm I have been briefed on and understand the company policies.</p>
                     <div class="row">
                         <div class="col-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Signature</mat-label>
-                                <input type="text" matInput>
-                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input type="file" placeholder="select file">
+                            <!-- </mat-form-field> -->
                         </div>
                         <div class="col-6">
                             <mat-form-field>
@@ -4317,14 +4564,14 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <p>The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have on you with other
+                    <p class="mt-5">The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have on you with other
                         interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
                     <div class="row">
                         <div class="col-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Signature</mat-label>
-                                <input type="text" matInput>
-                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input type="file" placeholder="select file">
+                            <!-- </mat-form-field> -->
                         </div>
                         <div class="col-6">
                             <mat-form-field>
@@ -4334,13 +4581,13 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <p>I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to dismissal.</p>
+                    <p class="mt-5">I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to dismissal.</p>
                     <div class="row">
                         <div class="col-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Signature</mat-label>
-                                <input type="text" matInput>
-                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input type="file" placeholder="select file">
+                            <!-- </mat-form-field> -->
                         </div>
                         <div class="col-6">
                             <mat-form-field>
@@ -4354,6 +4601,88 @@
             </div>
         </div>
         <!-- confirmation end------------------------------------->
+
+        <!-- <---------------Staff Safety Responsibility Statement----------------->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Staff-Safety" data-toggle="collapse" data-target="#Responsibility" aria-expanded="false" aria-controls="bankdetail">
+                Staff Safety Responsibility Statement
+            </div>
+            <div id="Responsibility" class="collapse single_accordion_content" aria-labelledby="Staff-Safety" data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Staff Safety Responsibility Statement</h4>
+                            <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry outwork on or about Network Rail-managed infrastructure
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>You are required at all times to ensure avoidance of injury to yourself and colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling public;
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>When working near the public, you must at all times ensure that the passengers have a clear and safe walking route. If this cannot be achieved, then all work must stop until rectified;</p>
+                                </li>
+                                <li>
+                                    <p>You must not start any work on Network Rail-managed infrastructure if there is any possibility that the works may over-run the agreed timescales;</p>
+                                </li>
+                                <li>
+                                    <p>You are required to demonstrate a positive and encouraging attitude towards health and safety at all times;</p>
+                                </li>
+                                <li>
+                                    <p>You must ensure that all PPE provided is cared for and used, when required;</p>
+                                </li>
+                                <li>
+                                    <p>You are required to report all accidents, incidents, and near-misses;</p>
+                                </li>
+                                <li>
+                                    <p>You are expected to participate in accident and incident investigations;</p>
+                                </li>
+                                <li>
+                                    <p>You are expected to participate in and input to regular safety briefings, toolbox talks, and other meetings, when required;</p>
+                                </li>
+                                <li>
+                                    <p>You must not start any work activity until you have been briefed on and understand the method of work, site-specific risks, local hazards, the safe system of work, and emergencyarrangements;</p>
+                                </li>
+                                <li>
+                                    <p>You must be briefed on the Work Package Plans (WPPs) and be provided with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</p>
+                                </li>
+                                <li>
+                                    <p>Ensure you work to the sections of the Rule Book GE/RT8000 that are relevant to your duties;</p>
+                                </li>
+                                <li>
+                                    <p>Only access rail infrastructure through access points, and where practicable, use authorised walking routes;</p>
+                                </li>
+                                <li>
+                                    <p>Follow and work to the instructions given by the Controller of Site Safety/Safe Work Leader (COSS/SWL);</p>
+                                </li>
+                                <li>
+                                    <p>Always leave the worksite clean, tidy and free from hazards.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input matInput type="text" name="name" placeholder="Name" required cdkFocusInitial>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <label>Signature</label>
+                            <input type="file">
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="safety" placeholder="By When" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="safety"></mat-datepicker-toggle>
+                                <mat-datepicker #safety></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------------------endStaff Safety Responsibility Statement -->
         <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
