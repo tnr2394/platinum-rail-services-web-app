@@ -4294,7 +4294,66 @@
             </div>
         </div>
         <!-- english test end -->
-
+        <!-------------------------Confirmation------------------------->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse" data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
+                Confirmation Form
+            </div>
+            <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation" data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <p>I confirm I have been briefed on and understand the company policies.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p>The Company will securely store information relating to its employees, both in hard copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany to share the information we have on you with other
+                        interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p>I am applying for employment with the company and to the best of my knowledge andbelief, all particulars provided here are true. I understand that any false statement maydisqualify me from employment or lead to dismissal.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date" irequired>
+                                <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- confirmation end------------------------------------->
         <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
