@@ -436,6 +436,73 @@ export class InductionPackFormComponent implements OnInit {
   nightWorkQ13;
 
 
+  // Rail PPE Issue
+
+  clothing1Q;
+  clothing1D;
+  clothing1R;
+
+  clothing2Q;
+  clothing2D;
+  clothing2R;
+
+  clothing3Q;
+  clothing3D;
+  clothing3R;
+
+  clothing4Q;
+  clothing4D;
+  clothing4R;
+
+  clothing5Q;
+  clothing5D;
+  clothing5R;
+
+  // Safety Equipment
+
+  sE1Q;
+  sE1D;
+  sE1R;
+
+  sE2Q;
+  sE2D;
+  sE2R;
+
+  sE3Q;
+  sE3D;
+  sE3R;
+
+  sE4Q;
+  sE4D;
+  sE4R;
+
+  sE5Q;
+  sE5D;
+  sE5R;
+
+  sE6Q;
+  sE6D;
+  sE6R;
+
+  sE7Q;
+  sE7D;
+  sE7R;
+
+  sE8Q;
+  sE8D;
+  sE8R;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -703,6 +770,49 @@ export class InductionPackFormComponent implements OnInit {
         PossessionE5: this.PossessionE5,
         PossessionE6: this.PossessionE6,
         PossessionE7: this.PossessionE7,
+      },
+      safetyClothesDetail: {
+        clothing1Q: this.clothing1Q,
+        clothing1D: this.clothing1D,
+        clothing1R: this.clothing1R,
+        clothing2Q: this.clothing2Q,
+        clothing2D: this.clothing2D,
+        clothing2R: this.clothing2R,
+        clothing3Q: this.clothing3Q,
+        clothing3D: this.clothing3D,
+        clothing3R: this.clothing3R,
+        clothing4Q: this.clothing4Q,
+        clothing4D: this.clothing4D,
+        clothing4R: this.clothing4R,
+        clothing5Q: this.clothing5Q,
+        clothing5D: this.clothing5D,
+        clothing5R: this.clothing5R,
+      },
+      safetyEquipmentDetails: {
+        sE1Q: this.sE1Q,
+        sE1D: this.sE1D,
+        sE1R: this.sE1R,
+        sE2Q: this.sE2Q,
+        sE2D: this.sE2D,
+        sE2R: this.sE2R,
+        sE3Q: this.sE3Q,
+        sE3D: this.sE3D,
+        sE3R: this.sE3R,
+        sE4Q: this.sE4Q,
+        sE4D: this.sE4D,
+        sE4R: this.sE4R,
+        sE5Q: this.sE5Q,
+        sE5D: this.sE5D,
+        sE5R: this.sE5R,
+        sE6Q: this.sE6Q,
+        sE6D: this.sE6D,
+        sE6R: this.sE6R,
+        sE7Q: this.sE7Q,
+        sE7D: this.sE7D,
+        sE7R: this.sE7R,
+        sE8Q: this.sE8Q,
+        sE8D: this.sE8D,
+        sE8R: this.sE8R,
       }
     }
 
