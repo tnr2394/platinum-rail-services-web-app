@@ -3,10 +3,12 @@
 
     <!-- Type Yes/No Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div class="single_accordion_title" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
             Type Yes/No
         </div>
-        <div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" class="collapse single_accordion_content show" aria-labelledby="headingOne"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -40,7 +42,8 @@
                     <div class="col-md-6">
                         <label>Date of induction</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="dateOfInduction" name="doi" [matDatepicker]="doi" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="dateOfInduction" name="doi" [matDatepicker]="doi"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="doi"></mat-datepicker-toggle>
                             <mat-datepicker #doi></mat-datepicker>
                         </mat-form-field>
@@ -71,7 +74,8 @@
                     <div class="col-md-6">
                         <label>Date added to Sentinel Database</label>
                         <mat-form-field>
-                            <input [(ngModel)]="dateAddedToSentinelDatabase" matInput name="dsd" [matDatepicker]="dsd" placeholder="Date added to Sentinel Database" irequired>
+                            <input [(ngModel)]="dateAddedToSentinelDatabase" matInput name="dsd" [matDatepicker]="dsd"
+                                placeholder="Date added to Sentinel Database" irequired>
                             <mat-datepicker-toggle matSuffix [for]="dsd"></mat-datepicker-toggle>
                             <mat-datepicker #dsd></mat-datepicker>
                         </mat-form-field>
@@ -89,22 +93,26 @@
 
     <!-- Candidate Detail Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
             Candidate Details
         </div>
-        <div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div id="collapseTwo" class="collapse single_accordion_content" aria-labelledby="headingTwo"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Candidate Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="candidateName" name="candidateName" placeholder="Candidate Name" cdkFocusInitial>
+                            <input matInput [(ngModel)]="candidateName" name="candidateName"
+                                placeholder="Candidate Name" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>BirthDate</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="dateOfBirth" name="dob" [matDatepicker]="dob" placeholder="Choose a birth date">
+                            <input matInput [(ngModel)]="dateOfBirth" name="dob" [matDatepicker]="dob"
+                                placeholder="Choose a birth date">
                             <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                             <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
@@ -112,32 +120,37 @@
                     <div class="col-md-6">
                         <label>National Insurance No.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber" placeholder="National Insurance Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="nationalInsuranceNumber" name="nationalInsuranceNumber"
+                                placeholder="National Insurance Number" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Candidate Address</label>
                         <mat-form-field class="example-full-width">
-                            <textarea rows="4" [(ngModel)]="candidateAddress" name="address" cols="100" matInput placeholder="Candidate Address"></textarea>
+                            <textarea rows="4" [(ngModel)]="candidateAddress" name="address" cols="100" matInput
+                                placeholder="Candidate Address"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Contact Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="contactNumber" name="name" placeholder="Candidate Number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Sentinel Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="sentinelNumber" name="name" placeholder="Sentinel Number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Email Address</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="emailAddress" name="name" placeholder="Email Address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -149,10 +162,12 @@
 
     <!-- Checklist Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <div class="single_accordion_title collapsed" id="headingThree" data-toggle="collapse"
+            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             Checklist
         </div>
-        <div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree" data-parent="#accordion">
+        <div id="collapseThree" class="collapse single_accordion_content" aria-labelledby="headingThree"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -264,40 +279,47 @@
 
     <!--Bank Details Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse" data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="bankdetailHeading" data-toggle="collapse"
+            data-target="#bankdetail" aria-expanded="false" aria-controls="bankdetail">
             Bank Details
         </div>
-        <div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading" data-parent="#accordion">
+        <div id="bankdetail" class="collapse single_accordion_content" aria-labelledby="bankdetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Name on Account / Ltd Company Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="accountHolderName" name="name" placeholder="Candidate Name"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Bank Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="bankName" name="name" placeholder="Bank Name" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Bank Address</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="bankAddress" name="name" placeholder="bank address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Account Number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="accountNumber" name="name" placeholder="account number"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Sort Code</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="sortCode" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -309,10 +331,12 @@
 
     <!-- Payment Detail Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse" data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="paymentdetailHeading" data-toggle="collapse"
+            data-target="#paymentdetail" aria-expanded="false" aria-controls="bankdetail">
             Payment Details
         </div>
-        <div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading" data-parent="#accordion">
+        <div id="paymentdetail" class="collapse single_accordion_content" aria-labelledby="paymentdetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -332,25 +356,29 @@
                     <div class="col-md-6">
                         <label>Company Name</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyName" name="name" placeholder="Company name" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Company No.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyNo" name="name" placeholder="Company Number" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Please provide a copy of Certificate ofIncorporation</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="certificateNumber" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Umbrella Company – state which one</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="companyState" name="name" placeholder="sort code" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -361,45 +389,53 @@
 
     <!-- Insurance Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse" data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="insurancedetailHeading" data-toggle="collapse"
+            data-target="#insurancedetail" aria-expanded="false" aria-controls="bankdetail">
             Insurance
         </div>
-        <div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading" data-parent="#accordion">
+        <div id="insurancedetail" class="collapse single_accordion_content" aria-labelledby="insurancedetailHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
-                    <p>Please provide the policy numbers of your company insurances, and return copies of thecertificates
+                    <p>Please provide the policy numbers of your company insurances, and return copies of
+                        thecertificates
                     </p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Employers’ Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance1" name="name" placeholder="Employers’ Liability"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Professional Indemnity</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance2" name="name" placeholder="Professional Indemnity"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Public Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance3" name="name" placeholder="Public Liability" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Product and Goods Liability</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance4" name="name" placeholder="Product and Goods Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance4" name="name"
+                                placeholder="Product and Goods Liability" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label> Vehicle Business Use</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="insurance5" name="name" placeholder="Vehicle Business Use"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -412,20 +448,24 @@
 
     <!-- Right to work in uk Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse" data-target="#rightWorkDetail" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse"
+            data-target="#rightWorkDetail" aria-expanded="false" aria-controls="bankdetail">
             Right to Work in the UK
         </div>
-        <div id="rightWorkDetail" class="collapse single_accordion_content" aria-labelledby="rightworkHeading" data-parent="#accordion">
+        <div id="rightWorkDetail" class="collapse single_accordion_content" aria-labelledby="rightworkHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
-                    <p>Please provide the policy numbers of your company insurances, and return copies of thecertificates
+                    <p>Please provide the policy numbers of your company insurances, and return copies of
+                        thecertificates
                     </p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>NAME</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="rightWName" name="name" placeholder="Employers’ Liability" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="rightWName" name="name" placeholder="Employers’ Liability"
+                                required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -591,10 +631,12 @@
 
     <!-- Next Of Kin Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="nextofkin" data-toggle="collapse" data-target="#NextOfKin"
+            aria-expanded="false" aria-controls="collapseTwo">
             Next of Kin
         </div>
-        <div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin" data-parent="#accordion">
+        <div id="NextOfKin" class="collapse single_accordion_content" aria-labelledby="nextofkin"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <p>Please provide detail of your next of kin. Data will be stored on the Sentinel Database.</p>
@@ -603,32 +645,37 @@
                     <div class="col-md-6">
                         <label>Name of next of kin</label>
                         <mat-form-field>
-                            <input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required cdkFocusInitial>
+                            <input [(ngModel)]="kinName" matInput name="name" placeholder="Name of next of kin" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Relationship with you</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinRelationship" name="name" placeholder="Relationship with you" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinRelationship" name="name"
+                                placeholder="Relationship with you" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Contact number of next of kin</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinContactNumber" name="name" placeholder="Contact number of next of kin" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinContactNumber" name="name"
+                                placeholder="Contact number of next of kin" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <label>Secondary Contact number</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinSecondContactNumber" name="name" placeholder="Secondary Contact Number" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinSecondContactNumber" name="name"
+                                placeholder="Secondary Contact Number" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Email for next of kin</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="kinEmail" name="name" placeholder="Email Address" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -636,7 +683,8 @@
                     <div class="col-md-12">
                         <label>Address of next of kin</label>
                         <mat-form-field class="example-full-width">
-                            <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput placeholder="Address of next of kin"></textarea>
+                            <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput
+                                placeholder="Address of next of kin"></textarea>
                         </mat-form-field>
                     </div>
 
@@ -646,10 +694,12 @@
     </div>
 
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse" data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse"
+            data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
             Pre-deployment Safety Critical Checklist
         </div>
-        <div id="Pre-deployment-checklist" class="collapse single_accordion_content" aria-labelledby="Pre-deployment" data-parent="#accordion">
+        <div id="Pre-deployment-checklist" class="collapse single_accordion_content" aria-labelledby="Pre-deployment"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <h6>1) Card holder’s details</h6>
@@ -658,28 +708,32 @@
                     <div class="col-md-6">
                         <label>Forename</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderName" name="name" placeholder="Forename" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderName" name="name" placeholder="Forename" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Surname</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderSurName" name="name" placeholder="surname" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderSurName" name="name" placeholder="surname" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Card holder’s contact tel. no</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderContact" name="name" placeholder="contact" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderContact" name="name" placeholder="contact" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <label>Employing company</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="cardHolderCompany" name="name" placeholder="contact" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="cardHolderCompany" name="name" placeholder="contact" required
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -692,7 +746,8 @@
                 <div class="col-md-6">
                     <label>Full Sentinel card no.</label>
                     <mat-form-field>
-                        <input matInput [(ngModel)]="cardsentinelNumber" name="name" placeholder="contact" required cdkFocusInitial>
+                        <input matInput [(ngModel)]="cardsentinelNumber" name="name" placeholder="contact" required
+                            cdkFocusInitial>
                     </mat-form-field>
                 </div>
             </div>
@@ -702,21 +757,25 @@
 
     <!-- Competences Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse" data-target="#Competence" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="CompetenceHeading" data-toggle="collapse"
+            data-target="#Competence" aria-expanded="false" aria-controls="collapseTwo">
             Competence
         </div>
-        <div id="Competence" class="collapse single_accordion_content" aria-labelledby="CompetenceHeading" data-parent="#accordion">
+        <div id="Competence" class="collapse single_accordion_content" aria-labelledby="CompetenceHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
                         <label>Medical</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD1" [matDatepicker]="cd1" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD1" [matDatepicker]="cd1"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd1"></mat-datepicker-toggle>
                             <mat-datepicker #cd1></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE1" [matDatepicker]="ce1" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE1" [matDatepicker]="ce1"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce1"></mat-datepicker-toggle>
                             <mat-datepicker #ce1></mat-datepicker>
                         </mat-form-field>
@@ -724,12 +783,14 @@
                     <div class="col-lg-6">
                         <label>PTS AC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD2" [matDatepicker]="cd2" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD2" [matDatepicker]="cd2"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd2"></mat-datepicker-toggle>
                             <mat-datepicker #cd2></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE2" [matDatepicker]="ce2" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE2" [matDatepicker]="ce2"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce2"></mat-datepicker-toggle>
                             <mat-datepicker #ce2></mat-datepicker>
                         </mat-form-field>
@@ -739,12 +800,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>PTS DC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD3" name="doi" [matDatepicker]="cd3" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD3" name="doi" [matDatepicker]="cd3"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd3"></mat-datepicker-toggle>
                             <mat-datepicker #cd3></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE3" name="doi" [matDatepicker]="ce3" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE3" name="doi" [matDatepicker]="ce3"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce3"></mat-datepicker-toggle>
                             <mat-datepicker #ce3></mat-datepicker>
                         </mat-form-field>
@@ -752,12 +815,14 @@
                     <div class="col-lg-6">
                         <label>AOD PO</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD4" name="doi" [matDatepicker]="cd4" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD4" name="doi" [matDatepicker]="cd4"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd4"></mat-datepicker-toggle>
                             <mat-datepicker #cd4></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE4" name="doi" [matDatepicker]="ce4" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE4" name="doi" [matDatepicker]="ce4"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce4"></mat-datepicker-toggle>
                             <mat-datepicker #ce4></mat-datepicker>
                         </mat-form-field>
@@ -767,12 +832,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>AOD PO</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD5" name="doi" [matDatepicker]="cd5" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD5" name="doi" [matDatepicker]="cd5"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd5"></mat-datepicker-toggle>
                             <mat-datepicker #cd5></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE5" name="doi" [matDatepicker]="ce5" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE5" name="doi" [matDatepicker]="ce5"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce5"></mat-datepicker-toggle>
                             <mat-datepicker #ce5></mat-datepicker>
                         </mat-form-field>
@@ -780,12 +847,14 @@
                     <div class="col-lg-6">
                         <label>AOD HS</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD6" name="doi" [matDatepicker]="cd6" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD6" name="doi" [matDatepicker]="cd6"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd6"></mat-datepicker-toggle>
                             <mat-datepicker #cd6></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE6" name="doi" [matDatepicker]="ce6" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE6" name="doi" [matDatepicker]="ce6"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce6"></mat-datepicker-toggle>
                             <mat-datepicker #ce6></mat-datepicker>
                         </mat-form-field>
@@ -795,12 +864,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>AOD LXA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD7" name="doi" [matDatepicker]="cd7" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD7" name="doi" [matDatepicker]="cd7"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd7"></mat-datepicker-toggle>
                             <mat-datepicker #cd7></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE7" name="doi" [matDatepicker]="ce7" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE7" name="doi" [matDatepicker]="ce7"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce7"></mat-datepicker-toggle>
                             <mat-datepicker #ce7></mat-datepicker>
                         </mat-form-field>
@@ -808,12 +879,14 @@
                     <div class="col-lg-6">
                         <label>AOD RSA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD8" name="doi" [matDatepicker]="cd8" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD8" name="doi" [matDatepicker]="cd8"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd8"></mat-datepicker-toggle>
                             <mat-datepicker #cd8></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE8" name="doi" [matDatepicker]="ce8" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE8" name="doi" [matDatepicker]="ce8"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce8"></mat-datepicker-toggle>
                             <mat-datepicker #ce8></mat-datepicker>
                         </mat-form-field>
@@ -823,12 +896,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>LKT / SW</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD9" name="doi" [matDatepicker]="cd9" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD9" name="doi" [matDatepicker]="cd9"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd9"></mat-datepicker-toggle>
                             <mat-datepicker #cd9></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE9" name="doi" [matDatepicker]="ce9" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE9" name="doi" [matDatepicker]="ce9"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce9"></mat-datepicker-toggle>
                             <mat-datepicker #ce9></mat-datepicker>
                         </mat-form-field>
@@ -836,12 +911,14 @@
                     <div class="col-lg-6">
                         <label>IWA</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD10" name="doi" [matDatepicker]="cd10" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD10" name="doi" [matDatepicker]="cd10"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd10"></mat-datepicker-toggle>
                             <mat-datepicker #cd10></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE10" name="doi" [matDatepicker]="ce10" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE10" name="doi" [matDatepicker]="ce10"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce10"></mat-datepicker-toggle>
                             <mat-datepicker #ce10></mat-datepicker>
                         </mat-form-field>
@@ -851,12 +928,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>COSS</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD11" name="doi" [matDatepicker]="cd11" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD11" name="doi" [matDatepicker]="cd11"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd11"></mat-datepicker-toggle>
                             <mat-datepicker #cd11></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE11" name="doi" [matDatepicker]="ce11" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE11" name="doi" [matDatepicker]="ce11"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce11"></mat-datepicker-toggle>
                             <mat-datepicker #ce11></mat-datepicker>
                         </mat-form-field>
@@ -864,12 +943,14 @@
                     <div class="col-lg-6">
                         <label>COSS OLP</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD12" name="doi" [matDatepicker]="cd12" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD12" name="doi" [matDatepicker]="cd12"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd12"></mat-datepicker-toggle>
                             <mat-datepicker #cd12></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE12" name="doi" [matDatepicker]="ce12" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE12" name="doi" [matDatepicker]="ce12"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce12"></mat-datepicker-toggle>
                             <mat-datepicker #ce12></mat-datepicker>
                         </mat-form-field>
@@ -879,12 +960,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>COSS CRP</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD13" name="doi" [matDatepicker]="cd13" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD13" name="doi" [matDatepicker]="cd13"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd13"></mat-datepicker-toggle>
                             <mat-datepicker #cd13></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE13" name="doi" [matDatepicker]="ce13" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE13" name="doi" [matDatepicker]="ce13"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce13"></mat-datepicker-toggle>
                             <mat-datepicker #ce13></mat-datepicker>
                         </mat-form-field>
@@ -892,12 +975,14 @@
                     <div class="col-lg-6">
                         <label>PC</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD14" name="doi" [matDatepicker]="cd14" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD14" name="doi" [matDatepicker]="cd14"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd14"></mat-datepicker-toggle>
                             <mat-datepicker #cd14></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE14" name="doi" [matDatepicker]="ce14" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE14" name="doi" [matDatepicker]="ce14"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce14"></mat-datepicker-toggle>
                             <mat-datepicker #ce14></mat-datepicker>
                         </mat-form-field>
@@ -907,12 +992,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>ES</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD15" name="doi" [matDatepicker]="cd15" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD15" name="doi" [matDatepicker]="cd15"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd15"></mat-datepicker-toggle>
                             <mat-datepicker #cd15></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE15" name="doi" [matDatepicker]="ce15" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE15" name="doi" [matDatepicker]="ce15"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce15"></mat-datepicker-toggle>
                             <mat-datepicker #ce15></mat-datepicker>
                         </mat-form-field>
@@ -920,12 +1007,14 @@
                     <div class="col-lg-6">
                         <label>ES Level A</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD16" name="doi" [matDatepicker]="cd16" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD16" name="doi" [matDatepicker]="cd16"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd16"></mat-datepicker-toggle>
                             <mat-datepicker #cd16></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE16" name="doi" [matDatepicker]="ce16" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE16" name="doi" [matDatepicker]="ce16"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce16"></mat-datepicker-toggle>
                             <mat-datepicker #ce16></mat-datepicker>
                         </mat-form-field>
@@ -935,12 +1024,14 @@
                     <div class="col-md-6 col-lg-6">
                         <label>StrapmanLvl B</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD17" name="doi" [matDatepicker]="cd17" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD17" name="doi" [matDatepicker]="cd17"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd17"></mat-datepicker-toggle>
                             <mat-datepicker #cd17></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE17" name="doi" [matDatepicker]="ce17" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE17" name="doi" [matDatepicker]="ce17"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce17"></mat-datepicker-toggle>
                             <mat-datepicker #ce17></mat-datepicker>
                         </mat-form-field>
@@ -948,12 +1039,14 @@
                     <div class="col-lg-6">
                         <label>Switching (DC)</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesD18" name="doi" [matDatepicker]="cd18" placeholder="duration held" irequired>
+                            <input matInput [(ngModel)]="competencesD18" name="doi" [matDatepicker]="cd18"
+                                placeholder="duration held" irequired>
                             <mat-datepicker-toggle matSuffix [for]="cd18"></mat-datepicker-toggle>
                             <mat-datepicker #cd18></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="competencesE18" name="doi" [matDatepicker]="ce18" placeholder="Choose a date of expiry" irequired>
+                            <input matInput [(ngModel)]="competencesE18" name="doi" [matDatepicker]="ce18"
+                                placeholder="Choose a date of expiry" irequired>
                             <mat-datepicker-toggle matSuffix [for]="ce18"></mat-datepicker-toggle>
                             <mat-datepicker #ce18></mat-datepicker>
                         </mat-form-field>
@@ -967,10 +1060,12 @@
 
     <!-- Medical Self-Certification Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Medical-Self-Certification-heading" data-toggle="collapse" data-target="#Medical-Self-Certification" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Medical-Self-Certification-heading" data-toggle="collapse"
+            data-target="#Medical-Self-Certification" aria-expanded="false" aria-controls="bankdetail">
             Medical Self-Certification
         </div>
-        <div id="Medical-Self-Certification" class="collapse single_accordion_content" aria-labelledby="Medical-Self-Certification-heading" data-parent="#accordion">
+        <div id="Medical-Self-Certification" class="collapse single_accordion_content"
+            aria-labelledby="Medical-Self-Certification-heading" data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1118,10 +1213,12 @@
 
     <!-- Medical Standards: Eyewear Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse" data-target="#eye-standard" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse"
+            data-target="#eye-standard" aria-expanded="false" aria-controls="bankdetail">
             Medical Standards: Eyewear
         </div>
-        <div id="eye-standard" class="collapse single_accordion_content" aria-labelledby="eye-standard-heading" data-parent="#accordion">
+        <div id="eye-standard" class="collapse single_accordion_content" aria-labelledby="eye-standard-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1149,7 +1246,8 @@
                     <div class="col-md-6">
                         <label>Date</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard" placeholder="Choose a date" irequired>
+                            <input matInput [(ngModel)]="medicalEye4" name="doi" [matDatepicker]="eye-standard"
+                                placeholder="Choose a date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="eye-standard"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -1163,10 +1261,12 @@
 
     <!-- Occupational Health Questionnaire Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses-heading" data-toggle="collapse" data-target="#Illnesses" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses-heading" data-toggle="collapse"
+            data-target="#Illnesses" aria-expanded="false" aria-controls="bankdetail">
             Occupational Health Questionnaire
         </div>
-        <div id="Illnesses" class="collapse single_accordion_content" aria-labelledby="Illnesses-heading" data-parent="#accordion">
+        <div id="Illnesses" class="collapse single_accordion_content" aria-labelledby="Illnesses-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <h5>Illnesses that can affect your safety at work.</h5>
@@ -1500,10 +1600,12 @@
 
     <!-- Other Health Information Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses0.2-heading" data-toggle="collapse" data-target="#Illnesses2" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses0.2-heading" data-toggle="collapse"
+            data-target="#Illnesses2" aria-expanded="false" aria-controls="bankdetail">
             Other information that the Employer needs to know for health and safety requirements.
         </div>
-        <div id="Illnesses2" class="collapse single_accordion_content" aria-labelledby="Illnesses0.2-heading" data-parent="#accordion">
+        <div id="Illnesses2" class="collapse single_accordion_content" aria-labelledby="Illnesses0.2-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1629,10 +1731,12 @@
 
     <!-- Other Health Information Questions Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse" data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse"
+            data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
             Other Questions.
         </div>
-        <div id="Illnesses3" class="collapse single_accordion_content" aria-labelledby="Illnesses3-heading" data-parent="#accordion">
+        <div id="Illnesses3" class="collapse single_accordion_content" aria-labelledby="Illnesses3-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -1717,14 +1821,17 @@
 
     <!-- Gp Registration Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="gpregistration-heading" data-toggle="collapse" data-target="#gpregistration" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="gpregistration-heading" data-toggle="collapse"
+            data-target="#gpregistration" aria-expanded="false" aria-controls="collapseTwo">
             GP Registration:
         </div>
-        <div id="gpregistration" class="collapse single_accordion_content" aria-labelledby="gpregistration-heading" data-parent="#accordion">
+        <div id="gpregistration" class="collapse single_accordion_content" aria-labelledby="gpregistration-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <p>You should be registered with a doctor local to where you are currently living.</p>
-                    <p>Please provide the contact details of your GP so that the Company can inform your doctor of anydetails of the type of health problems you may be exposed to as a construction worker.</p>
+                    <p>Please provide the contact details of your GP so that the Company can inform your doctor of
+                        anydetails of the type of health problems you may be exposed to as a construction worker.</p>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -1748,7 +1855,8 @@
                     <div class="col-md-6">
                         <label>Post Code</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="gpPostCode" name="name" placeholder="Post Code" cdkFocusInitial>
+                            <input matInput [(ngModel)]="gpPostCode" name="name" placeholder="Post Code"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
 
@@ -1762,9 +1870,14 @@
 
                 <div class="row">
                     <h3><b>Note</b></h3>
-                    <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor ifyou experience a health problem in the future, you may be asked to provide authorisation for yourdoctor to reply to any query concerning
-                        your health or medical history. Information in the reportrelating to your employment may be passed on to the Company. You have the right to see any medicalreport prepared by your doctor before it is sent to the Company Medical
-                        Advisor, who will treat theinformation in the strictest confidence. It is within your rights to decline to give authorisation forinformation to be passed to the Company.</p>
+                    <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor
+                        ifyou experience a health problem in the future, you may be asked to provide authorisation for
+                        yourdoctor to reply to any query concerning
+                        your health or medical history. Information in the reportrelating to your employment may be
+                        passed on to the Company. You have the right to see any medicalreport prepared by your doctor
+                        before it is sent to the Company Medical
+                        Advisor, who will treat theinformation in the strictest confidence. It is within your rights to
+                        decline to give authorisation forinformation to be passed to the Company.</p>
                 </div>
             </div>
         </div>
@@ -1773,10 +1886,12 @@
 
     <!-- TfL Area Familiarisation Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="tflarea-heading" data-toggle="collapse" data-target="#tflarea" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="single_accordion_title collapsed" id="tflarea-heading" data-toggle="collapse" data-target="#tflarea"
+            aria-expanded="false" aria-controls="collapseTwo">
             TfL Area Familiarisation:
         </div>
-        <div id="tflarea" class="collapse single_accordion_content" aria-labelledby="tflarea-heading" data-parent="#accordion">
+        <div id="tflarea" class="collapse single_accordion_content" aria-labelledby="tflarea-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -1796,12 +1911,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input [(ngModel)]="tflArear1Visit" matInput type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input [(ngModel)]="tflArear1Visit" matInput type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear1Date" name="area1" [matDatepicker]="area1" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear1Date" name="area1" [matDatepicker]="area1"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area1"></mat-datepicker-toggle>
                             <mat-datepicker #area1></mat-datepicker>
                         </mat-form-field>
@@ -1821,12 +1938,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear2Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear2Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear2Date" name="area2" [matDatepicker]="area2" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear2Date" name="area2" [matDatepicker]="area2"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area2"></mat-datepicker-toggle>
                             <mat-datepicker #area2></mat-datepicker>
                         </mat-form-field>
@@ -1845,12 +1964,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear3Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear3Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear3Date" name="area3" [matDatepicker]="area3" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear3Date" name="area3" [matDatepicker]="area3"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area3"></mat-datepicker-toggle>
                             <mat-datepicker #area3></mat-datepicker>
                         </mat-form-field>
@@ -1870,12 +1991,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear4Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear4Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear4Date" name="area4" [matDatepicker]="area4" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear4Date" name="area4" [matDatepicker]="area4"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area4"></mat-datepicker-toggle>
                             <mat-datepicker #area4></mat-datepicker>
                         </mat-form-field>
@@ -1896,12 +2019,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear5Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear5Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear5Date" name="area5" [matDatepicker]="area5" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear5Date" name="area5" [matDatepicker]="area5"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area5"></mat-datepicker-toggle>
                             <mat-datepicker #area5></mat-datepicker>
                         </mat-form-field>
@@ -1922,12 +2047,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear6Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear6Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear6Date" name="area6" [matDatepicker]="area6" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear6Date" name="area6" [matDatepicker]="area6"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area6"></mat-datepicker-toggle>
                             <mat-datepicker #area6></mat-datepicker>
                         </mat-form-field>
@@ -1948,12 +2075,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear7Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear7Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear7Date" name="area7" [matDatepicker]="area7" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear7Date" name="area7" [matDatepicker]="area7"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area7"></mat-datepicker-toggle>
                             <mat-datepicker #area7></mat-datepicker>
                         </mat-form-field>
@@ -1974,12 +2103,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear8Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear8Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear8Date" name="area8" [matDatepicker]="area8" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear8Date" name="area8" [matDatepicker]="area8"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area8"></mat-datepicker-toggle>
                             <mat-datepicker #area8></mat-datepicker>
                         </mat-form-field>
@@ -2000,12 +2131,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear9Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear9Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear9Date" name="area9" [matDatepicker]="area9" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear9Date" name="area9" [matDatepicker]="area9"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area9"></mat-datepicker-toggle>
                             <mat-datepicker #area9></mat-datepicker>
                         </mat-form-field>
@@ -2026,12 +2159,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear10Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear10Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear10Date" name="area10" [matDatepicker]="area10" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear10Date" name="area10" [matDatepicker]="area10"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area10"></mat-datepicker-toggle>
                             <mat-datepicker #area10></mat-datepicker>
                         </mat-form-field>
@@ -2051,12 +2186,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear11Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear11Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear11Date" name="area11" [matDatepicker]="area11" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear11Date" name="area11" [matDatepicker]="area11"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area11"></mat-datepicker-toggle>
                             <mat-datepicker #area11></mat-datepicker>
                         </mat-form-field>
@@ -2076,12 +2213,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear12Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear12Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear12Date" name="area12" [matDatepicker]="area12" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear12Date" name="area12" [matDatepicker]="area12"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area12"></mat-datepicker-toggle>
                             <mat-datepicker #area12></mat-datepicker>
                         </mat-form-field>
@@ -2100,12 +2239,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear13Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear13Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear13Date" name="area13" [matDatepicker]="area13" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear13Date" name="area13" [matDatepicker]="area13"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area13"></mat-datepicker-toggle>
                             <mat-datepicker #area13></mat-datepicker>
                         </mat-form-field>
@@ -2125,12 +2266,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear14Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear14Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear14Date" name="area14" [matDatepicker]="area14" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear14Date" name="area14" [matDatepicker]="area14"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area14"></mat-datepicker-toggle>
                             <mat-datepicker #area14></mat-datepicker>
                         </mat-form-field>
@@ -2150,12 +2293,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear15Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear15Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear15Date" name="area15" [matDatepicker]="area15" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear15Date" name="area15" [matDatepicker]="area15"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area15"></mat-datepicker-toggle>
                             <mat-datepicker #area15></mat-datepicker>
                         </mat-form-field>
@@ -2175,12 +2320,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear16Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear16Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear16Date" [(ngModel)]="tflArear1Date" name="area16" [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear16Date" [(ngModel)]="tflArear1Date" name="area16"
+                                [matDatepicker]="area16" placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area16"></mat-datepicker-toggle>
                             <mat-datepicker #area16></mat-datepicker>
                         </mat-form-field>
@@ -2200,12 +2347,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear17Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear17Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear17Date" name="area17" [matDatepicker]="area17" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear17Date" name="area17" [matDatepicker]="area17"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area17"></mat-datepicker-toggle>
                             <mat-datepicker #area17></mat-datepicker>
                         </mat-form-field>
@@ -2225,12 +2374,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear18Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear18Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear18Date" name="area18" [matDatepicker]="area18" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear18Date" name="area18" [matDatepicker]="area18"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area18"></mat-datepicker-toggle>
                             <mat-datepicker #area18></mat-datepicker>
                         </mat-form-field>
@@ -2250,12 +2401,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear19Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear19Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear19Date" name="area19" [matDatepicker]="area19" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear19Date" name="area19" [matDatepicker]="area19"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area19"></mat-datepicker-toggle>
                             <mat-datepicker #area19></mat-datepicker>
                         </mat-form-field>
@@ -2274,12 +2427,14 @@
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear1Visit" type="number" name="name" placeholder="No. of Visit" required cdkFocusInitial>
+                            <input matInput [(ngModel)]="tflArear1Visit" type="number" name="name"
+                                placeholder="No. of Visit" required cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="tflArear1Date" name="area20" [matDatepicker]="area20" placeholder="Choose a date of induction" irequired>
+                            <input matInput [(ngModel)]="tflArear1Date" name="area20" [matDatepicker]="area20"
+                                placeholder="Choose a date of induction" irequired>
                             <mat-datepicker-toggle matSuffix [for]="area20"></mat-datepicker-toggle>
                             <mat-datepicker #area20></mat-datepicker>
                         </mat-form-field>
@@ -2294,10 +2449,12 @@
 
     <!--Night Workers Questionnaire Start Here -->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="NightWorkers-heading" data-toggle="collapse" data-target="#NightWorkers" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="NightWorkers-heading" data-toggle="collapse"
+            data-target="#NightWorkers" aria-expanded="false" aria-controls="bankdetail">
             Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers
         </div>
-        <div id="NightWorkers" class="collapse single_accordion_content" aria-labelledby="NightWorkers-heading" data-parent="#accordion">
+        <div id="NightWorkers" class="collapse single_accordion_content" aria-labelledby="NightWorkers-heading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -2383,20 +2540,23 @@
                         <label>Do you have any other health problem that affects your fitness for night
                             work?</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give the names of any prescribed medications that you take regularly:</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give any further details that you would like to bring to our
                             attention.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem" cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem"
+                                cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2408,10 +2568,12 @@
 
     <!----------Specific work/activity experience start------------------------------>
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse" data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
+        <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse"
+            data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
             Specific work/activity experience
         </div>
-        <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading" data-parent="#accordion">
+        <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-12">
@@ -2489,10 +2651,12 @@
 
     <!---------------------------Rail PPE Issue start------------------------------->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse" data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
+        <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse"
+            data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
             Rail-PPE Issue
         </div>
-        <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading" data-parent="#accordion">
+        <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <h3 style="text-align: center;">Clothing</h3>
                 <div class="row">
@@ -2505,7 +2669,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="clothing1D" name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing1D" name="Railissue" [matDatepicker]="Railissue"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue></mat-datepicker>
                         </mat-form-field>
@@ -2527,7 +2692,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="clothing2D" name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing2D" name="Railissue1" [matDatepicker]="Railissue1"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue1></mat-datepicker>
                         </mat-form-field>
@@ -2549,7 +2715,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput name="Railissue2" [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2" placeholder="Issue Date" irequired>
+                            <input matInput name="Railissue2" [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue2></mat-datepicker>
                         </mat-form-field>
@@ -2572,7 +2739,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="clothing4D" name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing4D" name="Railissue3" [matDatepicker]="Railissue3"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue3></mat-datepicker>
                         </mat-form-field>
@@ -2595,7 +2763,8 @@
                     </div>
                     <div class="col-3">
                         <mat-form-field>
-                            <input matInput [(ngModel)]="clothing5D" name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date" irequired>
+                            <input matInput [(ngModel)]="clothing5D" name="Railissue4" [matDatepicker]="Railissue4"
+                                placeholder="Issue Date" irequired>
                             <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
                             <mat-datepicker #Railissue4></mat-datepicker>
                         </mat-form-field>
@@ -2621,7 +2790,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue5" [(ngModel)]="sE1D" [matDatepicker]="Railissue5" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue5" [(ngModel)]="sE1D" [matDatepicker]="Railissue5"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue5></mat-datepicker>
                                 </mat-form-field>
@@ -2644,7 +2814,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE2D" name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE2D" name="Railissue6" [matDatepicker]="Railissue6"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue6></mat-datepicker>
                                 </mat-form-field>
@@ -2667,7 +2838,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE3D" name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE3D" name="Railissue7" [matDatepicker]="Railissue7"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue7></mat-datepicker>
                                 </mat-form-field>
@@ -2690,7 +2862,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE4D" name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE4D" name="Railissue8" [matDatepicker]="Railissue8"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue8></mat-datepicker>
                                 </mat-form-field>
@@ -2713,7 +2886,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE5D" name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE5D" name="Railissue9" [matDatepicker]="Railissue9"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue9></mat-datepicker>
                                 </mat-form-field>
@@ -2736,7 +2910,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE6D" name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE6D" name="Railissue10" [matDatepicker]="Railissue10"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue10></mat-datepicker>
                                 </mat-form-field>
@@ -2759,7 +2934,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput [(ngModel)]="sE7D" name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date" irequired>
+                                    <input matInput [(ngModel)]="sE7D" name="Railissue11" [matDatepicker]="Railissue11"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue11></mat-datepicker>
                                 </mat-form-field>
@@ -2782,7 +2958,8 @@
                             </div>
                             <div class="col-3">
                                 <mat-form-field>
-                                    <input matInput name="Railissue12" [(ngModel)]="sE8D" [matDatepicker]="Railissue12" placeholder="Issue Date" irequired>
+                                    <input matInput name="Railissue12" [(ngModel)]="sE8D" [matDatepicker]="Railissue12"
+                                        placeholder="Issue Date" irequired>
                                     <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
                                     <mat-datepicker #Railissue12></mat-datepicker>
                                 </mat-form-field>
@@ -2805,10 +2982,12 @@
 
     <!-- Stress-Risk Start--------->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="Stress-Risk-Assessment" data-toggle="collapse" data-target="#Stress-Risk" aria-expanded="false" aria-controls="bankdetail">
+        <div class="single_accordion_title collapsed" id="Stress-Risk-Assessment" data-toggle="collapse"
+            data-target="#Stress-Risk" aria-expanded="false" aria-controls="bankdetail">
             Stress-Risk Assessment Form
         </div>
-        <div id="Stress-Risk" class="collapse single_accordion_content" aria-labelledby="Stress-Risk-Assessment" data-parent="#accordion">
+        <div id="Stress-Risk" class="collapse single_accordion_content" aria-labelledby="Stress-Risk-Assessment"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <div class="row">
                     <div class="col-6">
@@ -2828,9 +3007,12 @@
                     <div class="col-12">
                         <mat-form-field class="example-full-width">
                             <mat-label>Reason Of Trigger For Risk Assessment</mat-label>
-                            <textarea [(ngModel)]="Stress3" matInput placeholder="Reason Of Trigger For Risk Assessment"></textarea>
+                            <textarea [(ngModel)]="Stress3" matInput
+                                placeholder="Reason Of Trigger For Risk Assessment"></textarea>
                         </mat-form-field>
-                        <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is being completed;for example, return to work after stress-related absence, or employee informed youthat they had been suffering from symptoms
+                        <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is
+                            being completed;for example, return to work after stress-related absence, or employee
+                            informed youthat they had been suffering from symptoms
                             of stress or workplace pressures.</p>
                     </div>
                     <div class="col-12">
@@ -2839,8 +3021,11 @@
                             <textarea [(ngModel)]="Stress4" matInput placeholder="Current control measures"></textarea>
                         </mat-form-field>
                         <p>
-                            <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or hazards fromhappening in the first instance) or protective (protect employees from existingworkplace pressure or hazards). It is, therefore, important that
-                            all measures in placeare listed here to show what is already being done; for example, hold regularmeetings with the employee/s to discuss performance and offer further support, if</p>
+                            <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or
+                            hazards fromhappening in the first instance) or protective (protect employees from
+                            existingworkplace pressure or hazards). It is, therefore, important that
+                            all measures in placeare listed here to show what is already being done; for example, hold
+                            regularmeetings with the employee/s to discuss performance and offer further support, if</p>
                     </div>
                 </div>
             </div>
@@ -2850,10 +3035,12 @@
 
     <!----------------------WorkPlacePressure----------------------------->
     <div class="single_accordion">
-        <div class="single_accordion_title collapsed" id="WorkPlaceHeading" data-toggle="collapse" data-target="#WorkPlace" aria-expanded="false" aria-controls="WorkPlace">
+        <div class="single_accordion_title collapsed" id="WorkPlaceHeading" data-toggle="collapse"
+            data-target="#WorkPlace" aria-expanded="false" aria-controls="WorkPlace">
             WorkPlace Pressure Form
         </div>
-        <div id="WorkPlace" class="collapse single_accordion_content" aria-labelledby="WorkPlaceHeading" data-parent="#accordion">
+        <div id="WorkPlace" class="collapse single_accordion_content" aria-labelledby="WorkPlaceHeading"
+            data-parent="#accordion">
             <div class="single_accordion_content_inner">
                 <h3>Control</h3>
                 <div class="row">
@@ -2868,13 +3055,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure1I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure1T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2884,13 +3071,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure2I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure2T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2900,13 +3087,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="pressure3I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure3T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2916,13 +3103,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="pressure4I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure4T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2932,13 +3119,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure5I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure5T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -2948,13 +3135,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure6I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure6T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------------------------------- -->
@@ -2966,12 +3153,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure1I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform1" [matDatepicker]="workplaceform1" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure1D" name="workplaceform1"
+                                [matDatepicker]="workplaceform1" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform1"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform1></mat-datepicker>
                         </mat-form-field>
@@ -2984,12 +3172,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure2I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform2" [matDatepicker]="workplaceform2" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure2D" name="workplaceform2"
+                                [matDatepicker]="workplaceform2" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform2"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform2></mat-datepicker>
                         </mat-form-field>
@@ -3002,12 +3191,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure3I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform3" [matDatepicker]="workplaceform3" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure3D" name="workplaceform3"
+                                [matDatepicker]="workplaceform3" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform3"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform3></mat-datepicker>
                         </mat-form-field>
@@ -3021,12 +3211,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure4I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform4" [matDatepicker]="workplaceform4" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure4D" name="workplaceform4"
+                                [matDatepicker]="workplaceform4" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform4"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform4></mat-datepicker>
                         </mat-form-field>
@@ -3040,12 +3231,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure5I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform6" [matDatepicker]="workplaceform6" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure5D" name="workplaceform6"
+                                [matDatepicker]="workplaceform6" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform6"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform6></mat-datepicker>
                         </mat-form-field>
@@ -3058,12 +3250,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure6I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform5" [matDatepicker]="workplaceform5" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure6D" name="workplaceform5"
+                                [matDatepicker]="workplaceform5" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform5"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform5></mat-datepicker>
                         </mat-form-field>
@@ -3083,13 +3276,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure7I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure7T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3099,13 +3292,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure8I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure8T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3115,13 +3308,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure9I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure9T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3131,13 +3324,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure10I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure10T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3147,13 +3340,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure11I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure11T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3163,13 +3356,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure12I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure12T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3179,13 +3372,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure13I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure13T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
 
@@ -3198,12 +3391,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure7I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform7" [matDatepicker]="workplaceform7" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure7D" name="workplaceform7"
+                                [matDatepicker]="workplaceform7" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform7"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform7></mat-datepicker>
                         </mat-form-field>
@@ -3211,17 +3405,19 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Engage with employees regularly and in a timely manner during key change initiatives, and provide opportunities to feed in their views.</h5>
+                        <h5>Engage with employees regularly and in a timely manner during key change initiatives, and
+                            provide opportunities to feed in their views.</h5>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure8I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform8" [matDatepicker]="workplaceform8" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure8D" name="workplaceform8"
+                                [matDatepicker]="workplaceform8" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform8"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform8></mat-datepicker>
                         </mat-form-field>
@@ -3234,12 +3430,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure9I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform9" [matDatepicker]="workplaceform9" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure9D" name="workplaceform9"
+                                [matDatepicker]="workplaceform9" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform9"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform9></mat-datepicker>
                         </mat-form-field>
@@ -3252,12 +3449,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure10I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform10" [matDatepicker]="workplaceform10" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure10D" name="workplaceform10"
+                                [matDatepicker]="workplaceform10" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform10"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform10></mat-datepicker>
                         </mat-form-field>
@@ -3270,12 +3468,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure11I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform11" [matDatepicker]="workplaceform11" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure11D" name="workplaceform11"
+                                [matDatepicker]="workplaceform11" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform11"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform11></mat-datepicker>
                         </mat-form-field>
@@ -3288,12 +3487,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure12I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform12" [matDatepicker]="workplaceform12" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure12D" name="workplaceform12"
+                                [matDatepicker]="workplaceform12" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform12"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform12></mat-datepicker>
                         </mat-form-field>
@@ -3315,13 +3515,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure14I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure14T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3331,13 +3531,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure15I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure15T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3347,13 +3547,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure16I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure16T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3363,13 +3563,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure17I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure17T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3379,13 +3579,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure18I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure18T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3395,13 +3595,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure19I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure19T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3411,13 +3611,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure20I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure20T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3427,13 +3627,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure21I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure21T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------------->
@@ -3445,12 +3645,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure13I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform13" [matDatepicker]="workplaceform13" placeholder="By When" irequired>
+                            <input matInput name="workplaceform13" [(ngModel)]="measure13D"
+                                [matDatepicker]="workplaceform13" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform13"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform13></mat-datepicker>
                         </mat-form-field>
@@ -3463,12 +3664,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure14I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform14" [matDatepicker]="workplaceform14" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure14D" name="workplaceform14"
+                                [matDatepicker]="workplaceform14" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform14"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform14></mat-datepicker>
                         </mat-form-field>
@@ -3481,12 +3683,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure15I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform15" [matDatepicker]="workplaceform15" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure15D" name="workplaceform15"
+                                [matDatepicker]="workplaceform15" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform15"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform15></mat-datepicker>
                         </mat-form-field>
@@ -3499,12 +3702,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure16I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform16" [matDatepicker]="workplaceform16" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure16D" name="workplaceform16"
+                                [matDatepicker]="workplaceform16" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform16"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform16></mat-datepicker>
                         </mat-form-field>
@@ -3517,12 +3721,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure17I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform17" [matDatepicker]="workplaceform17" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure17D" name="workplaceform17"
+                                [matDatepicker]="workplaceform17" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform17"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform17></mat-datepicker>
                         </mat-form-field>
@@ -3535,12 +3740,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure18I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform18" [matDatepicker]="workplaceform18" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure18D" name="workplaceform18"
+                                [matDatepicker]="workplaceform18" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform18"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform18></mat-datepicker>
                         </mat-form-field>
@@ -3548,17 +3754,19 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</h5>
+                        <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a
+                            variety of tasks, rather than those that are simply repetitive.</h5>
                     </div>
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input [(ngModel)]="measure19I" type="text" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform19" [matDatepicker]="workplaceform19" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure19D" name="workplaceform19"
+                                [matDatepicker]="workplaceform19" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform19"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform19></mat-datepicker>
                         </mat-form-field>
@@ -3571,12 +3779,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure20I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform20" [matDatepicker]="workplaceform20" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure20D" name="workplaceform20"
+                                [matDatepicker]="workplaceform20" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform20"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform20></mat-datepicker>
                         </mat-form-field>
@@ -3589,12 +3798,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure21I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform21" [matDatepicker]="workplaceform21" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure21D" name="workplaceform21"
+                                [matDatepicker]="workplaceform21" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform21"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform21></mat-datepicker>
                         </mat-form-field>
@@ -3607,12 +3817,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure22I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform22" [matDatepicker]="workplaceform22" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure22D" name="workplaceform22"
+                                [matDatepicker]="workplaceform22" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform22"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform22></mat-datepicker>
                         </mat-form-field>
@@ -3633,13 +3844,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure22I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure22T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3649,13 +3860,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure23I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure23T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3665,13 +3876,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure24I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure24T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3681,13 +3892,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure25I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure25T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3697,13 +3908,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure26I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure26T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3713,13 +3924,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure27I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure27T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------ -->
@@ -3731,13 +3942,14 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure23I" matInput>
                         </mat-form-field>
                     </div>
 
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform23" [matDatepicker]="workplaceform23" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure23D" name="workplaceform23"
+                                [matDatepicker]="workplaceform23" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform23"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform23></mat-datepicker>
                         </mat-form-field>
@@ -3750,12 +3962,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure24I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform24" [matDatepicker]="workplaceform24" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure24D" name="workplaceform24"
+                                [matDatepicker]="workplaceform24" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform24"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform24></mat-datepicker>
                         </mat-form-field>
@@ -3768,12 +3981,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure25I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform25" [matDatepicker]="workplaceform25" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure25D" name="workplaceform25"
+                                [matDatepicker]="workplaceform25" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform25"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform25></mat-datepicker>
                         </mat-form-field>
@@ -3786,12 +4000,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure26I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform26" [matDatepicker]="workplaceform26" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure26D" name="workplaceform26"
+                                [matDatepicker]="workplaceform26" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform26"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform26></mat-datepicker>
                         </mat-form-field>
@@ -3812,13 +4027,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure28I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure28T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3828,13 +4043,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure29I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure29T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3844,13 +4059,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure30I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure30T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3860,13 +4075,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure31I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure31T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3876,13 +4091,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure32I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure32T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3892,13 +4107,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="pressure33I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure33T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ----------------------------------------------------- -->
@@ -3910,12 +4125,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure27I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform27" [matDatepicker]="workplaceform27" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure27D" name="workplaceform27"
+                                [matDatepicker]="workplaceform27" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform27"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform27></mat-datepicker>
                         </mat-form-field>
@@ -3928,12 +4144,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure28I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform28" [matDatepicker]="workplaceform28" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure28D" name="workplaceform28"
+                                [matDatepicker]="workplaceform28" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform28"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform28></mat-datepicker>
                         </mat-form-field>
@@ -3946,12 +4163,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure29I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform29" [matDatepicker]="workplaceform29" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure29D" name="workplaceform29"
+                                [matDatepicker]="workplaceform29" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform29"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform29></mat-datepicker>
                         </mat-form-field>
@@ -3964,12 +4182,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure30I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform30" [matDatepicker]="workplaceform30" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure30D" name="workplaceform30"
+                                [matDatepicker]="workplaceform30" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform30"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform30></mat-datepicker>
                         </mat-form-field>
@@ -3982,12 +4201,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure31I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform31" [matDatepicker]="workplaceform31" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure31D" name="workplaceform31"
+                                [matDatepicker]="workplaceform31" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform31"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform31></mat-datepicker>
                         </mat-form-field>
@@ -4000,12 +4220,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure32I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform32" [matDatepicker]="workplaceform32" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure32D" name="workplaceform32"
+                                [matDatepicker]="workplaceform32" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform32"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform32></mat-datepicker>
                         </mat-form-field>
@@ -4030,9 +4251,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure34T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4046,9 +4267,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure35T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4062,9 +4283,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure36T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4078,9 +4299,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure37T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -4094,9 +4315,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38S" class="mr-3">S</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38L" class="mr-3">L</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="pressure38T" class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <!-- ------------------------------------- -->
@@ -4108,12 +4329,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure33I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform33" [matDatepicker]="workplaceform33" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure33D" name="workplaceform33"
+                                [matDatepicker]="workplaceform33" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform33"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform33></mat-datepicker>
                         </mat-form-field>
@@ -4126,12 +4348,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure34I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform34" [matDatepicker]="workplaceform34" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure34D" name="workplaceform34"
+                                [matDatepicker]="workplaceform34" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform34"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform34></mat-datepicker>
                         </mat-form-field>
@@ -4144,12 +4367,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure35I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform35" [matDatepicker]="workplaceform35" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure35D" name="workplaceform35"
+                                [matDatepicker]="workplaceform35" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform35"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform35></mat-datepicker>
                         </mat-form-field>
@@ -4162,12 +4386,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure36I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform36" [matDatepicker]="workplaceform36" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure36D" name="workplaceform36"
+                                [matDatepicker]="workplaceform36" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform36"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform36></mat-datepicker>
                         </mat-form-field>
@@ -4180,12 +4405,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure37I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform37" [matDatepicker]="workplaceform37" placeholder="By When" irequired>
+                            <input matInput [(ngModel)]="measure37D" name="workplaceform37"
+                                [matDatepicker]="workplaceform37" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform37"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform37></mat-datepicker>
                         </mat-form-field>
@@ -4198,12 +4424,13 @@
                     <div class="col-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
+                            <input type="text" [(ngModel)]="measure38I" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field>
-                            <input matInput name="workplaceform38" [matDatepicker]="workplaceform38" placeholder="By When" irequired>
+                            <input matInput name="workplaceform38" [(ngModel)]="measure38D"
+                                [matDatepicker]="workplaceform38" placeholder="By When" irequired>
                             <mat-datepicker-toggle matSuffix [for]="workplaceform38"></mat-datepicker-toggle>
                             <mat-datepicker #workplaceform38></mat-datepicker>
                         </mat-form-field>
@@ -4212,93 +4439,103 @@
                 <!-- ---------------------------------END of workrelationship------------------------------------------------ -->
             </div>
         </div>
-        <!-- end of workplacepressure----------------------------------------- -->
-        <!-- ----------------------------English Test------------------------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse" data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
-                English-Test(TfL only) Form
-            </div>
-            <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest" data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <P>
-                            <b>Candidates should complete the questions below to the best of their ability without any assistance.</b>
-                        </P>
-                        <div class="col-12">
-                            <p>1. They’ve both worked here _______ over ten years.</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>2. Choose the option closest in meaning to the word in bold:</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <label>Ancestor:</label>
-                                <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>3. Choose the option opposite in meaning to the word in bold:</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <label>Exterior:</label>
-                                <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>4. What ______ you like to drink? </p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>5. There are other people in the park _________ ourselves </p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>6. He had a heart attack. The doctor was immediately</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>7. My brother and I used to fight a great deal as children. We did of things together, notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really did me a , as I missed the school exams that year.</p>
-                            <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
+    </div>
+    <!-- end of workplacepressure----------------------------------------- -->
+
+
+
+    <!-- ----------------------------English Test------------------------------------------->
+    <div class="single_accordion">
+        <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse"
+            data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
+            English-Test(TfL only) Form
+        </div>
+        <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest"
+            data-parent="#accordion">
+            <div class="single_accordion_content_inner">
+                <div class="row">
+                    <P>
+                        <b>Candidates should complete the questions below to the best of their ability without any
+                            assistance.</b>
+                    </P>
+                    <div class="col-12">
+                        <p>1. They’ve both worked here _______ over ten years.</p>
+                        <mat-radio-group [(ngModel)]="tflQ1" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>2. Choose the option closest in meaning to the word in bold:</p>
+                        <mat-radio-group [(ngModel)]="tflQ2" aria-label="Select an option">
+                            <label>Ancestor:</label>
+                            <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>3. Choose the option opposite in meaning to the word in bold:</p>
+                        <mat-radio-group [(ngModel)]="tflQ3" aria-label="Select an option">
+                            <label>Exterior:</label>
+                            <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
+                            <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>4. What ______ you like to drink? </p>
+                        <mat-radio-group [(ngModel)]="tflQ4" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>5. There are other people in the park _________ ourselves </p>
+                        <mat-radio-group [(ngModel)]="tflQ5" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>6. He had a heart attack. The doctor was immediately</p>
+                        <mat-radio-group [(ngModel)]="tflQ6" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-12">
+                        <p>7. My brother and I used to fight a great deal as children. We did of things together,
+                            notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really
+                            did me a , as I missed the school exams that year.</p>
+                        <mat-radio-group [(ngModel)]="tflQ7" aria-label="Select an option">
+                            <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                            <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                        </mat-radio-group>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- english test end -->
+    </div>
+    <!-- english test end -->
 
-        <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
+    <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple"
+        (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
     </button>
 
-    </div>
-    <!-- </form> -->
+</div>
+<!-- </form> -->
