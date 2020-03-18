@@ -680,7 +680,7 @@
                     </div>
 
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Address of next of kin</label>
                         <mat-form-field class="example-full-width">
                             <textarea [(ngModel)]="kinAddress" rows="4" name="address" cols="100" matInput
@@ -2540,23 +2540,20 @@
                         <label>Do you have any other health problem that affects your fitness for night
                             work?</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem"
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ11" name="name" placeholder="Night Work Problem" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give the names of any prescribed medications that you take regularly:</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem"
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ12" name="name" placeholder="Night Work Problem" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
                         <label>Please give any further details that you would like to bring to our
                             attention.</label>
                         <mat-form-field>
-                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem"
-                                cdkFocusInitial>
+                            <input matInput [(ngModel)]="nightWorkQ13" name="name" placeholder="Night Work Problem" cdkFocusInitial>
                         </mat-form-field>
                     </div>
                 </div>
@@ -2994,20 +2991,20 @@
                         <label>Name of Team</label>
                         <mat-form-field>
                             <mat-label>Name Of Team/Individual:</mat-label>
-                            <input matInput>
+                            <input [(ngModel)]="Stress1" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-6">
                         <label>Number of Employees</label>
                         <mat-form-field>
                             <mat-label>Number Of Employees:</mat-label>
-                            <input type="number" matInput>
+                            <input [(ngModel)]="Stress2" type="number" matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-12">
                         <mat-form-field class="example-full-width">
                             <mat-label>Reason Of Trigger For Risk Assessment</mat-label>
-                            <textarea matInput placeholder="Reason Of Trigger For Risk Assessment"></textarea>
+                            <textarea [(ngModel)]="Stress3" matInput placeholder="Reason Of Trigger For Risk Assessment"></textarea>
                         </mat-form-field>
                         <p><strong>Note: </strong>Add a brief description indicating why the stress-risk assessment is
                             being completed;for example, return to work after stress-related absence, or employee
@@ -3017,7 +3014,7 @@
                     <div class="col-12">
                         <mat-form-field class="example-full-width">
                             <mat-label>Current control measures</mat-label>
-                            <textarea matInput placeholder="Current control measures"></textarea>
+                            <textarea [(ngModel)]="Stress4" matInput placeholder="Current control measures"></textarea>
                         </mat-form-field>
                         <p>
                             <Strong>Note: </Strong>Control measures can be preventative (prevent workplace pressure or
