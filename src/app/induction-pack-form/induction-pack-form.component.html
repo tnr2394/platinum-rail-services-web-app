@@ -2860,17 +2860,6 @@
                     <div class="col-4">
                         <h5>Are you troubled by </h5>
                     </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
@@ -2968,22 +2957,123 @@
                         <mat-checkbox class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
+                <!-- ------------------------------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Discuss flexibility over delivery of work schedules and delivery of work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform1" [matDatepicker]="workplaceform1" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform1"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Support flexible working practices,wherever possible and practical.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform2" [matDatepicker]="workplaceform2" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform2"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Agree on the most appropriate communication methodsand frequency.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform3" [matDatepicker]="workplaceform3" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform3"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Include all employees in decision-making for tasks/planning work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform4" [matDatepicker]="workplaceform4" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform4"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform4></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Share good practice and recognise achievements or suggestions.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform6" [matDatepicker]="workplaceform6" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform6"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform6></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Discuss learning opportunities.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform5" [matDatepicker]="workplaceform5" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform5"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform5></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <!-- -------------------------------------- -->
                 <h3>JOB SECURITY AND CHANGE</h3>
                 <div class="row">
                     <div class="col-4">
                         <h5>Are you troubled by</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Issue identify</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-checkbox class="mr-3">S</mat-checkbox>
-                        <mat-checkbox class="mr-3">L</mat-checkbox>
-                        <mat-checkbox class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
                 <div class="row">
@@ -3098,118 +3188,9 @@
                         <mat-checkbox class="mr-3">T</mat-checkbox>
                     </div>
                 </div>
-                <!-- ----------------------------------------------------->
+
+                <!-- ------------------------------------- -->
                 <h3>Additional Control Measures</h3>
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Discuss flexibility over delivery of work schedules and delivery of work.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform1" [matDatepicker]="workplaceform1" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform1"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform1></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Support flexible working practices,wherever possible and practical.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform2" [matDatepicker]="workplaceform2" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform2"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform2></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Agree on the most appropriate communication methodsand frequency.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform3" [matDatepicker]="workplaceform3" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform3"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform3></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Include all employees in decision-making for tasks/planning work.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform4" [matDatepicker]="workplaceform4" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform4"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform4></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Share good practice and recognise achievements or suggestions.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform6" [matDatepicker]="workplaceform6" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform6"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform6></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h5>Discuss learning opportunities.</h5>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>By Whom</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                        <mat-form-field>
-                            <input matInput name="workplaceform5" [matDatepicker]="workplaceform5" placeholder="By When" irequired>
-                            <mat-datepicker-toggle matSuffix [for]="workplaceform5"></mat-datepicker-toggle>
-                            <mat-datepicker #workplaceform5></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-4">
                         <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
@@ -3319,13 +3300,921 @@
                     </div>
                 </div>
 
+                <!-- --------------------Balanced worked---------------------------------->
+                <h3>BALANCED WORKLOAD</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Clear priorities?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having realistic deadlines?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having sufficient resources to do your job?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your skills,training,and knowledge being sufficient to do your job?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>The length of your daily commute?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Having a dull or repetitive work?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your work/life balance?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------------->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Reallocate duties (temporarily orpermanently).</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform13" [matDatepicker]="workplaceform13" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform13"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform13></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Help prioritise tasks or projects appropriately.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform14" [matDatepicker]="workplaceform14" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform14"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform14></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Adjust hours or workpattern (temporarily or permanently).</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform15" [matDatepicker]="workplaceform15" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform15"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform15></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Identify and support specific training needs.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform16" [matDatepicker]="workplaceform16" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform16"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform16></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure tasks and expectations are clearly defined and understood.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform17" [matDatepicker]="workplaceform17" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform17"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform17></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Plan work carefully so that deadlines are achievable.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform18" [matDatepicker]="workplaceform18" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform18"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform18></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Explore the full potential of an employee to utilise their skill set. If possible, offer a variety of tasks, rather than those that are simply repetitive.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform19" [matDatepicker]="workplaceform19" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform19"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform19></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Plan workload in regular discussions.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform20" [matDatepicker]="workplaceform20" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform20"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform20></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Agree an upper limit to working hours.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform21" [matDatepicker]="workplaceform21" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform21"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform21></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Switch off mobile phones and laptops at a specific time.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform22" [matDatepicker]="workplaceform22" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform22"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform22></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ----------------------------------------------------->
+                <!-- ---------------------------------Job condition--------------->
+                <h3>JOB CONDITIONS</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling insufficiently inducted into the role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Understanding your role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your reporting structure?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Your working environment?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Other demands in you outside your role?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------ -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Clarify employee’s expectations of the role.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform23" [matDatepicker]="workplaceform23" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform23"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform23></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Reinforce the reporting structure.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform24" [matDatepicker]="workplaceform24" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform24"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform24></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are there any physical hazards in the work environment that need to be managed?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform25" [matDatepicker]="workplaceform25" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform25"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform25></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Does the employee understand the support services they can access?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform26" [matDatepicker]="workplaceform26" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform26"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform26></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ------------------------------------------JOBCOndition------------------------- -->
+                <!--------------------------------------------------------RESOURCES AND COMMUNICATION------->
+                <h3>RESOURCES AND COMMUNICATION</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feeling insufficiently supported by your team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Feelings of isolation?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Being informed of workplace issues?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Issues around communication?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Further training needs?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ----------------------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Support employees to develop their skills and knowledge to do their work.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform27" [matDatepicker]="workplaceform27" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform27"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform27></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Source equipment or tools needed to perform work effectively.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform28" [matDatepicker]="workplaceform28" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform28"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform28></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure communication mechanisms are in place and operating effectively.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform29" [matDatepicker]="workplaceform29" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform29"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform29></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Focus on communicating honestly and regularly.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform30" [matDatepicker]="workplaceform30" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform30"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform30></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Encourage employees to make suggestions to management.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform31" [matDatepicker]="workplaceform31" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform31"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform31></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure employees are aware of all support services available to them.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform32" [matDatepicker]="workplaceform32" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform32"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform32></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- --------------------------------RESOURCES AND COMMUNICATION End-------------------------------------------------->
+                <!-- -----------------------------WORK RELATIONSHIPS----------------------------------------------->
+                <h3>WORK RELATIONSHIP</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are you troubled by :</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Bullying or harassment issues in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>An insufficient supportive atmosphere in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>How to raise a concern or find support?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>A lack of recognition for diversity in the team?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Are there any other concerns?</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Issue identify</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="mr-3">S</mat-checkbox>
+                        <mat-checkbox class="mr-3">L</mat-checkbox>
+                        <mat-checkbox class="mr-3">T</mat-checkbox>
+                    </div>
+                </div>
+                <!-- ------------------------------------- -->
+                <h3>Additional Control Measures</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Report and quickly address any bullying or harassment claims.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform33" [matDatepicker]="workplaceform33" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform33"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform33></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Ensure employees are aware of policies related to resolving unacceptable behaviour.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform34" [matDatepicker]="workplaceform34" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform34"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform34></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Encourage 1-2-1 discussions, rather than email.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform35" [matDatepicker]="workplaceform35" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform35"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform35></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Review diversity and inclusion training.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform36" [matDatepicker]="workplaceform36" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform36"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform36></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Arrange regular team and 1-2-1 meetings.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform37" [matDatepicker]="workplaceform37" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform37"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform37></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Promote positive working relationships.</h5>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>By Whom</mat-label>
+                            <input type="text" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput name="workplaceform38" [matDatepicker]="workplaceform38" placeholder="By When" irequired>
+                            <mat-datepicker-toggle matSuffix [for]="workplaceform38"></mat-datepicker-toggle>
+                            <mat-datepicker #workplaceform38></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- ---------------------------------END of workrelationship------------------------------------------------ -->
             </div>
         </div>
         <!-- end of workplacepressure----------------------------------------- -->
 
 
-
-        <!----- -->
         <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple" (click)="submitValue()">
         <i class="fas fa-plus fa-fw"></i>
         <span>Submit</span>
