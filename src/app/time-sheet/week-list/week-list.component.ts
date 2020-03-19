@@ -35,6 +35,7 @@ export class WeekListComponent implements OnInit {
   currentUser;
   instructorId;
   instByAdmin: any;
+  notEnfData;
 
   constructor(private router: Router, private _timeSheetService: TimeSheetService) {
     this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
@@ -90,12 +91,17 @@ export class WeekListComponent implements OnInit {
           this.allWeeks.forEach((singleWeek,index)=>{
             console.log("index in allWeeks loop", index);
             console.log("statusResponse in allWeeks loop", statusResponse);
-            
-            singleWeek['breakBtnTurnsStatus'] = statusResponse.res2[index].breakBtnTurnsStatus
+            if(statusResponse.finalStatus == "Not enough data"){
+              this.notEnfData = true
+            }
+            else {
+              this.notEnfData = false
+              singleWeek['breakBtnTurnsStatus'] = statusResponse.res2[index].breakBtnTurnsStatus
             singleWeek['last13Status'] = statusResponse.res2[index].last13Status
             singleWeek['travelHrsStatus'] = statusResponse.res2[index].travelHrsStatus
             singleWeek['weekHrs'] = statusResponse.res2[index].weekHrs
             singleWeek['workingHrsStatus'] = statusResponse.res2[index].workingHrsStatus
+            }
           })
           this.loading = false
           console.log("********** allWeeks after api response", this.allWeeks);

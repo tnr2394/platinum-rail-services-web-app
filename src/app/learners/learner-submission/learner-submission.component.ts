@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AddFileModalComponent } from '../../files/add-file-modal/add-file-modal.component'
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,6 +20,8 @@ export class LearnerSubmissionComponent implements OnInit {
   displayedColumns: string[] = ['Materials'];
   disable: boolean;
 
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(public _filter: FilterService, public dialog: MatDialog, private _learnerService: LearnerService, private activatedRoute: ActivatedRoute, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource(this.files);
   }
@@ -36,6 +38,7 @@ export class LearnerSubmissionComponent implements OnInit {
   statusByInstructor;
   remark;
   deadlineDate;
+  hideActions = false;
 
   // remark = new FormGroup({
   //   remark: new FormControl(),
@@ -63,6 +66,9 @@ export class LearnerSubmissionComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.currentUser);
     if (this.currentUser.userRole == 'learner') {
       this.isDisabled = false;
+    }
+    else if(this.currentUser.userRole == 'client'){
+      this.hideActions = true;
     }
   }
 
@@ -138,6 +144,10 @@ export class LearnerSubmissionComponent implements OnInit {
     }
     
     
+  }
+  fileDetails(event) {
+    console.log("Event in material-files", event);
+    this.openFilesSideNav.emit(event)
   }
 
 

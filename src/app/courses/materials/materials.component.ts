@@ -26,6 +26,8 @@ export class MaterialsComponent implements OnInit {
   materialIndex: any;
   groupedMaterials: any;
   courseIdForUnits: any;
+  currentUser: any;
+  hideActions: boolean;
   clearCheckBox() {
     console.log("CHILD METHOD");
     this.selectedCheckbox = false;
@@ -148,6 +150,10 @@ export class MaterialsComponent implements OnInit {
   }
   ngOnInit() {
     this.loading = true;
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.currentUser.userRole == 'client') {
+      this.hideActions = true
+    }
     console.log("this.activatedRoute", this.activatedRoute.params)
     this.activatedRoute.params.subscribe(params => {
       if (params['courseId'] != undefined) {

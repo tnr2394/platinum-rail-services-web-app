@@ -46,8 +46,8 @@
                         <input matInput readonly="{{readOnlyTitle}}" [(ngModel)]="title" disabled>
                     </mat-form-field>
                 </h5>
-
-                <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies')">
+                
+                <div *ngIf="recievedFile && (recievedFile.type == 'material' || recievedFile.type == 'competencies') && !hideActions">
                     <div class="drawer_btn">
                         <button mat-stroked-button color="primary" class="ripple Button_shap_effact"
                             (click)="shareWith()" *ngIf="recievedFile.type != 'competencies'"><i class="fa fa-share-alt"
@@ -70,7 +70,7 @@
     </mat-tab>
 
     <!-- <div *ngIf="currentUser.userRole == admin"> -->
-    <mat-tab label="Activity" *ngIf="recievedFile && (recievedFile.type == 'folder' || recievedFile.type == 'file')">
+    <mat-tab label="Activity" *ngIf="recievedFile && (recievedFile.type == 'folder' || recievedFile.type == 'file') && !hideActions">
         {{isCompetency}}
         <h4>Shared with:</h4>
         <h6><b>Clients</b></h6>

@@ -265,15 +265,15 @@ module.exports.getWeeklylog = (req, res) => {
 					last13Status: finalLast13Status
 				})
 
-				return innerCallback()
-			}
-			else {
-				console.log("Error")
-				// return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
-			}
-		}).catch((error) => {
-			console.log('Inside Error=====>>>', error);
-		})
+		return innerCallback()
+		}
+	else{
+		// console.log("Error")
+		return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
+	}
+	}).catch((error) => {
+		console.log('Inside Error=====>>>', error);
+	})
 	}, (callbackError, callbackResponse) => {
 		if (callbackError) {
 			return res.status(500).send({ callbackError })
@@ -572,11 +572,11 @@ module.exports.secondReportLogsDetails = (req, res) => {
 module.exports.generateFormPdf = (req, res) => {
 	console.log('Generate Pdf', JSON.stringify(req.body, null, 2));
 
-	// pdfServices.generateFormPdf(req.body).then((response) => {
-	// 	return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
-	// }).catch((error) => {
-	// 	return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
-	// })
+	pdfServices.pdfGenerate(req.body).then((response) => {
+		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
+	}).catch((error) => {
+		return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+	})
 }
 // let x = this.numberOfTurns(req, res, response[i].date)
 // console.log("SATISFIED at", i, satisfied, "STATUS", x);

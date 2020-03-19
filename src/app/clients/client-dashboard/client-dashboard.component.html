@@ -21,4 +21,4 @@
 </div>
 
 <!-- Job Detail Component -->
-<app-job [jobFromClient]='selectedJob'></app-job>
+<app-job [jobFromClient]='selectedJob' (openFilesSideNav)="openFileDetails($event)"></app-job>

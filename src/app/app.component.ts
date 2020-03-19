@@ -42,6 +42,7 @@ export class AppComponent {
   currentUser;
   learnerRouteName;
   instructorRouteName;
+  clientRouteName;
   toolTip: any = 'expand';
   isVisible: boolean = true;
   disableTooltip;
@@ -69,6 +70,11 @@ export class AppComponent {
       if (this.currentUser && this.currentUser.userRole == 'instructor') {
         this.instructorRouteName = '/instructors/' + this.currentUser._id;
         console.log(' this.currentUser', this.instructorRouteName);
+      }
+
+      if (this.currentUser && this.currentUser.userRole == 'client'){
+        this.clientRouteName = '/client/' + this.currentUser._id;
+        console.log(' this.currentUser', this.clientRouteName);
       }
     })
   }
