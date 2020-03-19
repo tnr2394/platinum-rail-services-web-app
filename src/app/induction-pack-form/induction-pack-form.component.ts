@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, NavigationExtras } from '@angular/router'
+import { TimeSheetService } from '../services/time-sheet.service';
 declare var $: any;
 
 @Component({
@@ -9,13 +10,33 @@ declare var $: any;
 })
 export class InductionPackFormComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
 
   ngOnInit() {
   }
 
 
   // Table 1
+  url1: any;
+  url2: any;
+  url3: any;
+  url4: any;
+  url5: any;
+  url6: any;
+  url7: any;
+  url8: any;
+  url9: any;
+  url10: any;
+  url11: any;
+  url12: any;
+  url13: any;
+  url14: any;
+  url15: any;
+  url16: any;
+  url17: any;
+  url18: any;
+  url19: any;
+
   refresherInduction: 'Yes';
   newStarter: false;
   workingOnNR: false;
@@ -102,6 +123,10 @@ export class InductionPackFormComponent implements OnInit {
   rightWorkl2AB;
   rightWorkl2AC;
 
+  rightWorkdate;
+  rightWorkIn;
+  rightWorksign;
+
   // Pre-Deployment Safety Critical Checklist
 
   cardHolderName;
@@ -109,6 +134,22 @@ export class InductionPackFormComponent implements OnInit {
   cardHolderContact;
   cardHolderCompany;
   cardsentinelNumber;
+
+  // Sub-Contractors
+  optOutIn;
+  optOutdate;
+  optOutsign;
+  optOuttextarea;
+
+  //card holder
+  cardsign1;
+  carddate1;
+  cardIn1;
+
+  cardsign2;
+  carddate2;
+  cardIn2;
+
 
 
   // Next To kin
@@ -206,6 +247,18 @@ export class InductionPackFormComponent implements OnInit {
   msc13;
   msc14;
 
+  MedicalIN1;
+  Medicalsign1;
+  medicaldate1;
+
+  MedicalIN2;
+  Medicalsign2;
+  medicaldate2;
+
+  MedicalIN3;
+  Medicalsign3
+  medicaldate3
+
   // Medical Eye Standards
 
   medicalEye1;
@@ -213,6 +266,16 @@ export class InductionPackFormComponent implements OnInit {
   medicalEye3;
   medicalEye4;
 
+  medicalEyeIn1;
+  medicalEyesign1;
+  medicalEyesign2;
+
+  medicalEyeIn3;
+  medicalEyedate2;
+  medicalEyesign3;
+
+  medicalEyeIn4;
+  medicalEyesign4;
   // Occupational Health Questionnaire
 
   illness1;
@@ -255,6 +318,7 @@ export class InductionPackFormComponent implements OnInit {
   workIllness9;
   workIllness10;
   workIllness11;
+  workIllness12;
 
   // -------------- Other Health Information Start Here-------------
   otherSafetyR1;
@@ -357,6 +421,44 @@ export class InductionPackFormComponent implements OnInit {
   tflArear20Visit;
   tflArear20Date;
 
+  tflArea21;
+  tflArear21Visit;
+  tflArear21Date;
+
+  tflArea22;
+  tflArear22Visit;
+  tflArear22Date;
+
+  tflArea23;
+  tflArear23Visit;
+  tflArear23Date;
+
+  tflArea24;
+  tflArear24Visit;
+  tflArear24Date;
+
+  tflArea25;
+  tflArear25Visit;
+  tflArear25Date;
+
+  tflArea26;
+  tflArear26Visit;
+  tflArear26Date;
+
+  tflArea27;
+  tflArear27Visit;
+  tflArear27Date;
+
+  tflArea28;
+  tflArear28Visit;
+  tflArear28Date;
+
+  tflArea29;
+  tflArear29Visit;
+  tflArear29Date;
+
+
+
   // ---------------------------------------endtlf----
 
   // -----------------Spacific work===============
@@ -435,6 +537,11 @@ export class InductionPackFormComponent implements OnInit {
   nightWorkQ12;
   nightWorkQ13;
 
+  nightWorkD1;
+  nightWorkD2;
+
+  nightWorksign17;
+  nightWorksign18
 
   // Rail PPE Issue
 
@@ -789,8 +896,22 @@ export class InductionPackFormComponent implements OnInit {
   measure37D;
   measure38D;
 
-
-
+  // --------------------- Confirmation---------------
+  confirmationSig1;
+  confirmationD1;
+  confirmationSig2;
+  confirmationD2;
+  confirmationSig3;
+  confirmationD3;
+  // endStaff Safety Responsibility-----------
+  SaftyDate1;
+  SaftySign1;
+  Safty1;
+  // Contract of Sponsorship----------------
+  Sponsershipsign1;
+  Sponsershipdate1;
+  Sponsershipsign2;
+  Sponsershipdate2;
 
   data = {};
 
@@ -836,6 +957,34 @@ export class InductionPackFormComponent implements OnInit {
         insurance3: this.insurance3,
         insurance4: this.insurance4,
         insurance5: this.insurance5,
+      },
+      confirmationDetails: {
+        confirmationSig1: this.url4,
+        confirmationSig2: this.url19,
+        confirmationSig3: this.url6,
+        confirmationD1: this.confirmationD1,
+        confirmationD2: this.confirmationD2,
+        confirmationD3: this.confirmationD3,
+      },
+      sponsorshipContract: {
+        SponsershipSign1: this.url1,
+        SponsershipSign2: this.url2,
+        Sponsershipdate1: this.Sponsershipdate1,
+        Sponsershipdate2: this.Sponsershipdate2,
+      },
+      cardHolderDeclare: {
+        cardIn1: this.cardIn1,
+        cardsign1: this.url9,
+        carddate1: this.carddate1,
+        cardIn2: this.cardIn1,
+        cardsign2: this.url10,
+        carddate2: this.carddate1,
+      },
+      optOutDetail: {
+        optOutIn: this.optOutIn,
+        optOutdate: this.optOutdate,
+        optOutsign: this.url8,
+        optOuttextarea: this.optOuttextarea
       },
       nextOfKin: {
         kinName: this.kinName,
@@ -957,7 +1106,8 @@ export class InductionPackFormComponent implements OnInit {
         workIllness8: this.workIllness8,
         workIllness9: this.workIllness9,
         workIllness10: this.workIllness10,
-        workIllness11: this.workIllness11
+        workIllness11: this.workIllness11,
+        workIllness12: this.workIllness12,
       },
       otherSafetyRequirements: {
         otherSafetyR1: this.otherSafetyR1,
@@ -1100,7 +1250,6 @@ export class InductionPackFormComponent implements OnInit {
         Stress2: this.Stress2,
         Stress3: this.Stress3,
         Stress4: this.Stress4,
-        Stress5: this.Stress5,
       },
       tflTestDetails: {
         tflQ1: this.tflQ1,
@@ -1382,17 +1531,465 @@ export class InductionPackFormComponent implements OnInit {
         pressure38L: this.pressure38L,
         pressure38T: this.pressure38T,
 
+      },
+      tflDetail: {
+        tflArea1: this.tflArea1,
+        tflArear1Visit: this.tflArear1Visit,
+        tflArear1Date: this.tflArear1Date,
+
+        tflArea2: this.tflArea2,
+        tflArear2Visit: this.tflArear2Visit,
+        tflArear2Date: this.tflArear2Date,
+
+        tflArea3: this.tflArea3,
+        tflArear3Visit: this.tflArear3Visit,
+        tflArear3Date: this.tflArear3Date,
+
+        tflArea4: this.tflArea4,
+        tflArear4Visit: this.tflArear4Visit,
+        tflArear4Date: this.tflArear4Date,
+
+        tflArea5: this.tflArea5,
+        tflArear5Visit: this.tflArear5Visit,
+        tflArear5Date: this.tflArear5Date,
+
+        tflArea6: this.tflArea6,
+        tflArear6Visit: this.tflArear6Visit,
+        tflArear6Date: this.tflArear6Date,
+
+        tflArea7: this.tflArea7,
+        tflArear7Visit: this.tflArear7Visit,
+        tflArear7Date: this.tflArear7Date,
+
+        tflArea8: this.tflArea8,
+        tflArear8Visit: this.tflArear8Visit,
+        tflArear8Date: this.tflArear8Date,
+
+        tflArea9: this.tflArea9,
+        tflArear9Visit: this.tflArear9Visit,
+        tflArear9Date: this.tflArear9Date,
+
+        tflArea10: this.tflArea10,
+        tflArear10Visit: this.tflArear10Visit,
+        tflArear10Date: this.tflArear10Date,
+
+        tflArea11: this.tflArea11,
+        tflArear11Visit: this.tflArear11Visit,
+        tflArear11Date: this.tflArear11Date,
+
+        tflArea12: this.tflArea12,
+        tflArear12Visit: this.tflArear12Visit,
+        tflArear12Date: this.tflArear12Date,
+
+        tflArea13: this.tflArea13,
+        tflArear13Visit: this.tflArear13Visit,
+        tflArear13Date: this.tflArear13Date,
+
+        tflArea14: this.tflArea14,
+        tflArear14Visit: this.tflArear14Visit,
+        tflArear14Date: this.tflArear14Date,
+
+        tflArea15: this.tflArea15,
+        tflArear15Visit: this.tflArear15Visit,
+        tflArear15Date: this.tflArear15Date,
+
+        tflArea16: this.tflArea16,
+        tflArear16Visit: this.tflArear16Visit,
+        tflArear16Date: this.tflArear16Date,
+
+        tflArea17: this.tflArea17,
+        tflArear17Visit: this.tflArear17Visit,
+        tflArear17Date: this.tflArear17Date,
+
+        tflArea18: this.tflArea18,
+        tflArear18Visit: this.tflArear18Visit,
+        tflArear18Date: this.tflArear18Date,
+
+        tflArea19: this.tflArea19,
+        tflArear19Visit: this.tflArear19Visit,
+        tflArear19Date: this.tflArear19Date,
+
+        tflArea20: this.tflArea20,
+        tflArear20Visit: this.tflArear20Visit,
+        tflArear20Date: this.tflArear20Date,
+
+        tflArea21: this.tflArea21,
+        tflArear21Visit: this.tflArear21Visit,
+        tflArear21Date: this.tflArear21Date,
+
+        tflArea22: this.tflArea22,
+        tflArear22Visit: this.tflArear22Visit,
+        tflArear22Date: this.tflArear22Date,
+
+        tflArea23: this.tflArea23,
+        tflArear23Visit: this.tflArear23Visit,
+        tflArear23Date: this.tflArear23Date,
+
+        tflArea24: this.tflArea24,
+        tflArear24Visit: this.tflArear24Visit,
+        tflArear24Date: this.tflArear24Date,
+
+        tflArea25: this.tflArea25,
+        tflArear25Visit: this.tflArear25Visit,
+        tflArear25Date: this.tflArear25Date,
+
+        tflArea26: this.tflArea26,
+        tflArear26Visit: this.tflArear26Visit,
+        tflArear26Date: this.tflArear26Date,
+
+        tflArea27: this.tflArea27,
+        tflArear27Visit: this.tflArear27Visit,
+        tflArear27Date: this.tflArear27Date,
+
+        tflArea28: this.tflArea28,
+        tflArear28Visit: this.tflArear28Visit,
+        tflArear28Date: this.tflArear28Date,
+
+        tflArea29: this.tflArea29,
+        tflArear29Visit: this.tflArear29Visit,
+        tflArear29Date: this.tflArear29Date,
+
       }
     }
 
+    console.log('This.data======>>>>>', this.data);
 
-    let NavigationExtras: NavigationExtras = {
-      state: {
-        data: this.data
-      }
-    };
-    this.router.navigateByUrl('/form-preview', NavigationExtras)
-
+    this._timeSheetService.generatePdf(this.data).subscribe((res => {
+      console.log('Res===>>', res);
+    }));
   }
 
+  onSelectFileone(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url1 = event.target.result;
+        }
+        else {
+          this.url1 = '';
+        }
+
+      }
+    }
+  }
+
+  onSelectFile2(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url2 = event.target.result;
+        }
+        else {
+          this.url2 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile3(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url3 = event.target.result;
+        }
+        else {
+          this.url3 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile4(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url4 = event.target.result;
+        }
+        else {
+          this.url4 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile5(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url5 = event.target.result;
+        }
+        else {
+          this.url5 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile6(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url6 = event.target.result;
+        }
+        else {
+          this.url6 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile7(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url7 = event.target.result;
+        }
+        else {
+          this.url7 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile8(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url8 = event.target.result;
+        }
+        else {
+          this.url8 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile9(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url9 = event.target.result;
+        }
+        else {
+          this.url9 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile10(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url10 = event.target.result;
+        }
+        else {
+          this.url10 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile11(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url11 = event.target.result;
+        }
+        else {
+          this.url11 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile12(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url12 = event.target.result;
+        }
+        else {
+          this.url12 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile13(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url13 = event.target.result;
+        }
+        else {
+          this.url13 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile14(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url14 = event.target.result;
+        }
+        else {
+          this.url14 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile15(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url15 = event.target.result;
+        }
+        else {
+          this.url15 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile16(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url16 = event.target.result;
+        }
+        else {
+          this.url16 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile17(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url17 = event.target.result;
+        }
+        else {
+          this.url17 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile18(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url18 = event.target.result;
+        }
+        else {
+          this.url18 = '';
+        }
+
+      }
+    }
+  }
+  onSelectFile19(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url19 = event.target.result;
+        }
+        else {
+          this.url19 = '';
+        }
+
+      }
+    }
+  }
+  // checkChange(event,variable){
+  //   console.log("variable name is",variable, "event", event);
+    
+  //   console.log("tempVariable");
+  
+  // }
+  // check(){
+  //   console.log("this.blockage3", this.blockage3)
+  // }
 }

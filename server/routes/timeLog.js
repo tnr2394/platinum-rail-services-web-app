@@ -23,4 +23,6 @@ router.post('/ins-time', timeLogController.instructorsTimeLogDetails);
 
 router.post('/secondReport', timeLogController.secondReportLogsDetails);
 
+router.post('/pdf', timeLogController.generateFormPdf);
+
 module.exports = router;

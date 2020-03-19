@@ -41,6 +41,7 @@ const competenciesRouter = require('./routes/competencies');
 const instructorController = require('./controllers/instructor.controller');
 const dbBackupService = require('./services/dbbackup.service');
 const timeLogService = require('./services/timeLog.service');
+const pdfService = require('./services/pdf.service');
 
 // Make the settings in the environment config global available
 global.settings = config.env.settings;
