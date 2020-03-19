@@ -318,6 +318,7 @@ export class InductionPackFormComponent implements OnInit {
   workIllness9;
   workIllness10;
   workIllness11;
+  workIllness12;
 
   // -------------- Other Health Information Start Here-------------
   otherSafetyR1;
@@ -919,6 +920,9 @@ export class InductionPackFormComponent implements OnInit {
         insurance4: this.insurance4,
         insurance5: this.insurance5,
       },
+      confirmationDetails: {
+
+      },
       nextOfKin: {
         kinName: this.kinName,
         kinRelationship: this.kinRelationship,
@@ -1039,7 +1043,8 @@ export class InductionPackFormComponent implements OnInit {
         workIllness8: this.workIllness8,
         workIllness9: this.workIllness9,
         workIllness10: this.workIllness10,
-        workIllness11: this.workIllness11
+        workIllness11: this.workIllness11,
+        workIllness12: this.workIllness12,
       },
       otherSafetyRequirements: {
         otherSafetyR1: this.otherSafetyR1,
