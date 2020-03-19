@@ -1983,4 +1983,13 @@ export class InductionPackFormComponent implements OnInit {
       }
     }
   }
+  // checkChange(event,variable){
+  //   console.log("variable name is",variable, "event", event);
+    
+  //   console.log("tempVariable");
+  
+  // }
+  // check(){
+  //   console.log("this.blockage3", this.blockage3)
+  // }
 }
