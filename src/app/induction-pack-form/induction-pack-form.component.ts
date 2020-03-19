@@ -980,6 +980,12 @@ export class InductionPackFormComponent implements OnInit {
         cardsign2: this.url10,
         carddate2: this.carddate1,
       },
+      optOutDetail: {
+        optOutIn: this.optOutIn,
+        optOutdate: this.optOutdate,
+        optOutsign: this.url8,
+        optOuttextarea: this.optOuttextarea
+      },
       nextOfKin: {
         kinName: this.kinName,
         kinRelationship: this.kinRelationship,
