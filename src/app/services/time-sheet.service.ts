@@ -154,7 +154,7 @@ export class TimeSheetService {
           observer.complete();
         })
     });
-  } 
+  }
   getSecondReportDetails(data): Observable<any> {
     // const obj = { date: data }
     // console.log("get time log", obj);
@@ -174,5 +174,23 @@ export class TimeSheetService {
           observer.complete();
         })
     });
-  } 
+  }
+
+  generatePdf(data): Observable<any> {
+    return new Observable<any>((observer) => {
+      console.log("html in data in service", data);
+      this.http.post(config.baseApiUrl + "time-log/pdf", data).subscribe((res: any) => {
+        observer.next(res);
+        console.log("response from service", res);
+        // observer.complete();
+      }, err => {
+        console.log("ERROR ")
+        observer.error(err);
+      },
+        () => {
+          console.log("CALL COMPLETED ")
+          observer.complete();
+        })
+    });
+  }
 }

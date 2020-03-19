@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, NavigationExtras } from '@angular/router'
+import { TimeSheetService } from '../services/time-sheet.service';
 declare var $: any;
 
 @Component({
@@ -9,7 +10,7 @@ declare var $: any;
 })
 export class InductionPackFormComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -1466,14 +1467,11 @@ export class InductionPackFormComponent implements OnInit {
       }
     }
 
+    console.log('This.data======>>>>>', this.data);
 
-    let NavigationExtras: NavigationExtras = {
-      state: {
-        data: this.data
-      }
-    };
-    this.router.navigateByUrl('/form-preview', NavigationExtras)
-
+    this._timeSheetService.generatePdf(this.data).subscribe((res => {
+      console.log('Res===>>', res);
+    }));
   }
 
   onSelectFileone(event) {
