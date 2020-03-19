@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { JobService } from '../../services/job.service'
 import { JobComponent } from '../../jobs/job/job.component'
 import { LearnersComponent } from '../../learners/learners.component'
@@ -17,6 +17,8 @@ export class ClientDashboardComponent implements OnInit {
   selectedJob;
   clientId;
   private isSelected: string;
+  @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
+
 
   constructor(public _jobService: JobService, private activatedRoute: ActivatedRoute) { }
   @ViewChild(JobComponent, { static: false }) jobComp: JobComponent;
@@ -86,6 +88,10 @@ export class ClientDashboardComponent implements OnInit {
     this.jobToPass = jobs[0];
     console.log("this.jobToPass", this.jobToPass);
     console.log("this.selectedJob", this.selectedJob);
+  }
+  openFileDetails(data) {
+    let event = data.event
+    this.openFilesSideNav.emit({ event })
   }
 
 }

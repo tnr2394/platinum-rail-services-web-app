@@ -68,6 +68,8 @@ export class MaterialTileComponent implements OnInit {
   learnerCopy: any;
   indexForMatTab: number = 1;
   allFiles: any;
+  currentUser: any;
+  hideActions: boolean;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public activatedRoute: ActivatedRoute,public _filter: FilterService) {
@@ -77,6 +79,10 @@ export class MaterialTileComponent implements OnInit {
   ngOnInit() {
     console.log("learnersAlloted", this.learnersAlloted);
     console.log("learnersAllotedFromJob");
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.currentUser.userRole == 'client') {
+      this.hideActions = true
+    }
     this.activatedRoute.queryParams.subscribe(param => {
       if (param) {
         this.jobId = param['job']

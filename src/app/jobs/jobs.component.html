@@ -50,6 +50,12 @@
 
                                     <!-- SR.No -->
                                     <!-- Only Displays 1-5 for every page -->
+                                    <ng-container matColumnDef="sr.no">
+                                        <th class="text-left" mat-header-cell *matHeaderCellDef> Job Title </th>
+                                        <td class="mat-table-cell" mat-cell *matCellDef="let job; let i = index;"> <i class="fas fa-dot-circle fa-fw"
+                                                [ngStyle]="{color:job.color }"></i> {{job.title}} </td>
+                                    </ng-container>
+                                    
                                     <ng-container matColumnDef="title">
                                         <th mat-sort-header="title" class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Job Title
                                         </th>
@@ -64,10 +70,13 @@
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Client
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Client" mat-cell *matCellDef="let job">
-                                            <p *ngIf="job && job.client">
+                                            <p *ngIf="(job && job.client && displayClientLink)">
                                                 <a routerLink="/client/{{job.client._id}}">
                                                     {{job.client.name}}
                                                 </a>
+                                            </p>
+                                            <p *ngIf="job && job.client && !displayClientLink">
+                                                {{job.client.name}}
                                             </p>
                                         </td>
                                     </ng-container>
@@ -100,9 +109,11 @@
 
 
                                                     <a routerLink="/instructors/{{oneInstructor._id}}">
-                                                        <span *ngIf="job && job.instructors">
+                                                        <span *ngIf="job && job.instructors && ((!displayClientLink && currentUserId == oneInstructor._id) || (displayClientLink && (currentUser.userRole == 'admin' || currentUser.userRole == 'client')))">
                                                             {{oneInstructor.name}}</span>
                                                     </a>
+                                                    <span *ngIf="job && job.instructors && (!displayClientLink && currentUserId != oneInstructor._id)">
+                                                        {{oneInstructor.name}}</span>
                                                 </mat-list-item>
                                             </mat-list>
                                         </td>
@@ -113,7 +124,7 @@
                                         <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Course
                                         </th>
                                         <td class="mat-table-cell text-center" data-label="Course" mat-cell *matCellDef="let job">
-                                            <p *ngIf="job && job.course">{{job.course.title}}</p>
+                                            <p *ngIf="job && job.course"><a routerLink="/materials/{{job.course._id}}">{{job.course.title}}</a></p>
                                         </td>
                                     </ng-container>
 

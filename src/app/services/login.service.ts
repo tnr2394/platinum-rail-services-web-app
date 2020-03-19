@@ -95,17 +95,24 @@ export class LoginService {
   logout() {
     console.log('Logout is called');
     this.tempUser = JSON.parse(localStorage.currentUser)
-    localStorage.clear();
     this.currentUserSubject.next(null);
+    console.log("this.tempUser['userRole']", this.tempUser['userRole'])
     switch (this.tempUser['userRole']) {
       case 'admin':
         this.router.navigate(['/login/admin']);
+        localStorage.clear();
         break;
       case 'instructor':
         this.router.navigate(['/login/instructors']);
+        localStorage.clear();
         break;
       case 'learner':
         this.router.navigate(['/login/learners']);
+        localStorage.clear();
+        break;
+      case 'client':
+        this.router.navigate(['/login/clients']);
+        localStorage.clear();
         break;
     }
     $(document).ready(function () {

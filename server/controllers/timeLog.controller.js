@@ -266,8 +266,8 @@ module.exports.getWeeklylog = (req, res) => {
 		return innerCallback()
 		}
 	else{
-		console.log("Error")
-		// return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
+		// console.log("Error")
+		return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
 	}
 	}).catch((error) => {
 		console.log('Inside Error=====>>>', error);

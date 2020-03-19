@@ -30,10 +30,14 @@ export class ProfileComponent implements OnInit {
   isInstructor: Boolean = false;
   dateOfJoining: Date;
   isJob: boolean = false;
+  hideActions: boolean = false;
+  showClientProfile = false;
 
   @Input('learnerForProfile') learnerId;
   @Input('instructorForProfile') instructorId;
   @Input('jobDetailsForProfile') jobDetails;
+  displayLinksLearner: boolean;
+  displayLinksInstructor: boolean;
   // @Input('job') jobFromLearner;
   constructor(private _jobService: JobService, public _learnerService: LearnerService, public _instrctorService: InstructorService,
     private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog, public _snackBar: MatSnackBar) { }
@@ -43,6 +47,14 @@ export class ProfileComponent implements OnInit {
     console.log("-----learner-----", this.learnerId);
     console.log("-----instructor-----", this.instructorId);
     console.log("-----job-----", this.jobDetails);
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.hideActions = (this.currentUser.userRole == 'client') ? true : false
+    // console.log("this.current user is ", this.curremt)
+    this.displayLinksLearner = (this.currentUser.userRole == 'learner') ? false : true
+    if(this.currentUser.userRole == 'admin' || this.currentUser.userRole == 'client'){
+      this.showClientProfile = true
+    }
+    // this.displayLinksInstructor = (this.currentUser.userRole == 'instructor') ? false : true
     if (this.learnerId != undefined) {
       this.isLearner = true
       this.getLearner()
