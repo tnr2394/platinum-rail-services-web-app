@@ -79,7 +79,7 @@ import { AddLocationComponent } from './add-location/add-location.component';
           console.log(params['id']);
           this._clientService.getClient(params['id']).subscribe(data=>{ 
             console.log("RECEIVED = ",data)
-            this.client = data.pop();
+            if (data) this.client = data.pop();
             console.log("THIS CLIENT LOCATIONS ARRAY = ",this.client.locations);
           });
         })    

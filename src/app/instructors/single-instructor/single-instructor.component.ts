@@ -59,7 +59,7 @@ export class SingleInstructorComponent implements OnInit {
   // pageEvent: PageEvent;
 
 
-  // displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
+  displayedColumns: string[] = ['sr.no', 'client', 'location', 'instructor', 'course', 'actions']
   jobForScheduler: any;
   dateOfJoining: any;
   months = [{ id: '0', name: 'January' }, { id: '1', name: 'February' }, { id: '2', name: 'March' }, { id: '3', name: 'April' }, { id: '4', name: 'May' }, { id: '5', name: 'June' },
@@ -100,6 +100,7 @@ export class SingleInstructorComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     // this.getJob(this.instructorId);
     this.getInstructor(this.instructorId);
+    console.log("On init instructor id is", this.instructorId);
   }
 
   // getJob(instructorId) {

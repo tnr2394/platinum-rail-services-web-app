@@ -49,6 +49,9 @@ export class JobsComponent implements OnInit {
   displayedColumns: string[] = ['title', 'client', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
   jobForScheduler: any;
   displayStatus: boolean = true;
+  displayClientLink: boolean;
+  checkInstId: boolean = false;
+  currentUserId;
 
   // @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
 
@@ -78,6 +81,11 @@ export class JobsComponent implements OnInit {
     if (this.currentUser.userRole == 'client') {
       this.displayedColumns = ['sr.no', 'location', 'instructor', 'status', 'course', 'completion', 'actions']
     }
+    else if (this.currentUser.userRole == 'instructor' || this.currentUser.userRole == 'learner'){
+      this.displayClientLink = false
+      this.currentUserId = this.currentUser._id
+    }
+    else this.displayClientLink = true
     // 
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;    

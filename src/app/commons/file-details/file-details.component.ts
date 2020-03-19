@@ -46,6 +46,7 @@ export class FileDetailsComponent implements OnInit {
   supportedDocument: boolean;
   type: any;
   currentUser: any;
+  hideActions: boolean = false;
   pathForPreview: string;
   constructor(public _folderService: FolderService, public _fileService: FileService, public _competencyService : CompetenciesService,
     public dialog: MatDialog, public _snackBar: MatSnackBar, private cd: ChangeDetectorRef, public router: Router) { }
@@ -58,10 +59,16 @@ export class FileDetailsComponent implements OnInit {
     //   this.isMaterials = 'material'
     // }
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.userRole == 'client'){
+      this.hideActions = true
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
 
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.userRole == 'client'){
+      this.hideActions = true
+    }
     this.sharedClient = []
     this.sharedInstructor = []
 

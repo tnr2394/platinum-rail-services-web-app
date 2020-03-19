@@ -109,6 +109,7 @@ export class SingleWeekComponent implements OnInit {
   workWeekHours: Number;
   overTime: string = "00:00";
   totalTravelNWork: string;
+  hideActions: boolean;
 
 
 
@@ -168,6 +169,12 @@ export class SingleWeekComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.userRole == 'admin') this.displayTitle = false;
     if (this.currentUser.userRole == 'instructor') this.displayMsg = false; else this.displayMsg = true;
+    // this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.userRole == 'client'){
+      this.displayedColumns = ['date', 'logIn', 'lunchStart', 'lunchEnd', 'logOut', 'travelHours', 'hoursWorked', 'totalHours'];
+      this.hideActions = true
+    }
+    // this.hideActions = (this.currentUser.userRole == 'client') ? true : false
     if (this.router.url.includes('/instructors')) this.displayMsg = false;
     if (this.router.url.includes('/admin-time-sheet')) this.showTotalHoursColor = false;
 

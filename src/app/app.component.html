@@ -39,6 +39,12 @@
                     <i class="fas fa-fw fa-user" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Profile' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
                     <span class="menuText">Profile</span>
                 </a>
+                <a *ngIf="currentUser && currentUser.userRole=='client'" routerLink="/client/{{currentUser._id}}"
+                  routerLinkActive="active-link">
+                  <i class="fas fa-fw fa-user" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Profile' : ''}}"
+                    tooltipClass="tooltip-sidebar-class"></i>
+                  <span class="menuText">Profile</span>
+                </a>
             </li>
             <li>
                 <a *ngIf="currentUser && currentUser.userRole=='admin'" routerLink="/courses" routerLinkActive="active-link">
@@ -94,10 +100,18 @@
             </li>
             <li>
                 <a *ngIf="currentUser && learnerRouteName && currentUser.userRole=='learner'" routerLink="{{learnerRouteName}}" routerLinkActive="active-link">
-                    <i class="fas fa-fw fa-chalkboard"></i>
+                    <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
                     <span class="menuText">Dashboard</span>
                 </a>
             </li>
+            <!-- <li>
+              <a *ngIf="currentUser && clientRouteName && currentUser.userRole=='client'" routerLink="{{clientRouteName}}"
+                routerLinkActive="active-link">
+                <i class="fas fa-fw fa-chalkboard" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Dashboard' : ''}}"
+                  tooltipClass="tooltip-sidebar-class"></i>
+                <span class="menuText">Dashboard</span>
+              </a>
+            </li> -->
             <li>
                 <a *ngIf="currentUser" routerLink="/resetpassword/{{currentUser.userRole}}" routerLinkActive="active-link">
                     <i class="fas fa-unlock-alt" placement="right" ngbTooltip="{{getToolTipEvent() ? 'Reset Password' : ''}}" tooltipClass="tooltip-sidebar-class"></i>

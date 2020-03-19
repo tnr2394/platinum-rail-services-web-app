@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-title h5 mb-1 d-inline-block w-100"><span class="learner_title">Competences</span>
-                            <button mat-flat-button color="primary" class="pull-right button_hover_effect add_learner_btn ripple Button_shap_effact" (click)="addCompModal()">
+                            <button mat-flat-button color="primary" *ngIf="!hideActions" class="pull-right button_hover_effect add_learner_btn ripple Button_shap_effact" (click)="addCompModal()">
                                         <i class="fas fa-plus fa-fw"></i>
                                         <span> Add</span>
                                     </button>

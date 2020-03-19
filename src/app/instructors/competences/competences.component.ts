@@ -33,6 +33,8 @@ export class CompetencesComponent implements OnInit {
   expandedElement;
   allFiles: any;
   file: any;
+  currentUser: any;
+  hideActions: boolean;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -55,6 +57,13 @@ export class CompetencesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.currentUser.userRole == 'client'){
+      this.displayedColumns = ['title', 'xDate', 'valid', 'attachment']
+      this.hideActions = true
+    }
+    
+
     this.activatedRoute.params.subscribe(params => {
       this.instructorId = params['id'];
       console.log("this.instructorId =  ", this.instructorId);

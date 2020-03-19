@@ -26,6 +26,8 @@ export class FilesComponent implements OnInit, OnChanges {
   @Output() getFileDetails: EventEmitter<any> = new EventEmitter<any>();
   materials: any;
   fileCount: number;
+  currentUser: any;
+  hideAction: boolean;
   constructor(public _filter: FilterService, public _newFileUploadService: FileUploaderService, public dialog: MatDialog, public _snackBar: MatSnackBar, public _fileService: FileService) {
   }
 
@@ -51,9 +53,12 @@ export class FilesComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.hideAction = (this.currentUser.userRole == 'client' || this.currentUser.userRole == 'learner') ? true : false
     console.log("Initialized Files component by", this.files, { materialId: this.materialId });
     if (this.materialId != undefined) {
       this.files = this.filesFromMaterialTile
+      this.fileCount = this.files.length
       // this.getFiles();
     }
   }
