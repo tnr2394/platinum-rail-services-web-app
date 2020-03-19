@@ -584,24 +584,6 @@
                 <td style="background:#fff;">{{insurance.insurance5}}</td>
             </tr>
         </table>
-        <tr>
-            <td width="50%">Name of Contractor</td>
-            <td width="50%" style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>Signed (On behalf of Contractor)</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>Date:</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        </table>
-
 
         <p><strong>Confirmations</strong></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -611,9 +593,12 @@
             </tr>
             <tr>
                 <td width="25%">Signature</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">
+                    <img src="{{confirmationDetails.confirmationSig1}}" height="80px" width="80px">
+                </td>
                 <td width="25%">Date</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">{{dateFormat confirmationDetails.confirmationD1 "DD-MM-YYYY"}}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">The Company will securely store information relating to its employees, both in hard copy
@@ -623,9 +608,11 @@
             </tr>
             <tr>
                 <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <img src="{{confirmationDetails.confirmationSig2}}" height="80px" width="80px">
+                </td>
                 <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD2 "DD-MM-YYYY"}}</td>
             </tr>
             <tr>
                 <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
@@ -634,9 +621,11 @@
             </tr>
             <tr>
                 <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    <img src="{{confirmationDetails.confirmationSig3}}" height="80px" width="80px">
+                </td>
                 <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD3 "DD-MM-YYYY"}}</td>
             </tr>
         </table>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -658,6 +647,56 @@
                 <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
+
+        <p><strong>Opt-out for Sub-Contractors</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        <li>Opt out under Regulation 32 of the Conduct of Employment Agencies Employment Businesses
+                            Regulations 2003 (‘the Regulations’)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">The Contractor has agreed to provide services under the company’s terms and
+                    conditions<br></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations. The
+                        Contractor hereby confirms that it shall not be bound by the provisions of the regulations which
+                        do not apply to any services provided by the Contractor to the Company, throughout the duration
+                        of their agreement.</p>
+                    <ul>
+                        <li>Agency Workers Regulations 2010 (‘AWR’)</li>
+                        <li>The Contractor warrants that any operative placed on assignment under this contract is
+                            operating outside the scope of the AWR.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">Name of Contractor</td>
+                <td width="50%" style="background:#fff;">{{optOutDetail.optOutIn}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td style="background:#fff;">{{optOutDetail.optOuttextarea}}</td>
+            </tr>
+            <tr>
+                <td>Signed (On behalf of Contractor)</td>
+                <td style="background:#fff;">
+                    <img src="{{optOutDetail.optOutsign}}" height="80px" width="80px">
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td style="background:#fff;">{{optOutDetail.optOutdate}}</td>
+            </tr>
+        </table>
+
+
         <p>Right to Work in the UK</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -3110,172 +3149,172 @@
                 <td style="background:#fff;">{{tflDetail.tflArea2}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
-               </tr>
+            </tr>
             <tr>
                 <td>Circle</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea3}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea3}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>District</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea4}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea4}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Hammersmith &amp; City</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea5}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea5}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Jubilee</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea6}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea6}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Metropolitan</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea7}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea7}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Nothern</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea8}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea8}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Piccadilly</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea9}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea9}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Victoria</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea10}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea10}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Waterloo &amp; City</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea11}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea11}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>DLR</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea12}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea12}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>London Overground</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea13}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea13}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>TfL Rail (Liverpool Street to Shenfield)</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea14}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea14}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td><strong>DEPOTS</strong></td>
-                 <td style="background:#fff;">{{tflDetail.tflArea15}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea15}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Cockfosters</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Golders Green</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Hainault</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea17}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea17}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Hammersmith</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea18}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea18}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Morden</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea19}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea19}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Neasden</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea20}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea20}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Northfields</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea21}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea21}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Queens Park</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea22}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea22}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Ruislip</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea23}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea23}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Stonebridge Park</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea24}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea24}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>White City</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea25}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea25}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Ealing Common</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea26}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea26}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Nothumberland Park</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea27}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea27}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Beckton</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea28}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea28}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td>Poplar</td>
-                 <td style="background:#fff;">{{tflDetail.tflArea29}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea29}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
                 <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
             </tr>
@@ -3341,7 +3380,7 @@
             </tr>
             <tr>
                 <td>Are you subject to angina, or other heart problems that may affect your fitness?</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals nightWorkDetail.nightWorkQ3 "Yes"}}
                     <span>
                         Yes
@@ -3359,7 +3398,7 @@
             <tr>
                 <td>Have you had duodenal or stomach ulcers in the past, or are you under treatment for them at present?
                 </td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals nightWorkDetail.nightWorkQ4 "Yes"}}
                     <span>
                         Yes
@@ -3462,7 +3501,7 @@
             </tr>
             <tr>
                 <td>Are you taking any medication to a strict timetable?</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals nightWorkDetail.nightWorkQ10 "Yes"}}
                     <span>
                         Yes
@@ -3602,11 +3641,11 @@
                         <li>{{workPressureDetail.pressure3I}}</li>
                         <li>{{workPressureDetail.pressure4I}}</li>
                         <li>{{workPressureDetail.pressure5I}}</li>
-                        <li>{{workPressureDetail.pressure6I}}</li>             
+                        <li>{{workPressureDetail.pressure6I}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure1S}}</li>
                         <li>{{workPressureDetail.pressure2S}}</li>
                         <li>{{workPressureDetail.pressure3S}}</li>
@@ -3680,7 +3719,7 @@
                         <li>{{workPressureDetail.pressure10I}}</li>
                         <li>{{workPressureDetail.pressure11I}}</li>
                         <li>{{workPressureDetail.pressure12I}}</li>
-                        <li>{{workPressureDetail.pressure13I}}</li>             
+                        <li>{{workPressureDetail.pressure13I}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
@@ -3690,30 +3729,30 @@
                         <li>{{workPressureDetail.pressure9S}}</li>
                         <li>{{workPressureDetail.pressure10S}}</li>
                         <li>{{workPressureDetail.pressure11S}}</li>
-                        <li>{{workPressureDetail.pressure12S}}</li>  
-                        <li>{{workPressureDetail.pressure13S}}</li>             
+                        <li>{{workPressureDetail.pressure12S}}</li>
+                        <li>{{workPressureDetail.pressure13S}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure7L}}</li>
                         <li>{{workPressureDetail.pressure8L}}</li>
                         <li>{{workPressureDetail.pressure9L}}</li>
                         <li>{{workPressureDetail.pressure10L}}</li>
                         <li>{{workPressureDetail.pressure11L}}</li>
-                        <li>{{workPressureDetail.pressure12L}}</li>  
-                        <li>{{workPressureDetail.pressure13L}}</li>             
+                        <li>{{workPressureDetail.pressure12L}}</li>
+                        <li>{{workPressureDetail.pressure13L}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure7T}}</li>
                         <li>{{workPressureDetail.pressure8T}}</li>
                         <li>{{workPressureDetail.pressure9T}}</li>
                         <li>{{workPressureDetail.pressure10T}}</li>
                         <li>{{workPressureDetail.pressure11T}}</li>
-                        <li>{{workPressureDetail.pressure12T}}</li>  
-                        <li>{{workPressureDetail.pressure13T}}</li>             
+                        <li>{{workPressureDetail.pressure12T}}</li>
+                        <li>{{workPressureDetail.pressure13T}}</li>
                     </ul>
                 </td>
                 <td valign="top" style="background:#fff;">
@@ -3756,7 +3795,7 @@
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure14I}}</li>
                         <li>{{workPressureDetail.pressure15I}}</li>
                         <li>{{workPressureDetail.pressure16I}}</li>
@@ -3764,11 +3803,11 @@
                         <li>{{workPressureDetail.pressure18I}}</li>
                         <li>{{workPressureDetail.pressure19I}}</li>
                         <li>{{workPressureDetail.pressure20I}}</li>
-                        <li>{{workPressureDetail.pressure21I}}</li>             
+                        <li>{{workPressureDetail.pressure21I}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure14S}}</li>
                         <li>{{workPressureDetail.pressure15S}}</li>
                         <li>{{workPressureDetail.pressure16S}}</li>
@@ -3776,7 +3815,7 @@
                         <li>{{workPressureDetail.pressure18S}}</li>
                         <li>{{workPressureDetail.pressure19S}}</li>
                         <li>{{workPressureDetail.pressure20S}}</li>
-                        <li>{{workPressureDetail.pressure21S}}</li>             
+                        <li>{{workPressureDetail.pressure21S}}</li>
                     </ul>
                 </td>
                 <td style="background:#fff;">
@@ -3788,10 +3827,11 @@
                         <li>{{workPressureDetail.pressure18L}}</li>
                         <li>{{workPressureDetail.pressure19L}}</li>
                         <li>{{workPressureDetail.pressure20L}}</li>
-                        <li>{{workPressureDetail.pressure21L}}</li>             
+                        <li>{{workPressureDetail.pressure21L}}</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"><ul>
+                <td style="background:#fff;">
+                    <ul>
                         <li>{{workPressureDetail.pressure14T}}</li>
                         <li>{{workPressureDetail.pressure15T}}</li>
                         <li>{{workPressureDetail.pressure16T}}</li>
@@ -3799,8 +3839,9 @@
                         <li>{{workPressureDetail.pressure18T}}</li>
                         <li>{{workPressureDetail.pressure19T}}</li>
                         <li>{{workPressureDetail.pressure20T}}</li>
-                        <li>{{workPressureDetail.pressure21T}}</li>             
-                    </ul></td>
+                        <li>{{workPressureDetail.pressure21T}}</li>
+                    </ul>
+                </td>
                 <td valign="top" style="background:#fff;">
                     <ul>
                         <li>Reallocate duties (temporarily or permanently).</li>
@@ -3842,7 +3883,7 @@
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure22I}}</li>
                         <li>{{workPressureDetail.pressure23I}}</li>
                         <li>{{workPressureDetail.pressure24I}}</li>
@@ -3851,7 +3892,7 @@
                         <li>{{workPressureDetail.pressure27I}}</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"> 
+                <td style="background:#fff;">
                     <ul>
                         <li>{{workPressureDetail.pressure22S}}</li>
                         <li>{{workPressureDetail.pressure23S}}</li>
@@ -3872,7 +3913,7 @@
                     </ul>
                 </td>
                 <td style="background:#fff;">
-                     <ul>
+                    <ul>
                         <li>{{workPressureDetail.pressure22L}}</li>
                         <li>{{workPressureDetail.pressure23L}}</li>
                         <li>{{workPressureDetail.pressure24L}}</li>
@@ -3914,8 +3955,8 @@
                         <li>Any other concerns?</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"> 
-                     <ul>
+                <td style="background:#fff;">
+                    <ul>
                         <li>{{workPressureDetail.pressure28I}}</li>
                         <li>{{workPressureDetail.pressure29I}}</li>
                         <li>{{workPressureDetail.pressure30I}}</li>
@@ -3924,8 +3965,8 @@
                         <li>{{workPressureDetail.pressure33I}}</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"> 
-                     <ul>
+                <td style="background:#fff;">
+                    <ul>
                         <li>{{workPressureDetail.pressure28S}}</li>
                         <li>{{workPressureDetail.pressure29S}}</li>
                         <li>{{workPressureDetail.pressure30S}}</li>
@@ -3944,7 +3985,7 @@
                         <li>{{workPressureDetail.pressure33L}}</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"> 
+                <td style="background:#fff;">
                     <ul>
                         <li>{{workPressureDetail.pressure28T}}</li>
                         <li>{{workPressureDetail.pressure29T}}</li>
@@ -4006,7 +4047,7 @@
                         <li>{{workPressureDetail.pressure38S}}</li>
                     </ul>
                 </td>
-                <td style="background:#fff;"> 
+                <td style="background:#fff;">
                     <ul>
                         <li>{{workPressureDetail.pressure34L}}</li>
                         <li>{{workPressureDetail.pressure35L}}</li>
