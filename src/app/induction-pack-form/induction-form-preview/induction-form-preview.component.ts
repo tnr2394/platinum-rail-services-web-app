@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 declare var $: any;
+import { TimeSheetService } from '../../services/time-sheet.service';
+
 
 
 @Component({
@@ -14,11 +16,12 @@ export class InductionFormPreviewComponent implements OnInit {
 
   data: any;
   loading: Boolean = false;
+  htmlContent: any;
 
   @ViewChild('content', { static: false }) content: ElementRef;
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public _timeSheetService: TimeSheetService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.data = this.router.getCurrentNavigation().extras.state.data;
     });
@@ -31,32 +34,57 @@ export class InductionFormPreviewComponent implements OnInit {
   }
 
   makePdf() {
-    console.log('New Content', this.content);
-    let doc = new jsPDF();
-    console.log(" doc ", doc)
-    console.log(" Native Ekement ", this.content.nativeElement)
-    this.loading = true;
 
-    html2canvas(this.content.nativeElement)
-      .then(function (canvas) {
-        console.log(" Canvas ", canvas)
-        var imgData = canvas.toDataURL(
-          'image/png');
-        var doc = new jsPDF('p', 'mm');
-        doc.addImage(imgData, 'sPNG', 10, 10);
-        doc.save('sample-file.pdf');
-        // document.body.appendChild(canvas);
-        console.log(" Document Body ", document.body)
-        this.loading = false;
-      })
-      .catch(function (error) {
-        console.error(" Canvas error " + error)
-      })
 
-    // doc.addHTML(this.content.nativeElement, function () {
-    //   doc.save("obrz.pdf");
+    console.log(" Hey Yash cehk  ")
+
+    // $(document).ready(function () {
+
+
+    //   console.log(document.getElementById('yash'))
     // });
+
+
+    this.htmlContent = document.getElementById('yash');
+
+    console.log(" Hey Yash cehk  ", this.htmlContent)
+
+
+
+
+
+    this._timeSheetService.generatePdf(this.htmlContent).subscribe((res => {
+      console.log('Res===>>', res);
+    }));
+
   }
+  // alert($("#content").html());
+  // console.log('New Content', this.content);
+  // let doc = new jsPDF();
+  // console.log(" doc ", doc)
+  // console.log(" Native Ekement ", this.content.nativeElement)
+  // this.loading = true;
+
+  // html2canvas(this.content.nativeElement)
+  //   .then(function (canvas) {
+  //     console.log(" Canvas ", canvas)
+  //     var imgData = canvas.toDataURL(
+  //       'image/png');
+  //     var doc = new jsPDF('p', 'mm');
+  //     doc.addImage(imgData, 'sPNG', 10, 10);
+  //     doc.save('sample-file.pdf');
+  //     // document.body.appendChild(canvas);
+  //     console.log(" Document Body ", document.body)
+  //     this.loading = false;
+  //   })
+  //   .catch(function (error) {
+  //     console.error(" Canvas error " + error)
+  //   })
+
+  // doc.addHTML(this.content.nativeElement, function () {
+  //   doc.save("obrz.pdf");
+  // });
+}
   // html2canvas(this.content.nativeElement).then(canvas => {
   //   console.log("CALLED");
   //   // onrendered: function(canvas: HTMLCanvasElement){
@@ -93,7 +121,7 @@ export class InductionFormPreviewComponent implements OnInit {
 
   // Save the PDF
 
-}
+
 
   // onrendered: function(canvas: HTMLCanvasElement) {
   //   var pdf = new jsPDF('p','pt','a4');    

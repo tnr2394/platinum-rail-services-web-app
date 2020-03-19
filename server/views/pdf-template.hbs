@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 
 <head>
@@ -16,96 +16,11 @@
     <meta NAME="ScaleCrop" CONTENT="false">
     <meta NAME="ShareDoc" CONTENT="false">
 
-</head> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
+</head>
 
-<button (click)="makePdf()" id="print">make pdf</button>
-
-<div *ngIf="loading" id="loader-wrapper">
-    <div class="spinner">
-        <img src="../../assets/full_logo.png">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
-</div>
-
-<div id='yash' class="content" lang="en-GB" link="#0000ff" dir="ltr"
-    style="height:auto;margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
-
-    <!-- <table width="100%" border="1" cellspacing="0" cellpadding="7"
-        style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-        <tr>
-            <td colspan="4"><strong>Type</strong></td>
-            <td width="19%" align="center">YES</td>
-            <td width="18%" align="center">NO</td>
-        </tr>
-        <tr>
-            <td colspan="4">Refresher induction</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="4">New Starter</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="4">Is Inductee working on NR?</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="4">Is Inductee working on TfL?</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="4">Date of induction</td>
-            <td colspan="2" style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td width="25%">Sponsorship</td>
-            <td width="9%" align="center">YES</td>
-            <td width="9%" align="center">NO</td>
-            <td width="20%">&nbsp;</td>
-            <td align="center">YES</td>
-            <td align="center">NO</td>
-        </tr>
-        <tr>
-            <td>Primary </td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td>Sub-Sponsored</td>
-            <td style="background:#fff;">&nbsp;</td>
-            <td style="background:#fff;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="3">Is induction pack complete?</td>
-            <td style="background:#fff; padding:0px; border:0px;">
-                <table width="100%" border="1" cellspacing="0" cellpadding="7">
-                    <tr>
-                        <td style="border-top:0px; border-left:0px; border-right:0px;">&nbsp;</td>
-                        <td style="border-top:0px; border-right:0px;">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom:0px; border-right:0px; border-left:0px;">&nbsp;</td>
-                        <td style="border-bottom:0px; border-right:0px;">&nbsp;</td>
-                    </tr>
-                </table>
-            </td>
-            <td colspan="2">If No, do not sponsor until completed</td>
-        </tr>
-        <tr>
-            <td colspan="3">&nbsp;</td>
-            <td colspan="3" style="background:#fff;">&nbsp;</td>
-        </tr>
-    </table> -->
-
-    <div style="max-width:720px; width:100%; margin:0 auto; font-size: 14pt;">
-        <div style="text-align:center; margin-bottom:15px;"><img src="../../../assets/full_logo.png" alt=""
-                width="193px" /></div>
+<body lang="en-GB" link="#0000ff" dir="ltr" style="margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
+    <div style="max-width:616px; width:100%; margin:0 auto; font-size: 14pt;">
+        <div style="text-align:center; margin-bottom:15px;"><img src="prs-logo.png" alt="" width="193px" /></div>
         <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
             Induction Pack</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -117,59 +32,27 @@
             </tr>
             <tr>
                 <td colspan="4">Refresher induction</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.refresherInduction == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.refresherInduction == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4">New Starter</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.newStarter == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.newStarter == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on NR?</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.workingOnNR == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.workingOnNR == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on TfL?</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.workingOnTfL == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.workingOnTfL == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4">Date of induction</td>
-                <td colspan="2" style="background:#fff;">{{data.dateOfInduction | date:shortDate}}</td>
+                <td colspan="2" style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td width="25%">Sponsorship</td>
@@ -192,28 +75,20 @@
                 <td style="background:#fff; padding:0px; border:0px;">
                     <table width="100%" border="1" cellspacing="0" cellpadding="7">
                         <tr>
-                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
-                            <td style="border-top:0px; border-right:0px;">NO</td>
+                            <td style="border-top:0px; border-left:0px; border-right:0px;">&nbsp;</td>
+                            <td style="border-top:0px; border-right:0px;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td style="background:#fff;">
-                                <span *ngIf="data && data.inductionPackComplete == 'Yes'">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </span>
-                            </td>
-                            <td style="background:#fff;">
-                                <span *ngIf="data && data.inductionPackComplete == 'No'">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </span>
-                            </td>
+                            <td style="border-bottom:0px; border-right:0px; border-left:0px;">&nbsp;</td>
+                            <td style="border-bottom:0px; border-right:0px;">&nbsp;</td>
                         </tr>
                     </table>
                 </td>
                 <td colspan="2">If No, do not sponsor until completed</td>
             </tr>
             <tr>
-                <td colspan="3">Date added to Sentinel Database</td>
-                <td colspan="3" style="background:#fff;">{{data.dateAddedToSentinelDatabase | date:shortDate}}</td>
+                <td colspan="3">&nbsp;</td>
+                <td colspan="3" style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
 
@@ -221,31 +96,31 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Candidate Name</td>
-                <td width="50%" style="background:#fff;">{{data.candidateName}}</td>
+                <td width="50%" style="background:#fff;">Vishal pankhaniya</td>
             </tr>
             <tr>
                 <td>DoB</td>
-                <td style="background:#fff;">{{data.dateOfBirth}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>National Insurance Number</td>
-                <td style="background:#fff;">{{data.nationalInsuranceNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Candidate Address</td>
-                <td style="background:#fff;">{{data.candidateAddress}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Contact Number </td>
-                <td style="background:#fff;">{{data.contactNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Sentinel Number</td>
-                <td style="background:#fff;">{{data.sentinelNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Email Address</td>
-                <td style="background:#fff;">{{data.emailAddress}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
         <p style="font-family:Calibri, serif;">Checklist</p>
@@ -259,21 +134,9 @@
             </tr>
             <tr>
                 <td>Right to work in UK</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type1 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type1 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type1 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Type of ID provided<br></td>
@@ -281,201 +144,69 @@
             </tr>
             <tr>
                 <td>Next of Kin provided</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type2 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type2 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type2 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>H&amp;S Policy provided and briefed<br></td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type3 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type3 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type3 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>ENV policy provided and briefed<br></td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type4 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type4 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type4 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Quality Policy provided and briefed</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type5 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type5 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type5 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Working Hours policy provided and briefed</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type6 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type6 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type6 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Worksafe Policy provided and briefed</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type7 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type7 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type7 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Alcohol and Drug policy provided and briefed</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type8 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type8 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type8 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Fire policy provided and briefed</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type9 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type9 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type9 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Opt out of Working Hours Directive</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type10 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type10 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type10 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>HSQE Briefing Received</td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type11 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type11 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type11 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Safety Critical ID Issued <em>(TfL only)</em></td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type12 == 'Yes'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type12 == 'No'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
-                <td style="background:#fff;">
-                    <span *ngIf="data && data.checklist.type12 == 'N/A'">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                </td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
         <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation ‘Sentinel
@@ -485,23 +216,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Name on Account / Ltd Company Name</td>
-                <td width="50%" style="background:#fff;">{{data.bankDetails.accountHolderName}}</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Bank Name</td>
-                <td style="background:#fff;">{{data.bankDetails.bankName}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Bank Address</td>
-                <td style="background:#fff;">{{data.bankDetails.bankAddress}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Account Number</td>
-                <td style="background:#fff;">{{data.bankDetails.accountNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Sort Code</td>
-                <td style="background:#fff;">{{data.bankDetails.sortCode}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
         <p><strong>Payment Details</strong></p>
@@ -520,19 +251,19 @@
             </tr>
             <tr>
                 <td>Company Name:</td>
-                <td style="background:#fff;">{{data.paymentDetails.companyName}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Company No.:</td>
-                <td style="background:#fff;">{{data.paymentDetails.companyNo}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Please provide a copy of Certificate of Incorporation</td>
-                <td style="background:#fff;">{{data.paymentDetails.certificateNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Umbrella Company – state which one</td>
-                <td style="background:#fff;">{{data.paymentDetails.companyState}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
         <p><strong>Insurance</strong></p>
@@ -542,255 +273,41 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Employers’ Liability</td>
-                <td width="50%" style="background:#fff;">{{data.insurance.insurance1}}</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Professional Indemnity</td>
-                <td style="background:#fff;">{{data.insurance.insurance2}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Public Liability</td>
-                <td style="background:#fff;">{{data.insurance.insurance3}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Product and Goods Liability</td>
-                <td style="background:#fff;">{{data.insurance.insurance4}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Vehicle Business Use</td>
-                <td style="background:#fff;">{{data.insurance.insurance5}}</td>
-            </tr>
-        </table>
-        <p><strong>Confirmations</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="4">I confirm I have been briefed on and understand the company policies.</td>
-            </tr>
-            <tr>
-                <td width="25%">Signature</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
-                <td width="25%">Date</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="4">The Company will securely store information relating to its employees, both in hard copy
-                    and electronically, in accordance with GDPR Laws. Do you give your permission for the company to
-                    share the information we have on you with other interested parties (Clients / Network Rail /
-                    Enforcement Agencies, etc.)?</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
-                    belief, all particulars provided here are true. I understand that any false statement may disqualify
-                    me from employment or lead to dismissal.</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td>Date</td>
                 <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2"><em>For Office Use Only<br>
-                        Application checked for completion and accuracy</em></td>
-            </tr>
-            <tr>
-                <td width="50%">Name</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-        </table>
-        <p>Right to Work in the UK</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2" width="50%">NAME:</td>
-                <td colspan="2" width="50%" style="background:#fff;">{{data.rightToWorkInUK.name}}</td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <p>Document checks must be carried out, before commencement of work.</p>
-                    <p>Original documents must be seen and copies taken, with the applicant’s consent.</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><strong>Acceptable documents are any one from LIST1 below or two from
-                        LIST2A (one being a work permit). Documents from LIST 2 and LIST 2A cannot be swapped.<br>
-                    </strong></td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center"><strong>LIST 1 (one document)</strong></td>
-                <td width="12%" align="center"><strong>Checked/Copied</strong></td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport (British Citizen) or has right to abode in UK</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl1}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">EEC or Swiss Passport or ID Card</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl2}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Resident Permit EEC or Swiss</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl3}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
-                    national from EEC or Switzerland</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl4}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
-                    family member of a national from EEC or Switzerland</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl5}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or travel document endorsing the holder to stay in the UK, and to allow the
-                    holder to do the type of work on offer, if they have no permit</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl6}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Application Registration Card issued by the Home Office issued to an asylum seeker,
-                    stating that the holder is permitted to accept employment</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list1.rightWorkl7}}</td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><strong>LIST 2 (Two documents: A and one other)</strong></td>
-            </tr>
-            <tr>
-                <td width="4%">A</td>
-                <td colspan="2">Document giving person permanent national Insurance Number and Name (P45, P60 National
-                    Insurance card)</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2A}}</td>
-            </tr>
-            <tr>
-                <td>B</td>
-                <td colspan="2">Full Birth Certificate issued in the UK , Channel Islands, Isle of Man, or Northern
-                    Ireland</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2B}}</td>
-            </tr>
-            <tr>
-                <td>C</td>
-                <td colspan="2">Certificate of registration or naturalization, stating holder is a British citizen</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2C}}</td>
-            </tr>
-            <tr>
-                <td>D</td>
-                <td colspan="2">Letter issued by the Home Office, indicating they can stay in the UK and can undertake
-                    work</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2D}}</td>
-            </tr>
-            <tr>
-                <td>E</td>
-                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
-                    indefinitely in the UK </td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2E}}</td>
-            </tr>
-            <tr>
-                <td>F</td>
-                <td colspan="2">Letter issued by Home Office indicating they can stay in the UK and undertake work</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2F}}</td>
-            </tr>
-            <tr>
-                <td>G</td>
-                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay in
-                    the UK and can undertake work</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2.rightWorkl2G}}</td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center"><strong>LIST 2A (Two documents: A and one other)</strong></td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td colspan="2">Work Permit or other approval to take employment that has been issued by Work Permits UK
-                </td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2A.rightWorkl2AA}}</td>
-            </tr>
-            <tr>
-                <td>B</td>
-                <td colspan="2">Passport or other travel document endorsing the holder to stay in the UK and accept Work
-                    Permit employment</td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2A.rightWorkl2AB}}</td>
-            </tr>
-            <tr>
-                <td>C</td>
-                <td colspan="2">Letter issued by the Home Office, confirming that the person can stay in the UK and can
-                    take Work Permit employment </td>
-                <td style="background:#fff;">{{data.rightToWorkInUK.list2A.rightWorkl2AC}}</td>
-            </tr>
-        </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="3">Documents have been checked for suitability</td>
-            </tr>
-            <tr>
-                <td style="background:#fff;">Name:</td>
-                <td style="background:#fff;">Signed:</td>
-                <td style="background:#fff;">Date:</td>
-            </tr>
-        </table>
-        <p><strong>Opt-out for Sub-Contractors</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2">
-                    <ul>
-                        <li>Opt out under Regulation 32 of the Conduct of Employment Agencies Employment Businesses
-                            Regulations 2003 (‘the Regulations’)</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">The Contractor has agreed to provide services under the company’s terms and
-                    conditions<br></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations. The
-                        Contractor hereby confirms that it shall not be bound by the provisions of the regulations which
-                        do not apply to any services provided by the Contractor to the Company, throughout the duration
-                        of their agreement.</p>
-                    <ul>
-                        <li>Agency Workers Regulations 2010 (‘AWR’)</li>
-                        <li>The Contractor warrants that any operative placed on assignment under this contract is
-                            operating outside the scope of the AWR.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td width="50%">Name of Contractor</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Signed (On behalf of Contractor)</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Date:</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
+        <tr>
+            <td width="50%">Name of Contractor</td>
+            <td width="50%" style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Signed (On behalf of Contractor)</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            <td style="background:#fff;">&nbsp;</td>
+        </tr>
         </table>
         <p><strong>Next of Kin</strong></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -801,27 +318,27 @@
             </tr>
             <tr>
                 <td width="50%">Name of next of kin</td>
-                <td width="50%" style="background:#fff;">{{data.nextOfKin.kinName}}</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Relationship with you</td>
-                <td style="background:#fff;">{{data.nextOfKin.kinRelationship}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Address of next of kin</td>
-                <td style="background:#fff;">{{data.nextOfKin.kinAddress}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Contact number of next of kin</td>
-                <td style="background:#fff;">{{data.nextOfKin.kinContactNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Secondary contact number</td>
-                <td style="background:#fff;">{{data.nextOfKin.kinSecondContactNumber}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Email for next of kin</td>
-                <td style="background:#fff;">{{data.nextOfKin.kinEmail}}</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
         <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
@@ -1450,20 +967,20 @@
             <li style="margin-bottom:10px;">You are required to report all accidents, incidents, and near-misses;</li>
             <li style="margin-bottom:10px;">You are expected to participate in accident and incident investigations;
             </li>
-            <li style="margin-bottom:10px;">You are expected to participate in and input to regular safety briefings,
+            <l style="margin-bottom:10px;" i>You are expected to participate in and input to regular safety briefings,
                 toolbox talks, and other meetings, when required;</li>
-            <li style="margin-bottom:10px;">You must not start any work activity until you have been briefed on and
-                understand the method of work, site-specific risks, local hazards, the safe system of work, and
-                emergency arrangements;</li>
-            <li style="margin-bottom:10px;">You must be briefed on the Work Package Plans (WPPs) and be provided
-                with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</li>
-            <li style="margin-bottom:10px;">Ensure you work to the sections of the Rule Book GE/RT8000 that are
-                relevant to your duties;</li>
-            <li style="margin-bottom:10px;">Only access rail infrastructure through access points, and where
-                practicable, use authorised walking routes;</li>
-            <li style="margin-bottom:10px;">Follow and work to the instructions given by the Controller of Site
-                Safety/Safe Work Leader (COSS/SWL);</li>
-            <li style="margin-bottom:10px;">Always leave the worksite clean, tidy and free from hazards.</li>
+                <li style="margin-bottom:10px;">You must not start any work activity until you have been briefed on and
+                    understand the method of work, site-specific risks, local hazards, the safe system of work, and
+                    emergency arrangements;</li>
+                <li style="margin-bottom:10px;">You must be briefed on the Work Package Plans (WPPs) and be provided
+                    with a copy of the Task briefing Sheet for all work on Network Rail-managed infrastructure;</li>
+                <li style="margin-bottom:10px;">Ensure you work to the sections of the Rule Book GE/RT8000 that are
+                    relevant to your duties;</li>
+                <li style="margin-bottom:10px;">Only access rail infrastructure through access points, and where
+                    practicable, use authorised walking routes;</li>
+                <li style="margin-bottom:10px;">Follow and work to the instructions given by the Controller of Site
+                    Safety/Safe Work Leader (COSS/SWL);</li>
+                <li style="margin-bottom:10px;">Always leave the worksite clean, tidy and free from hazards.</li>
         </ul>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -2754,7 +2271,8 @@
             </tr>
         </table>
 
-    </div> -->
-</div>
+    </div>
+    </div>
+</body>
 
-<!-- </html> -->
+</html>

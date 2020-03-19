@@ -22,6 +22,8 @@ const badData = { message: "Sorry, it's bad data request" }
 const timeLogServices = require('../services/timeLog.service')
 
 
+const pdfServices = require('../services/pdf.service')
+
 // All Functions calls form the router
 
 module.exports.getTimeLog = (req, res) => {
@@ -224,54 +226,54 @@ module.exports.getWeeklylog = (req, res) => {
 			let status = response[1].status
 
 			let countForEachDay = [];
-	let sortedDates = (dates.sort(function (a, b) {
-		return new Date(b + ' ' + '00:00' + ':00 GMT+0000') - new Date(a + ' ' + '00:00' + ':00 GMT+0000');
-	})).reverse();
+			let sortedDates = (dates.sort(function (a, b) {
+				return new Date(b + ' ' + '00:00' + ':00 GMT+0000') - new Date(a + ' ' + '00:00' + ':00 GMT+0000');
+			})).reverse();
 			if (weekLogs.length > 0 && last13daysLogs.length > 0) {
-		// console.log("---IN IF---");
-		for (var i = 0; i < weekLogs.length; i++) {
-			count = 0;
-			// console.log("weekLogs of", i, weekLogs[i].date);
-			// weekLogsOf.push("weekLogs of" + i + weekLogs[i].date)
-			for (d = i; d <= i + 13; d++) {
-				// console.log("DATE COMPARED IS",dates[d])
+				// console.log("---IN IF---");
+				for (var i = 0; i < weekLogs.length; i++) {
+					count = 0;
+					// console.log("weekLogs of", i, weekLogs[i].date);
+					// weekLogsOf.push("weekLogs of" + i + weekLogs[i].date)
+					for (d = i; d <= i + 13; d++) {
+						// console.log("DATE COMPARED IS",dates[d])
 
-				var index = lodash.findIndex(last13daysLogs, (o) => {
-					// console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
-					dateCompared.push("o.date" + o.date + "------ " + "sortedDates[d]" + sortedDates[d])
-					return o.date == sortedDates[d]
+						var index = lodash.findIndex(last13daysLogs, (o) => {
+							// console.log("o.date", o.date, "------ ", "sortedDates[d]", sortedDates[d]);
+							dateCompared.push("o.date" + o.date + "------ " + "sortedDates[d]" + sortedDates[d])
+							return o.date == sortedDates[d]
+						})
+						if (index > -1) count = count + 1;
+					}
+					countForEachDay.push(count)
+					// console.log("COUNT FOR i", i, count);
+				}
+
+				let finalLast13Status = getLast13Status(countForEachDay)
+
+				let finalWorkingHrsStatus = getFinalStatus(response[1].workingHrsStatus)
+				let finaltravelHrsStatus = getFinalStatus(response[1].travelHrsStatus)
+				let finalbreakBtnTurnsStatus = getFinalStatus(response[1].breakBtnTurnsStatus)
+				let finalweekHrs = getFinalStatus(response[1].weekHrs)
+
+
+				// console.log("Test 555555555555555555555555555555555555555555")
+
+				res2.push({
+					message: 'Status sent ', workingHrsStatus: finalWorkingHrsStatus,
+					travelHrsStatus: finaltravelHrsStatus, breakBtnTurnsStatus: finalbreakBtnTurnsStatus, weekHrs: finalweekHrs,
+					last13Status: finalLast13Status
 				})
-				if (index > -1) count = count + 1;
+
+				return innerCallback()
 			}
-			countForEachDay.push(count)
-			// console.log("COUNT FOR i", i, count);
-		}
-
-		let finalLast13Status = getLast13Status(countForEachDay)
-
-		let finalWorkingHrsStatus = getFinalStatus(response[1].workingHrsStatus)
-		let finaltravelHrsStatus = getFinalStatus(response[1].travelHrsStatus)
-		let finalbreakBtnTurnsStatus = getFinalStatus(response[1].breakBtnTurnsStatus)
-		let finalweekHrs = getFinalStatus(response[1].weekHrs)
-
-
-		// console.log("Test 555555555555555555555555555555555555555555")
-
-		res2.push({
-			message: 'Status sent ', workingHrsStatus: finalWorkingHrsStatus,
-			travelHrsStatus: finaltravelHrsStatus, breakBtnTurnsStatus: finalbreakBtnTurnsStatus, weekHrs: finalweekHrs,
-			last13Status: finalLast13Status
+			else {
+				console.log("Error")
+				// return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
+			}
+		}).catch((error) => {
+			console.log('Inside Error=====>>>', error);
 		})
-
-		return innerCallback()
-		}
-	else{
-		console.log("Error")
-		// return res.status(200).json({ message: 'Status sent ', finalStatus: 'Not enough data' })
-	}
-	}).catch((error) => {
-		console.log('Inside Error=====>>>', error);
-	})
 	}, (callbackError, callbackResponse) => {
 		if (callbackError) {
 			return res.status(500).send({ callbackError })
@@ -567,10 +569,16 @@ module.exports.secondReportLogsDetails = (req, res) => {
 }
 
 
+module.exports.generateFormPdf = (req, res) => {
+	console.log('Generate Pdf', req.body);
 
+	return res.status(200).json({req})
 
-
-
-
+	// pdfServices.generateFormPdf(req.body).then((response) => {
+	// 	return res.status(200).json({ message: 'Time Logs Fetch Successfully ', response })
+	// }).catch((error) => {
+	// 	return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+	// })
+}
 // let x = this.numberOfTurns(req, res, response[i].date)
 // console.log("SATISFIED at", i, satisfied, "STATUS", x);
