@@ -1144,9 +1144,11 @@
                 <td width="34%" align="center">Date</td>
             </tr>
             <tr>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{cardHolderDeclare.In1}}</td>
+                <td style="background:#fff;">
+                    <img src={{cardHolderDeclare.cardsign1}} height="80px" width="80px">
+                </td>
+                <td style="background:#fff;">{{cardHolderDeclare.carddate1}}</td>
             </tr>
             <tr>
                 <td align="center">Employer Representative Name</td>
@@ -1154,9 +1156,11 @@
                 <td align="center">Date</td>
             </tr>
             <tr>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{cardHolderDeclare.In2}}</td>
+                <td style="background:#fff;">
+                    <img src={{cardHolderDeclare.cardsign2}} height="80px" width="80px">
+                </td>
+                <td style="background:#fff;">{{cardHolderDeclare.carddate2}}</td>
             </tr>
         </table>
         <div><strong>Rail PPE Issue</strong></div>
@@ -2026,7 +2030,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Claustrophobia</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness6 "Yes"}}
                     <span>
                         Y
@@ -2040,7 +2044,7 @@
                     </span>
                     {{/ifEquals}}
                 </td>
-              
+
             </tr>
             <tr>
                 <td>Kidney</td>
@@ -2057,7 +2061,7 @@
                         N
                     </span>
                     {{/ifEquals}}
-                </td> 
+                </td>
                 <td>Eyes</td>
                 <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness8 "Yes"}}
@@ -2074,7 +2078,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Vertigo</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness9 "Yes"}}
                     <span>
                         Y
@@ -2106,7 +2110,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Nose or throat</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness11 "Yes"}}
                     <span>
                         Y
@@ -2121,7 +2125,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Anxiety/stress</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness12 "Yes"}}
                     <span>
                         Y
@@ -2185,7 +2189,7 @@
             </tr>
             <tr>
                 <td>Blood pressure</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness16 "Yes"}}
                     <span>
                         Y
@@ -2200,7 +2204,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Sinusitis</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness17 "Yes"}}
                     <span>
                         Y
@@ -2215,7 +2219,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Skin disease</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals illnessDetail.illness18 "Yes"}}
                     <span>
                         Y
@@ -2409,7 +2413,7 @@
             </tr>
             <tr>
                 <td>Vibration</td>
-              <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness1 "Yes"}}
                     <span>
                         Y
@@ -2424,7 +2428,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Cancer-causing agents</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness2 "Yes"}}
                     <span>
                         Y
@@ -2439,7 +2443,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Lead</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness3 "Yes"}}
                     <span>
                         Y
@@ -2456,7 +2460,7 @@
             </tr>
             <tr>
                 <td>Dust</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness4 "Yes"}}
                     <span>
                         Y
@@ -2471,7 +2475,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Radiation</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness5 "Yes"}}
                     <span>
                         Y
@@ -2486,7 +2490,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Asbestos</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness6 "Yes"}}
                     <span>
                         Y
@@ -2503,7 +2507,7 @@
             </tr>
             <tr>
                 <td>Noise</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness7 "Yes"}}
                     <span>
                         Y
@@ -2518,7 +2522,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Hazardous chemicals</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness8 "Yes"}}
                     <span>
                         Y
@@ -2533,7 +2537,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Mineral oil</td>
-                  <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness9 "Yes"}}
                     <span>
                         Y
@@ -2550,7 +2554,7 @@
             </tr>
             <tr>
                 <td>Manual handling</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness10 "Yes"}}
                     <span>
                         Y
@@ -2565,7 +2569,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Skin irritants</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness11 "Yes"}}
                     <span>
                         Y
@@ -2580,7 +2584,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Tar</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals workIllnessDetail.workIllness12 "Yes"}}
                     <span>
                         Y
@@ -2643,7 +2647,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Suffering any health problems?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR2 "Yes"}}
                     <span>
                         Y
@@ -2660,7 +2664,7 @@
             </tr>
             <tr>
                 <td>Pains?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR3 "Yes"}}
                     <span>
                         Y
@@ -2675,7 +2679,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>A smoker?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR4 "Yes"}}
                     <span>
                         Y
@@ -2692,7 +2696,7 @@
             </tr>
             <tr>
                 <td>Tingling?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR5 "Yes"}}
                     <span>
                         Y
@@ -2707,7 +2711,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Asthmatic?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR6 "Yes"}}
                     <span>
                         Y
@@ -2724,7 +2728,7 @@
             </tr>
             <tr>
                 <td>Numbness/loss of feeling?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR7 "Yes"}}
                     <span>
                         Y
@@ -2739,7 +2743,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Epileptic?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR8 "Yes"}}
                     <span>
                         Y
@@ -2756,7 +2760,7 @@
             </tr>
             <tr>
                 <td>Skin allergies, eczema, or dermatitis?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR9 "Yes"}}
                     <span>
                         Y
@@ -2771,7 +2775,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Diabetic?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR10 "Yes"}}
                     <span>
                         Y
@@ -2788,7 +2792,7 @@
             </tr>
             <tr>
                 <td>Other allergies of which we should be aware?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR11 "Yes"}}
                     <span>
                         Y
@@ -2803,7 +2807,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Colour blind?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR12 "Yes"}}
                     <span>
                         Y
@@ -2820,7 +2824,7 @@
             </tr>
             <tr>
                 <td>Any blood borne disease, e.g. hepatitis, HIV?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR13 "Yes"}}
                     <span>
                         Y
@@ -2835,7 +2839,7 @@
                     {{/ifEquals}}
                 </td>
                 <td>Dyslexic?</td>
-               <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherSafetyRequirements.otherSafetyR14 "Yes"}}
                     <span>
                         Y
@@ -2866,7 +2870,7 @@
             </tr>
             <tr>
                 <td>Do you have any physical disability which could affect your work?**</td>
-                 <td style="background:#fff;">
+                <td style="background:#fff;">
                     {{#ifEquals otherQuestionDetail.otherQ1 "Yes"}}
                     <span>
                         Yes

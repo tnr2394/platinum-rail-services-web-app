@@ -768,7 +768,7 @@
                         </div>
                         <div class="col-4">
                             <mat-form-field>
-                                <input [(ngModel)]="cardsign3" matInput name="doi" [matDatepicker]="Employer"
+                                <input [(ngModel)]="carddate2" matInput name="doi" [matDatepicker]="Employer"
                                     placeholder="Choose a date" irequired>
                                 <mat-datepicker-toggle matSuffix [for]="Employer"></mat-datepicker-toggle>
                                 <mat-datepicker #Employer></mat-datepicker>
@@ -3437,8 +3437,8 @@
                             </mat-form-field>
                         </div>
                         <div class="col-4">
-                            <mat-checkbox [(ngModel)]="pressure1L" class="mr-3">L</mat-checkbox>
                             <mat-checkbox [(ngModel)]="pressure1S" class="mr-3">S</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="pressure1L" class="mr-3">L</mat-checkbox>
                             <mat-checkbox [(ngModel)]="pressure1T" class="mr-3">T</mat-checkbox>
                         </div>
                     </div>
@@ -4948,8 +4948,8 @@
                             <!-- <mat-form-field class="example-full-width"> -->
                             <label>Signature</label>
                             <input [(ngModel)]="confirmationSig2" type="file" placeholder="select file"
-                                (change)="onSelectFile5($event)">
-                            <img [src]="url4" height="200">
+                                (change)="onSelectFile19($event)">
+                            <img [src]="url19" height="200">
                             <!-- </mat-form-field> -->
                         </div>
                         <div class="col-6">
@@ -5241,7 +5241,7 @@
                         </div>
                         <div class="col-6">
                             <mat-form-field>
-                                <input matInput name="sponsorshipdate2" [matDatepicker]="sponsorship2"
+                                <input matInput name="Sponsorshipdate2" [matDatepicker]="sponsorship2"
                                     placeholder="date" irequired>
                                 <mat-datepicker-toggle matSuffix [for]="sponsorship2"></mat-datepicker-toggle>
                                 <mat-datepicker #sponsorship2></mat-datepicker>
