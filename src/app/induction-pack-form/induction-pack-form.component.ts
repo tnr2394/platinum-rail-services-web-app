@@ -17,6 +17,26 @@ export class InductionPackFormComponent implements OnInit {
 
 
   // Table 1
+  url1: any;
+  url2: any;
+  url3: any;
+  url4: any;
+  url5: any;
+  url6: any;
+  url7: any;
+  url8: any;
+  url9: any;
+  url10: any;
+  url11: any;
+  url12: any;
+  url13: any;
+  url14: any;
+  url15: any;
+  url16: any;
+  url17: any;
+  url18: any;
+  // url19: any;
+
   refresherInduction: 'Yes';
   newStarter: false;
   workingOnNR: false;
@@ -103,6 +123,10 @@ export class InductionPackFormComponent implements OnInit {
   rightWorkl2AB;
   rightWorkl2AC;
 
+  rightWorkdate;
+  rightWorkIn;
+  rightWorksign;
+
   // Pre-Deployment Safety Critical Checklist
 
   cardHolderName;
@@ -110,6 +134,22 @@ export class InductionPackFormComponent implements OnInit {
   cardHolderContact;
   cardHolderCompany;
   cardsentinelNumber;
+
+  // Sub-Contractors
+  optOutIn;
+  optOutdate;
+  optOutsign;
+  optOuttextarea;
+
+  //card holder
+  cardsign1;
+  carddate1;
+  cardIn1;
+
+  cardsign2;
+  carddate2;
+  cardIn2;
+
 
 
   // Next To kin
@@ -207,6 +247,18 @@ export class InductionPackFormComponent implements OnInit {
   msc13;
   msc14;
 
+  MedicalIN1;
+  Medicalsign1;
+  medicaldate1;
+
+  MedicalIN2;
+  Medicalsign2;
+  medicaldate2;
+
+  MedicalIN3;
+  Medicalsign3
+  medicaldate3
+
   // Medical Eye Standards
 
   medicalEye1;
@@ -214,6 +266,16 @@ export class InductionPackFormComponent implements OnInit {
   medicalEye3;
   medicalEye4;
 
+  medicalEyeIn1;
+  medicalEyesign1;
+  medicalEyesign2;
+
+  medicalEyeIn3;
+  medicalEyedate2;
+  medicalEyesign3;
+
+  medicalEyeIn4;
+  medicalEyesign4;
   // Occupational Health Questionnaire
 
   illness1;
@@ -437,6 +499,11 @@ export class InductionPackFormComponent implements OnInit {
   nightWorkQ12;
   nightWorkQ13;
 
+  nightWorkD1;
+  nightWorkD2;
+
+  nightWorksign17;
+  nightWorksign18
 
   // Rail PPE Issue
 
@@ -791,8 +858,22 @@ export class InductionPackFormComponent implements OnInit {
   measure37D;
   measure38D;
 
-
-
+  // --------------------- Confirmation---------------
+  confirmationSig1;
+  confirmationD1;
+  confirmationSig2;
+  confirmationD2;
+  confirmationSig3;
+  confirmationD3;
+  // endStaff Safety Responsibility-----------
+  SaftyDate1;
+  SaftySign1;
+  Safty1;
+  // Contract of Sponsorship----------------
+  Sponsershipsign1;
+  Sponsershipdate1;
+  Sponsershipsign2;
+  Sponsershipdate2;
 
   data = {};
 
@@ -1398,4 +1479,328 @@ export class InductionPackFormComponent implements OnInit {
     }));
   }
 
+  onSelectFileone(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url1 = event.target.result;
+        }
+        else{
+          this.url1 = '';
+        }
+        
+      }
+    }
+  }
+  
+  onSelectFile2(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url2 = event.target.result;
+        }
+        else{
+          this.url2 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile3(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url3 = event.target.result;
+        }
+        else{
+          this.url3 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile4(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url4 = event.target.result;
+        }
+        else{
+          this.url4 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile5(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url5 = event.target.result;
+        }
+        else{
+          this.url5 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile6(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url6 = event.target.result;
+        }
+        else{
+          this.url6 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile7(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url7 = event.target.result;
+        }
+        else{
+          this.url7 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile8(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url8 = event.target.result;
+        }
+        else{
+          this.url8 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile9(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url9 = event.target.result;
+        }
+        else{
+          this.url9 = '';
+        }
+        
+      }
+    }
+  }
+   onSelectFile10(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url10 = event.target.result;
+        }
+        else{
+          this.url10 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile11(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url11 = event.target.result;
+        }
+        else{
+          this.url11 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile12(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url12 = event.target.result;
+        }
+        else{
+          this.url12 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile13(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url13 = event.target.result;
+        }
+        else{
+          this.url13 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile14(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url14 = event.target.result;
+        }
+        else{
+          this.url14 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile15(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url15 = event.target.result;
+        }
+        else{
+          this.url15 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile16(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url16 = event.target.result;
+        }
+        else{
+          this.url16 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile17(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url17 = event.target.result;
+        }
+        else{
+          this.url17 = '';
+        }
+        
+      }
+    }
+  }
+  onSelectFile18(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if(event && event.target && event.target.result){
+           this.url18 = event.target.result;
+        }
+        else{
+          this.url18 = '';
+        }
+        
+      }
+    }
+  }
+  // onSelectFile19(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
+
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if(event && event.target && event.target.result){
+  //          this.url19 = event.target.result;
+  //       }
+  //       else{
+  //         this.url19 = '';
+  //       }
+        
+  //     }
+  //   }
+  // }
 }
