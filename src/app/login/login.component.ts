@@ -109,6 +109,7 @@ export class LoginComponent implements OnInit {
         });
 
         const learnerDashBoard = '/learner/' + data._id;
+        const clientDashboard = '/client/' + data._id
         if (this.returnUrl != null) {
           this.route.navigateByUrl(this.returnUrl);
         } else {
@@ -117,7 +118,7 @@ export class LoginComponent implements OnInit {
           } else if (data.userRole == 'instructor') {
             this.route.navigate(['/scheduler']);
           } else if (data.userRole == 'client') {
-            this.route.navigate(['/client/:id']);
+            this.route.navigate([clientDashboard]);
           } else if (data.userRole == 'learner') {
             this.route.navigate([learnerDashBoard]);
           }

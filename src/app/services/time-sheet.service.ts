@@ -179,15 +179,7 @@ export class TimeSheetService {
   generatePdf(data): Observable<any> {
     return new Observable<any>((observer) => {
       console.log("html in data in service", data);
-
-      let data2 =  data.split("</") 
-
-      var that = this;
-
-
-      console.log("data2", data2)
-
-      this.http.post(config.baseApiUrl + "time-log/pdf", data2).subscribe((res: any) => {
+      this.http.post(config.baseApiUrl + "time-log/pdf", data).subscribe((res: any) => {
         observer.next(res);
         console.log("response from service", res);
         // observer.complete();

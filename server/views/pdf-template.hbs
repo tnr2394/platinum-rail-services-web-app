@@ -16,6 +16,20 @@
     <meta NAME="ScaleCrop" CONTENT="false">
     <meta NAME="ShareDoc" CONTENT="false">
 
+    <link href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <style>
+        td {
+            text-align: center !important;
+        }
+
+        .strike-text {
+            text-decoration: line-through !important;
+        }
+    </style>
+
 </head>
 
 <body lang="en-GB" link="#0000ff" dir="ltr" style="margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
@@ -32,27 +46,75 @@
             </tr>
             <tr>
                 <td colspan="4">Refresher induction</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals refresherInduction "Yes"}}
+                    <span>
+                        YES
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals refresherInduction "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">New Starter</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals newStarter "Yes"}}
+                    <span>
+                        YES
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals newStarter "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on NR?</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals workingOnNR "Yes"}}
+                    <span>
+                        YES
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals workingOnNR "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Is Inductee working on TfL?</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals workingOnTfL "Yes"}}
+                    <span>
+                        YES
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals workingOnTfL "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Date of induction</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
+                <td colspan="2" style="background:#fff;">{{dateFormat dateOfInduction 'MMM Do'}}</td>
             </tr>
             <tr>
                 <td width="25%">Sponsorship</td>
@@ -75,12 +137,24 @@
                 <td style="background:#fff; padding:0px; border:0px;">
                     <table width="100%" border="1" cellspacing="0" cellpadding="7">
                         <tr>
-                            <td style="border-top:0px; border-left:0px; border-right:0px;">&nbsp;</td>
-                            <td style="border-top:0px; border-right:0px;">&nbsp;</td>
+                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
+                            <td style="border-top:0px; border-right:0px;">NO</td>
                         </tr>
                         <tr>
-                            <td style="border-bottom:0px; border-right:0px; border-left:0px;">&nbsp;</td>
-                            <td style="border-bottom:0px; border-right:0px;">&nbsp;</td>
+                            <td style="background:#fff;">
+                                {{#ifEquals inductionPackComplete "Yes"}}
+                                <span>
+                                    YES
+                                </span>
+                                {{/ifEquals}}
+                            </td>
+                            <td style="background:#fff;">
+                                {{#ifEquals inductionPackComplete "No"}}
+                                <span>
+                                    No
+                                </span>
+                                {{/ifEquals}}
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -96,31 +170,31 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Candidate Name</td>
-                <td width="50%" style="background:#fff;">Vishal pankhaniya</td>
+                <td width="50%" style="background:#fff;">{{candidateName}}</td>
             </tr>
             <tr>
                 <td>DoB</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateOfBirth}}</td>
             </tr>
             <tr>
                 <td>National Insurance Number</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nationalInsuranceNumber}}</td>
             </tr>
             <tr>
                 <td>Candidate Address</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{candidateAddress}}</td>
             </tr>
             <tr>
                 <td>Contact Number </td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{contactNumber}}</td>
             </tr>
             <tr>
                 <td>Sentinel Number</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{sentinelNumber}}</td>
             </tr>
             <tr>
                 <td>Email Address</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{emailAddress}}</td>
             </tr>
         </table>
         <p style="font-family:Calibri, serif;">Checklist</p>
@@ -134,9 +208,28 @@
             </tr>
             <tr>
                 <td>Right to work in UK</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type1 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type1 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type1 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
+
             </tr>
             <tr>
                 <td>Type of ID provided<br></td>
@@ -144,69 +237,268 @@
             </tr>
             <tr>
                 <td>Next of Kin provided</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type3 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type3 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type3 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
+
             </tr>
             <tr>
                 <td>H&amp;S Policy provided and briefed<br></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type4 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type4 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type4 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>ENV policy provided and briefed<br></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type5 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type5 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type5 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Quality Policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type6 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type6 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type6 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Working Hours policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type7 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type7 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type7 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Worksafe Policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type8 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type8 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type8 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Alcohol and Drug policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type9 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type9 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type9 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Fire policy provided and briefed</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type10 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type10 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type10 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Opt out of Working Hours Directive</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type11 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type11 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type11 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>HSQE Briefing Received</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type12 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type12 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type12 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
             <tr>
                 <td>Safety Critical ID Issued <em>(TfL only)</em></td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type13 "Yes"}}
+                    <span>
+                        Yes
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type13 "No"}}
+                    <span>
+                        No
+                    </span>
+                    {{/ifEquals}}
+                </td>
+                <td style="background:#fff;">
+                    {{#ifEquals checklist.type13 "N/A"}}
+                    <span>
+                        N/A
+                    </span>
+                    {{/ifEquals}}
+                </td>
             </tr>
         </table>
         <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation ‘Sentinel
@@ -216,23 +508,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Name on Account / Ltd Company Name</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{bankDetails.accountHolderName}}</td>
             </tr>
             <tr>
                 <td>Bank Name</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{bankDetails.bankName}}</td>
             </tr>
             <tr>
                 <td>Bank Address</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{bankDetails.bankAddress}}</td>
             </tr>
             <tr>
                 <td>Account Number</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{bankDetails.accountNumber}}</td>
             </tr>
             <tr>
                 <td>Sort Code</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{bankDetails.sortCode}}</td>
             </tr>
         </table>
         <p><strong>Payment Details</strong></p>
@@ -251,19 +543,19 @@
             </tr>
             <tr>
                 <td>Company Name:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{paymentDetails.companyName}}</td>
             </tr>
             <tr>
                 <td>Company No.:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{paymentDetails.companyNo}}</td>
             </tr>
             <tr>
                 <td>Please provide a copy of Certificate of Incorporation</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{paymentDetails.certificateNumber}}</td>
             </tr>
             <tr>
                 <td>Umbrella Company – state which one</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{paymentDetails.companyState}}</td>
             </tr>
         </table>
         <p><strong>Insurance</strong></p>
@@ -273,23 +565,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Employers’ Liability</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{insurance.insurance1}}</td>
             </tr>
             <tr>
                 <td>Professional Indemnity</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{insurance.insurance2}}</td>
             </tr>
             <tr>
                 <td>Public Liability</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{insurance.insurance3}}</td>
             </tr>
             <tr>
                 <td>Product and Goods Liability</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{insurance.insurance4}}</td>
             </tr>
             <tr>
                 <td>Vehicle Business Use</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{insurance.insurance5}}</td>
             </tr>
         </table>
         <tr>
@@ -309,6 +601,196 @@
             <td style="background:#fff;">&nbsp;</td>
         </tr>
         </table>
+
+
+        <p><strong>Confirmations</strong></p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="4">I confirm I have been briefed on and understand the company policies.</td>
+            </tr>
+            <tr>
+                <td width="25%">Signature</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%">Date</td>
+                <td width="25%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4">The Company will securely store information relating to its employees, both in hard copy
+                    and electronically, in accordance with GDPR Laws. Do you give your permission for the company to
+                    share the information we have on you with other interested parties (Clients / Network Rail /
+                    Enforcement Agencies, etc.)?</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
+                    belief, all particulars provided here are true. I understand that any false statement may disqualify
+                    me from employment or lead to dismissal.</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2"><em>For Office Use Only<br>
+                        Application checked for completion and accuracy</em></td>
+            </tr>
+            <tr>
+                <td width="50%">Name</td>
+                <td width="50%" style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Signature</td>
+                <td style="background:#fff;">&nbsp;</td>
+            </tr>
+        </table>
+        <p>Right to Work in the UK</p>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="2" width="50%">NAME:</td>
+                <td colspan="2" width="50%" style="background:#fff;">{{rightToWorkInUK.name}}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p>Document checks must be carried out, before commencement of work.</p>
+                    <p>Original documents must be seen and copies taken, with the applicant’s consent.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><strong>Acceptable documents are any one from LIST1 below or two from
+                        LIST2A (one being a work permit). Documents from LIST 2 and LIST 2A cannot be swapped.<br>
+                    </strong></td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><strong>LIST 1 (one document)</strong></td>
+                <td width="12%" align="center"><strong>Checked/Copied</strong></td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport (British Citizen) or has right to abode in UK</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl1}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">EEC or Swiss Passport or ID Card</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl2}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Resident Permit EEC or Swiss</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl3}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                    national from EEC or Switzerland</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl4}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                    family member of a national from EEC or Switzerland</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl5}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Passport or travel document endorsing the holder to stay in the UK, and to allow the
+                    holder to do the type of work on offer, if they have no permit</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl6}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Application Registration Card issued by the Home Office issued to an asylum seeker,
+                    stating that the holder is permitted to accept employment</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl7}}</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><strong>LIST 2 (Two documents: A and one other)</strong></td>
+            </tr>
+            <tr>
+                <td width="4%">A</td>
+                <td colspan="2">Document giving person permanent national Insurance Number and Name (P45, P60 National
+                    Insurance card)</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2A}}</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td colspan="2">Full Birth Certificate issued in the UK , Channel Islands, Isle of Man, or Northern
+                    Ireland</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2B}}</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td colspan="2">Certificate of registration or naturalization, stating holder is a British citizen</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2C}}</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td colspan="2">Letter issued by the Home Office, indicating they can stay in the UK and can undertake
+                    work</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2D}}</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
+                    indefinitely in the UK </td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2E}}</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td colspan="2">Letter issued by Home Office indicating they can stay in the UK and undertake work</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2F}}</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay in
+                    the UK and can undertake work</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2G}}</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><strong>LIST 2A (Two documents: A and one other)</strong></td>
+                <td style="background:#fff;"></td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td colspan="2">Work Permit or other approval to take employment that has been issued by Work Permits UK
+                </td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AA}}</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td colspan="2">Passport or other travel document endorsing the holder to stay in the UK and accept Work
+                    Permit employment</td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AB}}</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td colspan="2">Letter issued by the Home Office, confirming that the person can stay in the UK and can
+                    take Work Permit employment </td>
+                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AC}}</td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellspacing="0" cellpadding="7"
+            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+            <tr>
+                <td colspan="3">Documents have been checked for suitability</td>
+            </tr>
+            <tr>
+                <td style="background:#fff;">Name:</td>
+                <td style="background:#fff;">Signed:</td>
+                <td style="background:#fff;">Date:</td>
+            </tr>
+        </table>
+
+
         <p><strong>Next of Kin</strong></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -318,27 +800,27 @@
             </tr>
             <tr>
                 <td width="50%">Name of next of kin</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{nextOfKin.kinName}}</td>
             </tr>
             <tr>
                 <td>Relationship with you</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nextOfKin.kinRelationship}}</td>
             </tr>
             <tr>
                 <td>Address of next of kin</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nextOfKin.kinAddress}}</td>
             </tr>
             <tr>
                 <td>Contact number of next of kin</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nextOfKin.kinContactNumber}}</td>
             </tr>
             <tr>
                 <td>Secondary contact number</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nextOfKin.kinSecondContactNumber}}</td>
             </tr>
             <tr>
                 <td>Email for next of kin</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{nextOfKin.kinEmail}}</td>
             </tr>
         </table>
         <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
@@ -349,22 +831,22 @@
             </tr>
             <tr>
                 <td width="25%" style="background:#fff;">Forename(s)</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderName}}</td>
                 <td width="25%" style="background:#fff;">Surname</td>
-                <td width="25%" style="background:#fff;">&nbsp;</td>
+                <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderSurName}}</td>
             </tr>
             <tr>
                 <td style="background:#fff;">Card holder’s contact tel. no.</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{cardHolderDetails.cardHolderContact}}</td>
                 <td style="background:#fff;">Employing company</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{cardHolderDetails.cardHolderCompany}}</td>
             </tr>
             <tr>
                 <td colspan="4"><strong>2 Card holder’s safety critical occupational certification</strong></td>
             </tr>
             <tr>
                 <td>Full Sentinel card no.</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{cardHolderDetails.cardsentinelNumber}}</td>
                 <td colspan="2" align="center">An authenticated copy of the card holder’s Sentinel card must accompany
                     this checklist, on submission</td>
             </tr>
