@@ -25,6 +25,7 @@ export class MaterialComponent implements OnInit {
   showLearnerTab;
   learnerToPass: any;
   testStatus: boolean = false
+  unitNo: any;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -44,10 +45,12 @@ export class MaterialComponent implements OnInit {
   @Input('clearCheckBox') clearCheckBox;
   @Input('allLearnersFromJob') allLearners;
   @Input('learnerWithStatus') learnerWithStatus;
+  @Input('displayLearners') displayLearners;
 
   @Output() fileDetailComp: EventEmitter<any> = new EventEmitter<any>();
   @Output() assignmentAdded = new EventEmitter<any>();
   @Output() getMaterialsFromComponent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() assignmentAllocated: EventEmitter<any> = new EventEmitter<any>();
   constructor(public _materialService: MaterialService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
@@ -58,8 +61,9 @@ export class MaterialComponent implements OnInit {
     console.log("this.type", this.type);
     console.log("this.material", this.material);
     this.updateData(this.material)
-    this.activatedRoute.params.subscribe(params => {
-      this.courseId = params['courseId']
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.courseId = params['course']
+      this.unitNo = params['unit']
       console.log("params", params);
       // this.courseId = params['courseId']
     })
@@ -89,6 +93,9 @@ export class MaterialComponent implements OnInit {
     if (changes.allLearners && changes.allLearners.currentValue){
       this.allLearners = changes.allLearners.currentValue 
       console.log("changes.allLearners.currentValue", this.allLearners);
+    }
+    if (changes.displayLearners && changes.displayLearners.currentValue){
+      this.displayLearners = changes.displayLearners.currentValue
     }
 
 
@@ -160,4 +167,70 @@ export class MaterialComponent implements OnInit {
     console.log("event emited")
   }
 
+  addMaterialModal() {
+    let data = {
+      course: this.courseId,
+      unitNo: this.unitNo,
+      type: this.type
+    }
+    var addedMaterial = this.openDialog(AddMaterialModalComponent, { data }).subscribe((materials) => {
+      console.log("*****materials*****", materials);
+      if (materials == undefined) return;
+      this.material.push(materials)
+      this.updateData(this.material)
+      // var index = _.findIndex(this.groupedMaterials, function (o) {
+      //   console.log("o._id", o._id, "materials.unitNo", materials.unitNo);
+      //   return o._id == materials.unitNo
+      // })
+      // console.log("index is ", index);
+      // if (index > -1) {
+      //   console.log("in if");
+      //   if (materials.type == 'Reading') {
+      //     console.log("materials.type===>>>", materials.type);
+      //     this.groupedMaterials[index].materialsReading.push(materials)
+      //   }
+      //   else {
+      //     console.log("materials.type===>>>", materials.type);
+      //     this.groupedMaterials[index].materialsAssignment.push(materials)
+      //   }
+      //   this.allMaterials = this.groupedMaterials[index]
+      //   console.log("this.allMaterials issss", this.allMaterials);
+      //   this.allMaterialsCopy = JSON.parse(JSON.stringify(this.allMaterials))
+      // }
+      // else {
+      //   let data = {
+      //     _id: materials.unitNo,
+      //     materialsReading: [],
+      //     materialsAssignment: []
+      //   }
+      //   if (materials.type == 'Reading') {
+      //     data.materialsReading.push(materials)
+      //   }
+      //   else data.materialsAssignment.push(materials)
+      //   this.groupedMaterials.push(data)
+      // }
+    }, err => {
+      return this.openSnackBar("Material could not be Added", "Ok");
+    });
+  }
+  allocatedFromTile(event) {
+    console.log("In material", event);
+    this.assignmentAllocated.emit({ msg: "assignment allocated from material tile" })
+  }
+  handleSnackBar(data) {
+    this.openSnackBar(data.msg, data.button);
+  }
+
+  openDialog(someComponent, data = {}): Observable<any> {
+    console.log("OPENDIALOG", "DATA = ", data);
+    const dialogRef = this.dialog.open(someComponent, { data });
+    return dialogRef.afterClosed();
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
