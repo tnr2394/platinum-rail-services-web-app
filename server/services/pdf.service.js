@@ -45,6 +45,14 @@ const dataDetails =
         accountNumber: "12345678969261",
         sortCode: "123456789"
     },
+    cardHolderDeclare: {
+        cardIn1: "demo",
+        cardsign1: "",
+        carddate1: "2020-03-01T18:30:00.000Z",
+        cardIn2: "demo",
+        carddate2: "2020-03-01T18:30:00.000Z"
+    },
+
     paymentDetails: {
         CIS: this.CIS,
         PAYE: this.PAYE,

@@ -35,7 +35,7 @@ export class InductionPackFormComponent implements OnInit {
   url16: any;
   url17: any;
   url18: any;
-  // url19: any;
+  url19: any;
 
   refresherInduction: 'Yes';
   newStarter: false;
@@ -420,6 +420,44 @@ export class InductionPackFormComponent implements OnInit {
   tflArea20;
   tflArear20Visit;
   tflArear20Date;
+
+  tflArea21;
+  tflArear21Visit;
+  tflArear21Date;
+
+  tflArea22;
+  tflArear22Visit;
+  tflArear22Date;
+
+  tflArea23;
+  tflArear23Visit;
+  tflArear23Date;
+
+  tflArea24;
+  tflArear24Visit;
+  tflArear24Date;
+
+  tflArea25;
+  tflArear25Visit;
+  tflArear25Date;
+
+  tflArea26;
+  tflArear26Visit;
+  tflArear26Date;
+
+  tflArea27;
+  tflArear27Visit;
+  tflArear27Date;
+
+  tflArea28;
+  tflArear28Visit;
+  tflArear28Date;
+
+  tflArea29;
+  tflArear29Visit;
+  tflArear29Date;
+
+
 
   // ---------------------------------------endtlf----
 
@@ -921,7 +959,26 @@ export class InductionPackFormComponent implements OnInit {
         insurance5: this.insurance5,
       },
       confirmationDetails: {
-
+        confirmationSig1: this.url4,
+        confirmationSig2: this.url19,
+        confirmationSig3: this.url6,
+        confirmationD1: this.confirmationD1,
+        confirmationD2: this.confirmationD2,
+        confirmationD3: this.confirmationD3,
+      },
+      sponsorshipContract: {
+        SponsershipSign1: this.url1,
+        SponsershipSign2: this.url2,
+        Sponsershipdate1: this.Sponsershipdate1,
+        Sponsershipdate2: this.Sponsershipdate2,
+      },
+      cardHolderDeclare: {
+        cardIn1: this.cardIn1,
+        cardsign1: this.url9,
+        carddate1: this.carddate1,
+        cardIn2: this.cardIn1,
+        cardsign2: this.url10,
+        carddate2: this.carddate1,
       },
       nextOfKin: {
         kinName: this.kinName,
@@ -1187,7 +1244,6 @@ export class InductionPackFormComponent implements OnInit {
         Stress2: this.Stress2,
         Stress3: this.Stress3,
         Stress4: this.Stress4,
-        Stress5: this.Stress5,
       },
       tflTestDetails: {
         tflQ1: this.tflQ1,
@@ -1469,6 +1525,124 @@ export class InductionPackFormComponent implements OnInit {
         pressure38L: this.pressure38L,
         pressure38T: this.pressure38T,
 
+      },
+      tflDetail: {
+        tflArea1: this.tflArea1,
+        tflArear1Visit: this.tflArear1Visit,
+        tflArear1Date: this.tflArear1Date,
+
+        tflArea2: this.tflArea2,
+        tflArear2Visit: this.tflArear2Visit,
+        tflArear2Date: this.tflArear2Date,
+
+        tflArea3: this.tflArea3,
+        tflArear3Visit: this.tflArear3Visit,
+        tflArear3Date: this.tflArear3Date,
+
+        tflArea4: this.tflArea4,
+        tflArear4Visit: this.tflArear4Visit,
+        tflArear4Date: this.tflArear4Date,
+
+        tflArea5: this.tflArea5,
+        tflArear5Visit: this.tflArear5Visit,
+        tflArear5Date: this.tflArear5Date,
+
+        tflArea6: this.tflArea6,
+        tflArear6Visit: this.tflArear6Visit,
+        tflArear6Date: this.tflArear6Date,
+
+        tflArea7: this.tflArea7,
+        tflArear7Visit: this.tflArear7Visit,
+        tflArear7Date: this.tflArear7Date,
+
+        tflArea8: this.tflArea8,
+        tflArear8Visit: this.tflArear8Visit,
+        tflArear8Date: this.tflArear8Date,
+
+        tflArea9: this.tflArea9,
+        tflArear9Visit: this.tflArear9Visit,
+        tflArear9Date: this.tflArear9Date,
+
+        tflArea10: this.tflArea10,
+        tflArear10Visit: this.tflArear10Visit,
+        tflArear10Date: this.tflArear10Date,
+
+        tflArea11: this.tflArea11,
+        tflArear11Visit: this.tflArear11Visit,
+        tflArear11Date: this.tflArear11Date,
+
+        tflArea12: this.tflArea12,
+        tflArear12Visit: this.tflArear12Visit,
+        tflArear12Date: this.tflArear12Date,
+
+        tflArea13: this.tflArea13,
+        tflArear13Visit: this.tflArear13Visit,
+        tflArear13Date: this.tflArear13Date,
+
+        tflArea14: this.tflArea14,
+        tflArear14Visit: this.tflArear14Visit,
+        tflArear14Date: this.tflArear14Date,
+
+        tflArea15: this.tflArea15,
+        tflArear15Visit: this.tflArear15Visit,
+        tflArear15Date: this.tflArear15Date,
+
+        tflArea16: this.tflArea16,
+        tflArear16Visit: this.tflArear16Visit,
+        tflArear16Date: this.tflArear16Date,
+
+        tflArea17: this.tflArea17,
+        tflArear17Visit: this.tflArear17Visit,
+        tflArear17Date: this.tflArear17Date,
+
+        tflArea18: this.tflArea18,
+        tflArear18Visit: this.tflArear18Visit,
+        tflArear18Date: this.tflArear18Date,
+
+        tflArea19: this.tflArea19,
+        tflArear19Visit: this.tflArear19Visit,
+        tflArear19Date: this.tflArear19Date,
+
+        tflArea20: this.tflArea20,
+        tflArear20Visit: this.tflArear20Visit,
+        tflArear20Date: this.tflArear20Date,
+
+        tflArea21: this.tflArea21,
+        tflArear21Visit: this.tflArear21Visit,
+        tflArear21Date: this.tflArear21Date,
+
+        tflArea22: this.tflArea22,
+        tflArear22Visit: this.tflArear22Visit,
+        tflArear22Date: this.tflArear22Date,
+
+        tflArea23: this.tflArea23,
+        tflArear23Visit: this.tflArear23Visit,
+        tflArear23Date: this.tflArear23Date,
+
+        tflArea24: this.tflArea24,
+        tflArear24Visit: this.tflArear24Visit,
+        tflArear24Date: this.tflArear24Date,
+
+        tflArea25: this.tflArea25,
+        tflArear25Visit: this.tflArear25Visit,
+        tflArear25Date: this.tflArear25Date,
+
+        tflArea26: this.tflArea26,
+        tflArear26Visit: this.tflArear26Visit,
+        tflArear26Date: this.tflArear26Date,
+
+        tflArea27: this.tflArea27,
+        tflArear27Visit: this.tflArear27Visit,
+        tflArear27Date: this.tflArear27Date,
+
+        tflArea28: this.tflArea28,
+        tflArear28Visit: this.tflArear28Visit,
+        tflArear28Date: this.tflArear28Date,
+
+        tflArea29: this.tflArea29,
+        tflArear29Visit: this.tflArear29Visit,
+        tflArear29Date: this.tflArear29Date,
+
       }
     }
 
@@ -1486,17 +1660,17 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url1 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url1 = event.target.result;
         }
-        else{
+        else {
           this.url1 = '';
         }
-        
+
       }
     }
   }
-  
+
   onSelectFile2(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -1504,13 +1678,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url2 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url2 = event.target.result;
         }
-        else{
+        else {
           this.url2 = '';
         }
-        
+
       }
     }
   }
@@ -1521,13 +1695,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url3 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url3 = event.target.result;
         }
-        else{
+        else {
           this.url3 = '';
         }
-        
+
       }
     }
   }
@@ -1538,13 +1712,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url4 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url4 = event.target.result;
         }
-        else{
+        else {
           this.url4 = '';
         }
-        
+
       }
     }
   }
@@ -1555,13 +1729,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url5 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url5 = event.target.result;
         }
-        else{
+        else {
           this.url5 = '';
         }
-        
+
       }
     }
   }
@@ -1572,13 +1746,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url6 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url6 = event.target.result;
         }
-        else{
+        else {
           this.url6 = '';
         }
-        
+
       }
     }
   }
@@ -1589,13 +1763,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url7 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url7 = event.target.result;
         }
-        else{
+        else {
           this.url7 = '';
         }
-        
+
       }
     }
   }
@@ -1606,13 +1780,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url8 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url8 = event.target.result;
         }
-        else{
+        else {
           this.url8 = '';
         }
-        
+
       }
     }
   }
@@ -1623,30 +1797,30 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url9 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url9 = event.target.result;
         }
-        else{
+        else {
           this.url9 = '';
         }
-        
+
       }
     }
   }
-   onSelectFile10(event) {
+  onSelectFile10(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url10 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url10 = event.target.result;
         }
-        else{
+        else {
           this.url10 = '';
         }
-        
+
       }
     }
   }
@@ -1657,13 +1831,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url11 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url11 = event.target.result;
         }
-        else{
+        else {
           this.url11 = '';
         }
-        
+
       }
     }
   }
@@ -1674,13 +1848,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url12 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url12 = event.target.result;
         }
-        else{
+        else {
           this.url12 = '';
         }
-        
+
       }
     }
   }
@@ -1691,13 +1865,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url13 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url13 = event.target.result;
         }
-        else{
+        else {
           this.url13 = '';
         }
-        
+
       }
     }
   }
@@ -1708,13 +1882,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url14 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url14 = event.target.result;
         }
-        else{
+        else {
           this.url14 = '';
         }
-        
+
       }
     }
   }
@@ -1725,13 +1899,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url15 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url15 = event.target.result;
         }
-        else{
+        else {
           this.url15 = '';
         }
-        
+
       }
     }
   }
@@ -1742,13 +1916,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url16 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url16 = event.target.result;
         }
-        else{
+        else {
           this.url16 = '';
         }
-        
+
       }
     }
   }
@@ -1759,13 +1933,13 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url17 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url17 = event.target.result;
         }
-        else{
+        else {
           this.url17 = '';
         }
-        
+
       }
     }
   }
@@ -1776,31 +1950,31 @@ export class InductionPackFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        if(event && event.target && event.target.result){
-           this.url18 = event.target.result;
+        if (event && event.target && event.target.result) {
+          this.url18 = event.target.result;
         }
-        else{
+        else {
           this.url18 = '';
         }
-        
+
       }
     }
   }
-  // onSelectFile19(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
+  onSelectFile19(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-  //     reader.onload = (event) => { // called once readAsDataURL is completed
-  //       if(event && event.target && event.target.result){
-  //          this.url19 = event.target.result;
-  //       }
-  //       else{
-  //         this.url19 = '';
-  //       }
-        
-  //     }
-  //   }
-  // }
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url19 = event.target.result;
+        }
+        else {
+          this.url19 = '';
+        }
+
+      }
+    }
+  }
 }
