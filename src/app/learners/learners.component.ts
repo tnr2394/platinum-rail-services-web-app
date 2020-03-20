@@ -120,6 +120,7 @@ export class LearnersComponent implements OnInit {
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
+    this.loading = false;
 
   }
 

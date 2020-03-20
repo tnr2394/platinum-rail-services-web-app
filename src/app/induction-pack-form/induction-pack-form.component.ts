@@ -1662,18 +1662,13 @@ export class InductionPackFormComponent implements OnInit {
     console.log('This.data======>>>>>', this.data);
 
     this._timeSheetService.generatePdf(this.data).subscribe((res => {
-      console.log('Res===>>', res);
       this.saveToFileSystem(res);
     }));
   }
 
   private saveToFileSystem(response) {
-
     var byteArray = new Uint8Array(response.data);
     var blob = new Blob([byteArray], { type: 'application/pdf' });
-
-    // console.log('response.data:::', response.data);
-    // var blob = new Blob([response.data], { type: 'application/pdf' });
     saveAs(blob, 'test');
   }
 
@@ -1978,26 +1973,26 @@ export class InductionPackFormComponent implements OnInit {
         else {
           this.url18 = '';
         }
-
       }
     }
   }
-  onSelectFile19(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  // onSelectFile2(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url19 = event.target.result;
-        }
-        else {
-          this.url19 = '';
-        }
-      }
-    }
-  }
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+  //     reader.onload = (event: any) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url19 = event.target.result;
+  //       }
+  //       else {
+  //         this.url19 = '';
+  //       }
+  //     }
+  //   }
+  // }
   // checkChange(event,variable){
   //   console.log("variable name is",variable, "event", event);
 

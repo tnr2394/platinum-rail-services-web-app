@@ -6,6 +6,7 @@ import { TimeSheetService } from 'src/app/services/time-sheet.service';
 import * as Moment from 'moment';
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-admin-report-a',
@@ -25,6 +26,9 @@ export class AdminReportAComponent implements OnInit {
   displayMsg: boolean;
   loading: boolean;
   isPrint: boolean;
+  allInstrutors: any;
+  tempInst: any = [];
+  finalList: any = [];
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -64,7 +68,7 @@ export class AdminReportAComponent implements OnInit {
     this.displayMsg = false
     this.selectedDate = moment().format("MM/DD/YYYY")
     this.getInstructorTime(this.selectedDate)
-    // this.getAllInstructors()
+    this.getAllInstructors()
   }
   dateChanged(event) {
     this.displayMsg = false
@@ -97,15 +101,41 @@ export class AdminReportAComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  getFinalList(){
+    if (this.tempInst.length > 0 && this.allInstrutors){
+      var filteredArray = _.differenceBy(this.allInstrutors, this.tempInst, '_id');
+      if(filteredArray.length > 0){
+        filteredArray.forEach(item=>{
+          let data = {
+            date: this.selectedDate,
+            instructor: item,
+            logIn: '00:00',
+            logOut: '00:00',
+            lunchStart: '00:00',
+            lunchEnd: '00:00',
+            totalHours: { hours: '00', minutes: '00' },
+            travel: "00:00",
+            workingHours: { hours: '00', minutes: '00' }
+          }
+          this.allInstrutorsLogs.push(data)
+        })
+        console.log("*****this.allInstrutorsLogs*****", this.allInstrutorsLogs);
+        this.allInstrutorsLogs.sort((a, b) => a.instructor.name.localeCompare(b.instructor.name))
+        this.updateData(this.allInstrutorsLogs)
+      }
+      console.log("#####filteredArray", filteredArray);
+    }
+  }
 
   // API
-  // getAllInstructors(){
-  //   this._instructorService.getInstructors().subscribe(instructorsResponse=>{
-  //     console.log("instructorsResponse", instructorsResponse)
-  //     this.allInstrutors = instructorsResponse;
-  //     // this.dataSource = new MatTableDataSource<any>(this.allInstrutors)
-  //   })
-  // }
+  getAllInstructors(){
+    this._instructorService.getInstructors().subscribe(instructorsResponse=>{
+      console.log("instructorsResponse", instructorsResponse)
+      this.allInstrutors = instructorsResponse;
+      this.getFinalList()
+      // this.dataSource = new MatTableDataSource<any>(this.allInstrutors)
+    })
+  }
   getInstructorTime(date) {
     let data = {
       date: date
@@ -115,7 +145,10 @@ export class AdminReportAComponent implements OnInit {
       this.allInstrutorsLogs = instLogs.response;
       if (this.allInstrutorsLogs.length == 0) { this.displayMsg = true; return; }
       console.log("---this.allInstrutorsLogs---", this.allInstrutorsLogs);
-      if (this.allInstrutorsLogs.length > 0) this.updateData(this.allInstrutorsLogs)
+      this.allInstrutorsLogs.forEach(item=>{
+        this.tempInst.push(item.instructor)
+      })
+      if (this.allInstrutorsLogs.length > 0) this.getFinalList()
     })
   }
 }
