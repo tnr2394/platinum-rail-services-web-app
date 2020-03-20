@@ -1670,7 +1670,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url1 = event.target.result;
         }
@@ -1688,7 +1688,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url2 = event.target.result;
         }
@@ -1705,7 +1705,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url3 = event.target.result;
         }
@@ -1722,7 +1722,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url4 = event.target.result;
         }
@@ -1739,7 +1739,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url5 = event.target.result;
         }
@@ -1756,7 +1756,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url6 = event.target.result;
         }
@@ -1773,7 +1773,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url7 = event.target.result;
         }
@@ -1790,7 +1790,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url8 = event.target.result;
         }
@@ -1807,7 +1807,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url9 = event.target.result;
         }
@@ -1824,7 +1824,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url10 = event.target.result;
         }
@@ -1841,7 +1841,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url11 = event.target.result;
         }
@@ -1858,7 +1858,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url12 = event.target.result;
         }
@@ -1875,7 +1875,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url13 = event.target.result;
         }
@@ -1892,7 +1892,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url14 = event.target.result;
         }
@@ -1909,7 +1909,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url15 = event.target.result;
         }
@@ -1926,7 +1926,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url16 = event.target.result;
         }
@@ -1943,7 +1943,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url17 = event.target.result;
         }
@@ -1960,7 +1960,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url18 = event.target.result;
         }
