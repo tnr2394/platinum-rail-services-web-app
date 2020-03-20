@@ -1972,7 +1972,7 @@ export class InductionPackFormComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         if (event && event.target && event.target.result) {
           this.url19 = event.target.result;
         }
@@ -1985,9 +1985,9 @@ export class InductionPackFormComponent implements OnInit {
   }
   // checkChange(event,variable){
   //   console.log("variable name is",variable, "event", event);
-    
+
   //   console.log("tempVariable");
-  
+
   // }
   // check(){
   //   console.log("this.blockage3", this.blockage3)
