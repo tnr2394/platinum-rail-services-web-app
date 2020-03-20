@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router, NavigationExtras } from '@angular/router'
 import { TimeSheetService } from '../services/time-sheet.service';
 declare var $: any;
+import { saveAs } from "file-saver";
+
 
 @Component({
   selector: 'app-induction-pack-form',
@@ -1661,7 +1663,18 @@ export class InductionPackFormComponent implements OnInit {
 
     this._timeSheetService.generatePdf(this.data).subscribe((res => {
       console.log('Res===>>', res);
+      this.saveToFileSystem(res);
     }));
+  }
+
+  private saveToFileSystem(response) {
+
+    var byteArray = new Uint8Array(response.data);
+    var blob = new Blob([byteArray], { type: 'application/pdf' });
+
+    // console.log('response.data:::', response.data);
+    // var blob = new Blob([response.data], { type: 'application/pdf' });
+    saveAs(blob, 'test');
   }
 
   onSelectFileone(event) {

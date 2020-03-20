@@ -180,7 +180,7 @@ export class TimeSheetService {
     return new Observable<any>((observer) => {
       console.log("html in data in service", data);
       this.http.post(config.baseApiUrl + "time-log/pdf", data).subscribe((res: any) => {
-        observer.next(res);
+        observer.next(res.data);
         console.log("response from service", res);
         // observer.complete();
       }, err => {

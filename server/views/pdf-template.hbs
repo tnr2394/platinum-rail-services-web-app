@@ -32,175 +32,189 @@
         .strike-text {
             text-decoration: line-through !important;
         }
+
+        .page-1 {
+            margin: 15px 0px 200px 0px;
+        }
     </style>
 
 </head>
 
 <body lang="en-GB" link="#0000ff" dir="ltr" style="margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
     <div style="max-width:616px; width:100%; margin:0 auto; font-size: 14pt;">
-        <div style="text-align:center; margin-bottom:15px;"><img src="prs-logo.png" alt="" width="193px" /></div>
-        <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
-            Induction Pack</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="4"><strong>Type</strong></td>
-                <td width="19%" align="center">YES</td>
-                <td width="18%" align="center">NO</td>
-            </tr>
-            <tr>
-                <td colspan="4">Refresher induction</td>
-                <td style="background:#fff;">
-                    {{#ifEquals refresherInduction "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals refresherInduction "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">New Starter</td>
-                <td style="background:#fff;">
-                    {{#ifEquals newStarter "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals newStarter "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Is Inductee working on NR?</td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnNR "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnNR "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Is Inductee working on TfL?</td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnTfL "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnTfL "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Date of induction</td>
-                <td colspan="2" style="background:#fff;">{{dateFormat dateOfInduction 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td width="25%">Sponsorship</td>
-                <td width="9%" align="center">YES</td>
-                <td width="9%" align="center">NO</td>
-                <td width="20%">&nbsp;</td>
-                <td align="center">YES</td>
-                <td align="center">NO</td>
-            </tr>
-            <tr>
-                <td>Primary </td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td>Sub-Sponsored</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="3">Is induction pack complete?</td>
-                <td style="background:#fff; padding:0px; border:0px;">
-                    <table width="100%" border="1" cellspacing="0" cellpadding="7">
-                        <tr>
-                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
-                            <td style="border-top:0px; border-right:0px;">NO</td>
-                        </tr>
-                        <tr>
-                            <td style="background:#fff;">
-                                {{#ifEquals inductionPackComplete "Yes"}}
-                                <span>
-                                    YES
-                                </span>
-                                {{/ifEquals}}
-                            </td>
-                            <td style="background:#fff;">
-                                {{#ifEquals inductionPackComplete "No"}}
-                                <span>
-                                    No
-                                </span>
-                                {{/ifEquals}}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td colspan="2">If No, do not sponsor until completed</td>
-            </tr>
-            <tr>
-                <td colspan="3">&nbsp;</td>
-                <td colspan="3" style="background:#fff;">&nbsp;</td>
-            </tr>
-        </table>
 
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="50%">Candidate Name</td>
-                <td width="50%" style="background:#fff;">{{candidateName}}</td>
-            </tr>
-            <tr>
-                <td>DoB</td>
-                <td style="background:#fff;">{{dateOfBirth}}</td>
-            </tr>
-            <tr>
-                <td>National Insurance Number</td>
-                <td style="background:#fff;">{{nationalInsuranceNumber}}</td>
-            </tr>
-            <tr>
-                <td>Candidate Address</td>
-                <td style="background:#fff;">{{candidateAddress}}</td>
-            </tr>
-            <tr>
-                <td>Contact Number </td>
-                <td style="background:#fff;">{{contactNumber}}</td>
-            </tr>
-            <tr>
-                <td>Sentinel Number</td>
-                <td style="background:#fff;">{{sentinelNumber}}</td>
-            </tr>
-            <tr>
-                <td>Email Address</td>
-                <td style="background:#fff;">{{emailAddress}}</td>
-            </tr>
-        </table>
+
+        <div class="page-1">
+            <div style="text-align:center;margin-top:25px; margin-bottom:15px;">
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="193px" />
+            </div>
+            <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
+                Induction Pack</p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="4"><strong>Type</strong></td>
+                    <td width="19%" align="center">YES</td>
+                    <td width="18%" align="center">NO</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Refresher induction</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals refresherInduction "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals refresherInduction "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">New Starter</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals newStarter "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals newStarter "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Is Inductee working on NR?</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnNR "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnNR "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Is Inductee working on TfL?</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnTfL "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnTfL "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Date of induction</td>
+                    <td colspan="2" style="background:#fff;">{{dateFormat dateOfInduction 'MMM Do'}}</td>
+                </tr>
+                <tr>
+                    <td width="25%">Sponsorship</td>
+                    <td width="9%" align="center">YES</td>
+                    <td width="9%" align="center">NO</td>
+                    <td width="20%">&nbsp;</td>
+                    <td align="center">YES</td>
+                    <td align="center">NO</td>
+                </tr>
+                <tr>
+                    <td>Primary </td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td>Sub-Sponsored</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Is induction pack complete?</td>
+                    <td style="background:#fff; padding:0px; border:0px;">
+                        <table width="100%" border="1" cellspacing="0" cellpadding="7">
+                            <tr>
+                                <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
+                                <td style="border-top:0px; border-right:0px;">NO</td>
+                            </tr>
+                            <tr>
+                                <td style="background:#fff;">
+                                    {{#ifEquals inductionPackComplete "Yes"}}
+                                    <span>
+                                        YES
+                                    </span>
+                                    {{/ifEquals}}
+                                </td>
+                                <td style="background:#fff;">
+                                    {{#ifEquals inductionPackComplete "No"}}
+                                    <span>
+                                        No
+                                    </span>
+                                    {{/ifEquals}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="2">If No, do not sponsor until completed</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                    <td colspan="3" style="background:#fff;">&nbsp;</td>
+                </tr>
+            </table>
+
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="50%">Candidate Name</td>
+                    <td width="50%" style="background:#fff;">{{candidateName}}</td>
+                </tr>
+                <tr>
+                    <td>DoB</td>
+                    <td style="background:#fff;">{{dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <td>National Insurance Number</td>
+                    <td style="background:#fff;">{{nationalInsuranceNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Candidate Address</td>
+                    <td style="background:#fff;">{{candidateAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Contact Number </td>
+                    <td style="background:#fff;">{{contactNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Sentinel Number</td>
+                    <td style="background:#fff;">{{sentinelNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td style="background:#fff;">{{emailAddress}}</td>
+                </tr>
+            </table>
+
+        </div>
+
+
         <p style="font-family:Calibri, serif;">Checklist</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
