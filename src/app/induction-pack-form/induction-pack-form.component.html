@@ -469,6 +469,84 @@
         <!-- Insurance End Here -->
 
 
+        <!-- Confirmation Start Here -->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse"
+                data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
+                Confirmation Form
+            </div>
+            <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <p>I confirm I have been briefed on and understand the company policies.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input [(ngModel)]="confirmationSig1" type="file" [ngModelOptions]="{standalone: true}"
+                                placeholder="select file" (change)="onSelectFile4($event)">
+                            <img [src]="url4" height="200">
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="confirmationD1"
+                                    name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date">
+                                <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p class="mt-5">The Company will securely store information relating to its employees, both in hard
+                        copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany
+                        to share the information we have on you with other
+                        interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input [(ngModel)]="confirmationSig2" type="file" [ngModelOptions]="{standalone: true}"
+                                placeholder="select file" (change)="onSelectFile19($event)">
+                            <img [src]="url19" height="200">
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="confirmationD2"
+                                    name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date">
+                                <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p class="mt-5">I am applying for employment with the company and to the best of my knowledge
+                        andbelief, all particulars provided here are true. I understand that any false statement
+                        maydisqualify me from employment or lead to dismissal.
+                    </p>
+                    <div class="row">
+                        <div class="col-6">
+                            <!-- <mat-form-field class="example-full-width"> -->
+                            <label>Signature</label>
+                            <input [(ngModel)]="confirmationSig3" type="file" [ngModelOptions]="{standalone: true}"
+                                placeholder="select file" (change)="onSelectFile6($event)">
+                            <img [src]="url6" height="200">
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input [(ngModel)]="confirmationD3" [ngModelOptions]="{standalone: true}" matInput
+                                    name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date">
+                                <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
+                                <mat-datepicker #confirmation3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Confirmation End Here -->
+
+
         <!-- Right to work in uk Start Here -->
         <div class="single_accordion">
             <div class="single_accordion_title collapsed" id="rightworkHeading" data-toggle="collapse"
@@ -736,7 +814,7 @@
                             <img [src]="url8" height="200"> <br />
                         </div>
                         <div class="col-md-12">
-                            <label>Address of next of kin</label>
+                            <label>Address</label>
                             <mat-form-field class="example-full-width">
                                 <textarea [ngModelOptions]="{standalone: true}" rows="4" name="address" cols="100"
                                     matInput [(ngModel)]="optOuttextarea" placeholder="Address"></textarea>
@@ -747,83 +825,6 @@
             </div>
         </div>
         <!-- Opt-out for Sub-Contractors end hear -->
-
-
-        <!-- Card Holder and Employer Declaration -->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Card-Holder" data-toggle="collapse"
-                data-target="#Employer-Declaration" aria-expanded="false" aria-controls="collapseTwo">
-                Card Holder and Employer Declaration
-            </div>
-            <div id="Employer-Declaration" class="collapse single_accordion_content" aria-labelledby="Card-Holder"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <p><strong><u>Cardholder:</u></strong>I confirm that the above information is true and correct.
-                        </p>
-                        <p><strong><u>Employer:</u></strong>I confirm that the above information is true and correct. I
-                            understand that if thecard holder has medical or competence restrictions, these may limit
-                            the extent to which theyare deployed on behalf
-                            of the company. I also understand that the specific work/activityexperience identified above
-                            will define the scope of the card holder’s deployment on behalfof the Company. If the card
-                            holder has no experience of a specific
-                            work/activity, this is a work-limiting circumstance, and the card holder may not be deployed
-                            on the applicablework/activity type, until such time that they have been trained, mentored,
-                            and/or assessed tofull competence, and
-                            the Company has been advised accordingly. <b>I understand that Pre-deployment Safety
-                                Critical Checklists are valid for a maximum of 12 months from the dateof my sign-off,
-                                and that an updated checklist must be sent to the Company SentinelCoordinator when
-                                any change to the cardholder’s experiences or competence occurs.Failure to do so may
-                                limit the scope of the card holder’s deployment</b>
-                        </p>
-
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="cardIn1" matInput name="name"
-                                    placeholder="Card Holder Name" required cdkFocusInitial>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-4">
-                            <label>signature</label>
-                            <input [(ngModel)]="cardsign1" type="file" [ngModelOptions]="{standalone: true}"
-                                [ngModelOptions]="{standalone: true}" (change)="onSelectFile9($event)">
-                            <img [src]="url9" height="200">
-                        </div>
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="carddate1" matInput name="doi"
-                                    [matDatepicker]="CardHolder" placeholder="Choose a date">
-                                <mat-datepicker-toggle matSuffix [for]="CardHolder"></mat-datepicker-toggle>
-                                <mat-datepicker #CardHolder></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="cardIn2" matInput name="name"
-                                    placeholder="Employer Representative Name" required cdkFocusInitial>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-4">
-                            <label>signature</label>
-                            <input [(ngModel)]="cardsign2" type="file" [ngModelOptions]="{standalone: true}"
-                                (change)="onSelectFile10($event)">
-                            <img [src]="url10" height="200">
-                        </div>
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="carddate2" matInput name="doi"
-                                    [matDatepicker]="Employer" placeholder="Choose a date">
-                                <mat-datepicker-toggle matSuffix [for]="Employer"></mat-datepicker-toggle>
-                                <mat-datepicker #Employer></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Card Holder and Employer Declaration end -->
 
 
         <!-- Next Of Kin Start Here -->
@@ -890,7 +891,9 @@
                 </div>
             </div>
         </div>
+        <!-- Next Of Kin End Here -->
 
+        <!-- Pre-deployment Safety Start Here -->
         <div class="single_accordion">
             <div class="single_accordion_title collapsed" id="Pre-deployment" data-toggle="collapse"
                 data-target="#Pre-deployment-checklist" aria-expanded="false" aria-controls="collapseTwo">
@@ -951,7 +954,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- Pre-deployment Safety End Here -->
 
         <!-- Competences Start Here -->
         <div class="single_accordion">
@@ -1257,6 +1260,560 @@
         </div>
         <!-- Competences End Here -->
 
+        <!----------Specific work/activity experience start------------------------------>
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse"
+                data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
+                Specific work/activity experience
+            </div>
+            <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4><label>blockage:</label></h4>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" value="blockage1"
+                                [(ngModel)]="blockage1" class="mr-3">Signal Protection only
+                            </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage2" class="mr-3">
+                                TCOD</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage3" class="mr-3">
+                                Disconnection</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage4" class="mr-3">
+                                Detonator Protection</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage5" class="mr-3">
+                                Token Block</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage6" class="mr-3">
+                                Absolute Block</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage7" class="mr-3">
+                                Tokenless Block</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage8" class="mr-3">
+                                RETB</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage9" class="mr-3">
+                                ERTMS</mat-checkbox>
+                        </div>
+                        <button (click)="check()">CHECK</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="mt-4">
+                                <li>
+                                    <h5><label>Green Zone</label></h5>
+                                </li>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="greenZone1"
+                                    class="mr-3">Fenced</mat-checkbox>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="greenZone2"
+                                    class="mr-3">Site Warden Warning</mat-checkbox>
+                            </ul>
+                        </div>
+                        <div class="col-12">
+                            <ul class="mt-4">
+                                <li>
+                                    <h5><label>RedZone</label></h5>
+                                </li>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone1" class="mr-3">
+                                    ATWS</mat-checkbox>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone2" class="mr-3">
+                                    TOWS</mat-checkbox>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone3" class="mr-3">
+                                    LOWS</mat-checkbox>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone4" class="mr-3">
+                                    Pee Wee</mat-checkbox>
+                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone5" class="mr-3">
+                                    Unassisted Lookouts</mat-checkbox>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h4><label>Possession:</label></h4>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession1" class="mr-3">
+                                Within ES worksite</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession2" class="mr-3">
+                                With PICOP</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession3" class="mr-3">
+                                Without PICOP authority</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession4" class="mr-3">
+                                Poss. of sidings </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession5" class="mr-3">
+                                Line Clear Verification</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession6" class="mr-3">
+                                Receiving OLP</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession7" class="mr-3">
+                                Receiving CRP</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession8" class="mr-3">
+                                Working in axle counterauthorityarea
+                            </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession9" class="mr-3">
+                                PC Duties</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession10" class="mr-3">
+                                Hand trolley Controller</mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h4><label>Possession:</label></h4>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE1" class="mr-3">
+                                With no train/OTP</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE2" class="mr-3">
+                                With train movements</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE3" class="mr-3">
+                                With OTP movement</mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE4" class="mr-3">
+                                Route setting via pointsOperator
+                            </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE5" class="mr-3">
+                                Route setting via Signaller
+                            </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE6" class="mr-3">
+                                Working in axle counterarea
+                            </mat-checkbox>
+                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE7" class="mr-3">
+                                Competent Person Detonator Protection
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-------------Specific work/activity experience End Here----------------------------->
+
+        <!-- Card Holder and Employer Declaration -->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Card-Holder" data-toggle="collapse"
+                data-target="#Employer-Declaration" aria-expanded="false" aria-controls="collapseTwo">
+                Card Holder and Employer Declaration
+            </div>
+            <div id="Employer-Declaration" class="collapse single_accordion_content" aria-labelledby="Card-Holder"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <p><strong><u>Cardholder:</u></strong>I confirm that the above information is true and correct.
+                        </p>
+                        <p><strong><u>Employer:</u></strong>I confirm that the above information is true and correct. I
+                            understand that if thecard holder has medical or competence restrictions, these may limit
+                            the extent to which theyare deployed on behalf
+                            of the company. I also understand that the specific work/activityexperience identified above
+                            will define the scope of the card holder’s deployment on behalfof the Company. If the card
+                            holder has no experience of a specific
+                            work/activity, this is a work-limiting circumstance, and the card holder may not be deployed
+                            on the applicablework/activity type, until such time that they have been trained, mentored,
+                            and/or assessed tofull competence, and
+                            the Company has been advised accordingly. <b>I understand that Pre-deployment Safety
+                                Critical Checklists are valid for a maximum of 12 months from the dateof my sign-off,
+                                and that an updated checklist must be sent to the Company SentinelCoordinator when
+                                any change to the cardholder’s experiences or competence occurs.Failure to do so may
+                                limit the scope of the card holder’s deployment</b>
+                        </p>
+
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="cardIn1" matInput name="name"
+                                    placeholder="Card Holder Name" required cdkFocusInitial>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <label>signature</label>
+                            <input [(ngModel)]="cardsign1" type="file" [ngModelOptions]="{standalone: true}"
+                                [ngModelOptions]="{standalone: true}" (change)="onSelectFile9($event)">
+                            <img [src]="url9" height="200">
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="carddate1" matInput name="doi"
+                                    [matDatepicker]="CardHolder" placeholder="Choose a date">
+                                <mat-datepicker-toggle matSuffix [for]="CardHolder"></mat-datepicker-toggle>
+                                <mat-datepicker #CardHolder></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="cardIn2" matInput name="name"
+                                    placeholder="Employer Representative Name" required cdkFocusInitial>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <label>signature</label>
+                            <input [(ngModel)]="cardsign2" type="file" [ngModelOptions]="{standalone: true}"
+                                (change)="onSelectFile10($event)">
+                            <img [src]="url10" height="200">
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="carddate2" matInput name="doi"
+                                    [matDatepicker]="Employer" placeholder="Choose a date">
+                                <mat-datepicker-toggle matSuffix [for]="Employer"></mat-datepicker-toggle>
+                                <mat-datepicker #Employer></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card Holder and Employer Declaration end -->
+
+
+        <!-- Rail PPE Issue start Here -->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse"
+                data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
+                Rail-PPE Issue
+            </div>
+            <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <h3 style="text-align: center;">Clothing</h3>
+                    <div class="row">
+                        <div class="col-3"> <label>Orange HiVisOvercoat/Jacket</label></div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Orange HiVisOvercoat/Jacket</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing1Q"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing1D"
+                                    name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date">
+                                <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
+                                <mat-datepicker #Railissue></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Received By</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing1R"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"> <label>Orange HiVis Vest</label></div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Orange HiVis Vest</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing2Q"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing2D"
+                                    name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date">
+                                <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
+                                <mat-datepicker #Railissue1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Received By</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing2R"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"> <label>Orange HiVis Trouser</label></div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Orange HiVis Trouser</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing3Q"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" matInput name="Railissue2"
+                                    [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2" placeholder="Issue Date">
+                                <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
+                                <mat-datepicker #Railissue2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Received By</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing3R"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"> <label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</label></div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="clothing4Q" type="number"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing4D"
+                                    name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date">
+                                <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
+                                <mat-datepicker #Railissue3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Received By</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing4R"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"> <label>Other items</label></div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Other items</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing5Q"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field>
+                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing5D"
+                                    name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date">
+                                <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
+                                <mat-datepicker #Railissue4></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Received By</mat-label>
+                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing5R"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 style="text-align:center;">Safety Equipment</h3>
+                            <div class="row">
+                                <div class="col-3"> <label>Gloves – Rigger</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Gloves – Rigger</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE1Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput name="Railissue5"
+                                            [(ngModel)]="sE1D" [matDatepicker]="Railissue5" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue5></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE1R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Gloves – Latex GripCut Level 5</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Gloves – Latex GripCut Level 5</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE2Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE2D"
+                                            name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue6></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE2R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Ear Protection – Muffs</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Ear Protection – Muffs</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="sE3Q" type="number"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE3D"
+                                            name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue7></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE3R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Eye Protection</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Eye Protection</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE4Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE4D"
+                                            name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue8></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE4R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Boots</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Size:</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE5Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="sE5D"
+                                            name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue9></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE5R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Hard Hat</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Color:</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE6Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE6D"
+                                            name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue10></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE6R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Harness</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Unique ref. no.:</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE7Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE7D"
+                                            name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue11></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE7R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3"> <label>Lanyard</label></div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Unique ref. no.:</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE8Q"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field>
+                                        <input [ngModelOptions]="{standalone: true}" matInput name="Railissue12"
+                                            [(ngModel)]="sE8D" [matDatepicker]="Railissue12" placeholder="Issue Date">
+                                        <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
+                                        <mat-datepicker #Railissue12></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Received By</mat-label>
+                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE8R"
+                                            matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Rail PPE Issue End Here-->
+
 
         <!-- Medical Self-Certification Start Here -->
         <div class="single_accordion">
@@ -1503,6 +2060,110 @@
         <!-- Medical Self-Certification End Here -->
 
 
+        <!--Staff Safety Responsibility Statement Start Here-->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Staff-Safety" data-toggle="collapse"
+                data-target="#Responsibility" aria-expanded="false" aria-controls="bankdetail">
+                Staff Safety Responsibility Statement
+            </div>
+            <div id="Responsibility" class="collapse single_accordion_content" aria-labelledby="Staff-Safety"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Staff Safety Responsibility Statement</h4>
+                            <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will
+                                carry outwork on or about Network Rail-managed infrastructure
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>You are required at all times to ensure avoidance of injury to yourself and
+                                        colleagues, and to minimise risk to the environment, railway infrastructure, and
+                                        the travelling public;
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>When working near the public, you must at all times ensure that the passengers
+                                        have a clear and safe walking route. If this cannot be achieved, then all work
+                                        must stop until rectified;</p>
+                                </li>
+                                <li>
+                                    <p>You must not start any work on Network Rail-managed infrastructure if there is
+                                        any possibility that the works may over-run the agreed timescales;</p>
+                                </li>
+                                <li>
+                                    <p>You are required to demonstrate a positive and encouraging attitude towards
+                                        health and safety at all times;</p>
+                                </li>
+                                <li>
+                                    <p>You must ensure that all PPE provided is cared for and used, when required;</p>
+                                </li>
+                                <li>
+                                    <p>You are required to report all accidents, incidents, and near-misses;</p>
+                                </li>
+                                <li>
+                                    <p>You are expected to participate in accident and incident investigations;</p>
+                                </li>
+                                <li>
+                                    <p>You are expected to participate in and input to regular safety briefings, toolbox
+                                        talks, and other meetings, when required;</p>
+                                </li>
+                                <li>
+                                    <p>You must not start any work activity until you have been briefed on and
+                                        understand the method of work, site-specific risks, local hazards, the safe
+                                        system of work, and emergencyarrangements;</p>
+                                </li>
+                                <li>
+                                    <p>You must be briefed on the Work Package Plans (WPPs) and be provided with a copy
+                                        of the Task briefing Sheet for all work on Network Rail-managed infrastructure;
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Ensure you work to the sections of the Rule Book GE/RT8000 that are relevant to
+                                        your duties;</p>
+                                </li>
+                                <li>
+                                    <p>Only access rail infrastructure through access points, and where practicable, use
+                                        authorised walking routes;</p>
+                                </li>
+                                <li>
+                                    <p>Follow and work to the instructions given by the Controller of Site Safety/Safe
+                                        Work Leader (COSS/SWL);</p>
+                                </li>
+                                <li>
+                                    <p>Always leave the worksite clean, tidy and free from hazards.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [(ngModel)]="Safty1" [ngModelOptions]="{standalone: true}" matInput type="text"
+                                    name="name" placeholder="Name" required cdkFocusInitial>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <label>Signature</label>
+                            <input [(ngModel)]="SaftySign1" type="file" [ngModelOptions]="{standalone: true}"
+                                (change)="onSelectFile3($event)">
+                            <img [src]="url3" height="200">
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input [(ngModel)]="SaftyDate1" matInput [matDatepicker]="safety"
+                                    [ngModelOptions]="{standalone: true}" placeholder="By When">
+                                <mat-datepicker-toggle matSuffix [for]="safety"></mat-datepicker-toggle>
+                                <mat-datepicker #safety></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Staff Safety Responsibility Statement End Here -->
+
+
         <!-- Medical Standards: Eyewear Start Here -->
         <div class="single_accordion">
             <div class="single_accordion_title collapsed" id="eye-standard-heading" data-toggle="collapse"
@@ -1560,7 +2221,7 @@
                             <img [src]="url14" height="200">
                         </div>
                     </div>
-                    <!-- -------------------------------------->
+
                     <h3><strong>Working Time Directive and OPT-OUT</strong></h3>
                     <p>The European Union Working Time Directive of a 48-hour maximum working week came into effecton
                         October 1, 1998. The Directive provides minimum daily and weekly rest breaks, an annual
@@ -1651,6 +2312,180 @@
             </div>
         </div>
         <!-- Medical Standards: Eyewear End Here -->
+
+
+        <!-- Contract of Sponsorship (MF015) -->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="Shopnsorship" data-toggle="collapse"
+                data-target="#sponsorship" aria-expanded="false" aria-controls="sponsorship">
+                Contract of Sponsorship (MF015)
+            </div>
+            <div id="sponsorship" class="collapse single_accordion_content" aria-labelledby="sponsorship"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                This document sets out the contractual arrangements for the primary sponsorship of an
+                                individual onNetwork Rail’s Sentinel Systems for the management of people working on
+                                Network Rail-managedinfrastructure.
+                            </p>
+                            <span>Between;</span><br>
+                            <span>And;</span><br>
+                            <span>Name:</span><br>
+                            <span>Sentinel No:</span><br>
+
+                            <p>The Company will act as the named individual’s primary sponsor for work carried out on
+                                managedinfrastructure. The nature of this employment will be as set out in the Terms of
+                                Engagement for staff,agency workers, and subcontractors.
+                                The company does/ does not* support any primary-sponsoredstaff member to have a
+                                secondary (sub) sponsor.
+                            </p>
+                            <h6>*delete as applicable</h6>
+                            <p>The Company, as your primary sponsor, will commit to fulfilling the role of employer for
+                                the purposesof health and safety legislation only.</p>
+
+                            <h4><b>Responsibilities of the Individual</b></h4>
+                            <ul>
+                                <li>
+                                    <p>1.The individual shall carry their smart Sentinel card at all times, whilst
+                                        working on managedinfrastructure.</p>
+                                </li>
+                                <li>
+                                    <p>2.The individual will co-operate with their primary sponsor to ensure the
+                                        personal informationheld in the Sentinel database remains accurate and up to
+                                        date.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>3.The individual shall follow the rules of personal accountability for working
+                                        safely on managedinfrastructure, including compliance with the Sentinel Scheme
+                                        Rules and those of theInfrastructure Manager.</p>
+                                </li>
+                                <li>
+                                    <p>4.The individual has the responsibility to manage their sponsor relationships and
+                                        at all times;when working on managed infrastructure, they shall:</p>
+                                    <p>a. Know the identity of their primary sponsor;</p>
+                                    <p>b. Know which sub-sponsors they are working for, if not working for their
+                                        PrimarySponsor;
+                                    </p>
+                                    <p>c. Provide the correct name of the sponsor they are working for, when booking on
+                                        atsite.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>.5 Individuals are required to notify the primary sponsor if they no longer to be
+                                        sponsored bythem, so they can be de-sponsored. The change of sponsorship must be
+                                        requested onlinethrough My Sentinel.</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <h2>As Primary Sponsor, the Company will ensure:</h2>
+                                <li>
+                                    <p>1. Individuals receive a valid Sentinel smart card. (Note: the first card is
+                                        issued free of charge;replacements due to loss or theft will be chargeable.)</p>
+                                </li>
+                                <li>
+                                    <p>2. Individuals receive an induction briefing, that will include as a minimum the
+                                        rules andresponsibilities of the new Sentinel scheme.</p>
+                                </li>
+                                <li>
+                                    <p>3. Suitable PPE is provided to the individual when they are required to go onto
+                                        managedinfrastructure. PPE will carry the company logo, and must only be worn
+                                        when working for theCompany.</p>
+                                </li>
+                                <li>
+                                    <p>4. Individuals receive regular briefings and updates of information pertaining to
+                                        their duties</p>
+                                </li>
+                                <li>
+                                    <p>5. Training and assessment at required intervals to maintain competency of duties
+                                        beingperformed.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>6. Personal issue information: handbooks, key point cards, etc. are made
+                                        available.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>7. Individuals are provided with advice, guidance and/or instructions on any
+                                        restrictions basedon medication or other medical fitness issues.</p>
+                                </li>
+                                <li>
+                                    <p>8. Individuals are provided with mentoring and support to develop the competence
+                                        of theindividual.</p>
+                                </li>
+                                <li>
+                                    <p>9. Conduct an annual review of the individual’s continued suitability to work on
+                                        theinfrastructure, taking into account behaviours and performance of safety
+                                        critical duties, andidentify development requirements.</p>
+                                </li>
+                                <li>
+                                    <p>10. Individuals are provided with safety critical equipment that is calibrated
+                                        (where required) andfit for purpose for the individual to carry out their
+                                        duties.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>11. Explain how the Sponsor will provide advice, guidance, or instructions on any
+                                        restrictions,based on medication and other medical fitness issues.</p>
+                                </li>
+                                <li>
+                                    <p>12. Require the Individual to notify the Primary Sponsor of any changes in
+                                        circumstance, includinghealth or personal issues, that may need the Primary
+                                        Sponsor to take action to ensure theIndividual’s continued fitness
+                                        for work trackside.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>13. Individuals are given access to sources of information required for them to
+                                        undertake planningduties.</p>
+                                </li>
+                                <li>
+                                    <p>14. Make the Individual aware of their ability to check their own competences by
+                                        methods currentlyavailable.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Signed (the individual)</label>
+                            <input [(ngModel)]="Sponsershipsign1" type="file" [ngModelOptions]="{standalone: true}"
+                                (change)="onSelectFileone($event)">
+                            <img [src]="url1" height="200">
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="Sponsershipdate1" [ngModelOptions]="{standalone: true}"
+                                    name="sponsorship1" [matDatepicker]="sponsorship1" placeholder="date">
+                                <mat-datepicker-toggle matSuffix [for]="sponsorship1"></mat-datepicker-toggle>
+                                <mat-datepicker #sponsorship1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-6">
+                            <label>Signed (the company)</label>
+                            <input [(ngModel)]="Sponsershipsign2" type="file" [ngModelOptions]="{standalone: true}"
+                                (change)="onSelectFile2($event)">
+                            <img [src]="url2" height="200">
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <input matInput name="Sponsorshipdate2" [matDatepicker]="sponsorship2"
+                                    placeholder="date">
+                                <mat-datepicker-toggle matSuffix [for]="sponsorship2"></mat-datepicker-toggle>
+                                <mat-datepicker #sponsorship2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contract of Sponsorship (MF015) end  -->
+
+
 
 
         <!-- Occupational Health Questionnaire Start Here -->
@@ -2177,7 +3012,7 @@
         <!--Other Health Information End Here -->
 
 
-        <!-- Other Health Information Questions Start Here -->
+        <!-- Other Questions Start Here -->
         <div class="single_accordion">
             <div class="single_accordion_title collapsed" id="Illnesses3-heading" data-toggle="collapse"
                 data-target="#Illnesses3" aria-expanded="false" aria-controls="bankdetail">
@@ -2273,7 +3108,7 @@
 
             </div>
         </div>
-        <!--Other Health Information Questions End Here -->
+        <!--Other Questions End Here -->
 
 
         <!-- Gp Registration Start Here -->
@@ -2369,6 +3204,101 @@
             </div>
         </div>
         <!-- Gp Registration End Here -->
+
+        <!-- English Test Start Here-->
+        <div class="single_accordion">
+            <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse"
+                data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
+                English-Test(TfL only) Form
+            </div>
+            <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest"
+                data-parent="#accordion">
+                <div class="single_accordion_content_inner">
+                    <div class="row">
+                        <P>
+                            <b>Candidates should complete the questions below to the best of their ability without any
+                                assistance.</b>
+                        </P>
+                        <div class="col-12">
+                            <p>1. They’ve both worked here _______ over ten years.</p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ1"
+                                aria-label="Select an option">
+                                <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
+                                <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>2. Choose the option closest in meaning to the word in bold:</p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ2"
+                                aria-label="Select an option">
+                                <label>Ancestor:</label>
+                                <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
+                                <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>3. Choose the option opposite in meaning to the word in bold:</p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ3"
+                                aria-label="Select an option">
+                                <label>Exterior:</label>
+                                <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
+                                <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>4. What ______ you like to drink? </p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ4"
+                                aria-label="Select an option">
+                                <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>5. There are other people in the park _________ ourselves </p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ5"
+                                aria-label="Select an option">
+                                <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>6. He had a heart attack. The doctor was immediately</p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ6"
+                                aria-label="Select an option">
+                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col-12">
+                            <p>7. My brother and I used to fight a great deal as children. We did of things together,
+                                notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really
+                                did me a , as I missed the school exams that year.</p>
+                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ7"
+                                aria-label="Select an option">
+                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
+                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- english test end -->
+
 
         <!-- TfL Area Familiarisation Start Here -->
         <div class="single_accordion">
@@ -3360,483 +4290,6 @@
         </div>
         <!--Night Workers Questionnaire End Here -->
 
-
-        <!----------Specific work/activity experience start------------------------------>
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Specific-workHeading" data-toggle="collapse"
-                data-target="#Specific-work" aria-expanded="false" aria-controls="Specific-work">
-                Specific work/activity experience
-            </div>
-            <div id="Specific-work" class="collapse single_accordion_content" aria-labelledby="Specific-worklHeading"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4><label>blockage:</label></h4>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" value="blockage1"
-                                [(ngModel)]="blockage1" class="mr-3">Signal Protection only
-                            </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage2" class="mr-3">
-                                TCOD</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage3" class="mr-3">
-                                Disconnection</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage4" class="mr-3">
-                                Detonator Protection</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage5" class="mr-3">
-                                Token Block</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage6" class="mr-3">
-                                Absolute Block</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage7" class="mr-3">
-                                Tokenless Block</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage8" class="mr-3">
-                                RETB</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="blockage9" class="mr-3">
-                                ERTMS</mat-checkbox>
-                        </div>
-                        <button (click)="check()">CHECK</button>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="mt-4">
-                                <li>
-                                    <h5><label>Green Zone</label></h5>
-                                </li>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="greenZone1"
-                                    class="mr-3">Fenced</mat-checkbox>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="greenZone2"
-                                    class="mr-3">Site Warden Warning</mat-checkbox>
-                            </ul>
-                        </div>
-                        <div class="col-12">
-                            <ul class="mt-4">
-                                <li>
-                                    <h5><label>RedZone</label></h5>
-                                </li>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone1" class="mr-3">
-                                    ATWS</mat-checkbox>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone2" class="mr-3">
-                                    TOWS</mat-checkbox>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone3" class="mr-3">
-                                    LOWS</mat-checkbox>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone4" class="mr-3">
-                                    Pee Wee</mat-checkbox>
-                                <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="redZone5" class="mr-3">
-                                    Unassisted Lookouts</mat-checkbox>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <h4><label>Possession:</label></h4>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession1" class="mr-3">
-                                Within ES worksite</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession2" class="mr-3">
-                                With PICOP</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession3" class="mr-3">
-                                Without PICOP authority</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession4" class="mr-3">
-                                Poss. of sidings </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession5" class="mr-3">
-                                Line Clear Verification</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession6" class="mr-3">
-                                Receiving OLP</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession7" class="mr-3">
-                                Receiving CRP</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession8" class="mr-3">
-                                Working in axle counterauthorityarea
-                            </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession9" class="mr-3">
-                                PC Duties</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="Possession10" class="mr-3">
-                                Hand trolley Controller</mat-checkbox>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <h4><label>Possession:</label></h4>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE1" class="mr-3">
-                                With no train/OTP</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE2" class="mr-3">
-                                With train movements</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE3" class="mr-3">
-                                With OTP movement</mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE4" class="mr-3">
-                                Route setting via pointsOperator
-                            </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE5" class="mr-3">
-                                Route setting via Signaller
-                            </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE6" class="mr-3">
-                                Working in axle counterarea
-                            </mat-checkbox>
-                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="PossessionE7" class="mr-3">
-                                Competent Person Detonator Protection
-                            </mat-checkbox>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-------------Specific work/activity experience End Here----------------------------->
-
-        <!---------------------------Rail PPE Issue start------------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Rail-PPEHeading" data-toggle="collapse"
-                data-target="#Rail-PPE" aria-expanded="false" aria-controls="Rail-PPE">
-                Rail-PPE Issue
-            </div>
-            <div id="Rail-PPE" class="collapse single_accordion_content" aria-labelledby="Rail-PPElHeading"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <h3 style="text-align: center;">Clothing</h3>
-                    <div class="row">
-                        <div class="col-3"> <label>Orange HiVisOvercoat/Jacket</label></div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Orange HiVisOvercoat/Jacket</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing1Q"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing1D"
-                                    name="Railissue" [matDatepicker]="Railissue" placeholder="Issue Date">
-                                <mat-datepicker-toggle matSuffix [for]="Railissue"></mat-datepicker-toggle>
-                                <mat-datepicker #Railissue></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Received By</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing1R"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3"> <label>Orange HiVis Vest</label></div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Orange HiVis Vest</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing2Q"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing2D"
-                                    name="Railissue1" [matDatepicker]="Railissue1" placeholder="Issue Date">
-                                <mat-datepicker-toggle matSuffix [for]="Railissue1"></mat-datepicker-toggle>
-                                <mat-datepicker #Railissue1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Received By</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing2R"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3"> <label>Orange HiVis Trouser</label></div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Orange HiVis Trouser</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing3Q"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" matInput name="Railissue2"
-                                    [(ngModel)]="clothing3Q" [matDatepicker]="Railissue2" placeholder="Issue Date">
-                                <mat-datepicker-toggle matSuffix [for]="Railissue2"></mat-datepicker-toggle>
-                                <mat-datepicker #Railissue2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Received By</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing3R"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3"> <label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</label></div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>HiVis Flame-RetardantOveralls ( BS EN11612:2015 )</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="clothing4Q" type="number"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing4D"
-                                    name="Railissue3" [matDatepicker]="Railissue3" placeholder="Issue Date">
-                                <mat-datepicker-toggle matSuffix [for]="Railissue3"></mat-datepicker-toggle>
-                                <mat-datepicker #Railissue3></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Received By</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing4R"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3"> <label>Other items</label></div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Other items</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="clothing5Q"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field>
-                                <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="clothing5D"
-                                    name="Railissue4" [matDatepicker]="Railissue4" placeholder="Issue Date">
-                                <mat-datepicker-toggle matSuffix [for]="Railissue4"></mat-datepicker-toggle>
-                                <mat-datepicker #Railissue4></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Received By</mat-label>
-                                <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="clothing5R"
-                                    matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <h3 style="text-align:center;">Safety Equipment</h3>
-                            <div class="row">
-                                <div class="col-3"> <label>Gloves – Rigger</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Gloves – Rigger</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE1Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput name="Railissue5"
-                                            [(ngModel)]="sE1D" [matDatepicker]="Railissue5" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue5"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue5></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE1R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Gloves – Latex GripCut Level 5</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Gloves – Latex GripCut Level 5</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE2Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE2D"
-                                            name="Railissue6" [matDatepicker]="Railissue6" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue6"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue6></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE2R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Ear Protection – Muffs</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Ear Protection – Muffs</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="sE3Q" type="number"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE3D"
-                                            name="Railissue7" [matDatepicker]="Railissue7" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue7"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue7></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE3R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Eye Protection</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Eye Protection</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE4Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE4D"
-                                            name="Railissue8" [matDatepicker]="Railissue8" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue8"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue8></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE4R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Boots</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Size:</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE5Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="sE5D"
-                                            name="Railissue9" [matDatepicker]="Railissue9" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue9"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue9></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE5R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Hard Hat</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Color:</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE6Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE6D"
-                                            name="Railissue10" [matDatepicker]="Railissue10" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue10"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue10></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE6R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Harness</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Unique ref. no.:</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE7Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput [(ngModel)]="sE7D"
-                                            name="Railissue11" [matDatepicker]="Railissue11" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue11"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue11></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE7R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3"> <label>Lanyard</label></div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Unique ref. no.:</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="number" [(ngModel)]="sE8Q"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field>
-                                        <input [ngModelOptions]="{standalone: true}" matInput name="Railissue12"
-                                            [(ngModel)]="sE8D" [matDatepicker]="Railissue12" placeholder="Issue Date">
-                                        <mat-datepicker-toggle matSuffix [for]="Railissue12"></mat-datepicker-toggle>
-                                        <mat-datepicker #Railissue12></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-3">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-label>Received By</mat-label>
-                                        <input [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="sE8R"
-                                            matInput>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <!-- Rail PPE Issue end ------------------------------------------------------->
 
         <!-- Stress-Risk Start--------->
         <div class="single_accordion">
@@ -5478,449 +5931,6 @@
         </div>
         <!-- end of workplacepressure----------------------------------------- -->
 
-        <!-- ----------------------------English Test------------------------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="EnglishTest" data-toggle="collapse"
-                data-target="#English-test" aria-expanded="false" aria-controls="EnglishTest">
-                English-Test(TfL only) Form
-            </div>
-            <div id="English-test" class="collapse single_accordion_content" aria-labelledby="EnglishTest"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <P>
-                            <b>Candidates should complete the questions below to the best of their ability without any
-                                assistance.</b>
-                        </P>
-                        <div class="col-12">
-                            <p>1. They’ve both worked here _______ over ten years.</p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ1"
-                                aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="in">A. in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="since ">B. since </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="for">C. for</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="during">D. during</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>2. Choose the option closest in meaning to the word in bold:</p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ2"
-                                aria-label="Select an option">
-                                <label>Ancestor:</label>
-                                <mat-radio-button class="mr-3" value="old">A. old </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="forefather">B. forefather </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="past">C. past</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="dead">D. dead</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>3. Choose the option opposite in meaning to the word in bold:</p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ3"
-                                aria-label="Select an option">
-                                <label>Exterior:</label>
-                                <mat-radio-button class="mr-3" value="internal">A. internal </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="inferior ">B. inferior </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="superior">C. superior</mat-radio-button>
-                                <mat-radio-button class="mr-3" value="interior">D. interior</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>4. What ______ you like to drink? </p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ4"
-                                aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="will">A. will </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="might  ">B. might </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="would ">C. would </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="shall">D. shall</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>5. There are other people in the park _________ ourselves </p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ5"
-                                aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="besides">A. besides </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="beside">B. beside </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="before ">C. before </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="around">D. around</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>6. He had a heart attack. The doctor was immediately</p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ6"
-                                aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                        <div class="col-12">
-                            <p>7. My brother and I used to fight a great deal as children. We did of things together,
-                                notalways in complete . In fact, on one occasion, he actually my arm. I supposehe really
-                                did me a , as I missed the school exams that year.</p>
-                            <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="tflQ7"
-                                aria-label="Select an option">
-                                <mat-radio-button class="mr-3" value="Sent off">A. Sent off </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent for">B. sent for </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent in ">C. sent in </mat-radio-button>
-                                <mat-radio-button class="mr-3" value="sent through">D. sent through</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- english test end -->
-        <!-------------------------Confirmation------------------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Confirmation" data-toggle="collapse"
-                data-target="#confirmation" aria-expanded="false" aria-controls="confirmation">
-                Confirmation Form
-            </div>
-            <div id="confirmation" class="collapse single_accordion_content" aria-labelledby="Confirmation"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <p>I confirm I have been briefed on and understand the company policies.</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input [(ngModel)]="confirmationSig1" type="file" [ngModelOptions]="{standalone: true}"
-                                placeholder="select file" (change)="onSelectFile4($event)">
-                            <img [src]="url4" height="200">
-                            <!-- </mat-form-field> -->
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="confirmationD1"
-                                    name="confirmation1" [matDatepicker]="confirmation1" placeholder="Date">
-                                <mat-datepicker-toggle matSuffix [for]="confirmation1"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <p class="mt-5">The Company will securely store information relating to its employees, both in hard
-                        copyand electronically, in accordance with GDPR Laws. Do you give your permission for thecompany
-                        to share the information we have on you with other
-                        interested parties (Clients /Network Rail / Enforcement Agencies, etc.)?</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input [(ngModel)]="confirmationSig2" type="file" [ngModelOptions]="{standalone: true}"
-                                placeholder="select file" (change)="onSelectFile19($event)">
-                            <img [src]="url19" height="200">
-                            <!-- </mat-form-field> -->
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="confirmationD2"
-                                    name="confirmation2" [matDatepicker]="confirmation2" placeholder="Date">
-                                <mat-datepicker-toggle matSuffix [for]="confirmation2"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <p class="mt-5">I am applying for employment with the company and to the best of my knowledge
-                        andbelief, all particulars provided here are true. I understand that any false statement
-                        maydisqualify me from employment or lead to dismissal.
-                    </p>
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- <mat-form-field class="example-full-width"> -->
-                            <label>Signature</label>
-                            <input [(ngModel)]="confirmationSig3" type="file" [ngModelOptions]="{standalone: true}"
-                                placeholder="select file" (change)="onSelectFile6($event)">
-                            <img [src]="url6" height="200">
-                            <!-- </mat-form-field> -->
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input [(ngModel)]="confirmationD3" [ngModelOptions]="{standalone: true}" matInput
-                                    name="confirmation3" [matDatepicker]="confirmation3" placeholder="Date">
-                                <mat-datepicker-toggle matSuffix [for]="confirmation3"></mat-datepicker-toggle>
-                                <mat-datepicker #confirmation3></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- confirmation end------------------------------------->
-
-        <!-- <---------------Staff Safety Responsibility Statement----------------->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Staff-Safety" data-toggle="collapse"
-                data-target="#Responsibility" aria-expanded="false" aria-controls="bankdetail">
-                Staff Safety Responsibility Statement
-            </div>
-            <div id="Responsibility" class="collapse single_accordion_content" aria-labelledby="Staff-Safety"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Staff Safety Responsibility Statement</h4>
-                            <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will
-                                carry outwork on or about Network Rail-managed infrastructure
-                            </p>
-                            <ul>
-                                <li>
-                                    <p>You are required at all times to ensure avoidance of injury to yourself and
-                                        colleagues, and to minimise risk to the environment, railway infrastructure, and
-                                        the travelling public;
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>When working near the public, you must at all times ensure that the passengers
-                                        have a clear and safe walking route. If this cannot be achieved, then all work
-                                        must stop until rectified;</p>
-                                </li>
-                                <li>
-                                    <p>You must not start any work on Network Rail-managed infrastructure if there is
-                                        any possibility that the works may over-run the agreed timescales;</p>
-                                </li>
-                                <li>
-                                    <p>You are required to demonstrate a positive and encouraging attitude towards
-                                        health and safety at all times;</p>
-                                </li>
-                                <li>
-                                    <p>You must ensure that all PPE provided is cared for and used, when required;</p>
-                                </li>
-                                <li>
-                                    <p>You are required to report all accidents, incidents, and near-misses;</p>
-                                </li>
-                                <li>
-                                    <p>You are expected to participate in accident and incident investigations;</p>
-                                </li>
-                                <li>
-                                    <p>You are expected to participate in and input to regular safety briefings, toolbox
-                                        talks, and other meetings, when required;</p>
-                                </li>
-                                <li>
-                                    <p>You must not start any work activity until you have been briefed on and
-                                        understand the method of work, site-specific risks, local hazards, the safe
-                                        system of work, and emergencyarrangements;</p>
-                                </li>
-                                <li>
-                                    <p>You must be briefed on the Work Package Plans (WPPs) and be provided with a copy
-                                        of the Task briefing Sheet for all work on Network Rail-managed infrastructure;
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>Ensure you work to the sections of the Rule Book GE/RT8000 that are relevant to
-                                        your duties;</p>
-                                </li>
-                                <li>
-                                    <p>Only access rail infrastructure through access points, and where practicable, use
-                                        authorised walking routes;</p>
-                                </li>
-                                <li>
-                                    <p>Follow and work to the instructions given by the Controller of Site Safety/Safe
-                                        Work Leader (COSS/SWL);</p>
-                                </li>
-                                <li>
-                                    <p>Always leave the worksite clean, tidy and free from hazards.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [(ngModel)]="Safty1" [ngModelOptions]="{standalone: true}" matInput type="text"
-                                    name="name" placeholder="Name" required cdkFocusInitial>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-4">
-                            <label>Signature</label>
-                            <input [(ngModel)]="SaftySign1" type="file" [ngModelOptions]="{standalone: true}"
-                                (change)="onSelectFile3($event)">
-                            <img [src]="url3" height="200">
-                        </div>
-                        <div class="col-4">
-                            <mat-form-field>
-                                <input [(ngModel)]="SaftyDate1" matInput [matDatepicker]="safety"
-                                    [ngModelOptions]="{standalone: true}" placeholder="By When">
-                                <mat-datepicker-toggle matSuffix [for]="safety"></mat-datepicker-toggle>
-                                <mat-datepicker #safety></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- -------------------------------endStaff Safety Responsibility Statement -->
-        <!-- Contract of Sponsorship (MF015) -->
-        <div class="single_accordion">
-            <div class="single_accordion_title collapsed" id="Shopnsorship" data-toggle="collapse"
-                data-target="#sponsorship" aria-expanded="false" aria-controls="sponsorship">
-                Contract of Sponsorship (MF015)
-            </div>
-            <div id="sponsorship" class="collapse single_accordion_content" aria-labelledby="sponsorship"
-                data-parent="#accordion">
-                <div class="single_accordion_content_inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <p>
-                                This document sets out the contractual arrangements for the primary sponsorship of an
-                                individual onNetwork Rail’s Sentinel Systems for the management of people working on
-                                Network Rail-managedinfrastructure.
-                            </p>
-                            <span>Between;</span><br>
-                            <span>And;</span><br>
-                            <span>Name:</span><br>
-                            <span>Sentinel No:</span><br>
-
-                            <p>The Company will act as the named individual’s primary sponsor for work carried out on
-                                managedinfrastructure. The nature of this employment will be as set out in the Terms of
-                                Engagement for staff,agency workers, and subcontractors.
-                                The company does/ does not* support any primary-sponsoredstaff member to have a
-                                secondary (sub) sponsor.
-                            </p>
-                            <h6>*delete as applicable</h6>
-                            <p>The Company, as your primary sponsor, will commit to fulfilling the role of employer for
-                                the purposesof health and safety legislation only.</p>
-
-                            <h4><b>Responsibilities of the Individual</b></h4>
-                            <ul>
-                                <li>
-                                    <p>1.The individual shall carry their smart Sentinel card at all times, whilst
-                                        working on managedinfrastructure.</p>
-                                </li>
-                                <li>
-                                    <p>2.The individual will co-operate with their primary sponsor to ensure the
-                                        personal informationheld in the Sentinel database remains accurate and up to
-                                        date.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>3.The individual shall follow the rules of personal accountability for working
-                                        safely on managedinfrastructure, including compliance with the Sentinel Scheme
-                                        Rules and those of theInfrastructure Manager.</p>
-                                </li>
-                                <li>
-                                    <p>4.The individual has the responsibility to manage their sponsor relationships and
-                                        at all times;when working on managed infrastructure, they shall:</p>
-                                    <p>a. Know the identity of their primary sponsor;</p>
-                                    <p>b. Know which sub-sponsors they are working for, if not working for their
-                                        PrimarySponsor;
-                                    </p>
-                                    <p>c. Provide the correct name of the sponsor they are working for, when booking on
-                                        atsite.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>.5 Individuals are required to notify the primary sponsor if they no longer to be
-                                        sponsored bythem, so they can be de-sponsored. The change of sponsorship must be
-                                        requested onlinethrough My Sentinel.</p>
-                                </li>
-                            </ul>
-                            <ul>
-                                <h2>As Primary Sponsor, the Company will ensure:</h2>
-                                <li>
-                                    <p>1. Individuals receive a valid Sentinel smart card. (Note: the first card is
-                                        issued free of charge;replacements due to loss or theft will be chargeable.)</p>
-                                </li>
-                                <li>
-                                    <p>2. Individuals receive an induction briefing, that will include as a minimum the
-                                        rules andresponsibilities of the new Sentinel scheme.</p>
-                                </li>
-                                <li>
-                                    <p>3. Suitable PPE is provided to the individual when they are required to go onto
-                                        managedinfrastructure. PPE will carry the company logo, and must only be worn
-                                        when working for theCompany.</p>
-                                </li>
-                                <li>
-                                    <p>4. Individuals receive regular briefings and updates of information pertaining to
-                                        their duties</p>
-                                </li>
-                                <li>
-                                    <p>5. Training and assessment at required intervals to maintain competency of duties
-                                        beingperformed.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>6. Personal issue information: handbooks, key point cards, etc. are made
-                                        available.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>7. Individuals are provided with advice, guidance and/or instructions on any
-                                        restrictions basedon medication or other medical fitness issues.</p>
-                                </li>
-                                <li>
-                                    <p>8. Individuals are provided with mentoring and support to develop the competence
-                                        of theindividual.</p>
-                                </li>
-                                <li>
-                                    <p>9. Conduct an annual review of the individual’s continued suitability to work on
-                                        theinfrastructure, taking into account behaviours and performance of safety
-                                        critical duties, andidentify development requirements.</p>
-                                </li>
-                                <li>
-                                    <p>10. Individuals are provided with safety critical equipment that is calibrated
-                                        (where required) andfit for purpose for the individual to carry out their
-                                        duties.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>11. Explain how the Sponsor will provide advice, guidance, or instructions on any
-                                        restrictions,based on medication and other medical fitness issues.</p>
-                                </li>
-                                <li>
-                                    <p>12. Require the Individual to notify the Primary Sponsor of any changes in
-                                        circumstance, includinghealth or personal issues, that may need the Primary
-                                        Sponsor to take action to ensure theIndividual’s continued fitness
-                                        for work trackside.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>13. Individuals are given access to sources of information required for them to
-                                        undertake planningduties.</p>
-                                </li>
-                                <li>
-                                    <p>14. Make the Individual aware of their ability to check their own competences by
-                                        methods currentlyavailable.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Signed (the individual)</label>
-                            <input [(ngModel)]="Sponsershipsign1" type="file" [ngModelOptions]="{standalone: true}"
-                                (change)="onSelectFileone($event)">
-                            <img [src]="url1" height="200">
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput [(ngModel)]="Sponsershipdate1" [ngModelOptions]="{standalone: true}"
-                                    name="sponsorship1" [matDatepicker]="sponsorship1" placeholder="date">
-                                <mat-datepicker-toggle matSuffix [for]="sponsorship1"></mat-datepicker-toggle>
-                                <mat-datepicker #sponsorship1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-6">
-                            <label>Signed (the company)</label>
-                            <!-- <input type="file" [ngModelOptions]="{standalone: true}"> -->
-                            <input [(ngModel)]="Sponsershipsign2" type="file" [ngModelOptions]="{standalone: true}"
-                                (change)="onSelectFile2($event)">
-                            <img [src]="url2" height="200">
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field>
-                                <input matInput name="Sponsorshipdate2" [matDatepicker]="sponsorship2"
-                                    placeholder="date">
-                                <mat-datepicker-toggle matSuffix [for]="sponsorship2"></mat-datepicker-toggle>
-                                <mat-datepicker #sponsorship2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contract of Sponsorship (MF015) end  -->
         <button mat-flat-button color="primary" class="pull-right button_hover_effect Button_shap_effact ripple"
             (click)="submitValue()">
             <i class="fas fa-plus fa-fw"></i>
