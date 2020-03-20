@@ -21,10 +21,6 @@
 
 
     <style>
-        td {
-            text-align: center !important;
-        }
-
         .strike-text {
             text-decoration: line-through !important;
         }
@@ -1703,15 +1699,19 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Name:</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{safetySatatement.Safty1}}</td>
             </tr>
             <tr>
                 <td>Signature:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#if safetySatatement.SaftySign1}}
+                    <img src="{{safetySatatement.SaftySign1}}" height="80px" width="80px">
+                    {{/if}}
+                </td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateFormat safetySatatement.SaftyDate1 'DD-MM-YYYY'}}</td>
             </tr>
         </table>
         <p><strong>Medical Standards: Eyewear</strong></p>
@@ -1938,15 +1938,27 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="28%">Signed (the individual)</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign1}}
+                    <img src={{sponsorshipContract.SponsershipSign1}} height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td width="28%">Date:</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">
+                    {{dateFormat sponsorshipContract.Sponsershipdate1 'DD-MM-YYYY'}}
+                </td>
             </tr>
             <tr>
                 <td>Signed (the company)</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign2}}
+                    <img src={{sponsorshipContract.SponsershipSign2}} height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td>Date:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{dateFormat sponsorshipContract.Sponsershipdate2 'DD-MM-YYYY'}}
+                </td>
             </tr>
         </table>
         <p><strong>Occupational Health Questionnaire</strong></p>

@@ -980,6 +980,11 @@ export class InductionPackFormComponent implements OnInit {
         cardsign2: this.url10,
         carddate2: this.carddate1,
       },
+      safetySatatement: {
+        Safty1: this.Safty1,
+        SaftySign1: this.url3,
+        SaftyDate1: this.SaftyDate1
+      },
       optOutDetail: {
         optOutIn: this.optOutIn,
         optOutdate: this.optOutdate,
