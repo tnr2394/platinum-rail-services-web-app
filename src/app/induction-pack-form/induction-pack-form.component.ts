@@ -1072,6 +1072,74 @@ export class InductionPackFormComponent implements OnInit {
         medicalEye3: this.medicalEye3,
         medicalEye4: this.medicalEye4
       },
+      comp: {
+        competencesD1: this.competencesD1,
+        competencesE1: this.competencesE1,
+
+        competencesD2: this.competencesD2,
+        competencesE2: this.competencesE2,
+
+        competencesD3: this.competencesD3,
+        competencesE3: this.competencesE3,
+
+
+        competencesD4: this.competencesD4,
+        competencesE4: this.competencesE4,
+
+        competencesD5: this.competencesD5,
+        competencesE5: this.competencesE5,
+
+
+        competencesD6: this.competencesD6,
+        competencesE6: this.competencesE6,
+
+
+        competencesD7: this.competencesD7,
+        competencesE7: this.competencesE7,
+
+
+        competencesD8: this.competencesD8,
+        competencesE8: this.competencesE8,
+
+
+        competencesD9: this.competencesD9,
+        competencesE9: this.competencesE9,
+
+
+        competencesD10: this.competencesD10,
+        competencesE10: this.competencesE10,
+
+
+        competencesD11: this.competencesD11,
+        competencesE11: this.competencesE11,
+
+
+        competencesD12: this.competencesD12,
+        competencesE12: this.competencesE12,
+
+
+        competencesD13: this.competencesD13,
+        competencesE13: this.competencesE13,
+
+
+        competencesD14: this.competencesD14,
+        competencesE14: this.competencesE14,
+
+        competencesD15: this.competencesD15,
+        competencesE15: this.competencesE15,
+
+
+        competencesD16: this.competencesD16,
+        competencesE16: this.competencesE16,
+
+        competencesD17: this.competencesD17,
+        competencesE17: this.competencesE17,
+
+
+        competencesD18: this.competencesD18,
+        competencesE18: this.competencesE18,
+
+      },
       illnessDetail: {
         illness1: this.illness1,
         illness2: this.illness2,
