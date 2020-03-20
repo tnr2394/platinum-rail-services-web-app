@@ -22,7 +22,11 @@
 
     <style>
         td {
-            text-align: center !important;
+            font-size: 10px;
+        }
+
+        th {
+            font-size: 12px;
         }
 
         .strike-text {
@@ -594,7 +598,9 @@
             <tr>
                 <td width="25%">Signature</td>
                 <td width="25%" style="background:#fff;">
+                    {{#if confirmationDetails.confirmationSig1}}
                     <img src="{{confirmationDetails.confirmationSig1}}" height="80px" width="80px">
+                    {{/if}}
                 </td>
                 <td width="25%">Date</td>
                 <td width="25%" style="background:#fff;">{{dateFormat confirmationDetails.confirmationD1 "DD-MM-YYYY"}}
@@ -609,7 +615,9 @@
             <tr>
                 <td>Signature</td>
                 <td style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign2}}
                     <img src="{{confirmationDetails.confirmationSig2}}" height="80px" width="80px">
+                    {{/if}}
                 </td>
                 <td>Date</td>
                 <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD2 "DD-MM-YYYY"}}</td>
@@ -622,7 +630,9 @@
             <tr>
                 <td>Signature</td>
                 <td style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign2}}
                     <img src="{{confirmationDetails.confirmationSig3}}" height="80px" width="80px">
+                    {{/if}}
                 </td>
                 <td>Date</td>
                 <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD3 "DD-MM-YYYY"}}</td>
@@ -687,7 +697,9 @@
             <tr>
                 <td>Signed (On behalf of Contractor)</td>
                 <td style="background:#fff;">
+                    {{#if optOutDetail.optOutsign}}
                     <img src="{{optOutDetail.optOutsign}}" height="80px" width="80px">
+                    {{/if}}
                 </td>
             </tr>
             <tr>
@@ -1105,9 +1117,8 @@
             </tr>
             <tr>
                 <td>Within ES worksite</td>
-                <td style="background:#ffff00;"{{possessionDetail:Possession1}}</td>
-                <td>Receiving OLP</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession6}</td>
+                <td style="background:#ffff00;" {{possessionDetail:Possession1}}</td> <td>Receiving OLP</td>
+                <td style="background:#ffff00;">{{possessionDetail:Possession6}}</td>
                 <td colspan="2" style="background:#fff;">&nbsp;</td>
                 <td style="background:#fff;">&nbsp;</td>
                 <td style="background:#fff;">&nbsp;</td>
@@ -1185,7 +1196,9 @@
             <tr>
                 <td style="background:#fff;">{{cardHolderDeclare.In1}}</td>
                 <td style="background:#fff;">
+                    {{#if cardHolderDeclare.cardsign1}}
                     <img src={{cardHolderDeclare.cardsign1}} height="80px" width="80px">
+                    {{/if}}
                 </td>
                 <td style="background:#fff;">{{cardHolderDeclare.carddate1}}</td>
             </tr>
@@ -1197,7 +1210,9 @@
             <tr>
                 <td style="background:#fff;">{{cardHolderDeclare.In2}}</td>
                 <td style="background:#fff;">
+                    {{#if cardHolderDeclare.cardsign2}}
                     <img src={{cardHolderDeclare.cardsign2}} height="80px" width="80px">
+                    {{/if}}
                 </td>
                 <td style="background:#fff;">{{cardHolderDeclare.carddate2}}</td>
             </tr>
@@ -1704,15 +1719,19 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="50%">Name:</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
+                <td width="50%" style="background:#fff;">{{safetySatatement.Safty1}}</td>
             </tr>
             <tr>
                 <td>Signature:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#if safetySatatement.SaftySign1}}
+                    <img src="{{safetySatatement.SaftySign1}}" height="80px" width="80px">
+                    {{/if}}
+                </td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateFormat safetySatatement.SaftyDate1 'DD-MM-YYYY'}}</td>
             </tr>
         </table>
         <p><strong>Medical Standards: Eyewear</strong></p>
@@ -1939,15 +1958,27 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="28%">Signed (the individual)</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign1}}
+                    <img src={{sponsorshipContract.SponsershipSign1}} height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td width="28%">Date:</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">
+                    {{dateFormat sponsorshipContract.Sponsershipdate1 'DD-MM-YYYY'}}
+                </td>
             </tr>
             <tr>
                 <td>Signed (the company)</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#if sponsorshipContract.SponsershipSign2}}
+                    <img src={{sponsorshipContract.SponsershipSign2}} height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td>Date:</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{dateFormat sponsorshipContract.Sponsershipdate2 'DD-MM-YYYY'}}
+                </td>
             </tr>
         </table>
         <p><strong>Occupational Health Questionnaire</strong></p>
@@ -3142,181 +3173,182 @@
                 <td>Bakerloo</td>
                 <td style="background:#fff;">{{tflDetail.tflArea1}}</td>
                 <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Central</td>
                 <td style="background:#fff;">{{tflDetail.tflArea2}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear2Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear2Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Circle</td>
                 <td style="background:#fff;">{{tflDetail.tflArea3}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear3Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear3Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>District</td>
                 <td style="background:#fff;">{{tflDetail.tflArea4}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear4Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear4Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Hammersmith &amp; City</td>
                 <td style="background:#fff;">{{tflDetail.tflArea5}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear5Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear5Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Jubilee</td>
                 <td style="background:#fff;">{{tflDetail.tflArea6}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear6Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear6Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Metropolitan</td>
                 <td style="background:#fff;">{{tflDetail.tflArea7}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear7Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear7Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Nothern</td>
                 <td style="background:#fff;">{{tflDetail.tflArea8}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear8Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear8Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Piccadilly</td>
                 <td style="background:#fff;">{{tflDetail.tflArea9}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear9Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear9Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Victoria</td>
                 <td style="background:#fff;">{{tflDetail.tflArea10}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear10Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear10Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Waterloo &amp; City</td>
                 <td style="background:#fff;">{{tflDetail.tflArea11}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear11Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear11Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>DLR</td>
                 <td style="background:#fff;">{{tflDetail.tflArea12}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear12Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear12Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>London Overground</td>
                 <td style="background:#fff;">{{tflDetail.tflArea13}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear13Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear13Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>TfL Rail (Liverpool Street to Shenfield)</td>
                 <td style="background:#fff;">{{tflDetail.tflArea14}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear14Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear14Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td><strong>DEPOTS</strong></td>
-                <td style="background:#fff;">{{tflDetail.tflArea15}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Cockfosters</td>
-                <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArea15}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear15Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear15Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Golders Green</td>
                 <td style="background:#fff;">{{tflDetail.tflArea16}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear16Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear16Date 'DD/MM/YYYY'}}</td>
             </tr>
+
             <tr>
                 <td>Hainault</td>
                 <td style="background:#fff;">{{tflDetail.tflArea17}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear17Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear17Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Hammersmith</td>
                 <td style="background:#fff;">{{tflDetail.tflArea18}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear18Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear18Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Morden</td>
                 <td style="background:#fff;">{{tflDetail.tflArea19}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear19Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear19Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Neasden</td>
                 <td style="background:#fff;">{{tflDetail.tflArea20}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear20Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear20Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Northfields</td>
                 <td style="background:#fff;">{{tflDetail.tflArea21}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear21Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear21Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Queens Park</td>
                 <td style="background:#fff;">{{tflDetail.tflArea22}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear22Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear22Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Ruislip</td>
                 <td style="background:#fff;">{{tflDetail.tflArea23}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear23Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear23Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Stonebridge Park</td>
                 <td style="background:#fff;">{{tflDetail.tflArea24}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear24Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear24Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>White City</td>
                 <td style="background:#fff;">{{tflDetail.tflArea25}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear25Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear25Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Ealing Common</td>
                 <td style="background:#fff;">{{tflDetail.tflArea26}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear26Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear26Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Nothumberland Park</td>
                 <td style="background:#fff;">{{tflDetail.tflArea27}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear27Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear27Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Beckton</td>
                 <td style="background:#fff;">{{tflDetail.tflArea28}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear28Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear28Date 'DD/MM/YYYY'}}</td>
             </tr>
             <tr>
                 <td>Poplar</td>
                 <td style="background:#fff;">{{tflDetail.tflArea29}}</td>
-                <td style="background:#fff;">{{tflDetail.tflArear1Visit}}</td>
-                <td style="background:#fff;">{{dateFormat tflDetail.tflArear1Date 'MMM Do'}}</td>
+                <td style="background:#fff;">{{tflDetail.tflArear29Visit}}</td>
+                <td style="background:#fff;">{{dateFormat tflDetail.tflArear29Date 'DD/MM/YYYY'}}</td>
             </tr>
         </table>
         <p><strong>Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers</strong></p>
@@ -3567,7 +3599,7 @@
             </tr>
             <tr>
                 <td><em>Insert name of team/individual</em></td>
-                <td style="background:#fff;">>{{riskAssessment.Stress2}}</td>
+                <td style="background:#fff;">{{riskAssessment.Stress2}}</td>
                 <td style="background:#fff;">&nbsp;</td>
                 <td style="background:#fff;">&nbsp;</td>
             </tr>
@@ -3602,595 +3634,528 @@
             </tr>
         </table>
 
+
+        {{!-- New Table --}}
+
+
+
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td><strong>Workplace Pressure</strong></td>
-                <td><strong>Issue Identified</strong></td>
-                <td colspan="3" align="center"><strong>Severity x Likelihood</strong></td>
-                <td><strong>Additional Control Measures</strong></td>
-                <td><strong>By Whom</strong></td>
-                <td><strong>By When</strong></td>
-            </tr>
-            <tr>
-                <td>CONTROL</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-                        <li>Who does what in the team?</li>
-                        <li>Having enough line manager support?</li>
-                        <li>Having sufficient control over your work?</li>
-                        <li>Having your opinions listened to?</li>
-                        <li>The balance between work and outside life?</li>
-                        <li>Any other concerns?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure1I}}</li>
-                        <li>{{workPressureDetail.pressure2I}}</li>
-                        <li>{{workPressureDetail.pressure3I}}</li>
-                        <li>{{workPressureDetail.pressure4I}}</li>
-                        <li>{{workPressureDetail.pressure5I}}</li>
-                        <li>{{workPressureDetail.pressure6I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure1S}}</li>
-                        <li>{{workPressureDetail.pressure2S}}</li>
-                        <li>{{workPressureDetail.pressure3S}}</li>
-                        <li>{{workPressureDetail.pressure4S}}</li>
-                        <li>{{workPressureDetail.pressure5S}}</li>
-                        <li>{{workPressureDetail.pressure6S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure1L}}</li>
-                        <li>{{workPressureDetail.pressure2L}}</li>
-                        <li>{{workPressureDetail.pressure3L}}</li>
-                        <li>{{workPressureDetail.pressure4L}}</li>
-                        <li>{{workPressureDetail.pressure5L}}</li>
-                        <li>{{workPressureDetail.pressure6L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure1T}}</li>
-                        <li>{{workPressureDetail.pressure2T}}</li>
-                        <li>{{workPressureDetail.pressure3T}}</li>
-                        <li>{{workPressureDetail.pressure4T}}</li>
-                        <li>{{workPressureDetail.pressure5T}}</li>
-                        <li>{{workPressureDetail.pressure6T}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;">
-                    <ul>
-                        <li>Discuss flexibility over delivery of work schedules and delivery of work.</li>
-                        <li>Support flexible working practices, wherever possible and practical.</li>
-                        <li>Agree on the most appropriate communication methods and frequency.</li>
-                        <li>Include all employees in decision-making for tasks/planning work.</li>
-                        <li>Share good practice and recognise achievements or suggestions.</li>
-                        <li>Discuss learning opportunities.</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                      <ul>
-                        <li>{{MeasureByWhoom.measure1I}}</li>
-                        <li>{{MeasureByWhoom.measure2I}}</li>
-                        <li>{{MeasureByWhoom.measure3I}}</li>
-                        <li>{{MeasureByWhoom.measure4I}}</li>
-                        <li>{{MeasureByWhoom.measure5I}}</li>
-                        <li>{{MeasureByWhoom.measure6I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                     <ul>
-                        <li>{{MeasureByWhen.measure1I}}</li>
-                        <li>{{MeasureByWhen.measure2I}}</li>
-                        <li>{{MeasureByWhen.measure3I}}</li>
-                        <li>{{MeasureByWhen.measure4I}}</li>
-                        <li>{{MeasureByWhen.measure5I}}</li>
-                        <li>{{MeasureByWhen.measure6I}}</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>JOB SECURITY AND CHANGE</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>By Whom</td>
-                <td>By When</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-                        <li>Feeling supported through change?</li>
-                        <li>Opportunities to comment on change?</li>
-                        <li>Your future role?</li>
-                        <li>Where to access support?</li>
-                        <li>Having enough time/resources to implement change?</li>
-                        <li>Feeling skilled enough to do new tasks?</li>
-                        <li>Any other concerns?</li>
-
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure7I}}</li>
-                        <li>{{workPressureDetail.pressure8I}}</li>
-                        <li>{{workPressureDetail.pressure9I}}</li>
-                        <li>{{workPressureDetail.pressure10I}}</li>
-                        <li>{{workPressureDetail.pressure11I}}</li>
-                        <li>{{workPressureDetail.pressure12I}}</li>
-                        <li>{{workPressureDetail.pressure13I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure7S}}</li>
-                        <li>{{workPressureDetail.pressure8S}}</li>
-                        <li>{{workPressureDetail.pressure9S}}</li>
-                        <li>{{workPressureDetail.pressure10S}}</li>
-                        <li>{{workPressureDetail.pressure11S}}</li>
-                        <li>{{workPressureDetail.pressure12S}}</li>
-                        <li>{{workPressureDetail.pressure13S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure7L}}</li>
-                        <li>{{workPressureDetail.pressure8L}}</li>
-                        <li>{{workPressureDetail.pressure9L}}</li>
-                        <li>{{workPressureDetail.pressure10L}}</li>
-                        <li>{{workPressureDetail.pressure11L}}</li>
-                        <li>{{workPressureDetail.pressure12L}}</li>
-                        <li>{{workPressureDetail.pressure13L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure7T}}</li>
-                        <li>{{workPressureDetail.pressure8T}}</li>
-                        <li>{{workPressureDetail.pressure9T}}</li>
-                        <li>{{workPressureDetail.pressure10T}}</li>
-                        <li>{{workPressureDetail.pressure11T}}</li>
-                        <li>{{workPressureDetail.pressure12T}}</li>
-                        <li>{{workPressureDetail.pressure13T}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;">
-                    <ul>
-                        <li>Ensure communication mechanisms are in place and operating effectively.</li>
-                        <li>Engage with employees regularly and in a timely manner during key change initiatives, and
-                            provide opportunities to feed in their views.</li>
-                        <li>Explain the reasons for change and the benefits, as well as information on timescales.</li>
-                        <li>Ensure employees are aware of all support services available to them.</li>
-                        <li>Be honest with employees, even where news may not be positive.</li>
-                        <li>direct employees to basic lifestyle advice and coping strategies to prepare for change.</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                     <ul>
-                        <li>{{MeasureByWhoom.measure7I}}</li>
-                        <li>{{MeasureByWhoom.measure8I}}</li>
-                        <li>{{MeasureByWhoom.measure9I}}</li>
-                        <li>{{MeasureByWhoom.measure10I}}</li>
-                        <li>{{MeasureByWhoom.measure11}}</li>
-                        <li>{{MeasureByWhoom.measure12I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{MeasureByWhen.measure7I}}</li>
-                        <li>{{MeasureByWhen.measure8I}}</li>
-                        <li>{{MeasureByWhen.measure9I}}</li>
-                        <li>{{MeasureByWhen.measure10I}}</li>
-                        <li>{{MeasureByWhen.measure11I}}</li>
-                        <li>{{MeasureByWhen.measure12I}}</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>BALANCED WORKLOAD</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>By Whom</td>
-                <td>By When</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-
-                        <li>Clear priorities?</li>
-                        <li>Having realistic deadlines?</li>
-                        <li>Having sufficient resources to do your job?</li>
-                        <li>Your skills, training, and knowledge being sufficient to do your job?</li>
-                        <li>The length of your daily commute?</li>
-                        <li>Having a dull or repetitive work?</li>
-                        <li>Your work/life balance?</li>
-                        <li>Any other concerns?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure14I}}</li>
-                        <li>{{workPressureDetail.pressure15I}}</li>
-                        <li>{{workPressureDetail.pressure16I}}</li>
-                        <li>{{workPressureDetail.pressure17I}}</li>
-                        <li>{{workPressureDetail.pressure18I}}</li>
-                        <li>{{workPressureDetail.pressure19I}}</li>
-                        <li>{{workPressureDetail.pressure20I}}</li>
-                        <li>{{workPressureDetail.pressure21I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure14S}}</li>
-                        <li>{{workPressureDetail.pressure15S}}</li>
-                        <li>{{workPressureDetail.pressure16S}}</li>
-                        <li>{{workPressureDetail.pressure17S}}</li>
-                        <li>{{workPressureDetail.pressure18S}}</li>
-                        <li>{{workPressureDetail.pressure19S}}</li>
-                        <li>{{workPressureDetail.pressure20S}}</li>
-                        <li>{{workPressureDetail.pressure21S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure14L}}</li>
-                        <li>{{workPressureDetail.pressure15L}}</li>
-                        <li>{{workPressureDetail.pressure16L}}</li>
-                        <li>{{workPressureDetail.pressure17L}}</li>
-                        <li>{{workPressureDetail.pressure18L}}</li>
-                        <li>{{workPressureDetail.pressure19L}}</li>
-                        <li>{{workPressureDetail.pressure20L}}</li>
-                        <li>{{workPressureDetail.pressure21L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure14T}}</li>
-                        <li>{{workPressureDetail.pressure15T}}</li>
-                        <li>{{workPressureDetail.pressure16T}}</li>
-                        <li>{{workPressureDetail.pressure17T}}</li>
-                        <li>{{workPressureDetail.pressure18T}}</li>
-                        <li>{{workPressureDetail.pressure19T}}</li>
-                        <li>{{workPressureDetail.pressure20T}}</li>
-                        <li>{{workPressureDetail.pressure21T}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;">
-                    <ul>
-                        <li>Reallocate duties (temporarily or permanently).</li>
-                        <li>Help prioritise tasks or projects appropriately.</li>
-                        <li>Adjust hours or work pattern (temporarily or permanently).</li>
-                        <li>Identify and support specific training needs.</li>
-                        <li>Ensure tasks and expectations are clearly defined and understood.</li>
-                        <li>Plan work carefully so that deadlines are achievable.</li>
-                        <li>Explore the full potential of an employee to utilise their skill set. If possible, offer a
-                            variety of tasks, rather than those that are simply repetitive.</li>
-                        <li>Plan workload in regular discussions.</li>
-                        <li>Agree an upper limit to working hours.</li>
-                        <li>Switch off mobile phones and laptops at a specific time.</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{MeasureByWhoom.measure13I}}</li>
-                        <li>{{MeasureByWhoom.measure14I}}</li>
-                        <li>{{MeasureByWhoom.measure15I}}</li>
-                        <li>{{MeasureByWhoom.measure16I}}</li>
-                        <li>{{MeasureByWhoom.measure17I}}</li>
-                        <li>{{MeasureByWhoom.measure18I}}</li>
-                        <li>{{MeasureByWhoom.measure19I}}</li>
-                        <li>{{MeasureByWhoom.measure20I}}</li>
-                        <li>{{MeasureByWhoom.measure21I}}</li>
-                        <li>{{MeasureByWhoom.measure22I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;"> 
-                    <ul>
-                        <li>{{MeasureByWhen.measure13I}}</li>
-                        <li>{{MeasureByWhen.measure14I}}</li>
-                        <li>{{MeasureByWhen.measure15I}}</li>
-                        <li>{{MeasureByWhen.measure16I}}</li>
-                        <li>{{MeasureByWhen.measure17I}}</li>
-                        <li>{{MeasureByWhen.measure18I}}</li>
-                        <li>{{MeasureByWhen.measure19I}}</li>
-                        <li>{{MeasureByWhen.measure20I}}</li>
-                        <li>{{MeasureByWhen.measure21I}}</li>
-                        <li>{{MeasureByWhen.measure22I}}</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>JOB CONDITIONS</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>By Whom</td>
-                <td>By When</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-                        <li>Feeling insufficiently inducted into the role?</li>
-                        <li>Understanding your role?</li>
-                        <li>Your reporting structure?</li>
-                        <li>Your working environment?</li>
-                        <li>Other demands in you outside your role?</li>
-                        <li>Any other concerns?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure22I}}</li>
-                        <li>{{workPressureDetail.pressure23I}}</li>
-                        <li>{{workPressureDetail.pressure24I}}</li>
-                        <li>{{workPressureDetail.pressure250I}}</li>
-                        <li>{{workPressureDetail.pressure261I}}</li>
-                        <li>{{workPressureDetail.pressure27I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure22S}}</li>
-                        <li>{{workPressureDetail.pressure23S}}</li>
-                        <li>{{workPressureDetail.pressure24S}}</li>
-                        <li>{{workPressureDetail.pressure250S}}</li>
-                        <li>{{workPressureDetail.pressure261S}}</li>
-                        <li>{{workPressureDetail.pressure27S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure22L}}</li>
-                        <li>{{workPressureDetail.pressure23L}}</li>
-                        <li>{{workPressureDetail.pressure24L}}</li>
-                        <li>{{workPressureDetail.pressure250L}}</li>
-                        <li>{{workPressureDetail.pressure261L}}</li>
-                        <li>{{workPressureDetail.pressure27L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure22L}}</li>
-                        <li>{{workPressureDetail.pressure23L}}</li>
-                        <li>{{workPressureDetail.pressure24L}}</li>
-                        <li>{{workPressureDetail.pressure250L}}</li>
-                        <li>{{workPressureDetail.pressure261L}}</li>
-                        <li>{{workPressureDetail.pressure27L}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;">
-                    <ul>
-                        <li>Clarify employee’s expectations of the role.</li>
-                        <li>Reinforce the reporting structure.</li>
-                        <li>Are there any physical hazards in the work environment that need to be managed?</li>
-                        <li>Does the employee understand the support services they can access?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{MeasureByWhoom.measure23I}}</li>
-                        <li>{{MeasureByWhoom.measure24I}}</li>
-                        <li>{{MeasureByWhoom.measure25I}}</li>
-                        <li>{{MeasureByWhoom.measure26I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                     <ul>
-                        <li>{{MeasureByWhen.measure23I}}</li>
-                        <li>{{MeasureByWhen.measure24I}}</li>
-                        <li>{{MeasureByWhen.measure25I}}</li>
-                        <li>{{MeasureByWhen.measure26I}}</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>RESOURCES AND COMMUNICATION</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>By Whom</td>
-                <td>By When</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-                        <li>Feeling insufficiently supported by your team?</li>
-                        <li>Feelings of isolation?</li>
-                        <li>Being informed of workplace issues?</li>
-                        <li>Issues around communication?</li>
-                        <li>Further training needs?</li>
-                        <li>Any other concerns?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure28I}}</li>
-                        <li>{{workPressureDetail.pressure29I}}</li>
-                        <li>{{workPressureDetail.pressure30I}}</li>
-                        <li>{{workPressureDetail.pressure310I}}</li>
-                        <li>{{workPressureDetail.pressure32I}}</li>
-                        <li>{{workPressureDetail.pressure33I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure28S}}</li>
-                        <li>{{workPressureDetail.pressure29S}}</li>
-                        <li>{{workPressureDetail.pressure30S}}</li>
-                        <li>{{workPressureDetail.pressure310S}}</li>
-                        <li>{{workPressureDetail.pressure32S}}</li>
-                        <li>{{workPressureDetail.pressure33S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure28L}}</li>
-                        <li>{{workPressureDetail.pressure29L}}</li>
-                        <li>{{workPressureDetail.pressure30L}}</li>
-                        <li>{{workPressureDetail.pressure310L}}</li>
-                        <li>{{workPressureDetail.pressure32L}}</li>
-                        <li>{{workPressureDetail.pressure33L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure28T}}</li>
-                        <li>{{workPressureDetail.pressure29T}}</li>
-                        <li>{{workPressureDetail.pressure30T}}</li>
-                        <li>{{workPressureDetail.pressure310T}}</li>
-                        <li>{{workPressureDetail.pressure32T}}</li>
-                        <li>{{workPressureDetail.pressure33T}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;">
-                    <ul>
-                        <li>Support employees to develop their skills and knowledge to do their work.</li>
-                        <li>Source equipment or tools needed to perform work effectively.</li>
-                        <li>Ensure communication mechanisms are in place and operating effectively.</li>
-                        <li>Focus on communicating honestly and regularly.</li>
-                        <li>Encourage employees to make suggestions to management.</li>
-                        <li>Ensure employees are aware of all support services available to them.</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                     <ul>
-                        <li>{{MeasureByWhoom.measure27I}}</li>
-                        <li>{{MeasureByWhoom.measure28I}}</li>
-                        <li>{{MeasureByWhoom.measure29I}}</li>
-                        <li>{{MeasureByWhoom.measure30I}}</li>
-                        <li>{{MeasureByWhoom.measure31I}}</li>
-                        <li>{{MeasureByWhoom.measure32I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{MeasureByWhen.measure27I}}</li>
-                        <li>{{MeasureByWhen.measure28I}}</li>
-                        <li>{{MeasureByWhen.measure29I}}</li>
-                        <li>{{MeasureByWhen.measure30I}}</li>
-                        <li>{{MeasureByWhen.measure31I}}</li>
-                        <li>{{MeasureByWhen.measure32I}}</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>WORK RELATIONSHIPS</td>
-                <td>&nbsp;</td>
-                <td>S</td>
-                <td>L</td>
-                <td>T</td>
-                <td>&nbsp;</td>
-                <td>By Whom</td>
-                <td>By When</td>
-            </tr>
-            <tr>
-                <td valign="top" style="background:#fff;">
-                    <p><strong>Are you troubled by:</strong></p>
-                    <ul>
-                        <li>Bullying or harassment issues in the team?</li>
-                        <li>An insufficient supportive atmosphere in the team?</li>
-                        <li>How to raise a concern or find support?</li>
-                        <li>A lack of recognition for diversity in the team?</li>
-                        <li>Are there any other concerns?</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure34I}}</li>
-                        <li>{{workPressureDetail.pressure35I}}</li>
-                        <li>{{workPressureDetail.pressure36I}}</li>
-                        <li>{{workPressureDetail.pressure370I}}</li>
-                        <li>{{workPressureDetail.pressure38I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure34S}}</li>
-                        <li>{{workPressureDetail.pressure35S}}</li>
-                        <li>{{workPressureDetail.pressure36S}}</li>
-                        <li>{{workPressureDetail.pressure370S}}</li>
-                        <li>{{workPressureDetail.pressure38S}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure34L}}</li>
-                        <li>{{workPressureDetail.pressure35L}}</li>
-                        <li>{{workPressureDetail.pressure36L}}</li>
-                        <li>{{workPressureDetail.pressure370L}}</li>
-                        <li>{{workPressureDetail.pressure38L}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{workPressureDetail.pressure34T}}</li>
-                        <li>{{workPressureDetail.pressure35T}}</li>
-                        <li>{{workPressureDetail.pressure36T}}</li>
-                        <li>{{workPressureDetail.pressure370T}}</li>
-                        <li>{{workPressureDetail.pressure38T}}</li>
-                    </ul>
-                </td>
-                <td valign="top" style="background:#fff;" style="background:#fff;">
-                    <ul>
-                        <li>Report and quickly address any bullying or harassment claims.</li>
-                        <li>Ensure employees are aware of policies related to resolving unacceptable behaviour.</li>
-                        <li>Encourage 1-2-1 discussions, rather than email.</li>
-                        <li>Review diversity and inclusion training.</li>
-                        <li>Arrange regular team and 1-2-1 meetings.</li>
-                        <li>Promote positive working relationships.</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                     <ul>
-                        <li>{{MeasureByWhoom.measure33I}}</li>
-                        <li>{{MeasureByWhoom.measure34I}}</li>
-                        <li>{{MeasureByWhoom.measure35I}}</li>
-                        <li>{{MeasureByWhoom.measure36I}}</li>
-                        <li>{{MeasureByWhoom.measure37I}}</li>
-                        <li>{{MeasureByWhoom.measure38I}}</li>
-                    </ul>
-                </td>
-                <td style="background:#fff;">
-                    <ul>
-                        <li>{{MeasureByWhen.measure33I}}</li>
-                        <li>{{MeasureByWhen.measure34I}}</li>
-                        <li>{{MeasureByWhen.measure35I}}</li>
-                        <li>{{MeasureByWhen.measure36I}}</li>
-                        <li>{{MeasureByWhen.measure37I}}</li>
-                        <li>{{MeasureByWhen.measure38I}}</li>
-                    </ul>
-                </td>
-            </tr>
+            style="background:white;font-family:Calibri, serif; margin-bottom:30px;">
+            <thead style="background: #c9c9c9">
+                <tr>
+                    <th>Workplace Pressure</th>
+                    <th>Issue Identified</th>
+                    <th colspan="3">Severity x Likelihood</th>
+                    <th rowspan="2">Additional Control Measures</th>
+                    <th rowspan="2">By Whom</th>
+                    <th rowspan="2">By When</th>
+                </tr>
+                <tr>
+                    <th>Controls</th>
+                    <th></th>
+                    <th>S</th>
+                    <th>L</th>
+                    <th>T</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Are you troubled by :</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Discuss flexibility over delivery of work schedules and delivery of work.</td>
+                    <td>{{MeasureByWhoom.measure1I}}</td>
+                    <td>{{MeasureByWhen.measure1I}}</td>
+                </tr>
+                <tr>
+                    <td>Who does what in the team?</td>
+                    <td>{{workPressureDetail.pressure1I}}</td>
+                    <td>{{workPressureDetail.pressure1S}}</td>
+                    <td>{{workPressureDetail.pressure1L}}</td>
+                    <td>{{workPressureDetail.pressure1T}}</td>
+                    <td>Support flexible working practices, wherever possible and practical.
+                    </td>
+                    <td>{{MeasureByWhoom.measure2I}}</td>
+                    <td>{{MeasureByWhen.measure2I}}</td>
+                </tr>
+                <tr>
+                    <td>Having enough line manager support?</td>
+                    <td>{{workPressureDetail.pressure2I}}</td>
+                    <td>{{workPressureDetail.pressure2L}}</td>
+                    <td>{{workPressureDetail.pressure2T}}</td>
+                    <td>{{workPressureDetail.pressure2T}}</td>
+                    <td>Agree on the most appropriate communication methods and frequency.</td>
+                    <td>{{MeasureByWhoom.measure3I}}</td>
+                    <td>{{MeasureByWhen.measure3I}}</td>
+                </tr>
+                <tr>
+                    <td>Having sufficient control over your work?</td>
+                    <td>{{workPressureDetail.pressure3I}}</td>
+                    <td>{{workPressureDetail.pressure3S}}</td>
+                    <td>{{workPressureDetail.pressure3L}}</td>
+                    <td>{{workPressureDetail.pressure3T}}</td>
+                    <td>Include all employees in decision-making for tasks/planning work.</td>
+                    <td>{{MeasureByWhoom.measure4I}}</td>
+                    <td>{{MeasureByWhen.measure4I}}</td>
+                </tr>
+                <tr>
+                    <td>Having your opinions listened to?</td>
+                    <td>{{workPressureDetail.pressure4I}}</td>
+                    <td>{{workPressureDetail.pressure4S}}</td>
+                    <td>{{workPressureDetail.pressure4L}}</td>
+                    <td>{{workPressureDetail.pressure4T}}</td>
+                    <td>Share good practice and recognise achievements or suggestions.</td>
+                    <td>{{MeasureByWhoom.measure5I}}</td>
+                    <td>{{MeasureByWhen.measure5I}}</td>
+                </tr>
+                <tr>
+                    <td>The balance between work and outside life?</td>
+                    <td>{{workPressureDetail.pressure5I}}</td>
+                    <td>{{workPressureDetail.pressure5S}}</td>
+                    <td>{{workPressureDetail.pressure5L}}</td>
+                    <td>{{workPressureDetail.pressure5T}}</td>
+                    <td>Discuss learning opportunities.</td>
+                    <td>{{MeasureByWhoom.measure6I}}</td>
+                    <td>{{MeasureByWhen.measure6I}}</td>
+                </tr>
+                <tr>
+                    <td>Any other concerns?</td>
+                    <td>{{workPressureDetail.pressure6I}}</td>
+                    <td>{{workPressureDetail.pressure6S}}</td>
+                    <td>{{workPressureDetail.pressure6L}}</td>
+                    <td>{{workPressureDetail.pressure6T}}</td>
+                </tr>
+                <thead style="background:#c9c9c9;">
+                    <tr>
+                        <th>JOB SECURITY AND CHANGE</th>
+                        <th></th>
+                        <th>S</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">By Whom</th>
+                        <th rowspan="2">By When</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Are you troubled by:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Ensure communication mechanisms</td>
+                    <td>{{workPressureDetail.pressure7L}}</td>
+                    <td>{{workPressureDetail.pressure7T}}</td>
+                </tr>
+                <tr>
+                    <td>Feeling supported through change?</td>
+                    <td>{{workPressureDetail.pressure7I}}</td>
+                    <td>{{workPressureDetail.pressure7S}}</td>
+                    <td>{{workPressureDetail.pressure7L}}</td>
+                    <td>{{workPressureDetail.pressure7T}}</td>
+                    <td>Engage with employees regularly and in a timely manner during key change initiatives, and
+                        provide
+                        opportunities to feed in their views.</td>
+                    <td>{{MeasureByWhoom.measure8I}}</td>
+                    <td>{{MeasureByWhen.measure8I}}</td>
+                </tr>
+                <tr>
+                    <td>Opportunities to comment on change?</td>
+                    <td>{{workPressureDetail.pressure8I}}</td>
+                    <td>{{workPressureDetail.pressure8S}}</td>
+                    <td>{{workPressureDetail.pressure8L}}</td>
+                    <td>{{workPressureDetail.pressure8T}}</td>
+                    <td>Explain the reasons for change and the benefits, as well as information on timescales.</td>
+                    <td>{{MeasureByWhoom.measure9I}}</td>
+                    <td>{{MeasureByWhen.measure9I}}</td>
+                </tr>
+                <tr>
+                    <td>Your future role?</td>
+                    <td>{{workPressureDetail.pressure9I}}</td>
+                    <td>{{workPressureDetail.pressure9S}}</td>
+                    <td>{{workPressureDetail.pressure9L}}</td>
+                    <td>{{workPressureDetail.pressure9T}}</td>
+                    <td>Ensure employees are aware of all support services available to them.</td>
+                    <td>{{MeasureByWhoom.measure10I}}</td>
+                    <td>{{MeasureByWhen.measure10I}}</td>
+                </tr>
+                <tr>
+                    <td>Where to access support?</td>
+                    <td>{{workPressureDetail.pressure10I}}</td>
+                    <td>{{workPressureDetail.pressure10S}}</td>
+                    <td>{{workPressureDetail.pressure10L}}</td>
+                    <td>{{workPressureDetail.pressure10T}}</td>
+                    <td>Be honest with employees, even where news may not be positive.</td>
+                    <td>{{MeasureByWhoom.measure11I}}</td>
+                    <td>{{MeasureByWhen.measure11I}}</td>
+                </tr>
+                <tr>
+                    <td>Having enough time/resources to implement change?</td>
+                    <td>{{workPressureDetail.pressure11I}}</td>
+                    <td>{{workPressureDetail.pressure11S}}</td>
+                    <td>{{workPressureDetail.pressure11L}}</td>
+                    <td>{{workPressureDetail.pressure11T}}</td>
+                    <td>Direct employees to basic lifestyle advice and coping strategies to prepare for change.</td>
+                    <td>{{MeasureByWhoom.measure12I}}</td>
+                    <td>{{MeasureByWhen.measure12I}}</td>
+                </tr>
+                <tr>
+                    <td>Feeling skilled enough to do new tasks?</td>
+                    <td>{{workPressureDetail.pressure12I}}</td>
+                    <td>{{workPressureDetail.pressure12S}}</td>
+                    <td>{{workPressureDetail.pressure12L}}</td>
+                    <td>{{workPressureDetail.pressure12T}}</td>
+                </tr>
+                <tr>
+                    <td>Any other concerns?</td>
+                    <td>{{workPressureDetail.pressure13I}}</td>
+                    <td>{{workPressureDetail.pressure13S}}</td>
+                    <td>{{workPressureDetail.pressure13L}}</td>
+                    <td>{{workPressureDetail.pressure13T}}</td>
+                </tr>
+                <thead style="background:#c9c9c9;">
+                    <tr>
+                        <th>BALANCED WORKLOAD</th>
+                        <th></th>
+                        <th>S</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">By Whom</th>
+                        <th rowspan="2">By When</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Are you troubled by:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Reallocate duties (temporarily or permanently).</td>
+                    <td>{{MeasureByWhoom.measure13I}}</td>
+                    <td>{{MeasureByWhen.measure13I}}</td>
+                </tr>
+                <tr>
+                    <td>Clear priorities?</td>
+                    <td>{{workPressureDetail.pressure14I}}</td>
+                    <td>{{workPressureDetail.pressure14S}}</td>
+                    <td>{{workPressureDetail.pressure14L}}</td>
+                    <td>{{workPressureDetail.pressure14T}}</td>
+                    <td>Help prioritise tasks or projects appropriately.</td>
+                    <td>{{MeasureByWhoom.measure14I}}</td>
+                    <td>{{MeasureByWhen.measure14I}}</td>
+                </tr>
+                <tr>
+                    <td>Having realistic deadlines?</td>
+                    <td>{{workPressureDetail.pressure15I}}</td>
+                    <td>{{workPressureDetail.pressure15S}}</td>
+                    <td>{{workPressureDetail.pressure15L}}</td>
+                    <td>{{workPressureDetail.pressure15T}}</td>
+                    <td>Adjust hours or work pattern (temporarily or permanently).</td>
+                    <td>{{MeasureByWhoom.measure15I}}</td>
+                    <td>{{MeasureByWhen.measure15I}}</td>
+                </tr>
+                <tr>
+                    <td>Having sufficient resources to do your job?</td>
+                    <td>{{workPressureDetail.pressure16I}}</td>
+                    <td>{{workPressureDetail.pressure16S}}</td>
+                    <td>{{workPressureDetail.pressure16L}}</td>
+                    <td>{{workPressureDetail.pressure16T}}</td>
+                    <td>Identify and support specific training needs.</td>
+                    <td>{{MeasureByWhoom.measure16I}}</td>
+                    <td>{{MeasureByWhen.measure16I}}</td>
+                </tr>
+                <tr>
+                    <td>Your skills,training,and knowledge being sufficient to do your job?</td>
+                    <td>{{workPressureDetail.pressure17I}}</td>
+                    <td>{{workPressureDetail.pressure17S}}</td>
+                    <td>{{workPressureDetail.pressure17L}}</td>
+                    <td>{{workPressureDetail.pressure17T}}</td>
+                    <td>Ensure tasks and expectations are clearly defined and understood.</td>
+                    <td>{{MeasureByWhoom.measure17I}}</td>
+                    <td>{{MeasureByWhen.measure17I}}</td>
+                </tr>
+                <tr>
+                    <td>The length of your daily commute?</td>
+                    <td>{{workPressureDetail.pressure18I}}</td>
+                    <td>{{workPressureDetail.pressure18S}}</td>
+                    <td>{{workPressureDetail.pressure18L}}</td>
+                    <td>{{workPressureDetail.pressure18T}}</td>
+                    <td>Plan work carefully so that deadlines are achievable.</td>
+                    <td>{{MeasureByWhoom.measure18I}}</td>
+                    <td>{{MeasureByWhen.measure18I}}</td>
+                </tr>
+                <tr>
+                    <td>Having a dull or repetitive work?</td>
+                    <td>{{workPressureDetail.pressure19I}}</td>
+                    <td>{{workPressureDetail.pressure19S}}</td>
+                    <td>{{workPressureDetail.pressure19L}}</td>
+                    <td>{{workPressureDetail.pressure19T}}</td>
+                    <td>Explore the full potential of an employee to utilise their skill set. If possible, offer a
+                        variety of
+                        tasks, ratherthan those that are simply repetitive. </td>
+                    <td>{{MeasureByWhoom.measure19I}}</td>
+                    <td>{{MeasureByWhen.measure19I}}</td>
+                </tr>
+                <tr>
+                    <td>Your work/life balance?</td>
+                    <td>{{workPressureDetail.pressure20I}}</td>
+                    <td>{{workPressureDetail.pressure20S}}</td>
+                    <td>{{workPressureDetail.pressure20L}}</td>
+                    <td>{{workPressureDetail.pressure20T}}</td>
+                    <td>Plan workload in regular discussions.</td>
+                    <td>{{MeasureByWhoom.measure20I}}</td>
+                    <td>{{MeasureByWhen.measure20I}}</td>
+                </tr>
+                <tr>
+                    <td>Any other concerns?</td>
+                    <td>{{workPressureDetail.pressure21I}}</td>
+                    <td>{{workPressureDetail.pressure21S}}</td>
+                    <td>{{workPressureDetail.pressure21L}}</td>
+                    <td>{{workPressureDetail.pressure21T}}</td>
+                    <td>Agree an upper limit to working hours.</td>
+                    <td>{{MeasureByWhoom.measure21I}}</td>
+                    <td>{{MeasureByWhen.measure21I}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Switch off mobile phones and laptops at a specific time.</td>
+                    <td>{{MeasureByWhoom.measure22I}}</td>
+                    <td>{{MeasureByWhen.measure22I}}</td>
+                </tr>
+                <thead style="background:#c9c9c9;">
+                    <tr>
+                        <th>JOB CONDITIONS</th>
+                        <th></th>
+                        <th>S</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">By Whom</th>
+                        <th rowspan="2">By When</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Are you troubled by:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Clarify employee’s expectations of the role.</td>
+                    <td>{{MeasureByWhoom.measure23I}}</td>
+                    <td>{{MeasureByWhen.measure23I}}</td>
+                </tr>
+                <tr>
+                    <td>Feeling insufficiently inducted into the role?</td>
+                    <td>{{workPressureDetail.pressure22I}}</td>
+                    <td>{{workPressureDetail.pressure22S}}</td>
+                    <td>{{workPressureDetail.pressure22L}}</td>
+                    <td>{{workPressureDetail.pressure22T}}</td>
+                    <td>Reinforce the reporting structure.</td>
+                    <td>{{MeasureByWhoom.measure24I}}</td>
+                    <td>{{MeasureByWhen.measure24I}}</td>
+                </tr>
+                <tr>
+                    <td>Understanding your role?</td>
+                    <td>{{workPressureDetail.pressure23I}}</td>
+                    <td>{{workPressureDetail.pressure23S}}</td>
+                    <td>{{workPressureDetail.pressure23L}}</td>
+                    <td>{{workPressureDetail.pressure23T}}</td>
+                    <td>Are there any physical hazards in the work environment that need to be managed?</td>
+                    <td>{{MeasureByWhoom.measure25I}}</td>
+                    <td>{{MeasureByWhen.measure25I}}</td>
+                </tr>
+                <tr>
+                    <td>Your reporting structure?</td>
+                    <td>{{workPressureDetail.pressure24I}}</td>
+                    <td>{{workPressureDetail.pressure24S}}</td>
+                    <td>{{workPressureDetail.pressure24L}}</td>
+                    <td>{{workPressureDetail.pressure24T}}</td>
+                    <td>Does the employee understand the support services they can access?</td>
+                    <td>{{MeasureByWhoom.measure26I}}</td>
+                    <td>{{MeasureByWhen.measure26I}}</td>
+                </tr>
+                <tr>
+                    <td>Your working environment?</td>
+                    <td>{{workPressureDetail.pressure25I}}</td>
+                    <td>{{workPressureDetail.pressure25S}}</td>
+                    <td>{{workPressureDetail.pressure25L}}</td>
+                    <td>{{workPressureDetail.pressure25T}}</td>
+                </tr>
+                <tr>
+                    <td>Other demands in you outside your role?</td>
+                    <td>{{workPressureDetail.pressure26I}}</td>
+                    <td>{{workPressureDetail.pressure26S}}</td>
+                    <td>{{workPressureDetail.pressure26L}}</td>
+                    <td>{{workPressureDetail.pressure26T}}</td>
+                </tr>
+                <tr>
+                    <td>Any other concerns?</td>
+                    <td>{{workPressureDetail.pressure27I}}</td>
+                    <td>{{workPressureDetail.pressure27S}}</td>
+                    <td>{{workPressureDetail.pressure27L}}</td>
+                    <td>{{workPressureDetail.pressure27T}}</td>
+                </tr>
+                <thead style="background:#c9c9c9;">
+                    <tr>
+                        <th>RESOURCES AND COMMUNICATION</th>
+                        <th></th>
+                        <th>S</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">By Whom</th>
+                        <th rowspan="2">By When</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Are you troubled by:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Support employees to develop their skills and knowledge to do their work.</td>
+                    <td>{{MeasureByWhoom.measure27I}}</td>
+                    <td>{{MeasureByWhen.measure27I}}</td>
+                </tr>
+                <tr>
+                    <td>Feeling insufficiently supported by your team?</td>
+                    <td>{{workPressureDetail.pressure28I}}</td>
+                    <td>{{workPressureDetail.pressure28S}}</td>
+                    <td>{{workPressureDetail.pressure28L}}</td>
+                    <td>{{workPressureDetail.pressure28T}}</td>
+                    <td>Source equipment or tools needed to perform work effectively.</td>
+                    <td>{{MeasureByWhoom.measure28I}}</td>
+                    <td>{{MeasureByWhen.measure28I}}</td>
+                </tr>
+                <tr>
+                    <td>Feelings of isolation?</td>
+                    <td>{{workPressureDetail.pressure29I}}</td>
+                    <td>{{workPressureDetail.pressure29S}}</td>
+                    <td>{{workPressureDetail.pressure29L}}</td>
+                    <td>{{workPressureDetail.pressure29T}}</td>
+                    <td>Ensure communication mechanisms are in place and operating effectively.</td>
+                    <td>{{MeasureByWhoom.measure29I}}</td>
+                    <td>{{MeasureByWhen.measure29I}}</td>
+                </tr>
+                <tr>
+                    <td>Being informed of workplace issues?</td>
+                    <td>{{workPressureDetail.pressure30I}}</td>
+                    <td>{{workPressureDetail.pressure30S}}</td>
+                    <td>{{workPressureDetail.pressure30L}}</td>
+                    <td>{{workPressureDetail.pressure30T}}</td>
+                    <td>Focus on communicating honestly and regularly.</td>
+                    <td>{{MeasureByWhoom.measure30I}}</td>
+                    <td>{{MeasureByWhen.measure30I}}</td>
+                </tr>
+                <tr>
+                    <td>Issues around communication?</td>
+                    <td>{{workPressureDetail.pressure31I}}</td>
+                    <td>{{workPressureDetail.pressure31S}}</td>
+                    <td>{{workPressureDetail.pressure31L}}</td>
+                    <td>{{workPressureDetail.pressure31T}}</td>
+                    <td>Encourage employees to make suggestions to management.</td>
+                    <td>{{MeasureByWhoom.measure31I}}</td>
+                    <td>{{MeasureByWhen.measure31I}}</td>
+                </tr>
+                <tr>
+                    <td>Further training needs?</td>
+                    <td>{{workPressureDetail.pressure32I}}</td>
+                    <td>{{workPressureDetail.pressure32S}}</td>
+                    <td>{{workPressureDetail.pressure32L}}</td>
+                    <td>{{workPressureDetail.pressure32T}}</td>
+                    <td>Ensure employees are aware of all support services available to them.</td>
+                    <td>{{MeasureByWhoom.measure32I}}</td>
+                    <td>{{MeasureByWhen.measure32I}}</td>
+                </tr>
+                <tr>
+                    <td>Any other concerns?</td>
+                    <td>{{workPressureDetail.pressure33I}}</td>
+                    <td>{{workPressureDetail.pressure33S}}</td>
+                    <td>{{workPressureDetail.pressure33L}}</td>
+                    <td>{{workPressureDetail.pressure33T}}</td>
+                </tr>
+                <thead style="background:#c9c9c9;">
+                    <tr>
+                        <th>WORK RELATIONSHIPS</th>
+                        <th></th>
+                        <th>S</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">By Whom</th>
+                        <th rowspan="2">By When</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Are you troubled by:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Report and quickly address any bullying or harassment claims.</td>
+                    <td>{{MeasureByWhoom.measure33I}}</td>
+                    <td>{{MeasureByWhen.measure33I}}</td>
+                </tr>
+                <tr>
+                    <td>Bullying or harassment issues in the team?</td>
+                    <td>{{workPressureDetail.pressure34I}}</td>
+                    <td>{{workPressureDetail.pressure34S}}</td>
+                    <td>{{workPressureDetail.pressure34L}}</td>
+                    <td>{{workPressureDetail.pressure34T}}</td>
+                    <td>Ensure employees are aware of policies related to resolving unacceptable behaviour.</td>
+                    <td>{{MeasureByWhoom.measure34I}}</td>
+                    <td>{{MeasureByWhen.measure34I}}</td>
+                </tr>
+                <tr>
+                    <td>An insufficient supportive atmosphere in the team?</td>
+                    <td>{{workPressureDetail.pressure35I}}</td>
+                    <td>{{workPressureDetail.pressure35S}}</td>
+                    <td>{{workPressureDetail.pressure35L}}</td>
+                    <td>{{workPressureDetail.pressure35T}}</td>
+                    <td>Encourage 1-2-1 discussions, rather than email.</td>
+                    <td>{{MeasureByWhoom.measure35I}}</td>
+                    <td>{{MeasureByWhen.measure35I}}</td>
+                </tr>
+                <tr>
+                    <td>How to raise a concern or find support?</td>
+                    <td>{{workPressureDetail.pressure36I}}</td>
+                    <td>{{workPressureDetail.pressure36S}}</td>
+                    <td>{{workPressureDetail.pressure36L}}</td>
+                    <td>{{workPressureDetail.pressure36T}}</td>
+                    <td>Review diversity and inclusion training.</td>
+                    <td>{{MeasureByWhoom.measure36I}}</td>
+                    <td>{{MeasureByWhen.measure36I}}</td>
+                </tr>
+                <tr>
+                    <td>A lack of recognition for diversity in the team?</td>
+                    <td>{{workPressureDetail.pressure37I}}</td>
+                    <td>{{workPressureDetail.pressure37S}}</td>
+                    <td>{{workPressureDetail.pressure37L}}</td>
+                    <td>{{workPressureDetail.pressure37T}}</td>
+                    <td>Arrange regular team and 1-2-1 meetings.</td>
+                    <td>{{MeasureByWhoom.measure37I}}</td>
+                    <td>{{MeasureByWhen.measure37I}}</td>
+                </tr>
+                <tr>
+                    <td>Are there any other concerns?</td>
+                    <td>{{workPressureDetail.pressure38I}}</td>
+                    <td>{{workPressureDetail.pressure38S}}</td>
+                    <td>{{workPressureDetail.pressure38L}}</td>
+                    <td>{{workPressureDetail.pressure38T}}</td>
+                    <td>Promote positive working relationships.</td>
+                    <td>{{MeasureByWhoom.measure38I}}</td>
+                    <td>{{MeasureByWhen.measure38I}}</td>
+                </tr>
+            </tbody>
         </table>
+
         <table width="100%" border="1" cellspacing="0" cellpadding="7" style="margin-bottom:30px;">
             <tr>
                 <td style="border-bottom:0px;"><strong>Report</strong></td>
