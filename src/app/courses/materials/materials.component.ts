@@ -219,6 +219,7 @@ export class MaterialsComponent implements OnInit {
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
+    this.loading = false;
   }
 
   selectedStatus(event, index, status) {
@@ -416,6 +417,7 @@ export class MaterialsComponent implements OnInit {
     this._courseService.getCourseGrouped(courseId).subscribe((groupedmaterial: any) => {
       console.log('groupedmaterial ', groupedmaterial);
       this.groupedMaterials = groupedmaterial
+      this.loading = false;
     });
   }
 }

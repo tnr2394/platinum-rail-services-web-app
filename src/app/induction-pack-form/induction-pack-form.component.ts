@@ -1654,335 +1654,335 @@ export class InductionPackFormComponent implements OnInit {
 
     console.log('This.data======>>>>>', this.data);
 
-    this._timeSheetService.generatePdf(this.data).subscribe((res => {
-      console.log('Res===>>', res);
-    }));
+    // this._timeSheetService.generatePdf(this.data).subscribe((res => {
+    //   console.log('Res===>>', res);
+    // }));
   }
 
-  onSelectFileone(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  // onSelectFileone(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url1 = event.target.result;
-        }
-        else {
-          this.url1 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url1 = event.target.result;
+  //       }
+  //       else {
+  //         this.url1 = '';
+  //       }
 
-      }
-    }
-  }
+  //     }
+  //   }
+  // }
 
-  onSelectFile2(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  // onSelectFile2(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url2 = event.target.result;
-        }
-        else {
-          this.url2 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url2 = event.target.result;
+  //       }
+  //       else {
+  //         this.url2 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile3(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile3(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url3 = event.target.result;
-        }
-        else {
-          this.url3 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url3 = event.target.result;
+  //       }
+  //       else {
+  //         this.url3 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile4(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile4(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url4 = event.target.result;
-        }
-        else {
-          this.url4 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url4 = event.target.result;
+  //       }
+  //       else {
+  //         this.url4 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile5(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile5(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url5 = event.target.result;
-        }
-        else {
-          this.url5 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url5 = event.target.result;
+  //       }
+  //       else {
+  //         this.url5 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile6(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile6(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url6 = event.target.result;
-        }
-        else {
-          this.url6 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url6 = event.target.result;
+  //       }
+  //       else {
+  //         this.url6 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile7(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile7(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url7 = event.target.result;
-        }
-        else {
-          this.url7 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url7 = event.target.result;
+  //       }
+  //       else {
+  //         this.url7 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile8(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile8(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url8 = event.target.result;
-        }
-        else {
-          this.url8 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url8 = event.target.result;
+  //       }
+  //       else {
+  //         this.url8 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile9(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile9(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url9 = event.target.result;
-        }
-        else {
-          this.url9 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url9 = event.target.result;
+  //       }
+  //       else {
+  //         this.url9 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile10(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile10(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url10 = event.target.result;
-        }
-        else {
-          this.url10 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url10 = event.target.result;
+  //       }
+  //       else {
+  //         this.url10 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile11(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile11(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url11 = event.target.result;
-        }
-        else {
-          this.url11 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url11 = event.target.result;
+  //       }
+  //       else {
+  //         this.url11 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile12(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile12(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url12 = event.target.result;
-        }
-        else {
-          this.url12 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url12 = event.target.result;
+  //       }
+  //       else {
+  //         this.url12 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile13(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile13(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url13 = event.target.result;
-        }
-        else {
-          this.url13 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url13 = event.target.result;
+  //       }
+  //       else {
+  //         this.url13 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile14(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile14(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url14 = event.target.result;
-        }
-        else {
-          this.url14 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url14 = event.target.result;
+  //       }
+  //       else {
+  //         this.url14 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile15(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile15(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url15 = event.target.result;
-        }
-        else {
-          this.url15 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url15 = event.target.result;
+  //       }
+  //       else {
+  //         this.url15 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile16(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile16(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url16 = event.target.result;
-        }
-        else {
-          this.url16 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url16 = event.target.result;
+  //       }
+  //       else {
+  //         this.url16 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile17(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile17(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url17 = event.target.result;
-        }
-        else {
-          this.url17 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url17 = event.target.result;
+  //       }
+  //       else {
+  //         this.url17 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile18(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile18(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url18 = event.target.result;
-        }
-        else {
-          this.url18 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url18 = event.target.result;
+  //       }
+  //       else {
+  //         this.url18 = '';
+  //       }
 
-      }
-    }
-  }
-  onSelectFile19(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  //     }
+  //   }
+  // }
+  // onSelectFile19(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url19 = event.target.result;
-        }
-        else {
-          this.url19 = '';
-        }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       if (event && event.target && event.target.result) {
+  //         this.url19 = event.target.result;
+  //       }
+  //       else {
+  //         this.url19 = '';
+  //       }
 
-      }
-    }
-  }
+  //     }
+  //   }
+  // }
   // checkChange(event,variable){
   //   console.log("variable name is",variable, "event", event);
     

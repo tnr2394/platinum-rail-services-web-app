@@ -96,7 +96,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h3 *ngIf="loading == true" class="pt-3 text-center text-info">Loading ... <i class="fa fa-cog fa-spin text-info"></i>
+                            </h3>
                         </div>
+                        <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="compArray && compArray.length == 0 && !loading">
+                            <i class="fas fa-empty-set"></i> No Competency added
+                        </h3>
                     </div>
                 </div>
             </div>

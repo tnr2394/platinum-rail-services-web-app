@@ -35,6 +35,7 @@ export class CompetencesComponent implements OnInit {
   file: any;
   currentUser: any;
   hideActions: boolean;
+  loading;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -57,6 +58,7 @@ export class CompetencesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.userRole == 'client'){
       this.displayedColumns = ['title', 'xDate', 'valid', 'attachment']
@@ -72,6 +74,7 @@ export class CompetencesComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.deletedId && changes.deletedId.currentValue) {
+      this.loading = true
       this.deletedId = changes.deletedId.currentValue
       let tempdeletedId = this.deletedId
       console.log("*****this.deletedId", this.deletedId);
@@ -140,6 +143,7 @@ export class CompetencesComponent implements OnInit {
     this.dataSource.sort = this.sort;
     console.log("SETTING SORT TO = ", this.dataSource.sort)
     console.log("SETTING paginator TO = ", this.dataSource.paginator)
+    this.loading = false;
   }
   openDialog(someComponent, data = {}): Observable<any> {
     console.log('OPENDIALOG', 'DATA = ', data)
@@ -194,6 +198,7 @@ export class CompetencesComponent implements OnInit {
       this.compArray = res.competencies
       console.log("***this.compArray", this.compArray);
       this.updateData(this.compArray)
+      this.loading = false;
     })
   }
   deleteFile(event) {
