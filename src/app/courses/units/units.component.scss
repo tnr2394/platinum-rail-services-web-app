@@ -1,0 +1,49 @@
+// .unitCard{
+//     max-width: 250px;
+//     max-height: 250px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+.materia_icon_span{
+    border-radius: 100%;
+    width: 105px;
+    height: 105px;
+    margin: auto;
+    margin-top: 10px;
+    @media (max-width:1199px){
+        height: 70px;
+        width: 70px;
+    }
+    @media (max-width:422px) {
+        height: 50px;
+        width: 50px;
+    }
+}
+.icon{
+    // min-height: 115px;
+    // min-width: 115px;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    line-height: 105px;
+    color: white;
+    @media (max-width:1199px){
+        line-height: 70px;
+        font-size: 35px;
+    }
+    @media (max-width:422px) {
+        line-height: 50px;
+        font-size: 25px;
+    }
+   
+    // @media (max-width:575px){
+    //     min-height: 120px;
+    //     min-width:120px;
+    //     font-size: 60px;
+    // }
+}
+.folder{
+    margin: 0px 10px;
+}

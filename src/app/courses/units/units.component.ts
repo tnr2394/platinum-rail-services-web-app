@@ -19,8 +19,12 @@ export class UnitsComponent implements OnInit {
   @Input('allLearnersFromJob') allLearners;
   @Input('jobId') jobId;
   allMaterialsCopy: any;
+  bgColors;
+  lastColor;
   
-  constructor(private router: Router, public _filter: FilterService) { }
+  constructor(private router: Router, public _filter: FilterService) { 
+    this.bgColors = ["bg-info", "bg-success", "bg-warning", "bg-primary", "bg-danger"];
+  }
 
   ngOnInit() {
     console.log("*****learnersFromComponent*****", this.learnersFromComponent);
@@ -49,6 +53,14 @@ export class UnitsComponent implements OnInit {
       this.allMaterials = tempMaterials
     }
     console.log("in filter this.allMaterialsCopy", this.allMaterialsCopy);
+  }
+  getRandomColorClass(i) {
+    console.log("getRandomColorClass called");
+    var rand = Math.floor(Math.random() * this.bgColors.length);
+    rand = i % 5;
+    this.lastColor = rand;
+    console.log("getRandomColorClass returns", this.bgColors[rand]);
+    return this.bgColors[rand];
   }
 
 }

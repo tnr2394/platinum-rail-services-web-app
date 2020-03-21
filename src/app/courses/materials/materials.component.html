@@ -16,7 +16,7 @@
                                             disabled>{{materials.length}}</button>
                                     </h3>
                                 </div>
-                                <div class="col-lg-5 material_btn_insmall" >
+                                <!-- <div class="col-lg-5 material_btn_insmall" >
                                     <button mat-flat-button *ngIf="!hideActions"
                                         class="pull-right button_hover_effect Button_shap_effact ripple"
                                         (click)="addMaterialModal()">
@@ -49,17 +49,17 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Select Assignment Status -->
 
-                            <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
+                            <!-- <div class="row material_tile_table_row mt-3" *ngIf="materials.length > 0">
 
                                 <div class="col-lg-12 all_material_tile">
-                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless"> -->
 
                                         <!-- Title Column -->
-                                        <ng-container matColumnDef="Materials">
+                                        <!-- <ng-container matColumnDef="Materials">
                                             <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef
                                                 mat-sort-header="title">
                                                 Name
@@ -105,15 +105,17 @@
                                             class="fa fa-cog fa-spin text-info"></i>
                                     </h3>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- /.Card content -->
-                            <h1 class="text-center" *ngIf="!materials">
+                            <!-- <h1 class="text-center" *ngIf="!materials">
                         
                                 <i class="fa fa-refresh fa-spin fa-fw"></i>
-                            </h1>
-                            <!-- <div>
+                            </h1> -->
+                            <div>
                                 <app-units [groupedMaterilas]="groupedMaterials" [allLearnersFromJob]="allLearners" [learnersFromComponent]="learnersFromComponent" [jobId]="jobId" [courseId]="courseIdForUnits"></app-units>
-                            </div> -->
+                            </div>
+                        </div>
+
                         </div> 
                     </div>
                 </div>

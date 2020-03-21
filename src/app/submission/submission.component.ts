@@ -113,7 +113,8 @@ export class SubmissionComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("DataSource=====>>>>>",this.dataSource.sortData(this.dataSource.filteredData, this.dataSource.sort))
+    // this.dataSource.connect().subscribe(d => this.renderedData = d);
     // console.group(" Ng On init ")
 
     this.route.queryParams.subscribe(params => {
@@ -296,6 +297,10 @@ export class SubmissionComponent implements OnInit {
       }
     };
     this.router.navigateByUrl('/submission/learner/learner._id', NavigationExtras)
+  }
+  someMethod(event){
+    console.log("mat sort event==========>>>>>>>>>>", event);
+    console.log("DataSource=====>>>>>", this.dataSource.sortData(this.dataSource.filteredData, this.dataSource.sort))
   }
 
   // API CALLS
