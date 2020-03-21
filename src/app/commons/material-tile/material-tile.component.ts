@@ -458,7 +458,7 @@ export class MaterialTileComponent implements OnInit {
         }
         else {
           this.link = '/learner/' + tempLearner._id
-          this.currentColor = 'black'
+          this.currentColor = '#ffeb3b'
           return 'Unassigned'
         }
       }
@@ -466,7 +466,7 @@ export class MaterialTileComponent implements OnInit {
     }
     else {
       this.link = '/learner/' + tempLearner._id
-      this.currentColor = 'black'
+      this.currentColor = '#ffeb3b'
       return 'Unassigned'
     }
   }

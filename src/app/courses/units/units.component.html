@@ -29,8 +29,8 @@
     </div>
 
     <!-- <div class="col"> -->
-        <div class="col" *ngFor="let material of allMaterials; let i = index">
-            <div class="unitCard materials_box" (click)="singleMaterial(material)">
+        <div class="col-2" *ngFor="let material of allMaterials; let i = index">
+            <div class="unitCard materials_box"  (click)="singleMaterial(material)">
                 <mat-card class="folder">
                     <mat-card-title>
                         <div class="materia_icon_span {{getRandomColorClass(i)}}">

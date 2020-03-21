@@ -14,7 +14,7 @@ export class MaterialComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   paginator: MatPaginator;
   sort: MatSort;
-  displayedColumns: string[] = ['Materials'];
+  displayedColumns: string[];
   selectedMaterial: any;
   files: any;
   loading: boolean;
@@ -26,6 +26,7 @@ export class MaterialComponent implements OnInit {
   learnerToPass: any;
   testStatus: boolean = false
   unitNo: any;
+  notFound: boolean;
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -74,12 +75,19 @@ export class MaterialComponent implements OnInit {
     if (changes.material && changes.material.currentValue) {
       // this.loading = true
       this.material = changes.material.currentValue
+      console.log("this.material in changes are", this.material);
       this.updateData(this.material)
     }
     if (changes.type && changes.type.currentValue) {
       this.type = changes.type.currentValue
-      if (this.type == 'Assignment') this.showLearnerTab = true
-      else this.showLearnerTab = false
+      if (this.type == 'Assignment') {
+        this.displayedColumns =['select', 'Materials']
+        this.showLearnerTab = true
+      }
+      else {
+        this.displayedColumns = ['Materials']
+        this.showLearnerTab = false
+      }
     }
     if (changes.clearCheckBox && changes.clearCheckBox.currentValue) {
       this.selectedCheckbox = false
@@ -97,10 +105,8 @@ export class MaterialComponent implements OnInit {
     if (changes.displayLearners && changes.displayLearners.currentValue){
       this.displayLearners = changes.displayLearners.currentValue
     }
-
-
-
-      console.log("value assigned", this.learnerToPass);
+    
+    console.log("after changes ifs", this.material);
 
   }
   changeStatus(data) {
@@ -112,13 +118,24 @@ export class MaterialComponent implements OnInit {
   updateData(updateData) {
     this.loading = false
     console.log("UPDATING DATA Called = ", updateData);
-    // this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
-    this.dataSource = new MatTableDataSource(updateData);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (updateData.length == 0){
+      console.log("update data length is 0");
+      this.notFound = true
+      let empty = []
+      this.dataSource = new MatTableDataSource(empty)
+      console.log("this.datasource", this.dataSource);
+    }
+    else{
+      console.log("update data length is NOT 0");
+      this.notFound = false
+      this.dataSource = new MatTableDataSource(updateData);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
-    console.log("SETTING SORT TO = ", this.dataSource.sort)
-    console.log("SETTING paginator TO = ", this.dataSource.paginator)
+      console.log("SETTING SORT TO = ", this.dataSource.sort)
+      console.log("SETTING paginator TO = ", this.dataSource.paginator)
+    }
+    // this.getMaterialsFromComponent.emit({ materials: this.selectedMaterials })
   }
   loadMaterialFiles(event) {
     console.log("loadMaterialFiles Called with event = ", event)
