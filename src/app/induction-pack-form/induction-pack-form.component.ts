@@ -14,6 +14,8 @@ export class InductionPackFormComponent implements OnInit {
 
   constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
 
+  loading: Boolean;
+
   ngOnInit() {
   }
 
@@ -1737,7 +1739,7 @@ export class InductionPackFormComponent implements OnInit {
   private saveToFileSystem(response) {
     var byteArray = new Uint8Array(response.data);
     var blob = new Blob([byteArray], { type: 'application/pdf' });
-    saveAs(blob, 'test');
+    saveAs(blob, 'induction');
   }
 
   onSelectFileone(event) {
@@ -2045,22 +2047,22 @@ export class InductionPackFormComponent implements OnInit {
     }
   }
 
-  // onSelectFile2(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
+  onSelectFile19(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-  //     reader.onload = (event: any) => { // called once readAsDataURL is completed
-  //       if (event && event.target && event.target.result) {
-  //         this.url19 = event.target.result;
-  //       }
-  //       else {
-  //         this.url19 = '';
-  //       }
-  //     }
-  //   }
-  // }
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url19 = event.target.result;
+        }
+        else {
+          this.url19 = '';
+        }
+      }
+    }
+  }
   // checkChange(event,variable){
   //   console.log("variable name is",variable, "event", event);
 

@@ -61,7 +61,15 @@
         .page-7 {
             margin: 15px 0px 200px 0px;
         }
-
+        .page-8{
+            margin:0px 0px 700px 0px;
+        }
+        .page-9{
+            margin: 0px 0px 0px 0px;
+        }
+        .page-10{
+            margin: 70  0px 0px 0px 0px;
+        }
         .index-list {
             font-size: 14px;
         }
@@ -732,7 +740,7 @@
                 <tr>
                     <td>Signature</td>
                     <td style="background:#fff;">
-                        {{#if sponsorshipContract.SponsershipSign2}}
+                        {{#if confirmationDetails.confirmationSig2}}
                         <img src="{{confirmationDetails.confirmationSig2}}" height="80px" width="80px">
                         {{/if}}
                     </td>
@@ -748,7 +756,7 @@
                 <tr>
                     <td>Signature</td>
                     <td style="background:#fff;">
-                        {{#if sponsorshipContract.SponsershipSign2}}
+                        {{#if confirmationDetails.confirmationSig3}}
                         <img src="{{confirmationDetails.confirmationSig3}}" height="80px" width="80px">
                         {{/if}}
                     </td>
@@ -1010,9 +1018,12 @@
                     <td style="background:#fff;">{{nextOfKin.kinEmail}}</td>
                 </tr>
             </table>
+        </div>
+
+        <div class="page-9">
             <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
             <table width="100%" border="1" cellspacing="0" cellpadding="7"
-                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:600px;">
                 <tr>
                     <td colspan="4"><strong>1 Card holder’s details</strong></td>
                 </tr>
@@ -1053,7 +1064,6 @@
                 </tr>
             </table>
 
-        </div>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
@@ -1139,6 +1149,9 @@
                 <td style="background:#fff;">{{dateFormat comp.competencesE18 'DD-MM-YYYY'}}</td>
             </tr>
         </table>
+        </div>
+
+        <div class="page-10">
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
@@ -1306,6 +1319,8 @@
                 <td colspan="2" style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
+        </div>
+
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
