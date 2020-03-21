@@ -14,7 +14,7 @@ export class InductionPackFormComponent implements OnInit {
 
   constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
 
-  loading: Boolean;
+  loading: Boolean = false;
 
   ngOnInit() {
   }
@@ -1234,6 +1234,10 @@ export class InductionPackFormComponent implements OnInit {
         nightWorkQ11: this.nightWorkQ11,
         nightWorkQ12: this.nightWorkQ12,
         nightWorkQ13: this.nightWorkQ13,
+        nightWorksign18: this.url18,
+        nightWorksign17: this.url17,
+        nightWorkD1: this.nightWorkD1,
+        nightWorkD2: this.nightWorkD2,
       },
       lineBlockage: {
         blockage1: this.blockage1,
@@ -1729,7 +1733,7 @@ export class InductionPackFormComponent implements OnInit {
     }
 
     console.log('This.data======>>>>>', this.data);
-
+    this.loading = true;
     this._timeSheetService.generatePdf(this.data).subscribe((res => {
       this.saveToFileSystem(res);
     }));
@@ -1739,6 +1743,7 @@ export class InductionPackFormComponent implements OnInit {
     var byteArray = new Uint8Array(response.data);
     var blob = new Blob([byteArray], { type: 'application/pdf' });
     saveAs(blob, 'induction');
+    this.loading = false;
   }
 
   onSelectFileone(event) {
