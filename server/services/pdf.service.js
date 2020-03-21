@@ -24,7 +24,11 @@ hbs.registerHelper('dateFormat', function (value, format) {
 });
 
 
+
+
+
 async function pdfGenerate(dataDetails) {
+
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -35,15 +39,23 @@ async function pdfGenerate(dataDetails) {
 
         await page.setContent(content);
         await page.emulateMedia('screen');
-        await page.pdf({
+        const buffer = await page.pdf({
             path: 'test.pdf',
             format: 'A4',
-            printBackground: true
+            printBackground: true,
+            displayHeaderFooter: true,
+            margin: {
+                top: '100px',
+                bottom: '100px',
+                right: '20px',
+                left: '20px'
+            },
         });
 
-        console.log('Pdf Generated');
+        console.log('Pdf Generated', buffer);
         await browser.close();
-        // process.exit();
+
+        return buffer;
 
     } catch (e) {
         console.log('Error:', e);
@@ -54,4 +66,3 @@ async function pdfGenerate(dataDetails) {
 module.exports.pdfGenerate = pdfGenerate;
 
 
-// pdfGenerate()

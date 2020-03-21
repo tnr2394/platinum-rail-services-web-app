@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router, NavigationExtras } from '@angular/router'
 import { TimeSheetService } from '../services/time-sheet.service';
 declare var $: any;
+import { saveAs } from "file-saver";
+
 
 @Component({
   selector: 'app-induction-pack-form',
@@ -11,6 +13,8 @@ declare var $: any;
 export class InductionPackFormComponent implements OnInit {
 
   constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
+
+  loading: Boolean;
 
   ngOnInit() {
   }
@@ -857,7 +861,7 @@ export class InductionPackFormComponent implements OnInit {
   measure38I;
 
 
-  measure1;
+  measure1D;
   measure2D;
   measure3D;
   measure4D;
@@ -1069,6 +1073,73 @@ export class InductionPackFormComponent implements OnInit {
         medicalEye2: this.medicalEye2,
         medicalEye3: this.medicalEye3,
         medicalEye4: this.medicalEye4
+      },
+      comp: {
+        competencesD1: this.competencesD1,
+        competencesE1: this.competencesE1,
+        competencesD2: this.competencesD2,
+        competencesE2: this.competencesE2,
+
+        competencesD3: this.competencesD3,
+        competencesE3: this.competencesE3,
+
+
+        competencesD4: this.competencesD4,
+        competencesE4: this.competencesE4,
+
+        competencesD5: this.competencesD5,
+        competencesE5: this.competencesE5,
+
+
+        competencesD6: this.competencesD6,
+        competencesE6: this.competencesE6,
+
+
+        competencesD7: this.competencesD7,
+        competencesE7: this.competencesE7,
+
+
+        competencesD8: this.competencesD8,
+        competencesE8: this.competencesE8,
+
+
+        competencesD9: this.competencesD9,
+        competencesE9: this.competencesE9,
+
+
+        competencesD10: this.competencesD10,
+        competencesE10: this.competencesE10,
+
+
+        competencesD11: this.competencesD11,
+        competencesE11: this.competencesE11,
+
+
+        competencesD12: this.competencesD12,
+        competencesE12: this.competencesE12,
+
+
+        competencesD13: this.competencesD13,
+        competencesE13: this.competencesE13,
+
+
+        competencesD14: this.competencesD14,
+        competencesE14: this.competencesE14,
+
+        competencesD15: this.competencesD15,
+        competencesE15: this.competencesE15,
+
+
+        competencesD16: this.competencesD16,
+        competencesE16: this.competencesE16,
+
+        competencesD17: this.competencesD17,
+        competencesE17: this.competencesE17,
+
+
+        competencesD18: this.competencesD18,
+        competencesE18: this.competencesE18,
+
       },
       illnessDetail: {
         illness1: this.illness1,
@@ -1306,44 +1377,44 @@ export class InductionPackFormComponent implements OnInit {
         measure38I: this.measure38I,
       },
       MeasureByWhen: {
-        measure1I: this.measure1I,
-        measure2I: this.measure2I,
-        measure3I: this.measure3I,
-        measure4I: this.measure4I,
-        measure5I: this.measure5I,
-        measure6I: this.measure6I,
-        measure7I: this.measure7I,
-        measure8I: this.measure8I,
-        measure9I: this.measure9I,
-        measure10I: this.measure10I,
-        measure11I: this.measure11I,
-        measure12I: this.measure12I,
-        measure13I: this.measure13I,
-        measure14I: this.measure14I,
-        measure15I: this.measure15I,
-        measure16I: this.measure16I,
-        measure17I: this.measure17I,
-        measure18I: this.measure18I,
-        measure19I: this.measure19I,
-        measure20I: this.measure20I,
-        measure21I: this.measure21I,
-        measure22I: this.measure22I,
-        measure23I: this.measure23I,
-        measure24I: this.measure24I,
-        measure25I: this.measure25I,
-        measure26I: this.measure26I,
-        measure27I: this.measure27I,
-        measure28I: this.measure28I,
-        measure29I: this.measure29I,
-        measure30I: this.measure30I,
-        measure31I: this.measure31I,
-        measure32I: this.measure32I,
-        measure33I: this.measure33I,
-        measure34I: this.measure34I,
-        measure35I: this.measure35I,
-        measure36I: this.measure36I,
-        measure37I: this.measure37I,
-        measure38I: this.measure38I,
+        measure1D: this.measure1D,
+        measure2D: this.measure2D,
+        measure3D: this.measure3D,
+        measure4D: this.measure4D,
+        measure5D: this.measure5D,
+        measure6D: this.measure6D,
+        measure7D: this.measure7D,
+        measure8D: this.measure8D,
+        measure9D: this.measure9D,
+        measure10D: this.measure10D,
+        measure11D: this.measure11D,
+        measure12D: this.measure12D,
+        measure13D: this.measure13D,
+        measure14D: this.measure14D,
+        measure15D: this.measure15D,
+        measure16D: this.measure16D,
+        measure17D: this.measure17D,
+        measure18D: this.measure18D,
+        measure19D: this.measure19D,
+        measure20D: this.measure20D,
+        measure21D: this.measure21D,
+        measure22D: this.measure22D,
+        measure23D: this.measure23D,
+        measure24D: this.measure24D,
+        measure25D: this.measure25D,
+        measure26D: this.measure26D,
+        measure27D: this.measure27D,
+        measure28D: this.measure28D,
+        measure29D: this.measure29D,
+        measure30D: this.measure30D,
+        measure31D: this.measure31D,
+        measure32D: this.measure32D,
+        measure33D: this.measure33D,
+        measure34D: this.measure34D,
+        measure35D: this.measure35D,
+        measure36D: this.measure36D,
+        measure37D: this.measure37D,
+        measure38D: this.measure38D,
       },
       workPressureDetail: {
         pressure1I: this.pressure1I,
@@ -1659,9 +1730,15 @@ export class InductionPackFormComponent implements OnInit {
 
     console.log('This.data======>>>>>', this.data);
 
-    // this._timeSheetService.generatePdf(this.data).subscribe((res => {
-    //   console.log('Res===>>', res);
-    // }));
+    this._timeSheetService.generatePdf(this.data).subscribe((res => {
+      this.saveToFileSystem(res);
+    }));
+  }
+
+  private saveToFileSystem(response) {
+    var byteArray = new Uint8Array(response.data);
+    var blob = new Blob([byteArray], { type: 'application/pdf' });
+    saveAs(blob, 'induction');
   }
 
   onSelectFileone(event) {
@@ -1969,22 +2046,22 @@ export class InductionPackFormComponent implements OnInit {
     }
   }
 
-  // onSelectFile2(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
+  onSelectFile19(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-  //     reader.onload = (event: any) => { // called once readAsDataURL is completed
-  //       if (event && event.target && event.target.result) {
-  //         this.url19 = event.target.result;
-  //       }
-  //       else {
-  //         this.url19 = '';
-  //       }
-  //     }
-  //   }
-  // }
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        if (event && event.target && event.target.result) {
+          this.url19 = event.target.result;
+        }
+        else {
+          this.url19 = '';
+        }
+      }
+    }
+  }
   // checkChange(event,variable){
   //   console.log("variable name is",variable, "event", event);
 

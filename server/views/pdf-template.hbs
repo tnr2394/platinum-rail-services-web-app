@@ -22,15 +22,60 @@
 
     <style>
         td {
-            font-size: 10px;
+            font-size: 15px;
         }
 
         th {
-            font-size: 12px;
+            font-size: 15px;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 7px 0px 7px 0px
         }
 
         .strike-text {
             text-decoration: line-through !important;
+        }
+
+        .page-1 {
+            margin: 15px 0px 200px 0px;
+        }
+
+        .page-2 {
+            margin: 15px 0px 250px 0px;
+        }
+
+        .page-3 {
+            margin: 15px 0px 400px 0px;
+        }
+
+        .page-4 {
+            margin: 15px 0px 400px 0px;
+        }
+
+        .page-5 {
+            margin: 15px 0px 400px 0px;
+        }
+
+        .page-7 {
+            margin: 15px 0px 200px 0px;
+        }
+
+        .page-8 {
+            margin: 0px 0px 700px 0px;
+        }
+
+        .page-9 {
+            margin: 0px 0px 0px 0px;
+        }
+
+        .page-10 {
+            margin: 70 0px 0px 0px 0px;
+        }
+
+        .index-list {
+            font-size: 14px;
         }
     </style>
 
@@ -38,1134 +83,1248 @@
 
 <body lang="en-GB" link="#0000ff" dir="ltr" style="margin:0px; padding:0px;font-family:Calibri, serif; font-size:14px;">
     <div style="max-width:616px; width:100%; margin:0 auto; font-size: 14pt;">
-        <div style="text-align:center; margin-bottom:15px;"><img src="prs-logo.png" alt="" width="193px" /></div>
-        <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
-            Induction Pack</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="4"><strong>Type</strong></td>
-                <td width="19%" align="center">YES</td>
-                <td width="18%" align="center">NO</td>
-            </tr>
-            <tr>
-                <td colspan="4">Refresher induction</td>
-                <td style="background:#fff;">
-                    {{#ifEquals refresherInduction "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals refresherInduction "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">New Starter</td>
-                <td style="background:#fff;">
-                    {{#ifEquals newStarter "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals newStarter "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Is Inductee working on NR?</td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnNR "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnNR "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Is Inductee working on TfL?</td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnTfL "Yes"}}
-                    <span>
-                        YES
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals workingOnTfL "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">Date of induction</td>
-                <td colspan="2" style="background:#fff;">{{dateFormat dateOfInduction 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td width="25%">Sponsorship</td>
-                <td width="9%" align="center">YES</td>
-                <td width="9%" align="center">NO</td>
-                <td width="20%">&nbsp;</td>
-                <td align="center">YES</td>
-                <td align="center">NO</td>
-            </tr>
-            <tr>
-                <td>Primary </td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td>Sub-Sponsored</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="3">Is induction pack complete?</td>
-                <td style="background:#fff; padding:0px; border:0px;">
-                    <table width="100%" border="1" cellspacing="0" cellpadding="7">
-                        <tr>
-                            <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
-                            <td style="border-top:0px; border-right:0px;">NO</td>
-                        </tr>
-                        <tr>
-                            <td style="background:#fff;">
-                                {{#ifEquals inductionPackComplete "Yes"}}
-                                <span>
-                                    YES
-                                </span>
-                                {{/ifEquals}}
-                            </td>
-                            <td style="background:#fff;">
-                                {{#ifEquals inductionPackComplete "No"}}
-                                <span>
-                                    No
-                                </span>
-                                {{/ifEquals}}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td colspan="2">If No, do not sponsor until completed</td>
-            </tr>
-            <tr>
-                <td colspan="3">&nbsp;</td>
-                <td colspan="3" style="background:#fff;">&nbsp;</td>
-            </tr>
-        </table>
-
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="50%">Candidate Name</td>
-                <td width="50%" style="background:#fff;">{{candidateName}}</td>
-            </tr>
-            <tr>
-                <td>DoB</td>
-                <td style="background:#fff;">{{dateOfBirth}}</td>
-            </tr>
-            <tr>
-                <td>National Insurance Number</td>
-                <td style="background:#fff;">{{nationalInsuranceNumber}}</td>
-            </tr>
-            <tr>
-                <td>Candidate Address</td>
-                <td style="background:#fff;">{{candidateAddress}}</td>
-            </tr>
-            <tr>
-                <td>Contact Number </td>
-                <td style="background:#fff;">{{contactNumber}}</td>
-            </tr>
-            <tr>
-                <td>Sentinel Number</td>
-                <td style="background:#fff;">{{sentinelNumber}}</td>
-            </tr>
-            <tr>
-                <td>Email Address</td>
-                <td style="background:#fff;">{{emailAddress}}</td>
-            </tr>
-        </table>
-        <p style="font-family:Calibri, serif;">Checklist</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="55%"><strong>Checklist Item</strong></td>
-                <td width="15%"><strong>Yes</strong></td>
-                <td width="15%"><strong>No</strong></td>
-                <td width="15%"><strong>N/A</strong></td>
-            </tr>
-            <tr>
-                <td>Right to work in UK</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type1 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type1 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type1 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-
-            </tr>
-            <tr>
-                <td>Type of ID provided<br></td>
-                <td colspan="3" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Next of Kin provided</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type3 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type3 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type3 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-
-            </tr>
-            <tr>
-                <td>H&amp;S Policy provided and briefed<br></td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type4 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type4 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type4 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>ENV policy provided and briefed<br></td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type5 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type5 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type5 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Quality Policy provided and briefed</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type6 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type6 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type6 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Working Hours policy provided and briefed</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type7 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type7 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type7 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Worksafe Policy provided and briefed</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type8 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type8 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type8 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Alcohol and Drug policy provided and briefed</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type9 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type9 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type9 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Fire policy provided and briefed</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type10 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type10 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type10 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Opt out of Working Hours Directive</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type11 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type11 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type11 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>HSQE Briefing Received</td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type12 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type12 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type12 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-            <tr>
-                <td>Safety Critical ID Issued <em>(TfL only)</em></td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type13 "Yes"}}
-                    <span>
-                        Yes
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type13 "No"}}
-                    <span>
-                        No
-                    </span>
-                    {{/ifEquals}}
-                </td>
-                <td style="background:#fff;">
-                    {{#ifEquals checklist.type13 "N/A"}}
-                    <span>
-                        N/A
-                    </span>
-                    {{/ifEquals}}
-                </td>
-            </tr>
-        </table>
-        <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation ‘Sentinel
-                Induction’ detailing the company procedures and a copy of the acknowledgement is obtained.</em></p>
-        <p><strong>Bank Details</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="50%">Name on Account / Ltd Company Name</td>
-                <td width="50%" style="background:#fff;">{{bankDetails.accountHolderName}}</td>
-            </tr>
-            <tr>
-                <td>Bank Name</td>
-                <td style="background:#fff;">{{bankDetails.bankName}}</td>
-            </tr>
-            <tr>
-                <td>Bank Address</td>
-                <td style="background:#fff;">{{bankDetails.bankAddress}}</td>
-            </tr>
-            <tr>
-                <td>Account Number</td>
-                <td style="background:#fff;">{{bankDetails.accountNumber}}</td>
-            </tr>
-            <tr>
-                <td>Sort Code</td>
-                <td style="background:#fff;">{{bankDetails.sortCode}}</td>
-            </tr>
-        </table>
-        <p><strong>Payment Details</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="50%" align="center">CIS</td>
-                <td width="50%" align="center">PAYE</td>
-            </tr>
-            <tr>
-                <td align="center" style="background:#fff;">Yes / No</td>
-                <td align="center" style="background:#fff;">Yes / No</td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">Ltd Company</td>
-            </tr>
-            <tr>
-                <td>Company Name:</td>
-                <td style="background:#fff;">{{paymentDetails.companyName}}</td>
-            </tr>
-            <tr>
-                <td>Company No.:</td>
-                <td style="background:#fff;">{{paymentDetails.companyNo}}</td>
-            </tr>
-            <tr>
-                <td>Please provide a copy of Certificate of Incorporation</td>
-                <td style="background:#fff;">{{paymentDetails.certificateNumber}}</td>
-            </tr>
-            <tr>
-                <td>Umbrella Company – state which one</td>
-                <td style="background:#fff;">{{paymentDetails.companyState}}</td>
-            </tr>
-        </table>
-        <p><strong>Insurance</strong></p>
-        <p style="margin-bottom:15px;">Please provide the policy numbers of your company insurances, and return copies
-            of the certificates.</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td width="50%">Employers’ Liability</td>
-                <td width="50%" style="background:#fff;">{{insurance.insurance1}}</td>
-            </tr>
-            <tr>
-                <td>Professional Indemnity</td>
-                <td style="background:#fff;">{{insurance.insurance2}}</td>
-            </tr>
-            <tr>
-                <td>Public Liability</td>
-                <td style="background:#fff;">{{insurance.insurance3}}</td>
-            </tr>
-            <tr>
-                <td>Product and Goods Liability</td>
-                <td style="background:#fff;">{{insurance.insurance4}}</td>
-            </tr>
-            <tr>
-                <td>Vehicle Business Use</td>
-                <td style="background:#fff;">{{insurance.insurance5}}</td>
-            </tr>
-        </table>
-
-        <p><strong>Confirmations</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="4">I confirm I have been briefed on and understand the company policies.</td>
-            </tr>
-            <tr>
-                <td width="25%">Signature</td>
-                <td width="25%" style="background:#fff;">
-                    {{#if confirmationDetails.confirmationSig1}}
-                    <img src="{{confirmationDetails.confirmationSig1}}" height="80px" width="80px">
-                    {{/if}}
-                </td>
-                <td width="25%">Date</td>
-                <td width="25%" style="background:#fff;">{{dateFormat confirmationDetails.confirmationD1 "DD-MM-YYYY"}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">The Company will securely store information relating to its employees, both in hard copy
-                    and electronically, in accordance with GDPR Laws. Do you give your permission for the company to
-                    share the information we have on you with other interested parties (Clients / Network Rail /
-                    Enforcement Agencies, etc.)?</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">
-                    {{#if sponsorshipContract.SponsershipSign2}}
-                    <img src="{{confirmationDetails.confirmationSig2}}" height="80px" width="80px">
-                    {{/if}}
-                </td>
-                <td>Date</td>
-                <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD2 "DD-MM-YYYY"}}</td>
-            </tr>
-            <tr>
-                <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
-                    belief, all particulars provided here are true. I understand that any false statement may disqualify
-                    me from employment or lead to dismissal.</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">
-                    {{#if sponsorshipContract.SponsershipSign2}}
-                    <img src="{{confirmationDetails.confirmationSig3}}" height="80px" width="80px">
-                    {{/if}}
-                </td>
-                <td>Date</td>
-                <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD3 "DD-MM-YYYY"}}</td>
-            </tr>
-        </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2"><em>For Office Use Only<br>
-                        Application checked for completion and accuracy</em></td>
-            </tr>
-            <tr>
-                <td width="50%">Name</td>
-                <td width="50%" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Signature</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-        </table>
-
-        <p><strong>Opt-out for Sub-Contractors</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2">
-                    <ul>
-                        <li>Opt out under Regulation 32 of the Conduct of Employment Agencies Employment Businesses
-                            Regulations 2003 (‘the Regulations’)</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">The Contractor has agreed to provide services under the company’s terms and
-                    conditions<br></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations. The
-                        Contractor hereby confirms that it shall not be bound by the provisions of the regulations which
-                        do not apply to any services provided by the Contractor to the Company, throughout the duration
-                        of their agreement.</p>
-                    <ul>
-                        <li>Agency Workers Regulations 2010 (‘AWR’)</li>
-                        <li>The Contractor warrants that any operative placed on assignment under this contract is
-                            operating outside the scope of the AWR.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td width="50%">Name of Contractor</td>
-                <td width="50%" style="background:#fff;">{{optOutDetail.optOutIn}}</td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td style="background:#fff;">{{optOutDetail.optOuttextarea}}</td>
-            </tr>
-            <tr>
-                <td>Signed (On behalf of Contractor)</td>
-                <td style="background:#fff;">
-                    {{#if optOutDetail.optOutsign}}
-                    <img src="{{optOutDetail.optOutsign}}" height="80px" width="80px">
-                    {{/if}}
-                </td>
-            </tr>
-            <tr>
-                <td>Date:</td>
-                <td style="background:#fff;">{{optOutDetail.optOutdate}}</td>
-            </tr>
-        </table>
 
 
-        <p>Right to Work in the UK</p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2" width="50%">NAME:</td>
-                <td colspan="2" width="50%" style="background:#fff;">{{rightToWorkInUK.name}}</td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <p>Document checks must be carried out, before commencement of work.</p>
-                    <p>Original documents must be seen and copies taken, with the applicant’s consent.</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><strong>Acceptable documents are any one from LIST1 below or two from
-                        LIST2A (one being a work permit). Documents from LIST 2 and LIST 2A cannot be swapped.<br>
-                    </strong></td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center"><strong>LIST 1 (one document)</strong></td>
-                <td width="12%" align="center"><strong>Checked/Copied</strong></td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport (British Citizen) or has right to abode in UK</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl1}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">EEC or Swiss Passport or ID Card</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl2}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Resident Permit EEC or Swiss</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl3}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
-                    national from EEC or Switzerland</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl4}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
-                    family member of a national from EEC or Switzerland</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl5}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Passport or travel document endorsing the holder to stay in the UK, and to allow the
-                    holder to do the type of work on offer, if they have no permit</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl6}}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Application Registration Card issued by the Home Office issued to an asylum seeker,
-                    stating that the holder is permitted to accept employment</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl7}}</td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><strong>LIST 2 (Two documents: A and one other)</strong></td>
-            </tr>
-            <tr>
-                <td width="4%">A</td>
-                <td colspan="2">Document giving person permanent national Insurance Number and Name (P45, P60 National
-                    Insurance card)</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2A}}</td>
-            </tr>
-            <tr>
-                <td>B</td>
-                <td colspan="2">Full Birth Certificate issued in the UK , Channel Islands, Isle of Man, or Northern
-                    Ireland</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2B}}</td>
-            </tr>
-            <tr>
-                <td>C</td>
-                <td colspan="2">Certificate of registration or naturalization, stating holder is a British citizen</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2C}}</td>
-            </tr>
-            <tr>
-                <td>D</td>
-                <td colspan="2">Letter issued by the Home Office, indicating they can stay in the UK and can undertake
-                    work</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2D}}</td>
-            </tr>
-            <tr>
-                <td>E</td>
-                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
-                    indefinitely in the UK </td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2E}}</td>
-            </tr>
-            <tr>
-                <td>F</td>
-                <td colspan="2">Letter issued by Home Office indicating they can stay in the UK and undertake work</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2F}}</td>
-            </tr>
-            <tr>
-                <td>G</td>
-                <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay in
-                    the UK and can undertake work</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2G}}</td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center"><strong>LIST 2A (Two documents: A and one other)</strong></td>
-                <td style="background:#fff;"></td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td colspan="2">Work Permit or other approval to take employment that has been issued by Work Permits UK
-                </td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AA}}</td>
-            </tr>
-            <tr>
-                <td>B</td>
-                <td colspan="2">Passport or other travel document endorsing the holder to stay in the UK and accept Work
-                    Permit employment</td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AB}}</td>
-            </tr>
-            <tr>
-                <td>C</td>
-                <td colspan="2">Letter issued by the Home Office, confirming that the person can stay in the UK and can
-                    take Work Permit employment </td>
-                <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AC}}</td>
-            </tr>
-        </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="3">Documents have been checked for suitability</td>
-            </tr>
-            <tr>
-                <td style="background:#fff;">Name:</td>
-                <td style="background:#fff;">Signed:</td>
-                <td style="background:#fff;">Date:</td>
-            </tr>
-        </table>
+        <div class="page-1">
+            <div style="text-align:center;margin-top:25px; margin-bottom:15px;">
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="193px" />
+            </div>
+            <p style="font-family:Calibri, serif; text-align:center; padding-bottom:10px;">Platinum Rail Services –
+                Induction Pack</p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="4"><strong>Type</strong></td>
+                    <td width="19%" align="center">YES</td>
+                    <td width="18%" align="center">NO</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Refresher induction</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals refresherInduction "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals refresherInduction "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">New Starter</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals newStarter "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals newStarter "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Is Inductee working on NR?</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnNR "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnNR "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Is Inductee working on TfL?</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnTfL "Yes"}}
+                        <span>
+                            YES
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals workingOnTfL "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Date of induction</td>
+                    <td colspan="2" style="background:#fff;">{{dateFormat dateOfInduction 'MMM Do'}}</td>
+                </tr>
+                <tr>
+                    <td width="25%">Sponsorship</td>
+                    <td width="9%" align="center">YES</td>
+                    <td width="9%" align="center">NO</td>
+                    <td width="20%">&nbsp;</td>
+                    <td align="center">YES</td>
+                    <td align="center">NO</td>
+                </tr>
+                <tr>
+                    <td>Primary </td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td>Sub-Sponsored</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Is induction pack complete?</td>
+                    <td style="background:#fff; padding:0px; border:0px;">
+                        <table width="100%" border="1" cellspacing="0" cellpadding="7">
+                            <tr>
+                                <td style="border-top:0px; border-left:0px; border-right:0px;">YES</td>
+                                <td style="border-top:0px; border-right:0px;">NO</td>
+                            </tr>
+                            <tr>
+                                <td style="background:#fff;">
+                                    {{#ifEquals inductionPackComplete "Yes"}}
+                                    <span>
+                                        YES
+                                    </span>
+                                    {{/ifEquals}}
+                                </td>
+                                <td style="background:#fff;">
+                                    {{#ifEquals inductionPackComplete "No"}}
+                                    <span>
+                                        No
+                                    </span>
+                                    {{/ifEquals}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="2">If No, do not sponsor until completed</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                    <td colspan="3" style="background:#fff;">&nbsp;</td>
+                </tr>
+            </table>
+
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="50%">Candidate Name</td>
+                    <td width="50%" style="background:#fff;">{{candidateName}}</td>
+                </tr>
+                <tr>
+                    <td>DoB</td>
+                    <td style="background:#fff;">{{dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <td>National Insurance Number</td>
+                    <td style="background:#fff;">{{nationalInsuranceNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Candidate Address</td>
+                    <td style="background:#fff;">{{candidateAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Contact Number </td>
+                    <td style="background:#fff;">{{contactNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Sentinel Number</td>
+                    <td style="background:#fff;">{{sentinelNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td style="background:#fff;">{{emailAddress}}</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="page-2">
+            <div>
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="193px" />
+
+            </div>
+            <ul class="ul_main">
+                <h3>Contents</h3>
+                <li class="index-list">Checklist ...........................................................3</li>
+
+                <li class="index-list">BankDetails..........................................................4</li>
+
+                <li class="index-list">Payment Details......................................................4</li>
+
+                <li class="index-list">LtdCompany...........................................................4</li>
+                <li class="index-list">Insurance............................................................4</li>
+
+                <li class="index-list">Confirmations........................................................5</li>
+                <li class="index-list">Right to Work in the UK..............................................6</li>
+                <li class="index-list">Opt-out for Sub-Contractors..........................................7</li>
+
+                <li class="index-list">Next of Kin .........................................................8</li>
+                <li class="index-list">Pre-deployment Safety Critical Checklist.............................8</li>
+
+                <li class="index-list">Rail PPE Issue.......................................................12</li>
+
+                <li class="index-list">Medical Self-Certification...........................................13</li>
+                <li class="index-list">Staff Safety Responsibility Statement................................15</li>
+                <li class="index-list">Medical Standards: Eyewear...........................................16</li>
+                <li class="index-list">Working Time Directive and OPT-OUT...................................16</li>
+                <li class="index-list">Working Hours Disclaimer for Employees Working on Network Rail-Managed
+                    Infrastructure ...........17</li>
+                <li class="index-list">Contract of Sponsorship..............................................18 </li>
+                <li class="index-list">Occupational Health Questionnaire....................................20</li>
+                <li class="index-list">English Test (TfL Only)..............................................24</li>
+                <li class="index-list">TfL Area Familiarisation.............................................26</li>
+                <li class="index-list">Stress-Risk Assessment Form..........................................30</li>
+            </ul>
+        </div>
+
+        <div class="page-3">
+            <div>
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="193px" />
+
+            </div>
+
+            <p style="font-family:Calibri, serif;">Checklist</p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="55%"><strong>Checklist Item</strong></td>
+                    <td width="15%"><strong>Yes</strong></td>
+                    <td width="15%"><strong>No</strong></td>
+                    <td width="15%"><strong>N/A</strong></td>
+                </tr>
+                <tr>
+                    <td>Right to work in UK</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type1 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type1 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type1 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Type of ID provided<br></td>
+                    <td colspan="3" style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Next of Kin provided</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type3 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type3 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type3 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>H&amp;S Policy provided and briefed<br></td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type4 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type4 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type4 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>ENV policy provided and briefed<br></td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type5 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type5 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type5 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quality Policy provided and briefed</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type6 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type6 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type6 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Working Hours policy provided and briefed</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type7 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type7 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type7 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Worksafe Policy provided and briefed</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type8 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type8 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type8 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alcohol and Drug policy provided and briefed</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type9 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type9 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type9 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fire policy provided and briefed</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type10 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type10 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type10 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Opt out of Working Hours Directive</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type11 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type11 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type11 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>HSQE Briefing Received</td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type12 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type12 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type12 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Safety Critical ID Issued <em>(TfL only)</em></td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type13 "Yes"}}
+                        <span>
+                            Yes
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type13 "No"}}
+                        <span>
+                            No
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                    <td style="background:#fff;">
+                        {{#ifEquals checklist.type13 "N/A"}}
+                        <span>
+                            N/A
+                        </span>
+                        {{/ifEquals}}
+                    </td>
+                </tr>
+            </table>
 
 
-        <p><strong>Next of Kin</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="2">Please provide detail of your next of kin. Data will be stored on the Sentinel Database.
-                </td>
-            </tr>
-            <tr>
-                <td width="50%">Name of next of kin</td>
-                <td width="50%" style="background:#fff;">{{nextOfKin.kinName}}</td>
-            </tr>
-            <tr>
-                <td>Relationship with you</td>
-                <td style="background:#fff;">{{nextOfKin.kinRelationship}}</td>
-            </tr>
-            <tr>
-                <td>Address of next of kin</td>
-                <td style="background:#fff;">{{nextOfKin.kinAddress}}</td>
-            </tr>
-            <tr>
-                <td>Contact number of next of kin</td>
-                <td style="background:#fff;">{{nextOfKin.kinContactNumber}}</td>
-            </tr>
-            <tr>
-                <td>Secondary contact number</td>
-                <td style="background:#fff;">{{nextOfKin.kinSecondContactNumber}}</td>
-            </tr>
-            <tr>
-                <td>Email for next of kin</td>
-                <td style="background:#fff;">{{nextOfKin.kinEmail}}</td>
-            </tr>
-        </table>
-        <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="4"><strong>1 Card holder’s details</strong></td>
-            </tr>
-            <tr>
-                <td width="25%" style="background:#fff;">Forename(s)</td>
-                <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderName}}</td>
-                <td width="25%" style="background:#fff;">Surname</td>
-                <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderSurName}}</td>
-            </tr>
-            <tr>
-                <td style="background:#fff;">Card holder’s contact tel. no.</td>
-                <td style="background:#fff;">{{cardHolderDetails.cardHolderContact}}</td>
-                <td style="background:#fff;">Employing company</td>
-                <td style="background:#fff;">{{cardHolderDetails.cardHolderCompany}}</td>
-            </tr>
-            <tr>
-                <td colspan="4"><strong>2 Card holder’s safety critical occupational certification</strong></td>
-            </tr>
-            <tr>
-                <td>Full Sentinel card no.</td>
-                <td style="background:#fff;">{{cardHolderDetails.cardsentinelNumber}}</td>
-                <td colspan="2" align="center">An authenticated copy of the card holder’s Sentinel card must accompany
-                    this checklist, on submission</td>
-            </tr>
-            <tr>
-                <td colspan="4" style="background:#fff;">
-                    <p>Please confirm details of card holder’s medical restrictions, i.e. red triangle, blue dot:<br>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>Please confirm details of card holder’s competency restrictions, i.e. competencies under
-                        mentorship:<br>
-                    </p>
-                    <br>
-                    <br>
-                </td>
-            </tr>
-        </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td align="center"><em>Competence</em></td>
-                <td align="center"><em>Duration held<br>
-                        (years/months) </em></td>
-                <td align="center"><em>Expiry date</em></td>
-                <td align="center"><em>Competence</em></td>
-                <td align="center"><em>Duration held<br>
-                        (years/months) </em></td>
-                <td align="center"><em>Expiry date</em></td>
-            </tr>
-            <tr>
-                <td>Medical</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD1 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE1 'MMM Do'}}</td>
-                <td>IWA</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD10 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE10 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>PTS AC</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD2 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE2 'MMM Do'}}</td>
-                <td>COSS</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD11 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE11 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>PTS DC</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD3 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE3 'MMM Do'}}</td>
-                <td>COSS OLP</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD12 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE12 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>AOD PO</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD4 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE4 'MMM Do'}}</td>
-                <td>COSS CRP</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD13 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE13 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>AOD PO</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD5 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE5 'MMM Do'}}</td>
-                <td>PC</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD14 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE14 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>AOD HS</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD6 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE6 'MMM Do'}}</td>
-                <td>ES</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD15 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE15 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>AOD LXA</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD7 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE7 'MMM Do'}}</td>
-                <td>ES Level A</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD16 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE16 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>AOD RSA</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD8 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE8 'MMM Do'}}</td>
-                <td>StrapmanLvl B</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD17 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE17 'MMM Do'}}</td>
-            </tr>
-            <tr>
-                <td>LKT / SW</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD9 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE9 'MMM Do'}}</td>
-                <td>Switching (DC)</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesD18 'MMM Do'}}</td>
-                <td style="background:#fff;">{{dateFormat comp.competencesE18 'MMM Do'}}</td>
-            </tr>
-        </table>
-        <table width="100%" border="1" cellspacing="0" cellpadding="7"
-            style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
-            <tr>
-                <td colspan="8">3 <strong>Specific work/activity experience</strong> (please indicate whether the
-                    cardholder has experience of <u><strong>implementing</strong></u> the specific safe systems of
-                    work/activities below by ticking the applicable <span style="background:#ffff00;">yellow</span>
-                    boxes)</td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><u><strong>LKT SW / IWA / COSS / PC</strong></u></td>
-                <td colspan="2" align="center"><u><strong>Engineering Supervisor</strong></u></td>
-                <td colspan="2" align="center"><u><strong>Other (please specify)</strong></u></td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><u>Line blockage:</u></td>
-                <td colspan="2" align="center"><u>Possession:</u></td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td width="20%">Signal Protection only</td>
-                <td width="5%" style="background:#ffff00;">{{lineBlockage:blockage1}}</td>
-                <td colspan="2">Green Zone</td>
-                <td width="20%">With no train/OTP</td>
-                <td width="5%" style="background:#ffff00;">{{possessionEngDetail:PossessionE1}}</td>
-                <td width="20%" rowspan="2" valign="top">Competent Person – Detonator Protection</td>
-                <td width="5%" style="background:#ffff00;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>TCOD</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage2}}</td>
-                <td width="20%">Fenced</td>
-                <td width="5%" style="background:#ffff00;">{{greenZone:greenZone1}}</td>
-                <td>With train movements</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE2}}</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Disconnection</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage3}}</td>
-                <td>Site Warden Warning</td>
-                <td style="background:#ffff00;">{{greenZone:greenZone2}}</td>
-                <td>With OTP movement</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE3}}</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Detonator Protection</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage4}}</td>
-                <td colspan="2">&nbsp;</td>
-                <td>Route setting via points Operator</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE4}}</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Token Block</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage5}}</td>
-                <td colspan="2"><u><em>Red Zone</em></u></td>
-                <td>Route setting via Signaller</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE5}}</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Absolute Block</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage6}}</td>
-                <td>ATWS</td>
-                <td style="background:#ffff00;">{{redZone:redZone1}}</td>
-                <td>Level crossing under local control</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE6}}</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Tokenless Block</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage7}}</td>
-                <td>TOWS</td>
-                <td style="background:#ffff00;">{{redZone:redZone2}}</td>
-                <td>Working in axle counter area</td>
-                <td style="background:#ffff00;">{{possessionEngDetail:PossessionE7}};</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>RETB</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage8}}</td>
-                <td>LOWS</td>
-                <td style="background:#ffff00;">{{redZone:redZone3}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>ERTMS</td>
-                <td style="background:#ffff00;">{{lineBlockage:blockage9}}</td>
-                <td>Pee Wee</td>
-                <td style="background:#ffff00;">{{redZone:redZone4}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td>Unassisted Lookouts</td>
-                <td style="background:#ffff00;">{{redZone:redZone5}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="4" align="center"><u>Possession:</u></td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Within ES worksite</td>
-                <td style="background:#ffff00;" {{possessionDetail:Possession1}}</td> <td>Receiving OLP</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession6}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>With PICOP</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession2}}</td>
-                <td>Receiving CRP</td>
-                <td style="background:#ffff00;">&nbsp;</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Without PICOP authority</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession3}}</td>
-                <td>Working in axle counter area</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession7}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Poss. of sidings</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession4}}</td>
-                <td>PC Duties</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession9}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td rowspan="2" valign="top">{{possessionDetail:Possession5}}</td>
-                <td style="background:#ffff00;">&nbsp;</td>
-                <td>Hand trolley Controller</td>
-                <td style="background:#ffff00;">{{possessionDetail:Possession10}}</td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-                <td style="background:#fff;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td colspan="2">&nbsp;</td>
-                <td colspan="2" style="background:#fff;"></td>
-                <td colspan="2" style="background:#fff;">&nbsp;</td>
-            </tr>
-        </table>
+            <p><em>Where the candidate is a Sentinel cardholder, ensure they are shown the induction presentation
+                    ‘Sentinel
+                    Induction’ detailing the company procedures and a copy of the acknowledgement is obtained.</em></p>
+
+        </div>
+
+
+
+
+        <div class="page-4">
+            <div>
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="150px" height="70px" />
+            </div>
+
+            <p><strong>Bank Details</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="50%">Name on Account / Ltd Company Name</td>
+                    <td width="50%" style="background:#fff;">{{bankDetails.accountHolderName}}</td>
+                </tr>
+                <tr>
+                    <td>Bank Name</td>
+                    <td style="background:#fff;">{{bankDetails.bankName}}</td>
+                </tr>
+                <tr>
+                    <td>Bank Address</td>
+                    <td style="background:#fff;">{{bankDetails.bankAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Account Number</td>
+                    <td style="background:#fff;">{{bankDetails.accountNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Sort Code</td>
+                    <td style="background:#fff;">{{bankDetails.sortCode}}</td>
+                </tr>
+            </table>
+            <p><strong>Payment Details</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="50%" align="center">CIS</td>
+                    <td width="50%" align="center">PAYE</td>
+                </tr>
+                <tr>
+                    <td align="center" style="background:#fff;">Yes / No</td>
+                    <td align="center" style="background:#fff;">Yes / No</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">Ltd Company</td>
+                </tr>
+                <tr>
+                    <td>Company Name:</td>
+                    <td style="background:#fff;">{{paymentDetails.companyName}}</td>
+                </tr>
+                <tr>
+                    <td>Company No.:</td>
+                    <td style="background:#fff;">{{paymentDetails.companyNo}}</td>
+                </tr>
+                <tr>
+                    <td>Please provide a copy of Certificate of Incorporation</td>
+                    <td style="background:#fff;">{{paymentDetails.certificateNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Umbrella Company – state which one</td>
+                    <td style="background:#fff;">{{paymentDetails.companyState}}</td>
+                </tr>
+            </table>
+            <p><strong>Insurance</strong></p>
+            <p style="margin-bottom:15px;">Please provide the policy numbers of your company insurances, and return
+                copies
+                of the certificates.</p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td width="50%">Employers’ Liability</td>
+                    <td width="50%" style="background:#fff;">{{insurance.insurance1}}</td>
+                </tr>
+                <tr>
+                    <td>Professional Indemnity</td>
+                    <td style="background:#fff;">{{insurance.insurance2}}</td>
+                </tr>
+                <tr>
+                    <td>Public Liability</td>
+                    <td style="background:#fff;">{{insurance.insurance3}}</td>
+                </tr>
+                <tr>
+                    <td>Product and Goods Liability</td>
+                    <td style="background:#fff;">{{insurance.insurance4}}</td>
+                </tr>
+                <tr>
+                    <td>Vehicle Business Use</td>
+                    <td style="background:#fff;">{{insurance.insurance5}}</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+        <div class="page-5">
+            <div>
+                <img src="https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/full_logo-1582290758800.png"
+                    alt="" width="193px" />
+            </div>
+
+            <p><strong>Confirmations</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="4">I confirm I have been briefed on and understand the company policies.</td>
+                </tr>
+                <tr>
+                    <td width="25%">Signature</td>
+                    <td width="25%" style="background:#fff;">
+                        {{#if confirmationDetails.confirmationSig1}}
+                        <img src="{{confirmationDetails.confirmationSig1}}" height="80px" width="80px">
+                        {{/if}}
+                    </td>
+                    <td width="25%">Date</td>
+                    <td width="25%" style="background:#fff;">
+                        {{dateFormat confirmationDetails.confirmationD1 "DD-MM-YYYY"}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">The Company will securely store information relating to its employees, both in hard
+                        copy
+                        and electronically, in accordance with GDPR Laws. Do you give your permission for the company to
+                        share the information we have on you with other interested parties (Clients / Network Rail /
+                        Enforcement Agencies, etc.)?</td>
+                </tr>
+                <tr>
+                    <td>Signature</td>
+                    <td style="background:#fff;">
+                        {{#if confirmationDetails.confirmationSig2}}
+                        <img src="{{confirmationDetails.confirmationSig2}}" height="80px" width="80px">
+                        {{/if}}
+                    </td>
+                    <td>Date</td>
+                    <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD2 "DD-MM-YYYY"}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">I am applying for employment with the company and to the best of my knowledge and
+                        belief, all particulars provided here are true. I understand that any false statement may
+                        disqualify
+                        me from employment or lead to dismissal.</td>
+                </tr>
+                <tr>
+                    <td>Signature</td>
+                    <td style="background:#fff;">
+                        {{#if confirmationDetails.confirmationSig3}}
+                        <img src="{{confirmationDetails.confirmationSig3}}" height="80px" width="80px">
+                        {{/if}}
+                    </td>
+                    <td>Date</td>
+                    <td style="background:#fff;">{{dateFormat confirmationDetails.confirmationD3 "DD-MM-YYYY"}}</td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="2"><em>For Office Use Only<br>
+                            Application checked for completion and accuracy</em></td>
+                </tr>
+                <tr>
+                    <td width="50%">Name</td>
+                    <td width="50%" style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Signature</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+        <div class="page-6">
+            <p>Right to Work in the UK</p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="2" width="50%">NAME:</td>
+                    <td colspan="2" width="50%" style="background:#fff;">{{rightToWorkInUK.name}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <p>Document checks must be carried out, before commencement of work.</p>
+                        <p>Original documents must be seen and copies taken, with the applicant’s consent.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><strong>Acceptable documents are any one from LIST1 below or two from
+                            LIST2A (one being a work permit). Documents from LIST 2 and LIST 2A cannot be swapped.<br>
+                        </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center"><strong>LIST 1 (one document)</strong></td>
+                    <td width="12%" align="center"><strong>Checked/Copied</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Passport (British Citizen) or has right to abode in UK</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl1}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">EEC or Swiss Passport or ID Card</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl2}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Resident Permit EEC or Swiss</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl3}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                        national from EEC or Switzerland</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl4}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Passport or document issued by Home Office, endorsing right of residence in UK as a
+                        family member of a national from EEC or Switzerland</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl5}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Passport or travel document endorsing the holder to stay in the UK, and to allow the
+                        holder to do the type of work on offer, if they have no permit</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl6}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Application Registration Card issued by the Home Office issued to an asylum seeker,
+                        stating that the holder is permitted to accept employment</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list1.rightWorkl7}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><strong>LIST 2 (Two documents: A and one other)</strong></td>
+                </tr>
+                <tr>
+                    <td width="4%">A</td>
+                    <td colspan="2">Document giving person permanent national Insurance Number and Name (P45, P60
+                        National
+                        Insurance card)</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2A}}</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td colspan="2">Full Birth Certificate issued in the UK , Channel Islands, Isle of Man, or Northern
+                        Ireland</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2B}}</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td colspan="2">Certificate of registration or naturalization, stating holder is a British citizen
+                    </td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2C}}</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td colspan="2">Letter issued by the Home Office, indicating they can stay in the UK and can
+                        undertake
+                        work</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2D}}</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
+                        indefinitely in the UK </td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2E}}</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td colspan="2">Letter issued by Home Office indicating they can stay in the UK and undertake work
+                    </td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2F}}</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td colspan="2">Immigration Status Document issued by the Home Office, endorsing that they can stay
+                        in
+                        the UK and can undertake work</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2.rightWorkl2G}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center"><strong>LIST 2A (Two documents: A and one other)</strong></td>
+                    <td style="background:#fff;"></td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td colspan="2">Work Permit or other approval to take employment that has been issued by Work
+                        Permits UK
+                    </td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AA}}</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td colspan="2">Passport or other travel document endorsing the holder to stay in the UK and accept
+                        Work
+                        Permit employment</td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AB}}</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td colspan="2">Letter issued by the Home Office, confirming that the person can stay in the UK and
+                        can
+                        take Work Permit employment </td>
+                    <td style="background:#fff;">{{rightToWorkInUK.list2A.rightWorkl2AC}}</td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="3">Documents have been checked for suitability</td>
+                </tr>
+                <tr>
+                    <td style="background:#fff;">Name:</td>
+                    <td style="background:#fff;">Signed:</td>
+                    <td style="background:#fff;">Date:</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-7">
+            <p><strong>Opt-out for Sub-Contractors</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="2">
+                        <ul>
+                            <li>Opt out under Regulation 32 of the Conduct of Employment Agencies Employment Businesses
+                                Regulations 2003 (‘the Regulations’)</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">The Contractor has agreed to provide services under the company’s terms and
+                        conditions<br></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p>The Contractor hereby notifies the Company that it wishes to opt out of the regulations. The
+                            Contractor hereby confirms that it shall not be bound by the provisions of the regulations
+                            which
+                            do not apply to any services provided by the Contractor to the Company, throughout the
+                            duration
+                            of their agreement.</p>
+                        <ul>
+                            <li>Agency Workers Regulations 2010 (‘AWR’)</li>
+                            <li>The Contractor warrants that any operative placed on assignment under this contract is
+                                operating outside the scope of the AWR.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">Name of Contractor</td>
+                    <td width="50%" style="background:#fff;">{{optOutDetail.optOutIn}}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td style="background:#fff;">{{optOutDetail.optOuttextarea}}</td>
+                </tr>
+                <tr>
+                    <td>Signed (On behalf of Contractor)</td>
+                    <td style="background:#fff;">
+                        {{#if optOutDetail.optOutsign}}
+                        <img src="{{optOutDetail.optOutsign}}" height="80px" width="80px">
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td style="background:#fff;">{{optOutDetail.optOutdate}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-8">
+            <p><strong>Next of Kin</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="2">Please provide detail of your next of kin. Data will be stored on the Sentinel
+                        Database.
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">Name of next of kin</td>
+                    <td width="50%" style="background:#fff;">{{nextOfKin.kinName}}</td>
+                </tr>
+                <tr>
+                    <td>Relationship with you</td>
+                    <td style="background:#fff;">{{nextOfKin.kinRelationship}}</td>
+                </tr>
+                <tr>
+                    <td>Address of next of kin</td>
+                    <td style="background:#fff;">{{nextOfKin.kinAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Contact number of next of kin</td>
+                    <td style="background:#fff;">{{nextOfKin.kinContactNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Secondary contact number</td>
+                    <td style="background:#fff;">{{nextOfKin.kinSecondContactNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Email for next of kin</td>
+                    <td style="background:#fff;">{{nextOfKin.kinEmail}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-9">
+            <p><strong>Pre-deployment Safety Critical Checklist</strong></p>
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:600px;">
+                <tr>
+                    <td colspan="4"><strong>1 Card holder’s details</strong></td>
+                </tr>
+                <tr>
+                    <td width="25%" style="background:#fff;">Forename(s)</td>
+                    <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderName}}</td>
+                    <td width="25%" style="background:#fff;">Surname</td>
+                    <td width="25%" style="background:#fff;">{{cardHolderDetails.cardHolderSurName}}</td>
+                </tr>
+                <tr>
+                    <td style="background:#fff;">Card holder’s contact tel. no.</td>
+                    <td style="background:#fff;">{{cardHolderDetails.cardHolderContact}}</td>
+                    <td style="background:#fff;">Employing company</td>
+                    <td style="background:#fff;">{{cardHolderDetails.cardHolderCompany}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>2 Card holder’s safety critical occupational certification</strong></td>
+                </tr>
+                <tr>
+                    <td>Full Sentinel card no.</td>
+                    <td style="background:#fff;">{{cardHolderDetails.cardsentinelNumber}}</td>
+                    <td colspan="2" align="center">An authenticated copy of the card holder’s Sentinel card must
+                        accompany
+                        this checklist, on submission</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#fff;">
+                        <p>Please confirm details of card holder’s medical restrictions, i.e. red triangle, blue
+                            dot:<br>
+                        </p>
+                        <p>&nbsp;</p>
+                        <p>Please confirm details of card holder’s competency restrictions, i.e. competencies under
+                            mentorship:<br>
+                        </p>
+                        <br>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td align="center"><em>Competence</em></td>
+                    <td align="center"><em>Duration held<br>
+                            (years/months) </em></td>
+                    <td align="center"><em>Expiry date</em></td>
+                    <td align="center"><em>Competence</em></td>
+                    <td align="center"><em>Duration held<br>
+                            (years/months) </em></td>
+                    <td align="center"><em>Expiry date</em></td>
+                </tr>
+                <tr>
+                    <td>Medical</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD1 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE1 'DD-MM-YYYY'}}</td>
+                    <td>IWA</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD10 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE10 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>PTS AC</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD2 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE2 'DD-MM-YYYY'}}</td>
+                    <td>COSS</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD11 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE11 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>PTS DC</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD3 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE3 'DD-MM-YYYY'}}</td>
+                    <td>COSS OLP</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD12 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE12 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>AOD PO</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD4 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE4 'DD-MM-YYYY'}}</td>
+                    <td>COSS CRP</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD13 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE13 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>AOD PO</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD5 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE5 'DD-MM-YYYY'}}</td>
+                    <td>PC</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD14 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE14 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>AOD HS</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD6 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE6 'DD-MM-YYYY'}}</td>
+                    <td>ES</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD15 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE15 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>AOD LXA</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD7 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE7 'DD-MM-YYYY'}}</td>
+                    <td>ES Level A</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD16 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE16 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>AOD RSA</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD8 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE8 'DD-MM-YYYY'}}</td>
+                    <td>StrapmanLvl B</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD17 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE17 'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td>LKT / SW</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD9 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE9 'DD-MM-YYYY'}}</td>
+                    <td>Switching (DC)</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesD18 'DD-MM-YYYY'}}</td>
+                    <td style="background:#fff;">{{dateFormat comp.competencesE18 'DD-MM-YYYY'}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-10">
+            <table width="100%" border="1" cellspacing="0" cellpadding="7"
+                style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
+                <tr>
+                    <td colspan="8">3 <strong>Specific work/activity experience</strong> (please indicate whether the
+                        cardholder has experience of <u><strong>implementing</strong></u> the specific safe systems of
+                        work/activities below by ticking the applicable <span style="background:#ffff00;">yellow</span>
+                        boxes)</td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><u><strong>LKT SW / IWA / COSS / PC</strong></u></td>
+                    <td colspan="2" align="center"><u><strong>Engineering Supervisor</strong></u></td>
+                    <td colspan="2" align="center"><u><strong>Other (please specify)</strong></u></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><u>Line blockage:</u></td>
+                    <td colspan="2" align="center"><u>Possession:</u></td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="20%">Signal Protection only</td>
+                    <td width="5%" style="background:#ffff00;">{{lineBlockage:blockage1}}</td>
+                    <td colspan="2">Green Zone</td>
+                    <td width="20%">With no train/OTP</td>
+                    <td width="5%" style="background:#ffff00;">{{possessionEngDetail:PossessionE1}}</td>
+                    <td width="20%" rowspan="2" valign="top">Competent Person – Detonator Protection</td>
+                    <td width="5%" style="background:#ffff00;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>TCOD</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage2}}</td>
+                    <td width="20%">Fenced</td>
+                    <td width="5%" style="background:#ffff00;">{{greenZone:greenZone1}}</td>
+                    <td>With train movements</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE2}}</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Disconnection</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage3}}</td>
+                    <td>Site Warden Warning</td>
+                    <td style="background:#ffff00;">{{greenZone:greenZone2}}</td>
+                    <td>With OTP movement</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE3}}</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Detonator Protection</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage4}}</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td>Route setting via points Operator</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE4}}</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Token Block</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage5}}</td>
+                    <td colspan="2"><u><em>Red Zone</em></u></td>
+                    <td>Route setting via Signaller</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE5}}</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Absolute Block</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage6}}</td>
+                    <td>ATWS</td>
+                    <td style="background:#ffff00;">{{redZone:redZone1}}</td>
+                    <td>Level crossing under local control</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE6}}</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Tokenless Block</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage7}}</td>
+                    <td>TOWS</td>
+                    <td style="background:#ffff00;">{{redZone:redZone2}}</td>
+                    <td>Working in axle counter area</td>
+                    <td style="background:#ffff00;">{{possessionEngDetail:PossessionE7}};</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>RETB</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage8}}</td>
+                    <td>LOWS</td>
+                    <td style="background:#ffff00;">{{redZone:redZone3}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>ERTMS</td>
+                    <td style="background:#ffff00;">{{lineBlockage:blockage9}}</td>
+                    <td>Pee Wee</td>
+                    <td style="background:#ffff00;">{{redZone:redZone4}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td>Unassisted Lookouts</td>
+                    <td style="background:#ffff00;">{{redZone:redZone5}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><u>Possession:</u></td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Within ES worksite</td>
+                    <td style="background:#ffff00;" {{possessionDetail:Possession1}}</td> <td>Receiving OLP</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession6}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>With PICOP</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession2}}</td>
+                    <td>Receiving CRP</td>
+                    <td style="background:#ffff00;">&nbsp;</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Without PICOP authority</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession3}}</td>
+                    <td>Working in axle counter area</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession7}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Poss. of sidings</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession4}}</td>
+                    <td>PC Duties</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession9}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" valign="top">{{possessionDetail:Possession5}}</td>
+                    <td style="background:#ffff00;">&nbsp;</td>
+                    <td>Hand trolley Controller</td>
+                    <td style="background:#ffff00;">{{possessionDetail:Possession10}}</td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                    <td style="background:#fff;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td colspan="2" style="background:#fff;"></td>
+                    <td colspan="2" style="background:#fff;">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
@@ -1173,18 +1332,26 @@
             </tr>
             <tr>
                 <td colspan="3" style="background:#fff;">
-                    <p><u><strong>Cardholder:</strong></u> I confirm that the above information is true and correct.</p>
+                    <p><u><strong>Cardholder:</strong></u> I confirm that the above information is true and correct.
+                    </p>
                     <p><u><strong>Employer:</strong></u> I confirm that the above information is true and correct. I
-                        understand that if the card holder has medical or competence restrictions, these may limit the
-                        extent to which they are deployed on behalf of the company. I also understand that the specific
-                        work/activity experience identified above will define the scope of the card holder’s deployment
-                        on behalf of the Company. If the card holder has no experience of a specific work/activity, this
+                        understand that if the card holder has medical or competence restrictions, these may limit
+                        the
+                        extent to which they are deployed on behalf of the company. I also understand that the
+                        specific
+                        work/activity experience identified above will define the scope of the card holder’s
+                        deployment
+                        on behalf of the Company. If the card holder has no experience of a specific work/activity,
+                        this
                         is a work-limiting circumstance, and the card holder may not be deployed on the applicable
-                        work/activity type, until such time that they have been trained, mentored, and/or assessed to
+                        work/activity type, until such time that they have been trained, mentored, and/or assessed
+                        to
                         full competence, and the Company has been advised accordingly. <strong>I understand that
-                            Pre-deployment Safety Critical Checklists are valid for a maximum of 12 months from the date
+                            Pre-deployment Safety Critical Checklists are valid for a maximum of 12 months from the
+                            date
                             of my sign-off, and that an updated checklist must be sent to the Company Sentinel
-                            Coordinator when any change to the cardholder’s experiences or competence occurs. Failure to
+                            Coordinator when any change to the cardholder’s experiences or competence occurs.
+                            Failure to
                             do so may limit the scope of the card holder’s deployment.</strong></p>
                 </td>
             </tr>
@@ -1218,7 +1385,8 @@
             </tr>
         </table>
         <div><strong>Rail PPE Issue</strong></div>
-        <p>Please sign below to declare the Personal Protective Equipment issued to you by the Company and to identify
+        <p>Please sign below to declare the Personal Protective Equipment issued to you by the Company and to
+            identify
             any further requirements you may have to carry out your duties.</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -1338,9 +1506,12 @@
             </tr>
         </table>
         <p>Medical Self-Certification</p>
-        <p>Alertness and reasonable physical fitness are essential for duties that may involve interactions with moving
-            trains. It is, therefore, important to be accurate in your answers to this questionnaire, although trivial
-            matters should be ignored (e.g. transient dizziness while gardening two years ago). <strong>When you declare
+        <p>Alertness and reasonable physical fitness are essential for duties that may involve interactions with
+            moving
+            trains. It is, therefore, important to be accurate in your answers to this questionnaire, although
+            trivial
+            matters should be ignored (e.g. transient dizziness while gardening two years ago). <strong>When you
+                declare
                 NO, you are accepting a degree of responsibility for your safety.</strong></p>
         <p><strong>Please study this list, and sign the declaration:</strong></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -1388,7 +1559,8 @@
             </tr>
             <tr>
                 <td>3</td>
-                <td>Have you ever had blackouts, recurrent dizziness, or any condition that may cause sudden collapse or
+                <td>Have you ever had blackouts, recurrent dizziness, or any condition that may cause sudden
+                    collapse or
                     incapacity?</td>
                 <td style="background:#fff;">
                     {{#ifEquals medicalSelfCertification.msc3 "Yes"}}
@@ -1499,7 +1671,8 @@
             </tr>
             <tr>
                 <td>9</td>
-                <td>Would you have difficulty working above height (e.g. using ladders or maintenance platforms)?</td>
+                <td>Would you have difficulty working above height (e.g. using ladders or maintenance platforms)?
+                </td>
                 <td style="background:#fff;">
                     {{#ifEquals medicalSelfCertification.msc9 "Yes"}}
                     <span>
@@ -1682,27 +1855,36 @@
             </tr>
         </table>
         <div><strong> Staff Safety Responsibility Statement</strong></div>
-        <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry out work on or
+        <p>The following Safety Responsibility Statement applies to all Staff/Contractors who will carry out work on
+            or
             about Network Rail-managed infrastructure</p>
         <ul>
-            <li style="margin-bottom:10px;">You are required at all times to ensure avoidance of injury to yourself and
-                colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling public;
+            <li style="margin-bottom:10px;">You are required at all times to ensure avoidance of injury to yourself
+                and
+                colleagues, and to minimise risk to the environment, railway infrastructure, and the travelling
+                public;
             </li>
             <li style="margin-bottom:10px;">When working near the public, you must at all times ensure that the
                 passengers have a clear and safe walking route. If this cannot be achieved, then all work must stop
                 until rectified;</li>
-            <li style="margin-bottom:10px;">You must not start any work on Network Rail-managed infrastructure if there
+            <li style="margin-bottom:10px;">You must not start any work on Network Rail-managed infrastructure if
+                there
                 is any possibility that the works may over-run the agreed timescales;</li>
-            <li style="margin-bottom:10px;">You are required to demonstrate a positive and encouraging attitude towards
+            <li style="margin-bottom:10px;">You are required to demonstrate a positive and encouraging attitude
+                towards
                 health and safety at all times;</li>
-            <li style="margin-bottom:10px;">You must ensure that all PPE provided is cared for and used, when required;
+            <li style="margin-bottom:10px;">You must ensure that all PPE provided is cared for and used, when
+                required;
             </li>
-            <li style="margin-bottom:10px;">You are required to report all accidents, incidents, and near-misses;</li>
+            <li style="margin-bottom:10px;">You are required to report all accidents, incidents, and near-misses;
+            </li>
             <li style="margin-bottom:10px;">You are expected to participate in accident and incident investigations;
             </li>
-            <l style="margin-bottom:10px;" i>You are expected to participate in and input to regular safety briefings,
+            <l style="margin-bottom:10px;" i>You are expected to participate in and input to regular safety
+                briefings,
                 toolbox talks, and other meetings, when required;</li>
-                <li style="margin-bottom:10px;">You must not start any work activity until you have been briefed on and
+                <li style="margin-bottom:10px;">You must not start any work activity until you have been briefed on
+                    and
                     understand the method of work, site-specific risks, local hazards, the safe system of work, and
                     emergency arrangements;</li>
                 <li style="margin-bottom:10px;">You must be briefed on the Work Package Plans (WPPs) and be provided
@@ -1810,20 +1992,28 @@
             </tr>
         </table>
         <div><strong>Working Time Directive and OPT-OUT</strong></div>
-        <p>The European Union Working Time Directive of a 48-hour maximum working week came into effect on October 1,
-            1998. The Directive provides minimum daily and weekly rest breaks, an annual holiday entitlement, a limit on
+        <p>The European Union Working Time Directive of a 48-hour maximum working week came into effect on October
+            1,
+            1998. The Directive provides minimum daily and weekly rest breaks, an annual holiday entitlement, a
+            limit on
             the working week to an average of 48 hours, and defined night-working duties.</p>
         <p>In the meantime, the employer is required to obtain details as to whether staff members wish to exercise
             their right to opt in or out of the working hours directive. The maximum weekly working time of 48 hours
-            will be averaged over a 17-week period. Individuals can, if they wish, agree with their employer about the
+            will be averaged over a 17-week period. Individuals can, if they wish, agree with their employer about
+            the
             maximum weekly limit, but this must be in writing and on an individual basis. Individuals are given an
             opportunity to opt back in, in writing to the employer. This does not create an exemption from statutory
-            legal requirements, e.g. the responsibilities of individuals to comply with health and safety legislation.
+            legal requirements, e.g. the responsibilities of individuals to comply with health and safety
+            legislation.
         </p>
-        <p>Please note that if you choose to opt out in order that you can work in excess of 48 hours per week, and then
-            choose to opt back in, you will be required to give seven (7) days’ written notice. The 48 hours maximum per
-            week applies to any and all paid employment collectively, not just work undertaken with the company. You are
-            required to notify us in writing of any employment external to the company that you undertak,e regardless of
+        <p>Please note that if you choose to opt out in order that you can work in excess of 48 hours per week, and
+            then
+            choose to opt back in, you will be required to give seven (7) days’ written notice. The 48 hours maximum
+            per
+            week applies to any and all paid employment collectively, not just work undertaken with the company. You
+            are
+            required to notify us in writing of any employment external to the company that you undertak,e
+            regardless of
             whether you decide to opt out of the regulations. In order to record our legal obligations, please sign
             below in the relevant section, and return one copy of this letter to the company, retaining one copy for
             their own records.</p>
@@ -1852,15 +2042,19 @@
         <div><strong>Working Hours Disclaimer for Employees Working on Network Rail-Managed Infrastructure</strong>
         </div>
         <p>If you are in any doubt as to the requirements of this memo, please contact your Line Manager.</p>
-        <p>Under normal conditions, you will not be asked work in excess of the Network Rail Standard NR/L2/OHS/003. In
-            exceptional circumstances, situations may arise where you are required to work in exceedance of the Network
+        <p>Under normal conditions, you will not be asked work in excess of the Network Rail Standard NR/L2/OHS/003.
+            In
+            exceptional circumstances, situations may arise where you are required to work in exceedance of the
+            Network
             Rail Standard. A risk assessment will be carried out to authorise any exceedance. </p>
-        <p>Under the Sentinel Scheme Rules, any sub sponsor shall notify the Sentinel Coordinator of your hours worked;
+        <p>Under the Sentinel Scheme Rules, any sub sponsor shall notify the Sentinel Coordinator of your hours
+            worked;
             these hours will be considered, before placing you to work for the company.</p>
         <p><strong>Declaration</strong></p>
         <p>I agree to the working times set out in Network Rail Standard NR/L2/OHS/003, and agree to abide by its
             contents.</p>
-        <p>I agree to notify the Office Manager of any other hours I work outside of the rail industry that may impact
+        <p>I agree to notify the Office Manager of any other hours I work outside of the rail industry that may
+            impact
             on my working hours with the company.</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -1880,7 +2074,8 @@
             </tbody>
         </table>
         <p><strong>Contract of Sponsorship (MF015)</strong></p>
-        <p>This document sets out the contractual arrangements for the primary sponsorship of an individual on Network
+        <p>This document sets out the contractual arrangements for the primary sponsorship of an individual on
+            Network
             Rail’s Sentinel Systems for the management of people working on Network Rail-managed infrastructure.</p>
         <p>Between;</p>
         <p>And;</p>
@@ -1888,7 +2083,8 @@
         <p>Sentinel No:</p>
         <p>The Company will act as the named individual’s primary sponsor for work carried out on managed
             infrastructure. The nature of this employment will be as set out in the Terms of Engagement for staff,
-            agency workers, and subcontractors. The company does/ does not* support any primary-sponsored staff member
+            agency workers, and subcontractors. The company does/ does not* support any primary-sponsored staff
+            member
             to have a secondary (sub) sponsor.</p>
         <p><em>*delete as applicable</em></p>
         <p>The Company, as your primary sponsor, will commit to fulfilling the role of employer for the purposes of
@@ -1896,59 +2092,77 @@
 
         <p><strong>Responsibilities of the Individual</strong></p>
         <ol style="list-style:decimal;">
-            <li style="margin-bottom:10px;">The individual shall carry their smart Sentinel card at all times, whilst
+            <li style="margin-bottom:10px;">The individual shall carry their smart Sentinel card at all times,
+                whilst
                 working on managed infrastructure.</li>
             <li style="margin-bottom:10px;">The individual will co-operate with their primary sponsor to ensure the
                 personal information held in the Sentinel database remains accurate and up to date.</li>
-            <li style="margin-bottom:10px;">The individual shall follow the rules of personal accountability for working
-                safely on managed infrastructure, including compliance with the Sentinel Scheme Rules and those of the
+            <li style="margin-bottom:10px;">The individual shall follow the rules of personal accountability for
+                working
+                safely on managed infrastructure, including compliance with the Sentinel Scheme Rules and those of
+                the
                 Infrastructure Manager.</li>
-            <li style="margin-bottom:10px;">The individual has the responsibility to manage their sponsor relationships
+            <li style="margin-bottom:10px;">The individual has the responsibility to manage their sponsor
+                relationships
                 and at all times; when working on managed infrastructure, they shall:
                 <ul style="margin-top:10px; list-style:disc">
                     <li style="margin-bottom:10px;">Know the identity of their primary sponsor;</li>
                     <li style="margin-bottom:10px;">Know which sub-sponsors they are working for, if not working for
                         their Primary Sponsor;</li>
-                    <li style="margin-bottom:10px;">Provide the correct name of the sponsor they are working for, when
+                    <li style="margin-bottom:10px;">Provide the correct name of the sponsor they are working for,
+                        when
                         booking on at site.</li>
                 </ul>
             </li>
-            <li style="margin-bottom:10px;">Individuals are required to notify the primary sponsor if they no longer to
-                be sponsored by them, so they can be de-sponsored. The change of sponsorship must be requested online
+            <li style="margin-bottom:10px;">Individuals are required to notify the primary sponsor if they no longer
+                to
+                be sponsored by them, so they can be de-sponsored. The change of sponsorship must be requested
+                online
                 through My Sentinel.</li>
         </ol>
         <p>As Primary Sponsor, the Company will ensure:</p>
         <ol style="list-style:decimal;">
-            <li style="margin-bottom:10px;">Individuals receive a valid Sentinel smart card. (Note: the first card is
+            <li style="margin-bottom:10px;">Individuals receive a valid Sentinel smart card. (Note: the first card
+                is
                 issued free of charge; replacements due to loss or theft will be chargeable.)</li>
-            <li style="margin-bottom:10px;">Individuals receive an induction briefing, that will include as a minimum
+            <li style="margin-bottom:10px;">Individuals receive an induction briefing, that will include as a
+                minimum
                 the rules and responsibilities of the new Sentinel scheme.</li>
-            <li style="margin-bottom:10px;">Suitable PPE is provided to the individual when they are required to go onto
+            <li style="margin-bottom:10px;">Suitable PPE is provided to the individual when they are required to go
+                onto
                 managed infrastructure. PPE will carry the company logo, and must only be worn when working for the
                 Company.</li>
-            <li style="margin-bottom:10px;">Individuals receive regular briefings and updates of information pertaining
+            <li style="margin-bottom:10px;">Individuals receive regular briefings and updates of information
+                pertaining
                 to their duties</li>
             <li style="margin-bottom:10px;">Training and assessment at required intervals to maintain competency of
                 duties being performed.</li>
             <li style="margin-bottom:10px;">Personal issue information: handbooks, key point cards, etc. are made
                 available.</li>
-            <li style="margin-bottom:10px;">Individuals are provided with advice, guidance and/or instructions on any
+            <li style="margin-bottom:10px;">Individuals are provided with advice, guidance and/or instructions on
+                any
                 restrictions based on medication or other medical fitness issues.</li>
             <li style="margin-bottom:10px;">Individuals are provided with mentoring and support to develop the
                 competence of the individual.</li>
-            <li style="margin-bottom:10px;">Conduct an annual review of the individual’s continued suitability to work
+            <li style="margin-bottom:10px;">Conduct an annual review of the individual’s continued suitability to
+                work
                 on the infrastructure, taking into account behaviours and performance of safety critical duties, and
                 identify development requirements.</li>
-            <li style="margin-bottom:10px;">Individuals are provided with safety critical equipment that is calibrated
+            <li style="margin-bottom:10px;">Individuals are provided with safety critical equipment that is
+                calibrated
                 (where required) and fit for purpose for the individual to carry out their duties.</li>
-            <li style="margin-bottom:10px;">Explain how the Sponsor will provide advice, guidance, or instructions on
+            <li style="margin-bottom:10px;">Explain how the Sponsor will provide advice, guidance, or instructions
+                on
                 any restrictions, based on medication and other medical fitness issues.</li>
             <li style="margin-bottom:10px;">Require the Individual to notify the Primary Sponsor of any changes in
-                circumstance, including health or personal issues, that may need the Primary Sponsor to take action to
+                circumstance, including health or personal issues, that may need the Primary Sponsor to take action
+                to
                 ensure the Individual’s continued fitness for work trackside.</li>
-            <li style="margin-bottom:10px;">Individuals are given access to sources of information required for them to
+            <li style="margin-bottom:10px;">Individuals are given access to sources of information required for them
+                to
                 undertake planning duties.</li>
-            <li style="margin-bottom:10px;">Make the Individual aware of their ability to check their own competences by
+            <li style="margin-bottom:10px;">Make the Individual aware of their ability to check their own
+                competences by
                 methods currently available.</li>
         </ol>
         <p>By signing this Contract of Sponsorship, you agree to the Sentinel Scheme Rules attached, the
@@ -1982,9 +2196,12 @@
             </tr>
         </table>
         <p><strong>Occupational Health Questionnaire</strong></p>
-        <p>This questionnaire is designed to help the Company meet its legal health and safety duties, assess whether
-            there are any existing health issues likely to affect your employment, and to find out if any changes need
-            to be made to the workplace under the Equality Act 2010. Information given by you will also help us to work
+        <p>This questionnaire is designed to help the Company meet its legal health and safety duties, assess
+            whether
+            there are any existing health issues likely to affect your employment, and to find out if any changes
+            need
+            to be made to the workplace under the Equality Act 2010. Information given by you will also help us to
+            work
             out if you need any vaccinations or any health checks, as part of your job.</p>
 
         <p style="text-align:center;"><strong>The information supplied will remain strictly confidential, and can be
@@ -2464,7 +2681,8 @@
                 <td colspan="6" style="background:#fff;">&nbsp;</td>
             </tr>
         </table>
-        <p style="text-align:center;"><strong>If any of the above answers is ‘Yes,’ please give details on a separate
+        <p style="text-align:center;"><strong>If any of the above answers is ‘Yes,’ please give details on a
+                separate
                 piece of paper, and return it with this questionnaire to your Supervisor.</strong></p>
         <p><strong>Work activities that can affect your health.</strong></p>
         <p>In previous jobs, have you had any significant exposure to:</p>
@@ -2688,7 +2906,8 @@
                 </td>
             </tr>
         </table>
-        <p><u><strong>Other information that the Employer needs to know for health and safety requirements.</strong></u>
+        <p><u><strong>Other information that the Employer needs to know for health and safety
+                    requirements.</strong></u>
         </p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -2928,7 +3147,8 @@
                 <td colspan="6">Any phobias i.e. heights, water, insects, reptiles (please list below, if yes).</td>
             </tr>
             <tr>
-                <td height="150" colspan="6" style="background:#fff;">{{otherSafetyRequirements.otherSafetyR15}}</td>
+                <td height="150" colspan="6" style="background:#fff;">{{otherSafetyRequirements.otherSafetyR15}}
+                </td>
             </tr>
         </table>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -2956,7 +3176,8 @@
                 </td>
             </tr>
             <tr>
-                <td>Do you have difficulty hearing (with a hearing aid, if needed) for all normal work purposes?*</td>
+                <td>Do you have difficulty hearing (with a hearing aid, if needed) for all normal work purposes?*
+                </td>
                 <td style="background:#fff;">
                     {{#ifEquals otherQuestionDetail.otherQ2 "Yes"}}
                     <span>
@@ -3043,7 +3264,8 @@
                 </td>
             </tr>
             <tr>
-                <td>Have you ever had an illness or injury that has kept you off work for more than three months?**</td>
+                <td>Have you ever had an illness or injury that has kept you off work for more than three months?**
+                </td>
                 <td style="background:#fff;">
                     {{#ifEquals otherQuestionDetail.otherQ7 "Yes"}}
                     <span>
@@ -3096,7 +3318,8 @@
         </table>
         <div><strong>GP Registration:</strong></div>
         <p>You should be registered with a doctor local to where you are currently living.</p>
-        <p>Please provide the contact details of your GP so that the Company can inform your doctor of any details of
+        <p>Please provide the contact details of your GP so that the Company can inform your doctor of any details
+            of
             the type of health problems you may be exposed to as a construction worker.</p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -3126,11 +3349,14 @@
         <p>Because it may be necessary for the Company’s Medical Advisor to communicate with your doctor if you
             experience a health problem in the future, you may be asked to provide authorisation for your doctor to
             reply to any query concerning your health or medical history. Information in the report relating to your
-            employment may be passed on to the Company. You have the right to see any medical report prepared by your
+            employment may be passed on to the Company. You have the right to see any medical report prepared by
+            your
             doctor before it is sent to the Company Medical Advisor, who will treat the information in the strictest
-            confidence. It is within your rights to decline to give authorisation for information to be passed to the
+            confidence. It is within your rights to decline to give authorisation for information to be passed to
+            the
             Company.</p>
-        <p>Please check over this form to make sure you have answered all questions. Please complete ALL questions and
+        <p>Please check over this form to make sure you have answered all questions. Please complete ALL questions
+            and
             return the form (with any additional information) to your supervisor by the end of your first week of
             employment.</p>
         <p>Declaration: I declare that the answers contained in this questionnaire are, to the best of my knowledge,
@@ -3150,7 +3376,8 @@
         <p>6. He had a heart attack. The doctor was immediately<br>(a. Sent off; b. sent for; c. sent in; d. sent
             through)</p>
         <p>7. My brother and I used to fight a great deal as children. We did of things together, not always in
-            complete. In fact, on one occasion, he actually my arm. I suppose he really did me a, as I missed the school
+            complete. In fact, on one occasion, he actually my arm. I suppose he really did me a, as I missed the
+            school
             exams that year.</p>
         <p>Q. 1: a. many; b. some; c. a lot; d. a deal</p>
         <p>Q. 2: a. harmony; b. friendship; c. unison; d. liking</p>
@@ -3353,20 +3580,27 @@
         </table>
         <p><strong>Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers</strong></p>
         <p>A night worker is an employee who is scheduled to work at least three hours of his/her daily working time
-            during the night on the majority of days on which he/she is scheduled to work. Night time is defined as the
+            during the night on the majority of days on which he/she is scheduled to work. Night time is defined as
+            the
             period between 11 p.m. and 6 a.m.</p>
         <p>Night workers are entitled to a voluntary health assessment to check whether they are fit for the work
             required. Very few health problems will prevent people being able to work at night, and where there is a
-            medical problem that could be relevant, it will almost always be possible for the person to be able to work
+            medical problem that could be relevant, it will almost always be possible for the person to be able to
+            work
             during night hours, with suitable modifications to their treatment programme.</p>
         <p>The purpose of the questionnaire is to ask whether you have any health problem that could be affected by
-            night work so that where necessary, an appropriate medical review can be arranged. The questionnaire will be
-            confidential to the Company’s Occupational Health Adviser (It is advisable to identify a local Occupational
-            Health Adviser, or to use the area NHS Occupational Health Service), but a report on your fitness will be
-            provided to your manager who is responsible for work assignments, and for the arrangements for health and
+            night work so that where necessary, an appropriate medical review can be arranged. The questionnaire
+            will be
+            confidential to the Company’s Occupational Health Adviser (It is advisable to identify a local
+            Occupational
+            Health Adviser, or to use the area NHS Occupational Health Service), but a report on your fitness will
+            be
+            provided to your manager who is responsible for work assignments, and for the arrangements for health
+            and
             safety at work.</p>
         <p>Please complete the form and tick the appropriate box for the questions listed; if you have any other
-            condition that you believe should be considered, please write brief details at the bottom of the page, or
+            condition that you believe should be considered, please write brief details at the bottom of the page,
+            or
             continue on a separate sheet of paper.</p>
         <p><strong>Working Time Regulations 1998 Health Assessment Questionnaire: Night Workers</strong></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -3428,7 +3662,8 @@
                 </td>
             </tr>
             <tr>
-                <td>Have you had duodenal or stomach ulcers in the past, or are you under treatment for them at present?
+                <td>Have you had duodenal or stomach ulcers in the past, or are you under treatment for them at
+                    present?
                 </td>
                 <td style="background:#fff;">
                     {{#ifEquals nightWorkDetail.nightWorkQ4 "Yes"}}
@@ -3480,7 +3715,8 @@
                 </td>
             </tr>
             <tr>
-                <td>Do you have any disability-affecting mobility that will cause difficulties in arranging night work?
+                <td>Do you have any disability-affecting mobility that will cause difficulties in arranging night
+                    work?
                 </td>
                 <td style="background:#fff;">
                     {{#ifEquals nightWorkDetail.nightWorkQ7 "Yes"}}
@@ -3586,7 +3822,8 @@
             </tr>
         </table>
         <p><strong>Stress-Risk Assessment Form</strong></p>
-        <p><u><em>Note: This form is to be used only once a worker has been diagnosed with a stress condition by their
+        <p><u><em>Note: This form is to be used only once a worker has been diagnosed with a stress condition by
+                    their
                     doctor.</em></u></p>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
@@ -3611,9 +3848,10 @@
             </tr>
             <tr>
                 <td width="50%"><em>Add a brief description indicating why the stress-risk assessment is being
-                        completed; for example, return to work after stress-related absence, or employee informed you
+                        completed; for example, return to work after stress-related absence, or employee informed
+                        you
                         that they had been suffering from symptoms of stress or workplace pressures.</em></td>
-                <td width="50%" style="background:#fff;">>{{riskAssessment.Stress3}}</td>
+                <td width="50%" style="background:#fff;">{{riskAssessment.Stress3}}</td>
             </tr>
         </table>
         <table width="100%" border="1" cellspacing="0" cellpadding="7"
@@ -3624,13 +3862,16 @@
             <tr>
                 <td width="50%"><em>Control measures can be preventative (prevent workplace pressure or hazards from
                         happening in the first instance) or protective (protect employees from existing workplace
-                        pressure or hazards). It is, therefore, important that all measures in place are listed here to
+                        pressure or hazards). It is, therefore, important that all measures in place are listed here
+                        to
                         show what is already being done; for example, hold regular meetings with the employee/s to
-                        discuss performance and offer further support, if necessary; have signposted employee to his/her
-                        GP and given them details of the health and wellbeing portal, and tasked them with looking at
+                        discuss performance and offer further support, if necessary; have signposted employee to
+                        his/her
+                        GP and given them details of the health and wellbeing portal, and tasked them with looking
+                        at
                         resilience information before next meeting; employee is due to start a training course the
                         following week to ensure skills are up to date.</em></td>
-                <td width="50%" style="background:#fff;">>{{riskAssessment.Stress4}}</td>
+                <td width="50%" style="background:#fff;">{{riskAssessment.Stress4}}</td>
             </tr>
         </table>
 
@@ -3667,7 +3908,7 @@
                     <td></td>
                     <td>Discuss flexibility over delivery of work schedules and delivery of work.</td>
                     <td>{{MeasureByWhoom.measure1I}}</td>
-                    <td>{{MeasureByWhen.measure1I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure1D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Who does what in the team?</td>
@@ -3678,7 +3919,7 @@
                     <td>Support flexible working practices, wherever possible and practical.
                     </td>
                     <td>{{MeasureByWhoom.measure2I}}</td>
-                    <td>{{MeasureByWhen.measure2I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure2D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Having enough line manager support?</td>
@@ -3688,7 +3929,8 @@
                     <td>{{workPressureDetail.pressure2T}}</td>
                     <td>Agree on the most appropriate communication methods and frequency.</td>
                     <td>{{MeasureByWhoom.measure3I}}</td>
-                    <td>{{MeasureByWhen.measure3I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure3D 'DD-MM-YYYY'}}</td>
+
                 </tr>
                 <tr>
                     <td>Having sufficient control over your work?</td>
@@ -3698,7 +3940,8 @@
                     <td>{{workPressureDetail.pressure3T}}</td>
                     <td>Include all employees in decision-making for tasks/planning work.</td>
                     <td>{{MeasureByWhoom.measure4I}}</td>
-                    <td>{{MeasureByWhen.measure4I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure4D 'DD-MM-YYYY'}}</td>
+
                 </tr>
                 <tr>
                     <td>Having your opinions listened to?</td>
@@ -3708,7 +3951,7 @@
                     <td>{{workPressureDetail.pressure4T}}</td>
                     <td>Share good practice and recognise achievements or suggestions.</td>
                     <td>{{MeasureByWhoom.measure5I}}</td>
-                    <td>{{MeasureByWhen.measure5I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure5D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>The balance between work and outside life?</td>
@@ -3718,7 +3961,7 @@
                     <td>{{workPressureDetail.pressure5T}}</td>
                     <td>Discuss learning opportunities.</td>
                     <td>{{MeasureByWhoom.measure6I}}</td>
-                    <td>{{MeasureByWhen.measure6I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure6D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Any other concerns?</td>
@@ -3759,7 +4002,7 @@
                         provide
                         opportunities to feed in their views.</td>
                     <td>{{MeasureByWhoom.measure8I}}</td>
-                    <td>{{MeasureByWhen.measure8I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure8D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Opportunities to comment on change?</td>
@@ -3769,7 +4012,7 @@
                     <td>{{workPressureDetail.pressure8T}}</td>
                     <td>Explain the reasons for change and the benefits, as well as information on timescales.</td>
                     <td>{{MeasureByWhoom.measure9I}}</td>
-                    <td>{{MeasureByWhen.measure9I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure9D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Your future role?</td>
@@ -3779,7 +4022,7 @@
                     <td>{{workPressureDetail.pressure9T}}</td>
                     <td>Ensure employees are aware of all support services available to them.</td>
                     <td>{{MeasureByWhoom.measure10I}}</td>
-                    <td>{{MeasureByWhen.measure10I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure10D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Where to access support?</td>
@@ -3789,7 +4032,7 @@
                     <td>{{workPressureDetail.pressure10T}}</td>
                     <td>Be honest with employees, even where news may not be positive.</td>
                     <td>{{MeasureByWhoom.measure11I}}</td>
-                    <td>{{MeasureByWhen.measure11I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure11D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Having enough time/resources to implement change?</td>
@@ -3799,7 +4042,7 @@
                     <td>{{workPressureDetail.pressure11T}}</td>
                     <td>Direct employees to basic lifestyle advice and coping strategies to prepare for change.</td>
                     <td>{{MeasureByWhoom.measure12I}}</td>
-                    <td>{{MeasureByWhen.measure12I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure12D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Feeling skilled enough to do new tasks?</td>
@@ -3835,7 +4078,7 @@
                     <td></td>
                     <td>Reallocate duties (temporarily or permanently).</td>
                     <td>{{MeasureByWhoom.measure13I}}</td>
-                    <td>{{MeasureByWhen.measure13I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure13D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Clear priorities?</td>
@@ -3845,7 +4088,7 @@
                     <td>{{workPressureDetail.pressure14T}}</td>
                     <td>Help prioritise tasks or projects appropriately.</td>
                     <td>{{MeasureByWhoom.measure14I}}</td>
-                    <td>{{MeasureByWhen.measure14I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure14D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Having realistic deadlines?</td>
@@ -3855,7 +4098,7 @@
                     <td>{{workPressureDetail.pressure15T}}</td>
                     <td>Adjust hours or work pattern (temporarily or permanently).</td>
                     <td>{{MeasureByWhoom.measure15I}}</td>
-                    <td>{{MeasureByWhen.measure15I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure15D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Having sufficient resources to do your job?</td>
@@ -3865,7 +4108,7 @@
                     <td>{{workPressureDetail.pressure16T}}</td>
                     <td>Identify and support specific training needs.</td>
                     <td>{{MeasureByWhoom.measure16I}}</td>
-                    <td>{{MeasureByWhen.measure16I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure16D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Your skills,training,and knowledge being sufficient to do your job?</td>
@@ -3875,7 +4118,7 @@
                     <td>{{workPressureDetail.pressure17T}}</td>
                     <td>Ensure tasks and expectations are clearly defined and understood.</td>
                     <td>{{MeasureByWhoom.measure17I}}</td>
-                    <td>{{MeasureByWhen.measure17I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure17D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>The length of your daily commute?</td>
@@ -3885,7 +4128,7 @@
                     <td>{{workPressureDetail.pressure18T}}</td>
                     <td>Plan work carefully so that deadlines are achievable.</td>
                     <td>{{MeasureByWhoom.measure18I}}</td>
-                    <td>{{MeasureByWhen.measure18I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure18D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Having a dull or repetitive work?</td>
@@ -3897,7 +4140,7 @@
                         variety of
                         tasks, ratherthan those that are simply repetitive. </td>
                     <td>{{MeasureByWhoom.measure19I}}</td>
-                    <td>{{MeasureByWhen.measure19I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure19D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Your work/life balance?</td>
@@ -3907,7 +4150,7 @@
                     <td>{{workPressureDetail.pressure20T}}</td>
                     <td>Plan workload in regular discussions.</td>
                     <td>{{MeasureByWhoom.measure20I}}</td>
-                    <td>{{MeasureByWhen.measure20I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure20D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Any other concerns?</td>
@@ -3917,7 +4160,7 @@
                     <td>{{workPressureDetail.pressure21T}}</td>
                     <td>Agree an upper limit to working hours.</td>
                     <td>{{MeasureByWhoom.measure21I}}</td>
-                    <td>{{MeasureByWhen.measure21I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure21D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -3927,7 +4170,7 @@
                     <td></td>
                     <td>Switch off mobile phones and laptops at a specific time.</td>
                     <td>{{MeasureByWhoom.measure22I}}</td>
-                    <td>{{MeasureByWhen.measure22I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure22D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <thead style="background:#c9c9c9;">
                     <tr>
@@ -3949,7 +4192,7 @@
                     <td></td>
                     <td>Clarify employee’s expectations of the role.</td>
                     <td>{{MeasureByWhoom.measure23I}}</td>
-                    <td>{{MeasureByWhen.measure23I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure23D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Feeling insufficiently inducted into the role?</td>
@@ -3959,7 +4202,7 @@
                     <td>{{workPressureDetail.pressure22T}}</td>
                     <td>Reinforce the reporting structure.</td>
                     <td>{{MeasureByWhoom.measure24I}}</td>
-                    <td>{{MeasureByWhen.measure24I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure24D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Understanding your role?</td>
@@ -3969,7 +4212,7 @@
                     <td>{{workPressureDetail.pressure23T}}</td>
                     <td>Are there any physical hazards in the work environment that need to be managed?</td>
                     <td>{{MeasureByWhoom.measure25I}}</td>
-                    <td>{{MeasureByWhen.measure25I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure25D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Your reporting structure?</td>
@@ -3979,7 +4222,7 @@
                     <td>{{workPressureDetail.pressure24T}}</td>
                     <td>Does the employee understand the support services they can access?</td>
                     <td>{{MeasureByWhoom.measure26I}}</td>
-                    <td>{{MeasureByWhen.measure26I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure26D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Your working environment?</td>
@@ -4022,7 +4265,7 @@
                     <td></td>
                     <td>Support employees to develop their skills and knowledge to do their work.</td>
                     <td>{{MeasureByWhoom.measure27I}}</td>
-                    <td>{{MeasureByWhen.measure27I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure27D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Feeling insufficiently supported by your team?</td>
@@ -4032,7 +4275,7 @@
                     <td>{{workPressureDetail.pressure28T}}</td>
                     <td>Source equipment or tools needed to perform work effectively.</td>
                     <td>{{MeasureByWhoom.measure28I}}</td>
-                    <td>{{MeasureByWhen.measure28I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure28D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Feelings of isolation?</td>
@@ -4042,7 +4285,7 @@
                     <td>{{workPressureDetail.pressure29T}}</td>
                     <td>Ensure communication mechanisms are in place and operating effectively.</td>
                     <td>{{MeasureByWhoom.measure29I}}</td>
-                    <td>{{MeasureByWhen.measure29I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure29D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Being informed of workplace issues?</td>
@@ -4052,7 +4295,7 @@
                     <td>{{workPressureDetail.pressure30T}}</td>
                     <td>Focus on communicating honestly and regularly.</td>
                     <td>{{MeasureByWhoom.measure30I}}</td>
-                    <td>{{MeasureByWhen.measure30I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure30D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Issues around communication?</td>
@@ -4062,7 +4305,7 @@
                     <td>{{workPressureDetail.pressure31T}}</td>
                     <td>Encourage employees to make suggestions to management.</td>
                     <td>{{MeasureByWhoom.measure31I}}</td>
-                    <td>{{MeasureByWhen.measure31I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure31D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Further training needs?</td>
@@ -4072,7 +4315,7 @@
                     <td>{{workPressureDetail.pressure32T}}</td>
                     <td>Ensure employees are aware of all support services available to them.</td>
                     <td>{{MeasureByWhoom.measure32I}}</td>
-                    <td>{{MeasureByWhen.measure32I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure32D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Any other concerns?</td>
@@ -4101,7 +4344,7 @@
                     <td></td>
                     <td>Report and quickly address any bullying or harassment claims.</td>
                     <td>{{MeasureByWhoom.measure33I}}</td>
-                    <td>{{MeasureByWhen.measure33I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure33D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Bullying or harassment issues in the team?</td>
@@ -4111,7 +4354,7 @@
                     <td>{{workPressureDetail.pressure34T}}</td>
                     <td>Ensure employees are aware of policies related to resolving unacceptable behaviour.</td>
                     <td>{{MeasureByWhoom.measure34I}}</td>
-                    <td>{{MeasureByWhen.measure34I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure34D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>An insufficient supportive atmosphere in the team?</td>
@@ -4121,7 +4364,7 @@
                     <td>{{workPressureDetail.pressure35T}}</td>
                     <td>Encourage 1-2-1 discussions, rather than email.</td>
                     <td>{{MeasureByWhoom.measure35I}}</td>
-                    <td>{{MeasureByWhen.measure35I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure35D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>How to raise a concern or find support?</td>
@@ -4131,7 +4374,7 @@
                     <td>{{workPressureDetail.pressure36T}}</td>
                     <td>Review diversity and inclusion training.</td>
                     <td>{{MeasureByWhoom.measure36I}}</td>
-                    <td>{{MeasureByWhen.measure36I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure36D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>A lack of recognition for diversity in the team?</td>
@@ -4141,7 +4384,7 @@
                     <td>{{workPressureDetail.pressure37T}}</td>
                     <td>Arrange regular team and 1-2-1 meetings.</td>
                     <td>{{MeasureByWhoom.measure37I}}</td>
-                    <td>{{MeasureByWhen.measure37I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure37D 'DD-MM-YYYY'}}</td>
                 </tr>
                 <tr>
                     <td>Are there any other concerns?</td>
@@ -4151,7 +4394,7 @@
                     <td>{{workPressureDetail.pressure38T}}</td>
                     <td>Promote positive working relationships.</td>
                     <td>{{MeasureByWhoom.measure38I}}</td>
-                    <td>{{MeasureByWhen.measure38I}}</td>
+                    <td>{{dateFormat MeasureByWhen.measure38D 'DD-MM-YYYY'}}</td>
                 </tr>
             </tbody>
         </table>
@@ -4161,7 +4404,8 @@
                 <td style="border-bottom:0px;"><strong>Report</strong></td>
             </tr>
             <tr>
-                <td style="border-bottom:0px; border-top:0px;"><strong>MULTIPLY THE TWO SCORES: LIKELIHOOD X SEVERITY
+                <td style="border-bottom:0px; border-top:0px;"><strong>MULTIPLY THE TWO SCORES: LIKELIHOOD X
+                        SEVERITY
                     </strong></td>
             </tr>
             <tr>
