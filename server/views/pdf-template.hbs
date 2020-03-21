@@ -3810,15 +3810,23 @@
             style="background:#d9d9d9;font-family:Calibri, serif; margin-bottom:30px;">
             <tr>
                 <td width="28%">Employee signature</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">
+                    {{#if nightWorkDetail.nightWorksign18}}
+                    <img src="{{nightWorkDetail.nightWorksign18}}" height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td width="28%">Date</td>
-                <td width="22%" style="background:#fff;">&nbsp;</td>
+                <td width="22%" style="background:#fff;">{{dateFormat nightWorkDetail.nightWorkD1 'MM-DD-YYYY'}}</td>
             </tr>
             <tr>
                 <td>Employer signature</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">
+                    {{#if nightWorkDetail.nightWorksign17}}
+                    <img src="{{nightWorkDetail.nightWorksign17}}" height="80px" width="80px">
+                    {{/if}}
+                </td>
                 <td>Date</td>
-                <td style="background:#fff;">&nbsp;</td>
+                <td style="background:#fff;">{{dateFormat nightWorkDetail.nightWorkD2 'MM-DD-YYYY'}}</td>
             </tr>
         </table>
         <p><strong>Stress-Risk Assessment Form</strong></p>
