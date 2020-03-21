@@ -154,14 +154,17 @@
                 <!-- </div> -->
                 <!-- *ngFor="let learner of learnerNames" -->
                 <!-- <p>{{learner}}</p> -->
-                <div class="col-12">
+                <div class="col-12 learnerListBadge">
                     <mat-grid-list cols="2" rowHeight='40px'>
                         <mat-grid-tile *ngFor='let learner of allLearners; let i = index' class='learners'>
                             <!-- [(ngModel)]="learnerNames[i].checked" [disabled]="checkEnable"{{getToolTipData(i)}} -->
+                            <div class="badge d-flex">
                             <mat-checkbox (change)='onSelectChange($event, i)' placement="right"
-                                ngbTooltip="{{getToolTipData(i)}}" tooltipClass="tooltip-sidebar-class"
+                                ngbTooltip="{{getToolTipData(learner,i)}}" tooltipClass="tooltip-sidebar-class"
                                 [value]='learner' [checked]='learner.checked' [disabled]="learner.checked"><a
-                                    routerLink="/learner/{{learner._id}}">{{learner.name}}</a></mat-checkbox>
+                                    routerLink="{{link}}">{{learner.name}}</a></mat-checkbox>
+                            <span class="badge" [ngStyle]="{'background':currentColor}"></span>
+                            </div>
                         </mat-grid-tile>
                     </mat-grid-list>
                 </div>

@@ -70,6 +70,8 @@ export class MaterialTileComponent implements OnInit {
   allFiles: any;
   currentUser: any;
   hideActions: boolean;
+  currentColor: string;
+  link: any;
 
   constructor(private _materialService: MaterialService, private _learnerService: LearnerService, public dialog: MatDialog,
     public _snackBar: MatSnackBar, public router: Router, public activatedRoute: ActivatedRoute,public _filter: FilterService) {
@@ -436,21 +438,39 @@ export class MaterialTileComponent implements OnInit {
   filter(filterValue: string) {
     this.allLearners = this._filter.filter(filterValue, this.learnerCopy, ['name']);
   }
-  getToolTipData(i) {
+  getToolTipData(learner,i) {
     let tempLearner = this.allLearners[i]
     let materialId = this.materialId
+    // console.log("learner in getToolTipData", learner)
     // return i
     if (this.allLearners && this.learner) {
       var index = _.findIndex(this.learner, function (o) { return o._id == tempLearner._id })
       if (index > -1) {
         var index2 = _.findIndex(this.learner[index].assignments, function (o) { return o.assignmentId == materialId })
-        if (index2 > -1) return this.learner[index].assignments[index2].assignmentStatus
-        else return 'Unassigned'
+        if (index2 > -1){
+          this.link = '/learnerAllotment/' + this.learner[index].assignments[index2].allotmentId
+          if (this.learner[index].assignments[index2].assignmentStatus == 'Pending' ) this.currentColor = '#d11919'
+          else if (this.learner[index].assignments[index2].assignmentStatus == 'Requested for Resubmission') this.currentColor = '#ffb03b'
+          else if (this.learner[index].assignments[index2].assignmentStatus == 'Submitted') this.currentColor = '#3b86ff'
+          else if (this.learner[index].assignments[index2].assignmentStatus == 'Completed') this.currentColor = '#64fe00'
+          else if (this.learner[index].assignments[index2].assignmentStatus == 'Re-submitted') this.currentColor = '#acc7ef'
+          return this.learner[index].assignments[index2].assignmentStatus
+        }
+        else {
+          this.link = '/learner/' + tempLearner._id
+          this.currentColor = 'black'
+          return 'Unassigned'
+        }
       }
       // return this.learner[index].assignments[0].assignmentStatus
     }
-    else return 'Unassigned'
+    else {
+      this.link = '/learner/' + tempLearner._id
+      this.currentColor = 'black'
+      return 'Unassigned'
+    }
   }
+ 
   // }
   // console.log("THIS.ALLLEARNERS", this.allLearners);
 
