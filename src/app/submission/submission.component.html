@@ -104,7 +104,7 @@
                     </div> -->
 
 
-                    <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
+                    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="someMethod($event)" class="table table-borderless">
 
 
 
@@ -121,16 +121,17 @@
 
                         <!--Assignment Column -->
                         <ng-container matColumnDef="Assignment">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef>Assignment</th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="displayTitle">Assignment</th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                Unit- {{learner.assignmentUnit}} Assignment-{{learner.assignmentNo}}
+                                {{learner.displayTitle}}
+                                <!-- Unit-  Assignment-{{learner.assignmentNo}} -->
                             </td>
                         </ng-container>
 
 
                         <!-- Status Column -->
                         <ng-container matColumnDef="Status">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef> Status </th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="assignmentStatus"> Status </th>
                             <td class="mat-table-cell text-center m-0" mat-cell *matCellDef="let learner; let i = index;">
                                 <div [ngClass]="learner.assignmentStatus" class="text-center">
                                     <span>{{learner.assignmentStatus}}</span>

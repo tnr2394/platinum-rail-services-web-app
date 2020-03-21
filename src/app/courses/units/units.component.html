@@ -8,7 +8,7 @@
         <h4>Total: X</h4>
     </div>
 </div> -->
-<div>
+<div class="row">
     <!-- <div class="row">
         <mat-form-field class="example-full-width col-lg-6 col-md-6">
             <input matInput placeholder="Search" [(ngModel)]='searchText' (ngModelChange)='filter(searchText)'>
@@ -28,22 +28,24 @@
         </mat-form-field>
     </div>
 
-    <div class="row">
-        <div class="col-3 mb-4" *ngFor="let material of allMaterials">
-            <div class="unitCard" (click)="singleMaterial(material)">
-                <mat-card>
+    <!-- <div class="col"> -->
+        <div class="col" *ngFor="let material of allMaterials; let i = index">
+            <div class="unitCard materials_box" (click)="singleMaterial(material)">
+                <mat-card class="folder">
                     <mat-card-title>
-                        <span>
-                            &#10000;
-                        </span>
-                        Unit: {{material._id}}
+                        <div class="materia_icon_span {{getRandomColorClass(i)}}">
+                            <span class="icon">&#10000;</span>
+                        </div>
+                        <div class="w-100 justify-content-center d-flex">Unit: {{material._id}}</div>
                     </mat-card-title>
                     <mat-card-content>
-                        Assignments: {{material.materialsAssignment.length}}
-                        Reading Material: {{material.materialsReading.length}}
+                        <div class="w-100 justify-content-between d-flex">
+                            <div>Assignments: {{material.materialsAssignment.length}}</div>
+                            <div>Readings: {{material.materialsReading.length}}</div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
