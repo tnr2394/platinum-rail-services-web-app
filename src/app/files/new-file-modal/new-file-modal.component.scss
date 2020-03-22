@@ -39,11 +39,13 @@
 .table {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 20px;
+    // margin: 20px;
+    margin-bottom: 55px;
+   
 }
 
 td {
-    padding: 8px;
+    padding: 3px;
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
@@ -97,9 +99,13 @@ td {
 .success_button {
     border-radius: 50px;
     margin-top: 20px;
+    // padding: 10px;
+    padding: 7px;
 }
 
 .remove_button {
     border-radius: 50PX;
     margin-top: 20px;
+    padding: 10px;
+    padding: 7px;
 }
