@@ -3,12 +3,15 @@
         <!-- <mat-card> -->
         <div *ngIf="currentUser.userRole == 'admin'">
             <div class="row" *ngIf="showCreateBtn">
-                <div class="col-12">
-                    <button (click)='createFolder()' mat-flat-button class="pull-right button_hover_effect mb-3 ripple Button_shap_effact">
+                <!-- <div class="col-12"> -->
+                    <h3 class="page-title mr-4" style="color: black !important;">
+                        My Documents 
+                    </h3>
+                    <button (click)='createFolder()' mat-flat-button class="pull- button_hover_effect mb-3 ripple Button_shap_effact newbutton">
                         <i class="fas fa-plus fa-fw"></i>
                         <span> Create Folder</span>
                     </button>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
         <!-- <mat-card-content> -->

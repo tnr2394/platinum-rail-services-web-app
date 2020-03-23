@@ -53,4 +53,50 @@ export class S3UploadService {
       });
     })
   }
+
+
+  uploadSignature(file) {
+    console.log('File and File Name', file);
+
+    const contentType = file.type;
+    let re = /(?:\.([^.]+))?$/;
+    let ext = re.exec(file.name)[1];
+    let name = file.name.split('.').slice(0, -1).join('.')
+    let newName = name + '-' + Date.now() + '.' + ext;
+
+    const bucket = new S3(
+      {
+        accessKeyId: '',
+        secretAccessKey: '',
+        region: 'ap-south-1'
+      }
+    );
+    const params = {
+      Bucket: 'testing-platinum-rail-services',
+      Key: "signature/" + newName,
+      Body: file,
+      ACL: 'public-read',
+      ContentType: contentType,
+      ContentEncoding: 'base64',
+      ContentDisposition: 'attachment',
+    };
+    //for upload progress   
+
+
+    return new Observable<any>((observer) => {
+      bucket.upload(params, function (evt) {
+        console.log('Event In evt====>>>>', evt);
+        observer.next(evt);
+      }).send(function (err, data) {
+        if (err) {
+          console.log('There was an error uploading your file: ', err);
+          observer.error(err);
+        }
+        console.log('Successfully uploaded file.', data);
+        observer.next(data);
+      });
+    })
+  }
+
+
 }

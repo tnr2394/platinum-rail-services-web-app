@@ -343,7 +343,7 @@ th {
 }
 
 .page-title {
-    padding: 10px;
+    padding: 0px 0px 1  0px 0px;
 }
 
 .mat-table-cell {
@@ -1182,6 +1182,13 @@ body {
 // }
 .close_btn {
     cursor: pointer !important;
+   
+    // .fa{
+        .fa-times-circle:before{
+            content: "\f05c" !important;
+            color: grey !important; 
+        }
+    // }
 }
 
 @media (max-width: 1500px) {
@@ -1493,3 +1500,18 @@ th.mat-calendar-table-header-divider {
     margin: 6px;
 }
 }
+// =======================file-detail===========================
+.file_detail{
+    .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+        background-color: black !important;
+    }
+    p{
+        color: black !important;
+    }
+}
+.title_display{
+    p{
+        color: black !important;
+    }
+}
+

@@ -3,6 +3,13 @@ import { Route, Router, NavigationExtras } from '@angular/router'
 import { TimeSheetService } from '../services/time-sheet.service';
 declare var $: any;
 import { saveAs } from "file-saver";
+import * as _ from 'lodash';
+import { NewFileModalComponent } from 'src/app/files/new-file-modal/new-file-modal.component';
+import { MatDialog, MatSnackBar, MatTableDataSource, MatPaginator, MatSort, MatSidenav } from '@angular/material';
+
+import { S3UploadService } from '../services/s3-upload.service';
+// import { objectToFormData } from 'object-to-formdata';
+
 
 
 @Component({
@@ -12,7 +19,7 @@ import { saveAs } from "file-saver";
 })
 export class InductionPackFormComponent implements OnInit {
 
-  constructor(public _timeSheetService: TimeSheetService, private router: Router) { }
+  constructor(private _s3Service: S3UploadService, public _timeSheetService: TimeSheetService, private router: Router) { }
 
   loading: Boolean = false;
 
@@ -22,6 +29,9 @@ export class InductionPackFormComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+
 
 
   // Table 1
@@ -44,6 +54,12 @@ export class InductionPackFormComponent implements OnInit {
   url17: any;
   url18: any;
   url19: any;
+
+  // Loader
+
+  loading4;
+
+
 
   refresherInduction: 'Yes';
   newStarter: false;
@@ -1429,17 +1445,14 @@ export class InductionPackFormComponent implements OnInit {
         pressure1S: this.pressure1S,
         pressure1L: this.pressure1L,
         pressure1T: this.pressure1T,
-
         pressure2I: this.pressure2I,
         pressure2S: this.pressure2S,
         pressure2L: this.pressure2L,
         pressure2T: this.pressure2T,
-
         pressure3I: this.pressure3I,
         pressure3S: this.pressure3S,
         pressure3L: this.pressure3L,
         pressure3T: this.pressure3T,
-
         pressure4I: this.pressure4I,
         pressure4S: this.pressure4S,
         pressure4L: this.pressure4L,
@@ -1734,13 +1747,22 @@ export class InductionPackFormComponent implements OnInit {
         tflArear29Date: this.tflArear29Date,
 
       }
+
     }
 
-    console.log('This.data======>>>>>', this.data);
     this.loading = true;
     this._timeSheetService.generatePdf(this.data).subscribe((res => {
       this.saveToFileSystem(res);
-    }));
+    }), err => {
+      this.loading = false;
+      console.log('Error while pdf generate:', err);
+    });
+  }
+
+  getFormData(object) {
+    const formData = new FormData();
+    Object.keys(object).forEach(key => formData.append(key, object[key]));
+    return formData;
   }
 
   private saveToFileSystem(response) {
@@ -1751,333 +1773,147 @@ export class InductionPackFormComponent implements OnInit {
   }
 
   onSelectFileone(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url1 = res.Location;
+    })
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url1 = event.target.result;
-        }
-        else {
-          this.url1 = '';
-        }
 
-      }
-    }
+    // if (event.target.files && event.target.files[0]) {
+    //   var reader = new FileReader();
+
+    //   reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+    //   reader.onload = (event: any) => { // called once readAsDataURL is completed
+    //     if (event && event.target && event.target.result) {
+    //       this.url1 = event.target.result;
+    //     }
+    //     else {
+    //       this.url1 = '';
+    //     }
+
+    //   }
+    // }
   }
 
   onSelectFile2(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url2 = event.target.result;
-        }
-        else {
-          this.url2 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url2 = res.Location;
+    })
   }
   onSelectFile3(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url3 = event.target.result;
-        }
-        else {
-          this.url3 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url3 = res.Location;
+    })
   }
   onSelectFile4(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url4 = event.target.result;
-        }
-        else {
-          this.url4 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url4 = res.Location;
+    })
   }
   onSelectFile5(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url5 = event.target.result;
-        }
-        else {
-          this.url5 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url5 = res.Location;
+    })
   }
   onSelectFile6(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url6 = event.target.result;
-        }
-        else {
-          this.url6 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url6 = res.Location;
+    })
   }
   onSelectFile7(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url7 = res.Location;
+    })
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url7 = event.target.result;
-        }
-        else {
-          this.url7 = '';
-        }
-
-      }
-    }
   }
   onSelectFile8(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url8 = event.target.result;
-        }
-        else {
-          this.url8 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url8 = res.Location;
+    })
   }
   onSelectFile9(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url9 = event.target.result;
-        }
-        else {
-          this.url9 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url9 = res.Location;
+    })
   }
+
   onSelectFile10(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url10 = event.target.result;
-        }
-        else {
-          this.url10 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url10 = res.Location;
+    })
   }
+
   onSelectFile11(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url11 = event.target.result;
-        }
-        else {
-          this.url11 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url11 = res.Location;
+    })
   }
+
   onSelectFile12(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url12 = event.target.result;
-        }
-        else {
-          this.url12 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url12 = res.Location;
+    })
   }
+
   onSelectFile13(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url13 = res.Location;
+    })
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url13 = event.target.result;
-        }
-        else {
-          this.url13 = '';
-        }
-
-      }
-    }
   }
   onSelectFile14(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url14 = res.Location;
+    })
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url14 = event.target.result;
-        }
-        else {
-          this.url14 = '';
-        }
-
-      }
-    }
   }
   onSelectFile15(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url15 = event.target.result;
-        }
-        else {
-          this.url15 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url15 = res.Location;
+    })
   }
   onSelectFile16(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url16 = event.target.result;
-        }
-        else {
-          this.url16 = '';
-        }
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url16 = res.Location;
+    })
+
   }
   onSelectFile17(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url17 = event.target.result;
-        }
-        else {
-          this.url17 = '';
-        }
-
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url17 = res.Location;
+    })
   }
   onSelectFile18(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.loading4 = false;
+      this.url18 = res.Location;
+    })
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url18 = event.target.result;
-        }
-        else {
-          this.url18 = '';
-        }
-      }
-    }
   }
 
   onSelectFile19(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        if (event && event.target && event.target.result) {
-          this.url19 = event.target.result;
-        }
-        else {
-          this.url19 = '';
-        }
-      }
-    }
+    this._s3Service.uploadSignature(event.target.files[0]).subscribe(res => {
+      this.url19 = res.Location;
+    })
   }
-  // checkChange(event,variable){
-  //   console.log("variable name is",variable, "event", event);
 
-  //   console.log("tempVariable");
-
-  // }
-  // check(){
-  //   console.log("this.blockage3", this.blockage3)
-  // }
 }

@@ -71,6 +71,7 @@
     "ngx-image-cropper": "^2.1.0",
     "ngx-material-timepicker": "^5.3.0",
     "ngx-moment": "^3.5.0",
+    "object-to-formdata": "^3.0.6",
     "readable-stream": "^3.5.0",
     "responsive-tabs": "^1.6.3",
     "rxjs": "~6.5.2",
