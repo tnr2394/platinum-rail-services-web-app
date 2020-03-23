@@ -49,14 +49,13 @@ h3 {
   background-color: #eee;
 }
 .new_job_btn{
-  background: #f1da38;
-  padding: 16px;
-  font-weight: 700;
-  color: #7b7272;
-  border-radius: 8px;
-  width: fit-content;
+  padding: 8px 15px 8px 15px;
+  font-weight: 500;
   cursor: pointer;
   p{
     margin-bottom: 0px !important;
   }
+}
+.fa-plus{
+  padding-right: 5px;
 }

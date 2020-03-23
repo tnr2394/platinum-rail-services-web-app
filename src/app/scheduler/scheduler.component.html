@@ -11,16 +11,16 @@
     </div>
   </div>
 </div> -->
-  <div class="d-inline-block w-100">
+  <div class="col-12 d-inline-block w-100">
     <div class="float-left" *ngIf="displayTitle == true">
       <h3 class="page-title">Scheduler</h3>
     </div>
     <div class="float-right" *ngIf="displayTitle == true && currentUser.userRole == 'admin'">
-      <div class="new_job_btn" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+      <div class="new_job_btn ripple Button_shap_effact" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
         <div class="">
           <p *ngFor="let event of externalEvents" mwlDraggable [dropData]="{event: event}"
             dragActiveClass="drag-active">
-            {{event.title}}
+            <i class="fa fa-plus"></i>{{event.title}}
           </p>
         </div>
       </div>

@@ -11,31 +11,44 @@
     <material-tile [material]="material"></material-tile>
 </h1> -->
 <div>
-    {{type}}: {{material.length}} 
-    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    <h5><b>{{type}}: {{material.length}}</b></h5> 
 </div>
-<div class="material_btn_insmall">
-    <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple"
-    placement="bottom" ngbTooltip="Add {{type}}" tooltipClass="tooltip-class"
-        (click)="addMaterialModal()">
-        <i class="fas fa-plus fa-fw"></i>
-        <!-- <span> Add Material</span> -->
-    </button>
+<div class="paginationNbtn">
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    <div class="material_btn_insmall">
+        <button mat-flat-button class="pull-right button_hover_effect Button_shap_effact ripple" placement="bottom"
+            ngbTooltip="Add {{type}}" tooltipClass="tooltip-class" (click)="addMaterialModal()">
+            <i class="fas fa-plus fa-fw"></i>
+        </button>
+    </div>
 </div>
 <div class="material_tile_table_row">
 <table mat-table [dataSource]="dataSource" matSort class="table table-borderless">
-    <ng-container matColumnDef="Materials">
-        <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+    <ng-container matColumnDef="select">
+        <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header>
             Name
         </th>
         <td class="mat-table-cell text-center checkBoxAlign" mat-cell *matCellDef="let material; let i = index;">
             <div *ngIf="view == false">
                 <div class="checkbox" *ngIf='material.type == "Assignment"'>
+                    <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)' [value]='material'>
+                    </mat-checkbox>
+                </div>
+            </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="Materials">
+        <th class="text-center table_name_tile" mat-header-cell *matHeaderCellDef mat-sort-header="title">
+            Name
+        </th>
+        <td class="mat-table-cell text-center checkBoxAlign" mat-cell *matCellDef="let material; let i = index;">
+            <!-- <div *ngIf="view == false">
+                <div class="checkbox" *ngIf='material.type == "Assignment"'>
                     <mat-checkbox [ngModel]="selectedCheckbox" (change)='onMaterialSelection($event)'
                         [value]='material'>
                     </mat-checkbox>
                 </div>
-            </div>
+            </div> -->
             
             <div *ngIf="testStatus">
                 <material-tile [material]="material" [isSelected]="(material._id === selectedMaterial)" [index]='i'
@@ -55,9 +68,14 @@
     </tbody>
 </table>
 </div>
-<div *ngIf="!loading && type == 'Reading' && material.length == 0">
-    No Reading Material Found!
+<div >
+<h3 class="text-center text-info pt-3 no_found_msg" *ngIf="(!loading && type == 'Reading' && material.length == 0) || (type == 'Reading' && notFound)">
+    <i class="fas fa-empty-set"></i> No Reading Material Found!
+</h3>
 </div>
-<div *ngIf="!loading && type != 'Reading' && material.length == 0">
-    No {{type}} Found!
+
+<div>
+    <h3 class="text-center text-info pt-3 no_found_msg" *ngIf="(!loading && type != 'Reading' && material.length == 0) || (type != 'Reading' && notFound)">
+        <i class="fas fa-empty-set"></i> No {{type}} Found!
+    </h3>
 </div>
