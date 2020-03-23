@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var config = {
     url: '127.0.0.1',
     port: '27017',
-    name: 'platinum2'
+    name: 'platinumDev'
 }
 
 let options = {

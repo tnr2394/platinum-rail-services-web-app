@@ -46,6 +46,7 @@ export class SingleFolderComponent implements OnInit {
   fileId: any;
   type: any;
   updatedFolder: any;
+  percentage;
   constructor(private router: Router, public _folderService: FolderService, private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, public _snackBar: MatSnackBar, public _filterService: FilterService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {

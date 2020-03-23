@@ -32,9 +32,6 @@ async function pdfGenerate(dataDetails) {
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-
-        console.log('dataDetails', dataDetails);
-
         const content = await compile('pdf-template', dataDetails);
 
         await page.setContent(content);

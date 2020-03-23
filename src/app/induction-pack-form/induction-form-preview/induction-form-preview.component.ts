@@ -18,6 +18,8 @@ export class InductionFormPreviewComponent implements OnInit {
   loading: Boolean = false;
   htmlContent: any;
 
+  shortDate;
+
   @ViewChild('content', { static: false }) content: ElementRef;
 
 
