@@ -114,8 +114,7 @@
                 Delete</button>
             <button mat-stroked-button class="download_link" *ngIf="type == 'folder'" (click)="downloadAll()"><i
                     class="fa fa-download" aria-hidden="true"></i> Download</button>
-            <button mat-stroked-button class="download_link" *ngIf="type == 'file'"><a href="{{path}}"
-                    download="{{path}}"><i class="fa fa-download" aria-hidden="true"></i> Download </a></button>
+            <button mat-stroked-button class="download_link" *ngIf="type == 'file'"><a href="{{path}}" download><i class="fa fa-download" aria-hidden="true"></i> Download </a></button>
         </div>
     </mat-tab>
     <!-- </div> -->
