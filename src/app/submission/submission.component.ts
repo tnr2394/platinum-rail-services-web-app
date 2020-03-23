@@ -335,7 +335,7 @@ export class SubmissionComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this._materialService.allAllotedAssignmentUsingJobId(jobId).subscribe((data) => {
 
-        console.log('data===========>>>>>>>.', data)
+        console.log('data:::', data)
         if (data.length) {
           console.log('Inside IF');
           this.learners = data;
@@ -347,28 +347,6 @@ export class SubmissionComponent implements OnInit {
           this.copyLearners = null;
           return resolve(this.copyLearners);
         }
-
-
-        // console.log('Data=========>>>>>>>>>>>>>>', data);
-        // var obj = data[0];
-        // if (!isEmpty(obj)) {
-        //   this.learners = data;
-        //   this.copyLearners = this.learners;
-        //   this.loadingAssignments = false;
-        //   return resolve(this.copyLearners);
-        // } else {
-        //   this.copyLearners = [];
-        //   return resolve(this.copyLearners);
-        // }
-
-        // function isEmpty(obj) {
-        //   for (var key in obj) {
-        //     if (obj.hasOwnProperty(key))
-        //       return false;
-        //   }
-        //   return true;
-        // }
-
       });
     })
 
