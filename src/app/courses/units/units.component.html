@@ -29,7 +29,7 @@
     </div>
 
     <!-- <div class="col"> -->
-        <div class="col-2" *ngFor="let material of allMaterials; let i = index">
+        <div class="col-3" *ngFor="let material of allMaterials; let i = index">
             <div class="unitCard materials_box"  (click)="singleMaterial(material)">
                 <mat-card class="folder">
                     <mat-card-title>
@@ -40,8 +40,8 @@
                     </mat-card-title>
                     <mat-card-content>
                         <div class="w-100 justify-content-between d-flex">
-                            <div>Assignments: {{material.materialsAssignment.length}}</div>
-                            <div>Readings: {{material.materialsReading.length}}</div>
+                            <div style="font-size: 12px;">Assignments: {{material.materialsAssignment.length}}</div>
+                            <div style="font-size: 12px;">Readings: {{material.materialsReading.length}}</div>
                         </div>
                     </mat-card-content>
                 </mat-card>

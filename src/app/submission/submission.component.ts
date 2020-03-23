@@ -18,8 +18,6 @@ import { Observable } from 'rxjs';
 import { resolve } from 'url';
 import { reject } from 'q';
 
-
-
 @Component({
   selector: 'app-submission',
   templateUrl: './submission.component.html',
@@ -28,6 +26,8 @@ import { reject } from 'q';
 
 export class SubmissionComponent implements OnInit {
   loadingJobs: Boolean;
+  sortType = 'asc'
+  tempData:any
   loadingAssignments: Boolean
   loadingLearners: Boolean
   learners: any = [];
@@ -194,7 +194,7 @@ export class SubmissionComponent implements OnInit {
             if (paramsUnit != undefined) {
               this.selUnit = Number(paramsUnit);
               console.log('this.selUnit :::::::::::::', this.selUnit);
-              this.queryParamsObj['unit'] = this.selUnit;
+              this.queryParamsObj ['unit'] = this.selUnit;
               this.filterAssignmentUsingUnitNumber(this.selUnit);
             }
 
@@ -315,6 +315,8 @@ export class SubmissionComponent implements OnInit {
 
   // UTILITY UPDATE DATA
   updateData(learner) {
+
+    this.tempData = JSON.parse(JSON.stringify(learner))
     console.log("UPDATING DATA = ", learner)
     this.dataSource = new MatTableDataSource(learner);
     this.dataSource.paginator = this.paginator;
@@ -366,6 +368,22 @@ export class SubmissionComponent implements OnInit {
   // Change query
   changeQuery() {
     this.router.navigate(['.'], { relativeTo: this.route, queryParams: this.queryParamsObj });
+  }
+
+
+  sortAssignMent(type){
+    console.log("Yash Shukla", type)
+    if(type == 'asc'){
+      this.sortType = 'desc'
+      console.log("this.dataSource", this.tempData)
+      let datalearners = _.sortBy(this.tempData, ['assignmentUnit', 'assignmentNo'], ['asc', 'asc']);
+          this.updateData(datalearners)
+
+    }else{
+      this.sortType = 'asc'
+      let datalearners2 = _.sortBy(this.tempData, ['assignmentUnit', 'assignmentNo']).reverse();
+      this.updateData(datalearners2)
+    }   
   }
 
 

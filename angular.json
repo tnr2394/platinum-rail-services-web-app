@@ -40,7 +40,7 @@
               "node_modules/jquery/dist/jquery.js",
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/chart.js/dist/Chart.js",
-              "node_modules/select2/dist/js/select2.min.js" 
+              "node_modules/select2/dist/js/select2.min.js"
             ]
           },
           "configurations": {
@@ -183,5 +183,8 @@
       }
     }
   },
-  "defaultProject": "angular-bootstrap-md-app"
+  "defaultProject": "angular-bootstrap-md-app",
+  "cli": {
+    "analytics": "a63c205b-de52-4958-b81b-c8db162dd813"
+  }
 }

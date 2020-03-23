@@ -44,7 +44,7 @@ mat-form-field {
 
 .drawer_btn {
     justify-content: space-between;
-    display: flex;
+    display: block;
     @media (max-width: 422px) {
         display: inline-block !important;
         width: 100%;
@@ -254,4 +254,11 @@ mat-form-field {
         max-height: 100%;
         object-fit: cover;
     }
+}
+
+.side_nav_button{
+    border: none !important;
+    border-bottom: 2px solid black !important;
+    border-radius: 0em !important;
+    padding:0px !important;
 }
