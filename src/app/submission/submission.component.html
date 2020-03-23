@@ -25,7 +25,8 @@
             <div class='col-xl-3 col-md-3'>
                 <!-- <h1>{{selUnit}}</h1> -->
                 <mat-form-field>
-                    <mat-select placeholder="Unit Number" [disabled]="unit.length == 0" [(ngModel)]='selUnit' (selectionChange)='unitNoChanged($event)'>
+                    <mat-select placeholder="Unit Number" [disabled]="unit.length == 0" [(ngModel)]='selUnit'
+                        (selectionChange)='unitNoChanged($event)'>
                         <span *ngFor='let Unit of unit'>
                             <mat-option [value]='Unit._id'>
                                 Unit- {{Unit._id}}
@@ -41,7 +42,8 @@
             <div class='col-xl-3 col-md-3'>
                 <!-- <h1>{{selAss}}</h1> -->
                 <mat-form-field>
-                    <mat-select [disabled]="assignment.length == 0" placeholder="Assignment Number" name="selectedAssignment" [(ngModel)]="selAss" (selectionChange)='assignmentNoChanged($event)'>
+                    <mat-select [disabled]="assignment.length == 0" placeholder="Assignment Number"
+                        name="selectedAssignment" [(ngModel)]="selAss" (selectionChange)='assignmentNoChanged($event)'>
                         <span *ngFor='let assi of assignment'>
                             <mat-option [value]='assi.assignmentId'>
                                 Assignment-{{assi.assignmentNo}}
@@ -65,7 +67,8 @@
             <div class="row justify-content-between w-100">
                 <div *ngFor='let status of assignmentStatus;let i = index'>
                     <div class="col-md-2">
-                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked' (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status,assignmentStatus[i].display)">
+                        <mat-checkbox [(ngModel)]='assignmentStatus[i].checked'
+                            (ngModelChange)="selectedStatus($event,i,assignmentStatus[i].status,assignmentStatus[i].display)">
                             {{status.label}}
                         </mat-checkbox>
                     </div>
@@ -92,7 +95,8 @@
         <div class='row'>
             <div class="table-responsive">
                 <div>
-                    <div *ngIf='selJob == undefined && selectedAssignment == undefined' class="msg_text mb-2 text-info text-center">
+                    <div *ngIf='selJob == undefined && selectedAssignment == undefined'
+                        class="msg_text mb-2 text-info text-center">
                         Choose Job to display Assignments
                     </div>
 
@@ -104,15 +108,18 @@
                     </div> -->
 
 
-                    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="someMethod($event)" class="table table-borderless">
+                    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="someMethod($event)"
+                        class="table table-borderless">
 
 
 
                         <!-- Name Column -->
                         <ng-container matColumnDef="learnerName" class="learner_name_submission">
-                            <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef mat-sort-header="learnerName"> Name
+                            <th class="text-center justify-content-center" mat-header-cell *matHeaderCellDef
+                                mat-sort-header="learnerName"> Name
                             </th>
-                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell *matCellDef="let learner;let i = index;">
+                            <td class="mat-table-cell name_td align-items-center mx-0 p-0" mat-cell
+                                *matCellDef="let learner;let i = index;">
                                 <span class="learner pl-4"><i
                                         class="fas fa-user-graduate fa-2x mr-2 {{getRandomColorClass(i)}}"></i><a
                                         routerLink="/learner/{{learner.learnerId}}">{{learner.learnerName}}</a></span>
@@ -121,9 +128,16 @@
 
                         <!--Assignment Column -->
                         <ng-container matColumnDef="Assignment">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="displayTitle">Assignment</th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef >Assignment
+                                <span *ngIf="sortType == 'asc'" (click)="sortAssignMent(sortType)">
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                </span>
+                                <span *ngIf="sortType == 'desc'" (click)="sortAssignMent(sortType)">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </span>
+                            </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                {{learner.displayTitle}}
+                                {{learner.displayTitle}} 
                                 <!-- Unit-  Assignment-{{learner.assignmentNo}} -->
                             </td>
                         </ng-container>
@@ -131,8 +145,10 @@
 
                         <!-- Status Column -->
                         <ng-container matColumnDef="Status">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="assignmentStatus"> Status </th>
-                            <td class="mat-table-cell text-center m-0" mat-cell *matCellDef="let learner; let i = index;">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef
+                                mat-sort-header="assignmentStatus"> Status </th>
+                            <td class="mat-table-cell text-center m-0" mat-cell
+                                *matCellDef="let learner; let i = index;">
                                 <div [ngClass]="learner.assignmentStatus" class="text-center">
                                     <span>{{learner.assignmentStatus}}</span>
                                 </div>
@@ -143,7 +159,8 @@
                         <ng-container matColumnDef="View">
                             <th class="text-center" mat-header-cell *matHeaderCellDef> View </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details" tooltipClass="tooltip-class" routerLink="/learnerAllotment/{{learner.allotemntId}}">
+                                <a mat-button class="text-primary bold" placement="bottom" ngbTooltip="Details"
+                                    tooltipClass="tooltip-class" routerLink="/learnerAllotment/{{learner.allotemntId}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>
@@ -161,7 +178,8 @@
                         class="text-center text-info pt-3">Loading...<i class="fa fa-cog fa-spin text-info"></i>
                     </h3> -->
 
-                    <div *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true" id="loader-wrapper">
+                    <div *ngIf="loadingJobs == true || loadingAssignments == true || loadingLearners == true"
+                        id="loader-wrapper">
                         <div class="spinner">
                             <img src="../../assets/full_logo.png">
                             <div class="bounce1"></div>
@@ -171,7 +189,8 @@
                     </div>
 
 
-                    <div class="text-info pt-3 text-center" *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
+                    <div class="text-info pt-3 text-center"
+                        *ngIf="learners && learners.length == 0 && !loadingLearners && !loadingAssignments && !loadingJobs">
                         No Learners Found
                     </div>
                 </div>

@@ -959,13 +959,13 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
                 assignmentUnit: '$allotment.assignment.unitNo',
                 assignmentNo: '$allotment.assignment.assignmentNo',
                 assignmentStatus: '$allotment.status',
-                displayText: { $concat: ["Unit-", { $toString: "$allotment.assignment.unitNo" }, " Assignment-", { $toString : "$allotment.assignment.assignmentNo"}] } 
+                displayTitle: { $concat: ["Unit-", { $toString: "$allotment.assignment.unitNo" }, " Assignment-", { $toString : "$allotment.assignment.assignmentNo"}] } 
             }
         }
     ]).exec((error, assignment) => {
         if (error) {
             console.log('Error:', error);
-            return res.status(500).send({ err })
+            return res.status(500).send({ error })
         } else {
             return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
         }

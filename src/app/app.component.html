@@ -141,13 +141,6 @@
           <span class="menuText">Reset Password</span>
         </a>
       </li>
-      <li>
-        <a *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link">
-          <i class="fas fa-sign-out-alt" aria-hidden="true" placement="right"
-            ngbTooltip="{{getToolTipEvent() ? 'Logout' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
-          <span class="menuText">Logout</span>
-        </a>
-      </li>
 
       <li>
         <a *ngIf="loggedInUser" routerLink="/induction-form" routerLinkActive="active-link">
@@ -157,7 +150,13 @@
         </a>
       </li>
 
-      
+      <li>
+        <a *ngIf="loggedInUser" (click)="Logout()" routerLinkActive="active-link">
+          <i class="fas fa-sign-out-alt" aria-hidden="true" placement="right"
+            ngbTooltip="{{getToolTipEvent() ? 'Logout' : ''}}" tooltipClass="tooltip-sidebar-class"></i>
+          <span class="menuText">Logout</span>
+        </a>
+      </li>
 
     </ul>
   </div>

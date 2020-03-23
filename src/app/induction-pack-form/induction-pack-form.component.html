@@ -485,7 +485,9 @@
                             <label>Signature</label>
                             <input [(ngModel)]="confirmationSig1" type="file" [ngModelOptions]="{standalone: true}"
                                 placeholder="select file" (change)="onSelectFile4($event)">
-                            <img [src]="url4" height="200">
+                            <div *ngIf="url4">
+                                <img [src]="url4" height="200">
+                            </div>
                             <!-- </mat-form-field> -->
                         </div>
                         <div class="col-6">
