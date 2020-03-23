@@ -38,8 +38,8 @@ export class FileDetailsComponent implements OnInit {
   supportedDocuments = ['doc', 'docx', 'pdf', 'ppt', 'pptx', 'xlsx', 'xls'];
   loading;
   currentFolder;
-  sharedClient: any;
-  sharedInstructor: any;
+  sharedClient = [];
+  sharedInstructor = [];
   isMaterials: boolean;
   path: any;
   readOnlyTitle: boolean = true;
@@ -69,8 +69,8 @@ export class FileDetailsComponent implements OnInit {
     if(this.currentUser.userRole == 'client'){
       this.hideActions = true
     }
-    this.sharedClient = []
-    this.sharedInstructor = []
+    // this.sharedClient = []
+    // this.sharedInstructor = []
 
     this.displaySaveBtn = false
     console.log("CHANGES", changes);
@@ -131,7 +131,7 @@ export class FileDetailsComponent implements OnInit {
   }
 
   openDialog(someComponent, data = {}): Observable<any> {
-    data = this.recievedFile
+    // data = this.recievedFile
     console.log("OPENDIALOG", "DATA = ", data);
     const dialogRef = this.dialog.open(someComponent, { data, width: '500px', height: '600px' });
     return dialogRef.afterClosed();
@@ -149,11 +149,16 @@ export class FileDetailsComponent implements OnInit {
   shareWith() {
     console.log("ShareWith");
     console.log("this.recievedFiles", this.recievedFile);
-    this.openDialog(ShareFileModalComponent).subscribe(users => {
+    this.openDialog(ShareFileModalComponent, { data:this.recievedFile ,inst: this.sharedInstructor, client: this.sharedClient}).subscribe(users => {
       if (users == undefined) return
       console.log('Users', users);
-      this.sharedClient = users.selectedClients;
-      this.sharedInstructor = users.selectedInstructors;
+      this.sharedClient = []
+      console.log("this.sharedClient before push", typeof this.sharedClient, this.sharedClient)
+      this.sharedClient.push(...users.selectedClients)
+      console.log("this.sharedClient", typeof this.sharedClient, this.sharedClient)
+      this.sharedInstructor = [];
+      this.sharedInstructor.push(...users.selectedInstructors)
+      console.log("this.sharedInstructor", typeof this.sharedInstructor, this.sharedInstructor)
       // users.file = this.id;
       this.openSnackBar("Shared Successfully", "ok")
     })
@@ -196,6 +201,14 @@ export class FileDetailsComponent implements OnInit {
         this.fileDeleted.emit({ fileId: this.id, type: this.type, competenciesId: this.competencieId })
       }
     })
+  }
+  trackByClient(index, item){
+    // console.log("trackByClient", index,item)
+    return index;
+  }
+  trackByInst(index, item){
+    // console.log("trackByInst", index, item)
+    return index;
   }
 
   downloadAll() {

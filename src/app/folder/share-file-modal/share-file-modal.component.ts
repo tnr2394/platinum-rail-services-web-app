@@ -14,6 +14,8 @@ import { FolderService } from 'src/app/services/folder.service';
 })
 export class ShareFileModalComponent implements OnInit {
   @Input('details') recievedFile;
+  isPresent: any;
+  isPresentClient: boolean;
 
   constructor(public _instructorService: InstructorService, public _clientService: ClientService, public _folderService: FolderService,
     public dialogRef: MatDialogRef<ShareFileModalComponent>, @Inject(MAT_DIALOG_DATA) public dialogdata: any) { }
@@ -32,9 +34,22 @@ export class ShareFileModalComponent implements OnInit {
 
   ngOnInit() {
     console.log("DATA IN Share File::::::::: = ", this.dialogdata);
-    this.alreadySharedInstructor = this.dialogdata.sharedInstructor;
-    this.alreadySharedClient = this.dialogdata.sharedClient;
+    this.alreadySharedInstructor = this.dialogdata.inst;
+    if(this.alreadySharedInstructor.length > 0){
+      this.isPresent = true
+      
+      // this.filterIns()
+    }
+    else this.isPresent = false
+    this.alreadySharedClient = this.dialogdata.client;
+    if (this.alreadySharedClient.length > 0) {
+      this.isPresentClient = true
+      // this.filterIns()
+    }
+    else this.isPresentClient = false
+
     console.log('Already Exists::::', this.alreadySharedClient, this.alreadySharedInstructor)
+    console.log("this.isPresent", this.isPresent, "this.isPresentClient", this.isPresentClient);
     this.getInstructors();
     this.getClients();
   }
@@ -78,35 +93,50 @@ export class ShareFileModalComponent implements OnInit {
       alreadySharedClient: this.alreadySharedClient,
       file: this.dialogdata
     };
-    if (this.dialogdata.type == 'folder') {
-      this._folderService.shareFolder(selectedUsers).subscribe(res => {
-        console.log("RES", res);
-      })
-    }
-    else {
-      this._folderService.shareFile(selectedUsers).subscribe(res => {
-        console.log("RES", res);
-      })
-    }
+    // if (this.dialogdata.type == 'folder') {
+    //   this._folderService.shareFolder(selectedUsers).subscribe(res => {
+    //     console.log("shareFolder response", res);
+    //     this.dialogRef.close(selectedUsers)
+    //   })
+    // }
+    // else {
+    //   this._folderService.shareFile(selectedUsers).subscribe(res => {
+    //     console.log("shareFile response", res);
+    //     this.dialogRef.close(selectedUsers)
+    //   })
+    // }
     this.dialogRef.close(selectedUsers)
   }
 
   filterIns() {
-    this.instructors.forEach((e1) => this.dialogdata.sharedInstructor.forEach((e2) => {
-      if (e1._id == e2._id) {
-        this.selectedInstructors.push(e1);
-        e1.checked = true;
-      }
-    }));
+    let data = []
+    data = this.dialogdata.data.sharedInstructor;
+    if(this.isPresent){ data = this.dialogdata.inst }
+    console.log("filterIns called")
+    if(this.instructors.length > 0){
+      this.instructors.forEach((e1) => data.forEach((e2) => {
+        if (e1._id == e2._id) {
+          this.selectedInstructors.push(e1);
+          e1.checked = true;
+          console.log("this.selectedInstructors in filterIns", this.selectedInstructors);
+        }
+      }));
+    }
   }
 
   filterClient() {
-    this.clients.forEach((e1) => this.dialogdata.sharedClient.forEach((e2) => {
-      if (e1._id == e2._id) {
-        this.selectedClients.push(e1);
-        e1.checked = true;
-      }
-    }));
+    let data = []
+    if (this.isPresentClient) { data = this.dialogdata.client }
+    else data = this.dialogdata.data.sharedClient;
+    if (this.clients.length > 0) {
+      console.log("IN if this.clients", this.clients, "data", data)
+      this.clients.forEach((e1) => data.forEach((e2) => {
+        if (e1._id == e2._id) {
+          this.selectedClients.push(e1);
+          e1.checked = true;
+        }
+      }));
+    }
   }
 
   // API CALLS
@@ -123,6 +153,7 @@ export class ShareFileModalComponent implements OnInit {
   getClients() {
     this._clientService.getClients().subscribe(clients => {
       this.clients = clients;
+      console.log("this.clients", this.clients);
       clients.forEach((client) => {
         client.checked = false;
       })

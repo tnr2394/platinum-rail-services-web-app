@@ -12,7 +12,7 @@
                 <h4>Instructors</h4>
                 <mat-grid-list cols="1" rowHeight='30px'>
                     <mat-grid-tile *ngFor='let instructor of instructors;let i=index;' class='leftAlign'>
-                        <mat-checkbox (change)='onInstructorChange($event)' [(ngModel)]='instructor.checked'
+                        <mat-checkbox (change)='onInstructorChange($event)' [disabled]="instructor.checked" [(ngModel)]='instructor.checked'
                             [value]='instructor'>{{instructor.name}}
                         </mat-checkbox>
                     </mat-grid-tile>
@@ -22,7 +22,7 @@
                 <h4>Clients</h4>
                 <mat-grid-list cols="1" rowHeight='30px'>
                     <mat-grid-tile *ngFor='let client of clients' class='leftAlign'>
-                        <mat-checkbox (change)='onClientChange($event)' [(ngModel)]='client.checked'
+                        <mat-checkbox (change)='onClientChange($event)' [(ngModel)]='client.checked' [disabled]="client.checked"
                             [value]='client'>{{client.name}}</mat-checkbox>
                     </mat-grid-tile>
                 </mat-grid-list>

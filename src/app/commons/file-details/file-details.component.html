@@ -73,18 +73,18 @@
     <mat-tab label="Activity" *ngIf="recievedFile && (recievedFile.type == 'folder' || recievedFile.type == 'file') && !hideActions">
         {{isCompetency}}
         <h4>Shared with:</h4>
-        <h6><b>Clients</b></h6>
+        <h6><b>Clients {{sharedClient.length}}</b></h6>
         <ul>
-            <li *ngFor="let client of sharedClient">
+            <li *ngFor="let client of sharedClient; let i = index;">
                 {{client.name}}
             </li>
         </ul>
         <div class="w-100 justify-content-center d-flex mb-4" *ngIf="sharedClient.length < 1" style="color: #3b86ff;">
             Not shared with any clients</div>
 
-        <h6><b>Instructors</b></h6>
+        <h6><b>Instructors {{sharedInstructor.length}}</b></h6>
         <mat-list align='center'>
-            <mat-list-item class="text-center" *ngFor="let instructor of sharedInstructor">
+            <mat-list-item class="text-center" *ngFor="let instructor of sharedInstructor;let i = index;">
                 <div class="inst_pic" *ngIf="instructor && instructor.path">
                     <img src="{{instructor.path}}">
                 </div>

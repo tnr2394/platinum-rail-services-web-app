@@ -61,14 +61,22 @@ export class AdminReportAComponent implements OnInit {
   }
   constructor(private _instructorService: InstructorService, public _filter: FilterService, public _timeSheetService: TimeSheetService) {
     this.dataSource = new MatTableDataSource<any>();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit() {
+   
+    this.dataSource.sort = this.sort;
     this.loading = true;
     this.displayMsg = false
     this.selectedDate = moment().format("MM/DD/YYYY")
     this.getInstructorTime(this.selectedDate)
     this.getAllInstructors()
+  }
+   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   dateChanged(event) {
     this.displayMsg = false
@@ -97,9 +105,18 @@ export class AdminReportAComponent implements OnInit {
   }
 
   updateData(logs) {
+    console.log("Update data called in admin report a", logs)
     this.dataSource = new MatTableDataSource(logs);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      console.log("inside switch case", item, property);
+      switch (property) {
+        case 'instructor.name': return item.instructor.name;
+        default: return item[property];
+      }
+    };
     this.dataSource.sort = this.sort;
+    console.log("After Update data called in admin report a", this.dataSource)
   }
   getFinalList(){
     if (this.tempInst.length > 0 && this.allInstrutors){
@@ -150,6 +167,10 @@ export class AdminReportAComponent implements OnInit {
       })
       if (this.allInstrutorsLogs.length > 0) this.getFinalList()
     })
+  }
+
+  someMethod(event){
+    console.log("sort in admin report a", event)
   }
 }
 
