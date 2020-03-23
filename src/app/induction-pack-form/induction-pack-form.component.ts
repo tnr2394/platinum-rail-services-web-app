@@ -1753,7 +1753,10 @@ export class InductionPackFormComponent implements OnInit {
     this.loading = true;
     this._timeSheetService.generatePdf(this.data).subscribe((res => {
       this.saveToFileSystem(res);
-    }));
+    }), err => {
+      this.loading = false;
+      console.log('Error while pdf generate:', err);
+    });
   }
 
   getFormData(object) {

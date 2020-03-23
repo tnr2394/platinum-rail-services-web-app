@@ -559,11 +559,10 @@ module.exports.secondReportLogsDetails = (req, res) => {
 
 
 module.exports.generateFormPdf = (req, res) => {
-	console.log('Req.file here===>>>', req.files);
-	console.log('Req.body here===>>>', req.body);
+	console.log('Req.body here', req.body);
 	pdfServices.pdfGenerate(req.body).then((response) => {
-		return res.status(200).json({ message: 'Time Logs Fetch Successfully ', data: response })
+		return res.status(200).json({ message: 'Pdf Generated Successfully ', data: response })
 	}).catch((error) => {
-		return res.status(500).json({ message: ' Error in: Fetch Time Logs ', error })
+		return res.status(500).json({ message: ' Error in:Pdf Generation', error })
 	})
 }
