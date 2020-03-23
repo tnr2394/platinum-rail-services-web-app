@@ -21,6 +21,8 @@ export class AppComponent {
   fileTitle: any;
   fileId: any;
   type: any;
+  fileDeleted;
+  folderTitleChenged;
   @HostListener('window:beforeprint', ['$event'])
   onBeforePrint(event) {
     this.isPrint = true
