@@ -420,19 +420,6 @@ folderController.shareFile = function (req, res, next) {
         })
     }
 
-
-    if (req.body.selectedInstructors) {
-        lodash.forEach(req.body.selectedInstructors, function (singleIns) {
-            instructorList.push(singleIns._id);
-        })
-    }
-
-    if (req.body.selectedClients) {
-        lodash.forEach(req.body.selectedClients, function (singleClient) {
-            clientList.push(singleClient._id);
-        })
-    }
-
     if (req.body.selectedInstructors) {
         lodash.forEach(req.body.selectedInstructors, function (singleIns) {
             instructorList.push(singleIns._id);
@@ -448,7 +435,10 @@ folderController.shareFile = function (req, res, next) {
 
     console.log('Email Array:::', finalEmail);
 
+    console.log('Ins List====>>',instructorList);
 
+    console.log('Client List====>>',clientList);
+    
     sharingFile(sharedFolder, finalEmail, instructorList, clientList).then((file) => {
         return res.send({
             data: {

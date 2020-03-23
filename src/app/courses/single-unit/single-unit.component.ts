@@ -35,6 +35,8 @@ export class SingleUnitComponent implements OnInit {
   allLearners: any;
   private sub: any
 
+  searchText;
+
   @Output() openFilesSideNav: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(AssignmentStatusComponent, { static: false }) assignmentStatusComp: AssignmentStatusComponent;
   clearCheckBox: boolean;

@@ -16,6 +16,10 @@ export class InductionPackFormComponent implements OnInit {
 
   loading: Boolean = false;
 
+  eye;
+  standard;
+  check;
+
   ngOnInit() {
   }
 
