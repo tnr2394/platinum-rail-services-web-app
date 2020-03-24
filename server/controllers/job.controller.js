@@ -959,7 +959,7 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
                 assignmentUnit: '$allotment.assignment.unitNo',
                 assignmentNo: '$allotment.assignment.assignmentNo',
                 assignmentStatus: '$allotment.status',
-                displayText: { $concat: ["Unit-", { $toString: "$allotment.assignment.unitNo" }, " Assignment-", { $toString : "$allotment.assignment.assignmentNo"}] } 
+                displayTitle: { $concat: ["Unit-", { $toString: "$allotment.assignment.unitNo" }, " Assignment-", { $toString : "$allotment.assignment.assignmentNo"}] } 
             }
         }
     ]).exec((error, assignment) => {

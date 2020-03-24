@@ -121,9 +121,16 @@
 
                         <!--Assignment Column -->
                         <ng-container matColumnDef="Assignment">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header="displayTitle">Assignment</th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef >Assignment
+                                <span *ngIf="sortType == 'asc'" (click)="sortAssignMent(sortType)">
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                </span>
+                                <span *ngIf="sortType == 'desc'" (click)="sortAssignMent(sortType)">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </span>
+                            </th>
                             <td class="mat-table-cell text-center" mat-cell *matCellDef="let learner; let i = index;">
-                                {{learner.displayTitle}}
+                                {{learner.displayTitle}} 
                                 <!-- Unit-  Assignment-{{learner.assignmentNo}} -->
                             </td>
                         </ng-container>
