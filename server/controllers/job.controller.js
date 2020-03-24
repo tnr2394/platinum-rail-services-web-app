@@ -965,7 +965,7 @@ jobController.allotedAssignmentListUsingJobId = function (req, res) {
     ]).exec((error, assignment) => {
         if (error) {
             console.log('Error:', error);
-            return res.status(500).send({ err })
+            return res.status(500).send({ error })
         } else {
             return res.send({ data: { assignment }, msg: "Assignment List fetch Successfully" });
         }

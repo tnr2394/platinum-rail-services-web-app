@@ -65,8 +65,11 @@ var sass;
 var bodyParserJSON = bodyParser.json();
 var bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
-app.use(bodyParserJSON);
-app.use(bodyParserURLEncoded);
+// app.use(bodyParserJSON);
+// app.use(bodyParserURLEncoded);
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(fileUpload());
 
